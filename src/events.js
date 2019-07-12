@@ -7,8 +7,8 @@ const db = require("./core/db");
 const setStatus = require("./core/status");
 const react = require("./commands/translate.react");
 
-const botVersion = "1.0.0";
-const botCreator = "Bobby (@NotMyself#7386)";
+const botVersion = "1.0.1";
+const botCreator = "Collaboration";
 
 exports.listen = function(client)
 {
@@ -28,7 +28,7 @@ exports.listen = function(client)
 
       config = {
          version: botVersion,
-         botServer: "https://discord.gg/uekTNPj",
+         botServer: "https://discord.gg",
          inviteURL: auth.invite,
          owner: auth.botOwner,
          defaultLanguage: "en",
