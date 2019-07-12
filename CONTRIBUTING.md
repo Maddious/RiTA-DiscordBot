@@ -8,7 +8,7 @@ Firstly, thank you for wanting to contribute to this project, here are a few gui
 * Elegant and well-commented code.
 * Meaningful commit/pull-req descriptions.
 
-## Contributing code to Discord-Translator
+## Contributing code to RITA (Real-Time Intergalactic Translating Assistant)
 
 * You must make your own clone/fork of the bot for development/testing.
 * Use `gulp watch` during development for auto linting and building.
@@ -19,8 +19,6 @@ Firstly, thank you for wanting to contribute to this project, here are a few gui
 * Create error handling and bind errors with the webhook logger.
 
 Once you're certain the code is valid, then you can fill the `Pull Request Template` and submit a pull request with your changes.
-
-You are welcome to join the official [Discord Translator](https://discordapp.com/invite/uekTNPj) server for chatting and support.
 
 ## Pull Request Template
 
