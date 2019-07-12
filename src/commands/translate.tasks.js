@@ -9,11 +9,9 @@ const logger = require("../core/logger");
 
 module.exports = function(data)
 {
-
    //
    // Disallow this command in Direct/Private messages
    //
-
    if (data.message.channel.type === "dm")
    {
       data.color = "warn";
@@ -22,55 +20,44 @@ module.exports = function(data)
 
       return botSend(data);
    }
-
    //
    // Disallow multiple destinations
    //
-
    if (data.cmd.for.length > 1)
    {
       data.color = "error";
       data.text = ":warning:  Please specify only one `for` value.";
       return botSend(data);
    }
-
    //
    // Disallow non-managers to stop for others
    //
-
    if (data.cmd.for[0] !== "me" && !data.message.isManager)
    {
       data.color = "error";
       data.text =
          ":cop:  You need to be a channel manager to stop auto translating " +
          "this channel for others.";
-
       return botSend(data);
    }
-
    //
    // Prepare task data
    //
-
    const origin = data.message.channel.id;
    const dest = destID(data.cmd.for[0], data.message.author.id);
    const destDisplay = destResolver(data.cmd.for[0], data.message.author.id);
-
    //
    // Check if task actually exists
    //
-
    db.getTasks(origin, dest, function(err, res)
    {
       if (err)
       {
          return dbError(err, data);
       }
-
       //
       // Error if task does not exist
       //
-
       if (res.length < 1 || !res)
       {
 	 const orig = destResolver(origin);
@@ -78,46 +65,35 @@ module.exports = function(data)
          data.text =
             ":warning:  __**No tasks**__ for " +
             `**<${orig}>**.`;
-
          if (dest === "all")
          {
             data.text =
                ":warning:  This channel is not being automatically " +
                "translated for anyone.";
          }
-
          return botSend(data);
       }
-
       //
       // Otherwise, proceed to remove task from database
       //
-
       shoutTasks(res, data, origin, dest, destDisplay);
    });
 };
-
 // ---------------------
 // Remove from database
 // ---------------------
-
 const shoutTasks = function(res, data, origin, dest, destDisplay)
 {
    //console.log(data);
    //console.log(res);
-
    data.color = "ok";
    data.text = ":negative_squared_cross_mark:  Translation tasks for this channel:"
    botSend(data);
-
-      //"channel has been stopped for **" + destDisplay + "**"
-
-	/*
+      "channel has been stopped for **" + destDisplay + "**"
    if (dest === "all")
    {
       data.text += ` (${res.length})`;
    }
-   */
    for(var i = 0, len = res.length; i < len; i++) {
 	const task = res[i];
 	const dest = destResolver(task.dest);
@@ -128,11 +104,9 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
 		   `and sending **${lang_to}** messages to **<${dest}>**`
 	botSend(data);
    }
-
    data.text = ":negative_squared_cross_mark:  That's all I have!"
    return botSend(data);
 };
-
 // -----------------------
 // Destination ID handler
 // -----------------------
