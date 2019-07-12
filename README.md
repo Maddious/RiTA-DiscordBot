@@ -1,6 +1,8 @@
 ## RITA (beta)
 Translation bot built using `discord.js` and `Google Translate API`.
 
+[![invite](https://img.shields.io/badge/invite-RITA-7289DA.svg)](https://discordapp.com/oauth2/authorize?&client_id=599269445118197760&scope=bot&permissions=8)
+
 ## Features
 * Translate custom messages
 * Translate messages by reacting with flag emoji
