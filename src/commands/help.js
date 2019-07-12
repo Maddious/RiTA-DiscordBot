@@ -83,17 +83,17 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate by Reacting",
-      link: "https://github.com/NotMyself/ZyC0R3/Rita/Translate-with-Emoji-Reaction",
+      link: "https://github.com/JShep89/C-3PO/wiki/:flag_white:-Translate-by-Reacting-new",
       icon: ":flag_white:",
       cmd: null,
       help: "react",
       args: null,
-      example: "!t help react for examples"
+      example: "!t help react for examples!
    }) +
    helpSection({
       config: config,
       title: "Translate Custom Text",
-      link: "https://github.com/NotMyself/ZyC0R3/Rita/Translate-Custom-Text",
+      link: "https://github.com/JShep89/C-3PO/wiki/:abc:-Translate-Custom-Text",
       icon: ":abc:",
       cmd: "this",
       help: "custom",
@@ -103,7 +103,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate Last Message",
-      link: "https://github.com/NotMyself/ZyC0R3/Rita/Translate-Last-Message",
+      link: "https://github.com/JShep89/C-3PO/wiki/:arrow_double_up:-Translate-Last-Message",
       icon: ":arrow_double_up:",
       cmd: "last",
       help: "last",
@@ -113,7 +113,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate Channel (Automatic",
-      link: "https://github.com/NotMyself/ZyC0R3/Rita/Translate-Channel-(Automatic)",
+      link: "https://github.com/JShep89/C-3PO/wiki/:hash:-Translate-Channel-(Automatic)",
       icon: ":hash:",
       cmd: "channel",
       help: "auto",
@@ -123,7 +123,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Stats",
-      link: "https://github.com/ZyC0R3/Rita/wiki/Get-Statistics",
+      link: "https://github.com/JShep89/C-3PO/wiki/Misc.-Commands",
       icon: ":bar_chart:",
       cmd: "stats",
       help: "misc",
@@ -133,7 +133,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Settings",
-      link: "https://github.com/ZyC0R3/Rita/wiki/Settings",
+      link: "https://github.com/JShep89/C-3PO/wiki/Misc.-Commands",
       icon: ":gear:",
       cmd: "settings",
       help: "settings",
@@ -143,7 +143,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Report Bugs / Request Features",
-      link: "https://github.com/ZyC0R3/Rita/issues",
+      link: "https://github.com/JShep89/C-3PO/wiki/Misc.-Commands",
       icon: ":raising_hand::skin-tone-3:"
    }) +
    donation;
