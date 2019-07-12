@@ -4,7 +4,7 @@
   "engines": {
     "node": "9.0.0"
   },
-  "description": "Translation bot built using discord.js and Google Translate API.",
+  "description": "Real-Time Intergalactic Translating Assistant bot built using discord.js and Google Translate API.",
   "main": "src/bot.js",
   "license": "MIT",
   "scripts": {
@@ -15,15 +15,20 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
-    "name": "Bobby Johnson <bobby.johnson@gmail.com>",
-    "url": "http://iamnotmyself.com"
+    "name": "Collaboration",
   },
   "contributors": [
     {
-      "name": "Aziz Natour <azizgfx@gmail.com>",
-      "url": "http://www.aziznatour.com",
-      "name": "ZyC0R3 <contact@zycore.com>",
-      "url": "https://github.com/ZyC0R3"
+      "name": "ZyC0R3/Zycore <contact@zycore.com>",
+      "url": "https://github.com/ZyC0R3",
+      "name": "GitName/Maddious <blank@email.com>",
+      "url": "https://github.com/",
+      "name": "GitName/Balthazar <blank@email.com>",
+      "url": "https://github.com/",
+      "name": "GitName/Artanis <blank@email.com>",
+      "url": "https://github.com/",
+      "name": "GitName/Z3US <blank@email.com>",
+      "url": "https://github.com/"
     }
   ],
   "keywords": [
@@ -35,10 +40,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/NotMyself/Louie.git"
+    "url": "https://github.com/ZyC0R3/Rita"
   },
   "bugs": {
-    "url": "https://github.com/NotMyself/Louie/issues"
+    "url": "https://github.com/ZyC0R3/Rita/issues"
   },
   "dependencies": {
     "common-tags": "^1.8.0",
