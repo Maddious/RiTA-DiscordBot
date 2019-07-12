@@ -61,7 +61,7 @@
       "wrap-regex": "warn",
       "prefer-const": "warn",
       "template-curly-spacing": "warn",
-      "no-unused-vars": "warn"
+      "no-unused-vars": "warn",
       "no-mixed-spaces-and-tabs": "warn"
     }
 }
