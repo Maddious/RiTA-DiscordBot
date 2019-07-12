@@ -88,7 +88,7 @@ const helpMessage = function(config, botname, param)
       cmd: null,
       help: "react",
       args: null,
-      example: "!t help react for examples!
+      example: "!t help react for examples"
    }) +
    helpSection({
       config: config,
