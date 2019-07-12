@@ -88,7 +88,7 @@ const helpMessage = function(config, botname, param)
       cmd: null,
       help: "react",
       args: null,
-      example: null
+      example: "!t help react for examples!
    }) +
    helpSection({
       config: config,
@@ -112,7 +112,7 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "Translate Channel (Automatic)",
+      title: "Translate Channel (Automatic",
       link: "https://github.com/NotMyself/ZyC0R3/Rita/Translate-Channel-(Automatic)",
       icon: ":hash:",
       cmd: "channel",
