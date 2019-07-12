@@ -27,7 +27,7 @@
       "no-param-reassign": "error",
       "no-return-assign": "error",
       "no-self-compare": "error",
-      "no-unused-expressions": "error",
+      "no-unused-expressions": "warn",
       "no-useless-concat": "warn",
       "yoda": "warn",
       "callback-return": "error",
@@ -41,7 +41,7 @@
       "keyword-spacing": "warn",
       "linebreak-style": "warn",
       "max-depth": ["warn", 4],
-      "max-len": ["warn", 80],
+      "max-len": ["warn", 400],
       "max-nested-callbacks": ["warn", 5],
       "max-params": ["warn", 5],
       "max-statements-per-line": ["warn", {"max": 2}],
@@ -54,12 +54,16 @@
       "operator-linebreak": ["warn", "after"],
       "padded-blocks": ["warn", "never"],
       "quotes": ["warn", "double", {"allowTemplateLiterals": true}],
-      "semi": "error",
+      "semi": "warn",
       "semi-spacing": "warn",
       "space-before-blocks": ["warn", "always"],
       "space-in-parens": "warn",
       "wrap-regex": "warn",
       "prefer-const": "warn",
-      "template-curly-spacing": "warn"
+      "template-curly-spacing": "warn",
+      "no-unused-vars": "warn",
+      "no-mixed-spaces-and-tabs": "warn",
+      "no-extra-semi": "warn",
+      "no-unreachable": "warn"
     }
 }

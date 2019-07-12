@@ -8,7 +8,6 @@ const logger = require("../core/logger");
 
 module.exports = function(data)
 {
-
    //
    // Disallow this command in Direct/Private messages
    //
@@ -103,7 +102,7 @@ const removeTask = function(res, data, origin, dest, destDisplay)
 {
    db.removeTask(origin, dest, function(err)
    {
-console.log("remoteTask()");
+      console.log("remoteTask()");
       if (err)
       {
          return dbError(err, data);
