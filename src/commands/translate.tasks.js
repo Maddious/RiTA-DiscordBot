@@ -89,11 +89,12 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
    data.color = "ok";
    data.text = ":negative_squared_cross_mark:  Translation tasks for this channel:";
    botSend(data);
-      "channel has been stopped for **" + destDisplay + "**";
-   if (dest === "all")
+      //"channel has been stopped for **" + destDisplay + "**";
+   /*if (dest === "all")
    {
       data.text += ` (${res.length})`;
    }
+   */
    for(var i = 0, len = res.length; i < len; i++) {
 	const task = res[i];
 	const dest = destResolver(task.dest);
