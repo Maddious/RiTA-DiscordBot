@@ -2,7 +2,7 @@
   "name": "Rita",
   "version": "1.0.0",
   "engines": {
-    "node": "9.12.0"
+    "node": "9.0.0"
   },
   "description": "Translation bot built using discord.js and Google Translate API.",
   "main": "src/bot.js",
