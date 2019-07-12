@@ -100,9 +100,9 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
       const task = res[i];
       const dest = destResolver(task.dest);
       const origin = destResolver(task.origin);
-      const lang_From = langCheck(task.lang_From).valid[0].name;
-      const lang_To = langCheck(task.lang_To).valid[0].name;
-      data.text = `:arrow_right:   Translating **${lang_From}** messages from **<${origin}>** ` + `and sending **${lang_To}** messages to **<${dest}>**`
+      const LangFrom = langCheck(task.LangFrom).valid[0].name;
+      const LangTo = langCheck(task.LangTo).valid[0].name;
+      data.text = `:arrow_right:   Translating **${LangFrom}** messages from **<${origin}>** ` + `and sending **${LangTo}** messages to **<${dest}>**`
 	botSend(data);
    }
    data.text = ":negative_squared_cross_mark:  That's all I have!"
