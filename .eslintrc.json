@@ -60,7 +60,7 @@
       "space-in-parens": "warn",
       "wrap-regex": "warn",
       "prefer-const": "warn",
-      "template-curly-spacing": "warn"
+      "template-curly-spacing": "warn",
       "no-unused-vars": "warn"
     }
 }
