@@ -20,25 +20,25 @@
        
 -----> Installing dependencies
        Installing node modules (package.json + package-lock)
-       added 68 packages and updated 2 packages in 6.516s
+       added 75 packages, removed 8 packages and updated 9 packages in 6.26s
        
 -----> Build
        Running build
        
-       > Rita@1.0.0 build /tmp/build_712b0748ec8c424f573f40792fc63d8c
+       > Rita@1.0.0 build /tmp/build_306bd5b0eb0320fc4a65e027f3c10de0
        > gulp build
        
-       [22:14:39] Using gulpfile /tmp/build_712b0748ec8c424f573f40792fc63d8c/gulpfile.js
-       [22:14:40] Starting 'lint'...
-       [22:14:40] Starting 'compress'...
-       [22:14:41] 
-       /tmp/build_712b0748ec8c424f573f40792fc63d8c/src/commands/help.js
+       [22:42:59] Using gulpfile /tmp/build_306bd5b0eb0320fc4a65e027f3c10de0/gulpfile.js
+       [22:42:59] Starting 'lint'...
+       [22:42:59] Starting 'compress'...
+       [22:43:01] 
+       /tmp/build_306bd5b0eb0320fc4a65e027f3c10de0/src/commands/help.js
          70:1  warning  Trailing spaces not allowed  no-trailing-spaces
        
-       /tmp/build_712b0748ec8c424f573f40792fc63d8c/src/commands/translate.stop.js
+       /tmp/build_306bd5b0eb0320fc4a65e027f3c10de0/src/commands/translate.stop.js
          3:7  warning  'logger' is assigned a value but never used  no-unused-vars
        
-       /tmp/build_712b0748ec8c424f573f40792fc63d8c/src/commands/translate.tasks.js
+       /tmp/build_306bd5b0eb0320fc4a65e027f3c10de0/src/commands/translate.tasks.js
            4:7    warning  'logger' is assigned a value but never used       no-unused-vars
           85:54   warning  'destDisplay' is defined but never used           no-unused-vars
           98:51   warning  Trailing spaces not allowed                       no-trailing-spaces
@@ -47,7 +47,7 @@
          106:1    warning  Expected indentation of 6 spaces but found 1 tab  indent
          108:67   warning  Missing semicolon                                 semi
        
-       /tmp/build_712b0748ec8c424f573f40792fc63d8c/src/core/db.js
+       /tmp/build_306bd5b0eb0320fc4a65e027f3c10de0/src/core/db.js
          101:22  warning  '_result' is defined but never used            no-unused-vars
          111:47  warning  '_cb' is defined but never used                no-unused-vars
          114:22  warning  '_result' is defined but never used            no-unused-vars
@@ -56,10 +56,10 @@
        ✖ 13 problems (0 errors, 13 warnings)
          0 errors, 5 warnings potentially fixable with the `--fix` option.
        
-       [22:14:41] Finished 'lint' after 1.64 s
-       [22:14:41] Finished 'compress' after 1.62 s
-       [22:14:41] Starting 'build'...
-       [22:14:41] Finished 'build' after 139 μs
+       [22:43:01] Finished 'lint' after 1.69 s
+       [22:43:01] Finished 'compress' after 1.67 s
+       [22:43:01] Starting 'build'...
+       [22:43:01] Finished 'build' after 53 μs
        
 -----> Caching build
        - node_modules
@@ -78,5 +78,5 @@
 -----> Compressing...
        Done: 24.6M
 -----> Launching...
-       Released v22
+       Released v23
        https://rita-2.herokuapp.com/ deployed to Heroku
