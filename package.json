@@ -1,10 +1,10 @@
 {
-  "name": "louie",
-  "version": "0.5.3",
+  "name": "RITA 2.0",
+  "version": "1.0.5",
   "engines": {
     "node": "6.14.4"
   },
-  "description": "Translation bot built using discord.js and Google Translate API.",
+  "description": "Real-Time Intergalactic Translating Assistant bot built using discord.js and Google Translate API.",
   "main": "src/bot.js",
   "license": "MIT",
   "scripts": {
@@ -15,28 +15,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
-    "name": "Bobby Johnson <bobby.johnson@gmail.com>",
-    "url": "http://iamnotmyself.com"
-  },
-  "contributors": [
-    {
-      "name": "Aziz Natour <azizgfx@gmail.com>",
-      "url": "http://www.aziznatour.com"
-    }
-  ],
-  "keywords": [
-    "discord",
-    "discordjs",
-    "bot",
-    "translate",
-    "translator"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/NotMyself/Louie.git"
-  },
-  "bugs": {
-    "url": "https://github.com/NotMyself/Louie/issues"
+    "name": "ZyC0R3",
   },
   "dependencies": {
     "common-tags": "^1.7.2",
