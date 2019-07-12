@@ -1,7 +1,12 @@
 ## RITA (beta)
 Translation bot built using `discord.js` and `Google Translate API`.
 
-[![invite](https://img.shields.io/badge/invite-RITA-7289DA.svg)](https://discordapp.com/oauth2/authorize?&client_id=599269445118197760&scope=bot&permissions=8)
+
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/Rita.svg?style=plastic)
+![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/Rita.svg?style=plastic)
+![GitHub](https://img.shields.io/github/license/ZyC0R3/Rita.svg?style=plastic)
+![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/Rita.svg?style=plastic)
+[![invite](https://img.shields.io/badge/Discord_Invite-RITA-7289DA.svg?style=plastic)](https://discordapp.com/oauth2/authorize?&client_id=599269445118197760&scope=bot&permissions=8)
 
 ## Features
 * Translate custom messages
