@@ -89,20 +89,20 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
    data.color = "ok";
    data.text = ":negative_squared_cross_mark:  Translation tasks for this channel:";
    botSend(data);
-      //"channel has been stopped for **" + destDisplay + "**";
+   //"channel has been stopped for **" + destDisplay + "**";
    /*if (dest === "all")
    {
       data.text += ` (${res.length})`;
    }
    */
-   for(var i = 0, len = res.length; i < len; i++) {
-	const task = res[i];
-	const dest = destResolver(task.dest);
-	const origin = destResolver(task.origin);
-	const lang_from = langCheck(task.lang_from).valid[0].name;
-	const lang_to = langCheck(task.lang_to).valid[0].name;
-   	data.text = `:arrow_right:   Translating **${lang_from}** messages from **<${origin}>** ` +
-		   `and sending **${lang_to}** messages to **<${dest}>**`
+   for (var i = 0, len = res.length; i < len; i++) 
+   {
+      const task = res[i];
+      const dest = destResolver(task.dest);
+      const origin = destResolver(task.origin);
+      const lang_From = langCheck(task.lang_From).valid[0].name;
+      const lang_To = langCheck(task.lang_To).valid[0].name;
+      data.text = `:arrow_right:   Translating **${lang_From}** messages from **<${origin}>** ` + `and sending **${lang_To}** messages to **<${dest}>**`
 	botSend(data);
    }
    data.text = ":negative_squared_cross_mark:  That's all I have!"
