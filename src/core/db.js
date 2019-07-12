@@ -9,60 +9,60 @@ const db = new Sequelize(process.env.DATABASE_URL, {
 
 db
    .authenticate()
-   .then(() => 
-  {
-      logger("dev",'Successfully connected to database');
-  })
-  .catch(err => {
-    logger("error", err);
-  });
-
-const Servers = db.define('servers', {
-  id: {
-    type: Sequelize.STRING(32),
-    primaryKey: true,
-		unique: true,
-    allowNull: false,
-	},
-  lang: {
-		type: Sequelize.STRING(8),
-		defaultValue: "en",
-	},
-  count: {
-		type: Sequelize.INTEGER,
-		defaultValue: 0,
-	},
-  active: {
-		type: Sequelize.BOOLEAN,
-		defaultValue: true,
-	},
+   .then(() =>
+   {
+      logger("dev","Successfully connected to database");
+   })
+   .catch(err => {
+      logger("error", err);
+   });
+//--
+const Servers = db.define("servers", {
+   id: {
+      type: Sequelize.STRING(32),
+      primaryKey: true,
+      unique: true,
+      allowNull: false
+   },
+   lang: {
+      type: Sequelize.STRING(8),
+      defaultValue: "en",
+   },
+   count: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0,
+   },
+   active: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+   },
 });
-
+//--
 const Tasks = db.define('tasks', {
   origin: Sequelize.STRING(32),
   dest: Sequelize.STRING(32),
   reply: Sequelize.STRING(16),
   server: Sequelize.STRING(32),
   active: {
-		type: Sequelize.BOOLEAN,
-		defaultValue: true,
-	},
-  lang_to: {
-    type: Sequelize.STRING(8),
-    defaultValue: "en",
-  },
-  lang_from: {
-    type: Sequelize.STRING(8),
-    defaultValue: "en",
-  }
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+   },
+   lang_to: {
+      type: Sequelize.STRING(8),
+      defaultValue: "en",
+   },
+   lang_from: {
+      type: Sequelize.STRING(8),
+      defaultValue: "en",
+   }
 },
 {
-    indexes: [
-        {
-            unique: true,
-            fields: ['origin', 'dest']
-        }
-    ]
+   indexes: [
+      {
+         unique: true,
+         fields: ["origin", "dest"]
+      }
+   ]
 });
 
 // -------------------
@@ -70,13 +70,10 @@ const Tasks = db.define('tasks', {
 // -------------------
 
 exports.initializeDatabase = function() {
-
   Servers.sync({ logging: console.log });
   Tasks.sync({ logging: console.log });
-
   // Add global server row
   Servers.upsert({ id: "bot", lang: "en" });
-
 }
 
 // -----------------------
@@ -85,12 +82,10 @@ exports.initializeDatabase = function() {
 
 exports.addServer = function(id, lang)
 {
-
     return Servers.create({
         id: id,
         lang: lang
     });
-
 }
 
 // ------------------
@@ -99,12 +94,10 @@ exports.addServer = function(id, lang)
 
 exports.removeServer = function(id)
 {
-
   return Servers.update({ active: false }, { where: { id: id } }).then( 
     function (err, result) {
       logger("error", err);
   });
-
 }
 
 // -------------------
@@ -113,12 +106,10 @@ exports.removeServer = function(id)
 
 exports.updateServerLang = function(id, lang, cb)
 {
-
   return Servers.update({ lang: lang }, { where: { id: id } }).then( 
     function (err, result) {
       logger("error", err);
   });
-
 }
 
 // ------------------
@@ -128,12 +119,10 @@ exports.updateServerLang = function(id, lang, cb)
 exports.channelTasks = function(data)
 {
    var id = data.message.channel.id;
-
    if (data.message.channel.type === "dm")
    {
       id = "@" + data.message.author.id;
    }
-
   try {
     const taskList = Tasks.findAll({ where: { origin: id, active: true }}).then(
     function (result) {
@@ -146,7 +135,6 @@ exports.channelTasks = function(data)
     data.err = e;
     return autoTranslate(data);
   }
-
 }
 // --------------------------------
 // Get tasks for channel or user
@@ -154,21 +142,17 @@ exports.channelTasks = function(data)
 
 exports.getTasks = function(origin, dest, cb)
 {
-
    if (dest === "me") {
         return Tasks.findAll({ where: { origin: origin, dest: dest } }, {raw:true}).then(
           function (result, err) {
             cb(err, result);
           });
     }
-
     return Tasks.findAll({ where: { origin: origin } }, {raw:true}).then(
       function (result, err) {
         cb(err, result);
       });
-
 }
-
 
 // --------------------------------
 // Check if dest is found in tasks
@@ -176,19 +160,16 @@ exports.getTasks = function(origin, dest, cb)
 
 exports.checkTask = function(origin, dest, cb)
 {
-
    if (dest === "all") {
         return Tasks.findAll({ where: { origin: origin } }, {raw:true}).then(
           function (result, err) {
             cb(err, result);
           });
     }
-
     return Tasks.findAll({ where: { origin: origin, dest: dest } }, {raw:true}).then(
       function (result, err) {
         cb(err, result);
       });
-
 }
 
 // --------------------
@@ -206,12 +187,10 @@ exports.removeTask = function(origin, dest, cb)
            cb(null, result);
          });;
    }
-
    return Tasks.destroy({ where: { [Op.or]: [{ origin: origin, dest: dest },{ origin: dest, dest: origin }] } }).then(
      function (err, result) {
        cb(null, result);
      });;
-
 };
 
 // --------------
@@ -220,11 +199,9 @@ exports.removeTask = function(origin, dest, cb)
 
 exports.getTasksCount = function(origin, cb)
 {
-
   return Tasks.count({ where: {'origin': origin }}).then(c => {
     cb('', c);
   });
-
 };
 
 // ------------------
@@ -233,11 +210,9 @@ exports.getTasksCount = function(origin, cb)
 
 exports.getServersCount = function(cb)
 {
-
   return Servers.count().then(c => {
     cb('', c);
   });
-
 };
 
 // ---------
@@ -246,7 +221,6 @@ exports.getServersCount = function(cb)
 
 exports.addTask = function(task)
 {
-
   // Tasks.upsert({
   //   orign: task.origin,
   //   dest: task.dest,
@@ -265,7 +239,6 @@ exports.addTask = function(task)
 
       task.dest.forEach(dest =>
       {
-
         Tasks.upsert({
           origin: task.origin,
           dest: dest,
@@ -280,9 +253,7 @@ exports.addTask = function(task)
         .catch(err => {
           logger("error", err);
         });
-
       });
-
 };
 
 // ------------
@@ -300,7 +271,6 @@ exports.increaseServers = function(id)
 
 exports.getStats = function(cb)
 {
-
   return db.query(`select * from (select sum(count) as "totalCount", ` +
   `count(id)-1 as "totalServers" from servers) as table1, ` +
   `(select count(id)-1 as "activeSrv" from servers where active = TRUE) as table2, ` +
@@ -313,7 +283,6 @@ exports.getStats = function(cb)
         cb(null, result);
       }
     );
-
 };
 
 // ----------------
@@ -322,7 +291,6 @@ exports.getStats = function(cb)
 
 exports.getServerInfo = function(id, cb)
 {
-
   return db.query( `select * from (select count as "count",` +
    `lang as "lang" from servers where id = ?) as table1,` +
    `(select count(distinct origin) as "activeTasks"` +
@@ -332,7 +300,6 @@ exports.getServerInfo = function(id, cb)
     function (result) {
       cb(null, result);
   });
-   
 };
 
 // ---------
