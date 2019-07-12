@@ -60,7 +60,7 @@ module.exports = function(data)
       //
       if (res.length < 1 || !res)
       {
-	 const orig = destResolver(origin);
+         const orig = destResolver(origin);
          data.color = "error";
          data.text =
             ":warning:  __**No tasks**__ for " +
@@ -87,9 +87,9 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
    //console.log(data);
    //console.log(res);
    data.color = "ok";
-   data.text = ":negative_squared_cross_mark:  Translation tasks for this channel:"
+   data.text = ":negative_squared_cross_mark:  Translation tasks for this channel:";
    botSend(data);
-      "channel has been stopped for **" + destDisplay + "**"
+      "channel has been stopped for **" + destDisplay + "**";
    if (dest === "all")
    {
       data.text += ` (${res.length})`;
