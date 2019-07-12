@@ -48,7 +48,7 @@
     "webhook-discord": "^3.2.0"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
+    "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.0",
     "gulp-line-ending-corrector": "^1.0.1",
     "gulp-uglify-es": "^0.1.3",
