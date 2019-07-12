@@ -14,9 +14,11 @@
     "lint": "gulp lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": {
-    "name": "ZyC0R3",
+  "author": "ZyC0R3 (https://github.com/ZyC0R3)",
+  "bugs": {
+    "url": "https://github.com/ZyC0R3/Rita/issues"
   },
+  "homepage": "https://github.com/ZyC0R3/Rita#readme",
   "dependencies": {
     "common-tags": "^1.7.2",
     "discord.js": "^11.3.0",
