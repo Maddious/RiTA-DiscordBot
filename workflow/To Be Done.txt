@@ -3,3 +3,7 @@ Add Items to the list below followed with a () and [] Enter your username in the
 Create To Do File (Zycore) [Done]
 -----------------------------List-----------------------------
 Re-write Readme  () []
+Wiki () []
+Package.json Re-write  () []
+Dependencies updated  () []
+Node Check Version   () []
