@@ -1,7 +1,7 @@
-       /tmp/build_5ebc976f6779b4ea52fbfba34962f226/src/commands/translate.stop.js
+       /tmp/build_eca09da38aad4310fd6b4ed950fed5d7/src/commands/translate.stop.js
          3:7  warning  'logger' is assigned a value but never used  no-unused-vars
        
-       /tmp/build_5ebc976f6779b4ea52fbfba34962f226/src/commands/translate.tasks.js
+       /tmp/build_eca09da38aad4310fd6b4ed950fed5d7/src/commands/translate.tasks.js
            4:7   warning  'logger' is assigned a value but never used                            no-unused-vars
           85:54  warning  'destDisplay' is defined but never used                                no-unused-vars
           92:1   warning  Expected indentation of 3 spaces but found 6                           indent
@@ -22,250 +22,174 @@
          106:1   warning  Expected indentation of 6 spaces but found 1 tab                       indent
          108:67  warning  Missing semicolon                                                      semi
        
-       /tmp/build_5ebc976f6779b4ea52fbfba34962f226/src/core/db.js
-           2:27   warning  Strings must use doublequote                                           quotes
-           6:1    warning  Expected indentation of 3 spaces but found 2                           indent
-           6:23   warning  Unexpected trailing comma                                              comma-dangle
-           7:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          11:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          12:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          12:15   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-          13:1    warning  Expected indentation of 6 spaces but found 4                           indent
-          13:18   warning  Strings must use doublequote                                           quotes
-          14:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          15:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          15:17   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-          16:1    warning  Expected indentation of 6 spaces but found 4                           indent
-          17:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          19:27   warning  Strings must use doublequote                                           quotes
-          20:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          21:1    warning  Expected indentation of 6 spaces but found 4                           indent
-          22:1    warning  Expected indentation of 6 spaces but found 4                           indent
-          23:1    warning  Expected indentation of 6 spaces but found 2 tabs                      indent
-          24:1    warning  Expected indentation of 6 spaces but found 4                           indent
-          24:21   warning  Unexpected trailing comma                                              comma-dangle
-          25:1    warning  Expected indentation of 3 spaces but found 1 tab                       indent
-          26:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          27:1    warning  Expected indentation of 6 spaces but found 2 tabs                      indent
-          28:1    warning  Expected indentation of 6 spaces but found 2 tabs                      indent
-          28:21   warning  Unexpected trailing comma                                              comma-dangle
-          29:1    warning  Expected indentation of 3 spaces but found 1 tab                       indent
-          30:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          31:1    warning  Expected indentation of 6 spaces but found 2 tabs                      indent
-          32:1    warning  Expected indentation of 6 spaces but found 2 tabs                      indent
-          32:18   warning  Unexpected trailing comma                                              comma-dangle
-          33:1    warning  Expected indentation of 3 spaces but found 1 tab                       indent
-          34:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          35:1    warning  Expected indentation of 6 spaces but found 2 tabs                      indent
-          36:1    warning  Expected indentation of 6 spaces but found 2 tabs                      indent
-          36:21   warning  Unexpected trailing comma                                              comma-dangle
-          37:1    warning  Expected indentation of 3 spaces but found 1 tab                       indent
-          37:3    warning  Unexpected trailing comma                                              comma-dangle
-          40:25   warning  Strings must use doublequote                                           quotes
-          41:1    warning  Expected indentation of 3 spaces but found 2                           indent
+       /tmp/build_eca09da38aad4310fd6b4ed950fed5d7/src/core/db.js
+          16:18   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+          29:25   warning  Unexpected trailing comma                                              comma-dangle
+          33:22   warning  Unexpected trailing comma                                              comma-dangle
+          37:25   warning  Unexpected trailing comma                                              comma-dangle
+          38:5    warning  Unexpected trailing comma                                              comma-dangle
+          41:25   warning  Strings must use doublequote                                           quotes
           42:1    warning  Expected indentation of 3 spaces but found 2                           indent
           43:1    warning  Expected indentation of 3 spaces but found 2                           indent
           44:1    warning  Expected indentation of 3 spaces but found 2                           indent
           45:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          46:1    warning  Expected indentation of 6 spaces but found 2 tabs                      indent
-          47:1    warning  Expected indentation of 6 spaces but found 2 tabs                      indent
-          47:21   warning  Unexpected trailing comma                                              comma-dangle
-          48:1    warning  Expected indentation of 3 spaces but found 1 tab                       indent
-          49:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          49:3    warning  Identifier 'lang_to' is not in camel case                              camelcase
-          50:1    warning  Expected indentation of 6 spaces but found 4                           indent
-          51:1    warning  Expected indentation of 6 spaces but found 4                           indent
-          51:23   warning  Unexpected trailing comma                                              comma-dangle
-          52:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          53:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          53:3    warning  Identifier 'lang_from' is not in camel case                            camelcase
-          54:1    warning  Expected indentation of 6 spaces but found 4                           indent
-          55:1    warning  Expected indentation of 6 spaces but found 4                           indent
-          55:23   warning  Unexpected trailing comma                                              comma-dangle
-          56:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          59:1    warning  Expected indentation of 3 spaces but found 4                           indent
-          60:1    warning  Expected indentation of 6 spaces but found 8                           indent
-          61:1    warning  Expected indentation of 9 spaces but found 12                          indent
-          62:1    warning  Expected indentation of 9 spaces but found 12                          indent
-          62:22   warning  Strings must use doublequote                                           quotes
-          62:32   warning  Strings must use doublequote                                           quotes
-          63:1    warning  Expected indentation of 6 spaces but found 8                           indent
-          64:1    warning  Expected indentation of 3 spaces but found 4                           indent
-          71:41   warning  Block must not be padded by blank lines                                padded-blocks
-          71:41   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+          46:1    warning  Expected indentation of 3 spaces but found 2                           indent
+          48:25   warning  Unexpected trailing comma                                              comma-dangle
+          50:4    warning  Identifier 'lang_to' is not in camel case                              camelcase
+          52:25   warning  Unexpected trailing comma                                              comma-dangle
+          54:4    warning  Identifier 'lang_from' is not in camel case                            camelcase
+          56:25   warning  Unexpected trailing comma                                              comma-dangle
+          72:41   warning  Opening curly brace appears on the same line as controlling statement  brace-style
           73:1    warning  Expected indentation of 3 spaces but found 2                           indent
           74:1    warning  Expected indentation of 3 spaces but found 2                           indent
+          75:1    warning  Expected indentation of 3 spaces but found 2                           indent
           76:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          77:1    warning  Expected indentation of 3 spaces but found 2                           indent
-          77:31   warning  Object properties must go on a new line                                object-property-newline
-          79:1    warning  Block must not be padded by blank lines                                padded-blocks
-          79:2    warning  Missing semicolon                                                      semi
-          86:1    warning  Block must not be padded by blank lines                                padded-blocks
+          76:31   warning  Object properties must go on a new line                                object-property-newline
+          77:2    warning  Missing semicolon                                                      semi
+          85:1    warning  Expected indentation of 3 spaces but found 4                           indent
+          86:1    warning  Expected indentation of 6 spaces but found 8                           indent
+          87:1    warning  Expected indentation of 6 spaces but found 8                           indent
           88:1    warning  Expected indentation of 3 spaces but found 4                           indent
-          89:1    warning  Expected indentation of 6 spaces but found 8                           indent
-          90:1    warning  Expected indentation of 6 spaces but found 8                           indent
-          91:1    warning  Expected indentation of 3 spaces but found 4                           indent
-          93:1    warning  Block must not be padded by blank lines                                padded-blocks
-          93:2    warning  Missing semicolon                                                      semi
-         100:1    warning  Block must not be padded by blank lines                                padded-blocks
-         102:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         102:72   warning  Trailing spaces not allowed                                            no-trailing-spaces
-         103:1    warning  Expected indentation of 6 spaces but found 4                           indent
-         103:20   warning  'result' is defined but never used                                     no-unused-vars
-         103:28   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         104:1    warning  Expected indentation of 9 spaces but found 6                           indent
-         105:1    warning  Expected indentation of 6 spaces but found 2                           indent
-         107:1    warning  Block must not be padded by blank lines                                padded-blocks
-         107:2    warning  Missing semicolon                                                      semi
-         113:47   warning  'cb' is defined but never used                                         no-unused-vars
-         114:1    warning  Block must not be padded by blank lines                                padded-blocks
-         116:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         116:69   warning  Trailing spaces not allowed                                            no-trailing-spaces
-         117:1    warning  Expected indentation of 6 spaces but found 4                           indent
-         117:20   warning  'result' is defined but never used                                     no-unused-vars
-         117:28   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         118:1    warning  Expected indentation of 9 spaces but found 6                           indent
-         119:1    warning  Expected indentation of 6 spaces but found 2                           indent
-         121:1    warning  Block must not be padded by blank lines                                padded-blocks
-         121:2    warning  Missing semicolon                                                      semi
-         136:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         136:7    warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         137:1    warning  Expected indentation of 6 spaces but found 4                           indent
-         137:11   warning  'taskList' is assigned a value but never used                          no-unused-vars
-         137:59   warning  Object properties must go on a new line                                object-property-newline
-         138:1    warning  Expected indentation of 9 spaces but found 4                           indent
-         138:23   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         139:1    warning  Expected indentation of 12 spaces but found 6                          indent
-         140:1    warning  Expected indentation of 12 spaces but found 6                          indent
-         141:1    warning  Expected indentation of 9 spaces but found 4                           indent
-         142:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         143:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         143:13   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         144:1    warning  Expected indentation of 6 spaces but found 4                           indent
-         145:1    warning  Expected indentation of 6 spaces but found 4                           indent
-         146:1    warning  Expected indentation of 6 spaces but found 4                           indent
-         147:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         149:1    warning  Block must not be padded by blank lines                                padded-blocks
-         149:2    warning  Missing semicolon                                                      semi
-         155:1    warning  Block must not be padded by blank lines                                padded-blocks
-         157:23   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         158:1    warning  Expected indentation of 6 spaces but found 8                           indent
-         158:57   warning  Object properties must go on a new line                                object-property-newline
-         158:78   warning  Missing space before value for key 'raw'                               key-spacing
-         159:1    warning  Expected indentation of 9 spaces but found 10                          indent
-         159:34   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         161:1    warning  Expected indentation of 9 spaces but found 10                          indent
-         162:1    warning  Expected indentation of 3 spaces but found 4                           indent
-         164:1    warning  Expected indentation of 3 spaces but found 4                           indent
-         164:62   warning  Missing space before value for key 'raw'                               key-spacing
-         165:30   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         166:1    warning  Expected indentation of 9 spaces but found 8                           indent
-         169:1    warning  Block must not be padded by blank lines                                padded-blocks
-         169:2    warning  Missing semicolon                                                      semi
-         177:1    warning  Block must not be padded by blank lines                                padded-blocks
-         179:24   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         180:1    warning  Expected indentation of 6 spaces but found 8                           indent
-         180:66   warning  Missing space before value for key 'raw'                               key-spacing
-         181:1    warning  Expected indentation of 9 spaces but found 10                          indent
-         181:34   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         183:1    warning  Expected indentation of 9 spaces but found 10                          indent
-         184:1    warning  Expected indentation of 3 spaces but found 4                           indent
-         186:1    warning  Expected indentation of 3 spaces but found 4                           indent
-         186:53   warning  Object properties must go on a new line                                object-property-newline
-         186:74   warning  Missing space before value for key 'raw'                               key-spacing
-         187:30   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         188:1    warning  Expected indentation of 9 spaces but found 8                           indent
-         191:1    warning  Block must not be padded by blank lines                                padded-blocks
-         191:2    warning  Missing semicolon                                                      semi
-         202:1    warning  Expected indentation of 6 spaces but found 7                           indent
-         203:1    warning  Expected indentation of 6 spaces but found 7                           indent
-         204:33   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         205:1    warning  Expected indentation of 12 spaces but found 11                         indent
-         206:12   warning  Missing whitespace after semicolon                                     semi-spacing
-         206:13   warning  Unreachable code                                                       no-unreachable
-         206:13   warning  Unnecessary semicolon                                                  no-extra-semi
-         209:64   warning  Object properties must go on a new line                                object-property-newline
-         209:93   warning  Object properties must go on a new line                                object-property-newline
-         210:1    warning  Expected indentation of 6 spaces but found 5                           indent
-         210:29   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         211:1    warning  Expected indentation of 9 spaces but found 7                           indent
-         212:1    warning  Expected indentation of 6 spaces but found 5                           indent
-         212:8    warning  Missing whitespace after semicolon                                     semi-spacing
-         212:9    warning  Unreachable code                                                       no-unreachable
-         212:9    warning  Unnecessary semicolon                                                  no-extra-semi
-         214:1    warning  Block must not be padded by blank lines                                padded-blocks
-         221:1    warning  Block must not be padded by blank lines                                padded-blocks
-         223:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         223:32   warning  Strings must use doublequote                                           quotes
-         223:63   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         224:1    warning  Expected indentation of 6 spaces but found 4                           indent
-         224:8    warning  Strings must use doublequote                                           quotes
+          89:2    warning  Missing semicolon                                                      semi
+          97:1    warning  Expected indentation of 3 spaces but found 2                           indent
+          97:72   warning  Trailing spaces not allowed                                            no-trailing-spaces
+          98:1    warning  Expected indentation of 6 spaces but found 4                           indent
+          98:20   warning  'result' is defined but never used                                     no-unused-vars
+          98:28   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+          99:1    warning  Expected indentation of 9 spaces but found 6                           indent
+         100:1    warning  Expected indentation of 6 spaces but found 2                           indent
+         101:2    warning  Missing semicolon                                                      semi
+         107:47   warning  'cb' is defined but never used                                         no-unused-vars
+         109:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         109:69   warning  Trailing spaces not allowed                                            no-trailing-spaces
+         110:1    warning  Expected indentation of 6 spaces but found 4                           indent
+         110:20   warning  'result' is defined but never used                                     no-unused-vars
+         110:28   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         111:1    warning  Expected indentation of 9 spaces but found 6                           indent
+         112:1    warning  Expected indentation of 6 spaces but found 2                           indent
+         113:2    warning  Missing semicolon                                                      semi
+         126:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         126:7    warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         127:1    warning  Expected indentation of 6 spaces but found 4                           indent
+         127:11   warning  'taskList' is assigned a value but never used                          no-unused-vars
+         127:59   warning  Object properties must go on a new line                                object-property-newline
+         128:1    warning  Expected indentation of 9 spaces but found 4                           indent
+         128:23   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         129:1    warning  Expected indentation of 12 spaces but found 6                          indent
+         130:1    warning  Expected indentation of 12 spaces but found 6                          indent
+         131:1    warning  Expected indentation of 9 spaces but found 4                           indent
+         132:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         133:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         133:13   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         134:1    warning  Expected indentation of 6 spaces but found 4                           indent
+         135:1    warning  Expected indentation of 6 spaces but found 4                           indent
+         136:1    warning  Expected indentation of 6 spaces but found 4                           indent
+         137:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         138:2    warning  Missing semicolon                                                      semi
+         145:23   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         146:1    warning  Expected indentation of 6 spaces but found 8                           indent
+         146:57   warning  Object properties must go on a new line                                object-property-newline
+         146:78   warning  Missing space before value for key 'raw'                               key-spacing
+         147:1    warning  Expected indentation of 9 spaces but found 10                          indent
+         147:34   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         149:1    warning  Expected indentation of 9 spaces but found 10                          indent
+         150:1    warning  Expected indentation of 3 spaces but found 4                           indent
+         151:1    warning  Expected indentation of 3 spaces but found 4                           indent
+         151:62   warning  Missing space before value for key 'raw'                               key-spacing
+         152:30   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         153:1    warning  Expected indentation of 9 spaces but found 8                           indent
+         155:2    warning  Missing semicolon                                                      semi
+         163:24   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         164:1    warning  Expected indentation of 6 spaces but found 8                           indent
+         164:66   warning  Missing space before value for key 'raw'                               key-spacing
+         165:1    warning  Expected indentation of 9 spaces but found 10                          indent
+         165:34   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         167:1    warning  Expected indentation of 9 spaces but found 10                          indent
+         168:1    warning  Expected indentation of 3 spaces but found 4                           indent
+         169:1    warning  Expected indentation of 3 spaces but found 4                           indent
+         169:53   warning  Object properties must go on a new line                                object-property-newline
+         169:74   warning  Missing space before value for key 'raw'                               key-spacing
+         170:30   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         171:1    warning  Expected indentation of 9 spaces but found 8                           indent
+         173:2    warning  Missing semicolon                                                      semi
+         184:1    warning  Expected indentation of 6 spaces but found 7                           indent
+         185:1    warning  Expected indentation of 6 spaces but found 7                           indent
+         186:33   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         187:1    warning  Expected indentation of 12 spaces but found 11                         indent
+         188:12   warning  Missing whitespace after semicolon                                     semi-spacing
+         188:13   warning  Unnecessary semicolon                                                  no-extra-semi
+         188:13   warning  Unreachable code                                                       no-unreachable
+         190:64   warning  Object properties must go on a new line                                object-property-newline
+         190:93   warning  Object properties must go on a new line                                object-property-newline
+         191:1    warning  Expected indentation of 6 spaces but found 5                           indent
+         191:29   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         192:1    warning  Expected indentation of 9 spaces but found 7                           indent
+         193:1    warning  Expected indentation of 6 spaces but found 5                           indent
+         193:8    warning  Missing whitespace after semicolon                                     semi-spacing
+         193:9    warning  Unnecessary semicolon                                                  no-extra-semi
+         193:9    warning  Unreachable code                                                       no-unreachable
+         202:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         202:32   warning  Strings must use doublequote                                           quotes
+         202:63   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         203:1    warning  Expected indentation of 6 spaces but found 4                           indent
+         203:8    warning  Strings must use doublequote                                           quotes
+         204:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         213:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         213:36   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         214:1    warning  Expected indentation of 6 spaces but found 4                           indent
+         214:8    warning  Strings must use doublequote                                           quotes
+         215:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         224:1    warning  Expected indentation of 3 spaces but found 2                           indent
          225:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         227:1    warning  Block must not be padded by blank lines                                padded-blocks
-         234:1    warning  Block must not be padded by blank lines                                padded-blocks
+         226:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         227:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         228:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         229:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         230:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         231:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         232:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         233:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         234:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         235:1    warning  Expected indentation of 3 spaces but found 2                           indent
          236:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         236:36   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         237:1    warning  Expected indentation of 6 spaces but found 4                           indent
-         237:8    warning  Strings must use doublequote                                           quotes
-         238:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         240:1    warning  Block must not be padded by blank lines                                padded-blocks
-         247:1    warning  Block must not be padded by blank lines                                padded-blocks
-         249:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         250:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         251:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         252:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         253:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         254:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         255:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         256:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         257:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         258:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         259:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         260:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         261:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         262:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         265:1    warning  Expected indentation of 3 spaces but found 6                           indent
-         266:1    warning  Expected indentation of 3 spaces but found 6                           indent
-         266:7    warning  Block must not be padded by blank lines                                padded-blocks
-         268:1    warning  Expected indentation of 6 spaces but found 8                           indent
-         269:1    warning  Expected indentation of 9 spaces but found 10                          indent
-         270:1    warning  Expected indentation of 9 spaces but found 10                          indent
-         271:1    warning  Expected indentation of 9 spaces but found 10                          indent
-         272:1    warning  Expected indentation of 9 spaces but found 10                          indent
-         273:1    warning  Expected indentation of 9 spaces but found 10                          indent
-         274:1    warning  Expected indentation of 9 spaces but found 10                          indent
-         274:11   warning  Identifier 'lang_to' is not in camel case                              camelcase
-         275:1    warning  Expected indentation of 9 spaces but found 10                          indent
-         275:11   warning  Identifier 'lang_from' is not in camel case                            camelcase
-         275:31   warning  Unexpected trailing comma                                              comma-dangle
-         276:1    warning  Expected indentation of 6 spaces but found 8                           indent
-         276:23   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         277:1    warning  Expected indentation of 9 spaces but found 10                          indent
-         277:25   warning  Strings must use doublequote                                           quotes
-         278:1    warning  Expected indentation of 6 spaces but found 8                           indent
-         279:1    warning  Expected indentation of 9 spaces but found 8                           indent
-         279:23   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         280:1    warning  Expected indentation of 12 spaces but found 10                         indent
-         281:1    warning  Expected indentation of 9 spaces but found 8                           indent
-         283:1    warning  Expected indentation of 3 spaces but found 6                           indent
-         283:7    warning  Block must not be padded by blank lines                                padded-blocks
-         285:1    warning  Block must not be padded by blank lines                                padded-blocks
-         293:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         293:28   warning  Strings must use doublequote                                           quotes
-         301:1    warning  Block must not be padded by blank lines                                padded-blocks
-         303:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         311:24   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         312:1    warning  Expected indentation of 9 spaces but found 8                           indent
-         314:1    warning  Expected indentation of 3 spaces but found 4                           indent
-         316:1    warning  Block must not be padded by blank lines                                padded-blocks
-         323:1    warning  Block must not be padded by blank lines                                padded-blocks
-         325:1    warning  Expected indentation of 3 spaces but found 2                           indent
-         325:18   warning  There should be no spaces inside this paren                            space-in-parens
-         330:99   warning  Object properties must go on a new line                                object-property-newline
-         330:133  warning  Trailing spaces not allowed                                            no-trailing-spaces
-         331:1    warning  Expected indentation of 6 spaces but found 4                           indent
-         331:23   warning  Opening curly brace appears on the same line as controlling statement  brace-style
-         332:1    warning  Expected indentation of 9 spaces but found 6                           indent
-         333:1    warning  Expected indentation of 6 spaces but found 2                           indent
-         334:1    warning  Trailing spaces not allowed                                            no-trailing-spaces
-         335:1    warning  Block must not be padded by blank lines                                padded-blocks
+         237:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         240:1    warning  Expected indentation of 3 spaces but found 6                           indent
+         241:1    warning  Expected indentation of 3 spaces but found 6                           indent
+         242:1    warning  Expected indentation of 6 spaces but found 8                           indent
+         243:1    warning  Expected indentation of 9 spaces but found 10                          indent
+         244:1    warning  Expected indentation of 9 spaces but found 10                          indent
+         245:1    warning  Expected indentation of 9 spaces but found 10                          indent
+         246:1    warning  Expected indentation of 9 spaces but found 10                          indent
+         247:1    warning  Expected indentation of 9 spaces but found 10                          indent
+         248:1    warning  Expected indentation of 9 spaces but found 10                          indent
+         248:11   warning  Identifier 'lang_to' is not in camel case                              camelcase
+         249:1    warning  Expected indentation of 9 spaces but found 10                          indent
+         249:11   warning  Identifier 'lang_from' is not in camel case                            camelcase
+         249:31   warning  Unexpected trailing comma                                              comma-dangle
+         250:1    warning  Expected indentation of 6 spaces but found 8                           indent
+         250:23   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         251:1    warning  Expected indentation of 9 spaces but found 10                          indent
+         251:25   warning  Strings must use doublequote                                           quotes
+         252:1    warning  Expected indentation of 6 spaces but found 8                           indent
+         253:1    warning  Expected indentation of 9 spaces but found 8                           indent
+         253:23   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         254:1    warning  Expected indentation of 12 spaces but found 10                         indent
+         255:1    warning  Expected indentation of 9 spaces but found 8                           indent
+         256:1    warning  Expected indentation of 3 spaces but found 6                           indent
+         265:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         265:28   warning  Strings must use doublequote                                           quotes
+         274:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         282:24   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         283:1    warning  Expected indentation of 9 spaces but found 8                           indent
+         285:1    warning  Expected indentation of 3 spaces but found 4                           indent
+         294:1    warning  Expected indentation of 3 spaces but found 2                           indent
+         294:18   warning  There should be no spaces inside this paren                            space-in-parens
+         299:99   warning  Object properties must go on a new line                                object-property-newline
+         299:133  warning  Trailing spaces not allowed                                            no-trailing-spaces
+         300:1    warning  Expected indentation of 6 spaces but found 4                           indent
+         300:23   warning  Opening curly brace appears on the same line as controlling statement  brace-style
+         301:1    warning  Expected indentation of 9 spaces but found 6                           indent
+         302:1    warning  Expected indentation of 6 spaces but found 2                           indent
+       
+       ✖ 187 problems (0 errors, 187 warnings)
+         0 errors, 168 warnings potentially fixable with the `--fix` option.
