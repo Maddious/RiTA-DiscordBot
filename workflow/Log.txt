@@ -20,50 +20,46 @@
        
 -----> Installing dependencies
        Installing node modules (package.json + package-lock)
-       added 68 packages and updated 2 packages in 6.395s
+       added 68 packages and updated 2 packages in 6.516s
        
 -----> Build
        Running build
        
-       > Rita@1.0.0 build /tmp/build_5e0fa9bb2af0931191bb7be88a9c7a46
+       > Rita@1.0.0 build /tmp/build_712b0748ec8c424f573f40792fc63d8c
        > gulp build
        
-       [21:50:38] Using gulpfile /tmp/build_5e0fa9bb2af0931191bb7be88a9c7a46/gulpfile.js
-       [21:50:38] Starting 'lint'...
-       [21:50:38] Starting 'compress'...
-       [21:50:40] 
-       /tmp/build_5e0fa9bb2af0931191bb7be88a9c7a46/src/commands/help.js
+       [22:14:39] Using gulpfile /tmp/build_712b0748ec8c424f573f40792fc63d8c/gulpfile.js
+       [22:14:40] Starting 'lint'...
+       [22:14:40] Starting 'compress'...
+       [22:14:41] 
+       /tmp/build_712b0748ec8c424f573f40792fc63d8c/src/commands/help.js
          70:1  warning  Trailing spaces not allowed  no-trailing-spaces
        
-       /tmp/build_5e0fa9bb2af0931191bb7be88a9c7a46/src/commands/translate.stop.js
+       /tmp/build_712b0748ec8c424f573f40792fc63d8c/src/commands/translate.stop.js
          3:7  warning  'logger' is assigned a value but never used  no-unused-vars
        
-       /tmp/build_5e0fa9bb2af0931191bb7be88a9c7a46/src/commands/translate.tasks.js
+       /tmp/build_712b0748ec8c424f573f40792fc63d8c/src/commands/translate.tasks.js
            4:7    warning  'logger' is assigned a value but never used       no-unused-vars
           85:54   warning  'destDisplay' is defined but never used           no-unused-vars
           98:51   warning  Trailing spaces not allowed                       no-trailing-spaces
-         103:13   warning  Identifier 'lang_From' is not in camel case       camelcase
-         104:13   warning  Identifier 'lang_To' is not in camel case         camelcase
-         105:52   warning  Identifier 'lang_From' is not in camel case       camelcase
-         105:97   warning  Unexpected string concatenation of literals       no-useless-concat
-         105:116  warning  Identifier 'lang_To' is not in camel case         camelcase
-         105:153  warning  Missing semicolon                                 semi
+         105:96   warning  Unexpected string concatenation of literals       no-useless-concat
+         105:151  warning  Missing semicolon                                 semi
          106:1    warning  Expected indentation of 6 spaces but found 1 tab  indent
          108:67   warning  Missing semicolon                                 semi
        
-       /tmp/build_5e0fa9bb2af0931191bb7be88a9c7a46/src/core/db.js
+       /tmp/build_712b0748ec8c424f573f40792fc63d8c/src/core/db.js
          101:22  warning  '_result' is defined but never used            no-unused-vars
          111:47  warning  '_cb' is defined but never used                no-unused-vars
          114:22  warning  '_result' is defined but never used            no-unused-vars
          133:13  warning  'taskList' is assigned a value but never used  no-unused-vars
        
-       ✖ 17 problems (0 errors, 17 warnings)
+       ✖ 13 problems (0 errors, 13 warnings)
          0 errors, 5 warnings potentially fixable with the `--fix` option.
        
-       [21:50:40] Finished 'lint' after 1.66 s
-       [21:50:40] Finished 'compress' after 1.64 s
-       [21:50:40] Starting 'build'...
-       [21:50:40] Finished 'build' after 55 μs
+       [22:14:41] Finished 'lint' after 1.64 s
+       [22:14:41] Finished 'compress' after 1.62 s
+       [22:14:41] Starting 'build'...
+       [22:14:41] Finished 'build' after 139 μs
        
 -----> Caching build
        - node_modules
@@ -82,5 +78,5 @@
 -----> Compressing...
        Done: 24.6M
 -----> Launching...
-       Released v20
+       Released v22
        https://rita-2.herokuapp.com/ deployed to Heroku
