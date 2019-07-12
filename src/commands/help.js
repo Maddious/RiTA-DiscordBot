@@ -67,14 +67,14 @@ const helpMessage = function(config, botname, param)
    // ------------------------------
    // Support & Donations
    // ------------------------------
-   /*
+ 
    var donation = "";
    if (auth.donation && auth.donation.length > 5)
    {
       donation =
          "Like this bot? [Support the developer!](" + auth.donation + ")";
    }
-   */
+
    // ------------------------------
    // Help Basics
    // ------------------------------
