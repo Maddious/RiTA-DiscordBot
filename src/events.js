@@ -20,7 +20,6 @@ exports.listen = function(client)
 
    client.on("ready", () =>
    {
-
       db.initializeDatabase();
 
       //
@@ -105,7 +104,7 @@ exports.listen = function(client)
 
    client.on("message", message =>
    {
-     console.log(`${message.guild.name} - ${message.guild.id}`);
+      console.log(`${message.guild.name} - ${message.guild.id}`);
       messageHandler(config, message);
    });
 
