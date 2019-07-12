@@ -1,4 +1,6 @@
+## RITA (beta)
 Translation bot built using `discord.js` and `Google Translate API`.
+
 ## Features
 * Translate custom messages
 * Translate messages by reacting with flag emoji
@@ -8,7 +10,9 @@ Translation bot built using `discord.js` and `Google Translate API`.
 * Supports 100+ languages
 
 ## Discord Usage
+* [Invite bot](https://discordapp.com/oauth2/authorize?&client_id=599269445118197760&scope=bot&permissions=8) to your discord server or cerate your own with the instructons below.
 * Write `!translate help` or `!t help` for a list of commands.
+
 
 ## Deploy to [Heroku](https://www.heroku.com/)
 To deploy a free translation bot that you can add to your discord server, follow these easy steps.
@@ -51,6 +55,7 @@ To deploy a free translation bot that you can add to your discord server, follow
 * For further troubleshooting, it's helpful to install the Heroku command line interface. Once installed you can login from a terminal with `heroku login` and check your apps logs with `heroku logs --tail -a <your-app-name>`
 * If you are unable to solve a problem yourself, report it with as much detail as possible in this repo's issue tracker. 
 
+
 ## Commands
 * [Translate Custom Text](https://github.com/NotMyself/Louie/wiki/Translate-Custom-Text)
 * [Translate by Reaction](https://github.com/NotMyself/Louie/wiki/Translate-with-Emoji-Reaction)
@@ -61,10 +66,13 @@ To deploy a free translation bot that you can add to your discord server, follow
 
 ## Credits & License
 
-This project was originally released by Aziz under the MIT license. He chose to take the project private/commercial at version 0.4.2 Beta. Bobby Johnson forked the project and renamed it Louie after his dog. AlooAkbar forked Louie and added the necessary modifications for simple and free deployment of the bot using Heroku. ZyC0R3 Picked up the fork and fixed over 200 errors, All would like to thank Aziz for his hard work and making these early versions OSS so that others may learn and build on his hard work to share with the community.
+This project was originally released by Aziz under the MIT license. He chose to take the project private/commercial at version 0.4.2 Beta. Bobby Johnson forked the project and renamed it Louie after his dog. AlooAkbar forked Louie and added the necessary modifications for simple and free deployment of the bot using Heroku. ZyC0R3 Picked up the fork and as part of a team fixed over 200 errors and brought it in to the modern age, All would like to thank Aziz for his hard work and making these early versions OSS so that others may learn and build on his hard work to share with the community.
 
-
-- [discord-translator](https://github.com/nvuio/discord-translator) created by [nvu.io](https://nvu.io) / Aziz Natour - [@aziznatour](http://www.twitter.com/aziznatour)
-- [Louie](https://github.com/NotMyself/Louie) forked by [NotMyself](https://iamnotmyself.com/) / Bobby Johnson - [@NotMyself](https://twitter.com/NotMyself) forked by [ZyC0R3](https://github.com/ZyC0R3/C-3PO)
+## New Design Team
+* Zycore / ZyC0R3
+* Artanis / ArtanisTheOne
+* Balthazar / Jshep89
+* Z3US / cyberlooper
+* Maddious / 
 
 Released under MIT license.
