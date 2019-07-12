@@ -27,7 +27,7 @@
       "no-param-reassign": "error",
       "no-return-assign": "error",
       "no-self-compare": "error",
-      "no-unused-expressions": "error",
+      "no-unused-expressions": "warn",
       "no-useless-concat": "warn",
       "yoda": "warn",
       "callback-return": "error",
@@ -62,5 +62,6 @@
       "prefer-const": "warn",
       "template-curly-spacing": "warn",
       "no-unused-vars": "warn"
+      "no-mixed-spaces-and-tabs": "warn"
     }
 }
