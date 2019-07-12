@@ -88,8 +88,8 @@ const analyzeRows = function(data, i)
 
    data.translate = {
       original: data.message.content,
-      to: { valid: [{iso: row.lang_to}] },
-      from: { valid: [{iso: row.lang_from}] }
+      to: { valid: [{iso: row.LangTo}] },
+      from: { valid: [{iso: row.LangFrom}] }
    };
 
    //
