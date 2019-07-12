@@ -14,9 +14,7 @@
     "lint": "gulp lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": {
-    "name": "Collaboration",
-  },
+  "author": "Group Project",
   "contributors": [
     {
       "name": "ZyC0R3/Zycore <contact@zycore.com>",
