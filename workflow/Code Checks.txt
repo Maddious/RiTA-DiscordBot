@@ -1,0 +1,9 @@
+Code Checks are part of code that need to be check for reliance or if they are needed anymore. List the sections below and once check update with info or review.
+----------------------------Example---------------------------
+File: Code Check.js
+Line: 5 - 7
+Info: Vital Code
+-----------------------------List-----------------------------
+File: Help.js
+Line: 37 - 45
+Info: Still Needed
