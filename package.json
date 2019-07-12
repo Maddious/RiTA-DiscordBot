@@ -7,5 +7,4 @@
   "description": "Translation bot built using discord.js and Google Translate API.",
   "main": "src/bot.js",
   "license": "MIT",
-  },
 }
