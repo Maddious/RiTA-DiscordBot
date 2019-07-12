@@ -73,7 +73,7 @@ module.exports = function(data)
 
       if (res.length < 1 || !res)
       {
-	 const orig = destResolver(origin);
+    const orig = destResolver(origin);
          data.color = "error";
          data.text =
             ":warning:  __**No tasks**__ for " +
