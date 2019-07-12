@@ -1,28 +1,57 @@
-       /tmp/build_eca09da38aad4310fd6b4ed950fed5d7/src/commands/translate.stop.js
+-----> Node.js app detected
+       
+-----> Creating runtime environment
+       
+       NPM_CONFIG_LOGLEVEL=error
+       NODE_ENV=production
+       NODE_MODULES_CACHE=true
+       NODE_VERBOSE=false
+       
+-----> Installing binaries
+       engines.node (package.json):  9.0.0
+       engines.npm (package.json):   unspecified (use default)
+       
+       Resolving node version 9.0.0...
+       Downloading and installing node 9.0.0...
+       Using default npm version: 5.5.1
+       
+-----> Restoring cache
+       - node_modules
+       
+-----> Installing dependencies
+       Installing node modules (package.json + package-lock)
+       added 68 packages and updated 2 packages in 6.836s
+       
+-----> Build
+       Running build
+       
+       > Rita@1.0.0 build /tmp/build_071182a80a8b034bf2d6139e885a7ed5
+       > gulp build
+       
+       [21:05:33] Using gulpfile /tmp/build_071182a80a8b034bf2d6139e885a7ed5/gulpfile.js
+       [21:05:33] Starting 'lint'...
+       [21:05:33] Starting 'compress'...
+       [21:05:34] 
+       /tmp/build_071182a80a8b034bf2d6139e885a7ed5/src/commands/help.js
+         70:1  warning  Trailing spaces not allowed  no-trailing-spaces
+       
+       /tmp/build_071182a80a8b034bf2d6139e885a7ed5/src/commands/translate.stop.js
          3:7  warning  'logger' is assigned a value but never used  no-unused-vars
        
-       /tmp/build_eca09da38aad4310fd6b4ed950fed5d7/src/commands/translate.tasks.js
-           4:7   warning  'logger' is assigned a value but never used                            no-unused-vars
-          85:54  warning  'destDisplay' is defined but never used                                no-unused-vars
-          92:1   warning  Expected indentation of 3 spaces but found 6                           indent
-          98:4   warning  Expected space(s) after "for"                                          keyword-spacing
-          98:51  warning  Opening curly brace appears on the same line as controlling statement  brace-style
-          99:1   warning  Expected indentation of 6 spaces but found 1 tab                       indent
-         100:1   warning  Expected indentation of 6 spaces but found 1 tab                       indent
-         101:1   warning  Expected indentation of 6 spaces but found 1 tab                       indent
-         102:1   warning  Expected indentation of 6 spaces but found 1 tab                       indent
-         102:8   warning  Identifier 'lang_from' is not in camel case                            camelcase
-         103:1   warning  Expected indentation of 6 spaces but found 1 tab                       indent
-         103:8   warning  Identifier 'lang_to' is not in camel case                              camelcase
-         104:2   warning  Mixed spaces and tabs                                                  no-mixed-spaces-and-tabs
-         104:50  warning  Identifier 'lang_from' is not in camel case                            camelcase
-         105:2   warning  Mixed spaces and tabs                                                  no-mixed-spaces-and-tabs
-         105:23  warning  Identifier 'lang_to' is not in camel case                              camelcase
-         105:60  warning  Missing semicolon                                                      semi
-         106:1   warning  Expected indentation of 6 spaces but found 1 tab                       indent
-         108:67  warning  Missing semicolon                                                      semi
+       /tmp/build_071182a80a8b034bf2d6139e885a7ed5/src/commands/translate.tasks.js
+           4:7    warning  'logger' is assigned a value but never used       no-unused-vars
+          85:54   warning  'destDisplay' is defined but never used           no-unused-vars
+          98:51   warning  Trailing spaces not allowed                       no-trailing-spaces
+         103:13   warning  Identifier 'lang_From' is not in camel case       camelcase
+         104:13   warning  Identifier 'lang_To' is not in camel case         camelcase
+         105:52   warning  Identifier 'lang_From' is not in camel case       camelcase
+         105:97   warning  Unexpected string concatenation of literals       no-useless-concat
+         105:116  warning  Identifier 'lang_To' is not in camel case         camelcase
+         105:153  warning  Missing semicolon                                 semi
+         106:1    warning  Expected indentation of 6 spaces but found 1 tab  indent
+         108:67   warning  Missing semicolon                                 semi
        
-       /tmp/build_eca09da38aad4310fd6b4ed950fed5d7/src/core/db.js
+       /tmp/build_071182a80a8b034bf2d6139e885a7ed5/src/core/db.js
           16:18   warning  Opening curly brace appears on the same line as controlling statement  brace-style
           29:25   warning  Unexpected trailing comma                                              comma-dangle
           33:22   warning  Unexpected trailing comma                                              comma-dangle
@@ -191,5 +220,30 @@
          301:1    warning  Expected indentation of 9 spaces but found 6                           indent
          302:1    warning  Expected indentation of 6 spaces but found 2                           indent
        
-       ✖ 187 problems (0 errors, 187 warnings)
-         0 errors, 168 warnings potentially fixable with the `--fix` option.
+       ✖ 180 problems (0 errors, 180 warnings)
+         0 errors, 162 warnings potentially fixable with the `--fix` option.
+       
+       [21:05:34] Finished 'lint' after 1.66 s
+       [21:05:34] Finished 'compress' after 1.65 s
+       [21:05:34] Starting 'build'...
+       [21:05:34] Finished 'build' after 57 μs
+       
+-----> Caching build
+       - node_modules
+       
+-----> Pruning devDependencies
+       Skipping because npm 5.5.1 sometimes fails when running 'npm prune' due to a known issue
+       https://github.com/npm/npm/issues/19356
+       
+       You can silence this warning by updating to at least npm 5.7.1 in your package.json
+       https://devcenter.heroku.com/articles/nodejs-support#specifying-an-npm-version
+       
+-----> Build succeeded!
+-----> Discovering process types
+       Procfile declares types     -> worker
+       Default types for buildpack -> web
+-----> Compressing...
+       Done: 24.6M
+-----> Launching...
+       Released v19
+       https://rita-2.herokuapp.com/ deployed to Heroku
