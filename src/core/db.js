@@ -1,16 +1,17 @@
 const autoTranslate = require("./auto");
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
 const logger = require("./logger");
 const Op = Sequelize.Op;
 const db = new Sequelize(process.env.DATABASE_URL, {
-  logging: console.log,
-  //logging: null,
+   logging: console.log
+   //logging: null,
 });
 
 db
-  .authenticate()
-  .then(() => {
-    logger("dev",'Successfully connected to database');
+   .authenticate()
+   .then(() => 
+  {
+      logger("dev",'Successfully connected to database');
   })
   .catch(err => {
     logger("error", err);
