@@ -54,7 +54,7 @@
       "operator-linebreak": ["warn", "after"],
       "padded-blocks": ["warn", "never"],
       "quotes": ["warn", "double", {"allowTemplateLiterals": true}],
-      "semi": "error",
+      "semi": "warn",
       "semi-spacing": "warn",
       "space-before-blocks": ["warn", "always"],
       "space-in-parens": "warn",
@@ -62,6 +62,8 @@
       "prefer-const": "warn",
       "template-curly-spacing": "warn",
       "no-unused-vars": "warn",
-      "no-mixed-spaces-and-tabs": "warn"
+      "no-mixed-spaces-and-tabs": "warn",
+      "no-extra-semi": "warn",
+      "no-unreachable": "warn"
     }
 }
