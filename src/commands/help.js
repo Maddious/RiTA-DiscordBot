@@ -1,17 +1,17 @@
 const botSend = require("../core/send");
 const auth = require("../core/auth");
 
-// ------------------------
+// ------------------------------
 // Bot Help / Command List
-// ------------------------
+// ------------------------------
 
 module.exports = function(data)
 {
    data.color = "info";
 
-   //
+   // ------------------------------
    // Detect if help is needed for specific command
-   //
+   // ------------------------------
 
    var getHelpWith = "basics";
 
@@ -26,9 +26,9 @@ module.exports = function(data)
    return botSend(data);
 };
 
-// ------------------------
+// ------------------------------
 // Help Section
-// ------------------------
+// ------------------------------
 
 const helpSection = function(data)
 {
@@ -48,15 +48,15 @@ const helpSection = function(data)
    return section;
 };
 
-// ------------------------
+// ------------------------------
 // Help Text
-// ------------------------
+// ------------------------------
 
 const helpMessage = function(config, botname, param)
 {
-   //
+   // ------------------------------
    // Bot Info
-   //
+   // ------------------------------
 
    const cmd = config.translateCmdShort;
 
@@ -64,23 +64,26 @@ const helpMessage = function(config, botname, param)
    `**${botname} Bot - v.${config.version}**\n` +
    `Translates Discord messages (based on \`Google API\`).\n\n`;
 
+   // ------------------------------
+   // Support & Donations
+   // ------------------------------
+   /*
    var donation = "";
-
    if (auth.donation && auth.donation.length > 5)
    {
       donation =
          "Like this bot? [Support the developer!](" + auth.donation + ")";
    }
-
-   //
+   */
+   // ------------------------------
    // Help Basics
-   //
+   // ------------------------------
 
    const basics =
    helpSection({
       config: config,
-      title: "Translate by Reacting `new`",
-      link: "https://github.com/NotMyself/Louie/wiki/Translate-with-Emoji-Reaction",
+      title: "Translate by Reacting",
+      link: "https://github.com/NotMyself/ZyC0R3/Rita/Translate-with-Emoji-Reaction",
       icon: ":flag_white:",
       cmd: null,
       help: "react",
@@ -90,7 +93,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate Custom Text",
-      link: "https://github.com/NotMyself/Louie/wiki/Translate-Custom-Text",
+      link: "https://github.com/NotMyself/ZyC0R3/Rita/Translate-Custom-Text",
       icon: ":abc:",
       cmd: "this",
       help: "custom",
@@ -100,7 +103,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate Last Message",
-      link: "https://github.com/NotMyself/Louie/wiki/Translate-Last-Message",
+      link: "https://github.com/NotMyself/ZyC0R3/Rita/Translate-Last-Message",
       icon: ":arrow_double_up:",
       cmd: "last",
       help: "last",
@@ -110,7 +113,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate Channel (Automatic)",
-      link: "https://github.com/NotMyself/Louie/wiki/Translate-Channel-(Automatic)",
+      link: "https://github.com/NotMyself/ZyC0R3/Rita/Translate-Channel-(Automatic)",
       icon: ":hash:",
       cmd: "channel",
       help: "auto",
@@ -120,7 +123,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Stats",
-      link: "https://github.com/NotMyself/Louie/wiki/Get-Statistics",
+      link: "https://github.com/ZyC0R3/Rita/wiki/Get-Statistics",
       icon: ":bar_chart:",
       cmd: "stats",
       help: "misc",
@@ -130,7 +133,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Settings",
-      link: "https://github.com/NotMyself/Louie/wiki/Settings",
+      link: "https://github.com/ZyC0R3/Rita/wiki/Settings",
       icon: ":gear:",
       cmd: "settings",
       help: "settings",
@@ -140,14 +143,14 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Report Bugs / Request Features",
-      link: "https://github.com/NotMyself/Louie/issues",
+      link: "https://github.com/ZyC0R3/Rita/issues",
       icon: ":raising_hand::skin-tone-3:"
    }) +
    donation;
 
-   //
+   // ------------------------------
    // Last Message (last)
-   //
+   // ------------------------------
 
    const last =
    `__**Translate Last Message(s)**__\n\n` +
@@ -173,18 +176,18 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} last -6 to english from german` +
    "```";
 
-   //
+   // ------------------------------
    // Flag Emoji Reaction
-   //
+   // ------------------------------
 
    const react =
    `__**Translate by reaction**__\n\n` +
    `Translates a message in the server when you react to it with a ` +
    `flag emoji. For example: :flag_ca:, :flag_it:, :flag_eg:, :flag_jp:`;
 
-   //
+   // ------------------------------
    // Custom message (this)
-   //
+   // ------------------------------
 
    const custom =
    `__**Translate Custom Message**__\n\n` +
@@ -207,9 +210,9 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} this to de from en: how are you? \n` +
    "```";
 
-   //
+   // ------------------------------
    // Auto translate (channel)
-   //
+   // ------------------------------
 
    const auto =
    `__**Auto Translate Channels/Users**__\n\n` +
@@ -238,9 +241,9 @@ const helpMessage = function(config, botname, param)
    "for replying. Simply copy the code and paste into DM window before your " +
    "message to send a response, example: `XX123: your message here`.";
 
-   //
+   // ------------------------------
    // Auto translate (stop)
-   //
+   // ------------------------------
 
    const stop =
    `__**Stop Auto Translation**__\n\n` +
@@ -263,9 +266,9 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} stop for all \n` +
    "```";
 
-   //
+   // ------------------------------
    // Misc
-   //
+   // ------------------------------
 
    const misc =
    `__**Miscellaneous Commands**__\n\n` +
@@ -288,9 +291,9 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} list\n` +
    "```";
 
-   //
+   // ------------------------------
    // Settings
-   //
+   // ------------------------------
 
    const settings =
    `__**Settings**__\n\n` +
@@ -304,9 +307,9 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} settings disconnect \n` +
    "```";
 
-   //
+   // ------------------------------
    // Proccess result
-   //
+   // ------------------------------
 
    const paramMap =
    {
