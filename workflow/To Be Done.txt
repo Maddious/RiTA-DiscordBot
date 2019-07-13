@@ -1,10 +1,14 @@
 Add Items to the list below followed with a () and [] 
 Enter your username in the () and Status update in []
 ----------------------------Example---------------------------
-Create To Do File (Zycore) [Done]
+Create To Do File (Zycore) [Done] {Date}
 -----------------------------List-----------------------------
-Re-write Readme  () []
-Wiki () []
-Package.json Re-write  () []
-Dependencies updated  () []
-Node Check Version   () []
+Re-write Readme                       () []
+  - Migrating from old to new         () []
+Wiki                                  () []
+Package.json Re-write                 () []
+Dependencies updated                  () []
+  - Gulp Update                       () []
+  - google-translate-api              (Zycore) [Done]
+  - google-translate-token            (Zycore) [Done]
+Node Check Version                    (Zycore) [Done] {13/07/19}
