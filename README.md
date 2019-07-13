@@ -74,17 +74,11 @@ To deploy a free translation bot that you can add to your discord server, follow
 2. You are using Heroku to run the old version.
 3. Make sure you do not disable, reset or delete your database (preferably Postgres from Heroku)
 
-## 1.
-Go to Heroku and click your app of C-3PO, once you have direct yourself to the deploy section. Once at the deploy section fork this project ( https://github.com/ZyC0R3/Rita ) and name it whatever you like.  
-
-## 2.
-Go back to the deploy section in Heroku and scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying "Disconnect" click that and then click search on repositories.
-
-## 3.
-Click your fork of this project and wait for it to load. Once that is completed you need to deploy the 'master' version of the bot. Wait for it to finish deploying and you should be
-
-## 4.
-Wait for it to finish deploying and you should be good to go. Turn on your dynos (if they were not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
+#### 2. Migrate
+* Go to Heroku and click your app of C-3PO, once you have direct yourself to the deploy section. Once at the deploy section fork this project ( https://github.com/ZyC0R3/Rita ) and name it whatever you like.  
+* Go back to the deploy section in Heroku and scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying "Disconnect" click that and then click search on repositories.
+* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the 'master' version of the bot. Wait for it to finish deploying and you should be.
+* Wait for it to finish deploying and you should be good to go. Turn on your dynos (if they were not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
 
 
 ## <a name="troubleshooting"></a>Troubleshooting
