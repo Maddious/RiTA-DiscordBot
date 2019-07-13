@@ -22,7 +22,6 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 
 ## If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings. 
-*(You will still need to create a New App on Heroku and Discord)*
 
 ### Deploy to [Heroku](https://www.heroku.com/)
 To deploy a free translation bot that you can add to your discord server, follow these easy steps.
