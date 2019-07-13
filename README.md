@@ -11,7 +11,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 ## Table of Contents
 
-1. [Features](##Features)
+1. [Features](#Features)
 2.
 3.
 4.
@@ -19,7 +19,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 6.
 7.
 
-## Features
+# Features
 * Translate custom messages
 * Translate messages by reacting with flag emoji
 * Translate last message(s) in channel
