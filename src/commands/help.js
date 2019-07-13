@@ -143,7 +143,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Misc. Settings",
-      link: "https://github.com/ZyC0R3/Rita/wiki/Settings",
+      link: "https://github.com/ZyC0R3/Rita/wiki/Misc.-Commands",
       icon: ":robot:",
       cmd: "misc",
       help: "misc",
