@@ -1,7 +1,7 @@
 ---
-name: Feature request
+name: Future Feature Request
 about: Suggest an idea for this project
-title: ''
+title: FFR:-
 labels: Enhancement
 assignees: ''
 
