@@ -11,7 +11,7 @@ module.exports = function(bot, status, channel, writable = true)
          bot.setPresence({
             status: "online",
             game: {
-               name: "Not fucking working"
+               name: "Lurling from the shadowns (!t help)"
             }
          });
       },
