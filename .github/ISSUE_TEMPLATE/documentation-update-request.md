@@ -1,7 +1,7 @@
 ---
 name: Documentation Update Request
 about: Suggest or Request an update to documentation
-title: DUR:-
+title: 
 labels: Documentation
 assignees: ''
 
@@ -11,4 +11,4 @@ assignees: ''
 _Link Here_
 
 **Proposed Changes Requested**
-_What Need to be Changed?_
+What Need to be Changed?
