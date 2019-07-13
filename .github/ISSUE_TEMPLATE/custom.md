@@ -1,10 +1,19 @@
 ---
-name: Custom issue template
-about: Describe this issue template's purpose here.
+name: Code Check
+about: Request a Code Check.
 title: ''
-labels: ''
+labels: 'Code Check'
+projects: 'Code Checks'
 assignees: ''
 
 ---
+**File Code Contained In**  
+filename.js
 
+**Start Line**  
+43:00
 
+**Code**
+```
+--Code Here--
+```
