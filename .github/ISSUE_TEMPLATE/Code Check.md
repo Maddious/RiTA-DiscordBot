@@ -3,7 +3,6 @@ name: Code Check
 about: Request a Code Check.
 title: ''
 labels: 'Code Check'
-projects: 'Code Checks'
 assignees: ''
 
 ---
