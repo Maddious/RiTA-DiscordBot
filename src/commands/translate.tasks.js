@@ -1,7 +1,7 @@
 const langCheck = require("../core/lang.check");
 const botSend = require("../core/send");
 const db = require("../core/db");
-const logger = require("../core/logger");
+const _logger = require("../core/logger");
 
 // --------------------
 // Handle stop command
@@ -95,17 +95,17 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
       data.text += ` (${res.length})`;
    }
    */
-   for (var i = 0, len = res.length; i < len; i++) 
+   for (var i = 0, len = res.length; i < len; i++)
    {
       const task = res[i];
       const dest = destResolver(task.dest);
       const origin = destResolver(task.origin);
       const LangFrom = langCheck(task.LangFrom).valid[0].name;
       const LangTo = langCheck(task.LangTo).valid[0].name;
-      data.text = `:arrow_right:   Translating **${LangFrom}** messages from **<${origin}>** ` + `and sending **${LangTo}** messages to **<${dest}>**`
-	botSend(data);
+      data.text = `:arrow_right:   Translating **${LangFrom}** messages from **<${origin}>** ` + `and sending **${LangTo}** messages to **<${dest}>**`;
+      botSend(data);
    }
-   data.text = ":negative_squared_cross_mark:  That's all I have!"
+   data.text = ":negative_squared_cross_mark:  That's all I have!";
    return botSend(data);
 };
 // -----------------------
