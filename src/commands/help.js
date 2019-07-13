@@ -152,11 +152,29 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
+      title: "ReadMe",
+      link: "https://github.com/ZyC0R3/Rita/blob/master/README.md",
+      icon: ":bookmark_tabs:",
+      cmd: "readme",
+      help: "readme",
+      args: "",
+      example: ""
+   }) +
+   helpSection({
+      config: config,
       title: "Report Bugs / Request Features",
       link: "https://github.com/ZyC0R3/Rita/issues",
       icon: ":raising_hand::skin-tone-3:"
    }) +
    donation;
+
+   // ------------------------------
+   // Flag Emoji Reaction
+   // ------------------------------
+
+   const readme =
+   `__**The ReadMe File can be located at**__\n\n` +
+   `https://github.com/ZyC0R3/Rita/blob/master/README.md`;
 
    // ------------------------------
    // Last Message (last)
