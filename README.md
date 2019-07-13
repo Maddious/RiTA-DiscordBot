@@ -67,7 +67,7 @@ To deploy a free translation bot that you can add to your discord server, follow
 ## If you already have a Heroku Bot Using C-3P0
 
 #### 1. Checklist
-* Make sure you have completed the following steps before attempting to migrate translation settings.
+*Make sure you have completed the following steps before attempting to migrate translation settings.*
 1. You have an already up and running C-3P0 Bot.
 2. You are using Heroku to run the old version.
 3. Make sure you do not disable, reset or delete your database (preferably Postgres from Heroku)
