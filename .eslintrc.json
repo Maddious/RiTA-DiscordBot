@@ -13,7 +13,7 @@
       "no-extra-parens": "warn",
       "curly": "error",
       "eqeqeq": "error",
-      "complexity": ["warn", 10],
+      "complexity": ["warn", 6],
       "dot-notation": "error",
       "no-alert": "error",
       "no-else-return": "error",
