@@ -1,12 +1,11 @@
 ---
 name: Code Check Request
 about: Request a Code Check.
-title: 
+title: ''
 labels: Code Check
 assignees: ''
 
 ---
-
 
 **Start Line**  
 

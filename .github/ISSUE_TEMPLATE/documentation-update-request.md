@@ -1,7 +1,7 @@
 ---
 name: Documentation Update Request
 about: Suggest or Request an update to documentation
-title: 
+title: ''
 labels: Documentation
 assignees: ''
 
