@@ -13,7 +13,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 1. [Features](#Features)
 2. [Usage](#Usage)
-3. [New Bot](#New Bot)
+3. [New Bot](#New_Bot)
 4. [Existing Bot Migration](#Existing Bot Migration)
 5. [Troubleshooting](#Troubleshooting)
 6. [Commands](#Commands)
