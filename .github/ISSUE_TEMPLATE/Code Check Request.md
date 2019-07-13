@@ -1,7 +1,7 @@
 ---
 name: Code Check Request
 about: Request a Code Check.
-title: CCR
+title: CCR:-
 labels: Code Check
 assignees: ''
 
