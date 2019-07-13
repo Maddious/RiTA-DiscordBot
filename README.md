@@ -8,6 +8,17 @@ Translation bot built using `discord.js` and `Google Translate API`.
 ![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/Rita.svg?style=plastic)
 [![invite](https://img.shields.io/badge/Discord_Invite-RITA-7289DA.svg?style=plastic)](https://discordapp.com/oauth2/authorize?&client_id=599269445118197760&scope=bot&permissions=8)
 
+
+## Table of Contents
+
+1. [Features](##Features)
+2.
+3.
+4.
+5.
+6.
+7.
+
 ## Features
 * Translate custom messages
 * Translate messages by reacting with flag emoji
@@ -21,7 +32,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 * Write `!translate help` or `!t help` for a list of commands.
 
 
-## If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings. 
+## If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.
 
 ### Deploy to [Heroku](https://www.heroku.com/)
 To deploy a free translation bot that you can add to your discord server, follow these easy steps.
@@ -43,7 +54,7 @@ To deploy a free translation bot that you can add to your discord server, follow
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
 * Under **Deployment Method** select Github. Connect to your github account and search for this repo by name.
 * Scroll down to the manual deploy section, and select the **heroku-deployment** branch. Click deploy branch, and wait for the successfully deployed message.
-* Go to the **Resources** tab and look for the addons section. Search 'Postgres', and add a 'Hobby Dev - Free' version of Heroku Postgres. This will be automatically attached as your bot's database. 
+* Go to the **Resources** tab and look for the addons section. Search 'Postgres', and add a 'Hobby Dev - Free' version of Heroku Postgres. This will be automatically attached as your bot's database.
 * Go to the **Settings** tab. Click to reveal Config Variables, then add a new one. The key will be **DISCORD_TOKEN**, and the value will be your discord bot's token that you copied earlier.
 * Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
 
@@ -78,9 +89,9 @@ To deploy a free translation bot that you can add to your discord server, follow
         * **DISCORD_DEBUG_WEBHOOK_ID** : 012345678901234567
         * **DISCORD_DEBUG_WEBHOOK_TOKEN** : VCj9yOOtJF9VCm-BU2F9xrbnoWD5gBZZ-UU1mZHcxi5VLgr3bPb9NanRJM8YD9cpBisL
     4. Restart your app's `worker node src/bot.js` dyno, and you will begin to recieve debugging messages in your `#webhooks` channel.
-* If your bot in unresponsive, the first thing to check is Heroku. Log in and manually restart the `worker node src/bot.js` dyno. 
+* If your bot in unresponsive, the first thing to check is Heroku. Log in and manually restart the `worker node src/bot.js` dyno.
 * For further troubleshooting, it's helpful to install the Heroku command line interface. Once installed you can login from a terminal with `heroku login` and check your apps logs with `heroku logs --tail -a <your-app-name>`
-* If you are unable to solve a problem yourself, report it with as much detail as possible in this repo's issue tracker. 
+* If you are unable to solve a problem yourself, report it with as much detail as possible in this repo's issue tracker.
 
 
 ## Commands
@@ -100,6 +111,6 @@ This project was originally released by Aziz under the MIT license. He chose to 
 * Artanis / ArtanisTheOne
 * Balthazar / Jshep89
 * Z3US / cyberlooper
-* Maddious / 
+* Maddious /
 
 Released under MIT license.
