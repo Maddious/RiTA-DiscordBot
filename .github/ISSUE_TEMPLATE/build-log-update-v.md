@@ -1,10 +1,10 @@
 ---
-name: Build Log Update V
+name: Heroku V 
 about: Copy the Build Log from Heroku
-title: 'Build Log ID:'
-labels: ''
+title: 'V:  ID:'
+labels: 'Heroku'
 assignees: ''
 
 ---
 
-**Activity Feed > Build Log**
+**Record Below Activity Feed > Build Log or Failed Version Reason**
