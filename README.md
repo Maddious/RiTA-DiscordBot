@@ -11,16 +11,16 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 ## Table of Contents
 
-1. [Features](#Features)
-2. [Usage](#Usage)
-3. [New Bot](#New_Bot)
-4. [Existing Bot Migration](#Existing Bot Migration)
-5. [Troubleshooting](#Troubleshooting)
-6. [Commands](#Commands)
-7. [Credits & License](#Credits & License)
-8. [Design Team](#Design Team)
+1. [Features](#features)
+2. [Usage](#usage)
+3. [New Bot](#new-bot)
+4. [Existing Bot Migration](#existing-bot-migration)
+5. [Troubleshooting](#troubleshooting)
+6. [Commands](#commands)
+7. [Credits & License](#credits-&-license)
+8. [Design Team](#design-team)
 
-# Features
+## <a name="features"></a>Features
 * Translate custom messages
 * Translate messages by reacting with flag emoji
 * Translate last message(s) in channel
@@ -28,7 +28,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 * Automatic translation of channels with option to forward translations to users or seperate channels.
 * Supports 100+ languages
 
-# Usage
+## <a name=""></a>Usage
 * [Invite bot](https://discordapp.com/oauth2/authorize?&client_id=599269445118197760&scope=bot&permissions=8) to your discord server or cerate your own with the instructons below.
 * Write `!translate help` or `!t help` for a list of commands.
 
@@ -36,7 +36,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 **If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.**
 
 
-# New Bot
+## <a name="new-bot"></a>New Bot
 To deploy a free translation bot that you can add to your discord server, follow these easy steps.
 
 #### 1. Fork this repo.
@@ -65,7 +65,7 @@ To deploy a free translation bot that you can add to your discord server, follow
 * Vist the resulting url and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
 
-# Existing Bot Migration
+## <a name="existing-bot-migraion"></a>Existing Bot Migration
 **If you already have a Heroku Bot Using C-3P0**
 
 #### 1. Checklist
@@ -87,7 +87,7 @@ Click your fork of this project and wait for it to load. Once that is completed 
 Wait for it to finish deploying and you should be good to go. Turn on your dynos (if they were not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
 
 
-# Troubleshooting
+## <a name="troubleshooting"></a>Troubleshooting
 * You can set up debugging webhooks using the following steps
     1. Create a new channel on your server to recieve the webhooks, let's say `#webhooks`.
     2. Go to Server Settings -> Webhooks -> Create Webhook. Select the `#webhooks` channel, then copy the webhook's URL. It will look something like `https://discordapp.com/api/webhooks/012345678901234567/VCj9yOOtJF9VCm-BU2F9xrbnoWD5gBZZ-UU1mZHcxi5VLgr3bPb9NanRJM8YD9cpBisL`
@@ -100,7 +100,7 @@ Wait for it to finish deploying and you should be good to go. Turn on your dynos
 * If you are unable to solve a problem yourself, report it with as much detail as possible in this repo's issue tracker.
 
 
-# Commands
+## <a name="commands"></a>Commands
 * [Translate Custom Text](https://github.com/ZyC0R3/Rita/wiki/Translate-Custom-Message)
 * [Translate by Reaction](https://github.com/ZyC0R3/Rita/wiki/Translate-by-Reacting)
 * [Translate Last Message](https://github.com/ZyC0R3/Rita/wiki/Translate-Last-Message)
@@ -108,11 +108,11 @@ Wait for it to finish deploying and you should be good to go. Turn on your dynos
 * [Settings](https://github.com/ZyC0R3/Rita/wiki/Settings)
 * [Misc. Commands](https://github.com/ZyC0R3/Rita/wiki/Misc.-Commands)
 
-# Credits & License
+## <a name="credits-&-license"></a>Credits & License
 
 This project was originally released by Aziz under the MIT license. He chose to take the project private/commercial at version 0.4.2 Beta. Bobby Johnson forked the project and renamed it Louie after his dog. AlooAkbar forked Louie and added the necessary modifications for simple and free deployment of the bot using Heroku. ZyC0R3 Picked up the fork and as part of a team fixed over 200 errors and brought it in to the modern age, All would like to thank Aziz for his hard work and making these early versions OSS so that others may learn and build on his hard work to share with the community.
 
-# Design Team
+## <a name="design-team"></a>Design Team
 * Zycore / [ZyC0R3](https://github.com/ZyC0R3)
 * Artanis / [ArtanisTheOne](https://github.com/ArtanisTheOne)
 * Balthazar / [Jshep89](https://github.com/JShep89)
