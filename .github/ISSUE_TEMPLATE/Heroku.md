@@ -1,7 +1,7 @@
 ---
-name: Heroku V 
+name: Heroku 
 about: Copy the Build Log from Heroku
-title: 'V:  ID:'
+title: 'V: ID:'
 labels: 'Heroku'
 assignees: ''
 
