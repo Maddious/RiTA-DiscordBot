@@ -39,7 +39,7 @@
     "common-tags": "^1.8.0",
     "discord.js": "^11.5.0",
     "dotenv": "^8.0.0",
-    "google-translate-api": "github:AlooAkbar/google-translate-api",
+    "google-translate-api": "github:vitalets/google-translate-api",
     "iso-639-1": "^2.0.5",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
