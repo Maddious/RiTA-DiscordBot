@@ -58,10 +58,10 @@ To deploy a free translation bot that you can add to your discord server, follow
 
 #### 1. Checklist
 * Make sure you have completed the following steps before attempting to migrate translation settings.
-* 1. You have an already up and running C-3P0 Bot.
-* 2.
-* 3.
-* 4.
+1. You have an already up and running C-3P0 Bot.
+2.
+3.
+4.
 
 #### 2.
 
