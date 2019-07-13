@@ -7,4 +7,4 @@ assignees: ''
 
 ---
 
-**Details of deploment log**
+**Details of deployment log**
