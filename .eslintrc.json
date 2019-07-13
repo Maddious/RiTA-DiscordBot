@@ -64,6 +64,7 @@
       "no-unused-vars": "warn",
       "no-mixed-spaces-and-tabs": "warn",
       "no-extra-semi": "warn",
+      "no-prototype-builtins": "warn",
       "no-unreachable": "warn"
     }
 }

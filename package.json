@@ -1,6 +1,6 @@
 {
   "name": "Rita",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "engines": {
     "node": "9.0.0"
   },
@@ -39,6 +39,7 @@
     "common-tags": "^1.8.0",
     "discord.js": "^11.5.0",
     "dotenv": "^8.0.0",
+    "eslint": "^6.0.1",
     "google-translate-api": "github:ZyC0R3/google-translate-api",
     "iso-639-1": "^2.0.5",
     "pg": "^7.11.0",
@@ -49,7 +50,7 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-eslint": "^4.0.2",
+    "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-uglify-es": "^0.1.11",
     "gulp-watch": "^4.3.11"

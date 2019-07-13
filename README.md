@@ -7,6 +7,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 ![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/Rita.svg?style=plastic)
 [![invite](https://img.shields.io/badge/Discord_Invite-RITA-7289DA.svg?style=plastic)](https://discordapp.com/oauth2/authorize?&client_id=599269445118197760&scope=bot&permissions=8)
 
+
 ## Table of Contents
 
 1. [Features](#features)
