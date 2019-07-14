@@ -169,12 +169,13 @@ const helpMessage = function(config, botname, param)
    donation;
 
    // ------------------------------
-   // Flag Emoji Reaction
+   // ReadMe location
    // ------------------------------
 
    const readme =
    `__**The ReadMe File can be located at**__\n\n` +
-   `https://github.com/ZyC0R3/Rita/blob/master/README.md`;
+   `https://github.com/ZyC0R3/Rita/blob/master/README.md` +
+   "```";
 
    // ------------------------------
    // Last Message (last)
@@ -341,14 +342,14 @@ const helpMessage = function(config, botname, param)
 
    const paramMap =
    {
-      "basics": info + basics,
       "custom": custom,
       "react": react,
       "last": last,
       "auto": auto,
       "stop": stop,
       "misc": misc,
-      "settings": settings
+      "settings": settings,
+      "readme": readme
    };
 
    if (paramMap.hasOwnProperty(param))
