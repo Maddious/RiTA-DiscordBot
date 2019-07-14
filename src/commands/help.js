@@ -173,9 +173,8 @@ const helpMessage = function(config, botname, param)
    // ------------------------------
 
    const readme =
-   `__**The ReadMe File can be located at**__\n\n` +
-   `https://github.com/ZyC0R3/Rita/blob/master/README.md` +
-   "```";
+   `__**The ReadMe File can be located below**__\n\n` +
+   `https://github.com/ZyC0R3/Rita/blob/master/README.md`;
 
    // ------------------------------
    // Last Message (last)
