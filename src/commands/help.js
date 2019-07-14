@@ -341,6 +341,7 @@ const helpMessage = function(config, botname, param)
 
    const paramMap =
    {
+      "basics": info + basics,
       "custom": custom,
       "react": react,
       "last": last,
