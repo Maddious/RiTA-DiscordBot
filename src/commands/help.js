@@ -152,11 +152,29 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
+      title: "ReadMe",
+      link: "https://github.com/ZyC0R3/Rita/blob/master/README.md",
+      icon: ":bookmark_tabs:",
+      cmd: "readme",
+      help: "readme",
+      args: "",
+      example: ""
+   }) +
+   helpSection({
+      config: config,
       title: "Report Bugs / Request Features",
       link: "https://github.com/ZyC0R3/Rita/issues",
       icon: ":raising_hand::skin-tone-3:"
    }) +
    donation;
+
+   // ------------------------------
+   // ReadMe location
+   // ------------------------------
+
+   const readme =
+   `__**The ReadMe File can be located below**__\n\n` +
+   `https://github.com/ZyC0R3/Rita/blob/master/README.md`;
 
    // ------------------------------
    // Last Message (last)
@@ -323,14 +341,14 @@ const helpMessage = function(config, botname, param)
 
    const paramMap =
    {
-      "basics": info + basics,
       "custom": custom,
       "react": react,
       "last": last,
       "auto": auto,
       "stop": stop,
       "misc": misc,
-      "settings": settings
+      "settings": settings,
+      "readme": readme
    };
 
    if (paramMap.hasOwnProperty(param))
