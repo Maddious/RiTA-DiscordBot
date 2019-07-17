@@ -6,6 +6,9 @@ Translation bot built using `discord.js` and `Google Translate API`.
 ![GitHub](https://img.shields.io/github/license/ZyC0R3/Rita.svg?style=plastic)
 ![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/Rita.svg?style=plastic)
 
+#### Current Test Branch
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch.svg?style=plastic)
+
 
 ## Table of Contents
 
