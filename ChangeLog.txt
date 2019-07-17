@@ -36,3 +36,4 @@ Help File Updates
 // ------
 Dependancy Updates
   "sequelize": "^5.10.1" from "^5.10.0"
+
