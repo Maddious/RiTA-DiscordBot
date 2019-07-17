@@ -6,7 +6,7 @@ Test Branch 1 - Testing Branch, May not be stable
 // ----------------
 
 // ------
-// 1.0.0   
+// 1.0.0
 // ------
 First Build
 
@@ -17,17 +17,26 @@ First Build
 
 
 // ------
-// 1.1.0   
+// 1.1.0
 // ------
 .eslintrc.json Fixes
-Dependancy Updates 
+Dependancy Updates
   Changed "google-translate-token" from @vitalets/google-translate-token to "github:ZyC0R3/google-translate-token"
 
 // ------
-// 1.1.3   
+// 1.1.3
 // ------
 Dependancy Updates
   "gulp-eslint": "^6.0.0" from "^4.0.2"
   "eslint": "^6.0.1" from "4.19.1"
 Help File Updates
 
+// ------
+// 1.1.4
+// ------
+Dependancy Updates
+  "sequelize": "^5.10.1" from "^5.10.0"
+
+// ------
+// 1.1.5
+// ------
