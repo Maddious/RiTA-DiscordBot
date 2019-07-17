@@ -1,6 +1,6 @@
 {
   "name": "Rita",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "engines": {
     "node": "9.0.0"
   },
@@ -17,7 +17,7 @@
   "author": "Group Project",
   "contributors": [
     {
-      "name": "GitName/Z3US <blank@email.com>",
+      "name": "GitName <blank@email.com>",
       "url": "https://github.com/"
     }
   ],
@@ -45,7 +45,7 @@
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
     "seconds-converter": "github:AlooAkbar/seconds-converter",
-    "sequelize": "^5.10.0",
+    "sequelize": "^5.10.1",
     "webhook-discord": "^3.2.0"
   },
   "devDependencies": {

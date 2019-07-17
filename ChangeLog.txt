@@ -31,3 +31,9 @@ Dependancy Updates
   "eslint": "^6.0.1" from "4.19.1"
 Help File Updates
 
+// ------
+// 1.1.4   
+// ------
+Dependancy Updates
+  "sequelize": "^5.10.1" from "^5.10.0"
+
