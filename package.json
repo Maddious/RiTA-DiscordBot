@@ -40,7 +40,7 @@
     "discord.js": "^11.5.0",
     "dotenv": "^8.0.0",
     "eslint": "^6.0.1",
-    "google-translate-api": "github:ZyC0R3/google-translate-api",
+    "google-translate-api": "github:ZyC0R3/google-translate-api#test-branch",
     "iso-639-1": "^2.0.5",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
