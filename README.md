@@ -14,8 +14,8 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 1. [Features](#features)
 2. [Usage](#usage)
-3. [New Bot](#new-bot)
-4. [Existing Bot Migration](#existing-bot-migration)
+3. [New Bot (RECOMMENDED)](#new-bot)
+4. [Existing Bot Migration (EXPERIMENTAL)](#existing-bot-migration)
 5. [Troubleshooting](#troubleshooting)
 6. [Commands](#commands)
 7. [Credits & License](#credits-&-license)
@@ -37,7 +37,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 **If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.**
 
 
-## <a name="new-bot"></a>New Bot
+## <a name="new-bot"></a>New Bot (RECOMMENDED)
 To deploy a free translation bot that you can add to your discord server, follow these easy steps.
 
 #### 1. Fork this repo.
@@ -56,7 +56,7 @@ To deploy a free translation bot that you can add to your discord server, follow
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
 * Under **Deployment Method** select Github. Connect to your github account and search for this repo by name.
-* Scroll down to the manual deploy section, and select the **heroku-deployment** branch. Click deploy branch, and wait for the successfully deployed message.
+* Scroll down to the manual deploy section, and select the **1.1.4** branch. Click deploy branch, and wait for the successfully deployed message.
 * Go to the **Resources** tab and look for the addons section. Search 'Postgres', and add a 'Hobby Dev - Free' version of Heroku Postgres. This will be automatically attached as your bot's database.
 * Go to the **Settings** tab. Click to reveal Config Variables, then add a new one. The key will be **DISCORD_TOKEN**, and the value will be your discord bot's token that you copied earlier.
 * Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
@@ -66,7 +66,7 @@ To deploy a free translation bot that you can add to your discord server, follow
 * Vist the resulting url and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
 
-## <a name="existing-bot-migraion"></a>Existing Bot Migration
+## <a name="existing-bot-migration"></a>Existing Bot Migration (EXPERIMENTAL)
 **If you already have a Heroku Bot Using C-3P0**
 
 #### 1. Checklist
@@ -78,7 +78,7 @@ To deploy a free translation bot that you can add to your discord server, follow
 #### 2. Migrate
 * Go to Heroku and click your app of C-3PO, once you have direct yourself to the deploy section. Once at the deploy section fork this project ( https://github.com/ZyC0R3/Rita ) and name it whatever you like.  
 * Go back to the deploy section in Heroku and scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying "Disconnect" click that and then click search on repositories.
-* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the '1.1.3' version of the bot. 
+* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the '1.1.4' version of the bot. 
 * Wait for it to finish deploying and you should be good to go. Turn on your worker dyno (if it was not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
 
 
