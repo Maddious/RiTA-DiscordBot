@@ -56,7 +56,7 @@ To deploy a free translation bot that you can add to your discord server, follow
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
 * Under **Deployment Method** select Github. Connect to your github account and search for this repo by name.
-* Scroll down to the manual deploy section, and select the **heroku-deployment** branch. Click deploy branch, and wait for the successfully deployed message.
+* Scroll down to the manual deploy section, and select the **1.1.4** branch. Click deploy branch, and wait for the successfully deployed message.
 * Go to the **Resources** tab and look for the addons section. Search 'Postgres', and add a 'Hobby Dev - Free' version of Heroku Postgres. This will be automatically attached as your bot's database.
 * Go to the **Settings** tab. Click to reveal Config Variables, then add a new one. The key will be **DISCORD_TOKEN**, and the value will be your discord bot's token that you copied earlier.
 * Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
