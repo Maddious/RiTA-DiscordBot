@@ -17,14 +17,14 @@ gulp.task("compress", function ()
 {
    return gulp.src("src/**/*.js")
    //.pipe(uglify())
-      .pipe(gulp.dest("build/"));
+      .pipe(gulp.dest("build"));
 });
 
-gulp.task("default", ["lint", "compress"]);
+gulp.task("default", gulp.parallel("lint", "compress"));
 
-gulp.task("build", ["lint", "compress"]);
+gulp.task("build", gulp.parallel("lint", "compress"));
 
 gulp.task("watch", function()
 {
-   gulp.watch("src/**/*.js", ["default"]);
+   gulp.watch("src/**/*.js", gulp.series("default"));
 });
