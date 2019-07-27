@@ -1,7 +1,7 @@
 ## RITA (beta)
 Translation bot built using `discord.js` and `Google Translate API`.
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/Rita.svg?style=plastic)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/Rita?style=plastic)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/Rita.svg?style=plastic)
 ![GitHub](https://img.shields.io/github/license/ZyC0R3/Rita.svg?style=plastic)
 ![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/Rita.svg?style=plastic)
@@ -16,10 +16,11 @@ Translation bot built using `discord.js` and `Google Translate API`.
 2. [Usage](#usage)
 3. [New Bot (RECOMMENDED)](#new-bot)
 4. [Existing Bot Migration (EXPERIMENTAL)](#existing-bot-migration)
-5. [Troubleshooting](#troubleshooting)
-6. [Commands](#commands)
-7. [Credits & License](#credits-&-license)
-8. [Design Team](#design-team)
+5. [Heroku Database Support](#database)
+6. [Troubleshooting](#troubleshooting)
+7. [Commands](#commands)
+8. [Credits & License](#credits-&-license)
+9. [Design Team](#design-team)
 
 ## <a name="features"></a>Features
 * Translate custom messages
@@ -30,7 +31,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 * Supports 100+ languages
 
 ## <a name=""></a>Usage
-* [Invite bot](https://discordapp.com/oauth2/authorize?&client_id=599269445118197760&scope=bot&permissions=8) to your discord server or cerate your own with the instructons below.
+* Cerate your own with the instructions below.
 * Write `!translate help` or `!t help` for a list of commands.
 
 
@@ -38,7 +39,9 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 
 ## <a name="new-bot"></a>New Bot (RECOMMENDED)
-To deploy a free translation bot that you can add to your discord server, follow these easy steps.
+
+**To deploy a free translation bot that you can add to your discord server, follow these easy steps.**
+
 
 #### 1. Fork this repo.
 * If you don't yet have a github account, [create one](https://github.com/join)! It's free and easy.
@@ -55,15 +58,15 @@ To deploy a free translation bot that you can add to your discord server, follow
 
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
-* Under **Deployment Method** select Github. Connect to your github account and search for this repo by name.
-* Scroll down to the manual deploy section, and select the **1.1.4** branch. Click deploy branch, and wait for the successfully deployed message.
+* Under **Deployment Method** select Github. Connect to your Github account and search for this repo by name.
+* Scroll down to the manual deploy section, and select the **1.1.5** branch. Click deploy branch, and wait for the successfully deployed message.
 * Go to the **Resources** tab and look for the addons section. Search 'Postgres', and add a 'Hobby Dev - Free' version of Heroku Postgres. This will be automatically attached as your bot's database.
 * Go to the **Settings** tab. Click to reveal Config Variables, then add a new one. The key will be **DISCORD_TOKEN**, and the value will be your discord bot's token that you copied earlier.
 * Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
 
 #### 4. Invite your bot to your server and configure it!
 * Replace the CLIENTID string in the following url with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
-* Vist the resulting url and add your bot to any server where you have admin privileges.
+* Visit the resulting url and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
 
 ## <a name="existing-bot-migration"></a>Existing Bot Migration (EXPERIMENTAL)
@@ -78,18 +81,45 @@ To deploy a free translation bot that you can add to your discord server, follow
 #### 2. Migrate
 * Go to Heroku and click your app of C-3PO, once you have direct yourself to the deploy section. Once at the deploy section fork this project ( https://github.com/ZyC0R3/Rita ) and name it whatever you like.  
 * Go back to the deploy section in Heroku and scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying "Disconnect" click that and then click search on repositories.
-* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the '1.1.4' version of the bot. 
+* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the '1.1.5' version of the bot.
 * Wait for it to finish deploying and you should be good to go. Turn on your worker dyno (if it was not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
 
 
+## <a name="database"></a>Heroku Database Support
+Sometimes you need to edit the Database manually, This is not something you should be playing around with unless you really know what you are doing.
+
+#### 1. Checklist
+1. Know that you are doing, if you don't then **don't** touch the DB. Simple.
+2. Download and Install [Postgres Admin 4](https://www.postgresql.org/ftp/pgadmin/pgadmin4/v4.10/), This guide will be for Windows, but it shouldn't be much different for any other OS.
+3. Locate your credentials for you Heroku Database, Log in to **Heroku** > Select your **App** > click **Resources** > click **Heroku Postgres** > Click **Settings** > Click **View Credentials** (*Note: Heroku rotates credentials periodically and updates applications where this database is attached.*)
+
+#### 2. Connect
+For a fresh install of pgAdmin, the dashboard likely contains only one server. This is your local server, Ignore this.
+1. Right click server(s) > create > server …
+2. Fill out the following:
+  * **Name:** This is solely for you. Name it whatever you want, I chose ‘Heroku-Run — On’
+
+*Under the connection tab:*
+  * **Hostname/Address:** This is the host credential you located in Step 3. It should look like \*\*-\*\*-\*\*...amazonaws.com
+  * **Port:** Keep the port at 5432, unless your credentials list otherwise
+  * **Maintenance databaseL** This is the database field located in Step 3.
+  * **Username:**  This is the user field in the credentials
+  * **Password:** The password field located in Step 3. I highly advise checking save password so that you don’t have to copypasta this every time you want to connect.
+  * In the **SSL Tab**, mark SSL mode as require
+
+At this point, if we were to hit ‘save’ (please don’t), something very strange would happen. You’d see hundreds if not thousands of databases appear in pgAdmin. This has to do with how Heroku configures their servers. You’ll still only have access to your specific database, not those of others. In order to avoid parsing so many databases, we have to white list only those databases we care about.
+
+3. Go to the **Advanced** tab and under db restriction copy the database name (it’s the same value as the **Maintenance Database** field filled earlier).
+4. Click Save/Connect and you are done. Edit away.
+
 ## <a name="troubleshooting"></a>Troubleshooting
-* You can set up debugging webhooks using the following steps
-    1. Create a new channel on your server to recieve the webhooks, let's say `#webhooks`.
-    2. Go to Server Settings -> Webhooks -> Create Webhook. Select the `#webhooks` channel, then copy the webhook's URL. It will look something like `https://discordapp.com/api/webhooks/012345678901234567/VCj9yOOtJF9VCm-BU2F9xrbnoWD5gBZZ-UU1mZHcxi5VLgr3bPb9NanRJM8YD9cpBisL`
+* You can set up debugging Webhooks using the following steps
+    1. Create a new channel on your server to receive the Webhooks, let's say `#Webhooks`.
+    2. Go to Server Settings -> Webhooks -> Create Webhook. Select the `#Webhooks` channel, then copy the Webhook's URL. It will look something like `https://discordapp.com/api/webhooks/012345678901234567/VCj9yOOtJF9VCm-BU2F9xrbnoWD5gBZZ-UU1mZHcxi5VLgr3bPb9NanRJM8YD9cpBisL`
     3. In the **Settings** tab of your Heroku app add the following Config Variables (values extracted from your URL):
         * **DISCORD_DEBUG_WEBHOOK_ID** : 012345678901234567
         * **DISCORD_DEBUG_WEBHOOK_TOKEN** : VCj9yOOtJF9VCm-BU2F9xrbnoWD5gBZZ-UU1mZHcxi5VLgr3bPb9NanRJM8YD9cpBisL
-    4. Restart your app's `worker node src/bot.js` dyno, and you will begin to recieve debugging messages in your `#webhooks` channel.
+    4. Restart your app's `worker node src/bot.js` dyno, and you will begin to receive debugging messages in your `#Webhooks` channel.
 * If your bot in unresponsive, the first thing to check is Heroku. Log in and manually restart the `worker node src/bot.js` dyno.
 * For further troubleshooting, it's helpful to install the Heroku command line interface. Once installed you can login from a terminal with `heroku login` and check your apps logs with `heroku logs --tail -a <your-app-name>`
 * If you are unable to solve a problem yourself, report it with as much detail as possible in this repo's issue tracker.
@@ -113,5 +143,6 @@ This project was originally released by Aziz under the MIT license. He chose to 
 * Balthazar / [Jshep89](https://github.com/JShep89)
 * Z3US / [cyberlooper](https://github.com/cyberlooper)
 * Maddious / [MadIndex](https://github.com/MadIndex)
+* defqon.1 / [wdaniel1985](https://github.com/wdaniel1985)
 
 Released under MIT license.
