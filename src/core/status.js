@@ -11,7 +11,7 @@ module.exports = function(bot, status, channel, writable = true)
          bot.setPresence({
             status: "online",
             game: {
-               name: "!t help / !translate help - V1.1.5"
+               name: "!t help / !translate help - Test Branch V1.1.6"
             }
          });
       },
