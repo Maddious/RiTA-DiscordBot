@@ -40,3 +40,11 @@ Dependancy Updates
 // ------
 // 1.1.5
 // ------
+Core Changed with minor Gulp Updates
+Changes to the approved length of Server ID's as Discord API has changed.
+Updated Readme for Database Connection Support
+
+// ------
+// 1.1.6
+// ------
+Test Branch
