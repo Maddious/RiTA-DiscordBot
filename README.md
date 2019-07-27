@@ -67,7 +67,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 * Vist the resulting url and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
 
-## <a name="existing-bot-migraion"></a>Existing Bot Migration (EXPERIMENTAL)
+## <a name="existing-bot-migration"></a>Existing Bot Migration (EXPERIMENTAL)
 **If you already have a Heroku Bot Using C-3P0**
 
 #### 1. Checklist
