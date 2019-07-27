@@ -16,6 +16,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 2. [Usage](#usage)
 3. [New Bot](#new-bot)
 4. [Existing Bot Migration](#existing-bot-migration)
+5. [Heroku Database Support](#database)
 5. [Troubleshooting](#troubleshooting)
 6. [Commands](#commands)
 7. [Credits & License](#credits-&-license)
@@ -38,7 +39,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 
 ## <a name="new-bot"></a>New Bot
-To deploy a free translation bot that you can add to your discord server, follow these easy steps.
+**To deploy a free translation bot that you can add to your discord server, follow these easy steps.**
 
 #### 1. Fork this repo.
 * If you don't yet have a github account, [create one](https://github.com/join)! It's free and easy.
@@ -78,9 +79,36 @@ To deploy a free translation bot that you can add to your discord server, follow
 #### 2. Migrate
 * Go to Heroku and click your app of C-3PO, once you have direct yourself to the deploy section. Once at the deploy section fork this project ( https://github.com/ZyC0R3/Rita ) and name it whatever you like.  
 * Go back to the deploy section in Heroku and scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying "Disconnect" click that and then click search on repositories.
-* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the '1.1.4' version of the bot. 
+* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the '1.1.4' version of the bot.
 * Wait for it to finish deploying and you should be good to go. Turn on your worker dyno (if it was not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
 
+
+## <a name="database"></a>Heroku Database Support
+Sometimes you need to edit the Database manually, This is not something you should be playing around with unless you really know what you are doing.
+
+#### 1. Checklist
+1. Know that you are doing, if you don't then **don't** touch the DB. Simple.
+2. Download and Install [Postgres Admin 4](https://www.postgresql.org/ftp/pgadmin/pgadmin4/v4.10/), This guide will be for Windows, but it shouldn't be much different for any other OS.
+3. Locate your credentials for you Heroku Database, Log in to **Heroku** > Select your **App** > click **Resources** > click **Heroku Postgres** > Click **Settings** > Click **View Credentials** (*Note: Heroku rotates credentials periodically and updates applications where this database is attached.*)
+
+#### 2. Connect
+For a fresh install of pgAdmin, the dashboard likely contains only one server. This is your local server, Ignore this.
+1. Right click server(s) > create > server …
+2. Fill out the following:
+  * **Name:** This is solely for you. Name it whatever you want, I chose ‘Heroku-Run — On’
+
+*Under the connection tab:*
+  * **Hostname/Address:** This is the host credential you located in Step 3. It should look like \*\*-\*\*-\*\*...amazonaws.com
+  * **Port:** Keep the port at 5432, unless your credentials list otherwise
+  * **Maintenance databaseL** This is the database field located in Step 3.
+  * **Username:**  This is the user field in the credentials
+  * **Password:** The password field located in Step 3. I highly advise checking save password so that you don’t have to copypasta this every time you want to connect.
+  * In the **SSL Tab**, mark SSL mode as require
+
+At this point, if we were to hit ‘save’ (please don’t), something very strange would happen. You’d see hundreds if not thousands of databases appear in pgAdmin. This has to do with how Heroku configures their servers. You’ll still only have access to your specific database, not those of others. In order to avoid parsing so many databases, we have to white list only those databases we care about.
+
+3. Go to the **Advanced** tab and under db restriction copy the database name (it’s the same value as the **Maintenance Database** field filled earlier).
+4. Click Save/Connect and you are done. Edit away. 
 
 ## <a name="troubleshooting"></a>Troubleshooting
 * You can set up debugging webhooks using the following steps
@@ -113,5 +141,6 @@ This project was originally released by Aziz under the MIT license. He chose to 
 * Balthazar / [Jshep89](https://github.com/JShep89)
 * Z3US / [cyberlooper](https://github.com/cyberlooper)
 * Maddious / [MadIndex](https://github.com/MadIndex)
+* defqon.1 / [wdaniel1985](https://github.com/wdaniel1985)
 
 Released under MIT license.
