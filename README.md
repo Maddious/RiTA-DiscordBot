@@ -17,10 +17,10 @@ Translation bot built using `discord.js` and `Google Translate API`.
 3. [New Bot (RECOMMENDED)](#new-bot)
 4. [Existing Bot Migration (EXPERIMENTAL)](#existing-bot-migration)
 5. [Heroku Database Support](#database)
-5. [Troubleshooting](#troubleshooting)
-6. [Commands](#commands)
-7. [Credits & License](#credits-&-license)
-8. [Design Team](#design-team)
+6. [Troubleshooting](#troubleshooting)
+7. [Commands](#commands)
+8. [Credits & License](#credits-&-license)
+9. [Design Team](#design-team)
 
 ## <a name="features"></a>Features
 * Translate custom messages
@@ -39,7 +39,9 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 
 ## <a name="new-bot"></a>New Bot (RECOMMENDED)
+
 **To deploy a free translation bot that you can add to your discord server, follow these easy steps.**
+
 
 #### 1. Fork this repo.
 * If you don't yet have a github account, [create one](https://github.com/join)! It's free and easy.
