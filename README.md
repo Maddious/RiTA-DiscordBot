@@ -31,7 +31,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 * Supports 100+ languages
 
 ## <a name=""></a>Usage
-* [Invite bot](https://discordapp.com/oauth2/authorize?&client_id=599269445118197760&scope=bot&permissions=8) to your discord server or cerate your own with the instructons below.
+* Cerate your own with the instructions below.
 * Write `!translate help` or `!t help` for a list of commands.
 
 
@@ -56,7 +56,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
-* Under **Deployment Method** select Github. Connect to your github account and search for this repo by name.
+* Under **Deployment Method** select Github. Connect to your Github account and search for this repo by name.
 * Scroll down to the manual deploy section, and select the **1.1.5** branch. Click deploy branch, and wait for the successfully deployed message.
 * Go to the **Resources** tab and look for the addons section. Search 'Postgres', and add a 'Hobby Dev - Free' version of Heroku Postgres. This will be automatically attached as your bot's database.
 * Go to the **Settings** tab. Click to reveal Config Variables, then add a new one. The key will be **DISCORD_TOKEN**, and the value will be your discord bot's token that you copied earlier.
@@ -64,7 +64,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 #### 4. Invite your bot to your server and configure it!
 * Replace the CLIENTID string in the following url with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
-* Vist the resulting url and add your bot to any server where you have admin privileges.
+* Visit the resulting url and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
 
 ## <a name="existing-bot-migration"></a>Existing Bot Migration (EXPERIMENTAL)
@@ -111,13 +111,13 @@ At this point, if we were to hit ‘save’ (please don’t), something very str
 4. Click Save/Connect and you are done. Edit away.
 
 ## <a name="troubleshooting"></a>Troubleshooting
-* You can set up debugging webhooks using the following steps
-    1. Create a new channel on your server to recieve the webhooks, let's say `#webhooks`.
-    2. Go to Server Settings -> Webhooks -> Create Webhook. Select the `#webhooks` channel, then copy the webhook's URL. It will look something like `https://discordapp.com/api/webhooks/012345678901234567/VCj9yOOtJF9VCm-BU2F9xrbnoWD5gBZZ-UU1mZHcxi5VLgr3bPb9NanRJM8YD9cpBisL`
+* You can set up debugging Webhooks using the following steps
+    1. Create a new channel on your server to receive the Webhooks, let's say `#Webhooks`.
+    2. Go to Server Settings -> Webhooks -> Create Webhook. Select the `#Webhooks` channel, then copy the Webhook's URL. It will look something like `https://discordapp.com/api/webhooks/012345678901234567/VCj9yOOtJF9VCm-BU2F9xrbnoWD5gBZZ-UU1mZHcxi5VLgr3bPb9NanRJM8YD9cpBisL`
     3. In the **Settings** tab of your Heroku app add the following Config Variables (values extracted from your URL):
         * **DISCORD_DEBUG_WEBHOOK_ID** : 012345678901234567
         * **DISCORD_DEBUG_WEBHOOK_TOKEN** : VCj9yOOtJF9VCm-BU2F9xrbnoWD5gBZZ-UU1mZHcxi5VLgr3bPb9NanRJM8YD9cpBisL
-    4. Restart your app's `worker node src/bot.js` dyno, and you will begin to recieve debugging messages in your `#webhooks` channel.
+    4. Restart your app's `worker node src/bot.js` dyno, and you will begin to receive debugging messages in your `#Webhooks` channel.
 * If your bot in unresponsive, the first thing to check is Heroku. Log in and manually restart the `worker node src/bot.js` dyno.
 * For further troubleshooting, it's helpful to install the Heroku command line interface. Once installed you can login from a terminal with `heroku login` and check your apps logs with `heroku logs --tail -a <your-app-name>`
 * If you are unable to solve a problem yourself, report it with as much detail as possible in this repo's issue tracker.
