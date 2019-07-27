@@ -42,7 +42,7 @@ const Servers = db.define("servers", {
 const Tasks = db.define("tasks", {
    origin: Sequelize.STRING(32),
    dest: Sequelize.STRING(32),
-   reply: Sequelize.STRING(16),
+   reply: Sequelize.STRING(32),
    server: Sequelize.STRING(32),
    active: {
       type: Sequelize.BOOLEAN,
