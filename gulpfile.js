@@ -1,34 +1,30 @@
 const gulp = require("gulp");
 const eslint = require("gulp-eslint");
-const watch = require("gulp-watch");
+const _watch = require("gulp-watch");
 const lec = require("gulp-line-ending-corrector");
 //const uglify = require('gulp-uglify-es').default;
 
-//tasks
-
-function lint()
+gulp.task("lint", () =>
 {
-   //execute
    return gulp.src(["src/**/*.js"])
       .pipe(lec())
       .pipe(eslint())
       .pipe(eslint.format())
       .pipe(eslint.failAfterError());
-}
+});
 
-function compress()
+gulp.task("compress", function ()
 {
-   // execute
    return gulp.src("src/**/*.js")
    //.pipe(uglify())
-      .pipe(gulp.dest("build"));
-}
+      .pipe(gulp.dest("build/"));
+});
 
-gulp.task("lint", lint);
-gulp.task("watch", GulpWatch);
-gulp.task("default", gulp.parallel(lint, compress));
-gulp.task("build", gulp.parallel(lint, compress));
-function GulpWatch()
+gulp.task("default", ["lint", "compress"]);
+
+gulp.task("build", ["lint", "compress"]);
+
+gulp.task("watch", function()
 {
-   gulp.watch("src/**/*.js", gulp.series("default"));
-}
+   gulp.watch("src/**/*.js", ["default"]);
+});
