@@ -4,8 +4,8 @@
 
 Below is the Dependency versions in each build, Test Branch will be updated to latest version and will be pushed once stable.
 
-|  | Build Version | Dependancies | Build Version |
-|--------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+|  | Build Version | Dependancies | Version |
+|-|-|-|-|
 | :x: | 1.0.0 |  |  |
 | :x: | 1.0.1 |  |  |
 | :x: | 1.1.0 |  |  |
