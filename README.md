@@ -11,6 +11,12 @@ Translation bot built using `discord.js` and `Google Translate API`.
 #### Current Test Branch
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?style=plastic)
 
+## Coming Soon!
+01. Local Installation Support.
+02. Error Message Support Section.
+03. Single Image with no Text forwarder.
+04. Auto Reverse transaltion for the auto function.
+
 
 ## Table of Contents
 
@@ -19,11 +25,12 @@ Translation bot built using `discord.js` and `Google Translate API`.
 03. [New Bot (RECOMMENDED)](#new-bot)
 04. [Existing Bot Migration (EXPERIMENTAL)](#existing-bot-migration)
 05. [Heroku Database Support](#database)
-06. [Troubleshooting](#troubleshooting)
-07. [Error Messages](#errors)
-08. [Commands](#commands)
-09. [Credits & License](#credits-&-license)
-10. [Design Team](#design-team)
+06. [Local Installation Support](#local)
+07. [Troubleshooting](#troubleshooting)
+08. [Error Messages](#errors)
+09. [Commands](#commands)
+10. [Credits & License](#credits-&-license)
+11. [Design Team](#design-team)
 
 ## <a name="features"></a>Features
 * Translate custom messages
@@ -115,6 +122,9 @@ At this point, if we were to hit ‘save’ (please don’t), something very str
 3. Go to the **Advanced** tab and under db restriction copy the database name (it’s the same value as the **Maintenance Database** field filled earlier).
 4. Click Save/Connect and you are done. Edit away.
 
+## <a name="local"></a>Local Installation Support
+This section/feature is being Created, Check back soon or join the support discord. 
+
 ## <a name="troubleshooting"></a>Troubleshooting
 * You can set up debugging Webhooks using the following steps
     1. Create a new channel on your server to receive the Webhooks, let's say `#Webhooks`.
@@ -128,7 +138,7 @@ At this point, if we were to hit ‘save’ (please don’t), something very str
 * If you are unable to solve a problem yourself, report it with as much detail as possible in this repo's issue tracker.
 
 ## <a name="errors"></a>Error Messages
-This section is being Created, Check back soon or join the support discord. 
+This section/feature is being Created, Check back soon or join the support discord.
 
 
 ## <a name="commands"></a>Commands
