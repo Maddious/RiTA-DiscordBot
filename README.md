@@ -14,15 +14,16 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 ## Table of Contents
 
-1. [Features](#features)
-2. [Usage](#usage)
-3. [New Bot (RECOMMENDED)](#new-bot)
-4. [Existing Bot Migration (EXPERIMENTAL)](#existing-bot-migration)
-5. [Heroku Database Support](#database)
-6. [Troubleshooting](#troubleshooting)
-7. [Commands](#commands)
-8. [Credits & License](#credits-&-license)
-9. [Design Team](#design-team)
+01. [Features](#features)
+02. [Usage](#usage)
+03. [New Bot (RECOMMENDED)](#new-bot)
+04. [Existing Bot Migration (EXPERIMENTAL)](#existing-bot-migration)
+05. [Heroku Database Support](#database)
+06. [Troubleshooting](#troubleshooting)
+07. [Error Messages](#errors)
+08. [Commands](#commands)
+09. [Credits & License](#credits-&-license)
+10. [Design Team](#design-team)
 
 ## <a name="features"></a>Features
 * Translate custom messages
@@ -125,6 +126,9 @@ At this point, if we were to hit ‘save’ (please don’t), something very str
 * If your bot in unresponsive, the first thing to check is Heroku. Log in and manually restart the `worker node src/bot.js` dyno.
 * For further troubleshooting, it's helpful to install the Heroku command line interface. Once installed you can login from a terminal with `heroku login` and check your apps logs with `heroku logs --tail -a <your-app-name>`
 * If you are unable to solve a problem yourself, report it with as much detail as possible in this repo's issue tracker.
+
+## <a name="errors"></a>Error Messages
+This section is being Created, Check back soon or join the support discord. 
 
 
 ## <a name="commands"></a>Commands
