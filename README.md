@@ -5,6 +5,8 @@ Translation bot built using `discord.js` and `Google Translate API`.
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/Rita.svg?style=plastic)
 ![GitHub](https://img.shields.io/github/license/ZyC0R3/Rita.svg?style=plastic)
 ![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/Rita.svg?style=plastic)
+[![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?style=plastic&)](https://discordapp.com/invite/mgNR64R)
+
 
 #### Current Test Branch
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?style=plastic)
@@ -91,7 +93,7 @@ Sometimes you need to edit the Database manually, This is not something you shou
 #### 1. Checklist
 1. Know that you are doing, if you don't then **don't** touch the DB. Simple.
 2. Download and Install [Postgres Admin 4](https://www.postgresql.org/ftp/pgadmin/pgadmin4/v4.10/), This guide will be for Windows, but it shouldn't be much different for any other OS.
-3. Locate your credentials for you Heroku Database, Log in to **Heroku** > Select your **App** > click **Resources** > click **Heroku Postgres** > Click **Settings** > Click **View Credentials** (*Note: Heroku rotates credentials periodically and updates applications where this database is attached.*)
+3. Locate your credentials for you Heroku Database, Log in to **Heroku** > Select your **App** > Click **Resources** > Click **Heroku Postgres** > Click **Settings** > Click **View Credentials** (*Note: Heroku rotates credentials periodically and updates applications where this database is attached.*)
 
 #### 2. Connect
 For a fresh install of pgAdmin, the dashboard likely contains only one server. This is your local server, Ignore this.
