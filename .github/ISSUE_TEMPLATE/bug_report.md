@@ -20,6 +20,9 @@ Steps to reproduce the behavior:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
+**Error Message from Webhook**
+Pleasr give the error message from Discord Webhook
+
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
