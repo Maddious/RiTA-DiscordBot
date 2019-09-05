@@ -11,18 +11,26 @@ Translation bot built using `discord.js` and `Google Translate API`.
 #### Current Test Branch
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?style=plastic)
 
+## Coming Soon!
+01. Local Installation Support Section.
+02. Error Message Support Section.
+03. Single Image with no Text forwarder.
+04. Auto Reverse transaltion for the auto function.
+
 
 ## Table of Contents
 
-1. [Features](#features)
-2. [Usage](#usage)
-3. [New Bot (RECOMMENDED)](#new-bot)
-4. [Existing Bot Migration (EXPERIMENTAL)](#existing-bot-migration)
-5. [Heroku Database Support](#database)
-6. [Troubleshooting](#troubleshooting)
-7. [Commands](#commands)
-8. [Credits & License](#credits-&-license)
-9. [Design Team](#design-team)
+01. [Features](#features)
+02. [Usage](#usage)
+03. [New Bot (RECOMMENDED)](#new-bot)
+04. [Existing Bot Migration (EXPERIMENTAL)](#existing-bot-migration)
+05. [Heroku Database Support](#database)
+06. [Local Installation Support](#local)
+07. [Troubleshooting](#troubleshooting)
+08. [Error Messages](#errors)
+09. [Commands](#commands)
+10. [Credits & License](#credits-&-license)
+11. [Design Team](#design-team)
 
 ## <a name="features"></a>Features
 * Translate custom messages
@@ -114,6 +122,24 @@ At this point, if we were to hit ‘save’ (please don’t), something very str
 3. Go to the **Advanced** tab and under db restriction copy the database name (it’s the same value as the **Maintenance Database** field filled earlier).
 4. Click Save/Connect and you are done. Edit away.
 
+## <a name="local"></a>Local Installation Support
+The bot can also be run locally without Heroku. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Start with the steps 1 and 2 in the description [New Bot (RECOMMENDED)](#new-bot) and continue as follows:
+
+#### 3. Create a local database
+Any Database that runs with SQL Sequelize ('https://sequelize.org/master/') can be used. My recommendation is to use the [SQL Lite](https://www.sqlite.org/index.html) database since the setup is fast and access is easy. Copy the connection details to the database for the next step. Example: The connection to a sqlite database with the name *database.db* stored at the same level of this README file would be *./database.db*.
+
+#### 4. Create a new .env File
+Copy the existing **.env.example** file and name it **.env**. Edit the Values of **DISCORD_TOKEN**, **DISCORD_BOT_OWNER_ID** and the **DATABASE_URL** according to the values that you copied earlier.
+
+#### 5. Install nodejs
+Install nodejs ('https://nodejs.org/en/').  
+
+#### 6. Run and start the bot
+Run `npm install -g gulp` in your console to install gulp. Build the bot code using `npm build` and run the bot with `npm start`. 
+
+#### 7. Invite your bot to your server and configure it!
+See step 4 in the description [New Bot (RECOMMENDED)](#new-bot).
+
 ## <a name="troubleshooting"></a>Troubleshooting
 * You can set up debugging Webhooks using the following steps
     1. Create a new channel on your server to receive the Webhooks, let's say `#Webhooks`.
@@ -125,6 +151,9 @@ At this point, if we were to hit ‘save’ (please don’t), something very str
 * If your bot in unresponsive, the first thing to check is Heroku. Log in and manually restart the `worker node src/bot.js` dyno.
 * For further troubleshooting, it's helpful to install the Heroku command line interface. Once installed you can login from a terminal with `heroku login` and check your apps logs with `heroku logs --tail -a <your-app-name>`
 * If you are unable to solve a problem yourself, report it with as much detail as possible in this repo's issue tracker.
+
+## <a name="errors"></a>Error Messages
+This section/feature is being Created, Check back soon or join the support discord.
 
 
 ## <a name="commands"></a>Commands
