@@ -1,5 +1,5 @@
 ---
-name: Bug report - Stable Branch.md
+name: Bug report - Stable Branch
 about: Create a report to help us improve
 title: ''
 labels: Bug
