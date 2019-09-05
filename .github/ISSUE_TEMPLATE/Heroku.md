@@ -8,3 +8,4 @@ assignees: ''
 ---
 
 **Record Below Activity Feed > Build Log or Failed Version Reason**
+Please Add label for Version to allow for investiation of build errors.
