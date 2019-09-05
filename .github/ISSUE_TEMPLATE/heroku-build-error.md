@@ -1,10 +1,16 @@
 ---
 name: Heroku Build Error
-about: Report a Heroku Build Error Preventing successful Deployment
+about: Report a Heroku Build Error Preventing Deployment
 title: ''
-labels: Build
+labels: Build, Deployment Errors
 assignees: ''
 
 ---
 
-**Details of deployment log**
+**Details from deployment log**
+src/
+
+- [ ]  
+- [ ]  
+- [ ]  
+- [ ]
