@@ -84,7 +84,8 @@ exports.main = function(client, id, output = null, guild)
       }
    };
 
-   if (resolved.prefix && prefixMap.hasOwnProperty(resolved.prefix))
+   //if (resolved.prefix && prefixMap.hasOwnProperty(resolved.prefix))
+   if (Object.prototype.hasOwnProperty.call(resolved.prefix && prefixMap,resolved.prefix))
    {
       prefixMap[resolved.prefix]();
    }
@@ -115,7 +116,8 @@ exports.main = function(client, id, output = null, guild)
       }
    };
 
-   if (output && idOutputMap.hasOwnProperty(output))
+   //if (output && idOutputMap.hasOwnProperty(output))
+   if (Object.prototype.hasOwnProperty.call(output && idOutputMap,output))
    {
       return idOutputMap[output]();
    }
