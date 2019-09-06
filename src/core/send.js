@@ -77,6 +77,10 @@ const sendBox = function(data)
          logger("error", errMsg);
       });
    }
+   else if (data.attachments.array().length > 0)
+   {
+      sendAttachments(data);
+   }
 };
 
 

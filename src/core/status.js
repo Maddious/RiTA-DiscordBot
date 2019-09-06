@@ -2,7 +2,7 @@
 // Update Bot Status
 // ------------------
 
-module.exports = function(bot, status, channel, writable = true)
+module.exports = function(bot, status, config, channel, writable = true)
 {
    const statusMap =
    {
@@ -11,7 +11,7 @@ module.exports = function(bot, status, channel, writable = true)
          bot.setPresence({
             status: "online",
             game: {
-               name: "!t help / !translate help - Test Branch V1.1.6"
+               name: config.translateCmdShort + " help / " + config.translateCmd +" help - V." + config.version
             }
          });
       },
