@@ -117,9 +117,9 @@ exports.removeServer = function(id)
 exports.updateServerLang = function(id, lang, _cb)
 {
    return Servers.update({ lang: lang }, { where: { id: id } }).then(
-      function (err, _result)
+      function ()
       {
-         logger("error", err);
+         _cb();
       });
 };
 
