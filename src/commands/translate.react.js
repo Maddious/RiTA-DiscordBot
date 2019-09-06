@@ -16,7 +16,8 @@ module.exports = function(data, client)
 
    const emoji = data.emoji.name;
 
-   if (emoji && countryLangs.hasOwnProperty(emoji))
+   //if (emoji && countryLangs.hasOwnProperty(emoji))
+   if (Object.prototype.hasOwnProperty.call(emoji && countryLangs,emoji))
    {
       //
       // Stop proccessing if country has no langs / null
