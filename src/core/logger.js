@@ -18,7 +18,8 @@ module.exports = function(type, data, subtype = null)
       guildLeave: logLeave
    };
 
-   if (logTypes.hasOwnProperty(type))
+   //if (logTypes.hasOwnProperty(type))
+   if (Object.prototype.hasOwnProperty.call(logTypes,type))
    {
       return logTypes[type](data, subtype);
    }
@@ -80,7 +81,8 @@ const errorLog = function(error, subtype)
       shardFetch: ":pager:  Discord - shard.fetchClientValues"
    };
 
-   if (errorTypes.hasOwnProperty(subtype))
+   //if (errorTypes.hasOwnProperty(subtype))
+   if (Object.prototype.hasOwnProperty.call(errorTypes,subtype))
    {
       errorTitle = errorTypes[subtype];
    }
