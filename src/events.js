@@ -104,7 +104,10 @@ exports.listen = function(client)
 
    client.on("message", message =>
    {
-      console.log(`${message.guild.name} - ${message.guild.id}`);
+      if (message.guild)
+      {
+         console.log(`${message.guild.name} - ${message.guild.id}`);
+      }
       messageHandler(config, message);
    });
 
