@@ -57,7 +57,7 @@ module.exports = function(data)
 
       if (data.message.channel.type === "text" && data.cmd.server)
       {
-         const serverLang = langCheck(data.cmd.server[0].lang).valid[0];
+         const serverLang = langCheck(data.cmd.server[0].serverLang).valid[0];
 
          const activeServerTasks =
             data.cmd.server[0].activeTasks - data.cmd.server[0].activeUserTasks;
