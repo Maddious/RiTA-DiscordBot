@@ -352,7 +352,8 @@ const helpMessage = function(config, botname, param)
       "readme": readme
    };
 
-   if (paramMap.hasOwnProperty(param))
+   //if (paramMap.hasOwnProperty(param))
+   if (Object.prototype.hasOwnProperty.call(paramMap,param))
    {
       return paramMap[param];
    }
