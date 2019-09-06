@@ -17,7 +17,7 @@ const colors = {
 exports.get = function(color)
 {
    //if (colors.hasOwnProperty(color))
-   
+   if (Object.prototype.hasOwnProperty.call(colors,color))
    {
       return colors[color];
    }
