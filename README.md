@@ -18,8 +18,12 @@ Translation bot built using `discord.js` and `Google Translate API`.
 03. `!t tasks #TargetChannel` Implementation 
 
 ## New in 1.1.6
-01. Local Installation Support Section.
-02. Single Image with no Text forwarder.
+* Updated ReadMe with Local Installation Support Section.
+* Images can now be sent in chat without the need for accompanying text.
+* All Heroku Build Warnings have been fixed.
+* the bot now responds when you change the server language.
+* Translation to user Via DM is now working again.
+* Stop command no longer crashes the bot.
 
 ## Table of Contents
 
