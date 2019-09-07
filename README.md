@@ -12,6 +12,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?style=plastic)
 
 ## Coming Soon!
+
 01. Error Message Support Section.
 02. Auto Reverse transaltion for the auto function.
 03. `!t tasks #TargetChannel` Implementation 
