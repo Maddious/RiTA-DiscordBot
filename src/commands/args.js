@@ -239,8 +239,9 @@ module.exports = function(data)
       //
 
       output.main = output.main.toLowerCase();
-      
-      if (cmdMap.hasOwnProperty(output.main))
+
+      //if (cmdMap.hasOwnProperty(output.main))
+      if (Object.prototype.hasOwnProperty.call(cmdMap,output.main))
       {
          cmdMap[output.main](data);
       }

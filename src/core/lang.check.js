@@ -43,7 +43,8 @@ const getLangISO = function(lang)
       code = lang;
    }
 
-   if (langExceptions.hasOwnProperty(code))
+   //if (langExceptions.hasOwnProperty(code))
+   if (Object.prototype.hasOwnProperty.call(langExceptions,code))
    {
       return langExceptions[code];
    }

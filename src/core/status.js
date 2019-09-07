@@ -2,7 +2,7 @@
 // Update Bot Status
 // ------------------
 
-module.exports = function(bot, status, channel, writable = true)
+module.exports = function(bot, status, config, channel, writable = true)
 {
    const statusMap =
    {
@@ -11,7 +11,7 @@ module.exports = function(bot, status, channel, writable = true)
          bot.setPresence({
             status: "online",
             game: {
-               name: "!t help / !translate help - V1.1.5"
+               name: config.translateCmdShort + " help / " + config.translateCmd +" help - V." + config.version
             }
          });
       },
@@ -31,7 +31,8 @@ module.exports = function(bot, status, channel, writable = true)
       }
    };
 
-   if (status && statusMap.hasOwnProperty(status) && writable)
+   //if (status && statusMap.hasOwnProperty(status) && writable)
+   if (Object.prototype.hasOwnProperty.call(status && statusMap,status) && writable)
    {
       return statusMap[status]();
    }

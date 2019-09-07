@@ -7,7 +7,7 @@ const db = require("./core/db");
 const setStatus = require("./core/status");
 const react = require("./commands/translate.react");
 
-const botVersion = "1.1.5";
+const botVersion = require("../package.json").version;
 const botCreator = "Collaboration";
 
 exports.listen = function(client)
@@ -56,7 +56,7 @@ exports.listen = function(client)
          console.log(stripIndent`
             ----------------------------------------
             @${client.user.username} Bot is now online
-            v.${config.version} | ID: ${client.user.id}
+            V.${config.version} | ID: ${client.user.id}
             Made by: ${botCreator}
             ----------------------------------------
          `);
@@ -69,7 +69,7 @@ exports.listen = function(client)
          ${client.users.size.toLocaleString()} users
       `);
 
-      setStatus(client.user, "online");
+      setStatus(client.user, "online", config);
 
       //
       // All shards are online
@@ -104,7 +104,10 @@ exports.listen = function(client)
 
    client.on("message", message =>
    {
-      console.log(`${message.guild.name} - ${message.guild.id}`);
+      if (message.guild)
+      {
+         console.log(`${message.guild.name} - ${message.guild.id}`);
+      }
       messageHandler(config, message);
    });
 

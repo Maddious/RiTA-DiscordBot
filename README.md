@@ -12,11 +12,14 @@ Translation bot built using `discord.js` and `Google Translate API`.
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?style=plastic)
 
 ## Coming Soon!
-01. Local Installation Support Section.
-02. Error Message Support Section.
-03. Single Image with no Text forwarder.
-04. Auto Reverse transaltion for the auto function.
 
+01. Error Message Support Section.
+02. Auto Reverse transaltion for the auto function.
+03. `!t tasks #TargetChannel` Implementation 
+
+## New in 1.1.6
+01. Local Installation Support Section.
+02. Single Image with no Text forwarder.
 
 ## Table of Contents
 
