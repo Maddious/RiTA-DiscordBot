@@ -1,7 +1,7 @@
 ## RITA (beta)
 Translation bot built using `discord.js` and `Google Translate API`.
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/Rita?style=plastic)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/1.1.6?label=Stable%20Version&style=plastic)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/Rita.svg?style=plastic)
 ![GitHub](https://img.shields.io/github/license/ZyC0R3/Rita.svg?style=plastic)
 ![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/Rita.svg?style=plastic)
@@ -9,7 +9,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 
 #### Current Test Branch
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?style=plastic)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?label=Test%20Version&style=plastic)
 
 ## Coming Soon!
 
@@ -18,22 +18,27 @@ Translation bot built using `discord.js` and `Google Translate API`.
 03. `!t tasks #TargetChannel` Implementation 
 
 ## New in 1.1.6
-01. Local Installation Support Section.
-02. Single Image with no Text forwarder.
+* Updated ReadMe with Local Installation Support Section.
+* Images can now be sent in chat without the need for accompanying text.
+* All Heroku Build Warnings have been fixed.
+* the bot now responds when you change the server language.
+* Translation to user Via DM is now working again.
+* Stop command no longer crashes the bot.
 
 ## Table of Contents
 
 01. [Features](#features)
 02. [Usage](#usage)
-03. [New Bot (RECOMMENDED)](#new-bot)
-04. [Existing Bot Migration (EXPERIMENTAL)](#existing-bot-migration)
-05. [Heroku Database Support](#database)
-06. [Local Installation Support](#local)
-07. [Troubleshooting](#troubleshooting)
-08. [Error Messages](#errors)
-09. [Commands](#commands)
-10. [Credits & License](#credits-&-license)
-11. [Design Team](#design-team)
+03. [Setting up a New Bot (RECOMMENDED)](#new-bot)
+04. [How to Update](#update)
+05. [C-3PO to RITA Bot Migration (EXPERIMENTAL)](#migration)
+06. [Heroku Database Support](#database)
+07. [Local Installation Support](#local)
+08. [Troubleshooting](#troubleshooting)
+09. [Error Messages](#errors)
+10. [Commands](#commands)
+11. [Credits & License](#credits-&-license)
+12. [Design Team](#design-team)
 
 ## <a name="features"></a>Features
 * Translate custom messages
@@ -51,7 +56,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 **If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.**
 
 
-## <a name="new-bot"></a>New Bot (RECOMMENDED)
+## <a name="new-bot"></a>Setting up a New Bot (RECOMMENDED)
 
 **To deploy a free translation bot that you can add to your discord server, follow these easy steps.**
 
@@ -72,7 +77,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
 * Under **Deployment Method** select Github. Connect to your Github account and search for this repo by name.
-* Scroll down to the manual deploy section, and select the **1.1.5** branch. Click deploy branch, and wait for the successfully deployed message.
+* Scroll down to the manual deploy section, and select the **1.1.6** branch. Click deploy branch, and wait for the successfully deployed message.
 * Go to the **Resources** tab and look for the addons section. Search 'Postgres', and add a 'Hobby Dev - Free' version of Heroku Postgres. This will be automatically attached as your bot's database.
 * Go to the **Settings** tab. Click to reveal Config Variables, then add a new one. The key will be **DISCORD_TOKEN**, and the value will be your discord bot's token that you copied earlier.
 * Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
@@ -82,7 +87,19 @@ Translation bot built using `discord.js` and `Google Translate API`.
 * Visit the resulting url and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
 
-## <a name="existing-bot-migration"></a>Existing Bot Migration (EXPERIMENTAL)
+## <a name="update"></a>How to Update to 1.1.6
+#### 1. Checklist
+* You must have a bot already running on your server, if not then refer to [Setting up a New Bot](#new-bot)
+
+#### 2. Fork this Repo 
+* Use the button in the upper righthand side of this page to fork the repo so that it will be associated with your github account.
+
+#### 3. Deploy Update in Heroku
+* Log in to your Heroku account.
+* Select the bot you made in step 3 of [Setting up a New Bot](#new-bot)
+* Under **Deployment Method** Scroll down to the manual deploy section, and select the **1.1.6** branch. Click deploy branch, and wait for the successfully deployed message.
+
+## <a name="migration"></a>C-3PO to RITA Bot Migration (EXPERIMENTAL)
 **If you already have a Heroku Bot Using C-3P0**
 
 #### 1. Checklist
@@ -94,7 +111,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 #### 2. Migrate
 * Go to Heroku and click your app of C-3PO, once you have direct yourself to the deploy section. Once at the deploy section fork this project ( https://github.com/ZyC0R3/Rita ) and name it whatever you like.  
 * Go back to the deploy section in Heroku and scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying "Disconnect" click that and then click search on repositories.
-* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the '1.1.5' version of the bot.
+* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the '1.1.6' version of the bot.
 * Wait for it to finish deploying and you should be good to go. Turn on your worker dyno (if it was not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
 
 
@@ -126,7 +143,7 @@ At this point, if we were to hit ‘save’ (please don’t), something very str
 4. Click Save/Connect and you are done. Edit away.
 
 ## <a name="local"></a>Local Installation Support
-The bot can also be run locally without Heroku. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Start with the steps 1 and 2 in the description [New Bot (RECOMMENDED)](#new-bot) and continue as follows:
+The bot can also be run locally without Heroku. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Start with the steps 1 and 2 in [Setting up a New Bot](#new-bot) and the continue as follows:
 
 #### 1. Create a local database
 Any Database that runs with SQL Sequelize ('https://sequelize.org/master/') can be used. My recommendation is to use the [SQL Lite](https://www.sqlite.org/index.html) database since the setup is fast and access is easy. Copy the connection details to the database for the next step. Example: The connection to a sqlite database with the name *database.db* stored at the same level of this README file would be *./database.db*.
@@ -141,7 +158,7 @@ Install nodejs ('https://nodejs.org/en/').
 Run `npm install -g gulp` in your console to install gulp. Build the bot code using `npm build` and run the bot with `npm start`. 
 
 #### 5. Invite your bot to your server and configure it!
-See step 4 in the description [New Bot (RECOMMENDED)](#new-bot).
+Return to step 4 in [Setting up a New Bot](#new-bot).
 
 ## <a name="troubleshooting"></a>Troubleshooting
 * You can set up debugging Webhooks using the following steps
