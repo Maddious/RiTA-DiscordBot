@@ -152,6 +152,15 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
+      title: "Channel Tasks",
+      icon: ":robot:",
+      cmd: "Tasks",
+      help: "Tasks",
+      args: "",
+      example: ""
+   }) +
+   helpSection({
+      config: config,
       title: "ReadMe",
       link: "https://github.com/ZyC0R3/Rita/blob/master/README.md",
       icon: ":bookmark_tabs:",
@@ -336,6 +345,19 @@ const helpMessage = function(config, botname, param)
    "```";
 
    // ------------------------------
+   // Tasks
+   // ------------------------------
+
+   const tasks =
+   `__**Channel Tasks**__\n\n` +
+   `Displays current channel translation tasks` +
+   "```md\n" +
+
+   `# Current Channel Tasks\n` +
+   `> ${cmd} tasks \n` +
+   "```";
+
+   // ------------------------------
    // Proccess result
    // ------------------------------
 
@@ -349,7 +371,8 @@ const helpMessage = function(config, botname, param)
       "stop": stop,
       "misc": misc,
       "settings": settings,
-      "readme": readme
+      "readme": readme,
+      "tasks": tasks
    };
 
    //if (paramMap.hasOwnProperty(param))
