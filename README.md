@@ -72,7 +72,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
 * Under **Deployment Method** select Github. Connect to your Github account and search for this repo by name.
-* Scroll down to the manual deploy section, and select the **1.1.5** branch. Click deploy branch, and wait for the successfully deployed message.
+* Scroll down to the manual deploy section, and select the **1.1.6** branch. Click deploy branch, and wait for the successfully deployed message.
 * Go to the **Resources** tab and look for the addons section. Search 'Postgres', and add a 'Hobby Dev - Free' version of Heroku Postgres. This will be automatically attached as your bot's database.
 * Go to the **Settings** tab. Click to reveal Config Variables, then add a new one. The key will be **DISCORD_TOKEN**, and the value will be your discord bot's token that you copied earlier.
 * Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
@@ -94,7 +94,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 #### 2. Migrate
 * Go to Heroku and click your app of C-3PO, once you have direct yourself to the deploy section. Once at the deploy section fork this project ( https://github.com/ZyC0R3/Rita ) and name it whatever you like.  
 * Go back to the deploy section in Heroku and scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying "Disconnect" click that and then click search on repositories.
-* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the '1.1.5' version of the bot.
+* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the '1.1.6' version of the bot.
 * Wait for it to finish deploying and you should be good to go. Turn on your worker dyno (if it was not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
 
 
