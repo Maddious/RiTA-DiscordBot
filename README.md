@@ -14,6 +14,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 ## Coming Soon!
 01. Error Message Support Section.
 02. Auto Reverse transaltion for the auto function.
+03. `!t tasks #TargetChannel` Implementation 
 
 ## New in 1.1.6
 01. Local Installation Support Section.
