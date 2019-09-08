@@ -28,7 +28,7 @@ exports.listen = function(client)
 
       config = {
          version: botVersion,
-         botServer: "https://discord.gg",
+         botServer: "https://discord.gg/mgNR64R",
          inviteURL: auth.invite,
          owner: auth.botOwner,
          defaultLanguage: "en",
