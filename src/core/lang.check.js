@@ -11,6 +11,8 @@ const langExceptions =
    "he": "iw",
    "zh": "zh-CN",
    "ch": "zh-CN"
+   "zh-cn": "zh-CN"
+   "zh-tw": "zh-TW"
 };
 
 const langInvertException = function(code)
