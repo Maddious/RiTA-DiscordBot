@@ -228,7 +228,7 @@ module.exports = {
    "🇨🇳": {
       code: "cn",
       name: "China",
-      langs: ["zh-CN"]
+      langs: ["zh-cn"]
    },
    "🇨🇽": {
       code: "cx",
