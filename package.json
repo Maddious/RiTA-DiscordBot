@@ -1,6 +1,6 @@
 {
   "name": "Rita",
-  "version": "1.1.6",
+  "version": "1.1.8",
   "engines": {
     "node": "9.0.0"
   },
@@ -55,6 +55,6 @@
     "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-uglify-es": "^1.0.4",
-    "gulp-watch": "^5.0.1"
+    "gulp-watch": "^github:ZyC0R3/gulp-watch"
   }
 }
