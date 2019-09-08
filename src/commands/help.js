@@ -371,8 +371,8 @@ const helpMessage = function(config, botname, param)
       "stop": stop,
       "misc": misc,
       "settings": settings,
-      "readme": readme,
-      "tasks": tasks
+      "tasks": tasks,
+      "readme": readme
    };
 
    //if (paramMap.hasOwnProperty(param))
