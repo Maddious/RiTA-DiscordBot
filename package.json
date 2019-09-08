@@ -55,6 +55,6 @@
     "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-uglify-es": "^1.0.4",
-    "gulp-watch": "git+https://github.com/ZyC0R3/gulp-watch.git"
+    "gulp-watch": "github:ZyC0R3/gulp-watch"
   }
 }
