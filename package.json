@@ -1,8 +1,9 @@
 {
   "name": "Rita",
-  "version": "1.1.8",
+
+  "version": "1.1.7",
   "engines": {
-    "node": "9.0.0"
+    "node": "12.9.1"
   },
   "description": "Real-Time Intergalactic Translating Assistant bot built using discord.js and Google Translate API.",
   "main": "src/bot.js",
@@ -45,7 +46,7 @@
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
     "seconds-converter": "github:AlooAkbar/seconds-converter",
-    "sequelize": "^5.18.1",
+    "sequelize": "^5.18.4",
     "sqlite3": "^4.1.0",
     "webhook-discord": "^3.2.0"
   },
