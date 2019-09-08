@@ -22,7 +22,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 06. Patch for Chinese language support.
 07. Various Security vulnerabilites fixed.
 08. Various commands re-activated.
-09. Introduction of a Command Handler. (This will be done as a New Project)
+09. Introduction of a Streamlined Command Handler. (This will be done as a New Project)
 
 ## New in 1.1.6
 * Updated ReadMe with Local Installation Support Section.
