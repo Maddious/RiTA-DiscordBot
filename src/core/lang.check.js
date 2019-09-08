@@ -9,8 +9,8 @@ const fn = require("./helpers");
 const langExceptions =
 {
    "he": "iw",
-   "zh": "zh-cn",
-   "ch": "zh-cn"
+   "zh": "zh-CN",
+   "ch": "zh-CN"
 };
 
 const langInvertException = function(code)
