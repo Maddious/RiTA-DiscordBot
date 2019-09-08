@@ -1,5 +1,6 @@
 {
   "name": "Rita",
+
   "version": "1.1.7",
   "engines": {
     "node": "12.9.1"
@@ -17,8 +18,8 @@
   "author": "Group Project",
   "contributors": [
     {
-      "name": "GitName <blank@email.com>",
-      "url": "https://github.com/"
+      "name": "RITA <blank@email.com>",
+      "url": "https://github.com/ZyC0R3/Rita"
     }
   ],
   "keywords": [
@@ -55,6 +56,6 @@
     "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-uglify-es": "^1.0.4",
-    "gulp-watch": "^5.0.1"
+    "gulp-watch": "github:ZyC0R3/gulp-watch"
   }
 }

@@ -1,15 +1,18 @@
 ## RITA (beta)
 Translation bot built using `discord.js` and `Google Translate API`.
 
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/1.1.6?label=Stable%20Version&style=plastic)
-![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/Rita.svg?style=plastic)
-![GitHub](https://img.shields.io/github/license/ZyC0R3/Rita.svg?style=plastic)
-![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/Rita.svg?style=plastic)
-[![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?style=plastic&)](https://discordapp.com/invite/mgNR64R)
+
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/1.1.6?label=Stable%20Version)
+[![codebeat badge](https://codebeat.co/badges/a26b41c5-771e-4452-8a60-1947b0ed302c)](https://codebeat.co/projects/github-com-zyc0r3-rita-1-1-6)
+![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/Rita.svg)
+![GitHub](https://img.shields.io/github/license/ZyC0R3/Rita.svg)
+![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/Rita.svg)
+[![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R)
 
 
 #### Current Test Branch
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?label=Test%20Version&style=plastic)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?label=Test%20Version)
+
 
 ## Coming Soon!
 
