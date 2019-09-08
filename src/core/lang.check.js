@@ -12,7 +12,10 @@ const langExceptions =
    "zh": "zh-CN",
    "ch": "zh-CN",
    "zh-cn": "zh-CN",
-   "zh-tw": "zh-TW"
+   "zh-tw": "zh-TW",
+   "chinese traditional" : "zh-TW",
+   "chinese simplified" : "zh-TW",
+   "chinese": "zh-CN",
 };
 
 const langInvertException = function(code)
