@@ -5,7 +5,7 @@ Firstly, thank you for wanting to contribute to this project, here are a few gui
 * You need to have a good understanding of the `Discord API` and its limitations.
 * Experience with `discord.js` which is the main library used by translator bot.
 * Understanding of the `Google Translate API`  
-  * A Clone is used that can be found here: https://github.com/ZyC0R3/google-translate-api.
+  * A Clone is used that can be found here: https://github.com/ZyC0R3/google-translate-api
 * Elegant and well-commented code.
 * Meaningful commit/pull-req descriptions.
 
@@ -13,7 +13,7 @@ Firstly, thank you for wanting to contribute to this project, here are a few gui
 
 * You must make your own clone/fork of the bot for development/testing.
 * Use `gulp watch` during development for auto linting and building.  
-  * (A Clone is used that can be found here: https://github.com/ZyC0R3/gulp-watch)
+  * A Clone is used that can be found here: https://github.com/ZyC0R3/gulp-watch
 * Your code has to follow the **ESLint** rules found in `.eslintrc.json`.
 * New commands must be created in the `src/commands/` folder in a new file.
 * Make sure that your code does not break any functionality.
