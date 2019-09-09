@@ -353,8 +353,12 @@ const helpMessage = function(config, botname, param)
    `Displays current channel translation tasks` +
    "```md\n" +
 
-   `# Current Channel Tasks\n` +
-   `> ${cmd} tasks \n` +
+   `# Displays translation tasks of the current channel\n` +
+   `> ${cmd} tasks\n` +
+
+   `# Displays translation tasks of specified channel\n` +
+   `> COMING IN FUTURE UPDATE\n` +
+   `> ${cmd} tasks for [#channel]\n` +
    "```";
 
    // ------------------------------
