@@ -107,7 +107,8 @@ Translation bot built using `discord.js` and `Google Translate API`.
 * You must have a bot already running on your server, if not then refer to [Setting up a New Bot](#new-bot)
 
 #### 2. Fork this Repo 
-* Use the button in the upper righthand side of this page to fork the repo so that it will be associated with your github account.
+* Complete a Pull Request from the master Branch of ZyC0R3/Rita to your master branch.
+* Detailed instructions with example can be found here: https://www.sitepoint.com/quick-tip-sync-your-fork-with-the-original-without-the-cli/
 
 #### 3. Deploy Update in Heroku
 * Log in to your Heroku account.
