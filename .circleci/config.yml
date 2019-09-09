@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:>=11.10.1
+      - image: circleci/node:9.9.0
       - image: circleci/postgres
 
       # Specify service dependencies here if necessary
