@@ -35,4 +35,5 @@ jobs:
 
       # run tests!
       - run: npm run lint
+      - run: npm run start
       - run: npm run build
