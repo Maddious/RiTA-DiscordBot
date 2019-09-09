@@ -13,8 +13,8 @@ const langExceptions =
    "ch": "zh-CN",
    "zh-cn": "zh-CN",
    "zh-tw": "zh-TW",
-   "chinese traditional": "zh-TW",
-   "chinese simplified": "zh-CN",
+   //"chinese traditional": "zh-TW",
+   //"chinese simplified": "zh-CN",
    "chinese": "zh-CN"
 };
 
