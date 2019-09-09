@@ -6,7 +6,5 @@ services:
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
 script:
-  - "npm run start"
-  - "npm run dev"
   - "npm run lint"
-  - "npm run test"
+  - "npm run build"
