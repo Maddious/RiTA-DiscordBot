@@ -1,5 +1,5 @@
 label-alias:
   bug: 'Bug'
-  feature_request: 'Feature Request'
+  feature_request: '#enhancement'
   question: 'Question'
   
