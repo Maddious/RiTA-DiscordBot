@@ -8,7 +8,7 @@
   "main": "src/bot.js",
   "license": "MIT",
   "scripts": {
-    "start": "node src/bot",
+    "start": "node build/bot",
     "build": "gulp build",
     "dev": "gulp watch",
     "lint": "gulp lint",
