@@ -9,7 +9,7 @@ module.exports = function(data)
    const langList = [
       "Afrikaans","Albanian","Amharic","Arabic","Armenian","Azerbaijani",
       "Basque","Belarusian","Bengali", "Bosnian","Bulgarian","Catalan",
-      "Cebuano","Chichewa","Chinese Simplified","Chinese Traditional",
+      "Cebuano","Chichewa","Chinese (ch, zh)","Chinese Simplified (zh-cn)","Chinese Traditional (zh-tw)",
       "Corsican","Croatian","Czech","Danish","Dutch","English","Esperanto",
       "Estonian","Filipino","Finnish", "French","Frisian","Galician",
       "Georgian","German","Greek","Gujarati","Haitian Creole","Hausa",
