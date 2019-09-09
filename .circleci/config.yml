@@ -134,11 +134,11 @@ workflows:
             - build-node-9.0.0
       - build-node-11.9.0:
           requires:
-            - build-node-10.9.0:
-      - build-node-12.9.1
+            - build-node-10.9.0
+      - build-node-12.9.1:
           requires:
-            - build-node-11.9.0:
-      - build-node-12.10.0
+            - build-node-11.9.0
+      - build-node-12.10.0:
           requires:
-            - build-node-12.9.1:
+            - build-node-12.9.1
       
