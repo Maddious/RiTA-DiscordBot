@@ -1,9 +1,3 @@
----
-title: Rita
-layout: template
-filename: index
---- 
-
 ## What is Rita and who are we?
 
 *Rita is the culmination of many things, it started with a mobile game, a community of gamers, a discord server of different languages and a desire to all be understood. She is a Real-Time Translator Bot for use on Discord, Self-hosted on Heroku (or a local install) and Completly **100%** Free. She is maintained by a small group of users, each with diffrent backgronds and some learning as we go.*
