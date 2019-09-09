@@ -333,6 +333,9 @@ const helpMessage = function(config, botname, param)
 
    `# Disconnect bot from server\n` +
    `> ${cmd} settings disconnect \n` +
+
+   `# Displays list of servers the bot is in\n` +
+   `> ${cmd} settings listservers` +
    "```";
 
    // ------------------------------
