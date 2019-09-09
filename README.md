@@ -1,8 +1,10 @@
 ## RITA (beta)
 Translation bot built using `discord.js` and `Google Translate API`.
 
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/1.1.6?label=Stable%20Version)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/1.1.7?label=Stable%20Version)
 [![codebeat badge](https://codebeat.co/badges/a26b41c5-771e-4452-8a60-1947b0ed302c)](https://codebeat.co/projects/github-com-zyc0r3-rita-1-1-6)
+[![Build Status](https://travis-ci.com/ZyC0R3/Rita.svg?branch=1.1.7)](https://travis-ci.com/ZyC0R3/Rita)
+[![CircleCI](https://circleci.com/gh/ZyC0R3/Rita/tree/1.1.7.svg?style=svg)](https://circleci.com/gh/ZyC0R3/Rita/tree/1.1.7)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/Rita.svg)
 ![GitHub](https://img.shields.io/github/license/ZyC0R3/Rita.svg)
 ![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/Rita.svg)
