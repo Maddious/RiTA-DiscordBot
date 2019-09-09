@@ -11,6 +11,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 #### Current Test Branch
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?label=Test%20Version)
+[![Build Status](https://travis-ci.com/ZyC0R3/Rita.svg?branch=test-branch)](https://travis-ci.com/ZyC0R3/Rita)
 
 ## Coming Soon!
 
