@@ -7,7 +7,8 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:9.0.0
+      - image: circleci/node:9.9.0
+      - image: circleci/postgres
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -18,6 +19,7 @@ jobs:
 
     steps:
       - checkout
+      - run: npm install
 
       # Download and cache dependencies
       - restore_cache:
@@ -26,12 +28,11 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: yarn install
-
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: yarn test
+      - run: npm run lint
+      - run: npm run build
