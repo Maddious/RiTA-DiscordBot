@@ -47,5 +47,14 @@ Updated Readme for Database Connection Support
 // ------
 // 1.1.6
 // ------
-Test Branch
+Dependancy Updates
+Updated ReadMe with Local Installation Support Section.
+Images can now be sent in chat without the need for accompanying text.
+All Heroku Build Warnings have been fixed.
+the bot now responds when you change the server language.
+Translation to user Via DM is now working again.
+Stop command no longer crashes the bot.
 
+// ------
+// 1.1.7
+// ------

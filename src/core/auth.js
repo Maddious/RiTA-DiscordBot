@@ -15,7 +15,7 @@ exports.token = process.env.DISCORD_TOKEN;
 // Right click your user in channel/message and pick "Copy ID" to obtain
 //
 
-exports.botOwner = process.env.DISCORD_TOKEN;
+exports.botOwner = process.env.DISCORD_BOT_OWNER_ID;
 
 //
 // Number of shards to spawn in sharding manager (large bots only)
