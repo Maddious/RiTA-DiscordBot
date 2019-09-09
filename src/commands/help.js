@@ -153,7 +153,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Channel Tasks",
-      icon: ":robot:",
+      icon: ":clipboard:",
       cmd: "Tasks",
       help: "Tasks",
       args: "",
