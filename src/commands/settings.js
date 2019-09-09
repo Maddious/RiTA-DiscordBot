@@ -128,6 +128,7 @@ const getSettings = function(data)
       {
          data.color = "info";
          data.text = "__**Active Servers**__ - ";
+         botSend(data);
 
          const activeGuilds = data.client.guilds.array();
 
@@ -139,7 +140,6 @@ const getSettings = function(data)
             data.text += `> ${guild.id}\n# ${guild.name}\n`;
             data.text += `@${guild.owner.user.username}#`;
             data.text += guild.owner.user.discriminator + "\n```";
-            return botSend(data);
          });
 
          const splitOpts = {
