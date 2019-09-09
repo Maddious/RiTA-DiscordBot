@@ -1,8 +1,8 @@
 ## RITA (beta)
 Translation bot built using `discord.js` and `Google Translate API`.
 
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/1.1.7?label=Stable%20Version)
-[![codebeat badge](https://codebeat.co/badges/a26b41c5-771e-4452-8a60-1947b0ed302c)](https://codebeat.co/projects/github-com-zyc0r3-rita-1-1-7)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/Rita?label=Stable%20Version)
+[![codebeat badge](https://codebeat.co/badges/a26b41c5-771e-4452-8a60-1947b0ed302c)](https://codebeat.co/projects/github-com-zyc0r3-rita-1-1-6)
 [![Build Status](https://travis-ci.com/ZyC0R3/Rita.svg?branch=1.1.7)](https://travis-ci.com/ZyC0R3/Rita)
 [![CircleCI](https://circleci.com/gh/ZyC0R3/Rita/tree/1.1.7.svg?style=svg)](https://circleci.com/gh/ZyC0R3/Rita/tree/1.1.7)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/Rita.svg)
@@ -59,7 +59,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 * Translate messages by reacting with flag emoji
 * Translate last message(s) in channel
 * Translate to multiple languages at once
-* Automatic translation of channels with option to forward translations to users or separate channels.
+* Automatic translation of channels with option to forward translations to users or seperate channels.
 * Supports 100+ languages
 
 ## <a name=""></a>Usage
@@ -91,7 +91,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
 * Under **Deployment Method** select Github. Connect to your Github account and search for this repo by name.
-* Scroll down to the manual deploy section, and select the **1.1.7** branch. Click deploy branch, and wait for the successfully deployed message.
+* Scroll down to the manual deploy section, and select the **Master** branch. Click deploy branch, and wait for the successfully deployed message.
 * Go to the **Resources** tab and look for the addons section. Search 'Postgres', and add a 'Hobby Dev - Free' version of Heroku Postgres. This will be automatically attached as your bot's database.
 * Go to the **Settings** tab. Click to reveal Config Variables, then add a new one. The key will be **DISCORD_TOKEN**, and the value will be your discord bot's token that you copied earlier.
 * Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
@@ -101,17 +101,20 @@ Translation bot built using `discord.js` and `Google Translate API`.
 * Visit the resulting url and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
 
+
 ## <a name="update"></a>How to Update to 1.1.7
 #### 1. Checklist
 * You must have a bot already running on your server, if not then refer to [Setting up a New Bot](#new-bot)
 
 #### 2. Fork this Repo 
-* Use the button in the upper righthand side of this page to fork the repo so that it will be associated with your github account.
+* Complete a Pull Request from the master Branch of ZyC0R3/Rita to your master branch.
+* Detailed instructions with example can be found here: https://www.sitepoint.com/quick-tip-sync-your-fork-with-the-original-without-the-cli/
 
 #### 3. Deploy Update in Heroku
 * Log in to your Heroku account.
 * Select the bot you made in step 3 of [Setting up a New Bot](#new-bot)
-* Under **Deployment Method** Scroll down to the manual deploy section, and select the **1.1.7** branch. Click deploy branch, and wait for the successfully deployed message.
+* Under **Deployment Method** Scroll down to the manual deploy section, and select the **Master** branch. Click deploy branch, and wait for the successfully deployed message.
+
 
 ## <a name="migration"></a>C-3PO to RITA Bot Migration (EXPERIMENTAL)
 **If you already have a Heroku Bot Using C-3P0**
@@ -125,7 +128,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 #### 2. Migrate
 * Go to Heroku and click your app of C-3PO, once you have direct yourself to the deploy section. Once at the deploy section fork this project ( https://github.com/ZyC0R3/Rita ) and name it whatever you like.  
 * Go back to the deploy section in Heroku and scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying "Disconnect" click that and then click search on repositories.
-* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the '1.1.7' version of the bot.
+* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the 'Master' version of the bot.
 * Wait for it to finish deploying and you should be good to go. Turn on your worker dyno (if it was not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
 
 
