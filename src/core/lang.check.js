@@ -15,7 +15,6 @@ const langExceptions =
    "zh-tw": "zh-TW",
    //"chinese traditional": "zh-TW",
    //"chinese simplified": "zh-CN",
-   "demo": "fr",
    "chinese": "zh-CN"
 };
 
