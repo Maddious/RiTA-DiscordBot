@@ -19,12 +19,14 @@ Translation bot built using `discord.js` and `Google Translate API`.
 01. Error Message Support Section.
 02. Auto Reverse transaltion for the auto function.
 03. `!t tasks #TargetChannel` Implementation. 
-04. Setup on a Raspberry Pi Section.
-05. gulp-watch updated dependancies.
-06. Patch for Chinese language support.
-07. Various Security vulnerabilites fixed.
-08. Various commands re-activated.
-09. Introduction of a Streamlined Command Handler. (This will be done as a New Project)
+04. Introduction of a Streamlined Command Handler. (This will be done as a New Project)
+
+## New in 1.1.7
+* Setup on a Raspberry Pi Section.
+* gulp-watch updated dependancies.
+* Patch for Chinese language support.
+* Various Security vulnerabilites fixed.
+* Various commands re-activated.
 
 ## New in 1.1.6
 * Updated ReadMe with Local Installation Support Section.
