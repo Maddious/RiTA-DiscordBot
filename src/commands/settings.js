@@ -126,22 +126,20 @@ const getSettings = function(data)
    {
       if (data.message.author.id === data.config.owner)
       {
-         data.color = "info";
-         data.text = "__**Active Servers**__ - ";
-
          const activeGuilds = data.client.guilds.array();
 
          data.color = "info";
-         data.text += `${activeGuilds.length}\n\n`;
+         data.text = `"__**Active Servers**__ - "\n` +
+                     `${activeGuilds.length}\n\n`;
+         botSend(data);
 
          activeGuilds.forEach(guild =>
          {
-            data.color = "info";
-            data.text += "```md\n";
-            data.text += `> ${guild.id}\n# ${guild.name}\n`;
-            data.text += `@${guild.owner.user.username}#`;
-            data.text += guild.owner.user.discriminator + "\n```";
-            botSend(data);
+            data.text = "```md\n" +
+                        `> ${guild.id}\n# ${guild.name}\n` +
+                        `> ${guild.owner.user.username}\n` +
+                        `> ${guild.owner.user.discriminator}\n` +
+                        "\n```";
          });
 
          const splitOpts = {
