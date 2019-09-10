@@ -275,10 +275,7 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} channel to de from en for @steve \n` +
    `* ${cmd} channel to en from ru for #ch1, #ch2, #usr1 \n` +
    "```" +
-   "\n* Translated messages that are forwarded to users include a special id " +
-   "for replying. Simply copy the code and paste into DM window before your " +
-   "message to send a response, example: `XX123: your message here`.";
-
+ 
    // ------------------------------
    // Auto translate (stop)
    // ------------------------------
@@ -364,7 +361,7 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} tasks\n\n` +
 
    `# Displays translation tasks of specified channel\n` +
-   `> COMING IN FUTURE UPDATE\n` +
+   `* COMING IN FUTURE UPDATE \n` +
    `> ${cmd} tasks for [#channel]\n` +
    "```";
 
