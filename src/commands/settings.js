@@ -130,14 +130,19 @@ const getSettings = function(data)
 
          const activeGuilds = data.client.guilds.array();
 
-         data.text += `${activeGuilds.length}\n\n`;
+         // data.text += `${activeGuilds.length}\n\n`;
+         data.text = activeGuilds.length;
 
          activeGuilds.forEach(guild =>
          {
-            data.text += "```md\n";
-            data.text += `> ${guild.id}\n# ${guild.name}\n`;
-            data.text += `@${guild.owner.user.username}#`;
-            data.text += guild.owner.user.discriminator + "\n```";
+            // data.text += "```md\n";
+            // data.text += `> ${guild.id}\n# ${guild.name}\n`;
+            // data.text += `@${guild.owner.user.username}#`;
+            // data.text += guild.owner.user.discriminator + "\n```";
+            data.color = "info";
+            data.text = guild.id + guild.name;
+            data.text = guild.owner.user.username;
+            data.text = guild.owner.user.discriminator;
          });
 
          const splitOpts = {
