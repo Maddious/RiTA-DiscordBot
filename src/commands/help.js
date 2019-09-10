@@ -152,7 +152,8 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "Channel Tasks",
+      title: "Tasks",
+      link: "https://github.com/ZyC0R3/Rita/wiki/Misc.-Commands",
       icon: ":clipboard:",
       cmd: "Tasks",
       help: "Tasks",
@@ -341,10 +342,13 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} settings setLang to [lang]\n\n` +
 
    `# Disconnect bot from server\n` +
-   `> ${cmd} settings disconnect \n` +
+   `> ${cmd} settings disconnect\n\n` +
 
    `# Displays list of servers the bot is in\n` +
-   `> ${cmd} settings listservers` +
+   `> ${cmd} settings listservers\n\n` +
+
+   `# Fix Guild Mismatch\n` +
+   `> ${cmd} settings dbfix\n` +
    "```";
 
    // ------------------------------
@@ -357,7 +361,7 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Displays translation tasks of the current channel\n` +
-   `> ${cmd} tasks\n` +
+   `> ${cmd} tasks\n\n` +
 
    `# Displays translation tasks of specified channel\n` +
    `> COMING IN FUTURE UPDATE\n` +
