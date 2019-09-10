@@ -2,7 +2,7 @@
   "name": "Rita",
   "version": "1.1.8",
   "engines": {
-    "node": "12.9.1"
+    "node": "12.10.0"
   },
   "description": "Real-Time Intergalactic Translating Assistant bot built using discord.js and Google Translate API.",
   "main": "src/bot.js",
@@ -12,7 +12,7 @@
     "build": "gulp build",
     "dev": "gulp watch",
     "lint": "gulp lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "finish": "echo \"All Tests Completed Successfully\" && exit 1"
   },
   "author": "Group Project",
   "contributors": [
