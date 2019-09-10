@@ -152,7 +152,7 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "Channel Tasks",
+      title: "Tasks",
       link: "https://github.com/ZyC0R3/Rita/wiki/Misc.-Commands",
       icon: ":clipboard:",
       cmd: "Tasks",
@@ -356,7 +356,7 @@ const helpMessage = function(config, botname, param)
    // ------------------------------
 
    const tasks =
-   `__**Tasks**__\n\n` +
+   `__**Channel Tasks**__\n\n` +
    `Displays translation tasks of the current channel` +
    "```md\n" +
 
