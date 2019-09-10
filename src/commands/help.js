@@ -274,7 +274,7 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} channel to en from de for #englishChannel \n` +
    `* ${cmd} channel to de from en for @steve \n` +
    `* ${cmd} channel to en from ru for #ch1, #ch2, #usr1 \n` +
-   "```" +
+   "```";
  
    // ------------------------------
    // Auto translate (stop)
