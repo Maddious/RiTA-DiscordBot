@@ -126,20 +126,18 @@ const getSettings = function(data)
    {
       if (data.message.author.id === data.config.owner)
       {
+         data.text = "__**Active Servers**__ - ";
+
          const activeGuilds = data.client.guilds.array();
 
-         data.color = "info";
-         data.text = `"__**Active Servers**__ - "\n` +
-                     `${activeGuilds.length}\n\n`;
-         botSend(data);
+         data.text += `${activeGuilds.length}\n\n`;
 
          activeGuilds.forEach(guild =>
          {
-            data.text = "```md\n" +
-                        `> ${guild.id}\n# ${guild.name}\n` +
-                        `> ${guild.owner.user.username}\n` +
-                        `> ${guild.owner.user.discriminator}\n` +
-                        "\n```";
+            data.text += "```md\n";
+            data.text += `> ${guild.id}\n# ${guild.name}\n`;
+            data.text += `@${guild.owner.user.username}#`;
+            data.text += guild.owner.user.discriminator + "\n```";
          });
 
          const splitOpts = {
@@ -149,6 +147,7 @@ const getSettings = function(data)
 
          return data.message.channel.send(data.text, {split: splitOpts});
       }
+      return botSend(data);
    };
 
    // --------------------------------------
