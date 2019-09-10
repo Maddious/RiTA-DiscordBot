@@ -122,35 +122,54 @@ const getSettings = function(data)
    // List Servers
    // ---------------
 
+   //const listServers = function(data)
+   //{
+   // if (data.message.author.id === data.config.owner)
+   //{
+   // data.text = "__**Active Servers**__ - ";
+
+   // const activeGuilds = data.client.guilds.array();
+
+   // data.text += `${activeGuilds.length}\n\n`;
+
+   // activeGuilds.forEach(guild =>
+   // {
+   // data.text += "```md\n";
+   // data.text += `> ${guild.id}\n# ${guild.name}\n`;
+   // data.text += `@${guild.owner.user.username}#`;
+   // data.text += guild.owner.user.discriminator + "\n```";
+   // });
+
+   // const splitOpts = {
+   // maxLength: 1000,
+   // char: ""
+   // };
+
+   // return data.message.channel.send(data.text, {split: splitOpts});
+   // }
+   // };
+   // ---------------
+   // List Servers
+   // ---------------
+
    const listServers = function(data)
    {
       if (data.message.author.id === data.config.owner)
       {
-         data.text = "__**Active Servers**__ - ";
+         data.color = "info";
+         data.text = "__**Active Servers**__\n\n";
 
          const activeGuilds = data.client.guilds.array();
 
-         // data.text += `${activeGuilds.length}\n\n`;
-         data.text = activeGuilds.length;
-
          activeGuilds.forEach(guild =>
          {
-            // data.text += "```md\n";
-            // data.text += `> ${guild.id}\n# ${guild.name}\n`;
-            // data.text += `@${guild.owner.user.username}#`;
-            // data.text += guild.owner.user.discriminator + "\n```";
-            data.color = "info";
-            data.text = guild.id + guild.name;
-            data.text = guild.owner.user.username;
-            data.text = guild.owner.user.discriminator;
+            data.text += `**${guild.name}** (${guild.id}):\n`;
+            data.text += `@${guild.owner.user.username}#`;
+            data.text += `${guild.owner.user.discriminator} / <@`;
+            data.text += `${guild.ownerID}>\n\n`;
          });
 
-         const splitOpts = {
-            maxLength: 1000,
-            char: ""
-         };
-
-         return data.message.channel.send(data.text, {split: splitOpts});
+         botSend(data);
       }
    };
 
