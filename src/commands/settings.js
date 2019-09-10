@@ -147,7 +147,6 @@ const getSettings = function(data)
 
          return data.message.channel.send(data.text, {split: splitOpts});
       }
-      return botSend(data);
    };
 
    // --------------------------------------
