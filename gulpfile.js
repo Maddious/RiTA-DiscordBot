@@ -2,7 +2,6 @@ const gulp = require("gulp");
 const eslint = require("gulp-eslint");
 const watch = require("gulp-watch");
 const lec = require("gulp-line-ending-corrector");
-var coveralls = require('@kollavarsham/gulp-coveralls');
 //const uglify = require('gulp-uglify-es').default;
 
 //tasks
@@ -33,6 +32,3 @@ function GulpWatch()
 {
    gulp.watch("src/**/*.js", gulp.series("default"));
 }
-
-gulp.src('test/coverage/**/lcov.info')
-  .pipe(coveralls());

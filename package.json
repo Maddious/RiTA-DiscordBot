@@ -52,7 +52,6 @@
   "devDependencies": {
     "braces": "^3.0.2",
     "gulp": "^4.0.2",
-    "gulp-coveralls": "^0.1.4",
     "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-uglify-es": "^1.0.4",
