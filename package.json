@@ -50,6 +50,7 @@
     "webhook-discord": "^3.2.0"
   },
   "devDependencies": {
+    "@kollavarsham/gulp-coveralls": "^0.2.8",
     "braces": "^3.0.2",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
