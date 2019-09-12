@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node build/bot",
     "build": "gulp build",
+    "coveralls": "gulp coveralls",
     "dev": "gulp watch",
     "lint": "gulp lint",
     "finish": "echo \"All Tests Completed Successfully\" && exit 1"
