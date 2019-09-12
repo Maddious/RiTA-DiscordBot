@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node build/bot",
-    "build": "gulp build --coverage --coverageReporters=text-lcov | coveralls",
+    "build": "gulp build",
     "dev": "gulp watch",
     "lint": "gulp lint",
     "finish": "echo \"All Tests Completed Successfully\" && exit 1"
@@ -51,7 +51,6 @@
   },
   "devDependencies": {
     "braces": "^3.0.2",
-    "coveralls": "^3.0.6",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",
