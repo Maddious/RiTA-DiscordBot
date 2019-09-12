@@ -34,7 +34,7 @@ function GulpWatch()
    gulp.watch("src/**/*.js", gulp.series("default"));
 }
 
-gulp.task('coveralls', function (done) {
+gulp.task("coveralls", function (done) {
   if (!process.env.CI) {
     done();
   } else {
