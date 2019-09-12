@@ -24,24 +24,29 @@ function compress()
    //.pipe(uglify())
       .pipe(gulp.dest("build"));
 }
-gulp.task("compress", compress);
-gulp.task("lint", lint);
-gulp.task("watch", GulpWatch);
-gulp.task("default", gulp.parallel(lint, compress));
-gulp.task("build", gulp.parallel(lint, compress));
+
 function GulpWatch()
 {
    gulp.watch("src/**/*.js", gulp.series("default"));
 }
 
-gulp.task("coveralls", function (done) {
-  if (!process.env.CI) {
-    done();
-  } else {
-    return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
-      .pipe(coveralls());
-  }
-});
+//function coverage()
+//{
+//gulp.src('coverage/lcov.info')
+//  .pipe(coveralls());
+//}
 
-gulp.src('test/coverage/**/lcov.info')
-  .pipe(coveralls());
+gulp.task("compress", compress);
+gulp.task("lint", lint);
+gulp.task("watch", GulpWatch);
+gulp.task("default", gulp.parallel(lint, compress));
+gulp.task("build", gulp.parallel(lint, compress));
+
+//gulp.task("coveralls", function (done) {
+//  if (!process.env.CI) {
+//    done();
+//  } else {
+//    return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
+//      .pipe(coveralls());
+//  }
+//});
