@@ -1,8 +1,8 @@
 {
   "name": "Rita",
-  "version": "1.1.4",
+  "version": "1.1.7",
   "engines": {
-    "node": "9.0.0"
+    "node": "12.9.1"
   },
   "description": "Real-Time Intergalactic Translating Assistant bot built using discord.js and Google Translate API.",
   "main": "src/bot.js",
@@ -12,13 +12,13 @@
     "build": "gulp build",
     "dev": "gulp watch",
     "lint": "gulp lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "finish": "echo \"All Tests Completed Successfully\" && exit 1"
   },
   "author": "Group Project",
   "contributors": [
     {
-      "name": "GitName <blank@email.com>",
-      "url": "https://github.com/"
+      "name": "RITA <blank@email.com>",
+      "url": "https://github.com/ZyC0R3/Rita"
     }
   ],
   "keywords": [
@@ -37,22 +37,24 @@
   },
   "dependencies": {
     "common-tags": "^1.8.0",
-    "discord.js": "^11.5.0",
-    "dotenv": "^8.0.0",
-    "eslint": "^6.0.1",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.1.0",
+    "eslint": "^6.3.0",
     "google-translate-api": "github:ZyC0R3/google-translate-api",
-    "iso-639-1": "^2.0.5",
-    "pg": "^7.11.0",
+    "iso-639-1": "^2.1.0",
+    "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
     "seconds-converter": "github:AlooAkbar/seconds-converter",
-    "sequelize": "^5.10.1",
+    "sequelize": "^5.18.4",
+    "sqlite3": "^4.1.0",
     "webhook-discord": "^3.2.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "braces": "^3.0.2",
+    "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",
-    "gulp-uglify-es": "^0.1.11",
-    "gulp-watch": "^4.3.11"
+    "gulp-uglify-es": "^1.0.4",
+    "gulp-watch": "github:ZyC0R3/gulp-watch"
   }
 }

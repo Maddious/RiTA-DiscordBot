@@ -9,8 +9,13 @@ const fn = require("./helpers");
 const langExceptions =
 {
    "he": "iw",
-   "zh": "zh-cn",
-   "ch": "zh-cn"
+   "zh": "zh-CN",
+   "ch": "zh-CN",
+   "zh-cn": "zh-CN",
+   "zh-tw": "zh-TW",
+   //"chinese traditional": "zh-TW",
+   //"chinese simplified": "zh-CN",
+   "chinese": "zh-CN"
 };
 
 const langInvertException = function(code)
@@ -43,7 +48,8 @@ const getLangISO = function(lang)
       code = lang;
    }
 
-   if (langExceptions.hasOwnProperty(code))
+   //if (langExceptions.hasOwnProperty(code))
+   if (Object.prototype.hasOwnProperty.call(langExceptions,code))
    {
       return langExceptions[code];
    }

@@ -2,10 +2,16 @@ const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
 const Op = Sequelize.Op;
-const db = new Sequelize(process.env.DATABASE_URL, {
-   logging: console.log
-   //logging: null,
-});
+
+const db = process.env.DATABASE_URL.endsWith(".db") ?
+   new Sequelize({
+      dialect: "sqlite",
+      storage: process.env.DATABASE_URL
+   }) :
+   new Sequelize(process.env.DATABASE_URL, {
+      logging: console.log
+      //logging: null,
+   });
 
 db
    .authenticate()
@@ -42,7 +48,7 @@ const Servers = db.define("servers", {
 const Tasks = db.define("tasks", {
    origin: Sequelize.STRING(32),
    dest: Sequelize.STRING(32),
-   reply: Sequelize.STRING(16),
+   reply: Sequelize.STRING(32),
    server: Sequelize.STRING(32),
    active: {
       type: Sequelize.BOOLEAN,
@@ -111,9 +117,9 @@ exports.removeServer = function(id)
 exports.updateServerLang = function(id, lang, _cb)
 {
    return Servers.update({ lang: lang }, { where: { id: id } }).then(
-      function (err, _result)
+      function ()
       {
-         logger("error", err);
+         _cb();
       });
 };
 

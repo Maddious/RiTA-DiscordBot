@@ -152,6 +152,15 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
+      title: "Channel Tasks",
+      icon: ":clipboard:",
+      cmd: "Tasks",
+      help: "Tasks",
+      args: "",
+      example: ""
+   }) +
+   helpSection({
+      config: config,
       title: "ReadMe",
       link: "https://github.com/ZyC0R3/Rita/blob/master/README.md",
       icon: ":bookmark_tabs:",
@@ -333,6 +342,26 @@ const helpMessage = function(config, botname, param)
 
    `# Disconnect bot from server\n` +
    `> ${cmd} settings disconnect \n` +
+
+   `# Displays list of servers the bot is in\n` +
+   `> ${cmd} settings listservers` +
+   "```";
+
+   // ------------------------------
+   // Tasks
+   // ------------------------------
+
+   const tasks =
+   `__**Channel Tasks**__\n\n` +
+   `Displays translation tasks of the current channel` +
+   "```md\n" +
+
+   `# Displays translation tasks of the current channel\n` +
+   `> ${cmd} tasks\n` +
+
+   `# Displays translation tasks of specified channel\n` +
+   `> COMING IN FUTURE UPDATE\n` +
+   `> ${cmd} tasks for [#channel]\n` +
    "```";
 
    // ------------------------------
@@ -349,10 +378,12 @@ const helpMessage = function(config, botname, param)
       "stop": stop,
       "misc": misc,
       "settings": settings,
+      "tasks": tasks,
       "readme": readme
    };
 
-   if (paramMap.hasOwnProperty(param))
+   //if (paramMap.hasOwnProperty(param))
+   if (Object.prototype.hasOwnProperty.call(paramMap,param))
    {
       return paramMap[param];
    }
