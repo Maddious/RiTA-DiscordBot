@@ -11,11 +11,7 @@ module.exports = function(bot, status, config, channel, writable = true)
          bot.setPresence({
             status: "online",
             game: {
-<<<<<<< HEAD
-               name: "Real-Time Intergalactic Translating"
-=======
                name: config.translateCmdShort + " help / " + config.translateCmd +" help - V." + config.version
->>>>>>> upstream/master
             }
          });
       },
