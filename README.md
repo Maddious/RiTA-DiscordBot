@@ -25,7 +25,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 ## New in 1.1.7
 * Setup on a Raspberry Pi Section.
-* gulp-watch updated dependancies.
+* gulp-watch updated dependancies. (*Moved to Local Repo as it was out-of-date and full of Security Issues.*)
 * Patch for Chinese language support.
 * Various Security vulnerabilites fixed.
 * Various commands re-activated.
