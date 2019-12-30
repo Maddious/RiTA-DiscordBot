@@ -33,9 +33,9 @@
     "type": "git",
     "url": "https://github.com/ZyC0R3/Rita"
   },
-  "bugs": {
-    "url": "https://github.com/ZyC0R3/Rita/issues"
-  },
+  "funding": "https://ritabot.org",
+  "homepage": "https://ritabot.org",
+  "bugs": "https://github.com/ZyC0R3/Rita/issues",
   "dependencies": {
     "common-tags": "^1.8.0",
     "discord.js": "^11.5.1",
