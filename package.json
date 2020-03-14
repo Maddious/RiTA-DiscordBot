@@ -1,6 +1,6 @@
 {
   "name": "Rita",
-  "version": "1.1.9",
+  "version": "1.1.8",
   "engines": {
     "node": "12.10.0"
   },
