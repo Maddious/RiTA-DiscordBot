@@ -25,6 +25,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 ## New in 1.1.8
 * Various Security vulnerabilities fixed.
+* Various Spelling mistakes in ReadMe have been corrected.
 
 ## New in 1.1.7
 * Setup on a Raspberry Pi Section.
