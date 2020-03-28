@@ -35,6 +35,7 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 ## New in 1.1.8
 * Various Security vulnerabilities fixed.
 * Various Spelling mistakes in ReadMe have been corrected.
+* Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` have been updated
 
 ## New in 1.1.7
 * Setup on a Raspberry Pi Section.
