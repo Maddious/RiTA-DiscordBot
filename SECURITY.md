@@ -15,6 +15,7 @@ Test Branch will be updated to latest version and will be pushed once stable.
 | :white_check_mark: | 1.1.5 | 9.0.0 |
 | :white_check_mark: | 1.1.6 | 9.0.0 |
 | :white_check_mark: | 1.1.7 | 12.9.1 |
+| :white_check_mark: | 1.1.8 | 13.5.0 |
 
 ### Below is the Dependency versions in each build
 

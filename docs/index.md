@@ -1,4 +1,34 @@
-## RITA (beta)
+## What is Rita and who are we?
+
+*Rita is the culmination of many things, it started with a mobile game, a community of gamers, a discord server of different languages and a desire to all be understood. She is a Real-Time Translator Bot for use on Discord, Self-hosted on Heroku (or a local install) and Completly **100%** Free. She is maintained by a small group of users, each with diffrent backgronds and some learning as we go.*
+
+------
+
+## Why did you make Rita?
+
+*The mobile game itself would get old, fast. The community around it, however, is what kept us going. The one downside was we didn't all speak the same language. The game we played translated our conversations for us but Discord didn't,  so the server admins used a  translation bot called C-3P0. This introduction is the start of the story.*
+
+------
+## The history of Rita?
+
+*There are loads of different translation bots out there, some are amazing, some are expensive, some are free but have limits, and others are just rubbish. C-3P0 checked all these boxes.*
+
+*Originally called discord-translator and made by Aziz, then forked By NotMyself and renamed Louie, forked again By AlooAkbar and renamed C-3P0, its code was neglected, not maintained, left outdated and iterations made private for commercial gains.*
+
+------
+
+## Why Rita and what does it stand for?
+
+*I and a group of fellow C-3P0 users decided that collectively we could do better, plagued with crashes, API changes, relentless bugs and issues, the drive to make something better was born.*
+
+*Rita's history and various iterations each added something extra, it just needed to be brought together and moulded, moulded into something amazing, moulded into Rita. The Real-Time Intergalactic Translating Assistant.*
+
+------
+#### *There you have it, the story, dramatised and electrified for effect, but all true, of how Rita was born.*
+
+------
+
+## Rita (beta)
 Translation bot built using `discord.js` and `Google Translate API`.
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/Rita?label=Stable%20Version)
@@ -20,18 +50,14 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 01. Error Message Support Section.
 02. Auto Reverse translation for the auto function.
-03. `!t tasks #TargetChannel` Implementation.
+03. `!t tasks #TargetChannel` Implementation. 
 04. Introduction of a Streamlined Command Handler. (This will be done as a New Project)
-
-## New in 1.1.8
-* Various Security vulnerabilities fixed.
-* Various Spelling mistakes in ReadMe have been corrected.
 
 ## New in 1.1.7
 * Setup on a Raspberry Pi Section.
-* gulp-watch updated dependencies. (*Moved to Local Repo as it was out-of-date and full of Security Issues.*)
+* gulp-watch updated dependancies.
 * Patch for Chinese language support.
-* Various Security vulnerabilities fixed.
+* Various Security vulnerabilites fixed.
 * Various commands re-activated.
 
 ## New in 1.1.6
@@ -63,7 +89,7 @@ Translation bot built using `discord.js` and `Google Translate API`.
 * Translate messages by reacting with flag emoji
 * Translate last message(s) in channel
 * Translate to multiple languages at once
-* Automatic translation of channels with option to forward translations to users or separate channels.
+* Automatic translation of channels with option to forward translations to users or seperate channels.
 * Supports 100+ languages
 
 ## <a name=""></a>Usage
@@ -80,8 +106,8 @@ Translation bot built using `discord.js` and `Google Translate API`.
 
 
 #### 1. Fork this repo.
-* If you don't yet have a Github account, [create one](https://github.com/join)! It's free and easy.
-* Use the button in the upper righthand side of this page to fork the repo so that it will be associated with your Github account.
+* If you don't yet have a github account, [create one](https://github.com/join)! It's free and easy.
+* Use the button in the upper righthand side of this page to fork the repo so that it will be associated with your github account.
 
 #### 2. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
 * Give app a friendly name and click the **Create App** button
@@ -101,8 +127,8 @@ Translation bot built using `discord.js` and `Google Translate API`.
 * Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
 
 #### 4. Invite your bot to your server and configure it!
-* Replace the CLIENTID string in the following URL with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
-* Visit the resulting URL and add your bot to any server where you have admin privileges.
+* Replace the CLIENTID string in the following url with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
+* Visit the resulting url and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
 
 
@@ -176,7 +202,7 @@ Copy the existing **.env.example** file and name it **.env**. Edit the Values of
 Install nodejs ('https://nodejs.org/en/').  
 
 #### 4. Run and start the bot
-Run `npm install -g gulp` in your console to install gulp. Build the bot code using `npm build` and run the bot with `npm start`.
+Run `npm install -g gulp` in your console to install gulp. Build the bot code using `npm build` and run the bot with `npm start`. 
 
 #### 5. Invite your bot to your server and configure it!
 Return to step 4 in [Setting up a New Bot](#new-bot).
@@ -184,24 +210,24 @@ Return to step 4 in [Setting up a New Bot](#new-bot).
 ## <a name="pi"></a>Setup on a Raspberry Pi
 We recommend to initially run your bot in a local environment on your laptop before you run the translator on a Raspberry Pi. The local setup allows you to get familiar with the setup and the settings.
 
-The following description allows a headless configuration. Only a network connection is required. This description is explicitly for running the bot on a Raspberry Pi 4, but the setup should be similar for earlier version.
+The following description allows a headless configuration. Only a network connection is required. This description is explicitely for running the bot on a Raspberry Pi 4, but the setup should be similar for earlier version.
 
-Recommendation: run it locally first before putting the code on pi. Easier to ensure that .env variables are setup correctly.
+Recommendation: run it locally first before putting the code on pi. Easier to ensure that .env variabels are setup correctly.
 
-#### 1. Write Raspbian on your SD card
-Download the minimal image of Raspbian (https://www.raspberrypi.org/downloads/raspbian/). This setup is based on Raspbian Buster Lite, July 2019.
+#### 1. Write Raspbian on your SD card 
+Download the minimal image of Raspbian (https://www.raspberrypi.org/downloads/raspbian/). This setup is based on Raspbian Buster Lite, July 2019. 
 
 Use balenaEtcher(https://www.balena.io/etcher/) to write the image on your SD card.
 
 For more Information: See https://www.raspberrypi.org/documentation/installation/installing-images/README.md
 
-#### 2. Enable SSH
+#### 2. Enable SSH 
 Enable SSH by placing a file named “ssh” (without any extension) onto the boot partition of the SD card.
 
 #### 3. Start and Login
 * Pop your prepared SD card, power and a network cable into the Pi.
-* Find your Pi's IP Address. Check your Router's DHCP allocation table or use a mobile app like Fing (https://play.google.com/store/apps/details?id=com.overlook.android.fing) to find the IP of Pi.
-* Install WinSCP and Putty on your Laptop.
+* Find your Pi's IP Adrdress. Check your Router's DHCP allocation table or use a mobile app like Fing (https://play.google.com/store/apps/details?id=com.overlook.android.fing) to find the IP of Pi.
+* Install WinSCP and Putty on your Laptop. 
 * Start Putty and login into your Pi. Username: pi, PW: raspberry. Change your password with 'passwd'.
 
 #### 4. Initial Setup
@@ -210,7 +236,7 @@ Enable SSH by placing a file named “ssh” (without any extension) onto the bo
 * Update your repositories: `sudo apt-get dist-upgrade`
 
 #### 5. Install node and npm
-The fastes way to install the current node and npm versions (https://nodejs.org/en/download/) was to follow the description from nodesource (https://github.com/nodesource/distributions/blob/master/README.md):
+The fastes way to install the current node and npm versions (https://nodejs.org/en/download/) was to follow the description from nodesource (https://github.com/nodesource/distributions/blob/master/README.md): 
 * Get the source: `curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -`
 * Install: `sudo apt-get install -y nodejs`
 * Check version: `node -v` and `npm -v`
@@ -225,7 +251,7 @@ It is recommend to install git and pull from your fork or main:
 Alternative: move the source code with WinSCP from your local environment to the Pi.
 
 #### 7. Install the database
-Install sqlite3 with `sudo apt-get install sqlite3`.
+Install sqlite3 with `sudo apt-get install sqlite3`. 
 
 Create an empty database file (`sqlite3 database.db`)and call `.tables`)
 
@@ -245,7 +271,7 @@ There are different ways to make the bot initialize at startup. The following de
 * Make the file executable: `sudo chmod +x /etc/init.d/translate_bot`
 * Update the system script links: `sudo update-rc.d translate_bot defaults`
 * Now, you can interact with the bot service with commands `sudo service translate_bot start`,  `sudo service translate_bot status` and `sudo service translate_bot stop`
-* The logging will be in `/var/log/translate_bot.err` and `/var/log/translate_bot.log`
+* The logging will be in `/var/log/translate_bot.err` and `/var/log/translate_bot.log` 
 * Reboot and hope everything is running smooth: `sudo reboot`
 * Enjoy (or return to step 4 in [Setting up a New Bot](#new-bot) if you haven't done yet)
 
