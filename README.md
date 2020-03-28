@@ -1,4 +1,4 @@
-## RITA (Stable)
+## RITA (Stable) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R)
 Translation bot built using `discord.js` and `Google Translate API`, A **free** and **unlimited** API for Google Translate :dollar::no_entry_sign: for Node.js.
 
 ### --RITA-- Master Branch
@@ -9,13 +9,12 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/Rita.svg)
 ![GitHub](https://img.shields.io/github/license/ZyC0R3/Rita.svg)
 ![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/Rita.svg)
-[![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R)
 
 ### --Google Translate API-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api)
 [![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=master)](https://travis-ci.com/ZyC0R3/google-translate-api)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/google-translate-api)
-![GitHub issues](https://img.shields.io/github/issues/ZyC0R3/google-translate-api)
+![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/google-translate-api)
 
 #### --RITA-- Current Test Branch 
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?label=Test%20Version)
