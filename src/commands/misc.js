@@ -223,7 +223,7 @@ exports.proc = function(data)
    // Get CPU usage
    //
 
-   const cpu = cpuUsage();
+   const cpu = process.cpuUsage();
 
    //
    // Get proccess/shard uptime

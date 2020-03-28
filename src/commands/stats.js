@@ -4,6 +4,10 @@ const db = require("../core/db");
 const auth = require("../core/auth");
 const logger = require("../core/logger");
 
+// Possible commands:
+// !t stats: Only in server channel allowed, returns global and server stats
+// !t stats server: Only in server channel allowed, returns server stats
+// !t stats global: In server channel and dm possible, returns global stats
 module.exports = function(data)
 {
    //
@@ -17,32 +21,17 @@ module.exports = function(data)
       version += ` ([changelog](${auth.changelog}))`;
    }
 
-   if (data.cmd.main === "version")
-   {
-      data.color = "info";
-      data.text = `:robot:  Current bot version is ${version}`;
-      return botSend(data);
-   }
-
    //
    // Get Stats from Database
    //
 
    //eslint-disable-next-line complexity
-   db.getStats(function(err, stats)
+   db.getStats(function(stats)
    {
-      if (err)
-      {
-         return logger("error", err);
-      }
-
+      // Get global server information
       const botLang = langCheck(stats[0].botLang).valid[0];
 
       const activeTasks = stats[0].activeTasks - stats[0].activeUserTasks;
-
-      data.color = "info";
-
-      var serverStats = "";
 
       const globalStats =
          `**\`\`\`@${data.bot.username} - Global Stats\`\`\`**\n` +
@@ -55,60 +44,62 @@ module.exports = function(data)
          `**\`${activeTasks}\`**  channels and  ` +
          `**\`${stats[0].activeUserTasks}\`**  users`;
 
-      if (data.message.channel.type === "text" && data.cmd.server)
+      // Get current server information
+      var serverStats = "";
+      if (data.message.channel.type === "text" && data.cmd.server.length === 1)
       {
          const serverLang = langCheck(data.cmd.server[0].lang).valid[0];
 
          const activeServerTasks =
-            data.cmd.server[0].activeTasks - data.cmd.server[0].activeUserTasks;
+               data.cmd.server[0].activeTasks - data.cmd.server[0].activeUserTasks;
 
          serverStats =
-            `**\`\`\`${data.message.channel.guild.name} - Server Info` +
-            `\`\`\`**\n:earth_africa:  Default server language:  ` +
-            `**\`${serverLang.name} (${serverLang.native})\`` +
-            `**\n\n:bar_chart:  Translated messages:  ` +
-            `**\`${data.cmd.server[0].count}\`**\n\n` +
-            `:repeat:  Automatic translation:  ` +
-            `**\`${activeServerTasks}\`**  channels and  ` +
-            `**\`${data.cmd.server[0].activeUserTasks}\`**  users`;
+               `**\`\`\`${data.message.channel.guild.name} - Server Info` +
+               `\`\`\`**\n:earth_africa:  Default server language:  ` +
+               `**\`${serverLang.name} (${serverLang.native})\`` +
+               `**\n\n:bar_chart:  Translated messages:  ` +
+               `**\`${data.cmd.server[0].count}\`**\n\n` +
+               `:repeat:  Automatic translation:  ` +
+               `**\`${activeServerTasks}\`**  channels and  ` +
+               `**\`${data.cmd.server[0].activeUserTasks}\`**  users`;
       }
 
-      if (data.cmd.params && data.cmd.params.toLowerCase().includes("server"))
+      data.color = "info";
+
+      // Special case: !t stats global
+      if (data.cmd.params && data.cmd.params.toLowerCase().includes("global"))
       {
-         data.text = serverStats;
+         data.text = globalStats;
+         return botSend(data);
+      }
 
-         //
-         // Calling via DM
-         //
-
-         if (data.message.channel.type === "dm")
-         {
-            data.color = "warn";
-            data.text = "You must call server stats from a server channel.";
-         }
-
-         //
-         // Unregistered server
-         //
-
-         if (!data.cmd.server)
-         {
-            data.color = "error";
-            data.text = "This server is not registered in the database.";
-            logger(
-               "error",
-               "'UNREGISTERED'\n" +
-               data.message.channel.guild.name + "\n" +
-               data.message.channel.guild.id
-            );
-         }
+      // Only '!t stats global' is allowed with dm
+      if (data.message.channel.type === "dm")
+      {
+         data.color = "warn";
+         data.text = "You must call server stats from a server channel.";
 
          return botSend(data);
       }
 
-      if (data.cmd.params && data.cmd.params.toLowerCase().includes("global"))
+      // No server data was available
+      if (!serverStats)
       {
-         data.text = globalStats;
+         data.color = "error";
+         data.text = "This server is not registered in the database.";
+         logger(
+            "error",
+            "'UNREGISTERED'\n" +
+            data.message.channel.guild.name + "\n" +
+            data.message.channel.guild.id);
+         return botSend(data);
+      }
+
+      // Case: !t stats server
+      if (data.cmd.params && data.cmd.params.toLowerCase().includes("server"))
+      {
+         data.text = serverStats;
+
          return botSend(data);
       }
 

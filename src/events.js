@@ -33,7 +33,7 @@ exports.listen = function(client)
          owner: auth.botOwner,
          defaultLanguage: "en",
          translateCmd: "!translate",
-         translateCmdShort: "!t",
+         translateCmdShort: "!tr",
          maxMulti: 6,
          maxChains: 10,
          maxChainLen: 5,
@@ -175,9 +175,10 @@ exports.listen = function(client)
       return logger("error", err, "uncaught");
    });
 
-   process.on("unhandledRejection", (reason, p) =>
+   process.on("unhandledRejection", (reason) =>
    {
-      const err = "Unhandled Rejection at:" + JSON.stringify(p) + "reason:" + reason;
+      const err = `Unhandled Rejection` +
+           `\nCaused By:\n` + reason.stack;
       logger("dev", err);
       return logger("error", err, "unhandled");
    });

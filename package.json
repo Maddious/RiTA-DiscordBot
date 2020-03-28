@@ -1,8 +1,8 @@
 {
   "name": "Rita",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "engines": {
-    "node": "12.9.1"
+    "node": "12.10.0"
   },
   "description": "Real-Time Intergalactic Translating Assistant bot built using discord.js and Google Translate API.",
   "main": "src/bot.js",
@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node build/bot",
     "build": "gulp build",
+    "coveralls": "gulp coveralls",
     "dev": "gulp watch",
     "lint": "gulp lint",
     "finish": "echo \"All Tests Completed Successfully\" && exit 1"
@@ -32,24 +33,25 @@
     "type": "git",
     "url": "https://github.com/ZyC0R3/Rita"
   },
-  "bugs": {
-    "url": "https://github.com/ZyC0R3/Rita/issues"
-  },
+  "funding": "https://ritabot.org",
+  "homepage": "https://ritabot.org",
+  "bugs": "https://github.com/ZyC0R3/Rita/issues",
   "dependencies": {
     "common-tags": "^1.8.0",
-    "discord.js": "^11.5.1",
-    "dotenv": "^8.1.0",
-    "eslint": "^6.3.0",
+    "discord.js": "^11.6.2",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
     "google-translate-api": "github:ZyC0R3/google-translate-api",
-    "iso-639-1": "^2.1.0",
-    "pg": "^7.12.1",
+    "iso-639-1": "^2.1.1",
+    "pg": "^7.18.2",
     "pg-hstore": "^2.3.3",
     "seconds-converter": "github:AlooAkbar/seconds-converter",
-    "sequelize": "^5.18.4",
-    "sqlite3": "^4.1.0",
-    "webhook-discord": "^3.2.0"
+    "sequelize": "^5.21.5",
+    "sqlite3": "^4.1.1",
+    "webhook-discord": "^3.5.1"
   },
   "devDependencies": {
+    "@kollavarsham/gulp-coveralls": "^0.2.9",
     "braces": "^3.0.2",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",

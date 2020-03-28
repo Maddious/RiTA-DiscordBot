@@ -300,7 +300,7 @@ exports.increaseServers = function(id)
 // Get bot stats
 // --------------
 
-exports.getStats = function(cb)
+exports.getStats = function(callback)
 {
    return db.query(`select * from (select sum(count) as "totalCount", ` +
   `count(id)-1 as "totalServers" from servers) as table1, ` +
@@ -309,19 +309,18 @@ exports.getStats = function(cb)
   `(select count(distinct origin) as "activeTasks" ` +
   `from tasks where active = TRUE) as table4, ` +
   `(select count(distinct origin) as "activeUserTasks" ` +
-  `from tasks where active = TRUE and origin like '@%') as table5;`, { type: Sequelize.QueryTypes.SELECT}).then(
-      function(result)
-      {
-         cb(null, result);
-      }
-   );
+  `from tasks where active = TRUE and origin like '@%') as table5;`, { type: Sequelize.QueryTypes.SELECT})
+      .then(
+         result => callback(result),
+         err => logger("error", err + "\nQuery: " + err.sql, "db")
+      );
 };
 
 // ----------------
 // Get server info
 // ----------------
 
-exports.getServerInfo = function(id, cb)
+exports.getServerInfo = function(id, callback)
 {
    return db.query(`select * from (select count as "count",` +
    `lang as "lang" from servers where id = ?) as table1,` +
@@ -329,11 +328,11 @@ exports.getServerInfo = function(id, cb)
    `from tasks where server = ?) as table2,` +
    `(select count(distinct origin) as "activeUserTasks"` +
    `from tasks where origin like '@%' and server = ?) as table3;`, { replacements: [ id, id, id],
-      type: db.QueryTypes.SELECT}).then(
-      function (result)
-      {
-         cb(null, result);
-      });
+      type: db.QueryTypes.SELECT})
+      .then(
+         result => callback(result),
+         err => logger("error", err + "\nQuery: " + err.sql, "db")
+      );
 };
 
 // ---------

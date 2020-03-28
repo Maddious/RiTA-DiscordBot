@@ -152,7 +152,8 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "Channel Tasks",
+      title: "Tasks",
+      link: "https://github.com/ZyC0R3/Rita/wiki/Misc.-Commands",
       icon: ":clipboard:",
       cmd: "Tasks",
       help: "Tasks",
@@ -273,10 +274,7 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} channel to en from de for #englishChannel \n` +
    `* ${cmd} channel to de from en for @steve \n` +
    `* ${cmd} channel to en from ru for #ch1, #ch2, #usr1 \n` +
-   "```" +
-   "\n* Translated messages that are forwarded to users include a special id " +
-   "for replying. Simply copy the code and paste into DM window before your " +
-   "message to send a response, example: `XX123: your message here`.";
+   "```";
 
    // ------------------------------
    // Auto translate (stop)
@@ -341,10 +339,13 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} settings setLang to [lang]\n\n` +
 
    `# Disconnect bot from server\n` +
-   `> ${cmd} settings disconnect \n` +
+   `> ${cmd} settings disconnect\n\n` +
 
    `# Displays list of servers the bot is in\n` +
-   `> ${cmd} settings listservers` +
+   `> ${cmd} settings listservers\n\n` +
+
+   `# Fix Guild Mismatch\n` +
+   `> ${cmd} settings dbfix\n` +
    "```";
 
    // ------------------------------
@@ -357,10 +358,10 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Displays translation tasks of the current channel\n` +
-   `> ${cmd} tasks\n` +
+   `> ${cmd} tasks\n\n` +
 
    `# Displays translation tasks of specified channel\n` +
-   `> COMING IN FUTURE UPDATE\n` +
+   `* COMING IN FUTURE UPDATE \n` +
    `> ${cmd} tasks for [#channel]\n` +
    "```";
 
