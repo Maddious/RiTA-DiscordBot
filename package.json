@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node build/bot",
     "build": "gulp build",
-    "coveralls": "gulp coveralls",
+    "coverage": "nyc report --reporter=text-lcov | coveralls && nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "dev": "gulp watch",
     "lint": "gulp lint",
     "finish": "echo \"All Tests Completed Successfully\" && exit 1"
@@ -51,12 +51,20 @@
     "webhook-discord": "^3.6.0"
   },
   "devDependencies": {
-    "@kollavarsham/gulp-coveralls": "^0.2.12",
+    "ava": "^2.4.0",
     "braces": "^3.0.2",
+    "codecov": "^3.6.5",
+    "coveralls": "^3.0.11",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-uglify-es": "^1.0.4",
-    "gulp-watch": "github:ZyC0R3/gulp-watch"
+    "gulp-watch": "github:ZyC0R3/gulp-watch",
+    "husky": "^3.1.0",
+    "nyc": "^14.1.1",
+    "xo": "^0.28.1"
+  },
+  "xo": {
+    "space": 4
   }
 }
