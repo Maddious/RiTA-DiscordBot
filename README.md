@@ -1,4 +1,4 @@
-## RITA (beta)
+## RITA (Stable)
 Translation bot built using `discord.js` and `Google Translate API`, A **free** and **unlimited** API for Google Translate :dollar::no_entry_sign: for Node.js.
 
 ### --RITA-- Master Branch
