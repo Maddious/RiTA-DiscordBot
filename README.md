@@ -1,31 +1,3 @@
-## RITA (Stable) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R)
-A Translation bot built using `discord.js` and a custom `Google Translate API`.
-(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)
-
-### --RITA-- Master Branch
-![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
-[![codebeat badge](https://codebeat.co/badges/125a5ce4-4ba1-45cf-95fa-266e1353c331)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-master)
-[![Build Status](https://travis-ci.com/ZyC0R3/Rita.svg?branch=master)](https://travis-ci.com/ZyC0R3/Rita)
-[![CircleCI](https://circleci.com/gh/ZyC0R3/RitaBot.svg?style=svg)](https://circleci.com/gh/ZyC0R3/RitaBot)
-![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot.svg)
-![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg)
-![GitHub issues](https://img.shields.io/github/issues/ZyC0R3/RitaBot)
-
-### --Google Translate API-- Master Branch
-![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api)
-[![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=master)](https://travis-ci.com/ZyC0R3/google-translate-api)
-![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/google-translate-api)
-![GitHub issues](https://img.shields.io/github/issues/ZyC0R3/google-translate-api)
-
-#### --RITA-- Current Test Branch
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version)
-[![Build Status](https://travis-ci.com/ZyC0R3/Rita.svg?branch=test-branch)](https://travis-ci.com/ZyC0R3/Rita)
-[![CircleCI](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch.svg?style=svg)](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch)
-
-#### --Google Translate API-- Current Test Branch
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api/test-branch)
-[![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=test-branch)](https://travis-ci.com/ZyC0R3/google-translate-api)
-
 ## Coming Soon!
 
 01. Error Message Support Section.
@@ -37,6 +9,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 ## New in 1.2.0
 * No Code changes, just URL updates for New name of Bot
 * Published to NPM
+* Non code changes will be appended with Version-\*\* from now on
 
 ## New in 1.1.8
 * Various Security vulnerabilities fixed.
@@ -106,7 +79,12 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * Under **Deployment Method** select Github. Connect to your Github account and search for this repo by name.
 * Scroll down to the manual deploy section, and select the **Master** branch. Click deploy branch, and wait for the successfully deployed message.
 * Go to the **Resources** tab and look for the addons section. Search 'Postgres', and add a 'Hobby Dev - Free' version of Heroku Postgres. This will be automatically attached as your bot's database.
-* Go to the **Settings** tab. Click to reveal Config Variables, then add a new one. The key will be **DISCORD_TOKEN**, and the value will be your discord bot's token that you copied earlier.
+* Go to the **Settings** tab. Click to reveal Config Variables, then add then add the following:
+  * **KEY:** =  DISCORD_TOKEN
+  * **Value:** = Your discord bot's token that you copied earlier.
+  * **KEY:** =  NODE_MODULES_CACHE
+  * **Value:** = false
+    * *This is to ensure that when the bot updates it does not use any old Dependencies that Heroku has stored and gets fresh ones from the package.json file*
 * Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
 
 #### 4. Invite your bot to your server and configure it!
