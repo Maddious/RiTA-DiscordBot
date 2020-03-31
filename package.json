@@ -1,5 +1,5 @@
 {
-  "name": "RitaBot",
+  "name": "ritabot",
   "version": "1.1.10",
   "engines": {
     "node": "12.10.0"
@@ -17,10 +17,7 @@
   },
   "author": "Group Project",
   "contributors": [
-    {
-      "name": "RitaBot <blank@email.com>",
-      "url": "https://github.com/ZyC0R3/RitaBot"
-    }
+    "RitaBot <blank@email.com> (https://github.com/ZyC0R3/RitaBot)"
   ],
   "keywords": [
     "discord",
@@ -31,11 +28,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZyC0R3/RitaBot"
+    "url": "git+https://github.com/ZyC0R3/RitaBot.git"
   },
   "funding": "https://ritabot.org",
   "homepage": "https://ritabot.org",
-  "bugs": "https://github.com/ZyC0R3/RitaBot/issues",
+  "bugs": {
+    "url": "https://github.com/ZyC0R3/RitaBot/issues"
+  },
   "dependencies": {
     "common-tags": "^1.8.0",
     "discord.js": "^11.6.3",
@@ -58,5 +57,8 @@
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-uglify-es": "^1.0.4",
     "gulp-watch": "github:ZyC0R3/gulp-watch"
+  },
+  "directories": {
+    "doc": "docs"
   }
 }
