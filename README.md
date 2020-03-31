@@ -32,6 +32,10 @@ A Translation bot built using `discord.js` and `Google Translate API`, A **free*
 03. `!t tasks #TargetChannel` Implementation.
 04. Introduction of a Streamlined Command Handler. (This will be done as a New Project)
 
+## New in 1.1.9
+* No Code changes, just URL updates for New name of Bot
+* Published to NPM
+
 ## New in 1.1.8
 * Various Security vulnerabilities fixed.
 * Various Spelling mistakes in ReadMe have been corrected.
