@@ -59,7 +59,7 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 11. [Commands](#commands)
 12. [Credits & License](#credits-&-license)
 13. [Design Team](#design-team)
-14. [What, Who, How and Why?] (#history)
+14. [What, Who, How and Why?](#history)
 
 ## <a name="features"></a>Features
 * Translate custom messages
