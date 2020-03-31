@@ -1,5 +1,6 @@
 ## RITA (Stable) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R)
-Translation bot built using `discord.js` and `Google Translate API`, A **free** and **unlimited** API for Google Translate :dollar::no_entry_sign: for Node.js.
+A Translation bot built using `discord.js` and a custom `Google Translate API`.
+(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
