@@ -2,12 +2,12 @@
 Translation bot built using `discord.js` and `Google Translate API`, A **free** and **unlimited** API for Google Translate :dollar::no_entry_sign: for Node.js.
 
 ### --RITA-- Master Branch
-![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/Rita?label=Stable%20Version)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
 [![codebeat badge](https://codebeat.co/badges/125a5ce4-4ba1-45cf-95fa-266e1353c331)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-master)
-[![Build Status](https://travis-ci.com/ZyC0R3/Rita.svg?branch=1.1.7)](https://travis-ci.com/ZyC0R3/Rita)
-[![CircleCI](https://circleci.com/gh/ZyC0R3/Rita/tree/1.1.7.svg?style=svg)](https://circleci.com/gh/ZyC0R3/Rita/tree/1.1.7)
+[![Build Status](https://travis-ci.com/ZyC0R3/Rita.svg?branch=master)](https://travis-ci.com/ZyC0R3/Rita)
+[![CircleCI](https://circleci.com/gh/ZyC0R3/RitaBot.svg?style=svg)](https://circleci.com/gh/ZyC0R3/RitaBot)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot.svg)
-![GitHub](https://img.shields.io/github/license/ZyC0R3/Rita.svg)
+![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg)
 ![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/RitaBot.svg)
 
 ### --Google Translate API-- Master Branch
@@ -17,9 +17,9 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 ![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/google-translate-api)
 
 #### --RITA-- Current Test Branch
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?label=Test%20Version)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version)
 [![Build Status](https://travis-ci.com/ZyC0R3/Rita.svg?branch=test-branch)](https://travis-ci.com/ZyC0R3/Rita)
-[![CircleCI](https://circleci.com/gh/ZyC0R3/Rita/tree/test-branch.svg?style=svg)](https://circleci.com/gh/ZyC0R3/Rita/tree/test-branch)
+[![CircleCI](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch.svg?style=svg)](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch)
 
 #### --Google Translate API-- Current Test Branch
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api/test-branch)
