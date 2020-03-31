@@ -3,12 +3,12 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/Rita?label=Stable%20Version)
-[![codebeat badge](https://codebeat.co/badges/a26b41c5-771e-4452-8a60-1947b0ed302c)](https://codebeat.co/projects/github-com-zyc0r3-rita-1-1-6)
+[![codebeat badge](https://codebeat.co/badges/125a5ce4-4ba1-45cf-95fa-266e1353c331)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-master)
 [![Build Status](https://travis-ci.com/ZyC0R3/Rita.svg?branch=1.1.7)](https://travis-ci.com/ZyC0R3/Rita)
 [![CircleCI](https://circleci.com/gh/ZyC0R3/Rita/tree/1.1.7.svg?style=svg)](https://circleci.com/gh/ZyC0R3/Rita/tree/1.1.7)
-![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/Rita.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot.svg)
 ![GitHub](https://img.shields.io/github/license/ZyC0R3/Rita.svg)
-![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/Rita.svg)
+![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/RitaBot.svg)
 
 ### --Google Translate API-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api)
@@ -16,7 +16,7 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/google-translate-api)
 ![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/google-translate-api)
 
-#### --RITA-- Current Test Branch 
+#### --RITA-- Current Test Branch
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?label=Test%20Version)
 [![Build Status](https://travis-ci.com/ZyC0R3/Rita.svg?branch=test-branch)](https://travis-ci.com/ZyC0R3/Rita)
 [![CircleCI](https://circleci.com/gh/ZyC0R3/Rita/tree/test-branch.svg?style=svg)](https://circleci.com/gh/ZyC0R3/Rita/tree/test-branch)
@@ -44,14 +44,6 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 * Various Security vulnerabilities fixed.
 * Various commands re-activated.
 
-## New in 1.1.6
-* Updated ReadMe with Local Installation Support Section.
-* Images can now be sent in chat without the need for accompanying text.
-* All Heroku Build Warnings have been fixed.
-* the bot now responds when you change the server language.
-* Translation to user Via DM is now working again.
-* Stop command no longer crashes the bot.
-
 ## Table of Contents
 
 01. [Features](#features)
@@ -67,6 +59,7 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 11. [Commands](#commands)
 12. [Credits & License](#credits-&-license)
 13. [Design Team](#design-team)
+14. [What, Who, How and Why?] (#history)
 
 ## <a name="features"></a>Features
 * Translate custom messages
@@ -120,7 +113,7 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 #### 1. Checklist
 * You must have a bot already running on your server, if not then refer to [Setting up a New Bot](#new-bot)
 
-#### 2. Fork this Repo 
+#### 2. Fork this Repo
 * Complete a Pull Request from the master Branch of ZyC0R3/Rita to your master branch.
 * Detailed instructions with example can be found here: https://www.sitepoint.com/quick-tip-sync-your-fork-with-the-original-without-the-cli/
 
@@ -140,7 +133,7 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 3. Make sure you do not disable, reset or delete your database (preferably Postgres from Heroku)
 
 #### 2. Migrate
-* Go to Heroku and click your app of C-3PO, once you have direct yourself to the deploy section. Once at the deploy section fork this project ( https://github.com/ZyC0R3/Rita ) and name it whatever you like.  
+* Go to Heroku and click your app of C-3PO, once you have direct yourself to the deploy section. Once at the deploy section fork this project ( https://github.com/ZyC0R3/RitaBot ) and name it whatever you like.  
 * Go back to the deploy section in Heroku and scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying "Disconnect" click that and then click search on repositories.
 * Click your fork of this project and wait for it to load. Once that is completed you need to deploy the 'Master' version of the bot.
 * Wait for it to finish deploying and you should be good to go. Turn on your worker dyno (if it was not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
@@ -229,7 +222,7 @@ The fastes way to install the current node and npm versions (https://nodejs.org/
 It is recommend to install git and pull from your fork or main:
 * Install git: `sudo apt-get install git`
 * Create the folder for the source: `mkdir Rita`
-* Clone the repository: `git clone https://github.com/ZyC0R3/Rita.git`
+* Clone the repository: `git clone https://github.com/ZyC0R3/RitaBot.git`
 * Checkout the branch you need: `git checkout --track origin/1.1.7`
 
 Alternative: move the source code with WinSCP from your local environment to the Pi.
@@ -276,12 +269,12 @@ This section/feature is being Created, Check back soon or join the support disco
 
 
 ## <a name="commands"></a>Commands
-* [Translate Custom Text](https://github.com/ZyC0R3/Rita/wiki/Translate-Custom-Message)
-* [Translate by Reaction](https://github.com/ZyC0R3/Rita/wiki/Translate-by-Reacting)
-* [Translate Last Message](https://github.com/ZyC0R3/Rita/wiki/Translate-Last-Message)
-* [Translate Channel](https://github.com/ZyC0R3/Rita/wiki/Translate-Channel-Automatic)
-* [Settings](https://github.com/ZyC0R3/Rita/wiki/Settings)
-* [Misc. Commands](https://github.com/ZyC0R3/Rita/wiki/Misc.-Commands)
+* [Translate Custom Text](https://github.com/ZyC0R3/RitaBot/wiki/Translate-Custom-Message)
+* [Translate by Reaction](https://github.com/ZyC0R3/RitaBot/wiki/Translate-by-Reacting)
+* [Translate Last Message](https://github.com/ZyC0R3/RitaBot/wiki/Translate-Last-Message)
+* [Translate Channel](https://github.com/ZyC0R3/RitaBot/wiki/Translate-Channel-Automatic)
+* [Settings](https://github.com/ZyC0R3/RitaBot/wiki/Settings)
+* [Misc. Commands](https://github.com/ZyC0R3/RitaBot/wiki/Misc.-Commands)
 
 ## <a name="credits-&-license"></a>Credits & License
 
@@ -294,5 +287,30 @@ This project was originally released by Aziz under the MIT license. He chose to 
 * Z3US / [cyberlooper](https://github.com/cyberlooper)
 * Maddious / [MadIndex](https://github.com/MadIndex)
 * defqon.1 / [wdaniel1985](https://github.com/wdaniel1985)
+
+## <a name="history"></a>What is Rita and who are we?
+
+*Rita is the culmination of many things, it started with a mobile game, a community of gamers, a discord server of different languages and a desire to all be understood. She is a Real-Time Translator Bot for use on Discord, Self-hosted on Heroku (or a local install) and Completly **100%** Free. She is maintained by a small group of users, each with different backgrounds and some learning as we go.*
+
+#### Why did you make Rita?
+
+*The mobile game itself would get old, fast. The community around it, however, is what kept us going. The one downside was we didn't all speak the same language. The game we played translated our conversations for us but Discord didn't, so the server admins used a  translation bot called C-3P0. This introduction is the start of the story.*
+
+#### The history of Rita?
+
+*There are loads of different translation bots out there, some are amazing, some are expensive, some are free but have limits, and others are just rubbish. C-3P0 checked all these boxes.*
+
+*Originally called discord-translator and made by Aziz, then forked By NotMyself and renamed Louie, forked again By AlooAkbar and renamed C-3P0, its code was neglected, not maintained, left outdated and iterations made private for commercial gains.*
+
+#### Why Rita and what does it stand for?
+
+*I and a group of fellow C-3P0 users decided that collectively we could do better, plagued with crashes, API changes, relentless bugs and issues, the drive to make something better was born.*
+
+*Rita's history and various iterations each added something extra, it just needed to be brought together and moulded, moulded into something amazing, moulded into Rita. The Real-Time Interchangeable Translating Assistant.*
+
+------
+#### *There you have it, the story, dramatised and electrified for effect, but all true, of how Rita was born.*
+
+------
 
 Released under MIT license.
