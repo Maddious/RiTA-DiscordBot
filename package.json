@@ -4,7 +4,7 @@
   "engines": {
     "node": "12.10.0"
   },
-  "description": "Real-Time Intergalactic Translating Assistant bot built using discord.js and Google Translate API.",
+  "description": "Real-Time Interchangeable Translating Assistant bot built using discord.js and Google Translate API.",
   "main": "src/bot.js",
   "license": "MIT",
   "scripts": {
