@@ -63,3 +63,16 @@ gulp-watch updated dependancies.
 Patch for Chinese language support.
 Various Security vulnerabilites fixed.
 Various commands re-activated.
+// ------
+// 1.1.8
+// ------
+Various Security vulnerabilities fixed.
+Various Spelling mistakes in ReadMe have been corrected.
+Dev Dependencies core to this bot, the google-transalte-api & google-transalte-token have been updated
+
+// ------
+// 1.2.0-*
+// ------
+No Code changes, just URL updates for New name of Bot
+Published to NPM
+Non code changes will be appended with Version-** from now on
