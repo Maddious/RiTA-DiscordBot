@@ -1,25 +1,26 @@
 ## RITA (Stable) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R)
-Translation bot built using `discord.js` and `Google Translate API`, A **free** and **unlimited** API for Google Translate :dollar::no_entry_sign: for Node.js.
+A Translation bot built using `discord.js` and a custom `Google Translate API`.
+*(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)*
 
 ### --RITA-- Master Branch
-![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/Rita?label=Stable%20Version)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
 [![codebeat badge](https://codebeat.co/badges/125a5ce4-4ba1-45cf-95fa-266e1353c331)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-master)
-[![Build Status](https://travis-ci.com/ZyC0R3/Rita.svg?branch=1.1.7)](https://travis-ci.com/ZyC0R3/Rita)
-[![CircleCI](https://circleci.com/gh/ZyC0R3/Rita/tree/1.1.7.svg?style=svg)](https://circleci.com/gh/ZyC0R3/Rita/tree/1.1.7)
+[![Build Status](https://travis-ci.com/ZyC0R3/Rita.svg?branch=master)](https://travis-ci.com/ZyC0R3/Rita)
+[![CircleCI](https://circleci.com/gh/ZyC0R3/RitaBot.svg?style=svg)](https://circleci.com/gh/ZyC0R3/RitaBot)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot.svg)
-![GitHub](https://img.shields.io/github/license/ZyC0R3/Rita.svg)
-![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/RitaBot.svg)
+![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg)
+![GitHub issues](https://img.shields.io/github/issues/ZyC0R3/RitaBot)
 
 ### --Google Translate API-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api)
 [![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=master)](https://travis-ci.com/ZyC0R3/google-translate-api)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/google-translate-api)
-![GitHub issues](https://img.shields.io/github/issues-raw/ZyC0R3/google-translate-api)
+![GitHub issues](https://img.shields.io/github/issues/ZyC0R3/google-translate-api)
 
 #### --RITA-- Current Test Branch
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/Rita/test-branch?label=Test%20Version)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version)
 [![Build Status](https://travis-ci.com/ZyC0R3/Rita.svg?branch=test-branch)](https://travis-ci.com/ZyC0R3/Rita)
-[![CircleCI](https://circleci.com/gh/ZyC0R3/Rita/tree/test-branch.svg?style=svg)](https://circleci.com/gh/ZyC0R3/Rita/tree/test-branch)
+[![CircleCI](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch.svg?style=svg)](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch)
 
 #### --Google Translate API-- Current Test Branch
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api/test-branch)
@@ -31,6 +32,12 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 02. Auto Reverse translation for the auto function.
 03. `!t tasks #TargetChannel` Implementation.
 04. Introduction of a Streamlined Command Handler. (This will be done as a New Project)
+
+
+## New in 1.2.0-\*
+* No Code changes, just URL updates for New name of Bot
+* Published to NPM
+* Non code changes will be appended with Version-\*\* from now on
 
 ## New in 1.1.8
 * Various Security vulnerabilities fixed.
@@ -59,7 +66,7 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 11. [Commands](#commands)
 12. [Credits & License](#credits-&-license)
 13. [Design Team](#design-team)
-14. [What, Who, How and Why?] (#history)
+14. [What, Who, How and Why?](#history)
 
 ## <a name="features"></a>Features
 * Translate custom messages
@@ -100,7 +107,12 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 * Under **Deployment Method** select Github. Connect to your Github account and search for this repo by name.
 * Scroll down to the manual deploy section, and select the **Master** branch. Click deploy branch, and wait for the successfully deployed message.
 * Go to the **Resources** tab and look for the addons section. Search 'Postgres', and add a 'Hobby Dev - Free' version of Heroku Postgres. This will be automatically attached as your bot's database.
-* Go to the **Settings** tab. Click to reveal Config Variables, then add a new one. The key will be **DISCORD_TOKEN**, and the value will be your discord bot's token that you copied earlier.
+* Go to the **Settings** tab. Click to reveal Config Variables, then add then add the following:
+  * **KEY:** =  DISCORD_TOKEN
+  * **Value:** = Your discord bot's token that you copied earlier.
+  * **KEY:** =  NODE_MODULES_CACHE
+  * **Value:** = false
+    * *This is to ensure that when the bot updates it does not use any old Dependencies that Heroku has stored and gets fresh ones from the package.json file*
 * Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
 
 #### 4. Invite your bot to your server and configure it!
@@ -109,7 +121,7 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
 
 
-## <a name="update"></a>How to Update to 1.1.7
+## <a name="update"></a>How to Update to 1.1.7 and Above
 #### 1. Checklist
 * You must have a bot already running on your server, if not then refer to [Setting up a New Bot](#new-bot)
 
@@ -131,11 +143,11 @@ Translation bot built using `discord.js` and `Google Translate API`, A **free** 
 1. You have an already up and running C-3P0 Bot.
 2. You are using Heroku to run the old version.
 3. Make sure you do not disable, reset or delete your database (preferably Postgres from Heroku)
+4. You have already completed a Pull Request from the master Branch of ZyC0R3/Rita to your master branch.
 
 #### 2. Migrate
-* Go to Heroku and click your app of C-3PO, once you have direct yourself to the deploy section. Once at the deploy section fork this project ( https://github.com/ZyC0R3/RitaBot ) and name it whatever you like.  
-* Go back to the deploy section in Heroku and scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying "Disconnect" click that and then click search on repositories.
-* Click your fork of this project and wait for it to load. Once that is completed you need to deploy the 'Master' version of the bot.
+* Go to Heroku and click your app of C-3PO, and locate the **Deploy** section. Scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying **Disconnect**
+* Next click search on repositories and select your fork of this project and wait for it to load. Once that is completed you need to **Deploy** the 'Master' Branch/Version of the bot.
 * Wait for it to finish deploying and you should be good to go. Turn on your worker dyno (if it was not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
 
 
@@ -144,7 +156,7 @@ Sometimes you need to edit the Database manually, This is not something you shou
 
 #### 1. Checklist
 1. Know that you are doing, if you don't then **don't** touch the DB. Simple.
-2. Download and Install [Postgres Admin 4](https://www.postgresql.org/ftp/pgadmin/pgadmin4/v4.10/), This guide will be for Windows, but it shouldn't be much different for any other OS.
+2. Download and Install Postgres Admin 4, Located [Here](https://www.pgadmin.org/download/) or [Here](https://www.postgresql.org/ftp/pgadmin/pgadmin4/). *This guide will be for Windows, but it shouldn't be much different for any other OS.*
 3. Locate your credentials for you Heroku Database, Log in to **Heroku** > Select your **App** > Click **Resources** > Click **Heroku Postgres** > Click **Settings** > Click **View Credentials** (*Note: Heroku rotates credentials periodically and updates applications where this database is attached.*)
 
 #### 2. Connect
@@ -156,7 +168,7 @@ For a fresh install of pgAdmin, the dashboard likely contains only one server. T
 *Under the connection tab:*
   * **Hostname/Address:** This is the host credential you located in Step 3. It should look like \*\*-\*\*-\*\*...amazonaws.com
   * **Port:** Keep the port at 5432, unless your credentials list otherwise
-  * **Maintenance databaseL** This is the database field located in Step 3.
+  * **Maintenance databaseL** This is the database field located in Step 3 Below.
   * **Username:**  This is the user field in the credentials
   * **Password:** The password field located in Step 3. I highly advise checking save password so that you don’t have to copypasta this every time you want to connect.
   * In the **SSL Tab**, mark SSL mode as require
@@ -176,13 +188,15 @@ Any Database that runs with SQL Sequelize ('https://sequelize.org/master/') can 
 Copy the existing **.env.example** file and name it **.env**. Edit the Values of **DISCORD_TOKEN**, **DISCORD_BOT_OWNER_ID** and the **DATABASE_URL** according to the values that you copied earlier.
 
 #### 3. Install nodejs
-Install nodejs ('https://nodejs.org/en/').  
+Install nodejs from https://nodejs.org/en/  
 
 #### 4. Run and start the bot
 Run `npm install -g gulp` in your console to install gulp. Build the bot code using `npm build` and run the bot with `npm start`.
 
 #### 5. Invite your bot to your server and configure it!
-Return to step 4 in [Setting up a New Bot](#new-bot).
+* Replace the CLIENTID string in the following URL with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
+* Visit the resulting URL and add your bot to any server where you have admin privileges.
+* Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
 
 ## <a name="pi"></a>Setup on a Raspberry Pi
 We recommend to initially run your bot in a local environment on your laptop before you run the translator on a Raspberry Pi. The local setup allows you to get familiar with the setup and the settings.
