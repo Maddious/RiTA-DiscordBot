@@ -65,6 +65,7 @@
       "no-mixed-spaces-and-tabs": "warn",
       "no-extra-semi": "warn",
       "no-prototype-builtins": "warn",
+      "no-undef": "warn",
       "no-unreachable": "warn"
     }
 }
