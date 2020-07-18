@@ -209,28 +209,6 @@ module.exports = function(data)
    const validateTask = function()
    {
 
-
-     if (data.cmd.from === "auto" || data.cmd.from.valid.length !== 1)
-     {
-
-        //
-        // Send out success message
-        //
-        const langFrom = "auto";
-        const langTo = data.cmd.to.valid[0].name;
-        const forNames = data.cmd.for.join(",  ").replace(
-           "me", `<@${data.message.author.id}>`
-        );
-
-        data.color = "ok";
-        data.text =
-           ":white_check_mark:  Automatically translating messages " +
-           `from **\`${langFrom}\`** to **\`${langTo}\`** ` +
-           `for ${forNames}.`;
-
-        return botSend(data);
-     }
-
       //
       // Invalid dests
       //
