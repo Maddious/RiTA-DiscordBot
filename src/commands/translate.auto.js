@@ -216,7 +216,7 @@ module.exports = function(data)
         //
         // Send out success message
         //
-        const langFrom = "auto"";
+        const langFrom = "auto";
         const langTo = data.cmd.to.valid[0].name;
         const forNames = data.cmd.for.join(",  ").replace(
            "me", `<@${data.message.author.id}>`
