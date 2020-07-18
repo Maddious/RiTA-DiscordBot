@@ -27,7 +27,7 @@ module.exports = function(data)
    //
 
 
-   if (data.cmd.to.valid.length != 1)
+   if (data.cmd.to.valid.length !== 1)
    {
       data.color = "error";
       data.text =
