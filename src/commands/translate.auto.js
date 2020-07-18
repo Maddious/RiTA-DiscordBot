@@ -264,12 +264,14 @@ module.exports = function(data)
       };
 
       data.color = "ok";
+      langData.text = ":white_check_mark: Language Test " + `${langTo}`;
       data.text =
          ":white_check_mark:  Automatically translating messages " +
          `from **\`${langFrom}\`** to **\`${langExceptions, langTo}\`** ` +
          `for ${forNames}.`;
 
+
       return botSend(data);
-      return botSend(langTo);
+      return botSend(langData);
    };
 };
