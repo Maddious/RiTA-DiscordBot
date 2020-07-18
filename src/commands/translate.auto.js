@@ -30,7 +30,7 @@ module.exports = function(data)
    {
       data.color = "error";
       data.text =
-         ":info:  Auto Function Under Construction, Please use a defined language to translate from for now.";
+         ":warning:  Auto Function Under Construction, Please use a defined language to translate from for now.";
 
       return botSend(data);
    }
