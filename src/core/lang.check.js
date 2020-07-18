@@ -73,7 +73,7 @@ module.exports = function(lang, single = false)
       return "default";
    }
 
-   if (lang === "auto")
+   if (lang == "auto")
    {
       return "auto";
    }
