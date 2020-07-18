@@ -26,11 +26,11 @@ module.exports = function(data)
    // Language checks
    //
 
-   if (data.cmd.from === "auto")
+   if (data.cmd.from === "auto" || data.cmd.from.valid.length !== 1
    {
-      data.color = "error";
+      data.color = "info";
       data.text =
-         ":warning:  Auto Function Under Construction, Please use a defined language to translate from for now.";
+         ":info:  Auto Function Under Construction, Please use a defined language to translate from for now.";
 
       return botSend(data);
    }
