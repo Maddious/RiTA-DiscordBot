@@ -26,7 +26,7 @@ module.exports = function(data)
    // Language checks
    //
 
-   if (data.cmd.from === auto)
+   if (data.cmd.from === "auto")
    {
       data.color = "error";
       data.text =
