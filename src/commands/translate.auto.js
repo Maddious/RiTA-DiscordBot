@@ -259,7 +259,7 @@ module.exports = function(data)
       const langExceptions =
       {
          "zh-CN": "chinese simplified",
-         "zh-TW": "chinese traditional",
+         "zh-TW": "chinese traditional"
       };
 
       data.color = "ok";
