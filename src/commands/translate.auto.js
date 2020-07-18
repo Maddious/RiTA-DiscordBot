@@ -26,6 +26,14 @@ module.exports = function(data)
    // Language checks
    //
 
+   if (data.cmd.from === auto || data.cmd.from.valid.length !== 1)
+   {
+      data.color = "error";
+      data.text =
+         ":warning:  Please specify a valid language to translate from.";
+
+      return botSend(data);
+   }
 
    if (data.cmd.to.valid.length !== 1)
    {
