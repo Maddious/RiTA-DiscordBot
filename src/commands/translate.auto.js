@@ -256,11 +256,16 @@ module.exports = function(data)
       const forNames = data.cmd.for.join(",  ").replace(
          "me", `<@${data.message.author.id}>`
       );
-
       const langExceptions =
       {
          "zh-CN": "chinese simplified",
-         "zh-TW": "chinese traditional"
+         "zh-TW": "chinese traditional",
+         "chinese simplified": "zh-CN",
+         "chinese traditional": "zh-TW",
+         "zh-cn": "chinese simplified",
+         "zh-tw": "chinese traditional",
+         "chinese simplified": "zh-cn",
+         "chinese traditional": "zh-tw"
       };
 
       data.color = "ok";
