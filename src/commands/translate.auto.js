@@ -265,7 +265,7 @@ module.exports = function(data)
       data.color = "ok";
       data.text =
          ":white_check_mark:  Automatically translating messages " +
-         `from **\`${langFrom}\`** to **\`${langExceptions[langTo], langTo}\`** ` +
+         `from **\`${langFrom}\`** to **\`${langExceptions[langTo]}\`** ` +
          `for ${forNames}.`;
 
       return botSend(data);
