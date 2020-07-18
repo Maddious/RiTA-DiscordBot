@@ -257,11 +257,17 @@ module.exports = function(data)
          "me", `<@${data.message.author.id}>`
       );
 
+      const langExceptions =
+      {
+         "zh-CN": "chinese simplified",
+         "zh-TW": "chinese traditional"
+      };
+
       data.color = "ok";
       data.text =
          ":white_check_mark:  Automatically translating messages " +
          `from **\`${langFrom}\`** to **\`${langTo}\`** ` +
-         `for ${forNames}.`;
+         `for ${langExceptions, forNames}.`;
 
       return botSend(data);
    };
