@@ -28,7 +28,7 @@ module.exports = function(data)
 
    if (data.cmd.from === "auto" || data.cmd.from.valid.length !== 1
    {
-      data.color = "info";
+      data.color = "error";
       data.text =
          ":warning:  Auto Function Under Construction, Please use a defined language to translate from for now.";
 
