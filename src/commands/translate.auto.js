@@ -260,18 +260,12 @@ module.exports = function(data)
       {
          "zh-CN": "chinese simplified",
          "zh-TW": "chinese traditional",
-         "chinese simplified": "zh-CN",
-         "chinese traditional": "zh-TW",
-         "zh-cn": "chinese simplified",
-         "zh-tw": "chinese traditional",
-         "chinese simplified": "zh-cn",
-         "chinese traditional": "zh-tw"
       };
 
       data.color = "ok";
       data.text =
          ":white_check_mark:  Automatically translating messages " +
-         `from **\`${langFrom}\`** to **\`${langExceptions, langTo}\`** ` +
+         `from **\`${langFrom}\`** to **\`${langExceptions[langTo], langTo}\`** ` +
          `for ${forNames}.`;
 
       return botSend(data);
