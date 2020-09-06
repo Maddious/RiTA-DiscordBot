@@ -34,6 +34,9 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 04. Introduction of a Streamlined Command Handler. (This will be done as a New Project)
 05. Accept "auto" as a language for Automatic detection and translation.
 
+## New in 1.2.1-\*
+* Minor Code changes
+* Active Test Branch
 
 ## New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
