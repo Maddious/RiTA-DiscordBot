@@ -37,6 +37,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 ## New in 1.2.1-\*
 * Minor Code changes
 * Active Test Branch
+* Dev Dependencies updated
 
 ## New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
