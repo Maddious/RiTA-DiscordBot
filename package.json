@@ -43,11 +43,11 @@
     "eslint": "7.8.1",
     "google-translate-api": "github:ZyC0R3/google-translate-api",
     "iso-639-1": "^2.1.1",
-    "make-dir": "3.0.2",
+    "make-dir": "3.1.0",
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
     "seconds-converter": "github:AlooAkbar/seconds-converter",
-    "sequelize": "^5.22.3",
+    "sequelize": "^6.3.5",
     "sqlite3": "^4.2.0",
     "webhook-discord": "^3.6.0"
   },
