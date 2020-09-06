@@ -102,30 +102,6 @@ jobs:
       - run: echo "Node.js 11.15.0 Build Completed"
 # ------------------------------------------------------------------------------
 # Workflow Job 5
-  build-node-12.9.1:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:12.9.1
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run: npm install
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      - run: npm run lint
-      - run: npm run build
-      - run: echo "Node.js 12.9.1 Build Completed"
-# ------------------------------------------------------------------------------
-# Workflow Job 6
   build-node-12.10.0:
     docker:
       # specify the version you desire here
@@ -149,7 +125,7 @@ jobs:
       - run: npm run build
       - run: echo "Node.js 12.10.0 Build Completed"
 # ------------------------------------------------------------------------------
-# Workflow Job 7
+# Workflow Job 6
   build-node-12.14.0:
     docker:
       # specify the version you desire here
@@ -173,11 +149,83 @@ jobs:
       - run: npm run build
       - run: echo "Node.js 12.14.0 Build Completed"
 # ------------------------------------------------------------------------------
-# Workflow Job 8
-  build-node-13.5.0:
+# Workflow Job 7
+  build-node-13.10.1:
     docker:
       # specify the version you desire here
-      - image: circleci/node:13.5.0
+      - image: circleci/node:13.10.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: npm install
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run tests!
+      - run: npm run lint
+      - run: npm run build
+      - run: echo "Node.js 13.5.0 Build Completed"
+# ------------------------------------------------------------------------------
+# Workflow Job 8
+  build-node-13.14.0:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:13.14.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: npm install
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run tests!
+      - run: npm run lint
+      - run: npm run build
+      - run: echo "Node.js 13.5.0 Build Completed"
+# ------------------------------------------------------------------------------
+# Workflow Job 9
+  build-node-14.0.0:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:14.0.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: npm install
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run tests!
+      - run: npm run lint
+      - run: npm run build
+      - run: echo "Node.js 13.5.0 Build Completed"
+# ------------------------------------------------------------------------------
+# Workflow Job 10
+  build-node-14.9.0:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:14.9.0
     working_directory: ~/repo
     steps:
       - checkout
@@ -209,15 +257,20 @@ workflows:
       - build-node-11.15.0:
           requires:
             - build-node-11.9.0
-      - build-node-12.9.1
-      - build-node-12.10.0:
-          requires:
-            - build-node-12.9.1
+      - build-node-12.10.0
       - build-node-12.14.0:
           requires:
             - build-node-12.10.0
-      - build-node-13.5.0:
+      - build-node-13.10.1
+      - build-node-13.14.0:
           requires:
-            - build-node-12.9.1
-            - build-node-12.10.0
+            - build-node-13.10.1
+      - build-node-14.0.0:
+          requires:
+            - build-node-10.18.0
+            - build-node-11.15.0
             - build-node-12.14.0
+            - build-node-13.14.0       
+      - build-node-14.9.0:
+          requires:
+            - build-node-14.0.0
