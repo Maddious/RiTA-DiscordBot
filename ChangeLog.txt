@@ -23,12 +23,6 @@ First Build
 Dependancy Updates
 
 // ------
-// 1.2.0  - Release Version
-// ------
-Dependancy Updates
-Various Security vulnerabilites fixed
-
-// ------
 // 1.1.3
 // ------
 Dependancy Updates
