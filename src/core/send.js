@@ -5,6 +5,7 @@ const fn = require("./helpers");
 const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
+const webHookName = "Webhook";
 //
 //const webhooks = new discord.WebhookClient(`id`, `token?`);
 //
@@ -46,6 +47,66 @@ const handleError = function(err)
    logger("error", errMsg);
 };
 
+const botname = function(botname)
+{
+   return 1;
+};
+
+function createFiles(dataAttachments)
+{
+   if (!dataAttachments && !dataAttachments.array().length > 0) {return;}
+   var attachments = dataAttachments.array();
+   const files = [];
+   if (attachments && attachments.length > 0)
+   {
+      // const maxAtt = data.config.maxEmbeds;
+
+      // if (attachments.length > maxAtt)
+      // {
+      //    sendBox({
+      //       channel: data.channel,
+      //       text: `:warning:  Cannot attach more than ${maxAtt} files.`,
+      //       color: "warn"
+      //    });
+      //    attachments = attachments.slice(0, maxAtt);
+      // }
+
+      for (let i = 0; i < attachments.length; i++)
+      {
+         const attachmentObj = new discord.Attachment(
+            attachments[i].url,
+            attachments[i].filename
+         );
+         files.push(attachmentObj);
+      }
+   }
+   return files;
+}
+
+function sendWebhookMessage(webhook, data)
+{
+   let username = "Rita Commands";
+   let avatarURL = "https://cdn.discordapp.com/icons/545787876105912341/a89767345fbb7216f52591ba6d683056.webp?size=512&quot";
+
+   if (data.author)
+   {
+      if (data.author.name) { username = data.author.name;}
+      if (data.author.icon_url) { avatarURL = data.author.icon_url;}
+   }
+   const files = createFiles(data.attachments);
+
+   webhook.send(data.text, { // This means you can just copy and paste the webhook & catch part.
+      "username": username,
+      "avatarURL": avatarURL,
+      "files": files
+   })
+      .catch(error =>
+      { // We also want to make sure if an error is found, to report it in chat.
+         handleError(error);
+         return data.channel.send("**Something went wrong when sending the webhook. Please check console.**");
+      });
+}
+
 module.exports = function(data)
 {
    //
@@ -53,6 +114,8 @@ module.exports = function(data)
    //
    const sendBox = function(data)
    {
+      const channel = data.channel;
+
       if (data.author)
       {
          data.author = {
@@ -62,7 +125,6 @@ module.exports = function(data)
          };
       }
       // Reassign default parameters - If any are blank.
-      const channel = data.channel;
       let color = colors.get(data.color);
       let avatarURL;
       if (data.author && data.author.icon_url)
@@ -79,44 +141,23 @@ module.exports = function(data)
 
       // This is the start of creating the webhook
       channel.fetchWebhooks() // This gets the webhooks in the channel
-         .then(webhook =>
+         .then(webhooks =>
          {
             // Fetches the webhook we will use for each hook
-            const foundHook = webhook.find("name", "Webhook"); // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
+            const existingWebhook = webhooks.find(x => x.name === webHookName); // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
             // This runs if the webhook is not found.
-            if (!foundHook)
+            if (!existingWebhook)
             {
-               channel.createWebhook("Webhook", "https://cdn4.iconfinder.com/data/icons/technology-devices-1/500/speech-bubble-128.png") // Make sure this is the same thing for when you search for the webhook. The png image will be the default image seen under the channel. Change it to whatever you want.
-                  .then(webhook =>
+               channel.createWebhook(webHookName, "https://cdn4.iconfinder.com/data/icons/technology-devices-1/500/speech-bubble-128.png") // Make sure this is the same thing for when you search for the webhook. The png image will be the default image seen under the channel. Change it to whatever you want.
+                  .then(newWebhook =>
                   {
                      // Finally send the webhook
-                     webhook.send(data.text, {
-                        "username": data.author.name,
-                        "avatarURL": data.author.icon_url
-                     })
-                        .catch(err =>
-                        { // We also want to make sure if an error is found, to report it in chat.
-                           handleError(err);
-                           return channel.send("**Something went wrong when sending the webhook. Please check console.**");
-                        });
+                     sendWebhookMessage(newWebhook, data);
                   });
             }
             else
             {
-               // eslint-disable-next-line camelcase
-
-               // That webhook was only for if it couldn't find the original webhook
-               foundHook.send(data.text, { // This means you can just copy and paste the webhook & catch part.
-                  "username": data.author.name,
-                  "avatarURL": data.author.icon_url
-               })
-
-
-                  .catch(error =>
-                  { // We also want to make sure if an error is found, to report it in chat.
-                     handleError(error);
-                     return channel.send("**Something went wrong when sending the webhook. Please check console.**");
-                  });
+               sendWebhookMessage(existingWebhook, data);
             }
          });
 
