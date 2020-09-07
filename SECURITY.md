@@ -31,7 +31,7 @@ Test Branch will be updated to latest version and will be pushed once stable.
 | :x: | 1.1.6 | common-tags <br>discord.js <br>dotenv <br>eslint <br>iso-639-1 <br>pg <br>pg-hstore <br>sequelize <br>sqlite3 <br>webhook-discord | 1.8.0 <br>11.5.1 <br>8.1.0 <br>6.3.0 <br>2.1.0 <br>7.12.1 <br>2.3.3 <br>5.18.1 <br>4.1.0 <br>3.2.0 |
 | :white_check_mark: | 1.1.7 | common-tags <br>discord.js <br>dotenv <br>eslint <br>iso-639-1 <br>pg <br>pg-hstore <br>sequelize <br>sqlite3 <br>webhook-discord | 1.8.0 <br>11.5.1 <br>8.1.0 <br>6.3.0 <br>2.1.0 <br>7.12.1 <br>2.3.3 <br>5.18.1 <br>4.1.0 <br>3.2.0 |
 | :white_check_mark: | 1.2.0-? | common-tags <br>discord.js <br>dotenv <br>eslint <br>iso-639-1 <br>pg <br>pg-hstore <br>sequelize <br>sqlite3 <br>webhook-discord | 1.8.0 <br>11.6.3 <br>8.2.0 <br>6.8.0 <br>2.1.1 <br>7.18.2 <br>2.3.3 <br>5.21.5 <br>4.1.1 <br>3.60 |
-| :white_check_mark: | 1.2.1-? | common-tags <br>discord.js <br>dotenv <br>eslint <br>iso-639-1 <br>lodash <br>make-dir <br>pg <br>pg-hstore <br>sequelize <br>sqlite3 <br>webhook-discord | 1.8.0 <br>11.6.3 <br>8.2.0 <br>7.8.1 <br>2.1.1 <br>4.17.19 <br>3.1.0 <br>8.3.3 <br>2.3.3 <br>6.3.5 <br>5.0.0 <br>3.6.0 |
+| :white_check_mark: | 1.2.1-? | common-tags <br>discord.js <br>dotenv <br>eslint <br>iso-639-1 <br>lodash <br>make-dir <br>pg <br>pg-hstore <br>sequelize <br>sqlite3 <br>webhook-discord | 1.8.0 <br>11.6.3 <br>8.2.0 <br>7.8.1 <br>2.1.1 <br>4.17.20 <br>3.1.0 <br>8.3.3 <br>2.3.3 <br>6.3.5 <br>5.0.0 <br>3.6.0 |
 
 ### Below is the devDependency versions in each build
 
