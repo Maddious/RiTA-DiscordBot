@@ -41,7 +41,6 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * Various Dev Dependencies Updated
 * Node V9 No longer supported
 
-
 ## New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
 * Published to NPM
