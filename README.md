@@ -37,7 +37,10 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 ## New in 1.2.1-\*
 * Minor Code changes
 * Active Test Branch
-* Dev Dependencies updated
+* Various Security vulnerabilities fixed
+* Various Dev Dependencies Updated
+* Node V9 No longer supported
+
 
 ## New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
@@ -45,15 +48,15 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * Non code changes will be appended with Version-\*\* from now on
 
 ## New in 1.1.8
-* Various Security vulnerabilities fixed.
-* Various Spelling mistakes in ReadMe have been corrected.
+* Various Security vulnerabilities fixed
+* Various Spelling mistakes in ReadMe have been corrected
 * Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` have been updated
 
 ## New in 1.1.7
-* Setup on a Raspberry Pi Section.
+* Setup on a Raspberry Pi Section
 * gulp-watch updated dependencies. (*Moved to Local Repo as it was out-of-date and full of Security Issues.*)
-* Patch for Chinese language support.
-* Various Security vulnerabilities fixed.
+* Patch for Chinese language support
+* Various Security vulnerabilities fixed
 * Various commands re-activated.
 
 ## Table of Contents
