@@ -21,21 +21,23 @@ First Build
 // ------
 .eslintrc.json Fixes
 Dependancy Updates
-  Changed "google-translate-token" from @vitalets/google-translate-token to "github:ZyC0R3/google-translate-token"
+
+// ------
+// 1.2.0  - Release Version
+// ------
+Dependancy Updates
+Various Security vulnerabilites fixed
 
 // ------
 // 1.1.3
 // ------
 Dependancy Updates
-  "gulp-eslint": "^6.0.0" from "^4.0.2"
-  "eslint": "^6.0.1" from "4.19.1"
 Help File Updates
 
 // ------
 // 1.1.4
 // ------
 Dependancy Updates
-  "sequelize": "^5.10.1" from "^5.10.0"
 
 // ------
 // 1.1.5
@@ -48,18 +50,43 @@ Updated Readme for Database Connection Support
 // 1.1.6
 // ------
 Dependancy Updates
-Updated ReadMe with Local Installation Support Section.
-Images can now be sent in chat without the need for accompanying text.
-All Heroku Build Warnings have been fixed.
-the bot now responds when you change the server language.
-Translation to user Via DM is now working again.
-Stop command no longer crashes the bot.
+Updated ReadMe with Local Installation Support Section
+Images can now be sent in chat without the need for accompanying text
+All Heroku Build Warnings have been fixed
+the bot now responds when you change the server language
+Translation to user Via DM is now working again
+Stop command no longer crashes the bot
 
 // ------
-// 1.1.7
+// 1.1.7 - Release Version
 // ------
-Setup on a Raspberry Pi Section.
-gulp-watch updated dependancies.
-Patch for Chinese language support.
-Various Security vulnerabilites fixed.
-Various commands re-activated.
+Setup on a Raspberry Pi Section
+gulp-watch updated dependancies
+Patch for Chinese language support
+Various Security vulnerabilites fixed
+Various commands re-activated
+
+// ------
+// 1.1.8
+// ------
+Various Security vulnerabilities fixed
+Various Spelling mistakes in ReadMe have been corrected
+Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` have been updated
+
+// ------
+// 1.2.0-? - Release Version
+// ------
+* No Code changes, just URL updates for New name of Bot
+* Published to NPM
+* Non code changes will be appended with Version-?? from now on
+
+// ------
+// 1.2.1-? - Test Version
+// ------
+* Minor Code changes
+* Active Test Branch
+* Various Security vulnerabilities fixed
+* Various Dev Dependencies Updated
+* Node V9 No longer supported
+
+
