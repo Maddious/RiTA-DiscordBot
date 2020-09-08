@@ -102,6 +102,14 @@ module.exports = function(data)
    {
       const channel = data.channel;
       
+      if (data.author)	
+      {	
+         data.author = {	
+            name: data.author.username,	
+            // eslint-disable-next-line camelcase	
+            icon_url: data.author.displayAvatarURL	
+         };	
+      }
       let color = colors.get(data.color);
       let avatarURL;
       if (data.author && data.author.icon_url)
@@ -111,10 +119,12 @@ module.exports = function(data)
       if (!channel) {return console.log("Channel not specified.");}
       if (!color) {color = "d9a744";} // Sets the color of embed message but no embed message used so thus unused. 
       if (!avatarURL) {avatarURL = data.author;}
-
+ 
       // 
       // Webhook Creation and Sending
       // 
+
+      
       channel.fetchWebhooks() 
          .then(webhooks =>
          {
