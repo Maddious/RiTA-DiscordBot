@@ -82,7 +82,7 @@ const helpMessage = function(config, botname, param)
    const basics =
    helpSection({
       config: config,
-      title: "Translate by Reacting",
+      title: "<Translate by Reacting>",
       link: "https://github.com/ZyC0R3/Rita/wiki/Translate-by-Reacting",
       icon: ":flag_white:",
       cmd: null,
@@ -92,7 +92,7 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "Translate Custom Text",
+      title: "<Translate Custom Text>",
       link: "https://github.com/ZyC0R3/Rita/wiki/Translate-Custom-Message",
       icon: ":abc:",
       cmd: "this",
@@ -102,7 +102,7 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "Translate Last Message",
+      title: "<Translate Last Message>",
       link: "https://github.com/ZyC0R3/Rita/wiki/Translate-Last-Message",
       icon: ":arrow_double_up:",
       cmd: "last",
@@ -112,7 +112,7 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "Translate Channel (Automatic)",
+      title: "<Translate Channel (Automatic)>",
       link: "https://github.com/ZyC0R3/Rita/wiki/Translate-Channel-Automatic",
       icon: ":hash:",
       cmd: "channel",
@@ -122,7 +122,7 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "Stats",
+      title: "<Stats>",
       link: "https://github.com/ZyC0R3/Rita/wiki/Get-Statistics",
       icon: ":bar_chart:",
       cmd: "stats",
@@ -132,7 +132,7 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "Settings",
+      title: "<Settings>",
       link: "https://github.com/ZyC0R3/Rita/wiki/Settings",
       icon: ":gear:",
       cmd: "settings",
@@ -142,7 +142,7 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "Misc. Settings",
+      title: "<Misc. Settings>",
       link: "https://github.com/ZyC0R3/Rita/wiki/Misc.-Commands",
       icon: ":robot:",
       cmd: "misc",
@@ -152,7 +152,7 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "Tasks",
+      title: "<Tasks>",
       link: "https://github.com/ZyC0R3/Rita/wiki/Misc.-Commands",
       icon: ":clipboard:",
       cmd: "Tasks",
@@ -162,7 +162,7 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "ReadMe",
+      title: "<ReadMe>",
       link: "https://github.com/ZyC0R3/Rita/blob/master/README.md",
       icon: ":bookmark_tabs:",
       cmd: "readme",
@@ -172,7 +172,7 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "Report Bugs / Request Features",
+      title: "<Report Bugs / Request Features>",
       link: "https://github.com/ZyC0R3/Rita/issues",
       icon: ":raising_hand::skin-tone-3:"
    }) +
