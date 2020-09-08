@@ -171,7 +171,7 @@ jobs:
       # run tests!
       - run: npm run lint
       - run: npm run build
-      - run: echo "Node.js 13.5.0 Build Completed"
+      - run: echo "Node.js 13.10.1 Build Completed"
 # ------------------------------------------------------------------------------
 # Workflow Job 8
   build-node-13.14.0:
@@ -195,7 +195,7 @@ jobs:
       # run tests!
       - run: npm run lint
       - run: npm run build
-      - run: echo "Node.js 13.5.0 Build Completed"
+      - run: echo "Node.js 13.14.0 Build Completed"
 # ------------------------------------------------------------------------------
 # Workflow Job 9
   build-node-14.0.0:
@@ -219,7 +219,7 @@ jobs:
       # run tests!
       - run: npm run lint
       - run: npm run build
-      - run: echo "Node.js 13.5.0 Build Completed"
+      - run: echo "Node.js 14.0.0 Build Completed"
 # ------------------------------------------------------------------------------
 # Workflow Job 10
   build-node-14.9.0:
@@ -243,7 +243,7 @@ jobs:
       # run tests!
       - run: npm run lint
       - run: npm run build
-      - run: echo "Node.js 13.5.0 Build Completed"
+      - run: echo "Node.js 14.9.0 Build Completed"
 
 workflows:
   version: 2
