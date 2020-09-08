@@ -23,7 +23,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 [![CircleCI](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch.svg?style=svg)](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch)
 
 #### --Google Translate API-- Current Test Branch
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api/test-branch)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api/test-branch?label=Test%20Version)
 [![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=test-branch)](https://travis-ci.com/ZyC0R3/google-translate-api)
 
 ## Coming Soon!
@@ -32,14 +32,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 02. Auto Reverse translation for the auto function.
 03. `!t tasks #TargetChannel` Implementation.
 04. Introduction of a Streamlined Command Handler. (This will be done as a New Project)
-05. Accept "auto" as a language for Automatic detection and translation.
 
-## New in 1.2.1-\*
-* Minor Code changes
-* Active Test Branch
-* Various Security vulnerabilities fixed
-* Various Dev Dependencies Updated
-* Node V9 No longer supported
 
 ## New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
@@ -47,15 +40,15 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * Non code changes will be appended with Version-\*\* from now on
 
 ## New in 1.1.8
-* Various Security vulnerabilities fixed
-* Various Spelling mistakes in ReadMe have been corrected
+* Various Security vulnerabilities fixed.
+* Various Spelling mistakes in ReadMe have been corrected.
 * Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` have been updated
 
 ## New in 1.1.7
-* Setup on a Raspberry Pi Section
+* Setup on a Raspberry Pi Section.
 * gulp-watch updated dependencies. (*Moved to Local Repo as it was out-of-date and full of Security Issues.*)
-* Patch for Chinese language support
-* Various Security vulnerabilities fixed
+* Patch for Chinese language support.
+* Various Security vulnerabilities fixed.
 * Various commands re-activated.
 
 ## Table of Contents
