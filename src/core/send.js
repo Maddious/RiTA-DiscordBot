@@ -80,7 +80,7 @@ function sendWebhookMessage(webhook, data)
    }
    const files = createFiles(data.attachments);
 
-   webhook.send(data.text, { .
+   webhook.send(data.text, { 
       "username": username,
       "avatarURL": avatarURL,
       "files": files
