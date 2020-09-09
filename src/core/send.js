@@ -42,12 +42,7 @@ const handleError = function(err)
    }
 
    logger("error", errMsg);
-};
-
-const botname = function(botname)
-{
-   return 1;
-};
+}
 
 function createFiles(dataAttachments)
 {
@@ -72,7 +67,6 @@ function sendWebhookMessage(webhook, data)
 {
    let username = "Rita Commands";
    let avatarURL = "https://cdn.discordapp.com/icons/545787876105912341/a89767345fbb7216f52591ba6d683056.webp?size=512&quot";
-
    if (data.author)
    {
       if (data.author.name) { username = data.author.name;}
