@@ -5,10 +5,7 @@ const fn = require("./helpers");
 const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
-const webHookName = "Webhook";
-//
-//const webhooks = new discord.WebhookClient(`id`, `token?`);
-//
+const webHookName = "Rita Messaging System";
 const handleError = function(err)
 {
    //
@@ -45,12 +42,7 @@ const handleError = function(err)
    }
 
    logger("error", errMsg);
-};
-
-const botname = function(botname)
-{
-   return 1;
-};
+}
 
 function createFiles(dataAttachments)
 {
@@ -59,18 +51,6 @@ function createFiles(dataAttachments)
    const files = [];
    if (attachments && attachments.length > 0)
    {
-      // const maxAtt = data.config.maxEmbeds;
-
-      // if (attachments.length > maxAtt)
-      // {
-      //    sendBox({
-      //       channel: data.channel,
-      //       text: `:warning:  Cannot attach more than ${maxAtt} files.`,
-      //       color: "warn"
-      //    });
-      //    attachments = attachments.slice(0, maxAtt);
-      // }
-
       for (let i = 0; i < attachments.length; i++)
       {
          const attachmentObj = new discord.Attachment(
@@ -87,7 +67,6 @@ function sendWebhookMessage(webhook, data)
 {
    let username = "Rita Commands";
    let avatarURL = "https://cdn.discordapp.com/icons/545787876105912341/a89767345fbb7216f52591ba6d683056.webp?size=512&quot";
-
    if (data.author)
    {
       if (data.author.name) { username = data.author.name;}
@@ -95,13 +74,13 @@ function sendWebhookMessage(webhook, data)
    }
    const files = createFiles(data.attachments);
 
-   webhook.send(data.text, { // This means you can just copy and paste the webhook & catch part.
+   webhook.send(data.text, { 
       "username": username,
       "avatarURL": avatarURL,
       "files": files
    })
       .catch(error =>
-      { // We also want to make sure if an error is found, to report it in chat.
+      { 
          handleError(error);
          return data.channel.send("**Something went wrong when sending the webhook. Please check console.**");
       });
@@ -112,19 +91,19 @@ module.exports = function(data)
    //
    // Send Data to Channel
    //
+
    const sendBox = function(data)
    {
       const channel = data.channel;
-
-      if (data.author)
-      {
-         data.author = {
-            name: data.author.username,
-            // eslint-disable-next-line camelcase
-            icon_url: data.author.displayAvatarURL
-         };
+      
+      if (data.author)	
+      {	
+         data.author = {	
+            name: data.author.username,	
+            // eslint-disable-next-line camelcase	
+            icon_url: data.author.displayAvatarURL	
+         };	
       }
-      // Reassign default parameters - If any are blank.
       let color = colors.get(data.color);
       let avatarURL;
       if (data.author && data.author.icon_url)
@@ -132,23 +111,22 @@ module.exports = function(data)
          avatarURL = data.author.displayAvatarURL;
       }
       if (!channel) {return console.log("Channel not specified.");}
-      if (!color) {color = "d9a744";} // This is an optional variable. Therefore the default HEX color will be whatever you post there. Mine will be d9a744
-      if (!avatarURL) {avatarURL = data.author;} // This is also an optional variable, you can change the default to any icon.
+      if (!color) {color = "d9a744";} // Sets the color of embed message but no embed message used so thus unused. 
+      if (!avatarURL) {avatarURL = data.author;}
+ 
+      // 
+      // Webhook Creation and Sending
+      // 
 
-      // We want to remove spaces from color & url, since they might have it on the sides.
-      // color = color.replace(/\s/g, "");
-      // avatar = avatar.replace(/\s/g, "");
-
-      // This is the start of creating the webhook
-      channel.fetchWebhooks() // This gets the webhooks in the channel
+      
+      channel.fetchWebhooks() 
          .then(webhooks =>
          {
-            // Fetches the webhook we will use for each hook
-            const existingWebhook = webhooks.find(x => x.name === webHookName); // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
-            // This runs if the webhook is not found.
+         existingWebhook = webhooks.find(x => x.name === webHookName); // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
+           
             if (!existingWebhook)
             {
-               channel.createWebhook(webHookName, "https://cdn4.iconfinder.com/data/icons/technology-devices-1/500/speech-bubble-128.png") // Make sure this is the same thing for when you search for the webhook. The png image will be the default image seen under the channel. Change it to whatever you want.
+               channel.createWebhook(webHookName, "https://cdn.discordapp.com/icons/545787876105912341/a89767345fbb7216f52591ba6d683056.png?size=512&quot") 
                   .then(newWebhook =>
                   {
                      // Finally send the webhook
@@ -160,42 +138,6 @@ module.exports = function(data)
                sendWebhookMessage(existingWebhook, data);
             }
          });
-
-      // if (data.text && data.text.length > 1)
-      // {
-      //    data.channel.send({
-      //       embed: {
-      //          title: data.title,
-      //          fields: data.fields,
-      //          author: data.author,
-      //          color: colors.get(data.color),
-      //          description: data.text,
-      //          footer: data.footer
-      //       }
-      //    }).then(() =>
-      //    {
-      //       sendHooks(data);
-      //       //sendEmbeds(data);
-      //       sendAttachments(data);
-      //    }).catch(err =>
-      //    {
-      //       handleError(err);
-      //       /*.then(() =>
-      //       {
-      //          discord.fetchWebhooks();
-      //          webhooks.send(data.text, {
-      //                username: data.author.username,
-      //                avatarURL: data.author.displayAvatarURL
-      //             });*/
-
-      //       //
-      //       // Webhooks
-      //       //
-      //    });
-      // }
-
-      // Functions
-      /*function hook(channel, title, message, avatar) { // This function uses quite a few options. The last 2 are optional.*/
    };
 
 
