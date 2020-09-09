@@ -44,11 +44,6 @@ const handleError = function(err)
    logger("error", errMsg);
 };
 
-const botname = function(botname)
-{
-   return 1;
-};
-
 function createFiles(dataAttachments)
 {
    if (!dataAttachments && !dataAttachments.array().length > 0) {return;}
@@ -68,29 +63,59 @@ function createFiles(dataAttachments)
    return files;
 }
 
+
 function sendWebhookMessage(webhook, data)
 {
-   let username = "Rita Commands";
-   let avatarURL = "https://cdn.discordapp.com/icons/545787876105912341/a89767345fbb7216f52591ba6d683056.webp?size=512&quot";
-
    if (data.author)
    {
-      if (data.author.name) { username = data.author.name;}
-      if (data.author.icon_url) { avatarURL = data.author.icon_url;}
+      data.author = {
+         name: data.author.username,
+         // eslint-disable-next-line camelcase
+         icon_url: data.author.displayAvatarURL
+      };
    }
+   let username = "Rita Commands";
+   let avatarURL = "https://cdn.discordapp.com/icons/545787876105912341/a89767345fbb7216f52591ba6d683056.webp?size=512&quot";
    const files = createFiles(data.attachments);
+   if (!data.author)
+   {
+      if (data.text === undefined)
+      {
+         webhook.send(data.text, {
+            "username": username,
+            "avatarURL": avatarURL,
+            "files": files
+         });
+      }
+      else {
+         webhook.send("", {
+            "username": username,
+            "avatarURL": avatarURL,
+            "files": files,
+            "embeds": [{
+               "description": data.text
+            }]
+         });
+      }
+   }
+   else
+   {
+      if (data.author)
+      {
+         if (data.author.name) { username = data.author.name;}
+         if (data.author.icon_url) { avatarURL = data.author.icon_url;}
+      }
 
-   webhook.send(data.text, { 
-      "username": username,
-      "avatarURL": avatarURL,
-      "files": files
-   })
-      .catch(error =>
-      { 
-         handleError(error);
-         return data.channel.send("**Something went wrong when sending the webhook. Please check console.**");
+      webhook.send(data.text, {
+         "username": data.author.name,
+         "avatarURL": data.author.icon_url,
+         "files": files
       });
+   }
 }
+
+
+
 
 module.exports = function(data)
 {
@@ -101,15 +126,8 @@ module.exports = function(data)
    const sendBox = function(data)
    {
       const channel = data.channel;
-      
-      if (data.author)	
-      {	
-         data.author = {	
-            name: data.author.username,	
-            // eslint-disable-next-line camelcase	
-            icon_url: data.author.displayAvatarURL	
-         };	
-      }
+
+
       let color = colors.get(data.color);
       let avatarURL;
       if (data.author && data.author.icon_url)
@@ -117,22 +135,22 @@ module.exports = function(data)
          avatarURL = data.author.displayAvatarURL;
       }
       if (!channel) {return console.log("Channel not specified.");}
-      if (!color) {color = "d9a744";} // Sets the color of embed message but no embed message used so thus unused. 
+      if (!color) {color = "d9a744";} // Sets the color of embed message but no embed message used so thus unused.
       if (!avatarURL) {avatarURL = data.author;}
- 
-      // 
-      // Webhook Creation and Sending
-      // 
 
-      
-      channel.fetchWebhooks() 
+      //
+      // Webhook Creation and Sending
+      //
+
+
+      channel.fetchWebhooks()
          .then(webhooks =>
          {
-         existingWebhook = webhooks.find(x => x.name === webHookName); // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
-           
+            existingWebhook = webhooks.find(x => x.name === webHookName); // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
+
             if (!existingWebhook)
             {
-               channel.createWebhook(webHookName, "https://cdn.discordapp.com/icons/545787876105912341/a89767345fbb7216f52591ba6d683056.png?size=512&quot") 
+               channel.createWebhook(webHookName, "https://cdn.discordapp.com/icons/545787876105912341/a89767345fbb7216f52591ba6d683056.png?size=512&quot")
                   .then(newWebhook =>
                   {
                      // Finally send the webhook
