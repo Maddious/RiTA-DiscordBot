@@ -74,8 +74,8 @@ function sendWebhookMessage(webhook, data)
          icon_url: data.author.displayAvatarURL
       };
    }
-   let username = "Rita Commands";
-   let avatarURL = "https://cdn.discordapp.com/icons/545787876105912341/a89767345fbb7216f52591ba6d683056.webp?size=512&quot";
+   let username = "Notice";
+   let avatarURL = "https://i.ibb.co/vjcn66h/67-678785-open-subscribe-bell-icon-png.png";
    const files = createFiles(data.attachments);
    if (!data.author)
    {
@@ -151,7 +151,7 @@ module.exports = function(data)
 
             if (!existingWebhook)
             {
-               channel.createWebhook(webHookName, "https://cdn.discordapp.com/icons/545787876105912341/a89767345fbb7216f52591ba6d683056.png?size=512&quot")
+               channel.createWebhook(webHookName, "https://i.ibb.co/vjcn66h/67-678785-open-subscribe-bell-icon-png.png")
                   .then(newWebhook =>
                   {
                      // Finally send the webhook
