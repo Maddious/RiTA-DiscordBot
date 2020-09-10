@@ -87,7 +87,8 @@ function sendWebhookMessage(webhook, data)
             "files": files
          });
       }
-      else {
+      else
+      {
          webhook.send("", {
             "username": username,
             "avatarURL": avatarURL,
