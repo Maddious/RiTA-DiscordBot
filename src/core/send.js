@@ -5,7 +5,7 @@ const fn = require("./helpers");
 const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
-const webHookName = "Rita Messaging System";
+const webHookName = "Translator Messaging System";
 const handleError = function(err)
 {
    //
