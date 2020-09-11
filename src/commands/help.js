@@ -188,7 +188,7 @@ const helpMessage = function(config, botname, param)
    // ReadMe location
    // ------------------------------
 
-   const readme =
+   const report =
    `__**You can report bugs and request features at the link below**__\n\n` +
    `https://github.com/ZyC0R3/RitaBot/issues`;
    
