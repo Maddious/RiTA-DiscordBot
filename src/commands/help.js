@@ -70,9 +70,9 @@ const helpMessage = function(config, botname, param)
 
    const basics =
    `${cmd} help react ` +
-   helpSection(`${cmd} help react `{
+   helpSection({
       config: config,
-      title: "Translate by Reacting",
+      title: "Translate by Reacting" + ${cmd} + "help this" ,
       link: "<https://github.com/ZyC0R3/Rita/wiki/Translate-by-Reacting>",
       icon: ":flag_white:",
       cmd: null,
