@@ -165,8 +165,7 @@ const helpMessage = function(config, botname, param)
       title: "Report Bugs / Request Features",
       link: "<https://github.com/ZyC0R3/Rita/issues>",
       icon: ":raising_hand::skin-tone-3:"
-   }) +
-   donation;
+   }); 
 
    // ------------------------------
    // ReadMe location
