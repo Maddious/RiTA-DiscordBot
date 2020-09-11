@@ -302,17 +302,26 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help\n` +
    `> ${cmd} help [command]\n\n` +
 
-   `# Statistics\n` +
-   `> ${cmd} version \n` +
-   `> ${cmd} stats \n` +
-   `> ${cmd} stats global \n` +
-   `> ${cmd} stats server \n\n` +
-
    `# Links\n` +
    `> ${cmd} invite\n\n` +
 
    `# Supported Languages\n` +
    `> ${cmd} list\n` +
+   "```";
+
+   // ------------------------------
+   // Statistics
+   // ------------------------------
+
+   const stats =
+   `__**Statistics**__\n\n` +
+   "```md\n" +
+
+   `# Statistics\n` +
+   `> ${cmd} version \n` +
+   `> ${cmd} stats \n` +
+   `> ${cmd} stats global \n` +
+   `> ${cmd} stats server \n` +
    "```";
 
    // ------------------------------
@@ -373,7 +382,8 @@ const helpMessage = function(config, botname, param)
       "misc": misc,
       "settings": settings,
       "tasks": tasks,
-      "readme": readme
+      "readme": readme,
+      "stats": stats
    };
 
    //if (paramMap.hasOwnProperty(param))

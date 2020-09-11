@@ -5,8 +5,7 @@ const fn = require("./helpers");
 const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
-const webHookName = "Translator Translating System";
-const handleError = function(err)
+const webHookName = "Translator Messaging System";const handleError = function(err)
 {
    //
    // Error for long messages
@@ -167,6 +166,7 @@ module.exports = function(data)
                   channel.createWebhook(webHookName, "https://i.ibb.co/vjcn66h/67-678785-open-subscribe-bell-icon-png.png")
                      .then(newWebhook =>
                      {
+
                      // Finally send the webhook
                         sendWebhookMessage(newWebhook, data);
                      });
