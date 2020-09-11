@@ -72,7 +72,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate by Reacting ",
-      link: "<https://github.com/ZyC0R3/Rita/wikido it late, go eat, not a rush/Translate-by-Reacting>",
+      link: "<https://github.com/ZyC0R3/Rita/wiki/Translate-by-Reacting>",
       icon: ":flag_white:",
       cmd: null,
       help: "react",
