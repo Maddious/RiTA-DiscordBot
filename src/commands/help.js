@@ -69,6 +69,7 @@ const helpMessage = function(config, botname, param)
    // ------------------------------
 
    const basics =
+   `> ${cmd} help react` +
    helpSection({
       config: config,
       title: "Translate by Reacting ${cmd} help react",
