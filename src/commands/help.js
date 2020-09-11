@@ -79,7 +79,7 @@ const helpMessage = function(config, botname, param)
       help: "react",
       args: null,
       example: "!t help react for examples"
-   }) +
+   })
    `${cmd} help this ` +
    helpSection({
       config: config,
