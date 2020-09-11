@@ -71,7 +71,7 @@ const helpMessage = function(config, botname, param)
    const basics =
    helpSection({
       config: config,
-      title: "Translate by Reacting ",
+      title: "Translate by Reacting \`${cmd} help react\`",
       link: "<https://github.com/ZyC0R3/Rita/wiki/Translate-by-Reacting>",
       icon: ":flag_white:",
       cmd: null,
@@ -145,7 +145,7 @@ const helpMessage = function(config, botname, param)
       args: "",
       example: ""
    }) +
-   `> ${cmd} help misc \n` +
+   `> ${cmd} help misc \n\n` +
    helpSection({
       config: config,
       title: "Tasks",
@@ -174,7 +174,7 @@ const helpMessage = function(config, botname, param)
       link: "<https://github.com/ZyC0R3/Rita/issues>",
       icon: ":raising_hand::skin-tone-3:"
    }) +
-   `> ${cmd} help this \n`; 
+   `> ${cmd} help report \n`; 
 
    // ------------------------------
    // ReadMe location
