@@ -71,14 +71,15 @@ const helpMessage = function(config, botname, param)
    const basics =
    helpSection({
       config: config,
-      title: "Translate by Reacting",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Translate-by-Reacting>",
+      title: "Translate by Reacting ",
+      link: "<https://github.com/ZyC0R3/Rita/wikido it late, go eat, not a rush/Translate-by-Reacting>",
       icon: ":flag_white:",
       cmd: null,
       help: "react",
       args: null,
       example: "!t help react for examples"
    }) +
+   `Translates last message chain(s) in channel. A chain is a collection of ` +
    helpSection({
       config: config,
       title: "Translate Custom Text",
@@ -115,7 +116,7 @@ const helpMessage = function(config, botname, param)
       link: "<https://github.com/ZyC0R3/Rita/wiki/Get-Statistics>",
       icon: ":bar_chart:",
       cmd: "stats",
-      help: "misc",
+      help: "stats",
       args: "stats [server/global]",
       example: ""
    }) +
@@ -163,9 +164,9 @@ const helpMessage = function(config, botname, param)
       config: config,
       title: "Report Bugs / Request Features",
       link: "<https://github.com/ZyC0R3/Rita/issues>",
-      icon: ":raising_hand: :skin-tone-3:"
-   });
-
+      icon: ":raising_hand::skin-tone-3:"
+   }) +
+   donation;
 
    // ------------------------------
    // ReadMe location
@@ -345,7 +346,6 @@ const helpMessage = function(config, botname, param)
    `# Fix Guild Mismatch\n` +
    `> ${cmd} settings dbfix\n\n` +
 
-
    `# Update Bot\n` +
    `> ${cmd} settings updatebot\n` +
    "```";
@@ -382,8 +382,8 @@ const helpMessage = function(config, botname, param)
       "misc": misc,
       "settings": settings,
       "tasks": tasks,
-      "readme": readme,
-      "stats": stats
+      "stats": stats,
+      "readme": readme
    };
 
    //if (paramMap.hasOwnProperty(param))
