@@ -62,14 +62,14 @@ const helpMessage = function(config, botname, param)
 
    const info =
    `**${botname} Bot - v.${config.version}**\n` +
-   `Translates Discord messages (based on \`Google API\`).\n\n`;
-
+   `Translates Discord messages (based on \`Google API\`).\n\n`
+   `For examples and details > \n\n`
+   `${cmd} help react, help this, help last, help auto, help stats, help settings, help misc, help tasks, help readme, help report \n\n`;
    // ------------------------------
    // Help Basics
    // ------------------------------
 
    const basics =
-   `${cmd} help react ` +
    helpSection({
       config: config,
       title: "Translate by Reacting",
@@ -79,7 +79,7 @@ const helpMessage = function(config, botname, param)
       help: "react",
       args: null,
       example: "!t help react for examples"
-   }) + `${cmd} help this ` +
+   }) +
    helpSection({
       config: config,
       title: "Translate Custom Text",
@@ -90,7 +90,6 @@ const helpMessage = function(config, botname, param)
       args: "to [lang] from [lang]: [msg]",
       example: "to french from english: hello"
    }) +
-   `${cmd} help last ` +
    helpSection({
       config: config,
       title: "Translate Last Message",
@@ -101,7 +100,6 @@ const helpMessage = function(config, botname, param)
       args: "[count] from [lang] to [lang]",
       example: "3 from german to spanish"
    }) +
-   `${cmd} help auto ` +
    helpSection({
       config: config,
       title: "Translate Channel (Automatic)",
@@ -111,8 +109,7 @@ const helpMessage = function(config, botname, param)
       help: "auto",
       args: "from [lang] to [lang] for [@/#]",
       example: "from hebrew to arabic for me"
-   }) +     
-   `${cmd} help stats  ` +
+   }) +
    helpSection({
       config: config,
       title: "Stats",
@@ -123,7 +120,6 @@ const helpMessage = function(config, botname, param)
       args: "stats [server/global]",
       example: ""
    }) +
-   `${cmd} help settings ` +
    helpSection({
       config: config,
       title: "Settings",
@@ -134,7 +130,6 @@ const helpMessage = function(config, botname, param)
       args: "setLang to [lang]",
       example: "setLang to italian"
    }) +
-   `${cmd} help misc ` +
    helpSection({
       config: config,
       title: "Misc. Settings",
@@ -145,7 +140,6 @@ const helpMessage = function(config, botname, param)
       args: "",
       example: ""
    }) +
-   `${cmd} help tasks ` +
    helpSection({
       config: config,
       title: "Tasks",
@@ -156,7 +150,6 @@ const helpMessage = function(config, botname, param)
       args: "",
       example: ""
    }) +
-   `${cmd} help readme ` +
    helpSection({
       config: config,
       title: "ReadMe",
@@ -167,7 +160,6 @@ const helpMessage = function(config, botname, param)
       args: "",
       example: ""
    }) +
-   `${cmd} help report ` +
    helpSection({
       config: config,
       title: "Report Bugs / Request Features",
