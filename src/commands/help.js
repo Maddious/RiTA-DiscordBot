@@ -69,7 +69,7 @@ const helpMessage = function(config, botname, param)
    // ------------------------------
 
    const basics =
-   `> ${cmd} help react` +
+   `${cmd} help react ` +
    helpSection({
       config: config,
       title: "Translate by Reacting ${cmd} help react",
@@ -80,7 +80,7 @@ const helpMessage = function(config, botname, param)
       args: null,
       example: "!t help react for examples"
    }) +
-   `> ${cmd} help react \n` +
+   `${cmd} help this ` +
    helpSection({
       config: config,
       title: "Translate Custom Text",
@@ -91,7 +91,7 @@ const helpMessage = function(config, botname, param)
       args: "to [lang] from [lang]: [msg]",
       example: "to french from english: hello"
    }) +
-   `> ${cmd} help this \n` +
+   `${cmd} help last ` +
    helpSection({
       config: config,
       title: "Translate Last Message",
@@ -102,7 +102,7 @@ const helpMessage = function(config, botname, param)
       args: "[count] from [lang] to [lang]",
       example: "3 from german to spanish"
    }) +
-   `> ${cmd} help last \n` +
+   `${cmd} help auto ` +
    helpSection({
       config: config,
       title: "Translate Channel (Automatic)",
@@ -113,7 +113,7 @@ const helpMessage = function(config, botname, param)
       args: "from [lang] to [lang] for [@/#]",
       example: "from hebrew to arabic for me"
    }) +     
-   `> ${cmd} help auto \n` +
+   `${cmd} help stats  ` +
    helpSection({
       config: config,
       title: "Stats",
@@ -124,7 +124,7 @@ const helpMessage = function(config, botname, param)
       args: "stats [server/global]",
       example: ""
    }) +
-   `> ${cmd} help stats \n` +
+   `${cmd} help settings ` +
    helpSection({
       config: config,
       title: "Settings",
@@ -135,7 +135,7 @@ const helpMessage = function(config, botname, param)
       args: "setLang to [lang]",
       example: "setLang to italian"
    }) +
-   `> ${cmd} help settings \n` +
+   `${cmd} help misc ` +
    helpSection({
       config: config,
       title: "Misc. Settings",
@@ -146,7 +146,7 @@ const helpMessage = function(config, botname, param)
       args: "",
       example: ""
    }) +
-   `> ${cmd} help misc \n\n` +
+   `${cmd} help tasks ` +
    helpSection({
       config: config,
       title: "Tasks",
@@ -157,7 +157,7 @@ const helpMessage = function(config, botname, param)
       args: "",
       example: ""
    }) +
-   `> ${cmd} help tasks \n` +
+   `${cmd} help readme ` +
    helpSection({
       config: config,
       title: "ReadMe",
@@ -168,14 +168,13 @@ const helpMessage = function(config, botname, param)
       args: "",
       example: ""
    }) +
-   `> ${cmd} help readme \n` +
+   `${cmd} help report ` +
    helpSection({
       config: config,
       title: "Report Bugs / Request Features",
       link: "<https://github.com/ZyC0R3/Rita/issues>",
       icon: ":raising_hand::skin-tone-3:"
-   }) +
-   `> ${cmd} help report \n`; 
+   }); 
 
    // ------------------------------
    // ReadMe location
