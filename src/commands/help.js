@@ -62,8 +62,8 @@ const helpMessage = function(config, botname, param)
 
    const info =
    `**${botname} Bot - v.${config.version}**\n` +
-   `Translates Discord messages (based on \`Google API\`).\n\n`;
-   `For examples and details > \n\n`;
+   `Translates Discord messages (based on \`Google API\`).\n`
+   `For examples and details > \n`
    `${cmd} help react, help this, help last, help auto, help stats, help settings, help misc, help tasks, help readme, help report \n\n`;
    // ------------------------------
    // Help Basics
