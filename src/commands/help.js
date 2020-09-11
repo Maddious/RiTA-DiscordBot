@@ -79,7 +79,7 @@ const helpMessage = function(config, botname, param)
       args: null,
       example: "!t help react for examples"
    }) +
-   `Translates last message chain(s) in channel. A chain is a collection of ` +
+   `> ${cmd} help react \n` +
    helpSection({
       config: config,
       title: "Translate Custom Text",
@@ -90,6 +90,7 @@ const helpMessage = function(config, botname, param)
       args: "to [lang] from [lang]: [msg]",
       example: "to french from english: hello"
    }) +
+   `> ${cmd} help this \n` +
    helpSection({
       config: config,
       title: "Translate Last Message",
@@ -100,6 +101,7 @@ const helpMessage = function(config, botname, param)
       args: "[count] from [lang] to [lang]",
       example: "3 from german to spanish"
    }) +
+   `> ${cmd} help last \n` +
    helpSection({
       config: config,
       title: "Translate Channel (Automatic)",
@@ -109,7 +111,8 @@ const helpMessage = function(config, botname, param)
       help: "auto",
       args: "from [lang] to [lang] for [@/#]",
       example: "from hebrew to arabic for me"
-   }) +
+   }) +     
+   `> ${cmd} help auto \n` +
    helpSection({
       config: config,
       title: "Stats",
@@ -120,6 +123,7 @@ const helpMessage = function(config, botname, param)
       args: "stats [server/global]",
       example: ""
    }) +
+   `> ${cmd} help stats \n` +
    helpSection({
       config: config,
       title: "Settings",
@@ -130,6 +134,7 @@ const helpMessage = function(config, botname, param)
       args: "setLang to [lang]",
       example: "setLang to italian"
    }) +
+   `> ${cmd} help settings \n` +
    helpSection({
       config: config,
       title: "Misc. Settings",
@@ -140,6 +145,7 @@ const helpMessage = function(config, botname, param)
       args: "",
       example: ""
    }) +
+   `> ${cmd} help misc \n` +
    helpSection({
       config: config,
       title: "Tasks",
@@ -150,6 +156,7 @@ const helpMessage = function(config, botname, param)
       args: "",
       example: ""
    }) +
+   `> ${cmd} help tasks \n` +
    helpSection({
       config: config,
       title: "ReadMe",
@@ -160,12 +167,14 @@ const helpMessage = function(config, botname, param)
       args: "",
       example: ""
    }) +
+   `> ${cmd} help readme \n` +
    helpSection({
       config: config,
       title: "Report Bugs / Request Features",
       link: "<https://github.com/ZyC0R3/Rita/issues>",
       icon: ":raising_hand::skin-tone-3:"
-   }); 
+   }) +
+   `> ${cmd} help this \n` +; 
 
    // ------------------------------
    // ReadMe location
@@ -173,8 +182,16 @@ const helpMessage = function(config, botname, param)
 
    const readme =
    `__**The ReadMe File can be located below**__\n\n` +
-   `https://github.com/ZyC0R3/Rita/blob/master/README.md`;
+   `https://github.com/ZyC0R3/RitaBot/blob/master/README.md`;
 
+   // ------------------------------
+   // ReadMe location
+   // ------------------------------
+
+   const readme =
+   `__**You can report bugs and request features at the link below**__\n\n` +
+   `https://github.com/ZyC0R3/RitaBot/issues`;
+   
    // ------------------------------
    // Last Message (last)
    // ------------------------------
