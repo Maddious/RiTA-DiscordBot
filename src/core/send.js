@@ -74,7 +74,7 @@ function sendWebhookMessage(webhook, data)
          icon_url: data.author.displayAvatarURL
       };
    }
-   let username = ${data.bot.username};
+   let username = data.bot.username;
    let avatarURL = "https://i.ibb.co/vjcn66h/67-678785-open-subscribe-bell-icon-png.png";
    const files = createFiles(data.attachments);
    if (!data.author)
