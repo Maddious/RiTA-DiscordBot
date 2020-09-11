@@ -65,31 +65,21 @@ const helpMessage = function(config, botname, param)
    `Translates Discord messages (based on \`Google API\`).\n\n`;
 
    // ------------------------------
-   // Support & Donations
-   // ------------------------------
-
-   var donation = "";
-   if (auth.donation && auth.donation.length > 5)
-   {
-      donation =
-         "Like this bot? [Support the developer!](" + auth.donation + ")";
-   }
-
-   // ------------------------------
    // Help Basics
    // ------------------------------
 
    const basics =
    helpSection({
       config: config,
-      title: "Translate by Reacting",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Translate-by-Reacting>",
+      title: "Translate by Reacting ",
+      link: "<https://github.com/ZyC0R3/Rita/wikido it late, go eat, not a rush/Translate-by-Reacting>",
       icon: ":flag_white:",
       cmd: null,
       help: "react",
       args: null,
       example: "!t help react for examples"
    }) +
+   `Translates last message chain(s) in channel. A chain is a collection of ` +
    helpSection({
       config: config,
       title: "Translate Custom Text",
@@ -126,7 +116,7 @@ const helpMessage = function(config, botname, param)
       link: "<https://github.com/ZyC0R3/Rita/wiki/Get-Statistics>",
       icon: ":bar_chart:",
       cmd: "stats",
-      help: "misc",
+      help: "stats",
       args: "stats [server/global]",
       example: ""
    }) +
@@ -313,17 +303,26 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help\n` +
    `> ${cmd} help [command]\n\n` +
 
-   `# Statistics\n` +
-   `> ${cmd} version \n` +
-   `> ${cmd} stats \n` +
-   `> ${cmd} stats global \n` +
-   `> ${cmd} stats server \n\n` +
-
    `# Links\n` +
    `> ${cmd} invite\n\n` +
 
    `# Supported Languages\n` +
    `> ${cmd} list\n` +
+   "```";
+
+   // ------------------------------
+   // Statistics
+   // ------------------------------
+
+   const stats =
+   `__**Statistics**__\n\n` +
+   "```md\n" +
+
+   `# Statistics\n` +
+   `> ${cmd} version \n` +
+   `> ${cmd} stats \n` +
+   `> ${cmd} stats global \n` +
+   `> ${cmd} stats server \n` +
    "```";
 
    // ------------------------------
@@ -345,7 +344,10 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} settings listservers\n\n` +
 
    `# Fix Guild Mismatch\n` +
-   `> ${cmd} settings dbfix\n` +
+   `> ${cmd} settings dbfix\n\n` +
+
+   `# Update Bot\n` +
+   `> ${cmd} settings updatebot\n` +
    "```";
 
    // ------------------------------
@@ -380,6 +382,7 @@ const helpMessage = function(config, botname, param)
       "misc": misc,
       "settings": settings,
       "tasks": tasks,
+      "stats": stats,
       "readme": readme
    };
 

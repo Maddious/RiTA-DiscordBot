@@ -5,8 +5,7 @@ const fn = require("./helpers");
 const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
-const webHookName = "Translator Messaging System";
-const handleError = function(err)
+const webHookName = "Translator Messaging System";const handleError = function(err)
 {
    //
    // Error for long messages
@@ -74,7 +73,7 @@ function sendWebhookMessage(webhook, data)
          icon_url: data.author.displayAvatarURL
       };
    }
-   let username = "Notice";
+   let username = data.bot.username;
    let avatarURL = "https://i.ibb.co/vjcn66h/67-678785-open-subscribe-bell-icon-png.png";
    const files = createFiles(data.attachments);
    if (!data.author)
