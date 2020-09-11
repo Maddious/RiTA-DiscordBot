@@ -353,6 +353,7 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} settings listservers\n\n` +
 
    `# Fix Guild Mismatch\n` +
+   `* MAY NOT WORK WITH SOME DB's \n` +
    `> ${cmd} settings dbfix\n\n` +
 
    `# Update Bot\n` +
