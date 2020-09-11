@@ -65,17 +65,6 @@ const helpMessage = function(config, botname, param)
    `Translates Discord messages (based on \`Google API\`).\n\n`;
 
    // ------------------------------
-   // Support & Donations
-   // ------------------------------
-
-   var donation = "";
-   if (auth.donation && auth.donation.length > 5)
-   {
-      donation =
-         "Like this bot? [Support the developer!](" + auth.donation + ")";
-   }
-
-   // ------------------------------
    // Help Basics
    // ------------------------------
 
@@ -174,9 +163,9 @@ const helpMessage = function(config, botname, param)
       config: config,
       title: "Report Bugs / Request Features",
       link: "<https://github.com/ZyC0R3/Rita/issues>",
-      icon: ":raising_hand::skin-tone-3:"
-   }) +
-   donation;
+      icon: ":raising_hand: :skin-tone-3:"
+   });
+
 
    // ------------------------------
    // ReadMe location
@@ -345,7 +334,11 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} settings listservers\n\n` +
 
    `# Fix Guild Mismatch\n` +
-   `> ${cmd} settings dbfix\n` +
+   `> ${cmd} settings dbfix\n\n` +
+
+
+   `# Update Bot\n` +
+   `> ${cmd} settings updatebot\n` +
    "```";
 
    // ------------------------------
