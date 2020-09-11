@@ -94,7 +94,8 @@ function sendWebhookMessage(webhook, data)
             "avatarURL": avatarURL,
             "files": files,
             "embeds": [{
-               "description": data.text
+               "description": data.text,
+               "color": colors.get(data.color)
             }]
          });
       }
@@ -143,26 +144,40 @@ module.exports = function(data)
       // Webhook Creation and Sending
       //
 
+      if (data.channel.type === "dm")
+      {
+         const embed = new discord.RichEmbed()
+            .setAuthor(data.author.username, data.author.displayAvatarURL)
+            .setColor(colors.get(data.color))
+            .setDescription(data.text)
+            .setFooter(data.footer.text);
+         sendAttachments(data);
+         data.channel.send({embed});
+      }
 
-      channel.fetchWebhooks()
-         .then(webhooks =>
-         {
-            existingWebhook = webhooks.find(x => x.name === webHookName); // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
-
-            if (!existingWebhook)
+      else
+      {
+         channel.fetchWebhooks()
+            .then(webhooks =>
             {
-               channel.createWebhook(webHookName, "https://i.ibb.co/vjcn66h/67-678785-open-subscribe-bell-icon-png.png")
-                  .then(newWebhook =>
-                  {
+               existingWebhook = webhooks.find(x => x.name === webHookName); // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
+
+               if (!existingWebhook)
+               {
+                  channel.createWebhook(webHookName, "https://i.ibb.co/vjcn66h/67-678785-open-subscribe-bell-icon-png.png")
+                     .then(newWebhook =>
+                     {
+
                      // Finally send the webhook
-                     sendWebhookMessage(newWebhook, data);
-                  });
-            }
-            else
-            {
-               sendWebhookMessage(existingWebhook, data);
-            }
-         });
+                        sendWebhookMessage(newWebhook, data);
+                     });
+               }
+               else
+               {
+                  sendWebhookMessage(existingWebhook, data);
+               }
+            });
+      }
    };
 
 
