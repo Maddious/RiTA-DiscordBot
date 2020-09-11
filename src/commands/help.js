@@ -174,7 +174,7 @@ const helpMessage = function(config, botname, param)
       link: "<https://github.com/ZyC0R3/Rita/issues>",
       icon: ":raising_hand::skin-tone-3:"
    }) +
-   `> ${cmd} help this \n` +; 
+   `> ${cmd} help this \n`; 
 
    // ------------------------------
    // ReadMe location
