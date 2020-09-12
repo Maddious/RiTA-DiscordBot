@@ -67,6 +67,7 @@ const helpMessage = function(config, botname, param)
    `# All the commands can be found by entering the following:\n` +
    `> ${cmd} help modules ` +
    "```\n\n";
+
    // ------------------------------
    // Help Basics
    // ------------------------------
@@ -169,11 +170,13 @@ const helpMessage = function(config, botname, param)
       icon: ":raising_hand::skin-tone-3:"
    });
 
+
    // ------------------------------
-   // ReadMe location
+   // ReadMe + Discord
    // ------------------------------
 
    const readme =
+
    `**Github ReadMe**\n\n` +
    "```md\n" +
    `# To read the GitHub read me go here:\n` +
@@ -184,8 +187,9 @@ const helpMessage = function(config, botname, param)
    `> https://discord.gg/mgNR64R` +
    "```\n\n";
 
+
    // ------------------------------
-   // ReadMe location
+   // Report Bugs + Report in Discord
    // ------------------------------
 
    const report =
@@ -197,6 +201,11 @@ const helpMessage = function(config, botname, param)
    `> https://discord.com/invite/mgNR64R \n` +
    "```\n\n";
 
+
+   const report =
+   `__**You can report bugs and request features at the link below**__\n\n` +
+   `https://github.com/ZyC0R3/RitaBot/issues`;
+   
    // ------------------------------
    // Module Commands
    // -----------------------------
