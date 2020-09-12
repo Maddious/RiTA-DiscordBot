@@ -199,13 +199,7 @@ const helpMessage = function(config, botname, param)
    `> ( https://github.com/ZyC0R3/RitaBot/issues )\n\n` +
    `# Rita also has a support server with it's developers and contributors... You may join that here: \n` +
    `> https://discord.com/invite/mgNR64R \n` +
-   "```\n\n";
-
-
-   const report =
-   `__**You can report bugs and request features at the link below**__\n\n` +
-   `https://github.com/ZyC0R3/RitaBot/issues`;
-   
+   "```\n\n";   
    // ------------------------------
    // Module Commands
    // -----------------------------
