@@ -62,8 +62,11 @@ const helpMessage = function(config, botname, param)
 
    const info =
    `**${botname} Bot - v.${config.version}**\n` +
-   `Translates Discord messages (based on \`Google API\`).\n\n`;
-
+   `Translates Discord messages (based on \`Google API\`).\n\n` +
+   "```md\n" +
+   `# All the commands can be found by entering the following:\n` +
+   `> ${cmd} help modules ` +
+   "```\n\n";
    // ------------------------------
    // Help Basics
    // ------------------------------
@@ -115,7 +118,7 @@ const helpMessage = function(config, botname, param)
       link: "<https://github.com/ZyC0R3/Rita/wiki/Get-Statistics>",
       icon: ":bar_chart:",
       cmd: "stats",
-      help: "misc",
+      help: "stats",
       args: "stats [server/global]",
       example: ""
    }) +
@@ -163,18 +166,62 @@ const helpMessage = function(config, botname, param)
       config: config,
       title: "Report Bugs / Request Features",
       link: "<https://github.com/ZyC0R3/Rita/issues>",
-      icon: ":raising_hand: :skin-tone-3:"
+      icon: ":raising_hand::skin-tone-3:"
    });
-
 
    // ------------------------------
    // ReadMe location
    // ------------------------------
 
    const readme =
-   `__**The ReadMe File can be located below**__\n\n` +
-   `https://github.com/ZyC0R3/Rita/blob/master/README.md`;
+   `**Github ReadMe**\n\n` +
+   "```md\n" +
+   `# To read the GitHub read me go here:\n` +
+   `> ( https://github.com/ZyC0R3/RitaBot/blob/master/README.md ) \n\n` +
+   `# If you need to update your bot's version you can do so here:\n` +
+   `> ( https://github.com/ZyC0R3/RitaBot#migration )\n\n` +
+   `# You can join Rita's Discord Support Server here: \n\n` +
+   `> https://discord.gg/mgNR64R` +
+   "```\n\n";
 
+   // ------------------------------
+   // ReadMe location
+   // ------------------------------
+
+   const report =
+   `**Report Bugs**\n` +
+   "```md\n" +
+   `# You can report issues in Github here:\n` +
+   `> ( https://github.com/ZyC0R3/RitaBot/issues )\n\n` +
+   `# Rita also has a support server with it's developers and contributors... You may join that here: \n` +
+   `> https://discord.com/invite/mgNR64R \n` +
+   "```\n\n";
+
+   // ------------------------------
+   // Module Commands
+   // -----------------------------
+
+   const modules =
+   `__**Modules**__\n\n` +
+   `These will help you look through ${botname}'s commands.` +
+   "```md\n" +
+
+   `# Translation Help Modules\n` +
+   `> ${cmd} help auto\n` +
+   `> ${cmd} help react\n` +
+   `> ${cmd} help last\n` +
+   `> ${cmd} help this\n\n` +
+
+   `# Information Modules\n` +
+   `> ${cmd} help stats\n` +
+   `> ${cmd} help tasks\n` +
+   `> ${cmd} help settings\n\n` +
+
+   `# Other\n` +
+   `> ${cmd} help misc\n` +
+   `> ${cmd} help report\n` +
+   `> ${cmd} help readme\n` +
+   "```";
    // ------------------------------
    // Last Message (last)
    // ------------------------------
@@ -343,8 +390,8 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} settings listservers\n\n` +
 
    `# Fix Guild Mismatch\n` +
+   `* MAY NOT WORK WITH SOME DB's \n` +
    `> ${cmd} settings dbfix\n\n` +
-
 
    `# Update Bot\n` +
    `> ${cmd} settings updatebot\n` +
@@ -382,8 +429,10 @@ const helpMessage = function(config, botname, param)
       "misc": misc,
       "settings": settings,
       "tasks": tasks,
+      "stats": stats,
       "readme": readme,
-      "stats": stats
+      "modules": modules,
+      "report": report
    };
 
    //if (paramMap.hasOwnProperty(param))

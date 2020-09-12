@@ -5,7 +5,8 @@ const fn = require("./helpers");
 const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
-const webHookName = "Translator Messaging System";const handleError = function(err)
+const webHookName = "Translator Messaging System";
+const handleError = function(err)
 {
    //
    // Error for long messages
@@ -74,7 +75,7 @@ function sendWebhookMessage(webhook, data)
       };
    }
    let username = data.bot.username;
-   let avatarURL = "https://i.ibb.co/vjcn66h/67-678785-open-subscribe-bell-icon-png.png";
+   let avatarURL = data.bot.displayAvatarURL;
    const files = createFiles(data.attachments);
    if (!data.author)
    {
@@ -136,7 +137,7 @@ module.exports = function(data)
          avatarURL = data.author.displayAvatarURL;
       }
       if (!channel) {return console.log("Channel not specified.");}
-      if (!color) {color = "d9a744";} // Sets the color of embed message but no embed message used so thus unused.
+      if (!color) {color = colors.get(data.color);} // Sets the color of embed message but no embed message used so thus unused.
       if (!avatarURL) {avatarURL = data.author;}
 
       //
@@ -163,10 +164,9 @@ module.exports = function(data)
 
                if (!existingWebhook)
                {
-                  channel.createWebhook(webHookName, "https://i.ibb.co/vjcn66h/67-678785-open-subscribe-bell-icon-png.png")
+                  channel.createWebhook(webHookName, data.bot.displayAvatarURL)
                      .then(newWebhook =>
                      {
-
                      // Finally send the webhook
                         sendWebhookMessage(newWebhook, data);
                      });
