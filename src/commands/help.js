@@ -62,11 +62,12 @@ const helpMessage = function(config, botname, param)
 
    const info =
    `**${botname} Bot - v.${config.version}**\n` +
-   `Translates Discord messages (based on \`Google API\`).\n` +
-   `For examples and details try the following commands.\n` +
-   `${cmd} help react, ${cmd} help this, ${cmd} help last, ${cmd} help auto,\n` +
-   `${cmd} help stats, ${cmd} help settings, ${cmd} help misc, ${cmd} help tasks,\n` + 
-   `${cmd} help readme, ${cmd} help report \n\n`;
+   `Translates Discord messages (based on \`Google API\`).\n\n` +
+   "```md\n" +
+   `# All the commands can be found by entering the following:\n` +
+   `> ${cmd} help modules ` +
+   "```\n\n";
+
    // ------------------------------
    // Help Basics
    // ------------------------------
@@ -167,24 +168,63 @@ const helpMessage = function(config, botname, param)
       title: "Report Bugs / Request Features",
       link: "<https://github.com/ZyC0R3/Rita/issues>",
       icon: ":raising_hand::skin-tone-3:"
-   }); 
+   });
+
 
    // ------------------------------
-   // ReadMe location
+   // ReadMe + Discord
    // ------------------------------
 
    const readme =
-   `__**The ReadMe File can be located below**__\n\n` +
-   `https://github.com/ZyC0R3/RitaBot/blob/master/README.md`;
+
+   `**Github ReadMe**\n\n` +
+   "```md\n" +
+   `# To read the GitHub read me go here:\n` +
+   `> ( https://github.com/ZyC0R3/RitaBot/blob/master/README.md ) \n\n` +
+   `# If you need to update your bot's version you can do so here:\n` +
+   `> ( https://github.com/ZyC0R3/RitaBot#migration )\n\n` +
+   `# You can join Rita's Discord Support Server here: \n\n` +
+   `> https://discord.gg/mgNR64R` +
+   "```\n\n";
+
 
    // ------------------------------
-   // ReadMe location
+   // Report Bugs + Report in Discord
    // ------------------------------
 
    const report =
-   `__**You can report bugs and request features at the link below**__\n\n` +
-   `https://github.com/ZyC0R3/RitaBot/issues`;
-   
+   `**Report Bugs**\n` +
+   "```md\n" +
+   `# You can report issues in Github here:\n` +
+   `> ( https://github.com/ZyC0R3/RitaBot/issues )\n\n` +
+   `# Rita also has a support server with it's developers and contributors... You may join that here: \n` +
+   `> https://discord.com/invite/mgNR64R \n` +
+   "```\n\n";   
+   // ------------------------------
+   // Module Commands
+   // -----------------------------
+
+   const modules =
+   `__**Modules**__\n\n` +
+   `These will help you look through ${botname}'s commands.` +
+   "```md\n" +
+
+   `# Translation Help Modules\n` +
+   `> ${cmd} help auto\n` +
+   `> ${cmd} help react\n` +
+   `> ${cmd} help last\n` +
+   `> ${cmd} help this\n\n` +
+
+   `# Information Modules\n` +
+   `> ${cmd} help stats\n` +
+   `> ${cmd} help tasks\n` +
+   `> ${cmd} help settings\n\n` +
+
+   `# Other\n` +
+   `> ${cmd} help misc\n` +
+   `> ${cmd} help report\n` +
+   `> ${cmd} help readme\n` +
+   "```";
    // ------------------------------
    // Last Message (last)
    // ------------------------------
@@ -393,7 +433,9 @@ const helpMessage = function(config, botname, param)
       "settings": settings,
       "tasks": tasks,
       "stats": stats,
-      "readme": readme
+      "readme": readme,
+      "modules": modules,
+      "report": report
    };
 
    //if (paramMap.hasOwnProperty(param))
