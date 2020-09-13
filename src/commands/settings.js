@@ -193,10 +193,6 @@ const getSettings = function(data)
    // Embed Messages
    // --------------------------------------
 
-   const commandVariable0 = data.cmd.params.split(" ")[0].toLowerCase();
-   const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
-   const commandVariable2 = data.cmd.params.split(" ")[2].toLowerCase();
-
    const embed = function(data)
    {
       var output =
@@ -210,12 +206,14 @@ const getSettings = function(data)
 
    const b2b = function(data)
    {
+      const commandVariable0 = data.cmd.params.split(" ")[0].toLowerCase();
+      const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
+      b2bvar = commandVariable1
       var output = 
        "**```Bot 2 Bot Command Here```**\n" +
        `Embeded Messages : ${b2bvar}\n\n` +
        `Command Variable 0 : ${commandVariable0}\n` +
-       `Command Variable 1 : ${commandVariable1}\n` +
-       `Command Variable 2 : ${commandVariable2}`;
+       `Command Variable 1 : ${commandVariable1}\n` ;
 
       data.color = "info";
       data.text = output;
