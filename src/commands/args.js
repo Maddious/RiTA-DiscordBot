@@ -219,7 +219,7 @@ module.exports = function(data)
          "help": cmdHelp,
          "info": cmdHelp,
          "list": cmdList,
-         "config": cmdConfig,
+         "config": cmdConfig.embed,
          "stats": cmdStats,
          "version": cmdMisc.version,
          "invite": cmdMisc.invite,
