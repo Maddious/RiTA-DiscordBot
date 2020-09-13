@@ -12,7 +12,7 @@
       "no-console": "off",
       "no-extra-parens": "warn",
       "curly": "error",
-      "eqeqeq": "error",
+      "eqeqeq": "warn",
       "complexity": ["warn", 10],
       "dot-notation": "error",
       "no-alert": "error",
