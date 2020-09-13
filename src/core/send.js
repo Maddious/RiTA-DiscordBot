@@ -6,7 +6,7 @@ const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
 const webHookName = "Translator Messaging System";
-const embedVar = require("../core/settings");
+//const embedVar = require("../core/settings");
 const handleError = function(err)
 {
    //
