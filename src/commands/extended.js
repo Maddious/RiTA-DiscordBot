@@ -9,35 +9,35 @@ var b2bvar = true;
 
 exports.embed = function(data)
 {
-  //
-  // Command allowed by admins only
-  //
+   //
+   // Command allowed by admins only
+   //
 
-  if (!data.message.isAdmin)
-  {
-     data.color = "warn";
-     data.text = ":cop:  This command is reserved for server administrators.";
-     return botSend(data);
-  }
+   if (!data.message.isAdmin)
+   {
+      data.color = "warn";
+      data.text = ":cop:  This command is reserved for server administrators.";
+      return botSend(data);
+   }
 
-  //
-  // Error if settings param is missing
-  //
+   //
+   // Error if settings param is missing
+   //
 
-  if (!data.cmd.params)
-  {
-     data.color = "error";
-     data.text =
-        ":warning:  Missing `settings` parameter. Use `" +
-        `${data.config.translateCmdShort} help settings\` to learn more.`;
+   if (!data.cmd.params)
+   {
+      data.color = "error";
+      data.text =
+         ":warning:  Missing `settings` parameter. Use `" +
+         `${data.config.translateCmdShort} help settings\` to learn more.`;
 
-     return botSend(data);
-  }
-     
-  //
-  // Set Embeded Value - On or Off
-  //
+      return botSend(data);
+   }
 
+   //
+   // Set Embeded Value - On or Off
+   //
+   
    var output =
    "**```Embeded Message Command Here```**\n" +
    `Embeded Messages Activate : ${embedvar}`;
