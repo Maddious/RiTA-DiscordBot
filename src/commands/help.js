@@ -398,11 +398,11 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} settings dbfix\n\n` +
 
    `# Send as Embeded Message \n` +
-   `* UNDER CONSTRUCTION \n` +
+   `* On By Default \n` +
    `> ${cmd} settings embed on/off\n\n` +
 
    `# Translate other Bots\n` +
-   `* UNDER CONSTRUCTION \n` +
+   `* Off By Default \n` +
    `> ${cmd} settings b2b on/off\n\n` +
 
    `# Update Bot\n` +
