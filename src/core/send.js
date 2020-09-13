@@ -265,6 +265,206 @@ module.exports = function(data)
    }
    else
    {
+      //
+      // Send Data to Channel
+      //
 
+      const sendBox = function(data)
+      {
+         const channel = data.channel;
+
+
+         let color = colors.get(data.color);
+         let avatarURL;
+         if (data.author && data.author.icon_url)
+         {
+            avatarURL = data.author.displayAvatarURL;
+         }
+         if (!channel) {return console.log("Channel not specified.");}
+         if (!color) {color = colors.get(data.color);} // Sets the color of embed message but no embed message used so thus unused.
+         if (!avatarURL) {avatarURL = data.author;}
+
+         //
+         // Webhook Creation and Sending
+         //
+
+         if (data.channel.type === "dm")
+         {
+            const embed = new discord.RichEmbed()
+               .setAuthor(data.author.username, data.author.displayAvatarURL)
+               .setColor(colors.get(data.color))
+               .setDescription(data.text)
+               .setFooter(data.footer.text);
+            sendAttachments(data);
+            data.channel.send({embed});
+         }
+
+         else
+         {
+            channel.fetchWebhooks()
+               .then(webhooks =>
+               {
+                  existingWebhook = webhooks.find(x => x.name === webHookName); // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
+
+                  if (!existingWebhook)
+                  {
+                     channel.createWebhook(webHookName, data.bot.displayAvatarURL)
+                        .then(newWebhook =>
+                        {
+                        // Finally send the webhook
+                           sendWebhookMessage(newWebhook, data);
+                        });
+                  }
+                  else
+                  {
+                     sendWebhookMessage(existingWebhook, data);
+                  }
+               });
+         }
+      };
+
+      //
+      // Resend attachments
+      //
+
+      const sendAttachments = function(data)
+      {
+         if (!data.attachments && !data.attachments.array().length > 0) {return;}
+         var attachments = data.attachments.array();
+
+         if (data.forward && attachments && attachments.length > 0)
+         {
+            const maxAtt = data.config.maxEmbeds;
+
+            if (attachments.length > maxAtt)
+            {
+               sendBox({
+                  channel: data.channel,
+                  text: `:warning:  Cannot attach more than ${maxAtt} files.`,
+                  color: "warn"
+               });
+               attachments = attachments.slice(0, maxAtt);
+            }
+
+            for (let i = 0; i < attachments.length; i++)
+            {
+               const attachmentObj = new discord.Attachment(
+                  attachments[i].url,
+                  attachments[i].filename
+               );
+               data.channel.send(attachmentObj);
+            }
+         }
+      };
+
+      //
+      // Analyze Data and determine sending style (system message or author box)
+      //
+
+      //eslint-disable-next-line complexity
+      /*module.exports = function (data)*/
+      {
+         var sendData = {
+            title: data.title,
+            fields: data.fields,
+            config: data.config,
+            channel: data.message.channel,
+            color: data.color,
+            text: data.text,
+            footer: data.footer,
+            embeds: data.message.embeds,
+            attachments: data.message.attachments,
+            forward: data.forward,
+            origin: null,
+            bot: data.bot
+         };
+      }
+
+
+      //
+      // Notify server owner if bot cannot write to channel
+      //
+
+      if (!data.canWrite)
+      {
+         const writeErr =
+         ":no_entry:  **Translate bot** does not have permission to write at " +
+         `the **${sendData.channel.name}** channel on your server **` +
+         `${sendData.channel.guild.name}**. Please fix.`;
+
+         return sendData.channel.guild.owner
+            .send(writeErr)
+            .catch(err => logger("error", err));
+      }
+
+      if (data.forward)
+      {
+         const forwardChannel = data.client.channels.get(data.forward);
+
+         if (forwardChannel)
+         {
+            //
+            // Check if bot can write to destination channel
+            //
+
+            var canWriteDest = true;
+
+            if (forwardChannel.type === "text")
+            {
+               canWriteDest = fn.checkPerm(
+                  forwardChannel.guild.me,
+                  forwardChannel,
+                  "SEND_MESSAGES"
+               );
+            }
+
+            if (canWriteDest)
+            {
+               sendData.origin = sendData.channel;
+               sendData.channel = forwardChannel;
+            }
+
+            //
+            // Error if bot cannot write to dest
+            //
+            else
+            {
+               sendData.footer = null;
+               sendData.embeds = null;
+               sendData.color = "error";
+               sendData.text =
+                  ":no_entry:  Bot does not have permission to write at the " +
+                  `<#${forwardChannel.id}> channel.`;
+
+               return sendBox(sendData);
+            }
+         }
+
+         //
+         // Error on invalid forward channel
+         //
+         else
+         {
+            sendData.footer = null;
+            sendData.embeds = null;
+            sendData.color = "error";
+            sendData.text = ":warning:  Invalid channel.";
+            return sendBox(sendData);
+         }
+      }
+
+      if (data.showAuthor)
+      {
+         sendData.author = data.message.author;
+
+         if (data.author)
+         {
+            sendData.author = data.author;
+         }
+      }
+
+      return sendBox(sendData);
+         
    }
+
 }
