@@ -5,8 +5,8 @@ const auth = require("../core/auth");
 const logger = require("../core/logger");
 const settings = require("./settings");
 var embedvar = localStorage.getItem("evLS");
-//const embedVar = require("../commands/settings");
-//const b2bVar = require("../commands/settings");
+import embedVar from '../commands/settings';
+import b2bVar from '../commands/settings';
 
 // Possible commands:
 // !t stats: Only in server channel allowed, returns global and server stats
@@ -66,7 +66,7 @@ module.exports = function(data)
                `:repeat:  Automatic translation:  ` +
                `**\`${activeServerTasks}\`**  channels and  ` +
                `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` +
-               `:inbox_tray: Embedded Message Status: **\`${embedvar}\`**\n\n` +
+               `:inbox_tray: Embedded Message Status: **\`${embedVar}\`**\n\n` +
                `:robot: Bot Translation Status: **\`${b2bVar}\`**`;
       }
 
