@@ -7,8 +7,8 @@ var b2bVar = "off";
 // Proccess settings params
 // -------------------------
 
-module.exports = {embedVar: embedVar};
-module.exports = function(data)
+module.exports.embedVar = embedVar
+module.exports.run = function(data)
 {
    //
    // Command allowed by admins only
