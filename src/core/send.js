@@ -289,7 +289,7 @@ module.exports = function(data)
       return sendBox(sendData);
          
       }
-   else
+   else if (settings.getEmbedVar() === "on" )
    {
       const sendBox = function(data)
       {
