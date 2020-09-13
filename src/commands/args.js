@@ -9,7 +9,7 @@ const fn = require("../core/helpers");
 
 const cmdHelp = require("./help");
 const cmdList = require("./list");
-const cmdExtended = require("./config");
+const cmdExtended = require("./extended");
 const cmdStats = require("./stats");
 const cmdMisc = require("./misc");
 const cmdSettings = require("./settings");
