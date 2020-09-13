@@ -267,6 +267,28 @@ module.exports = function(data)
    else
    {
       //
+      // Create Files
+      //
+      function createFiles(dataAttachments)
+      {
+         if (!dataAttachments && !dataAttachments.array().length > 0) {return;}
+         var attachments = dataAttachments.array();
+         const files = [];
+         if (attachments && attachments.length > 0)
+         {
+            for (let i = 0; i < attachments.length; i++)
+            {
+               const attachmentObj = new discord.Attachment(
+                  attachments[i].url,
+                  attachments[i].filename
+               );
+               files.push(attachmentObj);
+            }
+         }
+         return files;
+      }
+
+      //
       // Send Webhook Message
       //
 
