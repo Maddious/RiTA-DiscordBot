@@ -193,15 +193,15 @@ const getSettings = function(data)
    // Embed Messages
    // --------------------------------------
 
-   const embedMessages = function(data)
+   const embed = function(data)
    {
       var output =
        "**```Embeded Message Command Here```**\n" +
        `Embeded Messages : ${embedvar}`;
 
-       data.color = "info";
-       data.text = output;
-    }
+      data.color = "info";
+      data.text = output;
+    };
 
    // --------------------------
    // Execute command if exists
@@ -212,7 +212,7 @@ const getSettings = function(data)
       "disconnect": disconnect,
       "listservers": listServers,
       "dbfix": dbFix,
-      "embed": embedMessages,
+      "embed": embed,
       "updatebot": updateBot
    };
 
