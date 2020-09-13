@@ -1,6 +1,8 @@
 const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
+var embedvar = true;
+var b2bvar = true;
 
 // -------------------------
 // Proccess settings params
@@ -187,6 +189,20 @@ const getSettings = function(data)
       });
    };
 
+   // --------------------------------------
+   // Embed Messages
+   // --------------------------------------
+
+   const embedMessages = function(data)
+   {
+      var output =
+       "**```Embeded Message Command Here```**\n" +
+       `Embeded Messages : ${embedvar}`;
+
+       data.color = "info";
+       data.text = output;
+    }
+
    // --------------------------
    // Execute command if exists
    // --------------------------
@@ -196,6 +212,7 @@ const getSettings = function(data)
       "disconnect": disconnect,
       "listservers": listServers,
       "dbfix": dbFix,
+      "embed": embedMessages,
       "updatebot": updateBot
    };
 
