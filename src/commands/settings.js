@@ -214,7 +214,7 @@ const getSettings = function(data)
          "on": true,
          "off": false
       };
-      
+
       if (commandVariable1 == validState)
       {
          b2bvar = commandVariable1;
