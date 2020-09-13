@@ -64,7 +64,7 @@ module.exports = function(data)
                `**\`${activeServerTasks}\`**  channels and  ` +
                `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` +
                `:inbox_tray: Embedded Message Status: **\`${settings.getEmbedVar()}\`**\n\n` +
-               `:robot: Bot to Bot Translation Status: **\`${settings.b2bVar}\`**`;
+               `:robot: Bot to Bot Translation Status: **\`${settings.getB2bVar()}\`**`;
       }
 
       data.color = "info";
