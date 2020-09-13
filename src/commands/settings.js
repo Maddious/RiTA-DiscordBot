@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
@@ -14,12 +15,12 @@ var b2bVar = "off";
 
 module.exports.setEmbedVar = function(val) 
 {
- embedVar = val
-}
-module.exports.getEmbedVar = function(val) 
+   embedVar = val;
+};
+module.exports.getEmbedVar = function(val)
 {
- return embedVar
-}
+ return embedVar;
+};
 module.exports.b2bVar = b2bVar;
 module.exports.run = function(data)
 {
