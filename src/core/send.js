@@ -8,6 +8,77 @@ const discord = require("discord.js");
 const webHookName = "Translator Messaging System";
 const settings = require("..commands/settings");
 
+   function createFiles(dataAttachments)
+   {
+      if (!dataAttachments && !dataAttachments.array().length > 0) {return;}
+      var attachments = dataAttachments.array();
+      const files = [];
+      if (attachments && attachments.length > 0)
+      {
+         for (let i = 0; i < attachments.length; i++)
+         {
+            const attachmentObj = new discord.Attachment(
+               attachments[i].url,
+               attachments[i].filename
+            );
+            files.push(attachmentObj);
+         }
+      }
+      return files;
+   }
+
+   function sendWebhookMessage(webhook, data)
+   {
+      if (data.author)
+      {
+         data.author = {
+            name: data.author.username,
+            // eslint-disable-next-line camelcase
+            icon_url: data.author.displayAvatarURL
+         };
+      }
+      let username = data.bot.username;
+      let avatarURL = data.bot.displayAvatarURL;
+      const files = createFiles(data.attachments);
+      if (!data.author)
+      {
+         if (data.text === undefined)
+         {
+            webhook.send(data.text, {
+               "username": username,
+               "avatarURL": avatarURL,
+               "files": files
+            });
+         }
+         else
+         {
+            webhook.send("", {
+               "username": username,
+               "avatarURL": avatarURL,
+               "files": files,
+               "embeds": [{
+                  "description": data.text,
+                  "color": colors.get(data.color)
+               }]
+            });
+         }
+      }
+      else
+      {
+         if (data.author)
+         {
+            if (data.author.name) { username = data.author.name;}
+            if (data.author.icon_url) { avatarURL = data.author.icon_url;}
+         }
+
+         webhook.send(data.text, {
+            "username": data.author.name,
+            "avatarURL": data.author.icon_url,
+            "files": files
+         });
+      }
+   }
+   
 module.exports = function(data)
 {
    if (settings.getEmbedVar() === "off" )
@@ -15,76 +86,7 @@ module.exports = function(data)
    //
    // Send Data to Channel
    //
-      function createFiles(dataAttachments)
-      {
-         if (!dataAttachments && !dataAttachments.array().length > 0) {return;}
-         var attachments = dataAttachments.array();
-         const files = [];
-         if (attachments && attachments.length > 0)
-         {
-            for (let i = 0; i < attachments.length; i++)
-            {
-               const attachmentObj = new discord.Attachment(
-                  attachments[i].url,
-                  attachments[i].filename
-               );
-               files.push(attachmentObj);
-            }
-         }
-         return files;
-      }
 
-      function sendWebhookMessage(webhook, data)
-      {
-         if (data.author)
-         {
-            data.author = {
-               name: data.author.username,
-               // eslint-disable-next-line camelcase
-               icon_url: data.author.displayAvatarURL
-            };
-         }
-         let username = data.bot.username;
-         let avatarURL = data.bot.displayAvatarURL;
-         const files = createFiles(data.attachments);
-         if (!data.author)
-         {
-            if (data.text === undefined)
-            {
-               webhook.send(data.text, {
-                  "username": username,
-                  "avatarURL": avatarURL,
-                  "files": files
-               });
-            }
-            else
-            {
-               webhook.send("", {
-                  "username": username,
-                  "avatarURL": avatarURL,
-                  "files": files,
-                  "embeds": [{
-                     "description": data.text,
-                     "color": colors.get(data.color)
-                  }]
-               });
-            }
-         }
-         else
-         {
-            if (data.author)
-            {
-               if (data.author.name) { username = data.author.name;}
-               if (data.author.icon_url) { avatarURL = data.author.icon_url;}
-            }
-
-            webhook.send(data.text, {
-               "username": data.author.name,
-               "avatarURL": data.author.icon_url,
-               "files": files
-            });
-         }
-      }
 
       //
       // Send Data to Channel
