@@ -37,10 +37,10 @@ exports.embed = function(data)
    //
    // check if valiud Param or Not
    //
-   
+
    const validParam = {
       "on": true,
-      "off": false,
+      "off": false
    };
 
    const settingParam = data.cmd.params.split(" ")[0].toLowerCase();
@@ -48,7 +48,14 @@ exports.embed = function(data)
    //if (validSettings.hasOwnProperty(settingParam))
    if (Object.prototype.hasOwnProperty.call(validParam,settingParam))
    {
-      return validSettings[settingParam](data);
+      return validParam[settingParam](data);
+      var output =
+      "**```Embeded Message Command Here```**\n" +
+      `Embeded Messages Activate : ${embedvar}`;
+
+      data.color = "info";
+      data.text = output;
+      return botSend(data);
    }
 
    // ------------------------
@@ -60,14 +67,6 @@ exports.embed = function(data)
       ":warning:  **`" + data.cmd.params +
       "`** is not a valid settings option.";
 
-   return botSend(data);
-
-   var output =
-   "**```Embeded Message Command Here```**\n" +
-   `Embeded Messages Activate : ${embedvar}`;
-
-   data.color = "info";
-   data.text = output;
    return botSend(data);
 };
 
