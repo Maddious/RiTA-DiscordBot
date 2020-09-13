@@ -202,7 +202,21 @@ const getSettings = function(data)
       data.color = "info";
       data.text = output;
       return botSend(data);
-    };
+   };
+
+   const b2b = function(data)
+   {
+      var output = 
+       "**```Bot 2 Bot Command Here```**\n" +
+       `Embeded Messages : ${b2bvar}\n\n` +
+       `Command Variable 0 : ${data.cmd.params.split(" ")[0].toLowerCase()}\n` +
+       `Command Variable 1 : ${data.cmd.params.split(" ")[1].toLowerCase()}\n` +
+       `Command Variable 2 : ${data.cmd.params.split(" ")[2].toLowerCase()}`;
+
+      data.color = "info";
+      data.text = output;
+      return botSend(data);
+   };
 
    // --------------------------
    // Execute command if exists
@@ -214,6 +228,7 @@ const getSettings = function(data)
       "listservers": listServers,
       "dbfix": dbFix,
       "embed": embed,
+      "b2b": b2b,
       "updatebot": updateBot
    };
 
