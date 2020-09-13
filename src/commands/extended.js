@@ -35,9 +35,33 @@ exports.embed = function(data)
    }
 
    //
-   // Set Embeded Value - On or Off
+   // check if valiud Param or Not
    //
    
+   const validParam = {
+      "on": true,
+      "off": false,
+   };
+
+   const settingParam = data.cmd.params.split(" ")[0].toLowerCase();
+
+   //if (validSettings.hasOwnProperty(settingParam))
+   if (Object.prototype.hasOwnProperty.call(validParam,settingParam))
+   {
+      return validSettings[settingParam](data);
+   }
+
+   // ------------------------
+   // Error for invalid param
+   // ------------------------
+
+   data.color = "error";
+   data.text =
+      ":warning:  **`" + data.cmd.params +
+      "`** is not a valid settings option.";
+
+   return botSend(data);
+
    var output =
    "**```Embeded Message Command Here```**\n" +
    `Embeded Messages Activate : ${embedvar}`;
