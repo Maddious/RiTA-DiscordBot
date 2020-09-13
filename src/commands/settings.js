@@ -206,8 +206,8 @@ const getSettings = function(data)
 
    const b2b = function(data)
    {
-      var commandVariable0 = data.cmd.params.split(" ")[0].toLowerCase();
-      var commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
+      const commandVariable0 = data.cmd.params.split(" ")[0].toLowerCase();
+      const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
 
       const validState =
       {
