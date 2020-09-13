@@ -215,7 +215,7 @@ const getSettings = function(data)
          "off": false
       };
       
-      if (commandVariable1 = validState)
+      if (commandVariable1 == validState)
       {
          b2bvar = commandVariable1;
          var output =
@@ -228,7 +228,7 @@ const getSettings = function(data)
          data.text = output;
          return botSend(data);
       }
-      
+
       data.color = "error";
       data.text =
          ":warning:  **`" + data.cmd.params +
