@@ -13,13 +13,13 @@ var b2bVar = "off";
 //   b2bVar
 //}
 
-module.exports.setEmbedVar = function(val) 
+module.exports.setEmbedVar = function(val)
 {
    embedVar = val;
 };
 module.exports.getEmbedVar = function(val)
 {
- return embedVar;
+   return embedVar;
 };
 module.exports.b2bVar = b2bVar;
 module.exports.run = function(data)
@@ -213,7 +213,7 @@ const getSettings = function(data)
 
       if (commandVariable1 === "on" || commandVariable1 === "off")
       {
-         setEmbedVar(commandVariable1);
+         EmbedVar = commandVariable1;
          var output =
          "**```Embedded Message Translation```**\n" +
          `Embedded Message Translation is now turned : ${embedVar}\n\n`;
