@@ -208,15 +208,31 @@ const getSettings = function(data)
    {
       const commandVariable0 = data.cmd.params.split(" ")[0].toLowerCase();
       const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
-      b2bvar = commandVariable1
-      var output = 
-       "**```Bot 2 Bot Command Here```**\n" +
-       `Embeded Messages : ${b2bvar}\n\n` +
-       `Command Variable 0 : ${commandVariable0}\n` +
-       `Command Variable 1 : ${commandVariable1}\n` ;
 
-      data.color = "info";
-      data.text = output;
+      const validState = 
+      {
+         "on": true,
+         "off": false
+      };
+      
+      if (commandVariable1 = validState)
+      {
+         b2bvar = commandVariable1
+         var output = 
+         "**```Bot 2 Bot Command Here```**\n" +
+         `Embeded Messages : ${b2bvar}\n\n` +
+         `Command Variable 0 : ${commandVariable0}\n` +
+         `Command Variable 1 : ${commandVariable1}\n` ;
+  
+         data.color = "info";
+         data.text = output;
+         return botSend(data);
+      }
+      else
+      data.color = "error";
+      data.text =
+         ":warning:  **`" + data.cmd.params +
+         "`** is not a valid settings option.";
       return botSend(data);
    };
 
