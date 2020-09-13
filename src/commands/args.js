@@ -9,6 +9,7 @@ const fn = require("../core/helpers");
 
 const cmdHelp = require("./help");
 const cmdList = require("./list");
+const cmdConfig = require("./config");
 const cmdStats = require("./stats");
 const cmdMisc = require("./misc");
 const cmdSettings = require("./settings");
@@ -218,6 +219,7 @@ module.exports = function(data)
          "help": cmdHelp,
          "info": cmdHelp,
          "list": cmdList,
+         "config": cmdConfig,
          "stats": cmdStats,
          "version": cmdMisc.version,
          "invite": cmdMisc.invite,
