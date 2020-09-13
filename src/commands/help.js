@@ -397,6 +397,14 @@ const helpMessage = function(config, botname, param)
    `* MAY NOT WORK WITH SOME DB's \n` +
    `> ${cmd} settings dbfix\n\n` +
 
+   `# Send as Embeded Message \n` +
+   `* UNDER CONSTRUCTION \n` +
+   `> ${cmd} settings embed on/off\n\n` +
+
+   `# Translate other Bots\n` +
+   `* UNDER CONSTRUCTION \n` +
+   `> ${cmd} settings b2b on/off\n\n` +
+
    `# Update Bot\n` +
    `> ${cmd} settings updatebot\n` +
    "```";
