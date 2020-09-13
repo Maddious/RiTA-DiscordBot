@@ -206,8 +206,8 @@ const getSettings = function(data)
 
    const b2b = function(data)
    {
-      const commandVariable0 = data.cmd.params.split(" ")[0].toLowerCase();
-      const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
+      var commandVariable0 = data.cmd.params.split(" ")[0].toLowerCase();
+      var commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
 
       const validState =
       {
@@ -215,7 +215,7 @@ const getSettings = function(data)
          "off": false
       };
 
-      if (commandVariable1 == validState)
+      if (commandVariable1 == "on" || "off" )
       {
          b2bvar = commandVariable1;
          var output =
@@ -231,7 +231,7 @@ const getSettings = function(data)
 
       data.color = "error";
       data.text =
-         ":warning:  **`" + data.cmd.params +
+         ":warning:  **`" + ${commandVariable1} +
          "`** is not a valid settings option.";
       return botSend(data);
    };
