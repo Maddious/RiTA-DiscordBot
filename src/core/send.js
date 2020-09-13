@@ -16,7 +16,7 @@ const settings = require("../commands/settings");
 //
 module.exports = function(data)
 {
-   if (settings.getEmbedVar() === "on" )
+   if (settings.getEmbedVar() === "on")
    {
       const sendBox = function(data)
       {
@@ -260,7 +260,7 @@ module.exports = function(data)
             }
          }
 
-         return sendBox(sendData);
+         return sendBox(sendData)
       };
 
    }
