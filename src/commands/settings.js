@@ -30,7 +30,7 @@ module.exports = function(data)
       data.color = "error";
       data.text =
          ":warning:  Missing `settings` parameter. Use `" +
-         `${data.config.translateCmd} help settings\` to learn more.`;
+         `${data.config.translateCmdShort} help settings\` to learn more.`;
 
       return botSend(data);
    }
@@ -201,6 +201,7 @@ const getSettings = function(data)
 
       data.color = "info";
       data.text = output;
+      return botSend(data);
     };
 
    // --------------------------
