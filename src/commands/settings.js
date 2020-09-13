@@ -21,6 +21,14 @@ module.exports.getEmbedVar = function(val)
 {
    return embedVar;
 };
+module.exports.setB2bVar = function(val)
+{
+   b2bVar = val;
+};
+module.exports.getB2bVar = function(val)
+{
+   return b2bVar;
+};
 module.exports.b2bVar = b2bVar;
 module.exports.run = function(data)
 {
