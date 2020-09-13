@@ -29,6 +29,7 @@
       "no-self-compare": "error",
       "no-unused-expressions": "warn",
       "no-useless-concat": "warn",
+      "no-constant-condition": "warn",
       "yoda": "warn",
       "callback-return": "error",
       "global-require": "error",
