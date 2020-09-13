@@ -209,13 +209,7 @@ const getSettings = function(data)
       const commandVariable0 = data.cmd.params.split(" ")[0].toLowerCase();
       const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
 
-      const validState =
-      {
-         "on": true,
-         "off": false
-      };
-
-      if (commandVariable1 === "on"||"off")
+      if (commandVariable1 === "on" || commandVariable1 === "off")
       {
          b2bvar = commandVariable1;
          var output =
