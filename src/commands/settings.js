@@ -1,8 +1,8 @@
 const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
-var embedvar = true;
-var b2bvar = true;
+var embedvar = "on";
+var b2bvar = "off";
 
 // -------------------------
 // Proccess settings params
@@ -195,28 +195,14 @@ const getSettings = function(data)
 
    const embed = function(data)
    {
-      var output =
-       "**```Embeded Message Command Here```**\n" +
-       `Embeded Messages : ${embedvar}`;
-
-      data.color = "info";
-      data.text = output;
-      return botSend(data);
-   };
-
-   const b2b = function(data)
-   {
-      const commandVariable0 = data.cmd.params.split(" ")[0].toLowerCase();
       const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
 
       if (commandVariable1 === "on" || commandVariable1 === "off")
       {
-         b2bvar = commandVariable1;
+         embedvar = commandVariable1;
          var output =
-         "**```Bot 2 Bot Command Here```**\n" +
-         `Embeded Messages : ${b2bvar}\n\n` +
-         `Command Variable 0 : ${commandVariable0}\n` +
-         `Command Variable 1 : ${commandVariable1}\n`;
+         "**```Embedded Message Translation```**\n" +
+         `Embedded Message Translation is now turned : ${embedvar}\n\n`;
 
          data.color = "info";
          data.text = output;
@@ -226,7 +212,30 @@ const getSettings = function(data)
       data.color = "error";
       data.text =
          ":warning:  **`" + commandVariable1 +
-         "`** is not a valid settings option.";
+         "`** is not a valid embed option.";
+      return botSend(data);
+   };
+
+   const b2b = function(data)
+   {
+      const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
+
+      if (commandVariable1 === "on" || commandVariable1 === "off")
+      {
+         b2bvar = commandVariable1;
+         var output =
+         "**```Bot to Bot Translation```**\n" +
+         `Bot Message translation is now turned : ${b2bvar}\n\n`;
+
+         data.color = "info";
+         data.text = output;
+         return botSend(data);
+      }
+
+      data.color = "error";
+      data.text =
+         ":warning:  **`" + commandVariable1 +
+         "`** is not a valid b2b option.";
       return botSend(data);
    };
 
