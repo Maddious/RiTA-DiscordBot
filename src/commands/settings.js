@@ -7,7 +7,8 @@ var b2bVar = "off";
 // Proccess settings params
 // -------------------------
 
-module.exports.embedVar = embedVar
+module.exports.embedVar = embedVar;
+module.exports.b2bVar = b2bVar;
 module.exports.run = function(data)
 {
    //
