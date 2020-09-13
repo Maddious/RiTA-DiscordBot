@@ -7,6 +7,8 @@ const fn = require("./helpers");
 const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
+const webHookName = "Translator Messaging System";
+const settings = require("../commands/settings");
 
 //
 // Send Data to Channel
