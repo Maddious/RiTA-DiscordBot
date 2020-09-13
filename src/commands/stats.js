@@ -4,9 +4,10 @@ const db = require("../core/db");
 const auth = require("../core/auth");
 const logger = require("../core/logger");
 const settings = require("./settings");
-var embedvar = localStorage.getItem("evLS");
-import embedVar from '../commands/settings';
-import b2bVar from '../commands/settings';
+const embedVar = require('./settings');
+console.log(settings.embedVar);
+const b2bVar = require('./settings');
+console.log(settings.b2bVar);
 
 // Possible commands:
 // !t stats: Only in server channel allowed, returns global and server stats
