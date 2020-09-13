@@ -1,9 +1,8 @@
 const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
-var embedvar = "on";
-var b2bvar = "off";
-localStorage.setItem("evLS", embedvar);
+export var embedVar = "on";
+export var b2bVar = "off";
 // -------------------------
 // Proccess settings params
 // -------------------------
@@ -199,10 +198,10 @@ const getSettings = function(data)
 
       if (commandVariable1 === "on" || commandVariable1 === "off")
       {
-         embedvar = commandVariable1;
+         embedVar = commandVariable1;
          var output =
          "**```Embedded Message Translation```**\n" +
-         `Embedded Message Translation is now turned : ${embedvar}\n\n`;
+         `Embedded Message Translation is now turned : ${embedVar}\n\n`;
 
          data.color = "info";
          data.text = output;
@@ -222,10 +221,10 @@ const getSettings = function(data)
 
       if (commandVariable1 === "on" || commandVariable1 === "off")
       {
-         b2bvar = commandVariable1;
+         b2bVar = commandVariable1;
          var output =
          "**```Bot to Bot Translation```**\n" +
-         `Bot Message translation is now turned : ${b2bvar}\n\n`;
+         `Bot Message translation is now turned : ${b2bVar}\n\n`;
 
          data.color = "info";
          data.text = output;
