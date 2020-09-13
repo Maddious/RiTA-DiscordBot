@@ -1,12 +1,36 @@
+/* eslint-disable no-undef */
 const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
-
+var embedVar = "off";
+var b2bVar = "off";
 // -------------------------
 // Proccess settings params
 // -------------------------
 
-module.exports = function(data)
+//module.exports = {
+//   embedVar,
+//   b2bVar
+//}
+
+module.exports.setEmbedVar = function(val)
+{
+   embedVar = val;
+};
+module.exports.getEmbedVar = function(val)
+{
+   return embedVar;
+};
+module.exports.setB2bVar = function(val)
+{
+   b2bVar = val;
+};
+module.exports.getB2bVar = function(val)
+{
+   return b2bVar;
+};
+module.exports.b2bVar = b2bVar;
+module.exports.run = function(data)
 {
    //
    // Command allowed by admins only
@@ -28,7 +52,7 @@ module.exports = function(data)
       data.color = "error";
       data.text =
          ":warning:  Missing `settings` parameter. Use `" +
-         `${data.config.translateCmd} help settings\` to learn more.`;
+         `${data.config.translateCmdShort} help settings\` to learn more.`;
 
       return botSend(data);
    }
@@ -124,30 +148,28 @@ const getSettings = function(data)
 
    const listServers = function(data)
    {
-      if (data.message.author.id === data.config.owner)
+      data.text = "__**Active Servers**__ - ";
+
+      const activeGuilds = data.client.guilds.array();
+
+      data.text += `${activeGuilds.length}\n\n`;
+
+      activeGuilds.forEach(guild =>
       {
-         data.text = "__**Active Servers**__ - ";
+         data.text += "```md\n";
+         data.text += `> ${guild.id}\n# ${guild.name}\n`;
+         data.text += `@${guild.owner.user.username}#`;
+         data.text += guild.owner.user.discriminator + "\n```";
+      });
 
-         const activeGuilds = data.client.guilds.array();
+      const splitOpts = {
+         maxLength: 1000,
+         char: ""
+      };
 
-         data.text += `${activeGuilds.length}\n\n`;
-
-         activeGuilds.forEach(guild =>
-         {
-            data.text += "```md\n";
-            data.text += `> ${guild.id}\n# ${guild.name}\n`;
-            data.text += `@${guild.owner.user.username}#`;
-            data.text += guild.owner.user.discriminator + "\n```";
-         });
-
-         const splitOpts = {
-            maxLength: 1000,
-            char: ""
-         };
-
-         return data.message.channel.send(data.text, {split: splitOpts});
-      }
+      return data.message.channel.send(data.text, {split: splitOpts});
    };
+
 
    // --------------------------------------
    // Update bot (disconnects from servers)
@@ -155,24 +177,21 @@ const getSettings = function(data)
 
    const updateBot = function(data)
    {
-      if (data.message.author.id === data.config.owner)
-      {
-         const activeGuilds = data.client.guilds.array();
-         data.color = "info";
-         data.text = `Updating bot for **${activeGuilds.length}** servers.`;
-         botSend(data);
+      const activeGuilds = data.client.guilds.array();
+      data.color = "info";
+      data.text = `Updating bot for **${activeGuilds.length}** servers.`;
+      botSend(data);
 
-         activeGuilds.forEach(guild =>
-         {
-            guild.owner.send(
-               "Hello, this bot has been updated to a new version, please " +
+      activeGuilds.forEach(guild =>
+      {
+         guild.owner.send(
+            "Hello, this bot has been updated to a new version, please " +
                "reinvite through this link: \n" + data.config.inviteURL
-            ).then(m => //eslint-disable-line no-unused-vars
-            {
-               guild.leave();
-            }).catch(err => logger("error", err));
-         });
-      }
+         ).then(m => //eslint-disable-line no-unused-vars
+         {
+            guild.leave();
+         }).catch(err => logger("error", err));
+      });
    };
 
    // --------------------------------------
@@ -181,18 +200,65 @@ const getSettings = function(data)
 
    const dbFix = function(data)
    {
-      if (data.message.author.id === data.config.owner)
-      {
-         const activeGuilds = data.client.guilds.array();
-         data.color = "info";
-         data.text = `Updating db for **${activeGuilds.length}** servers.`;
-         botSend(data);
+      const activeGuilds = data.client.guilds.array();
+      data.color = "info";
+      data.text = `Updating db for **${activeGuilds.length}** servers.`;
+      botSend(data);
 
-         activeGuilds.forEach(guild =>
-         {
-            db.addServer(guild.id, data.config.defaultLanguage, db.Servers);
-         });
+      activeGuilds.forEach(guild =>
+      {
+         db.addServer(guild.id, data.config.defaultLanguage, db.Servers);
+      });
+   };
+
+   // --------------------------------------
+   // Embed Messages
+   // --------------------------------------
+
+   const embed = function(data)
+   {
+      const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
+
+      if (commandVariable1 === "on" || commandVariable1 === "off")
+      {
+         embedVar = commandVariable1;
+         var output =
+         "**```Embedded Message Translation```**\n" +
+         `Embedded Message Translation is now turned : ${embedVar}\n\n`;
+
+         data.color = "info";
+         data.text = output;
+         return botSend(data);
       }
+
+      data.color = "error";
+      data.text =
+         ":warning:  **`" + commandVariable1 +
+         "`** is not a valid embed option.";
+      return botSend(data);
+   };
+
+   const b2b = function(data)
+   {
+      const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
+
+      if (commandVariable1 === "on" || commandVariable1 === "off")
+      {
+         b2bVar = commandVariable1;
+         var output =
+         "**```Bot to Bot Translation```**\n" +
+         `Bot Message translation is now turned : ${b2bVar}\n\n`;
+
+         data.color = "info";
+         data.text = output;
+         return botSend(data);
+      }
+
+      data.color = "error";
+      data.text =
+         ":warning:  **`" + commandVariable1 +
+         "`** is not a valid b2b option.";
+      return botSend(data);
    };
 
    // --------------------------
@@ -204,6 +270,8 @@ const getSettings = function(data)
       "disconnect": disconnect,
       "listservers": listServers,
       "dbfix": dbFix,
+      "embed": embed,
+      "b2b": b2b,
       "updatebot": updateBot
    };
 
