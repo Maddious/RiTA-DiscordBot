@@ -3,6 +3,8 @@ const botSend = require("../core/send");
 const db = require("../core/db");
 const auth = require("../core/auth");
 const logger = require("../core/logger");
+const embedVar = require("../commands/settings");
+const b2bVar = require("../commands/settings");
 
 // Possible commands:
 // !t stats: Only in server channel allowed, returns global and server stats
@@ -39,7 +41,7 @@ module.exports = function(data)
          `**\`${botLang.name} (${botLang.native})\`` +
          `**\n\n:bar_chart:  Translated **\`${stats[0].totalCount}\`** messages ` +
          `across **\`${stats[0].totalServers}\`** servers\n\n` +
-         `:robot:  Version:  ${version}\n\n` +
+         `:regional_indicator_v:  Version:  ${version}\n\n` +
          `:repeat:  Automatic translation:  ` +
          `**\`${activeTasks}\`**  channels and  ` +
          `**\`${stats[0].activeUserTasks}\`**  users`;
@@ -61,7 +63,9 @@ module.exports = function(data)
                `**\`${data.cmd.server[0].count}\`**\n\n` +
                `:repeat:  Automatic translation:  ` +
                `**\`${activeServerTasks}\`**  channels and  ` +
-               `**\`${data.cmd.server[0].activeUserTasks}\`**  users`;
+               `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` + 
+               `:inbox_tray: Embedded Message Status: **\`${embedVar}\`**\n\n` +
+               `:robot: Bot Translation Status: **\`${b2bVar}\`**`;
       }
 
       data.color = "info";
