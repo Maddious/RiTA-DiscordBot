@@ -3,6 +3,8 @@ const botSend = require("../core/send");
 const db = require("../core/db");
 const auth = require("../core/auth");
 const logger = require("../core/logger");
+const settings = require("./settings");
+var embedvar = localStorage.getItem("evLS");
 //const embedVar = require("../commands/settings");
 //const b2bVar = require("../commands/settings");
 
@@ -63,8 +65,8 @@ module.exports = function(data)
                `**\`${data.cmd.server[0].count}\`**\n\n` +
                `:repeat:  Automatic translation:  ` +
                `**\`${activeServerTasks}\`**  channels and  ` +
-               `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` + 
-               `:inbox_tray: Embedded Message Status: **\`${embedVar}\`**\n\n` +
+               `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` +
+               `:inbox_tray: Embedded Message Status: **\`${embedvar}\`**\n\n` +
                `:robot: Bot Translation Status: **\`${b2bVar}\`**`;
       }
 
