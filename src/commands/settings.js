@@ -231,7 +231,7 @@ const getSettings = function(data)
 
       data.color = "error";
       data.text =
-         ":warning:  **`" + ${commandVariable1} +
+         ":warning:  **`" + commandVariable1 +
          "`** is not a valid settings option.";
       return botSend(data);
    };
