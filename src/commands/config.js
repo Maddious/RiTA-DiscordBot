@@ -6,24 +6,24 @@ const botSend = require("../core/send");
 
 exports.embed = function(data)
 {
-  const langList = [
-     "Yoruba","Zulu"
-  ];
+   const langList = [
+      "Yoruba","Zulu"
+   ];
 
-  var output = "**```Embeded Messages```**\n";
+   var output = "**```Embeded Messages```**\n";
 
-  langList.forEach(lang =>
-  {
-     var end = ",  ";
-     if (lang === "Zulu")
-     {
-        end = ".";
-     }
-     output += "`" + lang + "`" + end;
-  });
+   embed.forEach(lang =>
+   {
+      var end = ",  ";
+      if (lang === "Zulu")
+      {
+         end = ".";
+      }
+      output += "`" + lang + "`" + end;
+   });
 
-  data.color = "info";
-  data.text = output;
+   data.color = "info";
+   data.text = output;
 
-  return botSend(data);
+   return botSend(data);
 };
