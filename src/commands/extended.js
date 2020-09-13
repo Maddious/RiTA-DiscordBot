@@ -34,6 +34,13 @@ exports.embed = function(data)
       return botSend(data);
    }
 
+   var output =
+   "**```Embeded Message Command Here```**\n" +
+   `Embeded Messages Activate : ${embedvar}`;
+
+   data.color = "info";
+   data.text = output;
+
    //
    // check if valiud Param or Not
    //
@@ -49,13 +56,6 @@ exports.embed = function(data)
    if (Object.prototype.hasOwnProperty.call(validParam,settingParam))
    {
       return validParam[settingParam](data);
-      var output =
-      "**```Embeded Message Command Here```**\n" +
-      `Embeded Messages Activate : ${embedvar}`;
-
-      data.color = "info";
-      data.text = output;
-      return botSend(data);
    }
 
    // ------------------------
