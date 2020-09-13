@@ -1,8 +1,8 @@
 const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
-var embedVar;
-var b2bVar;
+var embedVar = "on";
+var b2bVar = "off";
 // -------------------------
 // Proccess settings params
 // -------------------------
@@ -12,7 +12,14 @@ var b2bVar;
 //   b2bVar
 //}
 
-module.exports.embedVar = embedVar;
+module.exports.setEmbedVar = function(val) 
+{
+ embedVar = val
+}
+module.exports.getEmbedVar = function(val) 
+{
+ return embedVar
+}
 module.exports.b2bVar = b2bVar;
 module.exports.run = function(data)
 {
@@ -205,7 +212,7 @@ const getSettings = function(data)
 
       if (commandVariable1 === "on" || commandVariable1 === "off")
       {
-         embedVar = commandVariable1;
+         setEmbedVar(commandVariable1);
          var output =
          "**```Embedded Message Translation```**\n" +
          `Embedded Message Translation is now turned : ${embedVar}\n\n`;
