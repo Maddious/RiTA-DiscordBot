@@ -1,8 +1,6 @@
 const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
-var embedvar = true;
-var b2bvar = true;
 
 // -------------------------
 // Proccess settings params
@@ -30,7 +28,7 @@ module.exports = function(data)
       data.color = "error";
       data.text =
          ":warning:  Missing `settings` parameter. Use `" +
-         `${data.config.translateCmdShort} help settings\` to learn more.`;
+         `${data.config.translateCmd} help settings\` to learn more.`;
 
       return botSend(data);
    }
@@ -189,39 +187,6 @@ const getSettings = function(data)
       });
    };
 
-   // --------------------------------------
-   // Embed Messages
-   // --------------------------------------
-
-   const commandVariable0 = data.cmd.params.split(" ")[0].toLowerCase();
-   const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
-   const commandVariable2 = data.cmd.params.split(" ")[2].toLowerCase();
-
-   const embed = function(data)
-   {
-      var output =
-       "**```Embeded Message Command Here```**\n" +
-       `Embeded Messages : ${embedvar}`;
-
-      data.color = "info";
-      data.text = output;
-      return botSend(data);
-   };
-
-   const b2b = function(data)
-   {
-      var output = 
-       "**```Bot 2 Bot Command Here```**\n" +
-       `Embeded Messages : ${b2bvar}\n\n` +
-       `Command Variable 0 : ${commandVariable0}\n` +
-       `Command Variable 1 : ${commandVariable1}\n` +
-       `Command Variable 2 : ${commandVariable2}`;
-
-      data.color = "info";
-      data.text = output;
-      return botSend(data);
-   };
-
    // --------------------------
    // Execute command if exists
    // --------------------------
@@ -231,8 +196,6 @@ const getSettings = function(data)
       "disconnect": disconnect,
       "listservers": listServers,
       "dbfix": dbFix,
-      "embed": embed,
-      "b2b": b2b,
       "updatebot": updateBot
    };
 
