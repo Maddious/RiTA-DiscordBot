@@ -3,10 +3,10 @@ const botSend = require("../core/send");
 const db = require("../core/db");
 const auth = require("../core/auth");
 const logger = require("../core/logger");
-const settings = require("./settings");
-const embedVar = require('./settings');
+//const settings = require("./settings");
+const embedVar = require("./settings");
 console.log(settings.embedVar);
-const b2bVar = require('./settings');
+const b2bVar = require("./settings");
 console.log(settings.b2bVar);
 
 // Possible commands:
