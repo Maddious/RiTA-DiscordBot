@@ -249,14 +249,6 @@ module.exports = function(data)
                return sendBox(sendData);
             }
          }
-      }
-      else
-      {
-         if (data.author)
-         {
-            if (data.author.name) { username = data.author.name;}
-            if (data.author.icon_url) { avatarURL = data.author.icon_url;}
-         }
 
          if (data.showAuthor)
          {
