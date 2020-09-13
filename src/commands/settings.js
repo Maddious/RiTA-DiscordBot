@@ -3,7 +3,7 @@ const db = require("../core/db");
 const logger = require("../core/logger");
 var embedvar = "on";
 var b2bvar = "off";
-
+localStorage.setItem("evLS", embedvar);
 // -------------------------
 // Proccess settings params
 // -------------------------
