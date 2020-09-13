@@ -2,7 +2,7 @@
 const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
-var embedVar = "on";
+var embedVar = "off";
 var b2bVar = "off";
 // -------------------------
 // Proccess settings params
