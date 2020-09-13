@@ -213,7 +213,7 @@ const getSettings = function(data)
 
       if (commandVariable1 === "on" || commandVariable1 === "off")
       {
-         EmbedVar = commandVariable1;
+         embedVar = commandVariable1;
          var output =
          "**```Embedded Message Translation```**\n" +
          `Embedded Message Translation is now turned : ${embedVar}\n\n`;
