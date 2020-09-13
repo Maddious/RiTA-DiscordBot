@@ -2,6 +2,7 @@
 /* eslint-disable complexity */
 /* eslint-disable no-inner-declarations */
 /* eslint-disable no-empty */
+/* eslint-disable no-redeclare */
 const colors = require("./colors");
 const fn = require("./helpers");
 const db = require("./db");
