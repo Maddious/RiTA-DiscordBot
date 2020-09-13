@@ -3,8 +3,8 @@ const botSend = require("../core/send");
 const db = require("../core/db");
 const auth = require("../core/auth");
 const logger = require("../core/logger");
-const embedVar = require("../commands/settings");
-const b2bVar = require("../commands/settings");
+//const embedVar = require("../commands/settings");
+//const b2bVar = require("../commands/settings");
 
 // Possible commands:
 // !t stats: Only in server channel allowed, returns global and server stats
