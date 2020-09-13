@@ -267,6 +267,62 @@ module.exports = function(data)
    else
    {
       //
+      // Send Webhook Message
+      //
+
+      function sendWebhookMessage(webhook, data)
+      {
+         if (data.author)
+         {
+            data.author = {
+               name: data.author.username,
+               // eslint-disable-next-line camelcase
+               icon_url: data.author.displayAvatarURL
+            };
+         }
+         let username = data.bot.username;
+         let avatarURL = data.bot.displayAvatarURL;
+         const files = createFiles(data.attachments);
+         if (!data.author)
+         {
+            if (data.text === undefined)
+            {
+               webhook.send(data.text, {
+                  "username": username,
+                  "avatarURL": avatarURL,
+                  "files": files
+               });
+            }
+            else
+            {
+               webhook.send("", {
+                  "username": username,
+                  "avatarURL": avatarURL,
+                  "files": files,
+                  "embeds": [{
+                     "description": data.text,
+                     "color": colors.get(data.color)
+                  }]
+               });
+            }
+         }
+         else
+         {
+            if (data.author)
+            {
+               if (data.author.name) { username = data.author.name;}
+               if (data.author.icon_url) { avatarURL = data.author.icon_url;}
+            }
+   
+            webhook.send(data.text, {
+               "username": data.author.name,
+               "avatarURL": data.author.icon_url,
+               "files": files
+            });
+         }
+      }
+
+      //
       // Send Data to Channel
       //
 
