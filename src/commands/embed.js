@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const botSended = require("../core/send");
+//const botSended = require("../core/send");
 var embedVar = "on";
 
 // -------------------------
@@ -25,7 +25,7 @@ module.exports.run = function(data)
    {
       data.color = "warn";
       data.text = ":cop:  This command is reserved for server administrators.";
-      return botSended(data);
+      return sendBox(data);
    }
 
    //
@@ -39,7 +39,7 @@ module.exports.run = function(data)
          ":warning:  Missing `settings` parameter. Use `" +
          `${data.config.translateCmdShort} help settings\` to learn more.`;
 
-      return botSended(data);
+      return sendBox(data);
    }
 
    // --------------------------------------
@@ -57,13 +57,88 @@ module.exports.run = function(data)
 
       data.color = "info";
       data.text = output;
-      return botSended(data);
+      return sendBox(data);
    }
+
 
    data.color = "error";
    data.text =
       ":warning:  **`" + commandVariable1 +
       "`** is not a valid embed option.";
-   return botSended(data);
+   return sendBox(data);
+}
 
+const sendBox = function(data)
+{
+   if (data.author)
+   {
+      data.author = {s
+         name: data.author.username,
+         //eslint-disable-next-line camelcase
+         icon_url: data.author.displayAvatarURL
+      };
+   }
+
+   if (data.text && data.text.length > 1)
+   {
+      data.channel.send({
+         embed: {
+            title: data.title,
+            fields: data.fields,
+            author: data.author,
+            color: colors.get(data.color),
+            description: data.text,
+            footer: data.footer
+         }
+      }).then(() =>
+      {
+         sendEmbeds(data);
+         sendAttachments(data);
+      }).catch(err =>
+      {
+         var errMsg = err;
+         logger("dev", err);
+
+         //
+         // Error for long messages
+         //
+
+         if (err.code && err.code === 50035)
+         {
+            data.channel.send(":warning:  Message is too long.");
+         }
+
+         //
+         // Handle error for users who cannot recieve private messages
+         //
+
+         if (err.code && err.code === 50007 && data.origin)
+         {
+            const badUser = data.channel.recipient;
+            errMsg = `@${badUser.username}#${badUser.discriminator}\n` + err;
+
+            db.removeTask(data.origin.id, `@${badUser.id}`, function(er)
+            {
+               if (er)
+               {
+                  return logger("error", er);
+               }
+
+               return data.origin.send(
+                  `:no_entry: User ${badUser} cannot recieve direct messages ` +
+                  `by bot because of **privacy settings**.\n\n__Auto ` +
+                  `translation has been stopped. To fix this:__\n` +
+                  "```prolog\nServer > Privacy Settings > " +
+                  "'Allow direct messages from server members'\n```"
+               );
+            });
+         }
+
+         logger("error", errMsg);
+      });
+   }
+   else if (data.attachments.array().length > 0)
+   {
+      sendAttachments(data);
+   }
 };
