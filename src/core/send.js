@@ -10,18 +10,13 @@ const logger = require("./logger");
 const discord = require("discord.js");
 const webHookName = "Translator Messaging System";
 const settings = require("../commands/settings");
-const embedded = require("../commands/embedded");
+//const embed = require("../commands/embed");
 //
 // Send Data to Channel
 //
-//module.exports.setEmbeddedVar = function(val)
-//{
-//   embedVar = (val);
-//};
-
 module.exports = function(data)
 {
-   if (embedded.getEmbeddedVar() === "on")
+   if (settings.getEmbeddedVar() === "on")
    {
       const sendBox = function(data)
       {
