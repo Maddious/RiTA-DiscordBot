@@ -25,7 +25,7 @@ module.exports.run = function(data)
    {
       data.color = "warn";
       data.text = ":cop:  This command is reserved for server administrators.";
-      return this.send(data);
+      return embed.send(data);
    }
 
    //
@@ -39,7 +39,7 @@ module.exports.run = function(data)
          ":warning:  Missing `settings` parameter. Use `" +
          `${data.config.translateCmdShort} help settings\` to learn more.`;
 
-      return this.send(data);
+      return embed.send(data);
    }
 
    // --------------------------------------
@@ -57,7 +57,7 @@ module.exports.run = function(data)
 
       data.color = "info";
       data.text = output;
-      return this.send(data);
+      return embed.send(data);
    }
 
 
@@ -65,7 +65,7 @@ module.exports.run = function(data)
    data.text =
       ":warning:  **`" + commandVariable1 +
       "`** is not a valid embed option.";
-   return this.send(data);
+   return embed.send(data);
 }
 
 module.exports.send = function(data)
