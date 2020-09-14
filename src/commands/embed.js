@@ -59,13 +59,13 @@ module.exports.value = function(data)
 
          data.color = "info";
          data.text = output;
-         botSend(data);
+         return botSend(data);
       }
 
       data.color = "error";
       data.text =
          ":warning:  **`" + commandVariable1 +
          "`** is not a valid embed option.";
-      botSend(data);
-   }
+      return botSend(data);
+   };
 };
