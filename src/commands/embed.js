@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 
 //const send = require("../core/send");
-const colors = require("./colors");
-const fn = require("./helpers");
-const db = require("./db");
-const logger = require("./logger");
+const colors = require("../core/colors");
+const fn = require("../core/helpers");
+const db = require("../core/db");
+const logger = require("../core/logger");
 const discord = require("discord.js");
 
 //const botSended = require("../core/send");
