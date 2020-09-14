@@ -12,5 +12,8 @@ module.exports = function(data)
 
    data.color = "info";
    data.text = `:robot:  Current bot version is ${version}`;
+   console.log("----------------- Data -----------------");
+   console.log(data);
+   console.log("----------------- Data -----------------");
    botSend(data);
 };

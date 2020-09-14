@@ -211,9 +211,14 @@ const getSettings = function(data)
          var output =
          "**```Bot to Bot Translation```**\n" +
          `Bot Message translation is now turned : ${b2bVar}\n\n`;
+         console.log(b2bVar);
 
          data.color = "info";
          data.text = output;
+         console.log(output);
+         console.log("----------------- Data -----------------");
+         console.log(data);
+         console.log("----------------- Data -----------------");
          return botSend(data);
       }
 

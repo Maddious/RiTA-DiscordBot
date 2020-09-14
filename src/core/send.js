@@ -14,12 +14,15 @@ const embed = require("../commands/embed");
 //
 // Send Data to Channel
 //
+console.log(embed)
 module.exports = function(data)
 {
    if (embed.getEmbedVar() === "on")
    {
+      console.log(embed)
       const sendBox = function(data)
       {
+         console.log(data)
          if (data.author)
          {
             data.author = {
