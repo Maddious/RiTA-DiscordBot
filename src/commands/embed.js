@@ -11,11 +11,11 @@ var embedVar = "on";
 //   b2bVar
 //}
 
-module.exports.getEmbedVar = function(data)
+module.exports.getEmbedVar = function()
 {
    return embedVar;
 };
-module.exports = function(data)
+module.exports.run = function(data)
 {
    //
    // Command allowed by admins only
@@ -57,13 +57,13 @@ module.exports = function(data)
 
       data.color = "info";
       data.text = output;
-      botSend(data);
+      return botSend(data);
    }
 
    data.color = "error";
    data.text =
       ":warning:  **`" + commandVariable1 +
       "`** is not a valid embed option.";
-   botSend(data);
+   return botSend(data);
 
 };
