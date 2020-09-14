@@ -41,12 +41,12 @@ module.exports.value = function(data)
 
       return botSend(data);
    }
-   
+
    // --------------------------------------
    // Embed Messages
    // --------------------------------------
 
-   const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
+   const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
    if (commandVariable1 === "on" || commandVariable1 === "off")
    {
