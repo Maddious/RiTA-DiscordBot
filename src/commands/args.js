@@ -223,7 +223,7 @@ module.exports = function(data)
          "invite": cmdMisc.invite,
          "shards": cmdMisc.shards,
          "proc": cmdMisc.proc,
-         "settings": cmdSettings.run
+         "settings": cmdSettings
       };
 
       //
