@@ -3,7 +3,7 @@ const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
 var b2bVar = "off";
-var embeddedVar = "on";
+//var embeddedVar = "on";
 // -------------------------
 // Proccess settings params
 // -------------------------
@@ -12,10 +12,10 @@ module.exports.getB2bVar = function(data)
 {
    return b2bVar;
 };
-module.exports.getEmbeddedVar = function(data)
-{
-   return embeddedVar;
-};
+//module.exports.getEmbeddedVar = function(data)
+//{
+//   return embeddedVar;
+//};
 module.exports.run = function(data)
 {
    //
@@ -200,7 +200,7 @@ const getSettings = function(data)
    // --------------------------------------
    // Embedded Messages
    // --------------------------------------
-
+/*
     const embedded = function(data)
    {
       const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
@@ -223,7 +223,7 @@ const getSettings = function(data)
          "`** is not a valid embed option.";
       return botSend(data);
    };
-
+*/
    // --------------------------------------
    // Bot to Bot Messages
    // --------------------------------------
@@ -262,7 +262,7 @@ const getSettings = function(data)
       "listservers": listServers,
       "dbfix": dbFix,
       "b2b": b2b,
-      "embed": embedded,
+//      "embed": embedded,
       "updatebot": updateBot
    };
 

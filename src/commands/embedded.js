@@ -1,10 +1,10 @@
 const botSend = require("../core/send");
 const auth = require("../core/auth");
-var embedVar = "on";
+var embeddedVar = "on";
 
-module.exports.getEmbedVar = function(data)
+module.exports.getEmbeddedVar = function(data)
 {
-   return embedVar;
+   return embeddedVar;
 };
 module.exports.run = function(data)
 {
@@ -12,10 +12,10 @@ module.exports.run = function(data)
 
   if (commandVariable1 === "on" || commandVariable1 === "off")
   {
-     embedVar = commandVariable1;
+     embeddedVar = commandVariable1;
      var output =
      "**```Embedded Message Translation```**\n" +
-     `Embedded Message Translation is now turned : ${embedVar}\n\n`;
+     `Embedded Message Translation is now turned : ${embeddedVar}\n\n`;
 
      data.color = "info";
      data.text = output;
