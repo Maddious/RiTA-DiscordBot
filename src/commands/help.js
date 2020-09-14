@@ -397,7 +397,7 @@ const helpMessage = function(config, botname, param)
    `* MAY NOT WORK WITH SOME DB's \n` +
    `> ${cmd} settings dbfix\n\n` +
 
-   `# Send as Embedded Message \n` +
+   `# Send as Embeded Message \n` +
    `* On By Default \n` +
    `> ${cmd} settings embed on/off\n\n` +
 

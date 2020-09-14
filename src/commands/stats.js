@@ -65,7 +65,7 @@ module.exports = function(data)
                `:repeat:  Automatic translation:  ` +
                `**\`${activeServerTasks}\`**  channels and  ` +
                `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` +
-               `:inbox_tray: Embedded Message Status: **\`${settings.getEmbedVar()}\`**\n\n` +
+               `:inbox_tray: Embedded Message Status: **\`${embed.getEmbedVar()}\`**\n\n` +
                `:robot: Bot to Bot Translation Status: **\`${settings.getB2bVar()}\`**`;
       }
 
