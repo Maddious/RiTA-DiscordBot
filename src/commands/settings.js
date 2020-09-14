@@ -2,7 +2,7 @@
 const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
-var embedVar = "off";
+var embedVar = "on";
 var b2bVar = "off";
 // -------------------------
 // Proccess settings params
@@ -29,7 +29,6 @@ module.exports.getB2bVar = function(val)
 {
    return b2bVar;
 };
-module.exports.b2bVar = b2bVar;
 module.exports.run = function(data)
 {
    //
