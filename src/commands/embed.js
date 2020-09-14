@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const botSend = require("../core/send");
+const botSended = require("../core/send");
 var embedVar = "on";
 
 // -------------------------
@@ -25,7 +25,7 @@ module.exports.run = function(data)
    {
       data.color = "warn";
       data.text = ":cop:  This command is reserved for server administrators.";
-      return botSend(data);
+      return botSended(data);
    }
 
    //
@@ -39,7 +39,7 @@ module.exports.run = function(data)
          ":warning:  Missing `settings` parameter. Use `" +
          `${data.config.translateCmdShort} help settings\` to learn more.`;
 
-      return botSend(data);
+      return botSended(data);
    }
 
    // --------------------------------------
@@ -57,13 +57,13 @@ module.exports.run = function(data)
 
       data.color = "info";
       data.text = output;
-      return botSend(data);
+      return botSended(data);
    }
 
    data.color = "error";
    data.text =
       ":warning:  **`" + commandVariable1 +
       "`** is not a valid embed option.";
-   return botSend(data);
+   return botSended(data);
 
 };
