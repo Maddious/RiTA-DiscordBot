@@ -2,7 +2,11 @@ const botSend = require("../core/send");
 const auth = require("../core/auth");
 var embedVar = "on";
 
-module.exports = function(data)
+module.exports.getEmbedVar = function(data)
+{
+   return embedVar;
+};
+module.exports.run = function(data)
 {
   const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 

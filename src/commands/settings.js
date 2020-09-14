@@ -12,10 +12,6 @@ var b2bVar = "off";
 //   b2bVar
 //}
 
-module.exports.getEmbedVar = function(data)
-{
-   return embedVar;
-};
 module.exports.getB2bVar = function(data)
 {
    return b2bVar;

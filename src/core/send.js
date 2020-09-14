@@ -335,7 +335,7 @@ module.exports = function(data)
                if (data.author.name) { username = data.author.name;}
                if (data.author.icon_url) { avatarURL = data.author.icon_url;}
             }
-   
+
             webhook.send(data.text, {
                "username": data.author.name,
                "avatarURL": data.author.icon_url,
@@ -543,7 +543,7 @@ module.exports = function(data)
       }
 
       return sendBox(sendData);
-         
+
    }
 
 }
