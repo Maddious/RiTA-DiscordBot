@@ -29,7 +29,7 @@ module.exports.getB2bVar = function(val)
 {
    return b2bVar;
 };
-module.exports = function(data)
+module.exports.run = function(data)
 {
    //
    // Command allowed by admins only
