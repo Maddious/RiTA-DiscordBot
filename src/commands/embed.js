@@ -17,30 +17,53 @@ module.exports.getEmbedVar = function(data)
 };
 module.exports.value = function(data)
 {
+   //
+   // Command allowed by admins only
+   //
+
+   if (!data.message.isAdmin)
+   {
+      data.color = "warn";
+      data.text = ":cop:  This command is reserved for server administrators.";
+      return botSend(data);
+   }
+
+   //
+   // Error if settings param is missing
+   //
+
+   if (!data.cmd.params)
+   {
+      data.color = "error";
+      data.text =
+         ":warning:  Missing `settings` parameter. Use `" +
+         `${data.config.translateCmdShort} help settings\` to learn more.`;
+
+      return botSend(data);
+   }
+   
    // --------------------------------------
    // Embed Messages
    // --------------------------------------
 
-   const embed = function(data)
+   const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
+
+   if (commandVariable1 === "on" || commandVariable1 === "off")
    {
-      const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
+      embedVar = commandVariable1;
+      var output =
+      "**```Embedded Message Translation```**\n" +
+      `Embedded Message Translation is now turned : ${embedVar}\n\n`;
 
-      if (commandVariable1 === "on" || commandVariable1 === "off")
-      {
-         embedVar = commandVariable1;
-         var output =
-         "**```Embedded Message Translation```**\n" +
-         `Embedded Message Translation is now turned : ${embedVar}\n\n`;
-
-         data.color = "info";
-         data.text = output;
-         return botSend(data);
-      }
-
-      data.color = "error";
-      data.text =
-         ":warning:  **`" + commandVariable1 +
-         "`** is not a valid embed option.";
+      data.color = "info";
+      data.text = output;
       return botSend(data);
-   };
+   }
+
+   data.color = "error";
+   data.text =
+      ":warning:  **`" + commandVariable1 +
+      "`** is not a valid embed option.";
+   return botSend(data);
+
 };

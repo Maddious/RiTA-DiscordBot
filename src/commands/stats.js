@@ -4,6 +4,8 @@ const db = require("../core/db");
 const auth = require("../core/auth");
 const logger = require("../core/logger");
 const settings = require("./settings");
+const embed = require("../commands/embed");
+
 
 // Possible commands:
 // !t stats: Only in server channel allowed, returns global and server stats
@@ -63,7 +65,7 @@ module.exports = function(data)
                `:repeat:  Automatic translation:  ` +
                `**\`${activeServerTasks}\`**  channels and  ` +
                `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` +
-               `:inbox_tray: Embedded Message Status: **\`${settings.getEmbedVar()}\`**\n\n` +
+               `:inbox_tray: Embedded Message Status: **\`${embed.getEmbedVar()}\`**\n\n` +
                `:robot: Bot to Bot Translation Status: **\`${settings.getB2bVar()}\`**`;
       }
 
