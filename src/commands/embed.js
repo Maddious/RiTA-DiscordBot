@@ -11,11 +11,7 @@ var embedVar = "on";
 //   b2bVar
 //}
 
-module.exports.getEmbedVar = function()
-{
-   return embedVar;
-};
-module.exports.run = function(data)
+module.exports = function(data)
 {
    //
    // Command allowed by admins only

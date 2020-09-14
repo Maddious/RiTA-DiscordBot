@@ -221,7 +221,7 @@ module.exports = function(data)
          "info": cmdHelp,
          "list": cmdList,
          "stats": cmdStats,
-         "embed": cmdEmbed.run,
+         "embed": cmdEmbed,
          "version": cmdVersion,
          "invite": cmdMisc.invite,
          "shards": cmdMisc.shards,
