@@ -233,7 +233,6 @@ const getSettings = function(data)
       "disconnect": disconnect,
       "listservers": listServers,
       "dbfix": dbFix,
-      "embed": embed,
       "b2b": b2b,
       "updatebot": updateBot
    };
