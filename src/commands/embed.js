@@ -17,31 +17,6 @@ module.exports.getEmbedVar = function(data)
 };
 module.exports.value = function(data)
 {
-   //
-   // Command allowed by admins only
-   //
-
-   if (!data.message.isAdmin)
-   {
-      data.color = "warn";
-      data.text = ":cop:  This command is reserved for server administrators.";
-      return botSend(data);
-   }
-
-   //
-   // Error if settings param is missing
-   //
-
-   if (!data.cmd.params)
-   {
-      data.color = "error";
-      data.text =
-         ":warning:  Missing `settings` parameter. Use `" +
-         `${data.config.translateCmdShort} help settings\` to learn more.`;
-
-      return botSend(data);
-   }
-
    // --------------------------------------
    // Embed Messages
    // --------------------------------------
