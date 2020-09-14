@@ -13,19 +13,19 @@ var b2bVar = "off";
 //   b2bVar
 //}
 
-module.exports.setEmbedVar = function(val)
+module.exports.setEmbedVar = function(data)
 {
    embedVar = val;
 };
-module.exports.getEmbedVar = function(val)
+module.exports.getEmbedVar = function(data)
 {
    return embedVar;
 };
-module.exports.setB2bVar = function(val)
+module.exports.setB2bVar = function(data)
 {
    b2bVar = val;
 };
-module.exports.getB2bVar = function(val)
+module.exports.getB2bVar = function(data)
 {
    return b2bVar;
 };
