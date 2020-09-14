@@ -15,12 +15,12 @@ module.exports = function(data)
 
      data.color = "info";
      data.text = output;
-     botSended(data);
+     botSend(data);
   }
 
   data.color = "error";
   data.text =
      ":warning:  **`" + commandVariable1 +
      "`** is not a valid embed option.";
-  botSended(data);
+  botSend(data);
 };
