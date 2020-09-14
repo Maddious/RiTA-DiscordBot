@@ -3,7 +3,7 @@ const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
 var b2bVar = "off";
-var embedVar = "on";
+var embeddedVar = "on";
 // -------------------------
 // Proccess settings params
 // -------------------------
@@ -12,9 +12,9 @@ module.exports.getB2bVar = function(data)
 {
    return b2bVar;
 };
-module.exports.getEmbedVar = function(data)
+module.exports.getEmbeddedVar = function(data)
 {
-   return embedVar;
+   return embeddedVar;
 };
 module.exports.run = function(data)
 {
@@ -201,16 +201,16 @@ const getSettings = function(data)
    // Embedded Messages
    // --------------------------------------
 
-    const embed = function(data)
+    const embedded = function(data)
    {
       const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
 
       if (commandVariable1 === "on" || commandVariable1 === "off")
       {
-         b2bVar = commandVariable1;
+         embeddedVar = commandVariable1;
          var output =
          "**```Embedded Message Translation```**\n" +
-         `Embedded Message Translation is now turned  : ${b2bVar}\n\n`;
+         `Embedded Message Translation is now turned  : ${embeddedVar}\n\n`;
 
          data.color = "info";
          data.text = output;
@@ -262,7 +262,7 @@ const getSettings = function(data)
       "listservers": listServers,
       "dbfix": dbFix,
       "b2b": b2b,
-      "embed": embed,
+      "embed": embedded,
       "updatebot": updateBot
    };
 
