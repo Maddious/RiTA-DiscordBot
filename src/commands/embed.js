@@ -1,4 +1,12 @@
 /* eslint-disable no-undef */
+
+//const send = require("../core/send");
+const colors = require("./colors");
+const fn = require("./helpers");
+const db = require("./db");
+const logger = require("./logger");
+const discord = require("discord.js");
+
 //const botSended = require("../core/send");
 var embedVar = "on";
 
@@ -25,7 +33,7 @@ module.exports.run = function(data)
    {
       data.color = "warn";
       data.text = ":cop:  This command is reserved for server administrators.";
-      return embed.send(data);
+      return this.send(data);
    }
 
    //
@@ -39,7 +47,7 @@ module.exports.run = function(data)
          ":warning:  Missing `settings` parameter. Use `" +
          `${data.config.translateCmdShort} help settings\` to learn more.`;
 
-      return embed.send(data);
+      return this.send(data);
    }
 
    // --------------------------------------
@@ -57,7 +65,7 @@ module.exports.run = function(data)
 
       data.color = "info";
       data.text = output;
-      return embed.send(data);
+      return this.send(data);
    }
 
 
@@ -65,7 +73,7 @@ module.exports.run = function(data)
    data.text =
       ":warning:  **`" + commandVariable1 +
       "`** is not a valid embed option.";
-   return embed.send(data);
+   return this.send(data);
 }
 
 module.exports.send = function(data)
