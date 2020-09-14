@@ -15,7 +15,7 @@ module.exports.getEmbedVar = function(data)
 {
    return embedVar;
 };
-module.exports.value = function(data)
+module.exports = function(data)
 {
    //
    // Command allowed by admins only
