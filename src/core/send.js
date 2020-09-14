@@ -16,7 +16,7 @@ const settings = require("../commands/settings");
 //
 module.exports = function(data)
 {
-   if (settings.getEmbeddedVar() === "on")
+   if (settings.getEmbedVar() === "on")
    {
       const sendBox = function(data)
       {
