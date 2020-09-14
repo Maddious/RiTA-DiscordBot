@@ -223,6 +223,7 @@ module.exports = function(data)
          "invite": cmdMisc.invite,
          "shards": cmdMisc.shards,
          "proc": cmdMisc.proc,
+         "cpu": cmdMisc.cpuUsage,
          "settings": cmdSettings.run
       };
 
