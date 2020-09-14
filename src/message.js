@@ -1,6 +1,7 @@
 const db = require("./core/db");
 const fn = require("./core/helpers");
 const cmdArgs = require("./commands/args");
+const settings = require("./commands/settings");
 
 // ====================
 // Listen for messages
@@ -16,9 +17,17 @@ module.exports = function(config, message, edited, deleted)
    // Ignore messages by bots
    //
 
-   if (message.author.bot)
+   if (settings.getB2bVar() === "off")
    {
+      if (message.author.bot)
+      {
       return;
+      }
+      else
+      if (message.webhookID)
+      {
+         return
+      }
    }
 
    //
