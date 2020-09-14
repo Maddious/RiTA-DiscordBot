@@ -9,14 +9,14 @@ const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
 const webHookName = "Translator Messaging System";
-const settings = require("../commands/settings");
-
+//const settings = require("../commands/settings");
+const embed = require("../commands/embed");
 //
 // Send Data to Channel
 //
 module.exports = function(data)
 {
-   if (settings.getEmbedVar() === "on")
+   if (embed.getEmbedVar() === "on")
    {
       const sendBox = function(data)
       {
