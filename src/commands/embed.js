@@ -17,7 +17,7 @@ module.exports.run = function(data)
    {
       data.color = "warn";
       data.text = ":cop:  This command is reserved for server administrators.";
-      return botSend(data);
+      return botSend;
    }
 
    //
@@ -31,7 +31,7 @@ module.exports.run = function(data)
          ":warning:  Missing `settings` parameter. Use `" +
          `${data.config.translateCmdShort} help settings\` to learn more.`;
 
-      return botSend(data);
+      return botSend;
    }
 
    //
@@ -47,7 +47,7 @@ module.exports.run = function(data)
 
 const embedSettings = function(data)
 {
-     const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
+   const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
    if (commandVariable1 === "on" || commandVariable1 === "off")
    {
@@ -63,12 +63,12 @@ const embedSettings = function(data)
       console.log("----------------- Data -----------------");
       console.log(data);
       console.log("----------------- Data -----------------");
-      return botSend(data);
+      return botSend;
    }
 
    data.color = "error";
    data.text =
       ":warning:  **`" + commandVariable1 +
       "`** is not a valid b2b option.";
-   return botSend(data);
+   return botSend;
 };

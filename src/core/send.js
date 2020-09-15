@@ -14,15 +14,15 @@ const embed = require("../commands/embed");
 //
 // Send Data to Channel
 //
-console.log(embed)
+console.log(embed);
 module.exports = function(data)
 {
    if (embed.getEmbedVar() === "on")
    {
-      console.log(embed)
+      console.log(embed);
       const sendBox = function(data)
       {
-         console.log(data)
+         console.log(data);
          if (data.author)
          {
             data.author = {
@@ -263,9 +263,8 @@ module.exports = function(data)
             }
          }
 
-         return sendBox(sendData)
-      };
-
+         return sendBox(sendData);
+      }
    }
    else
    {
@@ -305,8 +304,14 @@ module.exports = function(data)
                icon_url: data.author.displayAvatarURL
             };
          }
-         let username = data.bot.username;
-         let avatarURL = data.bot.displayAvatarURL;
+         if (data.bot)
+         {
+            data.bot = {
+               username: data.bot.username,
+               // eslint-disable-next-line camelcase
+               icon_url: data.bot.displayAvatarURL
+            };
+         }
          const files = createFiles(data.attachments);
          if (!data.author)
          {
@@ -546,7 +551,5 @@ module.exports = function(data)
       }
 
       return sendBox(sendData);
-
    }
-
-}
+};
