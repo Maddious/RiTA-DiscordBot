@@ -9,12 +9,11 @@ const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
 const webHookName = "Translator Messaging System";
+//const settings = require("../commands/settings");
 const embed = require("../commands/embed");
-
 //
 // Send Data to Channel
 //
-
 console.log(embed);
 module.exports = function(data)
 {
@@ -326,14 +325,15 @@ module.exports = function(data)
             }
             else
             {
-               webhook.send("", {
-                  "username": username,
-                  "avatarURL": avatarURL,
-                  "files": files,
-                  "embeds": [{
-                     "description": data.text,
-                     "color": colors.get(data.color)
-                  }]
+               data.channel.send({
+                  embed: {
+                     title: data.title,
+                     fields: data.fields,
+                     author: data.author,
+                     color: colors.get(data.color),
+                     description: data.text,
+                     footer: data.footer
+                  }
                });
             }
          }
