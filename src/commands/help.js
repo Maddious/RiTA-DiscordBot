@@ -399,11 +399,11 @@ const helpMessage = function(config, botname, param)
 
    `# Send as Embeded Message \n` +
    `* On By Default \n` +
-   `> ${cmd} settings embed on/off\n\n` +
+   `> ${cmd} embed on/off\n\n` +
 
    `# Translate other Bots\n` +
    `* Off By Default \n` +
-   `> ${cmd} settings b2b on/off\n\n` +
+   `> ${cmd} bot2bot on/off\n\n` +
 
    `# Update Bot\n` +
    `> ${cmd} settings updatebot\n` +

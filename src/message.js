@@ -1,7 +1,7 @@
 const db = require("./core/db");
 const fn = require("./core/helpers");
 const cmdArgs = require("./commands/args");
-const settings = require("./commands/settings");
+const bot2bot = require("./commands/bot2bot");
 
 // ====================
 // Listen for messages
@@ -17,7 +17,7 @@ module.exports = function(config, message, edited, deleted)
    // Ignore messages by bots
    //
 
-   if (settings.getB2bVar() === "off")
+   if (bot2bot.getBot2botVar() === "off")
    {
       if (message.author.bot)
       {

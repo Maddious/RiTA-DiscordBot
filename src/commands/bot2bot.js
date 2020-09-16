@@ -1,10 +1,10 @@
 const colors = require("../core/colors");
-var embedVar = "on";
+var bot2botVar = "on";
 
 
-module.exports.getEmbedVar = function(data)
+module.exports.getBot2botVar = function(data)
 {
-   return embedVar;
+   return bot2botVar;
 };
 
 module.exports.run = function(data)
@@ -33,7 +33,7 @@ module.exports.run = function(data)
    {
       data.color = "error";
       data.text =
-         ":warning:  Missing `embed` parameter. Use `" +
+         ":warning:  Missing `bot2bot` parameter. Use `" +
          `${data.config.translateCmdShort} help settings\` to learn more.`;
 
       return data.message.channel.send({
@@ -48,7 +48,7 @@ module.exports.run = function(data)
    // Execute setting
    //
 
-   embedSettings(data);
+   bot2botSettings(data);
 };
 
 
@@ -57,16 +57,16 @@ module.exports.run = function(data)
 // Available Settings
 // ===================
 
-const embedSettings = function(data)
+const bot2botSettings = function(data)
 {
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
    if (commandVariable1 === "on" || commandVariable1 === "off")
    {
-      embedVar = commandVariable1;
+      bot2botVar = commandVariable1;
       var output =
-      "**```Embedded Message Translation```**\n" +
-      `Embedded Message translation is now turned : ${embedVar}\n\n`;
+      "**```Bot to Bot Translation```**\n" +
+      `Bot Message translation is now turned : ${bot2botVar}\n\n`;
       data.color = "info";
       data.text = output;
       return data.message.channel.send({
@@ -80,7 +80,7 @@ const embedSettings = function(data)
    data.color = "error";
    data.text =
       ":warning:  **`" + commandVariable1 +
-      "`** is not a valid embed option.\n";
+      "`** is not a valid bot2bot option.\n";
    return data.message.channel.send({
       embed: {
          description: data.text,

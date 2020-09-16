@@ -9,11 +9,12 @@ const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
 const webHookName = "Translator Messaging System";
-//const settings = require("../commands/settings");
 const embed = require("../commands/embed");
+
 //
 // Send Data to Channel
 //
+
 console.log(embed);
 module.exports = function(data)
 {

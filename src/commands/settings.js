@@ -2,7 +2,6 @@
 const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
-var b2bVar = "off";
 // -------------------------
 // Proccess settings params
 // -------------------------
@@ -12,11 +11,7 @@ var b2bVar = "off";
 //   b2bVar
 //}
 
-module.exports.getB2bVar = function(data)
-{
-   return b2bVar;
-};
-module.exports.run = function(data)
+module.exports = function(data)
 {
    //
    // Command allowed by admins only
@@ -197,38 +192,6 @@ const getSettings = function(data)
       });
    };
 
-   // --------------------------------------
-   // Bot to Bot Messages
-   // --------------------------------------
-
-    const b2b = function(data)
-   {
-      const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
-
-      if (commandVariable1 === "on" || commandVariable1 === "off")
-      {
-         b2bVar = commandVariable1;
-         var output =
-         "**```Bot to Bot Translation```**\n" +
-         `Bot Message translation is now turned : ${b2bVar}\n\n`;
-         console.log(b2bVar);
-
-         data.color = "info";
-         data.text = output;
-         console.log(output);
-         console.log("----------------- Data -----------------");
-         console.log(data);
-         console.log("----------------- Data -----------------");
-         return botSend(data);
-      }
-
-      data.color = "error";
-      data.text =
-         ":warning:  **`" + commandVariable1 +
-         "`** is not a valid b2b option.";
-      return botSend(data);
-   };
-
    // --------------------------
    // Execute command if exists
    // --------------------------
@@ -238,7 +201,6 @@ const getSettings = function(data)
       "disconnect": disconnect,
       "listservers": listServers,
       "dbfix": dbFix,
-      "b2b": b2b,
       "updatebot": updateBot
    };
 
