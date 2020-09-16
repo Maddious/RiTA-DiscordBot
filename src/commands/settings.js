@@ -3,6 +3,8 @@ const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
 var b2bVar = "off";
+const colors = require("../core/colors");
+var embedVar = "on";
 // -------------------------
 // Proccess settings params
 // -------------------------
@@ -12,6 +14,10 @@ var b2bVar = "off";
 //   b2bVar
 //}
 
+module.exports.getEmbedVar = function(data)
+{
+   return embedVar;
+};
 module.exports.getB2bVar = function(data)
 {
    return b2bVar;
@@ -198,10 +204,46 @@ const getSettings = function(data)
    };
 
    // --------------------------------------
+   // Embed Messages
+   // --------------------------------------
+
+   const embed = function(data)
+   {
+      const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
+
+      if (commandVariable1 === "on" || commandVariable1 === "off")
+      {
+         embedVar = commandVariable1;
+         var output =
+         "**```Embedded Message Translation```**\n" +
+         `Embedded Message translation is now turned : ${embedVar}\n\n`;
+         data.color = "info";
+         data.text = output;
+         return data.message.channel.send({
+            embed: {
+               description: data.text,
+               color: colors.get(data.color)
+            }
+         });
+      }
+
+      data.color = "error";
+      data.text =
+         ":warning:  **`" + commandVariable1 +
+         "`** is not a valid embed option.";
+      return data.message.channel.send({
+         embed: {
+            description: data.text,
+            color: colors.get(data.color)
+         }
+      });
+   };
+
+   // --------------------------------------
    // Bot to Bot Messages
    // --------------------------------------
 
-    const b2b = function(data)
+   const b2b = function(data)
    {
       const commandVariable1 = data.cmd.params.split(" ")[1].toLowerCase();
 
@@ -211,22 +253,26 @@ const getSettings = function(data)
          var output =
          "**```Bot to Bot Translation```**\n" +
          `Bot Message translation is now turned : ${b2bVar}\n\n`;
-         console.log(b2bVar);
-
          data.color = "info";
          data.text = output;
-         console.log(output);
-         console.log("----------------- Data -----------------");
-         console.log(data);
-         console.log("----------------- Data -----------------");
-         return botSend(data);
+         return data.message.channel.send({
+            embed: {
+               description: data.text,
+               color: colors.get(data.color)
+            }
+         });
       }
 
       data.color = "error";
       data.text =
          ":warning:  **`" + commandVariable1 +
          "`** is not a valid b2b option.";
-      return botSend(data);
+      return data.message.channel.send({
+         embed: {
+            description: data.text,
+            color: colors.get(data.color)
+         }
+      });
    };
 
    // --------------------------
@@ -238,6 +284,7 @@ const getSettings = function(data)
       "disconnect": disconnect,
       "listservers": listServers,
       "dbfix": dbFix,
+      "embed": embed,
       "b2b": b2b,
       "updatebot": updateBot
    };
