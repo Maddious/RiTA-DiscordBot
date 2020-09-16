@@ -11,7 +11,7 @@ const cmdHelp = require("./help");
 const cmdList = require("./list");
 const cmdStats = require("./stats");
 const cmdVersion = require("./version");
-//const cmdEmbed = require("./embed");
+const cmdEmbed = require("./embed");
 const cmdMisc = require("./misc");
 const cmdSettings = require("./settings");
 const cmdTranslateLast = require("./translate.last");
@@ -221,7 +221,7 @@ module.exports = function(data)
          "info": cmdHelp,
          "list": cmdList,
          "stats": cmdStats,
-//         "embed": settings.embed,
+         "embed": cmdEmbed.run,
          "version": cmdVersion,
          "invite": cmdMisc.invite,
          "shards": cmdMisc.shards,

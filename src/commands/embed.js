@@ -1,3 +1,7 @@
+const botSend = require("../core/send");
+const auth = require("../core/auth");
+const { Channel, TextChannel } = require("discord.js");
+const { channelTasks } = require("../core/db");
 const colors = require("../core/colors");
 var embedVar = "on";
 
