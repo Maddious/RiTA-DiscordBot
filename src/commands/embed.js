@@ -1,6 +1,10 @@
 const botSend = require("../core/send");
 const auth = require("../core/auth");
+const { Channel, TextChannel } = require("discord.js");
+const { channelTasks } = require("../core/db");
+const colors = require("../core/colors");
 var embedVar = "on";
+
 
 module.exports.getEmbedVar = function(data)
 {
@@ -17,7 +21,12 @@ module.exports.run = function(data)
    {
       data.color = "warn";
       data.text = ":cop:  This command is reserved for server administrators.";
-      return botSend;
+      return data.message.channel.send({
+         embed: {
+            description: data.text,
+            color: colors.get(data.color)
+         }
+      });
    }
 
    //
@@ -31,7 +40,12 @@ module.exports.run = function(data)
          ":warning:  Missing `settings` parameter. Use `" +
          `${data.config.translateCmdShort} help settings\` to learn more.`;
 
-      return botSend;
+      return data.message.channel.send({
+         embed: {
+            description: data.text,
+            color: colors.get(data.color)
+         }
+      });
    }
 
    //
@@ -40,6 +54,8 @@ module.exports.run = function(data)
 
    embedSettings(data);
 };
+
+
 
 // ===================
 // Available Settings
@@ -56,19 +72,30 @@ const embedSettings = function(data)
       "**```Bot to Bot Translation```**\n" +
       `Bot Message translation is now turned : ${embedVar}\n\n`;
       console.log(embedVar);
-
       data.color = "info";
       data.text = output;
       console.log(output);
       console.log("----------------- Data -----------------");
       console.log(data);
       console.log("----------------- Data -----------------");
-      return botSend;
+      return data.message.channel.send({
+         embed: {
+            description: data.text,
+            color: colors.get(data.color)
+         }
+      });
    }
 
    data.color = "error";
    data.text =
       ":warning:  **`" + commandVariable1 +
-      "`** is not a valid b2b option.";
-   return botSend;
+      "`** is not a valid embed option.\n" +
+      "Please make check what the arguments are:";
+   return data.message.channel.send({
+      embed: {
+         description: data.text,
+         color: colors.get(data.color)
+      }
+   });
 };
+
