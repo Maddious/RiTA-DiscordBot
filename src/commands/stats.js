@@ -3,7 +3,7 @@ const botSend = require("../core/send");
 const db = require("../core/db");
 const auth = require("../core/auth");
 const logger = require("../core/logger");
-const settings = require("./settings");
+const bot2bot = require("../commands/bot2bot");
 const embed = require("../commands/embed");
 
 
@@ -66,7 +66,7 @@ module.exports = function(data)
                `**\`${activeServerTasks}\`**  channels and  ` +
                `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` +
                `:inbox_tray: Embedded Message Status: **\`${embed.getEmbedVar()}\`**\n\n` +
-               `:robot: Bot to Bot Translation Status: **\`${settings.getB2bVar()}\`**`;
+               `:robot: Bot to Bot Translation Status: **\`${bot2bot.getBot2botVar()}\`**`;
       }
 
       data.color = "info";
