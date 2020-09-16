@@ -1,5 +1,5 @@
 const colors = require("../core/colors");
-var embedVar = "on";
+var embedVar = "off";
 
 
 module.exports.getEmbedVar = function(data)

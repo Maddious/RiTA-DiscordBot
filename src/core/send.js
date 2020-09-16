@@ -318,8 +318,8 @@ module.exports = function(data)
             if (data.text === undefined)
             {
                webhook.send(data.text, {
-                  "username": username,
-                  "avatarURL": avatarURL,
+                  "username": data.bot.username,
+                  "avatarURL": data.bot.displayAvatarURL,
                   "files": files
                });
             }
