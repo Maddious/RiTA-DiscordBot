@@ -1,5 +1,5 @@
 const colors = require("../core/colors");
-var bot2botVar = "on";
+var bot2botVar = "off";
 
 
 module.exports.getBot2botVar = function(data)
