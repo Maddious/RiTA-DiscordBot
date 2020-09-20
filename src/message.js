@@ -10,6 +10,7 @@ const bot2bot = require("./commands/bot2bot");
 //eslint-disable-next-line no-unused-vars
 module.exports = function(config, message, edited, deleted)
 {
+   module.exports.message = message;
    const client = message.client;
    const bot = client.user;
 
@@ -21,12 +22,15 @@ module.exports = function(config, message, edited, deleted)
    {
       if (message.author.bot)
       {
-      return;
+         return;
       }
-      else
-      if (message.webhookID)
+   }
+
+   if (bot2bot.getBot2botVar() === "on")
+   {
+      if (message.author.discriminator === "0000")
       {
-         return
+         return;
       }
    }
 
