@@ -11,9 +11,11 @@ const discord = require("discord.js");
 const webHookName = "Translator Messaging System";
 //const settings = require("../commands/settings");
 const embed = require("../commands/embed");
+const client = new discord.Client();
 //
 // Send Data to Channel
 //
+
 console.log(embed);
 module.exports = function(data)
 {
@@ -38,7 +40,11 @@ module.exports = function(data)
                embed: {
                   title: data.title,
                   fields: data.fields,
-                  author: data.author,
+                  author: {
+                     name: message.member.nickname || data.author.name,
+                     // eslint-disable-next-line camelcase
+                     icon_url: data.author.icon_url
+                  },
                   color: colors.get(data.color),
                   description: data.text,
                   footer: data.footer
@@ -64,6 +70,7 @@ module.exports = function(data)
                //
                // Handle error for users who cannot recieve private messages
                //
+
 
                if (err.code && err.code === 50007 && data.origin)
                {
@@ -290,6 +297,7 @@ module.exports = function(data)
          return files;
       }
 
+
       //
       // Send Webhook Message
       //
@@ -318,8 +326,8 @@ module.exports = function(data)
             if (data.text === undefined)
             {
                webhook.send(data.text, {
-                  "username": data.bot.username,
-                  "avatarURL": data.bot.displayAvatarURL,
+                  "username": message.member.nickname || data.author.name,
+                  "avatarURL": message.author.displayAvatarURL,
                   "files": files
                });
             }
@@ -345,13 +353,22 @@ module.exports = function(data)
                if (data.author.icon_url) { avatarURL = data.author.icon_url;}
             }
 
-            webhook.send(data.text, {
-               "username": data.author.name,
-               "avatarURL": data.author.icon_url,
-               "files": files
-            });
+            {
+               webhook.send(data.text, {
+                  "username": message.member.nickname || data.author.name,
+                  "avatarURL": data.author.icon_url,
+                  "files": files
+               });
+            }
          }
       }
+
+
+
+
+
+
+
 
       //
       // Send Data to Channel
@@ -379,7 +396,7 @@ module.exports = function(data)
          if (data.channel.type === "dm")
          {
             const embed = new discord.RichEmbed()
-               .setAuthor(data.author.username, data.author.displayAvatarURL)
+               .setAuthor(message.member.nickname || data.author.name, data.author.displayAvatarURL)
                .setColor(colors.get(data.color))
                .setDescription(data.text)
                .setFooter(data.footer.text);
@@ -399,7 +416,7 @@ module.exports = function(data)
                      channel.createWebhook(webHookName, data.bot.displayAvatarURL)
                         .then(newWebhook =>
                         {
-                        // Finally send the webhook
+                           // Finally send the webhook
                            sendWebhookMessage(newWebhook, data);
                         });
                   }
@@ -554,3 +571,4 @@ module.exports = function(data)
       return sendBox(sendData);
    }
 };
+
