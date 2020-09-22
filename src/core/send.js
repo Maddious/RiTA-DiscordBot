@@ -20,15 +20,14 @@ const temp = "";
 
 module.exports = function(data)
 {
-   
    // -------------------
    // Get Embedded Variable From DB
    // -------------------
-   console.log (`Guild ID from message`)
-   console.log (`Raw = ` + data.message.guild.id)
-   const guildValue = data.message.guild.id
-   console.log (`Const = ` + guildValue)
-   console.log (`---------------------`)
+   console.log(`Guild ID from message`);
+   console.log(`Raw = ` + data.message.guild.id);
+   const guildValue = data.message.guild.id;
+   console.log(`Const = ` + guildValue);
+   console.log(`---------------------`);
 
    /*
    console.log (`Send ID to getEmbedVar`)
@@ -44,32 +43,34 @@ module.exports = function(data)
    // so what we need to do is add in a if "" then run db.getEmbedVar(guildValue); and then.
    //
 
-   console.log (`db.set Stage 1 = ` + db.setEmbedVar())
+   console.log(`db.set Stage 1 = ` + db.setEmbedVar());
    db.getEmbedVar(guildValue);
 
-   if (db.setEmbedVar() === "") 
+   if (db.setEmbedVar() === "")
    {
+      // eslint-disable-next-line no-unused-expressions
       db.setEmbedVar;
-      console.log (`db.set Stage 2 = ` + db.setEmbedVar())
+      console.log(`db.set Stage 2 = ` + db.setEmbedVar());
       var output =
          "**```Translation Server has been Rebooted.\n" +
          "---- Initialisation in progress ----\n" +
          "  The message/command sent has not\n" +
          " translated or called please resend.```**\n";
-         data.color = "warn";
-         data.text = output;
-         return data.message.channel.send({
-            embed: {
-               description: data.text,
-               color: colors.get(data.color)
-            }
-         });
+      data.color = "warn";
+      data.text = output;
+      return data.message.channel.send({
+         embed: {
+            description: data.text,
+            color: colors.get(data.color)
+         }
+      });
    }
-   else 
+   else
+   // eslint-disable-next-line no-else-return
    {
-      console.log (`db.set Stage 3 = ` + db.setEmbedVar())
+      console.log(`db.set Stage 3 = ` + db.setEmbedVar());
    }
-   console.log (`db.set Stage 4 = ` + db.setEmbedVar())
+   console.log(`db.set Stage 4 = ` + db.setEmbedVar());
 
    //
    // Testing Theory ^^^

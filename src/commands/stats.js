@@ -53,8 +53,8 @@ module.exports = function(data)
       {
          const serverLang = langCheck(data.cmd.server[0].lang).valid[0];
 
-         const embedVar = data.cmd.server[0].embedStyle
-         const bot2BotVar = data.cmd.server[0].bot2BotStyle
+         const embedVar = data.cmd.server[0].embedStyle;
+         const bot2BotVar = data.cmd.server[0].bot2BotStyle;
 
          const activeServerTasks =
                data.cmd.server[0].activeTasks - data.cmd.server[0].activeUserTasks;

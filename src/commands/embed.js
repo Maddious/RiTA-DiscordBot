@@ -1,5 +1,6 @@
 const colors = require("../core/colors");
 const db = require("../core/db");
+const logger = require("../core/logger");
 
 module.exports.run = function(data)
 {
@@ -45,8 +46,6 @@ module.exports.run = function(data)
    embedSettings(data);
 };
 
-
-
 // ===================
 // Available Settings
 // ===================
@@ -57,7 +56,7 @@ const embedSettings = function(data)
 
    if (commandVariable1 === "on" || commandVariable1 === "off")
    {
-      console.log (commandVariable1);
+      console.log(commandVariable1);
       return db.updateEmbedVar(
          data.message.channel.guild.id,
          commandVariable1,

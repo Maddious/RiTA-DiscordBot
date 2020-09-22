@@ -1,5 +1,7 @@
 const colors = require("../core/colors");
 var bot2botVar = "off";
+//const logger = require("./logger");
+//const db = require("../core/db");
 
 
 module.exports.getBot2botVar = function(data)

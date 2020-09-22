@@ -175,13 +175,13 @@ const getSettings = function(data)
       });
    };
 
-      // --------------------------------------
-   // Update db 
+   // --------------------------------------
+   // Update db
    // --------------------------------------
 
    const updateDB = function(data)
    {
-      return db.updateColumns();    
+      return db.updateColumns();
    };
 
    // --------------------------------------
