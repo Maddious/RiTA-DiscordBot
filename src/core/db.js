@@ -4,6 +4,7 @@ const logger = require("./logger");
 const Op = Sequelize.Op;
 var dbEmbedValue ="";
 
+
 const db = process.env.DATABASE_URL.endsWith(".db") ?
    new Sequelize({
       dialect: "sqlite",
@@ -138,6 +139,8 @@ exports.updateServerLang = function(id, lang, _cb)
 
 exports.updateEmbedVar = function(id, embedStyle, _cb)
 {
+   console.log (`updateEmbedVar ` + embedStyle);
+   dbEmbedValue = embedStyle
    return Servers.update({ embedStyle: embedStyle }, { where: { id: id } }).then(
       function ()
       {
@@ -145,7 +148,7 @@ exports.updateEmbedVar = function(id, embedStyle, _cb)
       });
 };
 
-/*
+
 
 // -------------------
 // Get Embedded Variable From DB
@@ -155,21 +158,26 @@ exports.getEmbedVar = async function run(id)
 {
    var value = await db.query(`select * from (select embedStyle as "embedStyle" from servers where id = ?)`, { replacements: [id], type: db.QueryTypes.SELECT})
    dbEmbedValue = value[0].embedStyle
-   //console.log (`getEmbedVar Log Value ` + value[0].embedStyle)
-   //console.log (`getEmbedVar Log Local ` + dbEmbedValue)
-   return setEmbedVar();
-   //return value[0].embedStyle
+   //console.log (`getEmbedVar Log Value ` + value[0].embedStyle);
+   console.log (`getEmbedVar Log Local ` + dbEmbedValue);
+   return this.setEmbedVar();
+   //return value[0].embedStyle;
+   //return dbEmbedValue;
 };
+
+
 
 // -------------------
 // Call Save Value 
 // -------------------
 
-const setEmbedVar = function()
+module.exports.setEmbedVar = function(data)
 {
    console.log (`setEmbedVar Log ` + dbEmbedValue)
-   return dbEmbedValue
+   return dbEmbedValue;
 };
+
+/*
 
 // ------------------
 // Add Missing Variable Columns

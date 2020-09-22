@@ -53,6 +53,8 @@ module.exports = function(data)
       {
          const serverLang = langCheck(data.cmd.server[0].lang).valid[0];
 
+         const embedVar = data.cmd.server[0].embedStyle
+
          const activeServerTasks =
                data.cmd.server[0].activeTasks - data.cmd.server[0].activeUserTasks;
 
@@ -65,7 +67,7 @@ module.exports = function(data)
                `:repeat:  Automatic translation:  ` +
                `**\`${activeServerTasks}\`**  channels and  ` +
                `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` +
-               `:inbox_tray: Embedded Message Status: **\`${embed.getEmbedVar()}\`**\n\n` +
+               `:inbox_tray: Embedded Message Status: **\`${embedVar}\`**\n\n` +
                `:robot: Bot to Bot Translation Status: **\`${bot2bot.getBot2botVar()}\`**`;
       }
 
