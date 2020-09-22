@@ -141,8 +141,8 @@ exports.updateServerLang = function(id, lang, _cb)
 
 exports.updateEmbedVar = function(id, embedStyle, _cb)
 {
-   console.log (`updateEmbedVar ` + embedStyle);
-   dbEmbedValue = embedStyle
+   console.log(`updateEmbedVar ` + embedStyle);
+   dbEmbedValue = embedStyle;
    return Servers.update({ embedStyle: embedStyle }, { where: { id: id } }).then(
       function ()
       {
@@ -156,10 +156,11 @@ exports.updateEmbedVar = function(id, embedStyle, _cb)
 
 exports.getEmbedVar = async function run(id)
 {
-   var value = await db.query(`select * from (select embedStyle as "embedStyle" from servers where id = ?)`, { replacements: [id], type: db.QueryTypes.SELECT})
-   dbEmbedValue = value[0].embedStyle
+   var value = await db.query(`select * from (select embedStyle as "embedStyle" from servers where id = ?)`, { replacements: [id],
+      type: db.QueryTypes.SELECT});
+   dbEmbedValue = value[0].embedStyle;
    //console.log (`getEmbedVar Log Value ` + value[0].embedStyle);
-   console.log (`getEmbedVar Log Local ` + dbEmbedValue);
+   console.log(`getEmbedVar Log Local ` + dbEmbedValue);
    return this.setEmbedVar();
    //return value[0].embedStyle;
    //return dbEmbedValue;
@@ -171,7 +172,7 @@ exports.getEmbedVar = async function run(id)
 
 module.exports.setEmbedVar = function(data)
 {
-   console.log (`setEmbedVar Log ` + dbEmbedValue)
+   console.log(`setEmbedVar Log ` + dbEmbedValue);
    return dbEmbedValue;
 };
 
@@ -226,22 +227,28 @@ module.exports.setBot2BotVar = function(data)
 
 exports.updateColumns = function(data)
 {
-   db.query('ALTER TABLE servers ADD embedStyle VARCHAR(8) DEFAULT off;',function(err){
-      if(err){
-          console.log("ERROR:"+err.message);
-      }
-      else{
-          console.log("embedStyle column added");
-      }
-  });
-  db.query('ALTER TABLE servers ADD bot2BotStyle VARCHAR(8) DEFAULT off;',function(err){
-      if(err){
+   db.query("ALTER TABLE servers ADD embedStyle VARCHAR(8) DEFAULT off;",function(err)
+   {
+      if (err)
+      {
          console.log("ERROR:"+err.message);
       }
-      else{
+      else
+      {
+         console.log("embedStyle column added");
+      }
+   });
+   db.query("ALTER TABLE servers ADD bot2BotStyle VARCHAR(8) DEFAULT off;",function(err)
+   {
+      if (err)
+      {
+         console.log("ERROR:"+err.message);
+      }
+      else
+      {
          console.log("bot2BotStyle column added");
       }
-   });  
+   });
 };
 
 // ------------------
@@ -316,7 +323,6 @@ exports.checkTask = function(origin, dest, cb)
       {
          cb(err, result);
       });
-      
 };
 
 // --------------------
@@ -458,7 +464,7 @@ exports.getServerInfo = function(id, callback)
       .then(
          result => callback(result),
          err => this.updateColumns() //+ logger("error", err + "\nQuery: " + err.sql, "db")
-         
+
       );
 };
 
