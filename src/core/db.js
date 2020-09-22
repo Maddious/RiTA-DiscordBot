@@ -2,6 +2,7 @@ const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
 const Op = Sequelize.Op;
+var dbEmbedValue ="";
 
 const db = process.env.DATABASE_URL.endsWith(".db") ?
    new Sequelize({
@@ -42,6 +43,14 @@ const Servers = db.define("servers", {
    active: {
       type: Sequelize.BOOLEAN,
       defaultValue: true
+   },
+   embedStyle: {
+      type: Sequelize.STRING(8),
+      defaultValue: "off"
+   },
+   bot2BotStyle: {
+      type: Sequelize.STRING(8),
+      defaultValue: "off"
    }
 });
 //--
@@ -123,9 +132,59 @@ exports.updateServerLang = function(id, lang, _cb)
       });
 };
 
+// -------------------
+// Update Embedded Variable
+// -------------------
+
+exports.updateEmbedVar = function(id, embedStyle, _cb)
+{
+   return Servers.update({ embedStyle: embedStyle }, { where: { id: id } }).then(
+      function ()
+      {
+         _cb();
+      });
+};
+
+/*
+
+// -------------------
+// Get Embedded Variable From DB
+// -------------------
+
+exports.getEmbedVar = async function run(id)
+{
+   var value = await db.query(`select * from (select embedStyle as "embedStyle" from servers where id = ?)`, { replacements: [id], type: db.QueryTypes.SELECT})
+   dbEmbedValue = value[0].embedStyle
+   //console.log (`getEmbedVar Log Value ` + value[0].embedStyle)
+   //console.log (`getEmbedVar Log Local ` + dbEmbedValue)
+   return setEmbedVar();
+   //return value[0].embedStyle
+};
+
+// -------------------
+// Call Save Value 
+// -------------------
+
+const setEmbedVar = function()
+{
+   console.log (`setEmbedVar Log ` + dbEmbedValue)
+   return dbEmbedValue
+};
+
+// ------------------
+// Add Missing Variable Columns
+// ------------------
+
+exports.updateColumns = function()
+{
+  
+};
+
 // ------------------
 // Get Channel Tasks
 // ------------------
+
+*/
 
 exports.channelTasks = function(data)
 {
@@ -327,7 +386,9 @@ exports.getServerInfo = function(id, callback)
    `(select count(distinct origin) as "activeTasks"` +
    `from tasks where server = ?) as table2,` +
    `(select count(distinct origin) as "activeUserTasks"` +
-   `from tasks where origin like '@%' and server = ?) as table3;`, { replacements: [ id, id, id],
+   `from tasks where origin like '@%' and server = ?) as table3, ` +
+   `(select embedStyle as "embedStyle" from servers where id = ?) as table4, ` +
+   `(select bot2BotStyle as "bot2BotStyle" from servers where id = ?) as table5;`, { replacements: [ id, id, id, id, id],
       type: db.QueryTypes.SELECT})
       .then(
          result => callback(result),

@@ -1,5 +1,6 @@
 const colors = require("../core/colors");
 var embedVar = "off";
+const db = require("../core/db");
 
 
 module.exports.getEmbedVar = function(data)
@@ -63,18 +64,29 @@ const embedSettings = function(data)
 
    if (commandVariable1 === "on" || commandVariable1 === "off")
    {
-      embedVar = commandVariable1;
-      var output =
-      "**```Embedded Message Translation```**\n" +
-      `Embedded Message translation is now turned : ${embedVar}\n\n`;
-      data.color = "info";
-      data.text = output;
-      return data.message.channel.send({
-         embed: {
-            description: data.text,
-            color: colors.get(data.color)
+      console.log (commandVariable1);
+      return db.updateEmbedVar(
+         data.message.channel.guild.id,
+         commandVariable1,
+         function(err)
+         {
+            if (err)
+            {
+               return logger("error", err);
+            }
+            var output =
+            "**```Bot to Bot Translation```**\n" +
+            `Bot Message translation is now turned : ${commandVariable1}\n\n`;
+            data.color = "info";
+            data.text = output;
+            return data.message.channel.send({
+               embed: {
+                  description: data.text,
+                  color: colors.get(data.color)
+               }
+            });
          }
-      });
+      );
    }
 
    data.color = "error";
@@ -88,4 +100,3 @@ const embedSettings = function(data)
       }
    });
 };
-
