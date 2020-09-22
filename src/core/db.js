@@ -134,7 +134,7 @@ exports.updateServerLang = function(id, lang, _cb)
 };
 
 // -------------------
-// Update Embedded Variable
+// Update Embedded Variable in DB
 // -------------------
 
 exports.updateEmbedVar = function(id, embedStyle, _cb)
@@ -168,7 +168,7 @@ exports.getEmbedVar = async function run(id)
 
 
 // -------------------
-// Call Save Value 
+// Call Saved Embedded Variable Value From DB
 // -------------------
 
 module.exports.setEmbedVar = function(data)

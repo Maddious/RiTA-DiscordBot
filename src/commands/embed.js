@@ -1,12 +1,5 @@
 const colors = require("../core/colors");
-var embedVar = "off";
 const db = require("../core/db");
-
-
-module.exports.getEmbedVar = function(data)
-{
-   return embedVar;
-};
 
 module.exports.run = function(data)
 {
@@ -75,8 +68,8 @@ const embedSettings = function(data)
                return logger("error", err);
             }
             var output =
-            "**```Bot to Bot Translation```**\n" +
-            `Bot Message translation is now turned : ${commandVariable1}\n\n`;
+            "**```Embedded Translation```**\n" +
+            `Embedded Message translation is now turned : ${commandVariable1}\n\n`;
             data.color = "info";
             data.text = output;
             return data.message.channel.send({
