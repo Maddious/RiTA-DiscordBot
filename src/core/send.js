@@ -52,8 +52,10 @@ module.exports = function(data)
       db.setEmbedVar;
       console.log (`db.set Stage 2 = ` + db.setEmbedVar())
       var output =
-         "**```Translation Server has been Rebooted, the first\n" +
-         "message sent will not translated please resend.```**\n";
+         "**```Translation Server has been Rebooted.\n" +
+         "---- Initialisation in progress ----\n" +
+         "  The message/command sent has not\n" +
+         " translated or called please resend.```**\n";
          data.color = "warn";
          data.text = output;
          return data.message.channel.send({

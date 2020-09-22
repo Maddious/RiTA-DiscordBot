@@ -66,7 +66,7 @@ const bot2botSettings = function(data)
       bot2botVar = commandVariable1;
       var output =
       "**```Bot to Bot Translation```**\n" +
-      `Bot Message translation is now turned : ${bot2botVar}\n\n`;
+      `Bot Message translation is not yet Implemented\n\n`;
       data.color = "info";
       data.text = output;
       return data.message.channel.send({
