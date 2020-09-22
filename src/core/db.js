@@ -3,6 +3,8 @@ const Sequelize = require("sequelize");
 const logger = require("./logger");
 const Op = Sequelize.Op;
 var dbEmbedValue ="";
+const colors = require("../core/colors");
+//var dbBot2BotValue =""; //Bot2Bot Code, Not working :(
 
 
 const db = process.env.DATABASE_URL.endsWith(".db") ?
@@ -148,8 +150,6 @@ exports.updateEmbedVar = function(id, embedStyle, _cb)
       });
 };
 
-
-
 // -------------------
 // Get Embedded Variable From DB
 // -------------------
@@ -165,8 +165,6 @@ exports.getEmbedVar = async function run(id)
    //return dbEmbedValue;
 };
 
-
-
 // -------------------
 // Call Saved Embedded Variable Value From DB
 // -------------------
@@ -177,22 +175,80 @@ module.exports.setEmbedVar = function(data)
    return dbEmbedValue;
 };
 
-/*
+/* Bot2Bot code, Not working :(
+
+// -------------------
+// Update Bot2Bot Variable In DB
+// -------------------
+
+exports.updateBot2BotVar = function(id, bot2BotStyle, _cb)
+{
+   console.log (`updateBot2BotVar ` + bot2BotStyle);
+   dbBot2BotValue = bot2BotStyle
+   return Servers.update({ bot2BotStyle: bot2BotStyle }, { where: { id: id } }).then(
+      function ()
+      {
+         _cb();
+      });
+};
+
+// -------------------
+// Get Bot2Bot Variable From DB
+// -------------------
+
+exports.getBot2BotVar = async function run(id)
+{
+   var value = await db.query(`select * from (select bot2BotStyle as "bot2BotStyle" from servers where id = ?)`, { replacements: [id], type: db.QueryTypes.SELECT})
+   dbBot2BotValue = value[0].bot2BotStyle
+   //console.log (`getBot2BotVar Log Value ` + value[0].bot2BotStyle);
+   console.log (`getBot2BotVar Log Local ` + dbBot2BotValue);
+   return this.setBot2BotVar();
+   //return value[0].bot2BotStyle;
+   //return dbBot2BotValue;
+};
+
+// -------------------
+// Call Saved Bot2Bot Variable Value From DB
+// -------------------
+
+module.exports.setBot2BotVar = function(data)
+{
+   console.log (`setBot2BotVar Log ` + dbBot2BotValue)
+   return dbBot2BotValue;
+};
+*/
+
+
 
 // ------------------
 // Add Missing Variable Columns
 // ------------------
 
-exports.updateColumns = function()
+exports.updateColumns = function(data)
 {
-  
+   db.query('ALTER TABLE servers ADD embedStyle VARCHAR(8) DEFAULT off;',function(err){
+      if(err){
+          console.log("ERROR:"+err.message);
+      }
+      else{
+          console.log("embedStyle column added");
+      }
+  });
+  db.query('ALTER TABLE servers ADD bot2BotStyle VARCHAR(8) DEFAULT off;',function(err){
+      if(err){
+         console.log("ERROR:"+err.message);
+      }
+      else{
+         console.log("bot2BotStyle column added");
+      }
+   });  
 };
 
 // ------------------
 // Get Channel Tasks
 // ------------------
 
-*/
+
 
 exports.channelTasks = function(data)
 {
@@ -260,6 +316,7 @@ exports.checkTask = function(origin, dest, cb)
       {
          cb(err, result);
       });
+      
 };
 
 // --------------------
@@ -400,7 +457,8 @@ exports.getServerInfo = function(id, callback)
       type: db.QueryTypes.SELECT})
       .then(
          result => callback(result),
-         err => logger("error", err + "\nQuery: " + err.sql, "db")
+         err => this.updateColumns() //+ logger("error", err + "\nQuery: " + err.sql, "db")
+         
       );
 };
 

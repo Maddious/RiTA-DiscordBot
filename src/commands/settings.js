@@ -175,6 +175,15 @@ const getSettings = function(data)
       });
    };
 
+      // --------------------------------------
+   // Update db 
+   // --------------------------------------
+
+   const updateDB = function(data)
+   {
+      return db.updateColumns();    
+   };
+
    // --------------------------------------
    // Fix guild mismatch
    // --------------------------------------
@@ -190,6 +199,7 @@ const getSettings = function(data)
       {
          db.addServer(guild.id, data.config.defaultLanguage, db.Servers);
       });
+      db.updateColumns();
    };
 
    // --------------------------
@@ -201,6 +211,7 @@ const getSettings = function(data)
       "disconnect": disconnect,
       "listservers": listServers,
       "dbfix": dbFix,
+      "updatedb": updateDB,
       "updatebot": updateBot
    };
 
