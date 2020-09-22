@@ -40,11 +40,7 @@ module.exports = function(data)
                embed: {
                   title: data.title,
                   fields: data.fields,
-                  author: {
-                     name: message.member.nickname || data.author.name,
-                     // eslint-disable-next-line camelcase
-                     icon_url: data.author.icon_url
-                  },
+                  author: data.author,
                   color: colors.get(data.color),
                   description: data.text,
                   footer: data.footer
