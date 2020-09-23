@@ -52,7 +52,7 @@
     "webhook-discord": "^3.6.0"
   },
   "devDependencies": {
-    "@kollavarsham/gulp-coveralls": "^0.3.1",
+    "@kollavarsham/gulp-coveralls": "^0.3.2",
     "babel-eslint": "^10.1.0",
     "braces": "^3.0.2",
     "eslint": "^7.9.0",
