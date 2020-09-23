@@ -167,8 +167,8 @@ const getSettings = function(data)
       activeGuilds.forEach(guild =>
       {
          guild.owner.send(
-            "Hello, this bot has been updated to a new version, please " +
-               "find out more at: https://github.com/ZyC0R3/RitaBot/tree/test-branch#new-in-121- \n");
+            "Hello, this bot has been updated to a new version.\n " +
+            "More info: https://ritabot.org/whats-new/#new-in-121\n");
       });
 
       /*
