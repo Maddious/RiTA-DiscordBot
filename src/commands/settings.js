@@ -2,6 +2,7 @@
 const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
+const colors = require("../core/colors");
 // -------------------------
 // Proccess settings params
 // -------------------------
@@ -158,6 +159,7 @@ const getSettings = function(data)
 
    const updateBot = function(data)
    {
+      /*
       const activeGuilds = data.client.guilds.array();
       data.color = "info";
       data.text = `Updating bot for **${activeGuilds.length}** servers.`;
@@ -172,6 +174,18 @@ const getSettings = function(data)
          {
             guild.leave();
          }).catch(err => logger("error", err));
+      });
+      */
+
+      var output =
+      "**```This command is disbaled```**\n";
+      data.color = "info";
+      data.text = output;
+      return data.message.channel.send({
+         embed: {
+            description: data.text,
+            color: colors.get(data.color)
+         }
       });
    };
 
