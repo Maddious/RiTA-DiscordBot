@@ -11,7 +11,9 @@ const discord = require("discord.js");
 const webHookName = "Translator Messaging System";
 //const settings = require("../commands/settings");
 const embed = require("../commands/embed");
+const Discord = require("discord.js");
 const temp = "";
+
 
 
 //
@@ -29,6 +31,21 @@ module.exports = function(data)
    console.log(`Const = ` + guildValue);
    console.log(`---------------------`);
 
+   function ignoreMessage()
+   {
+      message.delete(30000);
+      const ignoreMessageEmbed = new Discord.RichEmbed()
+         .setColor(colors.get(data.color))
+         .setTitle("**Bot Alert**\n")
+         .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+         .setDescription(data.text)
+         .setTimestamp()
+         .setFooter("𝗕𝗼𝘁𝗵 𝗺𝗲𝘀𝘀𝗮𝗴𝗲𝘀  𝘄𝗶𝗹𝗹 𝘀𝗲𝗹𝗳-𝗱𝗲𝘀𝘁𝗿𝘂𝗰𝘁 𝗶𝗻 𝟯𝟬 𝘀𝗲𝗰𝗼𝗻𝗱𝘀");
+      message.reply(ignoreMessageEmbed).then(msg =>
+      {
+         msg.delete(30000);
+      });
+   }
    /*
    console.log (`Send ID to getEmbedVar`)
    console.log (`Raw = ` + data.message.guild.id)
@@ -52,18 +69,14 @@ module.exports = function(data)
       db.setEmbedVar;
       console.log(`db.set Stage 2 = ` + db.setEmbedVar());
       var output =
-         "**```Translation Server has been Rebooted.\n" +
-         "---- Initialisation in progress ----\n" +
-         "  The message/command sent has not\n" +
-         " translated or called please resend.```**\n";
+      "**:robot:          " +
+     data.bot.username +
+      " has restarted\n\n" +
+      " :gear: Please resend your previous message\n" +
+      " for it to be translated and read.**\n";
       data.color = "warn";
       data.text = output;
-      return data.message.channel.send({
-         embed: {
-            description: data.text,
-            color: colors.get(data.color)
-         }
-      });
+      return ignoreMessage();
    }
    else
    // eslint-disable-next-line no-else-return
@@ -353,6 +366,33 @@ module.exports = function(data)
       // Send Webhook Message
       //
 
+      if (message.member)
+      {
+         if (message.member.nickname)
+         {
+            nicknameVar = message.member.nickname;
+         }
+         else
+         {
+            nicknameVar = message.author.username;
+         }
+      }
+
+
+      if (!message.member)
+      {
+         if (data.emoji)
+         {
+            nicknameVar = data.author.username;
+         }
+      }
+
+
+
+
+
+
+
       function sendWebhookMessage(webhook, data)
       {
          if (data.author)
@@ -377,7 +417,7 @@ module.exports = function(data)
             if (data.text === undefined)
             {
                webhook.send(data.text, {
-                  "username": message.member.nickname || data.author.name,
+                  "username": nicknameVar,
                   "avatarURL": message.author.displayAvatarURL,
                   "files": files
                });
@@ -403,10 +443,9 @@ module.exports = function(data)
                if (data.author.name) { username = data.author.name;}
                if (data.author.icon_url) { avatarURL = data.author.icon_url;}
             }
-
             {
                webhook.send(data.text, {
-                  "username": message.member.nickname || data.author.name,
+                  "username": nicknameVar,
                   "avatarURL": data.author.icon_url,
                   "files": files
                });

@@ -216,6 +216,10 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help last\n` +
    `> ${cmd} help this\n\n` +
 
+   `# Translation Style Modules\n` +
+   `> ${cmd} help embed` +
+   `> ${cmd} help bot2bot` +
+
    `# Information Modules\n` +
    `> ${cmd} help stats\n` +
    `> ${cmd} help tasks\n` +
