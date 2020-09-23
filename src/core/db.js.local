@@ -47,11 +47,11 @@ const Servers = db.define("servers", {
       type: Sequelize.BOOLEAN,
       defaultValue: true
    },
-   embedStyle: {
+   embedstyle: {
       type: Sequelize.STRING(8),
       defaultValue: "off"
    },
-   bot2BotStyle: {
+   bot2botstyle: {
       type: Sequelize.STRING(8),
       defaultValue: "off"
    }
@@ -139,11 +139,11 @@ exports.updateServerLang = function(id, lang, _cb)
 // Update Embedded Variable in DB
 // -------------------
 
-exports.updateEmbedVar = function(id, embedStyle, _cb)
+exports.updateEmbedVar = function(id, embedstyle, _cb)
 {
-   console.log(`updateEmbedVar ` + embedStyle);
-   dbEmbedValue = embedStyle;
-   return Servers.update({ embedStyle: embedStyle }, { where: { id: id } }).then(
+   console.log(`updateEmbedVar ` + embedstyle);
+   dbEmbedValue = embedstyle;
+   return Servers.update({ embedstyle: embedstyle }, { where: { id: id } }).then(
       function ()
       {
          _cb();
@@ -156,13 +156,13 @@ exports.updateEmbedVar = function(id, embedStyle, _cb)
 
 exports.getEmbedVar = async function run(id)
 {
-   var value = await db.query(`select * from (select embedStyle as "embedStyle" from servers where id = ?)`, { replacements: [id],
+   var value = await db.query(`select * from (select embedstyle as "embedstyle" from servers where id = ?)`, { replacements: [id],
       type: db.QueryTypes.SELECT});
-   dbEmbedValue = value[0].embedStyle;
-   //console.log (`getEmbedVar Log Value ` + value[0].embedStyle);
+   dbEmbedValue = value[0].embedstyle;
+   //console.log (`getEmbedVar Log Value ` + value[0].embedstyle);
    console.log(`getEmbedVar Log Local ` + dbEmbedValue);
    return this.setEmbedVar();
-   //return value[0].embedStyle;
+   //return value[0].embedstyle;
    //return dbEmbedValue;
 };
 
@@ -182,11 +182,11 @@ module.exports.setEmbedVar = function(data)
 // Update Bot2Bot Variable In DB
 // -------------------
 
-exports.updateBot2BotVar = function(id, bot2BotStyle, _cb)
+exports.updateBot2BotVar = function(id, bot2botstyle, _cb)
 {
-   console.log (`updateBot2BotVar ` + bot2BotStyle);
-   dbBot2BotValue = bot2BotStyle
-   return Servers.update({ bot2BotStyle: bot2BotStyle }, { where: { id: id } }).then(
+   console.log (`updateBot2BotVar ` + bot2botstyle);
+   dbBot2BotValue = bot2botstyle
+   return Servers.update({ bot2botstyle: bot2botstyle }, { where: { id: id } }).then(
       function ()
       {
          _cb();
@@ -199,12 +199,12 @@ exports.updateBot2BotVar = function(id, bot2BotStyle, _cb)
 
 exports.getBot2BotVar = async function run(id)
 {
-   var value = await db.query(`select * from (select bot2BotStyle as "bot2BotStyle" from servers where id = ?)`, { replacements: [id], type: db.QueryTypes.SELECT})
-   dbBot2BotValue = value[0].bot2BotStyle
-   //console.log (`getBot2BotVar Log Value ` + value[0].bot2BotStyle);
+   var value = await db.query(`select * from (select bot2botstyle as "bot2botstyle" from servers where id = ?)`, { replacements: [id], type: db.QueryTypes.SELECT})
+   dbBot2BotValue = value[0].bot2botstyle
+   //console.log (`getBot2BotVar Log Value ` + value[0].bot2botstyle);
    console.log (`getBot2BotVar Log Local ` + dbBot2BotValue);
    return this.setBot2BotVar();
-   //return value[0].bot2BotStyle;
+   //return value[0].bot2botstyle;
    //return dbBot2BotValue;
 };
 
@@ -227,7 +227,7 @@ module.exports.setBot2BotVar = function(data)
 
 exports.updateColumns = function(data)
 {
-   db.query("ALTER TABLE servers ADD embedStyle VARCHAR(8) DEFAULT off;",function(err)
+   db.query("ALTER TABLE servers ADD embedstyle VARCHAR(8) DEFAULT off;",function(err)
    {
       if (err)
       {
@@ -235,10 +235,10 @@ exports.updateColumns = function(data)
       }
       else
       {
-         console.log("embedStyle column added");
+         console.log("embedstyle column added");
       }
    });
-   db.query("ALTER TABLE servers ADD bot2BotStyle VARCHAR(8) DEFAULT off;",function(err)
+   db.query("ALTER TABLE servers ADD bot2botstyle VARCHAR(8) DEFAULT off;",function(err)
    {
       if (err)
       {
@@ -246,7 +246,7 @@ exports.updateColumns = function(data)
       }
       else
       {
-         console.log("bot2BotStyle column added");
+         console.log("bot2botstyle column added");
       }
    });
 };
@@ -458,8 +458,8 @@ exports.getServerInfo = function(id, callback)
    `from tasks where server = ?) as table2,` +
    `(select count(distinct origin) as "activeUserTasks"` +
    `from tasks where origin like '@%' and server = ?) as table3, ` +
-   `(select embedStyle as "embedStyle" from servers where id = ?) as table4, ` +
-   `(select bot2BotStyle as "bot2BotStyle" from servers where id = ?) as table5;`, { replacements: [ id, id, id, id, id],
+   `(select embedstyle as "embedstyle" from servers where id = ?) as table4, ` +
+   `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5;`, { replacements: [ id, id, id, id, id],
       type: db.QueryTypes.SELECT})
       .then(
          result => callback(result),
