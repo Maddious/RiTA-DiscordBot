@@ -156,7 +156,7 @@ exports.updateEmbedVar = function(id, embedstyle, _cb)
 
 exports.getEmbedVar = async function run(id)
 {
-   var value = await db.query(`select * from (select embedstyle as "embedstyle" from servers where id = ?)`, { replacements: [id],
+   var value = await db.query(`select * from (select embedstyle as "embedstyle" from servers where id = ? as embedstyle)`, { replacements: [id],
       type: db.QueryTypes.SELECT});
    dbEmbedValue = value[0].embedstyle;
    //console.log (`getEmbedVar Log Value ` + value[0].embedstyle);
