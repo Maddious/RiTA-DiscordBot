@@ -199,7 +199,7 @@ exports.updateBot2BotVar = function(id, bot2botstyle, _cb)
 
 exports.getBot2BotVar = async function run(id)
 {
-   var value = await db.query(`select * from (select bot2botstyle as "bot2botstyle" from servers where id = ?) as table2`, { replacements: [id], 
+   var value = await db.query(`select * from (select bot2botstyle as "bot2botstyle" from servers where id = ?) as table2`, { replacements: [id],
       type: db.QueryTypes.SELECT});
    dbBot2BotValue = value[0].bot2botstyle
    //console.log (`getBot2BotVar Log Value ` + value[0].bot2botstyle);
@@ -228,7 +228,7 @@ module.exports.setBot2BotVar = function(data)
 
 exports.updateColumns = function(data)
 {
-   db.query("ALTER TABLE servers ADD embedstyle VARCHAR(8) DEFAULT off;",function(err)
+   db.query(`ALTER TABLE public.servers ADD COLUMN "embedstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'off'::character varying;`,function(err)
    {
       if (err)
       {
@@ -239,7 +239,7 @@ exports.updateColumns = function(data)
          console.log("embedstyle column added");
       }
    });
-   db.query("ALTER TABLE servers ADD bot2botstyle VARCHAR(8) DEFAULT off;",function(err)
+   db.query(`ALTER TABLE public.servers ADD COLUMN "bot2botstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'off'::character varying;`,function(err)
    {
       if (err)
       {
