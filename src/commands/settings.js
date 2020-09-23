@@ -159,7 +159,6 @@ const getSettings = function(data)
 
    const updateBot = function(data)
    {
-      /*
       const activeGuilds = data.client.guilds.array();
       data.color = "info";
       data.text = `Updating bot for **${activeGuilds.length}** servers.`;
@@ -169,14 +168,10 @@ const getSettings = function(data)
       {
          guild.owner.send(
             "Hello, this bot has been updated to a new version, please " +
-               "reinvite through this link: \n" + data.config.inviteURL
-         ).then(m => //eslint-disable-line no-unused-vars
-         {
-            guild.leave();
-         }).catch(err => logger("error", err));
+               "find out more at: https://github.com/ZyC0R3/RitaBot/tree/test-branch#new-in-121- \n");
       });
-      */
 
+      /*
       var output =
       "**```This command is disbaled```**\n";
       data.color = "info";
@@ -187,6 +182,7 @@ const getSettings = function(data)
             color: colors.get(data.color)
          }
       });
+      */
    };
 
    // --------------------------------------
