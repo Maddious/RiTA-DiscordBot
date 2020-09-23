@@ -32,8 +32,8 @@ exports.listen = function(client)
          inviteURL: auth.invite,
          owner: auth.botOwner,
          defaultLanguage: "en",
-         translateCmd: "!translate",
-         translateCmdShort: "!t",
+         translateCmd: "?translate",
+         translateCmdShort: "?t",
          maxMulti: 6,
          maxChains: 10,
          maxChainLen: 5,
@@ -104,6 +104,7 @@ exports.listen = function(client)
 
    client.on("message", message =>
    {
+      global.message = message;
       if (message.guild)
       {
          console.log(`${message.guild.name} - ${message.guild.id}`);

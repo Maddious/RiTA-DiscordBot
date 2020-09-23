@@ -8,11 +8,12 @@
         "es6": true
     },
     "extends": "eslint:recommended",
+    "parser": "babel-eslint",
     "rules": {
       "no-console": "off",
       "no-extra-parens": "warn",
       "curly": "error",
-      "eqeqeq": "error",
+      "eqeqeq": "warn",
       "complexity": ["warn", 10],
       "dot-notation": "error",
       "no-alert": "error",
@@ -29,6 +30,7 @@
       "no-self-compare": "error",
       "no-unused-expressions": "warn",
       "no-useless-concat": "warn",
+      "no-constant-condition": "error",
       "yoda": "warn",
       "callback-return": "error",
       "global-require": "error",
@@ -65,6 +67,8 @@
       "no-mixed-spaces-and-tabs": "warn",
       "no-extra-semi": "warn",
       "no-prototype-builtins": "warn",
+      "no-undef": "error",
+      "no-dupe-keys": "off",
       "no-unreachable": "warn"
     }
 }

@@ -1,10 +1,16 @@
+/* eslint-disable no-undef */
 const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
-
+const colors = require("../core/colors");
 // -------------------------
 // Proccess settings params
 // -------------------------
+
+//module.exports = {
+//   embedVar,
+//   b2bVar
+//}
 
 module.exports = function(data)
 {
@@ -28,7 +34,7 @@ module.exports = function(data)
       data.color = "error";
       data.text =
          ":warning:  Missing `settings` parameter. Use `" +
-         `${data.config.translateCmd} help settings\` to learn more.`;
+         `${data.config.translateCmdShort} help settings\` to learn more.`;
 
       return botSend(data);
    }
@@ -124,30 +130,28 @@ const getSettings = function(data)
 
    const listServers = function(data)
    {
-      if (data.message.author.id === data.config.owner)
+      data.text = "__**Active Servers**__ - ";
+
+      const activeGuilds = data.client.guilds.array();
+
+      data.text += `${activeGuilds.length}\n\n`;
+
+      activeGuilds.forEach(guild =>
       {
-         data.text = "__**Active Servers**__ - ";
+         data.text += "```md\n";
+         data.text += `> ${guild.id}\n# ${guild.name}\n`;
+         data.text += `@${guild.owner.user.username}#`;
+         data.text += guild.owner.user.discriminator + "\n```";
+      });
 
-         const activeGuilds = data.client.guilds.array();
+      const splitOpts = {
+         maxLength: 1000,
+         char: ""
+      };
 
-         data.text += `${activeGuilds.length}\n\n`;
-
-         activeGuilds.forEach(guild =>
-         {
-            data.text += "```md\n";
-            data.text += `> ${guild.id}\n# ${guild.name}\n`;
-            data.text += `@${guild.owner.user.username}#`;
-            data.text += guild.owner.user.discriminator + "\n```";
-         });
-
-         const splitOpts = {
-            maxLength: 1000,
-            char: ""
-         };
-
-         return data.message.channel.send(data.text, {split: splitOpts});
-      }
+      return data.message.channel.send(data.text, {split: splitOpts});
    };
+
 
    // --------------------------------------
    // Update bot (disconnects from servers)
@@ -155,24 +159,39 @@ const getSettings = function(data)
 
    const updateBot = function(data)
    {
-      if (data.message.author.id === data.config.owner)
-      {
-         const activeGuilds = data.client.guilds.array();
-         data.color = "info";
-         data.text = `Updating bot for **${activeGuilds.length}** servers.`;
-         botSend(data);
+      const activeGuilds = data.client.guilds.array();
+      data.color = "info";
+      data.text = `Updating bot for **${activeGuilds.length}** servers.`;
+      botSend(data);
 
-         activeGuilds.forEach(guild =>
-         {
-            guild.owner.send(
-               "Hello, this bot has been updated to a new version, please " +
-               "reinvite through this link: \n" + data.config.inviteURL
-            ).then(m => //eslint-disable-line no-unused-vars
-            {
-               guild.leave();
-            }).catch(err => logger("error", err));
-         });
-      }
+      activeGuilds.forEach(guild =>
+      {
+         guild.owner.send(
+            "Hello, this bot has been updated to a new version.\n " +
+            "More info: https://ritabot.org/whats-new/#new-in-121\n");
+      });
+
+      /*
+      var output =
+      "**```This command is disbaled```**\n";
+      data.color = "info";
+      data.text = output;
+      return data.message.channel.send({
+         embed: {
+            description: data.text,
+            color: colors.get(data.color)
+         }
+      });
+      */
+   };
+
+   // --------------------------------------
+   // Update db
+   // --------------------------------------
+
+   const updateDB = function(data)
+   {
+      return db.updateColumns();
    };
 
    // --------------------------------------
@@ -181,18 +200,15 @@ const getSettings = function(data)
 
    const dbFix = function(data)
    {
-      if (data.message.author.id === data.config.owner)
-      {
-         const activeGuilds = data.client.guilds.array();
-         data.color = "info";
-         data.text = `Updating db for **${activeGuilds.length}** servers.`;
-         botSend(data);
+      const activeGuilds = data.client.guilds.array();
+      data.color = "info";
+      data.text = `Updating db for **${activeGuilds.length}** servers.`;
+      botSend(data);
 
-         activeGuilds.forEach(guild =>
-         {
-            db.addServer(guild.id, data.config.defaultLanguage, db.Servers);
-         });
-      }
+      activeGuilds.forEach(guild =>
+      {
+         db.addServer(guild.id, data.config.defaultLanguage, db.Servers);
+      });
    };
 
    // --------------------------
@@ -204,6 +220,7 @@ const getSettings = function(data)
       "disconnect": disconnect,
       "listservers": listServers,
       "dbfix": dbFix,
+      "updatedb": updateDB,
       "updatebot": updateBot
    };
 

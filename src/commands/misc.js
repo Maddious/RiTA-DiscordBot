@@ -8,24 +8,6 @@ const stripIndent = require("common-tags").stripIndent;
 const oneLine = require("common-tags").oneLine;
 const secConverter = require("seconds-converter");
 
-// =============
-// Version Info
-// =============
-
-exports.version = function(data)
-{
-   var version = `**\`${data.config.version}\`**`;
-
-   if (auth.changelog)
-   {
-      version += ` ([changelog](${auth.changelog}))`;
-   }
-
-   data.color = "info";
-   data.text = `:robot:  Current bot version is ${version}`;
-   return botSend(data);
-};
-
 // ============
 // Invite Link
 // ============

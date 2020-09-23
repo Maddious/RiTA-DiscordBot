@@ -1,6 +1,11 @@
 language: node_js
 node_js:
-  - '12.10.0'
+  - '10.18.0'
+  - '11.15.0'
+  - '12.14.0'
+  - '13.14.0'
+  - '14.0.0'
+  - '14.9.0'
 services:
   - postgresql
 before_script:
@@ -9,3 +14,5 @@ before_script:
 script:
   - "npm run lint"
   - "npm run build"
+after_success:
+  - npm run coverage

@@ -1,6 +1,7 @@
 const db = require("./core/db");
 const fn = require("./core/helpers");
 const cmdArgs = require("./commands/args");
+const bot2bot = require("./commands/bot2bot");
 
 // ====================
 // Listen for messages
@@ -9,6 +10,7 @@ const cmdArgs = require("./commands/args");
 //eslint-disable-next-line no-unused-vars
 module.exports = function(config, message, edited, deleted)
 {
+   module.exports.message = message;
    const client = message.client;
    const bot = client.user;
 
@@ -16,9 +18,20 @@ module.exports = function(config, message, edited, deleted)
    // Ignore messages by bots
    //
 
-   if (message.author.bot)
+   if (bot2bot.getBot2botVar() === "off")
    {
-      return;
+      if (message.author.bot)
+      {
+         return;
+      }
+   }
+
+   if (bot2bot.getBot2botVar() === "on")
+   {
+      if (message.author.discriminator === "0000")
+      {
+         return;
+      }
    }
 
    //
