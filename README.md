@@ -73,13 +73,12 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * `eslint` has been replaced with `babel-eslint`
 * `!t settings updatebot` Has been **DISABLED** - This is not needed as of yet and with the similarities to the `!t settings updatedb` command it may cause issues.
 
-
 ## New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
 * Published to NPM
 * Non code changes will be appended with Version-\*\* from now on
 * Various Spelling mistakes in ReadMe have been corrected.
-* Dev Dependencies core to this bot, the `google-translate-api` & `google-translate-token` have been updated
+* Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` have been updated
 * Setup on a Raspberry Pi instruction Section added.
 * gulp-watch updated dependencies. (*Moved to Local Repo as it was out-of-date and full of Security Issues.*)
 * Patch for Chinese language support.
