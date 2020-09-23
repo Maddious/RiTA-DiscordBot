@@ -199,7 +199,6 @@ const getSettings = function(data)
       {
          db.addServer(guild.id, data.config.defaultLanguage, db.Servers);
       });
-      db.updateColumns();
    };
 
    // --------------------------
