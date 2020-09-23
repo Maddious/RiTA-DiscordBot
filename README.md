@@ -79,7 +79,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * Published to NPM
 * Non code changes will be appended with Version-\*\* from now on
 * Various Spelling mistakes in ReadMe have been corrected.
-* Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` have been updated
+* Dev Dependencies core to this bot, the `google-translate-api` & `google-translate-token` have been updated
 * Setup on a Raspberry Pi instruction Section added.
 * gulp-watch updated dependencies. (*Moved to Local Repo as it was out-of-date and full of Security Issues.*)
 * Patch for Chinese language support.
@@ -355,7 +355,7 @@ This project was originally released by Aziz under the MIT license. He chose to 
 
 *I and a group of fellow C-3P0 users decided that collectively we could do better, plagued with crashes, API changes, relentless bugs and issues, the drive to make something better was born.*
 
-*Rita's history and various iterations each added something extra, it just needed to be brought together and moulded, moulded into something amazing, moulded into Rita. The Real-Time Interchangeable Translating Assistant.*
+*Rita's history and various iterations each added something extra, it just needed to be brought together and molded, molded into something amazing, moulded into Rita. The Real-Time Interchangeable Translating Assistant.*
 
 ------
 #### *There you have it, the story, dramatised and electrified for effect, but all true, of how Rita was born.*
