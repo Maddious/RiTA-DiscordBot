@@ -156,7 +156,7 @@ exports.updateEmbedVar = function(id, embedstyle, _cb)
 
 exports.getEmbedVar = async function run(id)
 {
-   var value = await db.query(`select * from (select embedstyle as "embedstyle" from servers where id = ? as embedstyle)`, { replacements: [id],
+   var value = await db.query(`select * from (select embedstyle as "embedstyle" from servers where id = ?) as table1`, { replacements: [id],
       type: db.QueryTypes.SELECT});
    dbEmbedValue = value[0].embedstyle;
    //console.log (`getEmbedVar Log Value ` + value[0].embedstyle);
@@ -199,7 +199,8 @@ exports.updateBot2BotVar = function(id, bot2botstyle, _cb)
 
 exports.getBot2BotVar = async function run(id)
 {
-   var value = await db.query(`select * from (select bot2botstyle as "bot2botstyle" from servers where id = ?)`, { replacements: [id], type: db.QueryTypes.SELECT})
+   var value = await db.query(`select * from (select bot2botstyle as "bot2botstyle" from servers where id = ?) as table2`, { replacements: [id], 
+      type: db.QueryTypes.SELECT});
    dbBot2BotValue = value[0].bot2botstyle
    //console.log (`getBot2BotVar Log Value ` + value[0].bot2botstyle);
    console.log (`getBot2BotVar Log Local ` + dbBot2BotValue);
