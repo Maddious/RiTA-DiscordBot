@@ -49,7 +49,7 @@ const Servers = db.define("servers", {
    },
    embedstyle: {
       type: Sequelize.STRING(8),
-      defaultValue: "off"
+      defaultValue: "on"
    },
    bot2botstyle: {
       type: Sequelize.STRING(8),
@@ -228,7 +228,7 @@ module.exports.setBot2BotVar = function(data)
 
 exports.updateColumns = function(data)
 {
-   db.query(`ALTER TABLE public.servers ADD COLUMN "embedstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'off'::character varying;`,function(err)
+   db.query(`ALTER TABLE public.servers ADD COLUMN "embedstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'on'::character varying;`,function(err)
    {
       if (err)
       {
