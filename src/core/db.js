@@ -464,8 +464,7 @@ exports.getServerInfo = function(id, callback)
       type: db.QueryTypes.SELECT})
       .then(
          result => callback(result),
-         err => logger("error", err + "\nQuery: " + err.sql, "db")
-
+         err => this.updateColumns() //+ logger("error", err + "\nQuery: " + err.sql, "db")
       );
 };
 
