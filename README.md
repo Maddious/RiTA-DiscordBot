@@ -74,7 +74,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 ## New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
 * Published to NPM
-* Non code changes will be appended with Version-\*\* from now on
+* Non code changes will be appended with Version-\*\* from now on.
 * Various Spelling mistakes in ReadMe have been corrected.
 * Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` have been updated
 * Setup on a Raspberry Pi instruction Section added.

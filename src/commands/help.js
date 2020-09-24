@@ -217,18 +217,47 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help this\n\n` +
 
    `# Translation Style Modules\n` +
-   `> ${cmd} help embed` +
-   `> ${cmd} help bot2bot` +
+   `> ${cmd} help embed\n` +
+   `> ${cmd} help bot2bot\n\n` +
 
    `# Information Modules\n` +
    `> ${cmd} help stats\n` +
    `> ${cmd} help tasks\n` +
    `> ${cmd} help settings\n\n` +
 
-   `# Other\n` +
+   `# Other Modules\n` +
    `> ${cmd} help misc\n` +
    `> ${cmd} help report\n` +
    `> ${cmd} help readme\n` +
+   "```";
+   // ------------------------------
+   // Embed Help
+   // -----------------------------
+   const embed =
+   `__**Styles**__\n\n` +
+   "```md\n" +
+
+   `# Embed Style\n` +
+   `> Turns on Embed Translation\n` +
+   `> ${cmd} embed on\n\n` +
+   `> Turns on Webhook Translation Sending\n` +
+   `> ${cmd} embed off\n\n` +
+   "```";
+   // ------------------------------
+   // Bot2bot Help
+   // ------------------------------
+
+   const bot2bot =
+   `__**bot to Bot Translation**__\n\n` +
+   "```md\n" +
+
+   `# Bot to Bot\n` +
+   `> Turns on Bot2Bot Translations\n` +
+   `> ${cmd} bot2bot on\n\n` +
+   `> Turns off Bot2Bot Translations\n` +
+   `> ${cmd} bot2bot off\n\n` +
+   `> Usually 90% of bots ignore bot messages` +
+   ` but this feature allows discord bots to be translated too` +
    "```";
    // ------------------------------
    // Last Message (last)
@@ -264,8 +293,13 @@ const helpMessage = function(config, botname, param)
 
    const react =
    `__**Translate by reaction**__\n\n` +
-   `Translates a message in the server when you react to it with a ` +
-   `flag emoji. For example: :flag_ca:, :flag_it:, :flag_eg:, :flag_jp:`;
+   `# Add a message reaction with the flag of the language` +
+   `you wish to translate to\n\n` +
+   `# Examples\n` +
+   `:flag_gb: = English\n` +
+   `:flag_fr: = French\n\n` +
+   ` Please note that only official country flags are registered`;
+
 
    // ------------------------------
    // Custom message (this)
@@ -401,13 +435,7 @@ const helpMessage = function(config, botname, param)
    `* MAY NOT WORK WITH SOME DB's \n` +
    `> ${cmd} settings dbfix\n\n` +
 
-   `# Send as Embeded Message \n` +
-   `* On By Default \n` +
-   `> ${cmd} embed on/off\n\n` +
 
-   `# Translate other Bots\n` +
-   `* Off By Default \n` +
-   `> ${cmd} bot2bot on/off\n\n` +
 
    `# Update Bot\n` +
    `> ${cmd} settings updatebot\n` +
@@ -448,7 +476,9 @@ const helpMessage = function(config, botname, param)
       "stats": stats,
       "readme": readme,
       "modules": modules,
-      "report": report
+      "report": report,
+      "embed": embed,
+      "bot2bot": bot2bot
    };
 
    //if (paramMap.hasOwnProperty(param))

@@ -34,7 +34,7 @@ module.exports = function(data)
    function ignoreMessage()
    {
       message.delete(30000);
-      const ignoreMessageEmbed = new Discord.RichEmbed()
+      const ignoreMessageEmbed = new discord.RichEmbed()
          .setColor(colors.get(data.color))
          .setTitle("**Bot Alert**\n")
          .setAuthor(data.bot.username, data.bot.displayAvatarURL)
@@ -424,15 +424,16 @@ module.exports = function(data)
             }
             else
             {
-               data.channel.send({
-                  embed: {
-                     title: data.title,
-                     fields: data.fields,
-                     author: data.author,
-                     color: colors.get(data.color),
-                     description: data.text,
-                     footer: data.footer
-                  }
+               const botEmbed = new discord.RichEmbed()
+                  .setColor(colors.get(data.color))
+                  .setAuthor(data.bot.username, data.bot.icon_url)
+                  .setDescription(data.text)
+                  .setTimestamp()
+                  .setFooter("𝗧𝗵𝗶𝘀 𝗺𝗲𝘀𝘀𝗮𝗴𝗲 𝘀𝗵𝗮𝗹𝗹 𝘀𝗲𝗹𝗳-𝗱𝗲𝘀𝘁𝗿𝘂𝗰𝘁 𝗶𝗻 𝗼𝗻𝗲 𝗺𝗶𝗻𝘂𝘁𝗲");
+
+               data.channel.send(botEmbed).then(msg =>
+               {
+                  msg.delete(60000);
                });
             }
          }
