@@ -5,7 +5,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
 ![Node.js CI](https://github.com/ZyC0R3/RitaBot/workflows/Node.js%20CI/badge.svg?branch=master)
-![CodeQL](https://github.com/ZyC0R3/RitaBot/workflows/CodeQL/badge.svg)
+![CodeQL](https://github.com/ZyC0R3/RitaBot/workflows/CodeQL/badge.svg?branch=master)
 [![codebeat badge](https://codebeat.co/badges/125a5ce4-4ba1-45cf-95fa-266e1353c331)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-master)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot.svg)
 ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg)
