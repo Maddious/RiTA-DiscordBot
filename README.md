@@ -4,9 +4,9 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
+![Node.js CI](https://github.com/ZyC0R3/RitaBot/workflows/Node.js%20CI/badge.svg?branch=master)
+![CodeQL](https://github.com/ZyC0R3/RitaBot/workflows/CodeQL/badge.svg)
 [![codebeat badge](https://codebeat.co/badges/125a5ce4-4ba1-45cf-95fa-266e1353c331)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-master)
-[![Build Status](https://travis-ci.com/ZyC0R3/RitaBot.svg?branch=master)](https://travis-ci.com/ZyC0R3/RitaBot)
-[![CircleCI](https://circleci.com/gh/ZyC0R3/RitaBot.svg?style=svg)](https://circleci.com/gh/ZyC0R3/RitaBot)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot.svg)
 ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg)
 ![GitHub issues](https://img.shields.io/github/issues/ZyC0R3/RitaBot)
@@ -19,17 +19,15 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 
 #### --RITA-- Current Test Branch
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version)
+![Node.js CI](https://github.com/ZyC0R3/RitaBot/workflows/Node.js%20CI/badge.svg?branch=test-branch)
+![CodeQL](https://github.com/ZyC0R3/RitaBot/workflows/CodeQL/badge.svg?branch=test-branch)
 [![codebeat badge](https://codebeat.co/badges/095e56cd-a926-4fa1-91d8-5cb20c11c5c6)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch)
-[![Build Status](https://travis-ci.com/ZyC0R3/RitaBot.svg?branch=test-branch)](https://travis-ci.com/ZyC0R3/RitaBot)
-[![CircleCI](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch.svg?style=svg)](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch)
 
 #### --RITA-- Experimental Test Branch (Discord.js V12)
 ##### This branch should not be used on any server, most if not all functions are broken as a major update to latest discord.js version is needed.
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch-1.2.2?label=Experimental%20Version)
 [![codebeat badge](https://codebeat.co/badges/b72d7b2b-83d0-47cd-a91f-993964c6c564)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch-1-2-2)
-[![Build Status](https://travis-ci.com/ZyC0R3/RitaBot.svg?branch=test-branch-1.2.2)](https://travis-ci.com/ZyC0R3/RitaBot)
-[![CircleCI](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch-1.2.2.svg?style=svg)](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch-1.2.2)
 
 #### --Google Translate API-- Current Test Branch
@@ -53,12 +51,25 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
   * Updating to this version may corrupt your DB, Do not do this unless you have backed it up. 
 
 ## New in 1.2.1-\*
-* New commands added (embed and bot2bot)
+* New commands added (embed, bot2bot, settings updatedb)
   * embed command allows you to change the type of message that is sent to the translation channel, in embed format or standard text. Standard text shows the users avatar and name instead of the bot.
-  * bot2bot allows for messages sent from other bots, in non embedded format to be translated as well.
-* Major code changes, however no code implementations will change the DB so this is a safe version to update too.
+  * bot2bot allows for messages sent from other bots, in non embedded format to be translated as well. (Due to limitation this has been implimented but is disabled for now)
+  * As the new variables above are stored in the DB, they need new Columns to be added, as such updatedb will complete these actions.
+* Major code changes, new code implementations will change the DB and produce errors on first build, but this is a safe version to update to. Follow the below instructions.
+  * Step 1: Make a pull request and update from **Master** branch. 
+    * Once you update the bot and it initializes you WILL get a db error, this is normal. (we are working on suppressing these)
+  * Step 2: `!t settings updatedb`
+    * This will throw another error but it will build the missing columns.
+    * The default value for embed is on and botbot is off.
+    * Running this multiple times will cause error to be posted to webhook chan, this is a "Value exists" error. Preventing you from destroying the DB
+  * Step 3: Completed, and now working.
+    * Once you have completed Step 2, the bot will have come online, but it wont have fully Initialised. 
+    * To prevent a never ending loop of errors, the VERY FIRST message or command sent on the server will Initialise the DB fully. Meaning you will have to send that message again.
+      * Please Note Due to [Automatic dyno restarts](https://devcenter.heroku.com/articles/dynos#automatic-dyno-restarts) the first message after each restart will share the same behaviour as above.
 * Various Security vulnerabilities fixed.
 * Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` & `gulp-watch`have been updated
+* `eslint` has been replaced with `babel-eslint`
+* `!t settings updatebot` Has been **DISABLED** - This is not needed as of yet and with the similarities to the `!t settings updatedb` command it may cause issues.
 
 ## New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
@@ -341,7 +352,7 @@ This project was originally released by Aziz under the MIT license. He chose to 
 
 *I and a group of fellow C-3P0 users decided that collectively we could do better, plagued with crashes, API changes, relentless bugs and issues, the drive to make something better was born.*
 
-*Rita's history and various iterations each added something extra, it just needed to be brought together and moulded, moulded into something amazing, moulded into Rita. The Real-Time Interchangeable Translating Assistant.*
+*Rita's history and various iterations each added something extra, it just needed to be brought together and molded, molded into something amazing, moulded into Rita. The Real-Time Interchangeable Translating Assistant.*
 
 ------
 #### *There you have it, the story, dramatised and electrified for effect, but all true, of how Rita was born.*
