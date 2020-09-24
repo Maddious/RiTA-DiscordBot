@@ -4,7 +4,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
-![Node.js CI](https://github.com/ZyC0R3/RitaBot/workflows/Node.js%20CI/badge.svg?branch=test-branch)
+![Node.js CI](https://github.com/ZyC0R3/RitaBot/workflows/Node.js%20CI/badge.svg)
 ![CodeQL](https://github.com/ZyC0R3/RitaBot/workflows/CodeQL/badge.svg)
 [![codebeat badge](https://codebeat.co/badges/125a5ce4-4ba1-45cf-95fa-266e1353c331)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-master)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot.svg)
@@ -28,8 +28,6 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 ##### This branch should not be used on any server, most if not all functions are broken as a major update to latest discord.js version is needed.
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch-1.2.2?label=Experimental%20Version)
 [![codebeat badge](https://codebeat.co/badges/b72d7b2b-83d0-47cd-a91f-993964c6c564)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch-1-2-2)
-[![Build Status](https://travis-ci.com/ZyC0R3/RitaBot.svg?branch=test-branch-1.2.2)](https://travis-ci.com/ZyC0R3/RitaBot)
-[![CircleCI](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch-1.2.2.svg?style=svg)](https://circleci.com/gh/ZyC0R3/RitaBot/tree/test-branch)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch-1.2.2)
 
 #### --Google Translate API-- Current Test Branch
