@@ -4,9 +4,9 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
+![Node.js CI](https://github.com/ZyC0R3/RitaBot/workflows/Node.js%20CI/badge.svg?branch=test-branch)
+![CodeQL](https://github.com/ZyC0R3/RitaBot/workflows/CodeQL/badge.svg)
 [![codebeat badge](https://codebeat.co/badges/125a5ce4-4ba1-45cf-95fa-266e1353c331)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-master)
-[![Build Status](https://travis-ci.com/ZyC0R3/RitaBot.svg?branch=master)](https://travis-ci.com/ZyC0R3/RitaBot)
-[![CircleCI](https://circleci.com/gh/ZyC0R3/RitaBot.svg?style=svg)](https://circleci.com/gh/ZyC0R3/RitaBot)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot.svg)
 ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg)
 ![GitHub issues](https://img.shields.io/github/issues/ZyC0R3/RitaBot)
@@ -19,9 +19,9 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 
 #### --RITA-- Current Test Branch
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version)
-[![codebeat badge](https://codebeat.co/badges/095e56cd-a926-4fa1-91d8-5cb20c11c5c6)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch)
 ![Node.js CI](https://github.com/ZyC0R3/RitaBot/workflows/Node.js%20CI/badge.svg?branch=test-branch)
 ![CodeQL](https://github.com/ZyC0R3/RitaBot/workflows/CodeQL/badge.svg?branch=test-branch)
+[![codebeat badge](https://codebeat.co/badges/095e56cd-a926-4fa1-91d8-5cb20c11c5c6)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch)
 
 #### --RITA-- Experimental Test Branch (Discord.js V12)
