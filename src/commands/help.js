@@ -65,7 +65,7 @@ const helpMessage = function(config, botname, param)
    `Translates Discord messages (based on \`Google API\`).\n\n` +
    "```md\n" +
    `# All the commands can be found by entering the following:\n` +
-   `> ${cmd} help modules ` +
+   `> ${cmd} help ` +
    "```\n\n";
 
    // ------------------------------
@@ -217,8 +217,8 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help this\n\n` +
 
    `# Translation Style Modules\n` +
-   `> ${cmd} help embed` +
-   `> ${cmd} help bot2bot` +
+   `> ${cmd} help embed\n` +
+   `> ${cmd} help bot2bot\n` +
 
    `# Information Modules\n` +
    `> ${cmd} help stats\n` +
@@ -229,6 +229,23 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help misc\n` +
    `> ${cmd} help report\n` +
    `> ${cmd} help readme\n` +
+   "```";
+   
+   const embed =
+            `__**Translation Style**__\n\n` +
+   "```md\n" +
+   `# ${cmd} embed on \n` +
+   `> Turns on embed message sending\n\n` +
+   `# ${cmd} embed off\n` +
+   `> Turns on webhook style sending\n\n` +
+   "```";
+   
+   const bot2bot =
+            "```md\n" +
+   `# ${cmd} bot2bot on \n` +
+   `> Allows bot messages to be translated\n\n` +
+   `# ${cmd} bot2bot off\n` +
+   `> Turns of translation of messages from bots\n\n` +
    "```";
    // ------------------------------
    // Last Message (last)
@@ -448,7 +465,9 @@ const helpMessage = function(config, botname, param)
       "stats": stats,
       "readme": readme,
       "modules": modules,
-      "report": report
+      "report": report,
+      "embed": embed,
+      "bot2bot": bot2bot
    };
 
    //if (paramMap.hasOwnProperty(param))
