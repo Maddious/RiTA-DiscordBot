@@ -218,34 +218,47 @@ const helpMessage = function(config, botname, param)
 
    `# Translation Style Modules\n` +
    `> ${cmd} help embed\n` +
-   `> ${cmd} help bot2bot\n` +
+   `> ${cmd} help bot2bot\n\n` +
 
    `# Information Modules\n` +
    `> ${cmd} help stats\n` +
    `> ${cmd} help tasks\n` +
    `> ${cmd} help settings\n\n` +
 
-   `# Other\n` +
+   `# Other Modules\n` +
    `> ${cmd} help misc\n` +
    `> ${cmd} help report\n` +
    `> ${cmd} help readme\n` +
    "```";
-   
+
+   // ------------------------------
+   // Embed Help
+   // ------------------------------
    const embed =
-            `__**Translation Style**__\n\n` +
+   `__**Styles**__\n\n` +
    "```md\n" +
-   `# ${cmd} embed on \n` +
-   `> Turns on embed message sending\n\n` +
-   `# ${cmd} embed off\n` +
-   `> Turns on webhook style sending\n\n` +
+
+   `# Embed Style\n` +
+   `> Turns on Embed Translation\n` +
+   `> ${cmd} embed on\n\n` +
+   `> Turns on Webhook Translation Sending\n` +
+   `> ${cmd} embed off\n\n` +
    "```";
-   
+   // ------------------------------
+   // Bot2bot Help
+   // ------------------------------
+
    const bot2bot =
-            "```md\n" +
-   `# ${cmd} bot2bot on \n` +
-   `> Allows bot messages to be translated\n\n` +
-   `# ${cmd} bot2bot off\n` +
-   `> Turns of translation of messages from bots\n\n` +
+   `__**bot to Bot Translation**__\n\n` +
+   "```md\n" +
+
+   `# Bot to Bot\n` +
+   `> Turns on Bot2Bot Translations\n` +
+   `> ${cmd} bot2bot on\n\n` +
+   `> Turns off Bot2Bot Translations\n` +
+   `> ${cmd} bot2bot off\n\n` +
+   `> Usually 90% of bots ignore bot messages` +
+   ` but this feature allows discord bots to be translated too` +
    "```";
    // ------------------------------
    // Last Message (last)
@@ -281,8 +294,13 @@ const helpMessage = function(config, botname, param)
 
    const react =
    `__**Translate by reaction**__\n\n` +
-   `Translates a message in the server when you react to it with a ` +
-   `flag emoji. For example: :flag_ca:, :flag_it:, :flag_eg:, :flag_jp:`;
+   `# Add a message reaction with the flag of the language` +
+   `you wish to translate to\n\n` +
+   `# Examples\n` +
+   `:flag_gb: = English\n` +
+   `:flag_fr: = French\n\n` +
+   ` Please note that only official country flags are registered`;
+
 
    // ------------------------------
    // Custom message (this)
@@ -418,13 +436,7 @@ const helpMessage = function(config, botname, param)
    `* MAY NOT WORK WITH SOME DB's \n` +
    `> ${cmd} settings dbfix\n\n` +
 
-   `# Send as Embeded Message \n` +
-   `* On By Default \n` +
-   `> ${cmd} embed on/off\n\n` +
 
-   `# Translate other Bots\n` +
-   `* Off By Default \n` +
-   `> ${cmd} bot2bot on/off\n\n` +
 
    `# Update Bot\n` +
    `> ${cmd} settings updatebot\n` +
