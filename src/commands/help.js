@@ -230,7 +230,7 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help report\n` +
    `> ${cmd} help readme\n` +
    "```";
-   
+
    // ------------------------------
    // Embed Help
    // ------------------------------
