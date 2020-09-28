@@ -234,22 +234,6 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help readme\n` +
    "```";
    
-   const embed =
-            `__**Translation Style**__\n\n` +
-   "```md\n" +
-   `# ${cmd} embed on \n` +
-   `> Turns on embed message sending\n\n` +
-   `# ${cmd} embed off\n` +
-   `> Turns on webhook style sending\n\n` +
-   "```";
-   
-   const bot2bot =
-            "```md\n" +
-   `# ${cmd} bot2bot on \n` +
-   `> Allows bot messages to be translated\n\n` +
-   `# ${cmd} bot2bot off\n` +
-   `> Turns of translation of messages from bots\n\n` +
-   "```";
    // ------------------------------
    // Embed Help
    // -----------------------------
