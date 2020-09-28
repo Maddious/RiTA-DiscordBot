@@ -218,10 +218,7 @@ const helpMessage = function(config, botname, param)
 
    `# Translation Style Modules\n` +
    `> ${cmd} help embed\n` +
-
-         
    `> ${cmd} help bot2bot\n\n` +
-
 
    `# Information Modules\n` +
    `> ${cmd} help stats\n` +
@@ -236,7 +233,7 @@ const helpMessage = function(config, botname, param)
    
    // ------------------------------
    // Embed Help
-   // -----------------------------
+   // ------------------------------
    const embed =
    `__**Styles**__\n\n` +
    "```md\n" +
