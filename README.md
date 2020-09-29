@@ -3,6 +3,9 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 
 *(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)* 
 
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
+*NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy-to-heroku).
+
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
 ![Node.js CI](https://github.com/ZyC0R3/RitaBot/workflows/Node.js%20CI/badge.svg?branch=master)
@@ -26,16 +29,12 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 05. Discord.js Updated to version 12 (V1.2.2/1.3.0)
 06. Limited Bot translation. (V1.2.2)
 
-### Deploy to Heroku 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
-*NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy-to-heroku).
-
 ## Table of Contents
 
 01. [Whats New](#new)
 02. [Features](#features)
 03. [Usage](#usage)
-04. [**NEW** Setting up a Bot with "Deploy to Heroku"](#deploy-to-heroku)
+04. [**NEW** Setting up a Bot with "Deploy to Heroku"](#deploy)
 05. [Setting up a Bot Manually ](#new-bot)
 06. [How to Update](#update)
 07. [C-3PO to RITA Bot Migration (EXPERIMENTAL)](#migration)
@@ -102,7 +101,7 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
 
 **If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.**
 
-## <a name="deploy-to-heroku"></a>Setting up a Bot with "Deploy to Heroku"
+## <a name="deploy"></a>Setting up a Bot with "Deploy to Heroku"
 
 ![Fork](https://media.discordapp.net/attachments/739880221083304007/760461976320606218/cZuuOXkMC3W6vLfD5fKBQ6OYn5fL5JFWuBEbQRcEdHJ4FAYCZwpVIpk8meg0vG6jANXgX0KW0YT0jplWMvgyI2k2txUVetZg1YEM.png?width=366&height=103)
 
@@ -356,14 +355,6 @@ This section/feature is being Created, Check back soon or join the support disco
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch-1.2.2?label=Experimental%20Version)
 [![codebeat badge](https://codebeat.co/badges/b72d7b2b-83d0-47cd-a91f-993964c6c564)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch-1-2-2)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch-1.2.2)
-
-
-
-
-
-
-
-
 
 ## <a name="credits-&-license"></a>Credits & License
 
