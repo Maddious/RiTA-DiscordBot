@@ -4,6 +4,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 *(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)* 
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
+
 *NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy-to-heroku).
 
 ### --RITA-- Master Branch
