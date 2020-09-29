@@ -27,7 +27,7 @@
   "success_url": "/",
   "env": {
     "DISCORD_TOKEN": {
-      "description": "The login token to your bot!  Find this at https://discord.com/developers/applications,
+      "description": "The login token to your bot!  Find this at https://discord.com/developers/applications",
       "value": "",
       "required": true
     },
