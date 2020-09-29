@@ -1,10 +1,25 @@
 {
   "name": "RITA Translator",
-  "description": "RITA Discord Translator Bot.   Providing translation services which many uses for free for all.",
+  "description": "RITA Discord Translator Bot.   Providing translation services with many uses to connect communities. We pride ourselves in being free for all to use.",
   "keywords": [
     "Discord",
     "Translator",
-    "Rita"
+    "Rita",
+    "Free",
+    "Translate API",
+    "Discord.js",
+    "Translate",
+    "Real",
+    "Time",
+    "Intergalactic",
+    "Translating",
+    "Assistant",
+    "Real-Time Intergalactic Translating Assistant",
+    "Real Time Intergalactic Translating Assistant",
+    "https://ritabot.org",
+    "RitaBot",
+    "Rita Deploy",
+    "Rita Deploy Heroku"
   ],
   "logo": "https://cdn.discordapp.com/attachments/599327653752995861/759555905661960212/android-chrome-192x192.png",
   "website": "https://ritabot.org/",
@@ -12,17 +27,17 @@
   "success_url": "/",
   "env": {
     "DISCORD_TOKEN": {
-      "description": "The login token to your bot!  Find this [here](https://discord.com/developers/applications)  <  Application < Bot < Copy Bot Token",
+      "description": "The login token to your bot!  Find this at https://discord.com/developers/applications,
       "value": "",
       "required": true
     },
     "DISCORD_DEBUG_WEBHOOK_ID": {
-      "description": "Enter the ID for Webhook Debug logging, This is not needed but can be helpful for troubleshooting. Refer to https://ritabot.org/troubleshooting/",
+      "description": "Enter the ID for Webhook Debug logging, This is not needed but can be helpful for troubleshooting. Refer to https://ritabot.org/troubleshooting/ for help(This is for sending log messages to a channel but is not needed,   only for debugging,   if you wish to turn it on later in the future you can do so in the Environment Variables tab in App Settings)",
       "value": "",
       "required": false
     },
     "DISCORD_DEBUG_WEBHOOK_TOKEN": {
-      "description": "Enter the Token for Webhook Debug logging. Refer to https://ritabot.org/troubleshooting/",
+      "description": "Enter the Token for Webhook Debug logging. Refer to https://ritabot.org/troubleshooting/ for help (This is for sending log messages to a channel but is not needed,   only for debugging,   if you wish to turn it on later in the future you can do so in the Environment Variables tab in App Settings)",
       "value": "",
       "required": false
     },
@@ -40,8 +55,5 @@
     {
       "url": "https://github.com/heroku/heroku-buildpack-nodejs"
     }
-  ],
-  "scripts": {
-    "postinstall": "echo 'worker: node src/bot.js' > Procfile"
-  }
+  ]
 }
