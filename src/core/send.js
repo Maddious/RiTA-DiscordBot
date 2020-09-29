@@ -429,7 +429,7 @@ module.exports = function(data)
                   .setAuthor(data.bot.username, data.bot.icon_url)
                   .setDescription(data.text)
                   .setTimestamp()
-                  .setFooter("𝗧𝗵𝗶𝘀 𝗺𝗲𝘀𝘀𝗮𝗴𝗲 𝘀𝗵𝗮𝗹𝗹 𝘀𝗲𝗹𝗳-𝗱𝗲𝘀𝘁𝗿𝘂𝗰𝘁 𝗶𝗻 𝗼𝗻𝗲 𝗺𝗶𝗻𝘂𝘁𝗲");
+                  .setFooter("This message will self-destruct in one minute");
 
                message.channel.send(botEmbed).then(msg =>
                {
