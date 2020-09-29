@@ -1,11 +1,7 @@
-## RITA (Stable) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R)
+## RITA ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg) 
 A Translation bot built using `discord.js` and a custom `Google Translate API`.
-*(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)*
 
-### Deploy to Heroku 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
-
-*NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy-to-heroku).
+*(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)* 
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
@@ -13,14 +9,6 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 ![CodeQL](https://github.com/ZyC0R3/RitaBot/workflows/CodeQL/badge.svg?branch=master)
 [![codebeat badge](https://codebeat.co/badges/125a5ce4-4ba1-45cf-95fa-266e1353c331)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-master)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot.svg)
-![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg)
-![GitHub issues](https://img.shields.io/github/issues/ZyC0R3/RitaBot)
-
-### --Google Translate API-- Master Branch
-![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api?label=Stable%20Version)
-[![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=master)](https://travis-ci.com/ZyC0R3/google-translate-api)
-![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/google-translate-api)
-![GitHub issues](https://img.shields.io/github/issues/ZyC0R3/google-translate-api)
 
 #### --RITA-- Current Test Branch
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version)
@@ -29,16 +17,6 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 [![codebeat badge](https://codebeat.co/badges/095e56cd-a926-4fa1-91d8-5cb20c11c5c6)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch)
 
-#### --RITA-- Experimental Test Branch (Discord.js V12)
-##### This branch should not be used on any server, most if not all functions are broken as a major update to latest discord.js version is needed.
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch-1.2.2?label=Experimental%20Version)
-[![codebeat badge](https://codebeat.co/badges/b72d7b2b-83d0-47cd-a91f-993964c6c564)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch-1-2-2)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch-1.2.2)
-
-#### --Google Translate API-- Current Test Branch
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api/test-branch?label=Test%20Version)
-[![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=test-branch)](https://travis-ci.com/ZyC0R3/google-translate-api)
-
 ## Coming Soon!
 
 01. Error Message Support Section.
@@ -46,16 +24,36 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 03. `!t tasks #TargetChannel` Implementation.
 04. Introduction of a Streamlined Command Handler. (This will be done as a New Project)
 05. Discord.js Updated to version 12 (V1.2.2/1.3.0)
-06. Ability to change message send type (V1.2.1)
-07. Limited Bot translation. (V1.2.1)
+06. Limited Bot translation. (V1.2.2)
 
-## New in 1.2.2-\* 
-* EXPERIMENTAL version of RITA - Not safe for normal use. (will be renamed to 1.3.0 once issues are resolved.)
-* Discord.js update from V11 to V12
-* All feature in previous versions are included however core functions are faulty and may cause DB issues. 
-  * Updating to this version may corrupt your DB, Do not do this unless you have backed it up. 
+### Deploy to Heroku 
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
+*NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy-to-heroku).
 
-## New in 1.2.1-\*
+## Table of Contents
+
+01. [Whats New](#new)
+02. [Features](#features)
+03. [Usage](#usage)
+04. [**NEW** Setting up a Bot with "Deploy to Heroku"](#deploy-to-heroku)
+05. [Setting up a Bot Manually ](#new-bot)
+06. [How to Update](#update)
+07. [C-3PO to RITA Bot Migration (EXPERIMENTAL)](#migration)
+08. [Heroku Database Support](#database)
+09. [Local Installation Support](#local)
+10. [Setup on a Raspberry Pi](#pi)
+11. [Troubleshooting](#troubleshooting)
+12. [Error Messages](#errors)
+13. [Commands](#commands)
+14. [All Build Statuses and CI Checks](#build)
+15. [Credits & License](#credits-&-license)
+16. [Design Team](#design-team)
+17. [What, Who, How and Why?](#history)
+
+## <a name="new"></a>Whats New
+For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/CHANGELOG.md)
+
+#### New in 1.2.1-\*
 * New commands added (embed, bot2bot, settings updatedb)
   * embed command allows you to change the type of message that is sent to the translation channel, in embed format or standard text. Standard text shows the users avatar and name instead of the bot.
   * bot2bot allows for messages sent from other bots, in non embedded format to be translated as well. (Due to limitation this has been implimented but is disabled for now)
@@ -75,8 +73,9 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` & `gulp-watch`have been updated
 * `eslint` has been replaced with `babel-eslint`
 * `!t settings updatebot` Has been **DISABLED** - This is not needed as of yet and with the similarities to the `!t settings updatedb` command it may cause issues.
+* Deploy with Heroku Setup and integration. 
 
-## New in 1.2.0-\*
+#### New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
 * Published to NPM
 * Non code changes will be appended with Version-\*\* from now on.
@@ -87,24 +86,6 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * Patch for Chinese language support.
 * Various Security vulnerabilities fixed.
 * Various commands re-activated.
-
-## Table of Contents
-
-01. [Features](#features)
-02. [Usage](#usage)
-03. [*NEW* Setting up a Bot with "Deploy to Heroku"](#deploy-to-heroku)
-04. [Setting up a Bot Manually ](#new-bot)
-04. [How to Update](#update)
-05. [C-3PO to RITA Bot Migration (EXPERIMENTAL)](#migration)
-06. [Heroku Database Support](#database)
-07. [Local Installation Support](#local)
-08. [Setup on a Raspberry Pi](#pi)
-09. [Troubleshooting](#troubleshooting)
-10. [Error Messages](#errors)
-11. [Commands](#commands)
-12. [Credits & License](#credits-&-license)
-13. [Design Team](#design-team)
-14. [What, Who, How and Why?](#history)
 
 ## <a name="features"></a>Features
 * Translate custom messages
@@ -351,12 +332,38 @@ This section/feature is being Created, Check back soon or join the support disco
 
 
 ## <a name="commands"></a>Commands
-* [Translate Custom Text](https://github.com/ZyC0R3/RitaBot/wiki/Translate-Custom-Message)
-* [Translate by Reaction](https://github.com/ZyC0R3/RitaBot/wiki/Translate-by-Reacting)
-* [Translate Last Message](https://github.com/ZyC0R3/RitaBot/wiki/Translate-Last-Message)
-* [Translate Channel](https://github.com/ZyC0R3/RitaBot/wiki/Translate-Channel-Automatic)
-* [Settings](https://github.com/ZyC0R3/RitaBot/wiki/Settings)
-* [Misc. Commands](https://github.com/ZyC0R3/RitaBot/wiki/Misc.-Commands)
+* [Translate Custom Text](https://ritabot.org)
+* [Translate by Reaction](https://ritabot.org)
+* [Translate Last Message](https://ritabot.org)
+* [Translate Channel](https://ritabot.org)
+* [Settings](https://ritabot.org)
+* [Misc. Commands](https://ritabot.org)
+
+## <a name="build"></a>All Build Statuses and CI Checks
+
+### --Google Translate API-- Master Branch
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api?label=Stable%20Version)
+[![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=master)](https://travis-ci.com/ZyC0R3/google-translate-api)
+![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/google-translate-api)
+![GitHub issues](https://img.shields.io/github/issues/ZyC0R3/google-translate-api)
+
+#### --Google Translate API-- Current Test Branch
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api/test-branch?label=Test%20Version)
+[![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=test-branch)](https://travis-ci.com/ZyC0R3/google-translate-api)
+
+#### --RITA-- Experimental Test Branch (Discord.js V12)
+##### This branch should not be used on any server, most if not all functions are broken as a major update to latest discord.js version is needed.
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch-1.2.2?label=Experimental%20Version)
+[![codebeat badge](https://codebeat.co/badges/b72d7b2b-83d0-47cd-a91f-993964c6c564)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch-1-2-2)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch-1.2.2)
+
+
+
+
+
+
+
+
 
 ## <a name="credits-&-license"></a>Credits & License
 
