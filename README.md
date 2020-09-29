@@ -3,7 +3,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 *(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)*
 
 ### Deploy to Heroku 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
 
 *NEW:* One Click Build with Heroku, For instructions Please go [here](#new-bot).
 
@@ -141,7 +141,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 #### 2b. For a simpler setup, use the icon below to deploy RITA to Heroku
 * In the custom variable of **DISCORD_TOKEN** put in the copied token of your created bot.
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
  
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
