@@ -11,11 +11,10 @@
     "Translate",
     "Real",
     "Time",
-    "Intergalactic",
+    "Interchangeable",
     "Translating",
     "Assistant",
-    "Real-Time Intergalactic Translating Assistant",
-    "Real Time Intergalactic Translating Assistant",
+    "Real-Time Interchangeable Translating Assistant",
     "https://ritabot.org",
     "RitaBot",
     "Rita Deploy",
@@ -32,12 +31,12 @@
       "required": true
     },
     "DISCORD_DEBUG_WEBHOOK_ID": {
-      "description": "Enter the ID for Webhook Debug logging, This is not needed but can be helpful for troubleshooting. Refer to https://ritabot.org/troubleshooting/ for help(This is for sending log messages to a channel but is not needed,   only for debugging,   if you wish to turn it on later in the future you can do so in the Environment Variables tab in App Settings)",
+      "description": "Enter the ID for Webhook Debug logging, This is not needed but can be helpful for troubleshooting. Refer to https://ritabot.org/troubleshooting/ for help (This is for sending log messages to a channel but is not needed, it's only for debugging, if you wish to turn it on later in the future you can do so in the Environment Variables tab in App Settings)",
       "value": "",
       "required": false
     },
     "DISCORD_DEBUG_WEBHOOK_TOKEN": {
-      "description": "Enter the Token for Webhook Debug logging. Refer to https://ritabot.org/troubleshooting/ for help (This is for sending log messages to a channel but is not needed,   only for debugging,   if you wish to turn it on later in the future you can do so in the Environment Variables tab in App Settings)",
+      "description": "Enter the Token for Webhook Debug logging. Refer to https://ritabot.org/troubleshooting/ for help (This is for sending log messages to a channel but is not needed, it's only for debugging, if you wish to turn it on later in the future you can do so in the Environment Variables tab in App Settings)",
       "value": "",
       "required": false
     },
