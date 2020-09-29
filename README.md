@@ -2,10 +2,10 @@
 A Translation bot built using `discord.js` and a custom `Google Translate API`.
 *(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)*
 
-### Deployto Heroku 
+### Deploy to Heroku 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
 
-*NEW:* One Click Build with Heroku, For instructions Please go [here](#new-bot).
+*NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy-to-heroku).
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
@@ -92,7 +92,8 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 
 01. [Features](#features)
 02. [Usage](#usage)
-03. [Setting up a New Bot (RECOMMENDED)](#new-bot)
+03. [*NEW* Setting up a Bot with "Deploy to Heroku"](#deploy-to-heroku)
+04. [Setting up a Bot Manually ](#new-bot)
 04. [How to Update](#update)
 05. [C-3PO to RITA Bot Migration (EXPERIMENTAL)](#migration)
 06. [Heroku Database Support](#database)
@@ -120,14 +121,13 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 
 **If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.**
 
-## <a name="new-bot"></a>Setting up a New Bot (RECOMMENDED)
-
-**To deploy a free translation bot that you can add to your discord server, follow these easy steps.**
+## <a name="deploy-to-heroku"></a>Setting up a Bot with "Deploy to Heroku"
 
 ![Fork](https://media.discordapp.net/attachments/739880221083304007/760461976320606218/cZuuOXkMC3W6vLfD5fKBQ6OYn5fL5JFWuBEbQRcEdHJ4FAYCZwpVIpk8meg0vG6jANXgX0KW0YT0jplWMvgyI2k2txUVetZg1YEM.png?width=366&height=103)
+
 #### 1. Fork this repository.  
 * If you don't yet have a Github account, [create one](https://github.com/join)! It's free and easy.
-* Use the button in the upper righthand side of this page to fork the repo so that it will be associated with your Github account.
+* Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repo so that it will be associated with your Github account.
 
 #### 2. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
 * Give app a friendly name and click the **Create App** button
@@ -138,14 +138,39 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * Click the **Yes, do it!** button
 * Copy the bot's **TOKEN**, you will need it later
 
-#### 2b. For a faster setup, click "Deploy to Heroku" below
+#### 3. Deploy to Heroku
+
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
+
 * In the custom variable of **DISCORD_TOKEN** put in the copied token of your created bot.
 * **DO NOT CHANGE** the **NODE_MODULES_CACHE** Variable unless you know about Heroku Caching.
 * If you with to use Webhook Debug logging:
   * Fill in **DISCORD_DEBUG_WEBHOOK_ID** & **DISCORD_DEBUG_WEBHOOK_TOKEN**, For instructions go [here](#troubleshooting)
+* Once installed, Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
- 
+#### 4. Invite your bot to your server and configure it!
+* Replace the CLIENTID string in the following URL with your own apps client id from Step 2: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
+* Visit the resulting URL and add your bot to any server where you have admin privileges.
+* Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
+
+## <a name="new-bot"></a>Setting up a Bot Manually
+
+**To deploy a free translation bot that you can add to your discord server, follow these easy steps.**
+
+![Fork](https://media.discordapp.net/attachments/739880221083304007/760461976320606218/cZuuOXkMC3W6vLfD5fKBQ6OYn5fL5JFWuBEbQRcEdHJ4FAYCZwpVIpk8meg0vG6jANXgX0KW0YT0jplWMvgyI2k2txUVetZg1YEM.png?width=366&height=103)
+#### 1. Fork this repository.  
+* If you don't yet have a Github account, [create one](https://github.com/join)! It's free and easy.
+* Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repo so that it will be associated with your Github account.
+
+#### 2. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
+* Give app a friendly name and click the **Create App** button
+  * I like the name **C-3PO**, but feel free to pick something different if you fear George Lucas's wrath. Maybe **C-4PO**
+* Take note of the app **CLIENT ID**, you will need it later
+* Scroll down to the **Bot** section
+* Click the **Create a Bot User** button
+* Click the **Yes, do it!** button
+* Copy the bot's **TOKEN**, you will need it later
+
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
 * Under **Deployment Method** select Github. Connect to your Github account and search for this repo by name.
@@ -160,10 +185,9 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
 
 #### 4. Invite your bot to your server and configure it!
-* Replace the CLIENTID string in the following URL with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
+* Replace the CLIENTID string in the following URL with your own apps client id from Step 2: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
 * Visit the resulting URL and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
-
 
 ## <a name="update"></a>How to Update to 1.1.7 and Above
 #### 1. Checklist
