@@ -1,20 +1,30 @@
 {
-  "name": "RITA Translation Bot",
-  "description": "Free Discord Translation Bot for Discord",
-  "addons": ["heroku-postgresql:hobby-dev"]
+  "name": "RITA Discord Translator",
+  "description": "Discord Translator Bot. 100% Free. RITA.",
   "keywords": [
-    "translator",
     "Discord",
-    "Free",
-    "Discord Translation Bot",
-    "Rita",
-    "Google Tranlate Discord"
+    "Translator",
+    "Rita"
   ],
   "website": "https://ritabot.org/",
   "repository": "https://github.com/Zyc0r3/RitaBot",
+  "success_url": "/",
   "env": {
     "DISCORD_TOKEN": {
-            "description": "Discord Bot Token",
-            "value": "<token_here>"
+      "description": "A secret key for logging into your discord bot.",
+      "value": "<discord_token>"
     }
-  }
+  },
+  "image": "heroku/nodejs",
+  "addons": [
+    "heroku-postgresql",
+    {
+      "plan": "hobby-dev"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    }
+  ]
+}
