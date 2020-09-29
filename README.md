@@ -121,7 +121,7 @@ Please go [here](#new-bot) to learn the steps to take.
 **If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.**
 
 
-## <a name="new-bot"></a>Setting up New Bot (RECOMMENDED)
+## <a name="new-bot"></a>Setting up a New Bot (RECOMMENDED)
 
 **To deploy a free translation bot that you can add to your discord server, follow these easy steps.**
 
