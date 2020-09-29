@@ -1,6 +1,6 @@
 {
-  "name": "RITA Discord Translator",
-  "description": "Discord Translator Bot. 100% Free. RITA.",
+  "name": "RITA Translator",
+  "description": "RITA Discord Translator Bot.   Providing translation services which many uses for free for all.",
   "keywords": [
     "Discord",
     "Translator",
@@ -12,7 +12,7 @@
   "success_url": "/",
   "env": {
     "DISCORD_TOKEN": {
-      "description": "A secret key for logging into your discord bot.",
+      "description": "The login token to your bot!  Find this [here](https://discord.com/developers/applications)  <  Application < Bot < Copy Bot Token",
       "value": "",
       "required": true
     },
@@ -40,5 +40,8 @@
     {
       "url": "https://github.com/heroku/heroku-buildpack-nodejs"
     }
-  ]
+  ],
+  "scripts": {
+    "postinstall": "echo 'worker: node src/bot.js' > Procfile"
+  }
 }
