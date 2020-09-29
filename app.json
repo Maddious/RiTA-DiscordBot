@@ -22,12 +22,12 @@
       "required": false
     },
     "DISCORD_DEBUG_WEBHOOK_TOKEN": {
-      "description": "Enter the Token for Webhook Debug logging.",
+      "description": "Enter the Token for Webhook Debug logging. Refer to https://ritabot.org/troubleshooting/",
       "value": "",
       "required": false
     },
     "NODE_MODULES_CACHE": {
-      "description": "Prevents Heroku from Caching your build, allowing for error free updates. (Accepted Values are true or false)",
+      "description": "This is to ensure that when the bot updates it does not use any old Dependencies that Heroku has stored and gets fresh ones from the package.json file.",
       "value": "false",
       "required": true
     }
