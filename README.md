@@ -121,7 +121,7 @@ Please go [here](#new-bot) to learn the steps to take.
 **If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.**
 
 
-## <a name="new-bot"></a>Setting up Rita
+## <a name="new-bot"></a>Setting up New Bot (RECOMMENDED)
 
 **To deploy a free translation bot that you can add to your discord server, follow these easy steps.**
 
@@ -140,13 +140,9 @@ Please go [here](#new-bot) to learn the steps to take.
 * Copy the bot's **TOKEN**, you will need it later
 
 #### 2b. For a simpler setup, use the icon below to deploy RITA to Heroku
-* In the custom variable of **DISCORD_TOKEN** put in the copied token of your created bot
-* Create a Heroku Account!   Use Step 3 
+* In the custom variable of **DISCORD_TOKEN** put in the copied token of your created bot.
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
  
-
-
-
-
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
 * Under **Deployment Method** select Github. Connect to your Github account and search for this repo by name.
