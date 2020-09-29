@@ -82,7 +82,7 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
 * Various Spelling mistakes in ReadMe have been corrected.
 * Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` have been updated
 * Setup on a Raspberry Pi instruction Section added.
-* gulp-watch updated dependencies. (*Moved to Local Repo as it was out-of-date and full of Security Issues.*)
+* gulp-watch updated dependencies. (*Moved to Local repository as it was out-of-date and full of Security Issues.*)
 * Patch for Chinese language support.
 * Various Security vulnerabilities fixed.
 * Various commands re-activated.
@@ -104,7 +104,7 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
 
 ## <a name="deploy"></a>Setting up a Bot with "Deploy to Heroku"
 
-This Method does not need you to Fork this repo, you can run your not straight off of the Rita Master Branch. For update instructions click [here](#update)
+This Method does not need you to Fork this repository, you can run your not straight off of the Rita Master Branch. For update instructions click [here](#update)
 
 #### 1. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
 * Give app a friendly name and click the **Create App** button
@@ -137,7 +137,7 @@ This Method does not need you to Fork this repo, you can run your not straight o
 ![Fork](https://media.discordapp.net/attachments/739880221083304007/760461976320606218/cZuuOXkMC3W6vLfD5fKBQ6OYn5fL5JFWuBEbQRcEdHJ4FAYCZwpVIpk8meg0vG6jANXgX0KW0YT0jplWMvgyI2k2txUVetZg1YEM.png?width=366&height=103)
 #### 1. Fork this repository.  
 * If you don't yet have a Github account, [create one](https://github.com/join)! It's free and easy.
-* Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repo so that it will be associated with your Github account.
+* Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repository so that it will be associated with your Github account.
 
 #### 2. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
 * Give app a friendly name and click the **Create App** button
@@ -150,7 +150,7 @@ This Method does not need you to Fork this repo, you can run your not straight o
 
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
-* Under **Deployment Method** select Github. Connect to your Github account and search for this repo by name.
+* Under **Deployment Method** select Github. Connect to your Github account and search for this repository by name.
 * Scroll down to the manual deploy section, and select the **Master** branch. Click deploy branch, and wait for the successfully deployed message.
 * Go to the **Resources** tab and look for the addons section. Search 'Postgres', and add a 'Hobby Dev - Free' version of Heroku Postgres. This will be automatically attached as your bot's database.
 * Go to the **Settings** tab. Click to reveal Config Variables, then add then add the following:
@@ -170,13 +170,13 @@ This Method does not need you to Fork this repo, you can run your not straight o
 #### 1. Checklist
 * You must have a bot already running on your server, if not then refer to [Setting up a New Bot](#new-bot)
 
-#### 2. Fork this Repo
+#### 2. Fork this Repository
 * Complete a Pull Request from the master Branch of ZyC0R3/Rita to your master branch
   * Detailed instructions with example can be found here: https://www.sitepoint.com/quick-tip-sync-your-fork-with-the-original-without-the-cli/
 
 --- OR ---
 * Simply Fork this repository if you have not done so already, or if you are updateing from the "Deploy to Heroku" method.
-  * Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repo so that it will be associated with your Github account.
+  * Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repository so that it will be associated with your Github account.
 
 #### 3. Deploy Update in Heroku
 * Log in to your Heroku account.
@@ -325,7 +325,7 @@ There are different ways to make the bot initialize at startup. The following de
     4. Restart your app's `worker node src/bot.js` dyno, and you will begin to receive debugging messages in your `#Webhooks` channel.
 * If your bot in unresponsive, the first thing to check is Heroku. Log in and manually restart the `worker node src/bot.js` dyno.
 * For further troubleshooting, it's helpful to install the Heroku command line interface. Once installed you can login from a terminal with `heroku login` and check your apps logs with `heroku logs --tail -a <your-app-name>`
-* If you are unable to solve a problem yourself, report it with as much detail as possible in this repo's issue tracker.
+* If you are unable to solve a problem yourself, report it with as much detail as possible in this repository's issue tracker.
 
 ## <a name="errors"></a>Error Messages
 This section/feature is being Created, Check back soon or join the support discord.
