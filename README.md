@@ -2,8 +2,8 @@
 A Translation bot built using `discord.js` and a custom `Google Translate API`.
 *(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)*
 
-### Deploy to Heroku 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+### Deployto Heroku 
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
 
 *NEW:* One Click Build with Heroku, For instructions Please go [here](#new-bot).
 
@@ -138,10 +138,13 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * Click the **Yes, do it!** button
 * Copy the bot's **TOKEN**, you will need it later
 
-#### 2b. For a simpler setup, use the icon below to deploy RITA to Heroku
+#### 2b. For a faster setup, click "Deploy to Heroku" below
 * In the custom variable of **DISCORD_TOKEN** put in the copied token of your created bot.
+* **DO NOT CHANGE** the **NODE_MODULES_CACHE** Variable unless you know about Heroku Caching.
+* If you with to use Webhook Debug logging:
+  * Fill in **DISCORD_DEBUG_WEBHOOK_ID** & **DISCORD_DEBUG_WEBHOOK_TOKEN**, For instructions go [here](#troubleshooting)
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
  
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
