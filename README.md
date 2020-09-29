@@ -104,13 +104,9 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
 
 ## <a name="deploy"></a>Setting up a Bot with "Deploy to Heroku"
 
-![Fork](https://media.discordapp.net/attachments/739880221083304007/760461976320606218/cZuuOXkMC3W6vLfD5fKBQ6OYn5fL5JFWuBEbQRcEdHJ4FAYCZwpVIpk8meg0vG6jANXgX0KW0YT0jplWMvgyI2k2txUVetZg1YEM.png?width=366&height=103)
+This Method does not need you to Fork this repo, you can run your not straight off of the Rita Master Branch. For update instructions click [here](#update)
 
-#### 1. Fork this repository.  
-* If you don't yet have a Github account, [create one](https://github.com/join)! It's free and easy.
-* Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repo so that it will be associated with your Github account.
-
-#### 2. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
+#### 1. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
 * Give app a friendly name and click the **Create App** button
   * I like the name **C-3PO**, but feel free to pick something different if you fear George Lucas's wrath. Maybe **C-4PO**
 * Take note of the app **CLIENT ID**, you will need it later
@@ -119,7 +115,7 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
 * Click the **Yes, do it!** button
 * Copy the bot's **TOKEN**, you will need it later
 
-#### 3. Deploy to Heroku
+#### 2. Deploy to Heroku
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
 
@@ -129,7 +125,7 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
   * Fill in **DISCORD_DEBUG_WEBHOOK_ID** & **DISCORD_DEBUG_WEBHOOK_TOKEN**, For instructions go [here](#troubleshooting)
 * Once installed, Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
 
-#### 4. Invite your bot to your server and configure it!
+#### 3. Invite your bot to your server and configure it!
 * Replace the CLIENTID string in the following URL with your own apps client id from Step 2: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
 * Visit the resulting URL and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
@@ -175,13 +171,17 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
 * You must have a bot already running on your server, if not then refer to [Setting up a New Bot](#new-bot)
 
 #### 2. Fork this Repo
-* Complete a Pull Request from the master Branch of ZyC0R3/Rita to your master branch.
-* Detailed instructions with example can be found here: https://www.sitepoint.com/quick-tip-sync-your-fork-with-the-original-without-the-cli/
+* Complete a Pull Request from the master Branch of ZyC0R3/Rita to your master branch
+  * Detailed instructions with example can be found here: https://www.sitepoint.com/quick-tip-sync-your-fork-with-the-original-without-the-cli/
+
+--- OR ---
+* Simply Fork this repository if you have not done so already, or if you are updateing from the "Deploy to Heroku" method.
+  * Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repo so that it will be associated with your Github account.
 
 #### 3. Deploy Update in Heroku
 * Log in to your Heroku account.
 * Select the bot you made in step 3 of [Setting up a New Bot](#new-bot)
-* Under **Deployment Method** Scroll down to the manual deploy section, and select the **Master** branch. Click deploy branch, and wait for the successfully deployed message.
+* Under **Deployment Method** make sure you have Github selected, ensure Connect to GitHub has the correct repository selected, Scroll down to the manual deploy section, and select the **Master** branch. Click deploy branch, and wait for the successfully deployed message.
 
 
 ## <a name="migration"></a>C-3PO to RITA Bot Migration (EXPERIMENTAL)
