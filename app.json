@@ -17,10 +17,7 @@
   },
   "image": "heroku/nodejs",
   "addons": [
-    "heroku-postgresql",
-    {
-      "plan": "Hobby Dev"
-    }
+    "heroku-postgresql"
   ],
   "buildpacks": [
     {
