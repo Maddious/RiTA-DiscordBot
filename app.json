@@ -6,13 +6,30 @@
     "Translator",
     "Rita"
   ],
+  "logo": "https://cdn.discordapp.com/attachments/599327653752995861/759555905661960212/android-chrome-192x192.png",
   "website": "https://ritabot.org/",
   "repository": "https://github.com/Zyc0r3/RitaBot",
   "success_url": "/",
   "env": {
     "DISCORD_TOKEN": {
       "description": "A secret key for logging into your discord bot.",
-      "value": ""
+      "value": "",
+      "required": true
+    },
+    "DISCORD_DEBUG_WEBHOOK_ID": {
+      "description": "Enter the ID for Webhook Debug logging, This is not needed but can be helpful for troubleshooting. Refer to https://ritabot.org/troubleshooting/",
+      "value": "",
+      "required": false
+    },
+    "DISCORD_DEBUG_WEBHOOK_TOKEN": {
+      "description": "Enter the Token for Webhook Debug logging.",
+      "value": "",
+      "required": false
+    },
+    "NODE_MODULES_CACHE": {
+      "description": "Prevents Heroku from Caching your build, allowing for error free updates. (Accepted Values are true or false)",
+      "value": "false",
+      "required": true
     }
   },
   "image": "heroku/nodejs",
