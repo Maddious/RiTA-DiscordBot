@@ -12,14 +12,14 @@
   "env": {
     "DISCORD_TOKEN": {
       "description": "A secret key for logging into your discord bot.",
-      "value": "<discord_token>"
+      "value": ""
     }
   },
   "image": "heroku/nodejs",
   "addons": [
     "heroku-postgresql",
     {
-      "plan": "hobby-dev"
+      "plan": "Hobby Dev"
     }
   ],
   "buildpacks": [
