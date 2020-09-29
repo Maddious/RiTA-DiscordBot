@@ -2,6 +2,11 @@
 A Translation bot built using `discord.js` and a custom `Google Translate API`.
 *(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)*
 
+### Deploy to Heroku 
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+Please go [here](#new-bot) to learn the steps to take.
+
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
 ![Node.js CI](https://github.com/ZyC0R3/RitaBot/workflows/Node.js%20CI/badge.svg?branch=master)
@@ -33,11 +38,6 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 #### --Google Translate API-- Current Test Branch
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api/test-branch?label=Test%20Version)
 [![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=test-branch)](https://travis-ci.com/ZyC0R3/google-translate-api)
-
-### Deploy to Heroku 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-Please go [here](#new-bot) to learn the steps to take.
 
 ## Coming Soon!
 
@@ -120,7 +120,6 @@ Please go [here](#new-bot) to learn the steps to take.
 
 **If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.**
 
-
 ## <a name="new-bot"></a>Setting up a New Bot (RECOMMENDED)
 
 **To deploy a free translation bot that you can add to your discord server, follow these easy steps.**
@@ -141,6 +140,7 @@ Please go [here](#new-bot) to learn the steps to take.
 
 #### 2b. For a simpler setup, use the icon below to deploy RITA to Heroku
 * In the custom variable of **DISCORD_TOKEN** put in the copied token of your created bot.
+
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
  
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
