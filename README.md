@@ -1,6 +1,11 @@
-## RITA (Stable) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R)
+## RITA ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg) 
 A Translation bot built using `discord.js` and a custom `Google Translate API`.
-*(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)*
+
+*(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)* 
+
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
+
+*NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy).
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
@@ -8,14 +13,6 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 ![CodeQL](https://github.com/ZyC0R3/RitaBot/workflows/CodeQL/badge.svg?branch=master)
 [![codebeat badge](https://codebeat.co/badges/125a5ce4-4ba1-45cf-95fa-266e1353c331)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-master)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot.svg)
-![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg)
-![GitHub issues](https://img.shields.io/github/issues/ZyC0R3/RitaBot)
-
-### --Google Translate API-- Master Branch
-![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api?label=Stable%20Version)
-[![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=master)](https://travis-ci.com/ZyC0R3/google-translate-api)
-![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/google-translate-api)
-![GitHub issues](https://img.shields.io/github/issues/ZyC0R3/google-translate-api)
 
 #### --RITA-- Current Test Branch
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version)
@@ -24,16 +21,6 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 [![codebeat badge](https://codebeat.co/badges/095e56cd-a926-4fa1-91d8-5cb20c11c5c6)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch)
 
-#### --RITA-- Experimental Test Branch (Discord.js V12)
-##### This branch should not be used on any server, most if not all functions are broken as a major update to latest discord.js version is needed.
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch-1.2.2?label=Experimental%20Version)
-[![codebeat badge](https://codebeat.co/badges/b72d7b2b-83d0-47cd-a91f-993964c6c564)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch-1-2-2)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch-1.2.2)
-
-#### --Google Translate API-- Current Test Branch
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api/test-branch?label=Test%20Version)
-[![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=test-branch)](https://travis-ci.com/ZyC0R3/google-translate-api)
-
 ## Coming Soon!
 
 01. Error Message Support Section.
@@ -41,16 +28,32 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 03. `!t tasks #TargetChannel` Implementation.
 04. Introduction of a Streamlined Command Handler. (This will be done as a New Project)
 05. Discord.js Updated to version 12 (V1.2.2/1.3.0)
-06. Ability to change message send type (V1.2.1)
-07. Limited Bot translation. (V1.2.1)
+06. Limited Bot translation. (V1.2.2)
 
-## New in 1.2.2-\* 
-* EXPERIMENTAL version of RITA - Not safe for normal use. (will be renamed to 1.3.0 once issues are resolved.)
-* Discord.js update from V11 to V12
-* All feature in previous versions are included however core functions are faulty and may cause DB issues. 
-  * Updating to this version may corrupt your DB, Do not do this unless you have backed it up. 
+## Table of Contents
 
-## New in 1.2.1-\*
+01. [Whats New](#new)
+02. [Features](#features)
+03. [Usage](#usage)
+04. [**NEW** Setting up a Bot with "Deploy to Heroku"](#deploy)
+05. [Setting up a Bot Manually ](#new-bot)
+06. [How to Update](#update)
+07. [C-3PO to RITA Bot Migration (EXPERIMENTAL)](#migration)
+08. [Heroku Database Support](#database)
+09. [Local Installation Support](#local)
+10. [Setup on a Raspberry Pi](#pi)
+11. [Troubleshooting](#troubleshooting)
+12. [Error Messages](#errors)
+13. [Commands](#commands)
+14. [All Build Statuses and CI Checks](#build)
+15. [Credits & License](#credits-&-license)
+16. [Design Team](#design-team)
+17. [What, Who, How and Why?](#history)
+
+## <a name="new"></a>Whats New
+For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/CHANGELOG.md)
+
+#### New in 1.2.1-\*
 * New commands added (embed, bot2bot, settings updatedb)
   * embed command allows you to change the type of message that is sent to the translation channel, in embed format or standard text. Standard text shows the users avatar and name instead of the bot.
   * bot2bot allows for messages sent from other bots, in non embedded format to be translated as well. (Due to limitation this has been implimented but is disabled for now)
@@ -70,35 +73,19 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` & `gulp-watch`have been updated
 * `eslint` has been replaced with `babel-eslint`
 * `!t settings updatebot` Has been **DISABLED** - This is not needed as of yet and with the similarities to the `!t settings updatedb` command it may cause issues.
+* Deploy with Heroku Setup and integration. 
 
-## New in 1.2.0-\*
+#### New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
 * Published to NPM
 * Non code changes will be appended with Version-\*\* from now on.
 * Various Spelling mistakes in ReadMe have been corrected.
 * Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` have been updated
 * Setup on a Raspberry Pi instruction Section added.
-* gulp-watch updated dependencies. (*Moved to Local Repo as it was out-of-date and full of Security Issues.*)
+* gulp-watch updated dependencies. (*Moved to Local repository as it was out-of-date and full of Security Issues.*)
 * Patch for Chinese language support.
 * Various Security vulnerabilities fixed.
 * Various commands re-activated.
-
-## Table of Contents
-
-01. [Features](#features)
-02. [Usage](#usage)
-03. [Setting up a New Bot (RECOMMENDED)](#new-bot)
-04. [How to Update](#update)
-05. [C-3PO to RITA Bot Migration (EXPERIMENTAL)](#migration)
-06. [Heroku Database Support](#database)
-07. [Local Installation Support](#local)
-08. [Setup on a Raspberry Pi](#pi)
-09. [Troubleshooting](#troubleshooting)
-10. [Error Messages](#errors)
-11. [Commands](#commands)
-12. [Credits & License](#credits-&-license)
-13. [Design Team](#design-team)
-14. [What, Who, How and Why?](#history)
 
 ## <a name="features"></a>Features
 * Translate custom messages
@@ -115,15 +102,42 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 
 **If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.**
 
+## <a name="deploy"></a>Setting up a Bot with "Deploy to Heroku"
 
-## <a name="new-bot"></a>Setting up a New Bot (RECOMMENDED)
+This Method does not need you to Fork this repository, you can run your not straight off of the Rita Master Branch. For update instructions click [here](#update)
+
+#### 1. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
+* Give app a friendly name and click the **Create App** button
+  * I like the name **C-3PO**, but feel free to pick something different if you fear George Lucas's wrath. Maybe **C-4PO**
+* Take note of the app **CLIENT ID**, you will need it later
+* Scroll down to the **Bot** section
+* Click the **Create a Bot User** button
+* Click the **Yes, do it!** button
+* Copy the bot's **TOKEN**, you will need it later
+
+#### 2. Deploy to Heroku
+
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
+
+* In the custom variable of **DISCORD_TOKEN** put in the copied token of your created bot.
+* **DO NOT CHANGE** the **NODE_MODULES_CACHE** Variable unless you know about Heroku Caching.
+* If you with to use Webhook Debug logging:
+  * Fill in **DISCORD_DEBUG_WEBHOOK_ID** & **DISCORD_DEBUG_WEBHOOK_TOKEN**, For instructions go [here](#troubleshooting)
+* Once installed, Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
+
+#### 3. Invite your bot to your server and configure it!
+* Replace the CLIENTID string in the following URL with your own apps client id from Step 2: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
+* Visit the resulting URL and add your bot to any server where you have admin privileges.
+* Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
+
+## <a name="new-bot"></a>Setting up a Bot Manually
 
 **To deploy a free translation bot that you can add to your discord server, follow these easy steps.**
 
-
-#### 1. Fork this repo.
+![Fork](https://media.discordapp.net/attachments/739880221083304007/760461976320606218/cZuuOXkMC3W6vLfD5fKBQ6OYn5fL5JFWuBEbQRcEdHJ4FAYCZwpVIpk8meg0vG6jANXgX0KW0YT0jplWMvgyI2k2txUVetZg1YEM.png?width=366&height=103)
+#### 1. Fork this repository.  
 * If you don't yet have a Github account, [create one](https://github.com/join)! It's free and easy.
-* Use the button in the upper righthand side of this page to fork the repo so that it will be associated with your Github account.
+* Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repository so that it will be associated with your Github account.
 
 #### 2. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
 * Give app a friendly name and click the **Create App** button
@@ -136,7 +150,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
-* Under **Deployment Method** select Github. Connect to your Github account and search for this repo by name.
+* Under **Deployment Method** select Github. Connect to your Github account and search for this repository by name.
 * Scroll down to the manual deploy section, and select the **Master** branch. Click deploy branch, and wait for the successfully deployed message.
 * Go to the **Resources** tab and look for the addons section. Search 'Postgres', and add a 'Hobby Dev - Free' version of Heroku Postgres. This will be automatically attached as your bot's database.
 * Go to the **Settings** tab. Click to reveal Config Variables, then add then add the following:
@@ -148,23 +162,26 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
 
 #### 4. Invite your bot to your server and configure it!
-* Replace the CLIENTID string in the following URL with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
+* Replace the CLIENTID string in the following URL with your own apps client id from Step 2: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
 * Visit the resulting URL and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
-
 
 ## <a name="update"></a>How to Update to 1.1.7 and Above
 #### 1. Checklist
 * You must have a bot already running on your server, if not then refer to [Setting up a New Bot](#new-bot)
 
-#### 2. Fork this Repo
-* Complete a Pull Request from the master Branch of ZyC0R3/Rita to your master branch.
-* Detailed instructions with example can be found here: https://www.sitepoint.com/quick-tip-sync-your-fork-with-the-original-without-the-cli/
+#### 2. Fork this Repository
+* Complete a Pull Request from the master Branch of ZyC0R3/Rita to your master branch
+  * Detailed instructions with example can be found here: https://www.sitepoint.com/quick-tip-sync-your-fork-with-the-original-without-the-cli/
+
+--- OR ---
+* Simply Fork this repository if you have not done so already, or if you are updateing from the "Deploy to Heroku" method.
+  * Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repository so that it will be associated with your Github account.
 
 #### 3. Deploy Update in Heroku
 * Log in to your Heroku account.
 * Select the bot you made in step 3 of [Setting up a New Bot](#new-bot)
-* Under **Deployment Method** Scroll down to the manual deploy section, and select the **Master** branch. Click deploy branch, and wait for the successfully deployed message.
+* Under **Deployment Method** make sure you have Github selected, ensure Connect to GitHub has the correct repository selected, Scroll down to the manual deploy section, and select the **Master** branch. Click deploy branch, and wait for the successfully deployed message.
 
 
 ## <a name="migration"></a>C-3PO to RITA Bot Migration (EXPERIMENTAL)
@@ -207,8 +224,8 @@ For a fresh install of pgAdmin, the dashboard likely contains only one server. T
 
 At this point, if we were to hit ‘save’ (please don’t), something very strange would happen. You’d see hundreds if not thousands of databases appear in pgAdmin. This has to do with how Heroku configures their servers. You’ll still only have access to your specific database, not those of others. In order to avoid parsing so many databases, we have to white list only those databases we care about.
 
-3. Go to the **Advanced** tab and under db restriction copy the database name (it’s the same value as the **Maintenance Database** field filled earlier).
-4. Click Save/Connect and you are done. Edit away.
+#### 3. Go to the **Advanced** tab and under db restriction copy the database name (it’s the same value as the **Maintenance Database** field filled earlier).
+#### 4. Click Save/Connect and you are done. Edit away.
 
 ## <a name="local"></a>Local Installation Support
 The bot can also be run locally without Heroku. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Start with the steps 1 and 2 in [Setting up a New Bot](#new-bot) and the continue as follows:
@@ -308,19 +325,37 @@ There are different ways to make the bot initialize at startup. The following de
     4. Restart your app's `worker node src/bot.js` dyno, and you will begin to receive debugging messages in your `#Webhooks` channel.
 * If your bot in unresponsive, the first thing to check is Heroku. Log in and manually restart the `worker node src/bot.js` dyno.
 * For further troubleshooting, it's helpful to install the Heroku command line interface. Once installed you can login from a terminal with `heroku login` and check your apps logs with `heroku logs --tail -a <your-app-name>`
-* If you are unable to solve a problem yourself, report it with as much detail as possible in this repo's issue tracker.
+* If you are unable to solve a problem yourself, report it with as much detail as possible in this repository's issue tracker.
 
 ## <a name="errors"></a>Error Messages
 This section/feature is being Created, Check back soon or join the support discord.
 
 
 ## <a name="commands"></a>Commands
-* [Translate Custom Text](https://github.com/ZyC0R3/RitaBot/wiki/Translate-Custom-Message)
-* [Translate by Reaction](https://github.com/ZyC0R3/RitaBot/wiki/Translate-by-Reacting)
-* [Translate Last Message](https://github.com/ZyC0R3/RitaBot/wiki/Translate-Last-Message)
-* [Translate Channel](https://github.com/ZyC0R3/RitaBot/wiki/Translate-Channel-Automatic)
-* [Settings](https://github.com/ZyC0R3/RitaBot/wiki/Settings)
-* [Misc. Commands](https://github.com/ZyC0R3/RitaBot/wiki/Misc.-Commands)
+* [Translate Custom Text](https://ritabot.org)
+* [Translate by Reaction](https://ritabot.org)
+* [Translate Last Message](https://ritabot.org)
+* [Translate Channel](https://ritabot.org)
+* [Settings](https://ritabot.org)
+* [Misc. Commands](https://ritabot.org)
+
+## <a name="build"></a>All Build Statuses and CI Checks
+
+### --Google Translate API-- Master Branch
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api?label=Stable%20Version)
+[![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=master)](https://travis-ci.com/ZyC0R3/google-translate-api)
+![GitHub last commit](https://img.shields.io/github/last-commit/ZyC0R3/google-translate-api)
+![GitHub issues](https://img.shields.io/github/issues/ZyC0R3/google-translate-api)
+
+#### --Google Translate API-- Current Test Branch
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/google-translate-api/test-branch?label=Test%20Version)
+[![Build Status](https://travis-ci.com/ZyC0R3/google-translate-api.svg?branch=test-branch)](https://travis-ci.com/ZyC0R3/google-translate-api)
+
+#### --RITA-- Experimental Test Branch (Discord.js V12)
+##### This branch should not be used on any server, most if not all functions are broken as a major update to latest discord.js version is needed.
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch-1.2.2?label=Experimental%20Version)
+[![codebeat badge](https://codebeat.co/badges/b72d7b2b-83d0-47cd-a91f-993964c6c564)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch-1-2-2)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch-1.2.2)
 
 ## <a name="credits-&-license"></a>Credits & License
 
