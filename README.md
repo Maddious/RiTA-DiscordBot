@@ -37,6 +37,8 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 ### Deploy to Heroku 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
+Please go [here](#new-bot) to learn the steps to take.
+
 ## Coming Soon!
 
 01. Error Message Support Section.
@@ -119,12 +121,12 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 **If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.**
 
 
-## <a name="new-bot"></a>Setting up a New Bot (RECOMMENDED)
+## <a name="new-bot"></a>Setting up Rita
 
 **To deploy a free translation bot that you can add to your discord server, follow these easy steps.**
 
-
-#### 1. Fork this repo.
+![Fork](https://media.discordapp.net/attachments/739880221083304007/760461976320606218/cZuuOXkMC3W6vLfD5fKBQ6OYn5fL5JFWuBEbQRcEdHJ4FAYCZwpVIpk8meg0vG6jANXgX0KW0YT0jplWMvgyI2k2txUVetZg1YEM.png?width=366&height=103)
+#### 1. Fork this repository.  
 * If you don't yet have a Github account, [create one](https://github.com/join)! It's free and easy.
 * Use the button in the upper righthand side of this page to fork the repo so that it will be associated with your Github account.
 
@@ -136,6 +138,14 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 * Click the **Create a Bot User** button
 * Click the **Yes, do it!** button
 * Copy the bot's **TOKEN**, you will need it later
+
+#### 2b. For a simpler setup, use the icon below to deploy RITA to Heroku
+* In the custom variable of **DISCORD_TOKEN** put in the copied token of your created bot
+* Create a Heroku Account!   Use Step 3 
+ 
+
+
+
 
 #### 3. Create a [Heroku account](https://id.heroku.com/signup/login) (It's free!)
 * Create a new app. It's name must be unique and composed of all lowercase letters and dashes. Something like `yourname-discordbot` is fine
