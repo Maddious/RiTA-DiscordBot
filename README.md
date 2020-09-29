@@ -1,11 +1,17 @@
 ## RITA ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg) 
 A Translation bot built using `discord.js` and a custom `Google Translate API`.
-
 *(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)* 
+
+##     Please star our [Github Repository](https://github.com/Zyc0r3/RitaBot.git)   upon using it to help the development team share Rita with more people!   Thanks in Advance!
+Deploy RITA with a quick method by click below ! Please go [here](#deploy) for instructions.
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
 
 *NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy).
+
+
+
+
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
@@ -224,8 +230,8 @@ For a fresh install of pgAdmin, the dashboard likely contains only one server. T
 
 At this point, if we were to hit ‘save’ (please don’t), something very strange would happen. You’d see hundreds if not thousands of databases appear in pgAdmin. This has to do with how Heroku configures their servers. You’ll still only have access to your specific database, not those of others. In order to avoid parsing so many databases, we have to white list only those databases we care about.
 
-#### 3. Go to the **Advanced** tab and under db restriction copy the database name (it’s the same value as the **Maintenance Database** field filled earlier).
-#### 4. Click Save/Connect and you are done. Edit away.
+1. Go to the **Advanced** tab and under db restriction copy the database name (it’s the same value as the **Maintenance Database** field filled earlier).
+2. Click Save/Connect and you are done. Edit away.
 
 ## <a name="local"></a>Local Installation Support
 The bot can also be run locally without Heroku. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Start with the steps 1 and 2 in [Setting up a New Bot](#new-bot) and the continue as follows:

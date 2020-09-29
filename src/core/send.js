@@ -11,7 +11,6 @@ const discord = require("discord.js");
 const webHookName = "Translator Messaging System";
 //const settings = require("../commands/settings");
 const embed = require("../commands/embed");
-const Discord = require("discord.js");
 const temp = "";
 
 
@@ -424,6 +423,7 @@ module.exports = function(data)
             }
             else
             {
+               message.delete(60000);
                const botEmbed = new discord.RichEmbed()
                   .setColor(colors.get(data.color))
                   .setAuthor(data.bot.username, data.bot.icon_url)
@@ -431,7 +431,7 @@ module.exports = function(data)
                   .setTimestamp()
                   .setFooter("𝗧𝗵𝗶𝘀 𝗺𝗲𝘀𝘀𝗮𝗴𝗲 𝘀𝗵𝗮𝗹𝗹 𝘀𝗲𝗹𝗳-𝗱𝗲𝘀𝘁𝗿𝘂𝗰𝘁 𝗶𝗻 𝗼𝗻𝗲 𝗺𝗶𝗻𝘂𝘁𝗲");
 
-               data.channel.send(botEmbed).then(msg =>
+               message.channel.send(botEmbed).then(msg =>
                {
                   msg.delete(60000);
                });
@@ -662,4 +662,3 @@ module.exports = function(data)
       return sendBox(sendData);
    }
 };
-
