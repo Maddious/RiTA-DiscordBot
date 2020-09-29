@@ -224,8 +224,8 @@ For a fresh install of pgAdmin, the dashboard likely contains only one server. T
 
 At this point, if we were to hit ‘save’ (please don’t), something very strange would happen. You’d see hundreds if not thousands of databases appear in pgAdmin. This has to do with how Heroku configures their servers. You’ll still only have access to your specific database, not those of others. In order to avoid parsing so many databases, we have to white list only those databases we care about.
 
-#### 3. Go to the **Advanced** tab and under db restriction copy the database name (it’s the same value as the **Maintenance Database** field filled earlier).
-#### 4. Click Save/Connect and you are done. Edit away.
+1. Go to the **Advanced** tab and under db restriction copy the database name (it’s the same value as the **Maintenance Database** field filled earlier).
+2. Click Save/Connect and you are done. Edit away.
 
 ## <a name="local"></a>Local Installation Support
 The bot can also be run locally without Heroku. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Start with the steps 1 and 2 in [Setting up a New Bot](#new-bot) and the continue as follows:
