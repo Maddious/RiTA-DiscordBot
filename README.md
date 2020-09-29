@@ -1,11 +1,17 @@
 ## RITA ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg) 
 A Translation bot built using `discord.js` and a custom `Google Translate API`.
-
 *(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)* 
+
+##     Please star our [Github Repository](https://github.com/Zyc0r3/RitaBot.git)   upon using it to help the development team share Rita with more people!   Thanks in Advance!
+Deploy RITA with a quick method by click below ! Please go [here](#deploy) for instructions.
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
 
 *NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy).
+
+
+
+
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
