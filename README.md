@@ -5,7 +5,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
 
-*NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy-to-heroku).
+*NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy).
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
