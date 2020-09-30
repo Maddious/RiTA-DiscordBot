@@ -65,7 +65,7 @@ const helpMessage = function(config, botname, param)
    `Translates Discord messages (based on \`Google API\`).\n\n` +
    "```md\n" +
    `# All the commands can be found by entering the following:\n` +
-   `> ${cmd} help ` +
+   `> ${cmd} help modules` +
    "```\n\n";
 
    // ------------------------------
