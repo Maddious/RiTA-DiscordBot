@@ -297,7 +297,7 @@ It is recommend to install git and pull from your fork or main:
 * Install git: `sudo apt-get install git`
 * Create the folder for the source: `mkdir Rita`
 * Clone the repository: `git clone https://github.com/ZyC0R3/RitaBot.git`
-* Checkout the branch you need: `git checkout --track origin/1.2.0-5`
+* Checkout the branch you need: `git checkout --track origin/1.2.0-6`
 
 Alternative: move the source code with WinSCP from your local environment to the Pi.
 
