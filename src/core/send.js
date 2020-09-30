@@ -9,11 +9,6 @@ const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
 const webHookName = "Translator Messaging System";
-//const settings = require("../commands/settings");
-const embed = require("../commands/embed");
-const temp = "";
-
-
 
 //
 // Send Data to Channel
@@ -24,6 +19,7 @@ module.exports = function(data)
    // -------------------
    // Get Embedded Variable From DB
    // -------------------
+
    console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
    const guildValue = data.message.guild.id;
@@ -45,14 +41,6 @@ module.exports = function(data)
          msg.delete(30000);
       });
    }
-   /*
-   console.log (`Send ID to getEmbedVar`)
-   console.log (`Raw = ` + data.message.guild.id)
-   const embedVar = db.getEmbedVar(guildValue)
-   console.log (`Const = ` + embedVar)
-   console.log (`db.set = ` + db.setEmbedVar())
-   console.log (`---------------------`)
-   */
 
    //
    // The first time this runs after a reset it will always send as Off state as set.EmbedVar = "",
@@ -68,11 +56,8 @@ module.exports = function(data)
       db.setEmbedVar;
       console.log(`db.set Stage 2 = ` + db.setEmbedVar());
       var output =
-      "**:robot:          " +
-     data.bot.username +
-      " has restarted\n\n" +
-      " :gear: Please resend your previous message\n" +
-      " for it to be translated and read.**\n";
+      "**:robot: " + data.bot.username + " has restarted\n\n" +
+      " :gear: Please resend your previous message or command.**\n";
       data.color = "warn";
       data.text = output;
       return ignoreMessage();
@@ -103,69 +88,86 @@ module.exports = function(data)
 
          if (data.text && data.text.length > 1)
          {
-            data.channel.send({
-               embed: {
-                  title: data.title,
-                  fields: data.fields,
-                  author: data.author,
-                  color: colors.get(data.color),
-                  description: data.text,
-                  footer: data.footer
-               }
-            }).then(() =>
+            if (!data.author)
             {
-               sendEmbeds(data);
-               sendAttachments(data);
-            }).catch(err =>
+               message.delete(60000);
+               const botEmbedOn = new discord.RichEmbed()
+                  .setColor(colors.get(data.color))
+                  .setAuthor(data.bot.username, data.bot.icon_url)
+                  .setDescription(data.text)
+                  .setTimestamp()
+                  .setFooter("This message will self-destruct in one minute");
+
+               message.channel.send(botEmbedOn).then(msg =>
+               {
+                  msg.delete(60000);
+               });
+            }
+            else
             {
-               var errMsg = err;
-               logger("dev", err);
-
-               //
-               // Error for long messages
-               //
-
-               if (err.code && err.code === 50035)
+               data.channel.send({
+                  embed: {
+                     title: data.title,
+                     fields: data.fields,
+                     author: data.author,
+                     color: colors.get(data.color),
+                     description: data.text,
+                     footer: data.footer
+                  }
+               }).then(() =>
                {
-                  data.channel.send(":warning:  Message is too long.");
-               }
-
-               //
-               // Handle error for users who cannot recieve private messages
-               //
-
-
-               if (err.code && err.code === 50007 && data.origin)
+                  sendEmbeds(data);
+                  sendAttachments(data);
+               }).catch(err =>
                {
-                  const badUser = data.channel.recipient;
-                  errMsg = `@${badUser.username}#${badUser.discriminator}\n` + err;
+                  var errMsg = err;
+                  logger("dev", err);
 
-                  db.removeTask(data.origin.id, `@${badUser.id}`, function(er)
+                  //
+                  // Error for long messages
+                  //
+
+                  if (err.code && err.code === 50035)
                   {
-                     if (er)
+                     data.channel.send(":warning:  Message is too long.");
+                  }
+
+                  //
+                  // Handle error for users who cannot recieve private messages
+                  //
+
+
+                  if (err.code && err.code === 50007 && data.origin)
+                  {
+                     const badUser = data.channel.recipient;
+                     errMsg = `@${badUser.username}#${badUser.discriminator}\n` + err;
+
+                     db.removeTask(data.origin.id, `@${badUser.id}`, function(er)
                      {
-                        return logger("error", er);
-                     }
+                        if (er)
+                        {
+                           return logger("error", er);
+                        }
 
-                     return data.origin.send(
-                        `:no_entry: User ${badUser} cannot recieve direct messages ` +
-                        `by bot because of **privacy settings**.\n\n__Auto ` +
-                        `translation has been stopped. To fix this:__\n` +
-                        "```prolog\nServer > Privacy Settings > " +
-                        "'Allow direct messages from server members'\n```"
-                     );
-                  });
-               }
+                        return data.origin.send(
+                           `:no_entry: User ${badUser} cannot recieve direct messages ` +
+                           `by bot because of **privacy settings**.\n\n__Auto ` +
+                           `translation has been stopped. To fix this:__\n` +
+                           "```prolog\nServer > Privacy Settings > " +
+                           "'Allow direct messages from server members'\n```"
+                        );
+                     });
+                  }
 
-               logger("error", errMsg);
-            });
+                  logger("error", errMsg);
+               });
+            }
          }
          else if (data.attachments.array().length > 0)
          {
             sendAttachments(data);
          }
       };
-
 
       //
       // Resend embeds from original message
@@ -234,7 +236,6 @@ module.exports = function(data)
       //
 
       //eslint-disable-next-line complexity
-      //module.exports = function(data)
       {
          var sendData = {
             title: data.title,
@@ -360,7 +361,6 @@ module.exports = function(data)
          return files;
       }
 
-
       //
       // Send Webhook Message
       //
@@ -377,7 +377,6 @@ module.exports = function(data)
          }
       }
 
-
       if (!message.member)
       {
          if (data.emoji)
@@ -385,12 +384,6 @@ module.exports = function(data)
             nicknameVar = data.author.username;
          }
       }
-
-
-
-
-
-
 
       function sendWebhookMessage(webhook, data)
       {
@@ -453,13 +446,6 @@ module.exports = function(data)
             }
          }
       }
-
-
-
-
-
-
-
 
       //
       // Send Data to Channel
@@ -576,7 +562,6 @@ module.exports = function(data)
          };
       }
 
-
       //
       // Notify server owner if bot cannot write to channel
       //
@@ -639,6 +624,7 @@ module.exports = function(data)
          //
          // Error on invalid forward channel
          //
+
          else
          {
             sendData.footer = null;
