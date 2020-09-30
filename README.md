@@ -253,7 +253,7 @@ Copy the existing **.env.example** file and name it **.env**. Edit the Values of
 Install nodejs from https://nodejs.org/en/  
 
 #### 4. Run and start the bot
-Run `npm install -g gulp` in your console to install gulp. Build the bot code using `npm build` and run the bot with `node src/bot.js`.
+Run `npm install -g gulp` in your console to install gulp. Build the bot code using `npm run-script build` and run the bot with `npm run-script start`.
 
 #### 5. Invite your bot to your server and configure it!
 * Replace the CLIENTID string in the following URL with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
@@ -299,7 +299,7 @@ It is recommend to install git and pull from your fork or main:
 * Install git: `sudo apt-get install git`
 * Create the folder for the source: `mkdir Rita`
 * Clone the repository: `git clone https://github.com/ZyC0R3/RitaBot.git`
-* Checkout the branch you need: `git checkout --track origin/1.1.7`
+* Checkout the branch you need: `git checkout --track origin/1.2.0-5`
 
 Alternative: move the source code with WinSCP from your local environment to the Pi.
 
