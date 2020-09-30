@@ -7,6 +7,9 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 
 *NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy).
 
+###   Check out our website [here](https://ritabot.org) for an easy to read wiki and quick start guide.
+###   Upon using this Repository *please* star this repo,  every star helps RITA get more and more popular to help more people.
+
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
 ![Node.js CI](https://github.com/ZyC0R3/RitaBot/workflows/Node.js%20CI/badge.svg?branch=master)
@@ -36,9 +39,9 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 02. [Features](#features)
 03. [Usage](#usage)
 04. [**NEW** Setting up a Bot with "Deploy to Heroku"](#deploy)
-05. [Setting up a Bot Manually ](#new-bot)
-06. [How to Update](#update)
-07. [C-3PO to RITA Bot Migration (EXPERIMENTAL)](#migration)
+05. [Setting up a Bot Manually](#new-bot)
+06. [How to Update your Bot](#update)
+07. [C-3PO to RITA Bot Migration](#migration)
 08. [Heroku Database Support](#database)
 09. [Local Installation Support](#local)
 10. [Setup on a Raspberry Pi](#pi)
@@ -48,7 +51,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 14. [All Build Statuses and CI Checks](#build)
 15. [Credits & License](#credits-&-license)
 16. [Design Team](#design-team)
-17. [What, Who, How and Why?](#history)
+17. [About Us](#history)
 
 ## <a name="new"></a>Whats New
 For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/CHANGELOG.md)
@@ -57,7 +60,7 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
 * New commands added (embed, bot2bot, settings updatedb)
   * embed command allows you to change the type of message that is sent to the translation channel, in embed format or standard text. Standard text shows the users avatar and name instead of the bot.
   * bot2bot allows for messages sent from other bots, in non embedded format to be translated as well. (Due to limitation this has been implimented but is disabled for now)
-  * As the new variables above are stored in the DB, they need new Columns to be added, as such updatedb will complete these actions.
+  * As the new variables above are stored in the database, they need new Columns to be added, as such updatedb will complete these actions.
 * Major code changes, new code implementations will change the DB and produce errors on first build, but this is a safe version to update to. Follow the below instructions.
   * Step 1: Make a pull request and update from **Master** branch. 
     * Once you update the bot and it initializes you WILL get a db error, this is normal. (we are working on suppressing these)
@@ -70,10 +73,13 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
     * To prevent a never ending loop of errors, the VERY FIRST message or command sent on the server will Initialise the DB fully. Meaning you will have to send that message again.
       * Please Note Due to [Automatic dyno restarts](https://devcenter.heroku.com/articles/dynos#automatic-dyno-restarts) the first message after each restart will share the same behaviour as above.
 * Various Security vulnerabilities fixed.
-* Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` & `gulp-watch`have been updated
+* Dev Dependencies core to this bot, the `google-translate-api` & `google-translate-token` & `gulp-watch`have been updated
 * `eslint` has been replaced with `babel-eslint`
 * `!t settings updatebot` Has been **DISABLED** - This is not needed as of yet and with the similarities to the `!t settings updatedb` command it may cause issues.
 * Deploy with Heroku Setup and integration. 
+* Added in command triggers and command deletion to clean up command channels.
+* Added in Webhook Sending (embed off)
+(https://miro.medium.com/max/500/1*t2GmM_klb9TlRYHRqmo7ng.gif)
 
 #### New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
@@ -94,10 +100,14 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
 * Translate to multiple languages at once
 * Automatic translation of channels with option to forward translations to users or separate channels.
 * Supports 100+ languages
+* Send translations using author username and avatar using Webhooks
+* Send files to other channels
+* Cross-server translations (Please Contact Artanis_#2340 regarding this)
 
 ## <a name=""></a>Usage
-* Cerate your own with the instructions below.
+* Create your own with the instructions below.
 * Write `!translate help` or `!t help` for a list of commands.
+* Enter the command `!t help modules` to get a list of all help commands, these show how to use each command.
 
 
 **If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.**
@@ -184,7 +194,7 @@ This Method does not need you to Fork this repository, you can run your not stra
 * Under **Deployment Method** make sure you have Github selected, ensure Connect to GitHub has the correct repository selected, Scroll down to the manual deploy section, and select the **Master** branch. Click deploy branch, and wait for the successfully deployed message.
 
 
-## <a name="migration"></a>C-3PO to RITA Bot Migration (EXPERIMENTAL)
+## <a name="migration"></a>C-3PO to RITA Bot Migration
 **If you already have a Heroku Bot Using C-3P0**
 
 #### 1. Checklist
@@ -235,12 +245,15 @@ Any Database that runs with SQL Sequelize ('https://sequelize.org/master/') can 
 
 #### 2. Create a new .env File
 Copy the existing **.env.example** file and name it **.env**. Edit the Values of **DISCORD_TOKEN**, **DISCORD_BOT_OWNER_ID** and the **DATABASE_URL** according to the values that you copied earlier.
+  * DATABASE_URL needs to be the path to the database file (once you install SQLite it will create a database for you in the path you put...)
+  * Example -  DATABASURE_URL = C:\Admin\Rita_Development\test.db
+
 
 #### 3. Install nodejs
 Install nodejs from https://nodejs.org/en/  
 
 #### 4. Run and start the bot
-Run `npm install -g gulp` in your console to install gulp. Build the bot code using `npm build` and run the bot with `npm start`.
+Run `npm install -g gulp` in your console to install gulp. Build the bot code using `npm build` and run the bot with `node src/bot.js`.
 
 #### 5. Invite your bot to your server and configure it!
 * Replace the CLIENTID string in the following URL with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
@@ -328,7 +341,7 @@ There are different ways to make the bot initialize at startup. The following de
 * If you are unable to solve a problem yourself, report it with as much detail as possible in this repository's issue tracker.
 
 ## <a name="errors"></a>Error Messages
-This section/feature is being Created, Check back soon or join the support discord.
+This section/feature is being Created, Check back soon or join the [Support Discord Server](https://discord.gg/invite/mgNR64R).
 
 
 ## <a name="commands"></a>Commands
