@@ -400,7 +400,7 @@ This project was originally released by Aziz under the MIT license. He chose to 
 
 *I and a group of fellow C-3P0 users decided that collectively we could do better, plagued with crashes, API changes, relentless bugs and issues, the drive to make something better was born.*
 
-*Rita's history and various iterations each added something extra, it just needed to be brought together and molded, molded into something amazing, moulded into Rita. The Real-Time Intergalactic Translating Assistant.*
+*Rita's history and various iterations each added something extra, it just needed to be brought together and molded, molded into something amazing, moulded into Rita. The Real-Time Interchangeable Translating Assistant.*
 
 ------
 #### *There you have it, the story, dramatised and electrified for effect, but all true, of how Rita was born.*
