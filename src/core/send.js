@@ -578,6 +578,63 @@ module.exports = function(data)
             .catch(err => logger("error", err));
       }
 
+      if (data.forward)
+      {
+         const forwardChannel = data.client.channels.get(data.forward);
+
+         if (forwardChannel)
+         {
+            //
+            // Check if bot can write to destination channel
+            //
+
+            var canWriteDest = true;
+
+            if (forwardChannel.type === "text")
+            {
+               canWriteDest = fn.checkPerm(
+                  forwardChannel.guild.me,
+                  forwardChannel,
+                  "SEND_MESSAGES"
+               );
+            }
+
+            if (canWriteDest)
+            {
+               sendData.origin = sendData.channel;
+               sendData.channel = forwardChannel;
+            }
+
+            //
+            // Error if bot cannot write to dest
+            //
+            else
+            {
+               sendData.footer = null;
+               sendData.embeds = null;
+               sendData.color = "error";
+               sendData.text =
+                  ":no_entry:  Bot does not have permission to write at the " +
+                  `<#${forwardChannel.id}> channel.`;
+
+               return sendBox(sendData);
+            }
+         }
+
+         //
+         // Error on invalid forward channel
+         //
+
+         else
+         {
+            sendData.footer = null;
+            sendData.embeds = null;
+            sendData.color = "error";
+            sendData.text = ":warning:  Invalid channel.";
+            return sendBox(sendData);
+         }
+      }
+
       if (data.showAuthor)
       {
          sendData.author = data.message.author;
