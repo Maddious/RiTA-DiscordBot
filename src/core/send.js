@@ -75,6 +75,19 @@ module.exports = function(data)
 
    if (db.setEmbedVar() === "on")
    {
+      embedOn(data);
+   }
+   else
+   {
+      embedOff(data);
+   }
+
+   //
+   // Embedded Variable "On" Code
+   //
+
+   const embedOn = function(data)
+   {
       const sendBox = function(data)
       {
          if (data.author)
@@ -251,67 +264,51 @@ module.exports = function(data)
             origin: null,
             bot: data.bot
          };
+      }
 
-         //
-         // Notify server owner if bot cannot write to channel
-         //
+      //
+      // Notify server owner if bot cannot write to channel
+      //
 
-         if (!data.canWrite)
-         {
-            const writeErr =
+      if (!data.canWrite)
+      {
+         const writeErr =
                ":no_entry:  **Translate bot** does not have permission to write at " +
                `the **${sendData.channel.name}** channel on your server **` +
                `${sendData.channel.guild.name}**. Please fix.`;
 
-            return sendData.channel.guild.owner.send(writeErr).catch(err =>
-               logger("error", err)
-            );
-         }
+         return sendData.channel.guild.owner.send(writeErr).catch(err =>
+            logger("error", err)
+         );
+      }
 
-         if (data.forward)
+      if (data.forward)
+      {
+         const forwardChannel = data.client.channels.get(data.forward);
+
+         if (forwardChannel)
          {
-            const forwardChannel = data.client.channels.get(data.forward);
+            //
+            // Check if bot can write to destination channel
+            //
 
-            if (forwardChannel)
+            var canWriteDest = true;
+
+            if (forwardChannel.type === "text")
             {
-               //
-               // Check if bot can write to destination channel
-               //
+               canWriteDest = fn.checkPerm(
+                  forwardChannel.guild.me, forwardChannel, "SEND_MESSAGES"
+               );
+            }
 
-               var canWriteDest = true;
-
-               if (forwardChannel.type === "text")
-               {
-                  canWriteDest = fn.checkPerm(
-                     forwardChannel.guild.me, forwardChannel, "SEND_MESSAGES"
-                  );
-               }
-
-               if (canWriteDest)
-               {
-                  sendData.origin = sendData.channel;
-                  sendData.channel = forwardChannel;
-               }
-
-               //
-               // Error if bot cannot write to dest
-               //
-
-               else
-               {
-                  sendData.footer = null;
-                  sendData.embeds = null;
-                  sendData.color = "error";
-                  sendData.text =
-                     ":no_entry:  Bot does not have permission to write at the " +
-                     `<#${forwardChannel.id}> channel.`;
-
-                  return sendBox(sendData);
-               }
+            if (canWriteDest)
+            {
+               sendData.origin = sendData.channel;
+               sendData.channel = forwardChannel;
             }
 
             //
-            // Error on invalid forward channel
+            // Error if bot cannot write to dest
             //
 
             else
@@ -319,25 +316,46 @@ module.exports = function(data)
                sendData.footer = null;
                sendData.embeds = null;
                sendData.color = "error";
-               sendData.text = ":warning:  Invalid channel.";
+               sendData.text =
+                     ":no_entry:  Bot does not have permission to write at the " +
+                     `<#${forwardChannel.id}> channel.`;
+
                return sendBox(sendData);
             }
          }
 
-         if (data.showAuthor)
+         //
+         // Error on invalid forward channel
+         //
+
+         else
          {
-            sendData.author = data.message.author;
-
-            if (data.author)
-            {
-               sendData.author = data.author;
-            }
+            sendData.footer = null;
+            sendData.embeds = null;
+            sendData.color = "error";
+            sendData.text = ":warning:  Invalid channel.";
+            return sendBox(sendData);
          }
-
-         return sendBox(sendData);
       }
-   }
-   else
+
+      if (data.showAuthor)
+      {
+         sendData.author = data.message.author;
+
+         if (data.author)
+         {
+            sendData.author = data.author;
+         }
+      }
+
+      return sendBox(sendData);
+   };
+
+   //
+   // Embedded Variable "Off" Code
+   //
+
+   const embedOff = function(data)
    {
       //
       // Create Files
@@ -646,5 +664,10 @@ module.exports = function(data)
       }
 
       return sendBox(sendData);
-   }
+   };
+
+   const checkPerms = function(data)
+   {
+
+   };
 };
