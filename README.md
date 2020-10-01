@@ -112,7 +112,7 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
 
 ## <a name="deploy"></a>Setting up a Bot with "Deploy to Heroku"
 
-This Method does not need you to Fork this repository, you can run your not straight off of the Rita Master Branch. For update instructions click [here](#update)
+This Method does not need you to Fork this repository, you can run your bot straight off of the Rita Master Branch. For update instructions click [here](#update)
 
 #### 1. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
 * Give app a friendly name and click the **Create App** button
