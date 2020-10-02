@@ -223,14 +223,13 @@ module.exports.setBot2BotVar = function(data)
 };
 */
 
-
-
 // -----------------------------
 // Add Missing Variable Columns
 // -----------------------------
 
 exports.updateColumns = function(data)
 {
+   // Very sloppy code, neew to find a better fix.
    db.query(`ALTER TABLE public.servers ADD COLUMN "embedstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'on'::character varying;`,function(err)
    {
       if (err)
@@ -253,13 +252,38 @@ exports.updateColumns = function(data)
          console.log("bot2botstyle column added");
       }
    });
+
+   // ------------------------------------------
+   // Add Missing Variable Columns for local db
+   // ------------------------------------------
+
+   db.query(`ALTER TABLE servers ADD COLUMN "embedstyle" character varying(8)  DEFAULT 'on'`,function(err)
+   {
+      if (err)
+      {
+         console.log("ERROR:"+err.message);
+      }
+      else
+      {
+         console.log("embedstyle column added");
+      }
+   });
+   db.query(`ALTER TABLE servers ADD COLUMN "bot2botstyle" character varying(8) DEFAULT 'off'`,function(err)
+   {
+      if (err)
+      {
+         console.log("ERROR:"+err.message);
+      }
+      else
+      {
+         console.log("bot2botstyle column added");
+      }
+   });
 };
 
 // ------------------
 // Get Channel Tasks
 // ------------------
-
-
 
 exports.channelTasks = function(data)
 {
