@@ -1,16 +1,17 @@
+// -----------------
+// Global variables
+// -----------------
+
 const langCheck = require("../core/lang.check");
 const botSend = require("../core/send");
 const db = require("../core/db");
 const auth = require("../core/auth");
 const logger = require("../core/logger");
-const bot2bot = require("../commands/bot2bot");
-const embed = require("../commands/embed");
 
+// -------------
+// Command Code
+// -------------
 
-// Possible commands:
-// !t stats: Only in server channel allowed, returns global and server stats
-// !t stats server: Only in server channel allowed, returns server stats
-// !t stats global: In server channel and dm possible, returns global stats
 module.exports = function(data)
 {
    //
@@ -78,6 +79,11 @@ module.exports = function(data)
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("global"))
       {
          data.text = globalStats;
+
+         // -------------
+         // Send message
+         // -------------
+
          return botSend(data);
       }
 
@@ -86,6 +92,10 @@ module.exports = function(data)
       {
          data.color = "warn";
          data.text = "You must call server stats from a server channel.";
+
+         // -------------
+         // Send message
+         // -------------
 
          return botSend(data);
       }
@@ -100,6 +110,11 @@ module.exports = function(data)
             "'UNREGISTERED'\n" +
             data.message.channel.guild.name + "\n" +
             data.message.channel.guild.id);
+
+         // -------------
+         // Send message
+         // -------------
+
          return botSend(data);
       }
 
@@ -108,10 +123,19 @@ module.exports = function(data)
       {
          data.text = serverStats;
 
+         // -------------
+         // Send message
+         // -------------
+
          return botSend(data);
       }
 
       data.text = globalStats + "\n\n" + serverStats;
+
+      // -------------
+      // Send message
+      // -------------
+
       return botSend(data);
    });
 };

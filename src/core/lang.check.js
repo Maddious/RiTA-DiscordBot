@@ -1,3 +1,7 @@
+// -----------------
+// Global variables
+// -----------------
+
 const translate = require("google-translate-api");
 const ISO6391 = require("iso-639-1");
 const fn = require("./helpers");
@@ -48,7 +52,6 @@ const getLangISO = function(lang)
       code = lang;
    }
 
-   //if (langExceptions.hasOwnProperty(code))
    if (Object.prototype.hasOwnProperty.call(langExceptions,code))
    {
       return langExceptions[code];

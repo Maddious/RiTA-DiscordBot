@@ -1,8 +1,12 @@
+// -----------------
+// Global variables
+// -----------------
+
 const botSend = require("../core/send");
 
-// --------------------
+// ---------------------
 // Supported Languages
-// --------------------
+// ---------------------
 
 module.exports = function(data)
 {
@@ -41,6 +45,10 @@ module.exports = function(data)
 
    data.color = "info";
    data.text = output;
+
+   // -------------
+   // Send message
+   // -------------
 
    return botSend(data);
 };

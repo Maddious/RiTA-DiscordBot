@@ -1,17 +1,20 @@
-const botSend = require("../core/send");
-const auth = require("../core/auth");
+// -----------------
+// Global variables
+// -----------------
 
-// ------------------------------
+const botSend = require("../core/send");
+
+// ------------------------
 // Bot Help / Command List
-// ------------------------------
+// ------------------------
 
 module.exports = function(data)
 {
    data.color = "info";
 
-   // ------------------------------
+   // ----------------------------------------------
    // Detect if help is needed for specific command
-   // ------------------------------
+   // ----------------------------------------------
 
    var getHelpWith = "basics";
 
@@ -23,12 +26,16 @@ module.exports = function(data)
 
    data.text = helpMessage(data.config, data.bot.username, getHelpWith);
 
+   // -------------
+   // Send message
+   // -------------
+
    return botSend(data);
 };
 
-// ------------------------------
+// -------------
 // Help Section
-// ------------------------------
+// -------------
 
 const helpSection = function(data)
 {
@@ -48,15 +55,15 @@ const helpSection = function(data)
    return section;
 };
 
-// ------------------------------
+// ----------
 // Help Text
-// ------------------------------
+// ----------
 
 const helpMessage = function(config, botname, param)
 {
-   // ------------------------------
+   // ---------
    // Bot Info
-   // ------------------------------
+   // ---------
 
    const cmd = config.translateCmdShort;
 
@@ -68,9 +75,9 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help modules` +
    "```\n\n";
 
-   // ------------------------------
+   // ------------
    // Help Basics
-   // ------------------------------
+   // ------------
 
    const basics =
    helpSection({
@@ -171,9 +178,9 @@ const helpMessage = function(config, botname, param)
    });
 
 
-   // ------------------------------
+   // -----------------
    // ReadMe + Discord
-   // ------------------------------
+   // -----------------
 
    const readme =
 
@@ -188,9 +195,9 @@ const helpMessage = function(config, botname, param)
    "```\n\n";
 
 
-   // ------------------------------
+   // --------------------------------
    // Report Bugs + Report in Discord
-   // ------------------------------
+   // --------------------------------
 
    const report =
    `**Report Bugs**\n` +
@@ -201,9 +208,9 @@ const helpMessage = function(config, botname, param)
    `> https://discord.com/invite/mgNR64R \n` +
    "```\n\n";
 
-   // ------------------------------
+   // ----------------
    // Module Commands
-   // -----------------------------
+   // ----------------
 
    const modules =
    `__**Modules**__\n\n` +
@@ -235,9 +242,9 @@ const helpMessage = function(config, botname, param)
    "```";
 
 
-   // ------------------------------
+   // -----------
    // Embed Help
-   // -----------------------------
+   // -----------
    const embed =
    `__**Styles**__\n\n` +
    "```md\n" +
@@ -248,9 +255,9 @@ const helpMessage = function(config, botname, param)
    `> Turns on Webhook Translation Sending\n` +
    `> ${cmd} embed off\n\n` +
    "```";
-   // ------------------------------
+   // -------------
    // Bot2bot Help
-   // ------------------------------
+   // -------------
 
    const bot2bot =
    `__**bot to Bot Translation**__\n\n` +
@@ -264,9 +271,9 @@ const helpMessage = function(config, botname, param)
    `> Usually 90% of bots ignore bot messages` +
    ` but this feature allows discord bots to be translated too` +
    "```";
-   // ------------------------------
+   // --------------------
    // Last Message (last)
-   // ------------------------------
+   // --------------------
 
    const last =
    `__**Translate Last Message(s)**__\n\n` +
@@ -292,9 +299,9 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} last -6 to english from german` +
    "```";
 
-   // ------------------------------
+   // --------------------
    // Flag Emoji Reaction
-   // ------------------------------
+   // --------------------
 
    const react =
    `__**Translate by reaction**__\n\n` +
@@ -306,9 +313,9 @@ const helpMessage = function(config, botname, param)
    ` Please note that only official country flags are registered`;
 
 
-   // ------------------------------
+   // ----------------------
    // Custom message (this)
-   // ------------------------------
+   // ----------------------
 
    const custom =
    `__**Translate Custom Message**__\n\n` +
@@ -331,9 +338,9 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} this to de from en: how are you? \n` +
    "```";
 
-   // ------------------------------
+   // -------------------------
    // Auto translate (channel)
-   // ------------------------------
+   // -------------------------
 
    const auto =
    `__**Auto Translate Channels/Users**__\n\n` +
@@ -359,9 +366,9 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} channel to en from ru for #ch1, #ch2, #usr1 \n` +
    "```";
 
-   // ------------------------------
+   // ----------------------
    // Auto translate (stop)
-   // ------------------------------
+   // ----------------------
 
    const stop =
    `__**Stop Auto Translation**__\n\n` +
@@ -384,9 +391,9 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} stop for all \n` +
    "```";
 
-   // ------------------------------
-   // Misc
-   // ------------------------------
+   // -------------
+   // Misc Command
+   // -------------
 
    const misc =
    `__**Miscellaneous Commands**__\n\n` +
@@ -403,9 +410,9 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} list\n` +
    "```";
 
-   // ------------------------------
-   // Statistics
-   // ------------------------------
+   // -------------------
+   // Statistics Command
+   // -------------------
 
    const stats =
    `__**Statistics**__\n\n` +
@@ -418,9 +425,9 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} stats server \n` +
    "```";
 
-   // ------------------------------
-   // Settings
-   // ------------------------------
+   // -----------------
+   // Settings Command
+   // -----------------
 
    const settings =
    `__**Settings**__\n\n` +
@@ -446,9 +453,9 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} settings updatebot\n` +
    "```";
 
-   // ------------------------------
-   // Tasks
-   // ------------------------------
+   // --------------
+   // Tasks Command
+   // --------------
 
    const tasks =
    `__**Channel Tasks**__\n\n` +
@@ -463,9 +470,9 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} tasks for [#channel]\n` +
    "```";
 
-   // ------------------------------
+   // ----------------
    // Proccess result
-   // ------------------------------
+   // ----------------
 
    const paramMap =
    {

@@ -1,17 +1,30 @@
+// -----------------
+// Global variables
+// -----------------
+
 const colors = require("../core/colors");
 const db = require("../core/db");
 const logger = require("../core/logger");
 
+// -------------
+// Command Code
+// -------------
+
 module.exports.run = function(data)
 {
-   //
+   // -------------------------------
    // Command allowed by admins only
-   //
+   // -------------------------------
 
    if (!data.message.isAdmin)
    {
       data.color = "warn";
       data.text = ":cop:  This command is reserved for server administrators.";
+
+      // -------------
+      // Send message
+      // -------------
+
       return data.message.channel.send({
          embed: {
             description: data.text,
@@ -20,9 +33,9 @@ module.exports.run = function(data)
       });
    }
 
-   //
+   // -----------------------------------
    // Error if settings param is missing
-   //
+   // -----------------------------------
 
    if (!data.cmd.params)
    {
@@ -31,6 +44,10 @@ module.exports.run = function(data)
          ":warning:  Missing `embed` parameter. Use `" +
          `${data.config.translateCmdShort} help settings\` to learn more.`;
 
+      // -------------
+      // Send message
+      // -------------
+
       return data.message.channel.send({
          embed: {
             description: data.text,
@@ -39,16 +56,16 @@ module.exports.run = function(data)
       });
    }
 
-   //
+   // ----------------
    // Execute setting
-   //
+   // ----------------
 
    embedSettings(data);
 };
 
-// ===================
-// Available Settings
-// ===================
+// -------------------------------
+// embed varible command handaler
+// -------------------------------
 
 const embedSettings = function(data)
 {
@@ -71,6 +88,11 @@ const embedSettings = function(data)
             `Embedded Message translation is now turned : ${commandVariable1}\n\n`;
             data.color = "info";
             data.text = output;
+
+            // -------------
+            // Send message
+            // -------------
+
             return data.message.channel.send({
                embed: {
                   description: data.text,
@@ -85,6 +107,11 @@ const embedSettings = function(data)
    data.text =
       ":warning:  **`" + commandVariable1 +
       "`** is not a valid embed option.\n";
+
+   // -------------
+   // Send message
+   // -------------
+
    return data.message.channel.send({
       embed: {
          description: data.text,
