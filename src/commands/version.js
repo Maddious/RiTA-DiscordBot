@@ -1,5 +1,13 @@
+// -----------------
+// Global variables
+// -----------------
+
 const botSend = require("../core/send");
 const auth = require("../core/auth");
+
+// -------------
+// Command Code
+// -------------
 
 module.exports = function(data)
 {
@@ -15,5 +23,10 @@ module.exports = function(data)
    console.log("----------------- Data -----------------");
    console.log(data);
    console.log("----------------- Data -----------------");
+
+   // -------------
+   // Send message
+   // -------------
+
    botSend(data);
 };

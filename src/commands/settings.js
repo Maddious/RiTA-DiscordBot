@@ -1,33 +1,36 @@
-/* eslint-disable no-undef */
+// -----------------
+// Global variables
+// -----------------
+
 const botSend = require("../core/send");
 const db = require("../core/db");
 const logger = require("../core/logger");
-const colors = require("../core/colors");
-// -------------------------
-// Proccess settings params
-// -------------------------
 
-//module.exports = {
-//   embedVar,
-//   b2bVar
-//}
+// --------------------------
+// Proccess settings params
+// --------------------------
 
 module.exports = function(data)
 {
-   //
+   // -------------------------------
    // Command allowed by admins only
-   //
+   // -------------------------------
 
    if (!data.message.isAdmin)
    {
       data.color = "warn";
       data.text = ":cop:  This command is reserved for server administrators.";
+
+      // -------------
+      // Send message
+      // -------------
+
       return botSend(data);
    }
 
-   //
+   // -----------------------------------
    // Error if settings param is missing
-   //
+   // -----------------------------------
 
    if (!data.cmd.params)
    {
@@ -36,19 +39,23 @@ module.exports = function(data)
          ":warning:  Missing `settings` parameter. Use `" +
          `${data.config.translateCmdShort} help settings\` to learn more.`;
 
+      // -------------
+      // Send message
+      // -------------
+
       return botSend(data);
    }
 
-   //
+   // ----------------
    // Execute setting
-   //
+   // ----------------
 
    getSettings(data);
 };
 
-// ===================
+// -------------------
 // Available Settings
-// ===================
+// -------------------
 
 const getSettings = function(data)
 {
@@ -58,20 +65,25 @@ const getSettings = function(data)
 
    const setLang = function(data)
    {
-      //
+      // ---------------------------
       // Error for invalid language
-      //
+      // ---------------------------
 
       if (data.cmd.to.valid.length !== 1)
       {
          data.color = "error";
          data.text = ":warning:  Please specify 1 valid language.";
+
+         // -------------
+         // Send message
+         // -------------
+
          return botSend(data);
       }
 
-      //
+      // ------------------------
       // Error for same language
-      //
+      // ------------------------
 
       if (data.cmd.server && data.cmd.to.valid[0].iso === data.cmd.server.lang)
       {
@@ -82,12 +94,16 @@ const getSettings = function(data)
             "languange of this server. To change:\n```md\n# Example\n" +
             data.config.translateCmd + " settings setLang to french\n```";
 
+         // -------------
+         // Send message
+         // -------------
+
          return botSend(data);
       }
 
-      //
+      // ----------------
       // Update database
-      //
+      // ----------------
 
       return db.updateServerLang(
          data.message.channel.guild.id,
@@ -102,6 +118,10 @@ const getSettings = function(data)
             data.text =
                "Default language for server has been changed to **`" +
                data.cmd.to.valid[0].name + "`**.";
+
+            // -------------
+            // Send message
+            // -------------
 
             return botSend(data);
          }
@@ -124,9 +144,9 @@ const getSettings = function(data)
       }, 3000);
    };
 
-   // ---------------
+   // -------------
    // List Servers
-   // ---------------
+   // -------------
 
    const listServers = function(data)
    {
@@ -149,6 +169,10 @@ const getSettings = function(data)
          char: ""
       };
 
+      // -------------
+      // Send message
+      // -------------
+
       return data.message.channel.send(data.text, {split: splitOpts});
    };
 
@@ -170,33 +194,20 @@ const getSettings = function(data)
             "Hello, this bot has been updated to a new version.\n " +
             "More info: https://ritabot.org/whats-new/#new-in-121\n");
       });
-
-      /*
-      var output =
-      "**```This command is disbaled```**\n";
-      data.color = "info";
-      data.text = output;
-      return data.message.channel.send({
-         embed: {
-            description: data.text,
-            color: colors.get(data.color)
-         }
-      });
-      */
    };
 
-   // --------------------------------------
+   // ----------
    // Update db
-   // --------------------------------------
+   // ----------
 
    const updateDB = function(data)
    {
       return db.updateColumns();
    };
 
-   // --------------------------------------
+   // -------------------
    // Fix guild mismatch
-   // --------------------------------------
+   // -------------------
 
    const dbFix = function(data)
    {
@@ -226,7 +237,6 @@ const getSettings = function(data)
 
    const settingParam = data.cmd.params.split(" ")[0].toLowerCase();
 
-   //if (validSettings.hasOwnProperty(settingParam))
    if (Object.prototype.hasOwnProperty.call(validSettings,settingParam))
    {
       return validSettings[settingParam](data);
@@ -240,6 +250,10 @@ const getSettings = function(data)
    data.text =
       ":warning:  **`" + data.cmd.params +
       "`** is not a valid settings option.";
+
+   // -------------
+   // Send message
+   // -------------
 
    return botSend(data);
 };

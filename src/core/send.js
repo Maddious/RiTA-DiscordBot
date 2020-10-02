@@ -1,8 +1,8 @@
+// -----------------
+// Global variables
+// -----------------
+
 /* eslint-disable no-undef */
-/* eslint-disable complexity */
-/* eslint-disable no-inner-declarations */
-/* eslint-disable no-empty */
-/* eslint-disable no-redeclare */
 const colors = require("./colors");
 const fn = require("./helpers");
 const db = require("./db");
@@ -10,15 +10,15 @@ const logger = require("./logger");
 const discord = require("discord.js");
 const webHookName = "Translator Messaging System";
 
-//
+// ---------------------
 // Send Data to Channel
-//
+// ---------------------
 
 module.exports = function(data)
 {
-   // -------------------
+   // ------------------------------
    // Get Embedded Variable From DB
-   // -------------------
+   // ------------------------------
 
    console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
@@ -42,10 +42,10 @@ module.exports = function(data)
       });
    }
 
-   //
+   // ----------------------------------------------------------------------------------------------
    // The first time this runs after a reset it will always send as Off state as set.EmbedVar = "",
    // so what we need to do is add in a if "" then run db.getEmbedVar(guildValue); and then.
-   //
+   // ----------------------------------------------------------------------------------------------
 
    console.log(`db.set Stage 1 = ` + db.setEmbedVar());
    db.getEmbedVar(guildValue);
@@ -69,9 +69,9 @@ module.exports = function(data)
    }
    console.log(`db.set Stage 4 = ` + db.setEmbedVar());
 
-   //
-   // Testing Theory ^^^
-   //
+   // --------------------
+   // Primary If Statment
+   // --------------------
 
    if (db.setEmbedVar() === "on")
    {
@@ -81,11 +81,11 @@ module.exports = function(data)
    {
       embedOff(data);
    }
-
-   //
-   // Embedded Variable "On" Code
-   //
 };
+
+// ----------------------------
+// Embedded Variable "On" Code
+// ----------------------------
 
 const embedOn = function(data)
 {
@@ -137,19 +137,18 @@ const embedOn = function(data)
                var errMsg = err;
                logger("dev", err);
 
-               //
+               // ------------------------
                // Error for long messages
-               //
+               // ------------------------
 
                if (err.code && err.code === 50035)
                {
                   data.channel.send(":warning:  Message is too long.");
                }
 
-               //
+               // -----------------------------------------------------------
                // Handle error for users who cannot recieve private messages
-               //
-
+               // -----------------------------------------------------------
 
                if (err.code && err.code === 50007 && data.origin)
                {
@@ -183,10 +182,10 @@ const embedOn = function(data)
       }
    };
 
-   //
+   // -----------------------------------------------
    // Resend embeds from original message
    // Only if content is forwared to another channel
-   //
+   // -----------------------------------------------
 
    const sendEmbeds = function(data)
    {
@@ -212,9 +211,9 @@ const embedOn = function(data)
       }
    };
 
-   //
+   // -------------------
    // Resend attachments
-   //
+   // -------------------
 
    const sendAttachments = function(data)
    {
@@ -248,15 +247,16 @@ const embedOn = function(data)
    checkPerms(data, sendBox);
 };
 
-//
+// -----------------------------
 // Embedded Variable "Off" Code
-//
+// -----------------------------
 
 const embedOff = function(data)
 {
-   //
+   // -------------
    // Create Files
-   //
+   // -------------
+
    function createFiles(dataAttachments)
    {
       if (!dataAttachments && !dataAttachments.array().length > 0) {return;}
@@ -276,9 +276,9 @@ const embedOff = function(data)
       return files;
    }
 
-   //
+   // ---------------------
    // Send Webhook Message
-   //
+   // ---------------------
 
    if (message.member)
    {
@@ -362,9 +362,9 @@ const embedOff = function(data)
       }
    }
 
-   //
+   // ---------------------
    // Send Data to Channel
-   //
+   // ---------------------
 
    const sendBox = function(data)
    {
@@ -378,12 +378,13 @@ const embedOff = function(data)
          avatarURL = data.author.displayAvatarURL;
       }
       if (!channel) {return console.log("Channel not specified.");}
-      if (!color) {color = colors.get(data.color);} // Sets the color of embed message but no embed message used so thus unused.
+      // Sets the color of embed message but no embed message used so thus unused.
+      if (!color) {color = colors.get(data.color);}
       if (!avatarURL) {avatarURL = data.author;}
 
-      //
+      // -----------------------------
       // Webhook Creation and Sending
-      //
+      // -----------------------------
 
       if (data.channel.type === "dm")
       {
@@ -401,7 +402,8 @@ const embedOff = function(data)
          channel.fetchWebhooks()
             .then(webhooks =>
             {
-               existingWebhook = webhooks.find(x => x.name === webHookName); // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
+               // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
+               existingWebhook = webhooks.find(x => x.name === webHookName);
 
                if (!existingWebhook)
                {
@@ -420,9 +422,9 @@ const embedOff = function(data)
       }
    };
 
-   //
+   // -------------------
    // Resend attachments
-   //
+   // -------------------
 
    const sendAttachments = function(data)
    {
@@ -457,11 +459,16 @@ const embedOff = function(data)
    checkPerms(data, sendBox);
 };
 
+// -----------------
+// Permission Check
+// -----------------
+
+// This is the last step before the message is send, each function ends here.
 const checkPerms = function(data, sendBox)
 {
-   //
+   // ------------------------------------------------------------------------
    // Analyze Data and determine sending style (system message or author box)
-   //
+   // ------------------------------------------------------------------------
 
    //eslint-disable-next-line complexity
    {
@@ -481,9 +488,9 @@ const checkPerms = function(data, sendBox)
       };
    }
 
-   //
+   // ---------------------------------------------------
    // Notify server owner if bot cannot write to channel
-   //
+   // ---------------------------------------------------
 
    if (!data.canWrite)
    {
@@ -503,9 +510,9 @@ const checkPerms = function(data, sendBox)
 
       if (forwardChannel)
       {
-         //
+         // ----------------------------------------------
          // Check if bot can write to destination channel
-         //
+         // ----------------------------------------------
 
          var canWriteDest = true;
 
@@ -524,9 +531,9 @@ const checkPerms = function(data, sendBox)
             sendData.channel = forwardChannel;
          }
 
-         //
+         // ----------------------------------
          // Error if bot cannot write to dest
-         //
+         // ----------------------------------
 
          else
          {
@@ -537,13 +544,17 @@ const checkPerms = function(data, sendBox)
                   ":no_entry:  Bot does not have permission to write at the " +
                   `<#${forwardChannel.id}> channel.`;
 
+            // -------------
+            // Send message
+            // -------------
+
             return sendBox(sendData);
          }
       }
 
-      //
+      // ---------------------------------
       // Error on invalid forward channel
-      //
+      // ---------------------------------
 
       else
       {
@@ -551,6 +562,11 @@ const checkPerms = function(data, sendBox)
          sendData.embeds = null;
          sendData.color = "error";
          sendData.text = ":warning:  Invalid channel.";
+
+         // -------------
+         // Send message
+         // -------------
+
          return sendBox(sendData);
       }
    }
@@ -564,6 +580,10 @@ const checkPerms = function(data, sendBox)
          sendData.author = data.author;
       }
    }
+
+   // -------------
+   // Send message
+   // -------------
 
    return sendBox(sendData);
 };

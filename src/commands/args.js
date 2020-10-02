@@ -1,11 +1,15 @@
+// -----------------
+// Global variables
+// -----------------
+
 const langCheck = require("../core/lang.check");
 const logger = require("../core/logger");
 const db = require("../core/db");
 const fn = require("../core/helpers");
 
-//
+// ---------
 // Commands
-//
+// ---------
 
 const cmdHelp = require("./help");
 const cmdList = require("./list");
@@ -46,9 +50,9 @@ const extractParam = function(key, str, def = null, allowArray = false)
    return def;
 };
 
-// --------------------
+// ---------------------
 // Extract number param
-// --------------------
+// ---------------------
 
 const extractNum = function(str)
 {
@@ -82,9 +86,9 @@ const checkContent = function(msg, output)
    }
 };
 
-// ------------------
+// -------------
 // Get main arg
-// ------------------
+// -------------
 
 const getMainArg = function(output)
 {
@@ -97,9 +101,9 @@ const getMainArg = function(output)
    }
 };
 
-// ------------------
+// -------------
 // Strip prefix
-// ------------------
+// -------------
 
 const stripPrefix = function(message, config, bot)
 {
@@ -150,9 +154,9 @@ module.exports = function(data)
 
    output.num = extractNum(output.params);
 
-   //
+   // -----------------------------
    // Get server/bot info/settings
-   //
+   // -----------------------------
 
    var id = "bot";
 
@@ -165,9 +169,9 @@ module.exports = function(data)
    {
       output.server = server;
 
-      //
+      // -----------------------------------
       // Get default language of server/bot
-      //
+      // -----------------------------------
 
       if (output.to === "default")
       {
@@ -181,15 +185,15 @@ module.exports = function(data)
          }
       }
 
-      //
+      // ----------------------------------
       // Add command info to main data var
-      //
+      // ----------------------------------
 
       data.cmd = output;
 
-      //
+      // -----------------------------
       // check if channel is writable
-      //
+      // -----------------------------
 
       data.canWrite = true;
 
@@ -202,15 +206,15 @@ module.exports = function(data)
          );
       }
 
-      //
+      // -----------------------
       // log command data (dev)
-      //
+      // -----------------------
 
       logger("cmd", data);
 
-      //
+      // ---------------
       // Legal Commands
-      //
+      // ---------------
 
       const cmdMap = {
          "this": cmdTranslateThis,
@@ -232,13 +236,12 @@ module.exports = function(data)
          "settings": cmdSettings
       };
 
-      //
+      // --------------------------
       // Execute command if exists
-      //
+      // --------------------------
 
       output.main = output.main.toLowerCase();
 
-      //if (cmdMap.hasOwnProperty(output.main))
       if (Object.prototype.hasOwnProperty.call(cmdMap,output.main))
       {
          cmdMap[output.main](data);

@@ -1,8 +1,8 @@
-//
+// -----------------------------------------------------------
 // List of countries, mapped by their unicode emoji
 // includes array of official country languages (ISO 639-1/2)
 // https://apps.timwhitlock.info/emoji/tables/iso3166
-//
+// -----------------------------------------------------------
 
 module.exports = {
    "🇦🇫": {

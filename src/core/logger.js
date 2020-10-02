@@ -1,3 +1,7 @@
+// -----------------
+// Global variables
+// -----------------
+
 const discord = require("discord.js");
 const auth = require("./auth");
 const colors = require("./colors").get;
@@ -25,9 +29,9 @@ module.exports = function(type, data, subtype = null)
    }
 };
 
-// -------------------
+// --------------------
 // Log data to console
-// -------------------
+// --------------------
 
 const devConsole = function(data)
 {
@@ -37,9 +41,9 @@ const devConsole = function(data)
    }
 };
 
-// -----------
+// ------------
 // Hook Sender
-// -----------
+// ------------
 
 const hookSend = function(data)
 {
@@ -57,9 +61,9 @@ const hookSend = function(data)
    });
 };
 
-// ------------
+// -------------
 // Error Logger
-// ------------
+// -------------
 
 const errorLog = function(error, subtype)
 {
@@ -94,9 +98,9 @@ const errorLog = function(error, subtype)
    });
 };
 
-// ---------------
+// ----------------
 // Warnings Logger
-// ---------------
+// ----------------
 
 const warnLog = function(warning)
 {
@@ -108,7 +112,7 @@ const warnLog = function(warning)
 
 // ---------------
 // Guild Join Log
-// --------------
+// ---------------
 
 const logJoin = function(guild)
 {

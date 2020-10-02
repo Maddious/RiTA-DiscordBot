@@ -1,11 +1,17 @@
+// -----------------
+// Global variables
+// -----------------
+
 const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
 const Op = Sequelize.Op;
 var dbEmbedValue ="";
-const colors = require("../core/colors");
 //var dbBot2BotValue =""; //Bot2Bot Code, Not working :(
 
+// ----------------------
+// Database Auth Process
+// ----------------------
 
 const db = process.env.DATABASE_URL.endsWith(".db") ?
    new Sequelize({
@@ -27,7 +33,11 @@ db
    {
       logger("error", err);
    });
-//--
+
+// ---------------------------------
+// Database server table definition
+// ---------------------------------
+
 const Servers = db.define("servers", {
    id: {
       type: Sequelize.STRING(32),
@@ -56,7 +66,11 @@ const Servers = db.define("servers", {
       defaultValue: "off"
    }
 });
-//--
+
+// --------------------------------
+// Database tasks table definition
+// --------------------------------
+
 const Tasks = db.define("tasks", {
    origin: Sequelize.STRING(32),
    dest: Sequelize.STRING(32),
@@ -135,13 +149,12 @@ exports.updateServerLang = function(id, lang, _cb)
       });
 };
 
-// -------------------
+// -------------------------------
 // Update Embedded Variable in DB
-// -------------------
+// -------------------------------
 
 exports.updateEmbedVar = function(id, embedstyle, _cb)
 {
-   console.log(`updateEmbedVar ` + embedstyle);
    dbEmbedValue = embedstyle;
    return Servers.update({ embedstyle: embedstyle }, { where: { id: id } }).then(
       function ()
@@ -150,41 +163,35 @@ exports.updateEmbedVar = function(id, embedstyle, _cb)
       });
 };
 
-// -------------------
+// ------------------------------
 // Get Embedded Variable From DB
-// -------------------
+// ------------------------------
 
 exports.getEmbedVar = async function run(id)
 {
    var value = await db.query(`select * from (select embedstyle as "embedstyle" from servers where id = ?) as table1`, { replacements: [id],
       type: db.QueryTypes.SELECT});
    dbEmbedValue = value[0].embedstyle;
-   //console.log (`getEmbedVar Log Value ` + value[0].embedstyle);
-   console.log(`getEmbedVar Log Local ` + dbEmbedValue);
    return this.setEmbedVar();
-   //return value[0].embedstyle;
-   //return dbEmbedValue;
 };
 
-// -------------------
+// -------------------------------------------
 // Call Saved Embedded Variable Value From DB
-// -------------------
+// -------------------------------------------
 
 module.exports.setEmbedVar = function(data)
 {
-   console.log(`setEmbedVar Log ` + dbEmbedValue);
    return dbEmbedValue;
 };
 
 /* Bot2Bot code, Not working :(
 
-// -------------------
+// ------------------------------
 // Update Bot2Bot Variable In DB
-// -------------------
+// ------------------------------
 
 exports.updateBot2BotVar = function(id, bot2botstyle, _cb)
 {
-   console.log (`updateBot2BotVar ` + bot2botstyle);
    dbBot2BotValue = bot2botstyle
    return Servers.update({ bot2botstyle: bot2botstyle }, { where: { id: id } }).then(
       function ()
@@ -193,38 +200,34 @@ exports.updateBot2BotVar = function(id, bot2botstyle, _cb)
       });
 };
 
-// -------------------
+// -----------------------------
 // Get Bot2Bot Variable From DB
-// -------------------
+// -----------------------------
 
 exports.getBot2BotVar = async function run(id)
 {
    var value = await db.query(`select * from (select bot2botstyle as "bot2botstyle" from servers where id = ?) as table2`, { replacements: [id],
       type: db.QueryTypes.SELECT});
    dbBot2BotValue = value[0].bot2botstyle
-   //console.log (`getBot2BotVar Log Value ` + value[0].bot2botstyle);
-   console.log (`getBot2BotVar Log Local ` + dbBot2BotValue);
    return this.setBot2BotVar();
-   //return value[0].bot2botstyle;
-   //return dbBot2BotValue;
+
 };
 
-// -------------------
+// ------------------------------------------
 // Call Saved Bot2Bot Variable Value From DB
-// -------------------
+// ------------------------------------------
 
 module.exports.setBot2BotVar = function(data)
 {
-   console.log (`setBot2BotVar Log ` + dbBot2BotValue)
    return dbBot2BotValue;
 };
 */
 
 
 
-// ------------------
+// -----------------------------
 // Add Missing Variable Columns
-// ------------------
+// -----------------------------
 
 exports.updateColumns = function(data)
 {
@@ -282,9 +285,9 @@ exports.channelTasks = function(data)
       return autoTranslate(data);
    }
 };
-// --------------------------------
+// ------------------------------
 // Get tasks for channel or user
-// --------------------------------
+// ------------------------------
 
 exports.getTasks = function(origin, dest, cb)
 {
@@ -351,9 +354,9 @@ exports.removeTask = function(origin, dest, cb)
       });
 };
 
-// --------------
+// ---------------
 // Get Task Count
-// --------------
+// ---------------
 
 exports.getTasksCount = function(origin, cb)
 {
@@ -381,28 +384,12 @@ exports.getServersCount = function(cb)
 
 exports.addTask = function(task)
 {
-   // Tasks.upsert({
-   //   orign: task.origin,
-   //   dest: task.dest,
-   //   reply: task.reply, // + task.origin.slice(-3),
-   //   server: task.server,
-   //   active: true,
-   //   lang_to: task.to,
-   //   lang_from: task.from,
-   // }).then(() => {
-   //   console.log('Task added successfully.');
-   // })
-   // .catch(err => {
-   //   console.error('Unable to add task to the database:', err);
-   // });
-
-
    task.dest.forEach(dest =>
    {
       Tasks.upsert({
          origin: task.origin,
          dest: dest,
-         reply: task.reply, // + task.origin.slice(-3),
+         reply: task.reply,
          server: task.server,
          active: true,
          LangTo: task.to,
