@@ -9,6 +9,11 @@ var bot2botVar = "off";
 // Command Code
 // -------------
 
+module.exports.getBot2botVar = function(data)
+{
+   return bot2botVar;
+};
+
 module.exports.run = function (data)
 {
    // -------------------------------
