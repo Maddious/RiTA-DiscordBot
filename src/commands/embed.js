@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-extra-parens */
 // -----------------
 // Global variables
 // -----------------
@@ -5,12 +7,17 @@
 const colors = require("../core/colors");
 const db = require("../core/db");
 const logger = require("../core/logger");
+const discord = require("discord.js");
+
+
 
 // -------------
 // Command Code
 // -------------
 
 module.exports.run = function(data)
+
+
 {
    // -------------------------------
    // Command allowed by admins only
@@ -18,6 +25,13 @@ module.exports.run = function(data)
 
    if (!data.message.isAdmin)
    {
+      const embedMessage = new discord.RichEmbed()
+         .setColor(colors.get(data.color))
+         .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+         .setDescription(data.text)
+         .setTimestamp()
+         .setFooter("This message will self-destruct in one minute");
+
       data.color = "warn";
       data.text = ":cop:  This command is reserved for server administrators.";
 
@@ -25,11 +39,10 @@ module.exports.run = function(data)
       // Send message
       // -------------
 
-      return data.message.channel.send({
-         embed: {
-            description: data.text,
-            color: colors.get(data.color)
-         }
+      return message.channel.send(embedMessage).then(msg =>
+      {
+         message.delete(60000);
+         msg.delete(60000);
       });
    }
 
@@ -39,20 +52,26 @@ module.exports.run = function(data)
 
    if (!data.cmd.params)
    {
+      const embedMessage = new discord.RichEmbed()
+         .setColor(colors.get(data.color))
+         .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+         .setDescription(data.text)
+         .setTimestamp()
+         .setFooter("This message will self-destruct in one minute");
+
       data.color = "error";
       data.text =
          ":warning:  Missing `embed` parameter. Use `" +
-         `${data.config.translateCmdShort} help settings\` to learn more.`;
+         `${data.config.translateCmdShort} help embed\` to learn more.`;
 
       // -------------
       // Send message
       // -------------
 
-      return data.message.channel.send({
-         embed: {
-            description: data.text,
-            color: colors.get(data.color)
-         }
+      return message.channel.send(embedMessage).then(msg =>
+      {
+         message.delete(60000);
+         msg.delete(60000);
       });
    }
 
@@ -88,16 +107,22 @@ const embedSettings = function(data)
             `Embedded Message translation is now turned : ${commandVariable1}\n\n`;
             data.color = "info";
             data.text = output;
+            const embedMessage = new discord.RichEmbed()
+               .setColor(colors.get(data.color))
+               .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+               .setDescription(data.text)
+               .setTimestamp()
+               .setFooter("This message will self-destruct in one minute");
+
 
             // -------------
             // Send message
             // -------------
 
-            return data.message.channel.send({
-               embed: {
-                  description: data.text,
-                  color: colors.get(data.color)
-               }
+            return message.channel.send(embedMessage).then(msg =>
+            {
+               message.delete(60000);
+               msg.delete(60000);
             });
          }
       );
@@ -111,11 +136,17 @@ const embedSettings = function(data)
    // -------------
    // Send message
    // -------------
+   const embedMessage = new discord.RichEmbed()
+      .setColor(colors.get(data.color))
+      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+      .setDescription(data.text)
+      .setTimestamp()
+      .setFooter("This message will self-destruct in one minute");
 
-   return data.message.channel.send({
-      embed: {
-         description: data.text,
-         color: colors.get(data.color)
-      }
+
+   return message.channel.send(embedMessage).then(msg =>
+   {
+      message.delete(60000);
+      msg.delete(60000);
    });
 };

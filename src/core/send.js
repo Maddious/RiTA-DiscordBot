@@ -114,6 +114,7 @@ const embedOn = function(data)
 
             message.channel.send(botEmbedOn).then(msg =>
             {
+               message.delete(60000);
                msg.delete(60000);
             });
          }

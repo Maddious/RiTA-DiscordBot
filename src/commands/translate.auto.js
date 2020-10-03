@@ -155,7 +155,7 @@ module.exports = function(data)
 
          if (dest.startsWith("<@"))
          {
-            const userID = dest.slice(2,-1);
+            const userID = dest.slice(3,-1);
 
             fn.getUser(data.client, userID, user =>
             {

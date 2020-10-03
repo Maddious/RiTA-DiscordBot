@@ -1,8 +1,10 @@
+/* eslint-disable no-undef */
 // -----------------
 // Global variables
 // -----------------
 
 const colors = require("../core/colors");
+const discord = require("discord.js");
 var bot2botVar = "off";
 
 // -------------
@@ -29,11 +31,22 @@ module.exports.run = function (data)
       // Send message
       // -------------
 
-      return data.message.channel.send({
-         embed: {
-            description: data.text,
-            color: colors.get(data.color)
-         }
+      const embedMessage = new discord.RichEmbed()
+         .setColor(colors.get(data.color))
+         .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+         .setDescription(data.text)
+         .setTimestamp()
+         .setFooter("This message will self-destruct in one minute");
+
+
+      // -------------
+      // Send message
+      // -------------
+
+      return message.channel.send(embedMessage).then(msg =>
+      {
+         message.delete(60000);
+         msg.delete(60000);
       });
    }
 
@@ -83,18 +96,30 @@ const bot2botSettings = function (data)
          `Bot Message translation is not yet Implemented\n\n`;
       data.color = "info";
       data.text = output;
+      const embedMessage = new discord.RichEmbed()
+         .setColor(colors.get(data.color))
+         .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+         .setDescription(data.text)
+         .setTimestamp()
+         .setFooter("This message will self-destruct in one minute");
+
+
 
       // -------------
       // Send message
       // -------------
 
-      return data.message.channel.send({
-         embed: {
-            description: data.text,
-            color: colors.get(data.color)
-         }
+      return message.channel.send(embedMessage).then(msg =>
+      {
+         message.delete(60000);
+         msg.delete(60000);
       });
    }
+
+   // -------------
+   // Send message
+   // -------------
+
 
    data.color = "error";
    data.text =
@@ -105,11 +130,22 @@ const bot2botSettings = function (data)
    // Send message
    // -------------
 
-   return data.message.channel.send({
-      embed: {
-         description: data.text,
-         color: colors.get(data.color)
-      }
+   const embedMessage = new discord.RichEmbed()
+      .setColor(colors.get(data.color))
+      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+      .setDescription(data.text)
+      .setTimestamp()
+      .setFooter("This message will self-destruct in one minute");
+
+
+   // -------------
+   // Send message
+   // -------------
+
+   return message.channel.send(embedMessage).then(msg =>
+   {
+      message.delete(60000);
+      msg.delete(60000);
    });
 };
 
