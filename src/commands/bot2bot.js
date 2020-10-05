@@ -1,9 +1,11 @@
-/* eslint-disable no-undef */
 // -----------------
 // Global variables
 // -----------------
 
+/* eslint-disable no-undef */
 const colors = require("../core/colors");
+const db = require("../core/db");
+const logger = require("../core/logger");
 const discord = require("discord.js");
 var bot2botVar = "off";
 
@@ -16,7 +18,8 @@ module.exports.getBot2botVar = function(data)
    return bot2botVar;
 };
 
-module.exports.run = function (data)
+module.exports.run = function(data)
+
 {
    // -------------------------------
    // Command allowed by admins only
@@ -31,23 +34,7 @@ module.exports.run = function (data)
       // Send message
       // -------------
 
-      const embedMessage = new discord.RichEmbed()
-         .setColor(colors.get(data.color))
-         .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-         .setDescription(data.text)
-         .setTimestamp()
-         .setFooter("This message will self-destruct in one minute");
-
-
-      // -------------
-      // Send message
-      // -------------
-
-      return message.channel.send(embedMessage).then(msg =>
-      {
-         message.delete(60000);
-         msg.delete(60000);
-      });
+      sendMessage(data);
    }
 
    // -----------------------------------
@@ -58,68 +45,57 @@ module.exports.run = function (data)
    {
       data.color = "error";
       data.text =
-         ":warning:  Missing `bot2bot` parameter. Use `" +
-         `${data.config.translateCmdShort} help settings\` to learn more.`;
+         ":warning:  Missing `embed` parameter. Use `" +
+         `${data.config.translateCmdShort} help embed\` to learn more.`;
 
       // -------------
       // Send message
       // -------------
 
-      return data.message.channel.send({
-         embed: {
-            description: data.text,
-            color: colors.get(data.color)
-         }
-      });
+      sendMessage(data);
    }
 
    // ----------------
    // Execute setting
    // ----------------
 
-   bot2botSettings(data);
+   embedSettings(data);
 };
 
-// ---------------------------------
-// bot2bot varible command handaler
-// ---------------------------------
+// -------------------------------
+// embed varible command handaler
+// -------------------------------
 
-const bot2botSettings = function (data)
+const embedSettings = function(data)
 {
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
    if (commandVariable1 === "on" || commandVariable1 === "off")
    {
-      bot2botVar = commandVariable1;
-      var output =
-         "**```Bot to Bot Translation```**\n" +
-         `Bot Message translation is not yet Implemented\n\n`;
-      data.color = "info";
-      data.text = output;
-      const embedMessage = new discord.RichEmbed()
-         .setColor(colors.get(data.color))
-         .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-         .setDescription(data.text)
-         .setTimestamp()
-         .setFooter("This message will self-destruct in one minute");
+      console.log(commandVariable1);
+      return db.updateBot2BotVar(
+         data.message.channel.guild.id,
+         commandVariable1,
+         function(err)
+         {
+            if (err)
+            {
+               return logger("error", err);
+            }
+            var output =
+            "**```Bot to Bot Translation```**\n" +
+            `Bot Message translation is not yet Implemented\n\n`;
+            data.color = "info";
+            data.text = output;
 
+            // -------------
+            // Send message
+            // -------------
 
-
-      // -------------
-      // Send message
-      // -------------
-
-      return message.channel.send(embedMessage).then(msg =>
-      {
-         message.delete(60000);
-         msg.delete(60000);
-      });
+            sendMessage(data);
+         }
+      );
    }
-
-   // -------------
-   // Send message
-   // -------------
-
 
    data.color = "error";
    data.text =
@@ -130,22 +106,25 @@ const bot2botSettings = function (data)
    // Send message
    // -------------
 
-   const embedMessage = new discord.RichEmbed()
+   sendMessage(data);
+};
+
+// ----------------------
+// Send message function
+// ----------------------
+
+function sendMessage (data)
+{
+   message.delete(5000);
+   const richEmbedMessage = new discord.RichEmbed()
       .setColor(colors.get(data.color))
       .setAuthor(data.bot.username, data.bot.displayAvatarURL)
       .setDescription(data.text)
       .setTimestamp()
       .setFooter("This message will self-destruct in one minute");
 
-
-   // -------------
-   // Send message
-   // -------------
-
-   return message.channel.send(embedMessage).then(msg =>
+   return message.channel.send(richEmbedMessage).then(msg =>
    {
-      message.delete(60000);
       msg.delete(60000);
    });
-};
-
+}

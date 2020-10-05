@@ -7,7 +7,7 @@ const Sequelize = require("sequelize");
 const logger = require("./logger");
 const Op = Sequelize.Op;
 var dbEmbedValue ="";
-//var dbBot2BotValue =""; //Bot2Bot Code, Not working :(
+var dbBot2BotValue ="";
 
 // ----------------------
 // Database Auth Process
@@ -184,7 +184,6 @@ module.exports.setEmbedVar = function(data)
    return dbEmbedValue;
 };
 
-/* Bot2Bot code, Not working :(
 
 // ------------------------------
 // Update Bot2Bot Variable In DB
@@ -192,7 +191,7 @@ module.exports.setEmbedVar = function(data)
 
 exports.updateBot2BotVar = function(id, bot2botstyle, _cb)
 {
-   dbBot2BotValue = bot2botstyle
+   dbBot2BotValue = bot2botstyle;
    return Servers.update({ bot2botstyle: bot2botstyle }, { where: { id: id } }).then(
       function ()
       {
@@ -208,9 +207,8 @@ exports.getBot2BotVar = async function run(id)
 {
    var value = await db.query(`select * from (select bot2botstyle as "bot2botstyle" from servers where id = ?) as table2`, { replacements: [id],
       type: db.QueryTypes.SELECT});
-   dbBot2BotValue = value[0].bot2botstyle
+   dbBot2BotValue = value[0].bot2botstyle;
    return this.setBot2BotVar();
-
 };
 
 // ------------------------------------------
@@ -221,7 +219,6 @@ module.exports.setBot2BotVar = function(data)
 {
    return dbBot2BotValue;
 };
-*/
 
 // -----------------------------
 // Add Missing Variable Columns

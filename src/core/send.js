@@ -28,7 +28,6 @@ module.exports = function(data)
 
    function ignoreMessage()
    {
-      message.delete(30000);
       const ignoreMessageEmbed = new discord.RichEmbed()
          .setColor(colors.get(data.color))
          .setTitle("**Bot Alert**\n")
@@ -104,7 +103,7 @@ const embedOn = function(data)
       {
          if (!data.author)
          {
-            message.delete(60000);
+            message.delete(5000);
             const botEmbedOn = new discord.RichEmbed()
                .setColor(colors.get(data.color))
                .setAuthor(data.bot.username, data.bot.icon_url)
@@ -114,7 +113,6 @@ const embedOn = function(data)
 
             message.channel.send(botEmbedOn).then(msg =>
             {
-               message.delete(60000);
                msg.delete(60000);
             });
          }
@@ -332,7 +330,7 @@ const embedOff = function(data)
          }
          else
          {
-            message.delete(60000);
+            message.delete(5000);
             const botEmbed = new discord.RichEmbed()
                .setColor(colors.get(data.color))
                .setAuthor(data.bot.username, data.bot.icon_url)
