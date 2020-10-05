@@ -1,3 +1,8 @@
+// -----------------
+// Global variables
+// -----------------
+
+// codebeat:disable[LOC,ABC,BLOCK_NESTING]
 const stripIndent = require("common-tags").stripIndent;
 const oneLine = require("common-tags").oneLine;
 const auth = require("./core/auth");
@@ -6,25 +11,28 @@ const messageHandler = require("./message");
 const db = require("./core/db");
 const setStatus = require("./core/status");
 const react = require("./commands/translate.react");
-
 const botVersion = require("../package.json").version;
 const botCreator = "Collaboration";
+
+// ----------
+// Core Code
+// ----------
 
 exports.listen = function(client)
 {
    var config;
 
-   //
+   // -----------------
    // Client Connected
-   //
+   // -----------------
 
    client.on("ready", () =>
    {
       db.initializeDatabase();
 
-      //
+      // -----------------
       // Default Settings
-      //
+      // -----------------
 
       config = {
          version: botVersion,
@@ -71,15 +79,15 @@ exports.listen = function(client)
 
       setStatus(client.user, "online", config);
 
-      //
+      // ----------------------
       // All shards are online
-      //
+      // ----------------------
 
       if (shard.id === shard.count - 1)
       {
-         //
+         // ---------------------
          // Log connection event
-         //
+         // ---------------------
 
          console.log(stripIndent`
             ----------------------------------------
@@ -98,9 +106,9 @@ exports.listen = function(client)
       }
    });
 
-   //
+   // -----------------
    // Recieved Message
-   //
+   // -----------------
 
    client.on("message", message =>
    {
@@ -112,34 +120,33 @@ exports.listen = function(client)
       messageHandler(config, message);
    });
 
-   //
-   //  Message edit
-   //  Will be fully implemented in future release
-   //
+   // -----------------------------------------------------------
+   //  Message edit, Will be fully implemented in future release
+   // -----------------------------------------------------------
 
    //client.on("messageUpdate", (oldMessage, newMessage) =>
    //{
    //   messageHandler(config, oldMessage, newMessage);
    //});
 
-   //
+   // ---------------
    // Message delete
-   //
+   // ---------------
 
    //client.on("messageDelete", (message) =>
    //{
    //   messageHandler(config, message, null, true);
    //});
 
-   //
+   // -----------
    // Raw events
-   //
+   // -----------
 
    client.on("raw", raw =>
    {
-      //
+      // ---------------------
       // Listen for reactions
-      //
+      // ---------------------
 
       if (raw.t === "MESSAGE_REACTION_ADD")
       {
@@ -147,9 +154,9 @@ exports.listen = function(client)
       }
    });
 
-   //
+   // ---------------------------
    // Log Client Errors/Warnings
-   //
+   // ---------------------------
 
    client.on("error", err =>
    {
@@ -166,9 +173,9 @@ exports.listen = function(client)
       return logger("error", event);
    });
 
-   //
+   // ------------------------
    // Proccess-related errors
-   //
+   // ------------------------
 
    process.on("uncaughtException", err =>
    {
@@ -190,9 +197,9 @@ exports.listen = function(client)
       return logger("error", warning, "warning");
    });
 
-   //
+   // ---------------------------
    // Delete/leave/change events
-   //
+   // ---------------------------
 
    client.on("channelDelete", channel =>
    {
@@ -216,9 +223,9 @@ exports.listen = function(client)
       return logger("warn", "Guild unavailable:" + guild.id);
    });
 
-   //
+   // -----------
    // Guild join
-   //
+   // -----------
 
    client.on("guildCreate", guild =>
    {

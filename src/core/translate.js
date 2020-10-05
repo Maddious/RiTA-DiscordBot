@@ -43,7 +43,7 @@ function getUserColor(data, callback)
 
    callback(data);
 }
- 
+
 // --------------------------
 // Translate buffered chains
 // --------------------------
