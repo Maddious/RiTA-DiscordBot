@@ -36,10 +36,10 @@ function getUserColor(data, callback)
    const ft = data.footer;
    const usr = data.author;
 
-   //data.forward = fw;
-   //data.text = txt;
-   //data.footer = ft;
-   //data.author = usr;
+   data.forward = fw;
+   data.text = txt;
+   data.footer = ft;
+   data.author = usr;
 
    callback(data);
 }
