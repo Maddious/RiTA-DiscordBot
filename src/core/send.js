@@ -20,7 +20,15 @@ module.exports = function(data)
    // ------------------------------
    // Get Embedded Variable From DB
    // ------------------------------
-
+   if (data.author)
+   {
+      if (data.text.includes("<:"))
+      {
+         data.text = data.text.replace(/:.*:/, ":okthisisanemoji:"); // -> "ABCDEFGHSTUVWXYZ"
+         data.text = data.text.replace(": ", ":"); // -> "ABCDEFGHSTUVWXYZ"
+         data.text = data.text.replace("<: ", "<:");
+      }
+   }
    console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
    const guildValue = data.message.guild.id;
