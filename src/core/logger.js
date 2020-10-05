@@ -2,6 +2,7 @@
 // Global variables
 // -----------------
 
+// codebeat:disable[LOC]
 const discord = require("discord.js");
 const auth = require("./auth");
 const colors = require("./colors").get;

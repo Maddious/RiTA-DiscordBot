@@ -2,6 +2,7 @@
 // Global variables
 // -----------------
 
+// codebeat:disable[LOC,ABC,BLOCK_NESTING]
 /* eslint-disable no-undef */
 const colors = require("./colors");
 const fn = require("./helpers");

@@ -2,6 +2,7 @@
 // Global variables
 // -----------------
 
+// codebeat:disable[LOC]
 const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
