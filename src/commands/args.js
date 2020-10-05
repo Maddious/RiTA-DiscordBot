@@ -2,6 +2,7 @@
 // Global variables
 // -----------------
 
+// codebeat:disable[LOC,ABC,BLOCK_NESTING]
 const langCheck = require("../core/lang.check");
 const logger = require("../core/logger");
 const db = require("../core/db");

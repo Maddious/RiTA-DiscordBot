@@ -2,6 +2,7 @@
 // Global variables
 // -----------------
 
+// codebeat:disable[LOC,ABC,BLOCK_NESTING]
 const translate = require("./translate");
 const logger = require("./logger");
 const botSend = require("./send");

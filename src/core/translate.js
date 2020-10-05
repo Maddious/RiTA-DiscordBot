@@ -2,6 +2,7 @@
 // Global variables
 // -----------------
 
+// codebeat:disable[LOC,ABC,BLOCK_NESTING]
 const translate = require("google-translate-api");
 const db = require("./db");
 const botSend = require("./send");
@@ -24,10 +25,9 @@ const translateFix = function(string)
       .replace(role, "$1");
 };
 
-// ------------------------------------------
-// Get user color with jimp and colorThief
-// @Deprecated: now using role color instead
-// ------------------------------------------
+// ---------------------------------------
+// Get user color for translated response
+// ---------------------------------------
 
 function getUserColor(data, callback)
 {
@@ -36,14 +36,14 @@ function getUserColor(data, callback)
    const ft = data.footer;
    const usr = data.author;
 
-   data.forward = fw;
-   data.text = txt;
-   data.footer = ft;
-   data.author = usr;
+   //data.forward = fw;
+   //data.text = txt;
+   //data.footer = ft;
+   //data.author = usr;
 
    callback(data);
 }
-
+ 
 // --------------------------
 // Translate buffered chains
 // --------------------------

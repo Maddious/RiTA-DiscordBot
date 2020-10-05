@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC]
+// codebeat:disable[LOC,ABC,BLOCK_NESTING]
 const discord = require("discord.js");
 const auth = require("./auth");
 const colors = require("./colors").get;
