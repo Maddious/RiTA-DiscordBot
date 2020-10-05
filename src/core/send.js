@@ -104,7 +104,7 @@ const embedOn = function(data)
       {
          if (!data.author)
          {
-            message.delete(60000);
+            message.delete(30000);
             const botEmbedOn = new discord.RichEmbed()
                .setColor(colors.get(data.color))
                .setAuthor(data.bot.username, data.bot.icon_url)
@@ -114,7 +114,6 @@ const embedOn = function(data)
 
             message.channel.send(botEmbedOn).then(msg =>
             {
-               message.delete(60000);
                msg.delete(60000);
             });
          }
@@ -337,10 +336,11 @@ const embedOff = function(data)
                .setColor(colors.get(data.color))
                .setAuthor(data.bot.username, data.bot.icon_url)
                .setDescription(data.text)
+               .setFields(data.fields)
                .setTimestamp()
                .setFooter("This message will self-destruct in one minute");
 
-            message.channel.send(botEmbed).then(msg =>
+            data.channel.send(botEmbed).then(msg =>
             {
                msg.delete(60000);
             });
