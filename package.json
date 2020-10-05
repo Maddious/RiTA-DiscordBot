@@ -44,7 +44,7 @@
     "iso-639-1": "^2.1.1",
     "lodash": "^4.17.20",
     "make-dir": "^3.1.0",
-    "pg": "^8.3.3",
+    "pg": "^8.4.0",
     "pg-hstore": "^2.3.3",
     "seconds-converter": "github:AlooAkbar/seconds-converter",
     "sequelize": "^6.3.5",
@@ -52,7 +52,7 @@
     "webhook-discord": "^3.7.7"
   },
   "devDependencies": {
-    "@kollavarsham/gulp-coveralls": "^0.3.2",
+    "@kollavarsham/gulp-coveralls": "^0.3.3",
     "babel-eslint": "^10.1.0",
     "braces": "^3.0.2",
     "eslint": "^7.10.0",

@@ -335,7 +335,6 @@ const embedOff = function(data)
                .setColor(colors.get(data.color))
                .setAuthor(data.bot.username, data.bot.icon_url)
                .setDescription(data.text)
-               .setFields(data.fields)
                .setTimestamp()
                .setFooter("This message will self-destruct in one minute");
 
