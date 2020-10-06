@@ -23,12 +23,13 @@ module.exports = function(data)
    if (data.author)
    {
       // if (data.text.includes("<:"))
-      while (data.text.includes("<:") || data.text.includes("< :"))
-      {
-         data.text = data.text.replace(/:.*?:/, ":translatedemoji:"); // -> "ABCDEFGHSTUVWXYZ"
-         data.text = data.text.replace(": ", ":"); // -> "ABCDEFGHSTUVWXYZ"
-         data.text = data.text.replace("<: ", "<:");
-      }
+      do {
+  data.text.replace(/:.*?:/, ":translatedemoji:"); // -> "ABCDEFGHSTUVWXYZ"
+  data.text.replace(": ", ":"); // -> "ABCDEFGHSTUVWXYZ"
+  data.text.replace("<: ", "<:");
+}
+while (data.text.includes("<:");
+      
    }
    console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
