@@ -22,26 +22,11 @@ module.exports = function(data)
    // ------------------------------
    if (data.author)
    {
-      if (data.text.includes("<:"))
+      // if (data.text.includes("<:"))
+      while (data.text.includes("<:") || data.text.includes("< :"))
       {
-         data.text = data.text.replace(/:.*?:/, ":okthisisanemoji:"); // -> "ABCDEFGHSTUVWXYZ"
-         data.text = data.text.replace(/:.*?:/, ":okthisisanemoji:");
-         data.text = data.text.replace(/:.*?:/, ":okthisisanemoji:");
-         data.text = data.text.replace(/:.*?:/, ":okthisisanemoji:");
-         data.text = data.text.replace(/:.*?:/, ":okthisisanemoji:");
+         data.text = data.text.replace(/:.*?:/, ":translatedemoji:"); // -> "ABCDEFGHSTUVWXYZ"
          data.text = data.text.replace(": ", ":"); // -> "ABCDEFGHSTUVWXYZ"
-         data.text = data.text.replace(": ", ":");
-         data.text = data.text.replace(": ", ":");
-         data.text = data.text.replace(": ", ":");
-         data.text = data.text.replace(": ", ":");
-         data.text = data.text.replace(": ", ":");
-         data.text = data.text.replace("<: ", "<:");
-         data.text = data.text.replace("<: ", "<:");
-         data.text = data.text.replace("<: ", "<:");
-         data.text = data.text.replace("<: ", "<:");
-         data.text = data.text.replace("<: ", "<:");
-         data.text = data.text.replace("<: ", "<:");
-         data.text = data.text.replace("<: ", "<:");
          data.text = data.text.replace("<: ", "<:");
       }
    }
