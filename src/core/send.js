@@ -24,7 +24,7 @@ module.exports = function(data)
    {
       if (data.text.includes("<:"))
       {
-         data.text = data.text.replace(/:.*:/, ":okthisisanemoji:"); // -> "ABCDEFGHSTUVWXYZ"
+         data.text = data.text.replace(/:.*?:/, ":okthisisanemoji:"); // -> "ABCDEFGHSTUVWXYZ"
          data.text = data.text.replace(": ", ":"); // -> "ABCDEFGHSTUVWXYZ"
          data.text = data.text.replace("<: ", "<:");
       }
