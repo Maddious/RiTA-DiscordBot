@@ -28,7 +28,7 @@ module.exports = function(data)
   data.text.replace(": ", ":"); // -> "ABCDEFGHSTUVWXYZ"
   data.text.replace("<: ", "<:");
 }
-while (data.text.includes("<:");
+while (data.text.includes("<:"));
       
    }
    console.log(`Guild ID from message`);
