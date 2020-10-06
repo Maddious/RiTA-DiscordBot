@@ -22,13 +22,44 @@ module.exports = function(data)
    // ------------------------------
    if (data.author)
    {
-      // if (data.text.includes("<:"))
-      do {
-  data.text.replace(/:.*?:/, ":translatedemoji:"); // -> "ABCDEFGHSTUVWXYZ"
-  data.text.replace(": ", ":"); // -> "ABCDEFGHSTUVWXYZ"
+      if (data.text.includes("<:"))
+      {
+  data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");
+           data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");
+           data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");
+           data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
+  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text.replace(": ", ":"); 
   data.text.replace("<: ", "<:");
 }
-while (data.text.includes("<:"));
+
       
    }
    console.log(`Guild ID from message`);
