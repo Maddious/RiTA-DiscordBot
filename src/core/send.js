@@ -24,40 +24,34 @@ module.exports = function(data)
    {
       if (data.text.includes("<:"))
       {
-  data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");
-           data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");
-           data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");
-           data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");  data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text.replace(": ", ":"); 
-  data.text.replace("<: ", "<:");
+  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text = data.text.replace(": ", ":"); 
+  data.text = data.text.replace("<: ", "<:");
+  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text = data.text.replace(": ", ":"); 
+  data.text = data.text.replace("<: ", "<:");
+  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text = data.text.replace(": ", ":"); 
+  data.text = data.text.replace("<: ", "<:");
+  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text = data.text.replace(": ", ":"); 
+  data.text = data.text.replace("<: ", "<:");
+           data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text = data.text.replace(": ", ":"); 
+  data.text = data.text.replace("<: ", "<:");
+  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text = data.text.replace(": ", ":"); 
+  data.text = data.text.replace("<: ", "<:");
+  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text = data.text.replace(": ", ":"); 
+  data.text = data.text.replace("<: ", "<:");
+  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text = data.text.replace(": ", ":"); 
+  data.text = data.text.replace("<: ", "<:");
+  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
+  data.text = data.text.replace(": ", ":"); 
+  data.text = data.text.replace("<: ", "<:");
+
 }
 
       
