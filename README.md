@@ -124,7 +124,7 @@ P.S    Please *star* the repo by clicking the star icon in the top right**
 
 This Method does not need you to Fork this repository, you can run your bot straight off of the Rita Master Branch. For update instructions click [here](#update)
 
-#### 1. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
+#### 1. Create a new [Discord App](https://discordapp.com/developers/applications)
 * Give app a friendly name and click the **Create App** button
   * I like the name **C-3PO**, but feel free to pick something different if you fear George Lucas's wrath. Maybe **C-4PO**
 * Take note of the apps **CLIENT ID**, you will need it later
@@ -158,7 +158,7 @@ This Method does not need you to Fork this repository, you can run your bot stra
 * If you don't yet have a Github account, [create one](https://github.com/join)! It's free and easy.
 * Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repository so that it will be associated with your Github account.
 
-#### 2. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
+#### 2. Create a new [Discord App](https://discordapp.com/developers/applications)
 * Give app a friendly name and click the **Create App** button
   * I like the name **C-3PO**, but feel free to pick something different if you fear George Lucas's wrath. Maybe **C-4PO**
 * Take note of the app **CLIENT ID**, you will need it later
