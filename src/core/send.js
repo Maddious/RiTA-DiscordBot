@@ -33,9 +33,8 @@ module.exports = function(data)
          console.log(text)
      //    data.text = data.text.replace(/<:\s*[a-z\s]+\s*:\s*([0-9\s]+)>/g, "<:okthisisanemoji:$1>")
          // data.text = data.text.replace(/:.*?:/, ":okthisisanemoji:");
-         
-         data.text = data.text.replace(": ", ":"); 
-         data.text = data.text.replace("<: ", "<:");
+  
+         message.channel.send(data.text);
       }
    }
        console.log(`Guild ID from message`);
