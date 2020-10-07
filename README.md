@@ -135,7 +135,7 @@ This Method does not need you to Fork this repository, you can run your bot stra
 
 #### 2. Deploy to Heroku
 
-![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
 
 * In the custom variable of **DISCORD_TOKEN** put in the copied token of your created bot.
 * **DO NOT CHANGE** the **NODE_MODULES_CACHE** Variable unless you know about Heroku Caching.
