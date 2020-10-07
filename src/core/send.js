@@ -33,13 +33,12 @@ module.exports = function(data)
          data.text = data.text.replace("<: ", "<:");
       }
    }
-      
-   
-   console.log(`Guild ID from message`);
+       console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
    const guildValue = data.message.guild.id;
    console.log(`Const = ` + guildValue);
    console.log(`---------------------`);
+
    function ignoreMessage()
    {
       const ignoreMessageEmbed = new discord.RichEmbed()
@@ -54,12 +53,15 @@ module.exports = function(data)
          msg.delete(30000);
       });
    }
+
    // ----------------------------------------------------------------------------------------------
    // The first time this runs after a reset it will always send as Off state as set.EmbedVar = "",
    // so what we need to do is add in a if "" then run db.getEmbedVar(guildValue); and then.
    // ----------------------------------------------------------------------------------------------
+
    console.log(`db.set Stage 1 = ` + db.setEmbedVar());
    db.getEmbedVar(guildValue);
+
    if (db.setEmbedVar() === "")
    {
       // eslint-disable-next-line no-unused-expressions
@@ -78,9 +80,11 @@ module.exports = function(data)
       console.log(`db.set Stage 3 = ` + db.setEmbedVar());
    }
    console.log(`db.set Stage 4 = ` + db.setEmbedVar());
+
    // --------------------
    // Primary If Statment
    // --------------------
+
    if (db.setEmbedVar() === "on")
    {
       embedOn(data);
@@ -90,9 +94,11 @@ module.exports = function(data)
       embedOff(data);
    }
 };
+
 // ----------------------------
 // Embedded Variable "On" Code
 // ----------------------------
+
 const embedOn = function(data)
 {
    const sendBox = function(data)
@@ -105,6 +111,7 @@ const embedOn = function(data)
             icon_url: data.author.displayAvatarURL
          };
       }
+
       if (data.text && data.text.length > 1)
       {
          if (!data.author)
@@ -116,6 +123,7 @@ const embedOn = function(data)
                .setDescription(data.text)
                .setTimestamp()
                .setFooter("This message will self-destruct in one minute");
+
             message.channel.send(botEmbedOn).then(msg =>
             {
                msg.delete(60000);
@@ -140,26 +148,32 @@ const embedOn = function(data)
             {
                var errMsg = err;
                logger("dev", err);
+
                // ------------------------
                // Error for long messages
                // ------------------------
+
                if (err.code && err.code === 50035)
                {
                   data.channel.send(":warning:  Message is too long.");
                }
+
                // -----------------------------------------------------------
                // Handle error for users who cannot recieve private messages
                // -----------------------------------------------------------
+
                if (err.code && err.code === 50007 && data.origin)
                {
                   const badUser = data.channel.recipient;
                   errMsg = `@${badUser.username}#${badUser.discriminator}\n` + err;
+
                   db.removeTask(data.origin.id, `@${badUser.id}`, function(er)
                   {
                      if (er)
                      {
                         return logger("error", er);
                      }
+
                      return data.origin.send(
                         `:no_entry: User ${badUser} cannot recieve direct messages ` +
                            `by bot because of **privacy settings**.\n\n__Auto ` +
@@ -169,6 +183,7 @@ const embedOn = function(data)
                      );
                   });
                }
+
                logger("error", errMsg);
             });
          }
@@ -178,15 +193,18 @@ const embedOn = function(data)
          sendAttachments(data);
       }
    };
+
    // -----------------------------------------------
    // Resend embeds from original message
    // Only if content is forwared to another channel
    // -----------------------------------------------
+
    const sendEmbeds = function(data)
    {
       if (data.forward && data.embeds && data.embeds.length > 0)
       {
          const maxEmbeds = data.config.maxEmbeds;
+
          if (data.embeds.length > maxEmbeds)
          {
             sendBox({
@@ -194,23 +212,29 @@ const embedOn = function(data)
                text: `:warning:  Cannot embed more than ${maxEmbeds} links.`,
                color: "warn"
             });
+
             data.embeds = data.embeds.slice(0, maxEmbeds);
          }
+
          for (let i = 0; i < data.embeds.length; i++)
          {
             data.channel.send(data.embeds[i].url);
          }
       }
    };
+
    // -------------------
    // Resend attachments
    // -------------------
+
    const sendAttachments = function(data)
    {
       var attachments = data.attachments.array();
+
       if (data.forward && attachments && attachments.length > 0)
       {
          const maxAtt = data.config.maxEmbeds;
+
          if (attachments.length > maxAtt)
          {
             sendBox({
@@ -220,6 +244,7 @@ const embedOn = function(data)
             });
             attachments = attachments.slice(0, maxAtt);
          }
+
          for (let i = 0; i < attachments.length; i++)
          {
             const attachmentObj = new discord.Attachment(
@@ -230,16 +255,20 @@ const embedOn = function(data)
          }
       }
    };
+
    checkPerms(data, sendBox);
 };
+
 // -----------------------------
 // Embedded Variable "Off" Code
 // -----------------------------
+
 const embedOff = function(data)
 {
    // -------------
    // Create Files
    // -------------
+
    function createFiles(dataAttachments)
    {
       if (!dataAttachments && !dataAttachments.array().length > 0) {return;}
@@ -258,9 +287,11 @@ const embedOff = function(data)
       }
       return files;
    }
+
    // ---------------------
    // Send Webhook Message
    // ---------------------
+
    if (message.member)
    {
       if (message.member.nickname)
@@ -272,6 +303,7 @@ const embedOff = function(data)
          nicknameVar = message.author.username;
       }
    }
+
    if (!message.member)
    {
       if (data.emoji)
@@ -279,6 +311,7 @@ const embedOff = function(data)
          nicknameVar = data.author.username;
       }
    }
+
    function sendWebhookMessage(webhook, data)
    {
       if (data.author)
@@ -317,6 +350,7 @@ const embedOff = function(data)
                .setDescription(data.text)
                .setTimestamp()
                .setFooter("This message will self-destruct in one minute");
+
             data.channel.send(botEmbed).then(msg =>
             {
                msg.delete(60000);
@@ -339,12 +373,16 @@ const embedOff = function(data)
          }
       }
    }
+
    // ---------------------
    // Send Data to Channel
    // ---------------------
+
    const sendBox = function(data)
    {
       const channel = data.channel;
+
+
       let color = colors.get(data.color);
       let avatarURL;
       if (data.author && data.author.icon_url)
@@ -355,9 +393,11 @@ const embedOff = function(data)
       // Sets the color of embed message but no embed message used so thus unused.
       if (!color) {color = colors.get(data.color);}
       if (!avatarURL) {avatarURL = data.author;}
+
       // -----------------------------
       // Webhook Creation and Sending
       // -----------------------------
+
       if (data.channel.type === "dm")
       {
          const embed = new discord.RichEmbed()
@@ -368,6 +408,7 @@ const embedOff = function(data)
          sendAttachments(data);
          data.channel.send({embed});
       }
+
       else
       {
          channel.fetchWebhooks()
@@ -375,6 +416,7 @@ const embedOff = function(data)
             {
                // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
                existingWebhook = webhooks.find(x => x.name === webHookName);
+
                if (!existingWebhook)
                {
                   channel.createWebhook(webHookName, data.bot.displayAvatarURL)
@@ -391,16 +433,20 @@ const embedOff = function(data)
             });
       }
    };
+
    // -------------------
    // Resend attachments
    // -------------------
+
    const sendAttachments = function(data)
    {
       if (!data.attachments && !data.attachments.array().length > 0) {return;}
       var attachments = data.attachments.array();
+
       if (data.forward && attachments && attachments.length > 0)
       {
          const maxAtt = data.config.maxEmbeds;
+
          if (attachments.length > maxAtt)
          {
             sendBox({
@@ -410,6 +456,7 @@ const embedOff = function(data)
             });
             attachments = attachments.slice(0, maxAtt);
          }
+
          for (let i = 0; i < attachments.length; i++)
          {
             const attachmentObj = new discord.Attachment(
@@ -420,17 +467,21 @@ const embedOff = function(data)
          }
       }
    };
+
    checkPerms(data, sendBox);
 };
+
 // -----------------
 // Permission Check
 // -----------------
+
 // This is the last step before the message is send, each function ends here.
 const checkPerms = function(data, sendBox)
 {
    // ------------------------------------------------------------------------
    // Analyze Data and determine sending style (system message or author box)
    // ------------------------------------------------------------------------
+
    //eslint-disable-next-line complexity
    {
       var sendData = {
@@ -448,28 +499,35 @@ const checkPerms = function(data, sendBox)
          bot: data.bot
       };
    }
+
    // ---------------------------------------------------
    // Notify server owner if bot cannot write to channel
    // ---------------------------------------------------
+
    if (!data.canWrite)
    {
       const writeErr =
          ":no_entry:  **Translate bot** does not have permission to write at " +
          `the **${sendData.channel.name}** channel on your server **` +
          `${sendData.channel.guild.name}**. Please fix.`;
+
       return sendData.channel.guild.owner
          .send(writeErr)
          .catch(err => logger("error", err));
    }
+
    if (data.forward)
    {
       const forwardChannel = data.client.channels.get(data.forward);
+
       if (forwardChannel)
       {
          // ----------------------------------------------
          // Check if bot can write to destination channel
          // ----------------------------------------------
+
          var canWriteDest = true;
+
          if (forwardChannel.type === "text")
          {
             canWriteDest = fn.checkPerm(
@@ -478,14 +536,17 @@ const checkPerms = function(data, sendBox)
                "SEND_MESSAGES"
             );
          }
+
          if (canWriteDest)
          {
             sendData.origin = sendData.channel;
             sendData.channel = forwardChannel;
          }
+
          // ----------------------------------
          // Error if bot cannot write to dest
          // ----------------------------------
+
          else
          {
             sendData.footer = null;
@@ -538,12 +599,3 @@ const checkPerms = function(data, sendBox)
 
    return sendBox(sendData);
 };
-return 42; // should be inside a function
-
-function f() {
-  'use strict';
-
-  var x = 042;
-
-  with (z) {}
-}
