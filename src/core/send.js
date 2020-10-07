@@ -23,19 +23,39 @@ module.exports = function(data)
    
    if (data.author)
    {
+if (data.text.includes("<A")){
+        const regex = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+const str = data.text
+const subst = `<a:okthisisanemoji:$2>`;
+
+data.text = str.replace(regex, subst)
+         } else if (data.text.includes("<a")){
+        const regex = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+const str = data.text
+const subst = `<a:okthisisanemoji:$2>`;
+
+data.text = str.replace(regex, subst)
+         }
       if (data.text.includes("<:"))
       {
+         if (data.text.includes("<A")){
+        const regex = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+const str = data.text
+const subst = `<:okthisisanemoji:$2>`;
+
+data.text = str.replace(regex, subst)
+         }
         const text = data.text
-        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я\s]+:\s*)([0-9\s]+)>/gmi;
+        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
 
         data.text = text.replace(regx, '<:customemoji:$2>')
       } else if (data.text.includes("< :"))
       {
         const text = data.text
-        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я\s]+:\s*)([0-9\s]+)>/gmi;
+        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
 
         data.text = text.replace(regx, '<:default:$2>')
-      }
+      } 
    }
        console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
