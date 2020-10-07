@@ -28,15 +28,13 @@ module.exports = function(data)
         const text = data.text
         const regx = /<([:+\s:\s*[a-z0-9\s]+:\s*)([0-9\s]+)>/gmi
 
-        data.text = text.replace(regx, '<:okthisisanemoji:$2>')
-         console.log("Send a custom emoji!")
+        data.text = text.replace(regx, '<:default:$2>')
       } else if (data.text.includes("< :"))
       {
         const text = data.text
         const regx = /<([:+\s:\s*[a-z0-9\s]+:\s*)([0-9\s]+)>/gmi
 
-        data.text = text.replace(regx, '<:okthisisanemoji:$2>')
-        console.log("Sent an emoji message!")
+        data.text = text.replace(regx, '<:default:$2>')
       }
    }
        console.log(`Guild ID from message`);
