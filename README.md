@@ -34,7 +34,7 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 02. Auto Reverse translation for the auto function.
 03. `!t tasks #TargetChannel` Implementation.
 04. Introduction of a Streamlined Command Handler. (This will be done as a New Project)
-05. Discord.js Updated to version 12 (V1.2.2/1.3.0)
+05. Discord.js Updated to version 12 (V1.3.0)
 06. Limited Bot translation. (V1.2.2)
 
 ## Table of Contents
@@ -76,12 +76,14 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
     * Once you have completed Step 2, the bot will have come online, but it wont have fully Initialised. 
     * To prevent a never ending loop of errors, the VERY FIRST message or command sent on the server will Initialise the DB fully. Meaning you will have to send that message again.
       * Please Note Due to [Automatic dyno restarts](https://devcenter.heroku.com/articles/dynos#automatic-dyno-restarts) the first message after each restart will share the same behaviour as above.
+* Added in command triggers and command deletion to clean up command channels.
+* Custom Emoji's are now supported and will be sent with the translated message correctly, with the exception of a few languages.
+* DM Translation have been disabled as it has been identified they never worked as intended. they will be re-introduced in a later update.
 * Various Security vulnerabilities fixed.
 * Dev Dependencies core to this bot, the `google-translate-api` & `google-translate-token` & `gulp-watch`have been updated
 * `eslint` has been replaced with `babel-eslint`
 * `!t settings updatebot` Has been **DISABLED** - This is not needed as of yet and with the similarities to the `!t settings updatedb` command it may cause issues.
 * Deploy with Heroku Setup and integration. 
-* Added in command triggers and command deletion to clean up command channels.
 
 #### New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
