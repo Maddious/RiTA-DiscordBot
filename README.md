@@ -375,9 +375,9 @@ This section/feature is being Created, Check back soon or join the [Support Disc
 
 #### --RITA-- Experimental Test Branch (Discord.js V12)
 ##### This branch should not be used on any server, most if not all functions are broken as a major update to latest discord.js version is needed.
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch-1.2.2?label=Experimental%20Version)
-[![codebeat badge](https://codebeat.co/badges/b72d7b2b-83d0-47cd-a91f-993964c6c564)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch-1-2-2)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch-1.2.2)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch-1.3.0?label=Experimental%20Version)
+[![codebeat badge](https://codebeat.co/badges/b72d7b2b-83d0-47cd-a91f-993964c6c564)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch-1-3.0)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch-1.3.0)
 
 ## <a name="credits-&-license"></a>Credits & License
 
