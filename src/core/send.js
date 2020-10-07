@@ -20,44 +20,49 @@ module.exports = function(data)
    // ------------------------------
    // Get Embedded Variable From DB
    // ------------------------------
-   
+
    if (data.author)
    {
-if (data.text.includes("<A")){
-        const regex = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
-const str = data.text
-const subst = `<a:okthisisanemoji:$2>`;
+      if (data.text.includes("<A"))
+      {
+         const regex = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+         const str = data.text;
+         const subst = `<a:okthisisanemoji:$2>`;
 
-data.text = str.replace(regex, subst)
-         } else if (data.text.includes("<a")){
-        const regex = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
-const str = data.text
-const subst = `<a:okthisisanemoji:$2>`;
+         data.text = str.replace(regex, subst);
+      }
+      else if (data.text.includes("<a"))
+      {
+         const regex = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+         const str = data.text;
+         const subst = `<a:okthisisanemoji:$2>`;
 
-data.text = str.replace(regex, subst)
-         }
+         data.text = str.replace(regex, subst);
+      }
       if (data.text.includes("<:"))
       {
-         if (data.text.includes("<A")){
-        const regex = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
-const str = data.text
-const subst = `<:okthisisanemoji:$2>`;
+         if (data.text.includes("<A"))
+         {
+            const regex = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+            const str = data.text;
+            const subst = `<:okthisisanemoji:$2>`;
 
-data.text = str.replace(regex, subst)
+            data.text = str.replace(regex, subst);
          }
-        const text = data.text
-        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+         const text = data.text;
+         const regx = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
 
-        data.text = text.replace(regx, '<:customemoji:$2>')
-      } else if (data.text.includes("< :"))
+         data.text = text.replace(regx, "<:customemoji:$2>");
+      }
+      else if (data.text.includes("< :"))
       {
-        const text = data.text
-        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+         const text = data.text;
+         const regx = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
 
-        data.text = text.replace(regx, '<:default:$2>')
-      } 
+         data.text = text.replace(regx, "<:default:$2>");
+      }
    }
-       console.log(`Guild ID from message`);
+   console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
    const guildValue = data.message.guild.id;
    console.log(`Const = ` + guildValue);
@@ -78,10 +83,10 @@ data.text = str.replace(regex, subst)
       });
    }
 
-   // ----------------------------------------------------------------------------------------------
-   // The first time this runs after a reset it will always send as Off state as set.EmbedVar = "",
-   // so what we need to do is add in a if "" then run db.getEmbedVar(guildValue); and then.
-   // ----------------------------------------------------------------------------------------------
+   // -----------------------------------------------
+   // The first time this runs after a reset it will
+   // always send as Off state as set.EmbedVar = "",
+   // -----------------------------------------------
 
    console.log(`db.set Stage 1 = ` + db.setEmbedVar());
    db.getEmbedVar(guildValue);

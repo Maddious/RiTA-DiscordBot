@@ -142,7 +142,21 @@ module.exports = function(data)
 
          if (dest === "me")
          {
-            taskBuffer.update("@" + data.message.author.id);
+            data.color = "error";
+            data.text =
+               ":warning: DM / User Translation Function Disabled";
+
+            // -------------
+            // Send message
+            // -------------
+
+            return botSend(data);
+
+            // ---------------
+            // Old Code Below
+            // ---------------
+
+            //taskBuffer.update("@" + data.message.author.id);
          }
 
          // resolve @everyone/@here
@@ -156,6 +170,21 @@ module.exports = function(data)
 
          if (dest.startsWith("<@"))
          {
+            data.color = "error";
+            data.text =
+               ":warning: DM / User Translation Function Disabled";
+
+            // -------------
+            // Send message
+            // -------------
+
+            return botSend(data);
+
+            // ---------------
+            // Old Code Below
+            // ---------------
+
+            /*
             const userID = dest.slice(3,-1);
 
             fn.getUser(data.client, userID, user =>
@@ -175,6 +204,7 @@ module.exports = function(data)
                   taskBuffer.reduce();
                }
             });
+            */
          }
 
          // resolve mentioned channel(s)
