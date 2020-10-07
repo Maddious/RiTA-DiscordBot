@@ -20,42 +20,21 @@ module.exports = function(data)
    // ------------------------------
    // Get Embedded Variable From DB
    // ------------------------------
+   
    if (data.author)
    {
       if (data.text.includes("<:"))
       {
-  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text = data.text.replace(": ", ":"); 
-  data.text = data.text.replace("<: ", "<:");
-  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text = data.text.replace(": ", ":"); 
-  data.text = data.text.replace("<: ", "<:");
-  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text = data.text.replace(": ", ":"); 
-  data.text = data.text.replace("<: ", "<:");
-  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text = data.text.replace(": ", ":"); 
-  data.text = data.text.replace("<: ", "<:");
-           data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text = data.text.replace(": ", ":"); 
-  data.text = data.text.replace("<: ", "<:");
-  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text = data.text.replace(": ", ":"); 
-  data.text = data.text.replace("<: ", "<:");
-  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text = data.text.replace(": ", ":"); 
-  data.text = data.text.replace("<: ", "<:");
-  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text = data.text.replace(": ", ":"); 
-  data.text = data.text.replace("<: ", "<:");
-  data.text = data.text.replace(/:.*?:/, ":translatedemoji:");
-  data.text = data.text.replace(": ", ":"); 
-  data.text = data.text.replace("<: ", "<:");
-
-}
-
-      
+         const regex = /<:\s*[a-z]+\s*:\s*([0-9]+)>/g
+         data.text = data.text.replace(regex, `<:okthisisanemoji:$1>
+         // data.text = data.text.replace(/:.*?:/, ":okthisisanemoji:");
+         
+         data.text = data.text.replace(": ", ":"); 
+         data.text = data.text.replace("<: ", "<:");
+      }
    }
+      
+   
    console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
    const guildValue = data.message.guild.id;
