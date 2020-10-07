@@ -26,15 +26,15 @@ module.exports = function(data)
       if (data.text.includes("<:"))
       {
         const text = data.text
-        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я\s+:\s*)([0-9\s]+)>/gmi
+        const regx = /<([:+\s:\s*[a-z0-9\s+:\s*)([0-9\s]+)>/gmi
 
-        data.text = text.replace(regx, '<:default:$2>')
+        data.text = text.replace(regx, '<:default:$1>')
       } else if (data.text.includes("< :"))
       {
         const text = data.text
-        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я\s+:\s*)([0-9\s]+)>/gmi
+        const regx = /<([:+\s:\s*[a-z0-9\s+:\s*)([0-9\s]+)>/gmi
 
-        data.text = text.replace(regx, '<:default:$2>')
+        data.text = text.replace(regx, '<:default:$1>')
       }
    }
        console.log(`Guild ID from message`);
