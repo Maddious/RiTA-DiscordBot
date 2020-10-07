@@ -25,6 +25,12 @@ module.exports = function(data)
    {
       if (data.text.includes("<:"))
       {
+         if data.text.includes("<a"){
+        const regex = /<(a)([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+const str = data.text
+const subst = `<:okthisisanemoji:$3>`;
+data.text = str.replace(regex, subst)
+         }
         const text = data.text
         const regx = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
 
@@ -35,7 +41,7 @@ module.exports = function(data)
         const regx = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
 
         data.text = text.replace(regx, '<:default:$2>')
-      }
+      } 
    }
        console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
