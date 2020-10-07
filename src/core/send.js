@@ -35,6 +35,7 @@ const str = data.text
 const subst = `<A:okthisisanemoji:$2>`;
 
 data.text = str.replace(regex, subst)
+         }
       if (data.text.includes("<:"))
       {
          if (data.text.includes("<A")){
