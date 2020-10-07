@@ -26,13 +26,13 @@ module.exports = function(data)
       if (data.text.includes("<:"))
       {
         const text = data.text
-        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я\s]+:\s*)([0-9\s]+)>/gmi;
+        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
 
         data.text = text.replace(regx, '<:customemoji:$2>')
       } else if (data.text.includes("< :"))
       {
         const text = data.text
-        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я\s]+:\s*)([0-9\s]+)>/gmi;
+        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
 
         data.text = text.replace(regx, '<:default:$2>')
       }
