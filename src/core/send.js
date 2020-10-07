@@ -318,7 +318,6 @@ const embedOff = function(data)
 
    function sendWebhookMessage(webhook, data)
    {
-      message.channel.send("<:python3:232720527448342530>")
       if (data.author)
       {
          data.author = {
