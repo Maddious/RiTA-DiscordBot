@@ -26,11 +26,12 @@ module.exports = function(data)
       if (data.text.includes("<:"))
       {
         const text = data.text
-        const regx = /<:\s*[a-z\s]+\s*:\s*([0-9\s]+)>/g
+        const regx = /<([:+\s:\s*[a-z\s]+:\s*)([0-9\s]+)>/gm
 
-        data.text = text.replace(regx, '<:okthisisanemoji:$1>')
+        data.text = text.replace(regx, '<:okthisisanemoji:$2>')
          console.log(data.text)
-         data.text = data.text.replace(/<:\s*[a-z\s]+\s*:\s*([0-9\s]+)>/g, "<:okthisisanemoji:$1>")
+         console.log(text)
+     //    data.text = data.text.replace(/<:\s*[a-z\s]+\s*:\s*([0-9\s]+)>/g, "<:okthisisanemoji:$1>")
          // data.text = data.text.replace(/:.*?:/, ":okthisisanemoji:");
          
          data.text = data.text.replace(": ", ":"); 
