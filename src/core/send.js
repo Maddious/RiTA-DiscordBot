@@ -26,27 +26,17 @@ module.exports = function(data)
       if (data.text.includes("<:"))
       {
         const text = data.text
-        const regx = /<([:+\s:\s*[a-zA-Z\s]+:\s*)([0-9\s]+)>/gm
+        const regx = /<([:+\s:\s*[a-z0-9\s]+:\s*)([0-9\s]+)>/gmi
 
         data.text = text.replace(regx, '<:okthisisanemoji:$2>')
-         console.log(data.text)
-         console.log(text)
-     //    data.text = data.text.replace(/<:\s*[a-z\s]+\s*:\s*([0-9\s]+)>/g, "<:okthisisanemoji:$1>")
-         // data.text = data.text.replace(/:.*?:/, ":okthisisanemoji:");
-  
-         message.channel.send(data.text);
+         console.log("Send a custom emoji!")
       } else if (data.text.includes("< :"))
       {
         const text = data.text
-        const regx = /<([:+\s:\s*[a-z\s]+:\s*)([0-9\s]+)>/gm
+        const regx = /<([:+\s:\s*[a-z0-9\s]+:\s*)([0-9\s]+)>/gmi
 
         data.text = text.replace(regx, '<:okthisisanemoji:$2>')
-         console.log(data.text)
-         console.log(text)
-     //    data.text = data.text.replace(/<:\s*[a-z\s]+\s*:\s*([0-9\s]+)>/g, "<:okthisisanemoji:$1>")
-         // data.text = data.text.replace(/:.*?:/, ":okthisisanemoji:");
-  
-         message.channel.send(data.text);
+        console.log("Sent an emoji message!")
       }
    }
        console.log(`Guild ID from message`);
