@@ -24,17 +24,19 @@ module.exports = function(data)
    if (data.author)
    {
 if (data.text.includes("<A")){
-        const regex = /<(A)([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+        const regex = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
 const str = data.text
-const subst = `<:okthisisanemoji:$3>`;
+const subst = `<:okthisisanemoji:$2>`;
+
 data.text = str.replace(regex, subst)
          }
       if (data.text.includes("<:"))
       {
-         if (data.text.includes("<a")){
-        const regex = /<(a)([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+         if (data.text.includes("<A")){
+        const regex = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
 const str = data.text
-const subst = `<:okthisisanemoji:$3>`;
+const subst = `<:okthisisanemoji:$2>`;
+
 data.text = str.replace(regex, subst)
          }
         const text = data.text
