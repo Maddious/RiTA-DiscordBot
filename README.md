@@ -88,7 +88,7 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
 * Published to NPM
 * Non code changes will be appended with Version-\*\* from now on.
 * Various Spelling mistakes in ReadMe have been corrected.
-* Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` have been updated
+* Dev Dependencies core to this bot, the `google-translate-api` & `google-translate-token` have been updated
 * Setup on a Raspberry Pi instruction Section added.
 * gulp-watch updated dependencies. (*Moved to Local repository as it was out-of-date and full of Security Issues.*)
 * Patch for Chinese language support.
@@ -111,8 +111,12 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
 * Write `!translate help` or `!t help` for a list of commands.
 * Enter the command `!t help modules` to get a list of all help commands, these show how to use each command.
 
+###   Medium Article
+* For an easier to read article regarding updating/creating your RITA Application,   [please go here](https://medium.com/@Artanis_/setup-discord-translation-bot-6899428b0cf2?source=friends_link&sk=cdf79a8e7970408e0238b271e98f2aeb)
 
-**If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.**
+
+**If you are looking to set up a New Bot then follow the instruction below, If you already have a Heroku Bot Using C-3P0 then Scroll down for instruction on how to migrate your translation settings.
+P.S    Please *star* the repo by clicking the star icon in the top right**
 
 ## <a name="deploy"></a>Setting up a Bot with "Deploy to Heroku"
 
@@ -121,7 +125,7 @@ This Method does not need you to Fork this repository, you can run your bot stra
 #### 1. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
 * Give app a friendly name and click the **Create App** button
   * I like the name **C-3PO**, but feel free to pick something different if you fear George Lucas's wrath. Maybe **C-4PO**
-* Take note of the app **CLIENT ID**, you will need it later
+* Take note of the apps **CLIENT ID**, you will need it later
 * Scroll down to the **Bot** section
 * Click the **Create a Bot User** button
 * Click the **Yes, do it!** button
@@ -129,7 +133,7 @@ This Method does not need you to Fork this repository, you can run your bot stra
 
 #### 2. Deploy to Heroku
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
+![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
 
 * In the custom variable of **DISCORD_TOKEN** put in the copied token of your created bot.
 * **DO NOT CHANGE** the **NODE_MODULES_CACHE** Variable unless you know about Heroku Caching.
@@ -138,7 +142,8 @@ This Method does not need you to Fork this repository, you can run your bot stra
 * Once installed, Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
 
 #### 3. Invite your bot to your server and configure it!
-* Replace the CLIENTID string in the following URL with your own apps client id from Step 2: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8
+* Replace the CLIENTIDGOESHERE string in the following URL with your own apps client id from Step 1: 
+  * https://discordapp.com/oauth2/authorize?&client_id=CLIENTIDGOESHERE&scope=bot&permissions=8
 * Visit the resulting URL and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
 
@@ -184,9 +189,10 @@ This Method does not need you to Fork this repository, you can run your bot stra
 
 #### 2. Fork this Repository
 * Complete a Pull Request from the master Branch of ZyC0R3/Rita to your master branch
-  * Detailed instructions with example can be found here: https://www.sitepoint.com/quick-tip-sync-your-fork-with-the-original-without-the-cli/
+  * Detailed instructions with example can be found [here](https://www.sitepoint.com/quick-tip-sync-your-fork-with-the-original-without-the-cli/)
 
 --- OR ---
+
 * Simply Fork this repository if you have not done so already, or if you are updateing from the "Deploy to Heroku" method.
   * Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repository so that it will be associated with your Github account.
 
@@ -248,14 +254,15 @@ Any Database that runs with SQL Sequelize ('https://sequelize.org/master/') can 
 #### 2. Create a new .env File
 Copy the existing **.env.example** file and name it **.env**. Edit the Values of **DISCORD_TOKEN**, **DISCORD_BOT_OWNER_ID** and the **DATABASE_URL** according to the values that you copied earlier.
   * DATABASE_URL needs to be the path to the database file (once you install SQLite it will create a database for you in the path you put...)
-  * Example -  DATABASURE_URL = C:\Admin\Rita_Development\test.db
+  * Example -  DATABASE_URL = C:\Admin\Rita_Development\test.db
 
 
 #### 3. Install nodejs
 Install nodejs from https://nodejs.org/en/  
 
 #### 4. Run and start the bot
-Run `npm install -g gulp` in your console to install gulp. Build the bot code using `npm run-script build` and run the bot with `npm run-script start`.
+Run `npm install -g gulp` in your console to install gulp. Build the bot code using `npm run-script build` and run the bot with `npm run-script start` in the command consolde.
+*Make sure the command console is specific to the RITA Folder*
 
 #### 5. Invite your bot to your server and configure it!
 * Replace the CLIENTID string in the following URL with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8

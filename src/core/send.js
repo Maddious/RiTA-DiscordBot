@@ -20,8 +20,24 @@ module.exports = function(data)
    // ------------------------------
    // Get Embedded Variable From DB
    // ------------------------------
+   
+   if (data.author)
+   {
+      if (data.text.includes("<:"))
+      {
+        const text = data.text
+        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я\s]+:\s*)([0-9\s]+)>/gmi;
 
-   console.log(`Guild ID from message`);
+        data.text = text.replace(regx, '<:customemoji:$2>')
+      } else if (data.text.includes("< :"))
+      {
+        const text = data.text
+        const regx = /<([:+\s:\s*[a-z0-9ЁёА-я\s]+:\s*)([0-9\s]+)>/gmi;
+
+        data.text = text.replace(regx, '<:default:$2>')
+      }
+   }
+       console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
    const guildValue = data.message.guild.id;
    console.log(`Const = ` + guildValue);
@@ -587,4 +603,3 @@ const checkPerms = function(data, sendBox)
 
    return sendBox(sendData);
 };
-
