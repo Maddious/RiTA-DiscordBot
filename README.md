@@ -1,18 +1,10 @@
 ## RITA ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg) 
-A Translation bot built using `discord.js` and a custom `Google Translate API`.
-
-###  To read an *article* about how to start Using RITA go [here instead](https://medium.com/@Artanis_/setup-discord-translation-bot-6899428b0cf2?source=friends_link&sk=cdf79a8e7970408e0238b271e98f2aeb)
-
-
-
-*(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)* 
+A Translation bot built using `discord.js` and a custom `Google Translate API`. 
+####  Upon using this Repository *please* star this repo,  every star helps RITA get more and more popular to help more people.
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
 
 *NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy).
-
-###   Check out our website [here](https://ritabot.org) for an easy to read wiki and quick start guide.
-###   Upon using this Repository *please* star this repo,  every star helps RITA get more and more popular to help more people.
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
@@ -27,6 +19,9 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 ![CodeQL](https://github.com/ZyC0R3/RitaBot/workflows/CodeQL/badge.svg?branch=test-branch)
 [![codebeat badge](https://codebeat.co/badges/095e56cd-a926-4fa1-91d8-5cb20c11c5c6)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch)
+
+###  Check out our website [here](https://ritabot.org) for an easy to read wiki and quick start guide.
+###  To read an *article* about how to start Using RITA go [here instead](https://medium.com/@Artanis_/setup-discord-translation-bot-6899428b0cf2?source=friends_link&sk=cdf79a8e7970408e0238b271e98f2aeb)
 
 ## Coming Soon!
 
