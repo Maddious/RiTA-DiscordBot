@@ -87,8 +87,6 @@ module.exports = function(data)
    // The first time this runs after a reset it will
    // always send as Off state as set.EmbedVar = "",
    // -----------------------------------------------
-   
-   data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, '')));
 
    console.log(`db.set Stage 1 = ` + db.setEmbedVar());
    db.getEmbedVar(guildValue);
@@ -145,6 +143,8 @@ const embedOn = function(data)
 
       if (data.text && data.text.length > 1)
       {
+         data.text = data.text.replace("<A", "<a");
+         data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ''));
          if (!data.author)
          {
             message.delete(5000);
@@ -345,6 +345,8 @@ const embedOff = function(data)
 
    function sendWebhookMessage(webhook, data)
    {
+      data.text = data.text.replace("<A", "<a");
+      data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ''));
       if (data.author)
       {
          data.author = {
