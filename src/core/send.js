@@ -87,6 +87,8 @@ module.exports = function(data)
    // The first time this runs after a reset it will
    // always send as Off state as set.EmbedVar = "",
    // -----------------------------------------------
+   
+   data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, '')));
 
    console.log(`db.set Stage 1 = ` + db.setEmbedVar());
    db.getEmbedVar(guildValue);
