@@ -18,9 +18,9 @@ const webHookName = "Translator Messaging System";
 // eslint-disable-next-line complexity
 module.exports = function(data)
 {
-   // ------------------------------
-   // Get Embedded Variable From DB
-   // ------------------------------
+   // ---------------------------
+   // regexStatments for Emoji's
+   // ---------------------------
 
    function languageRegex(data)
    {
@@ -78,6 +78,12 @@ module.exports = function(data)
          }
       }
    }
+
+   // -----------------------------------------------
+   // The first time this runs after a reset it will
+   // always send as Off state as set.EmbedVar = "",
+   // -----------------------------------------------
+
    console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
    const guildValue = data.message.guild.id;
@@ -92,30 +98,12 @@ module.exports = function(data)
          .setAuthor(data.bot.username, data.bot.displayAvatarURL)
          .setDescription(data.text)
          .setTimestamp()
-         .setFooter("𝗕𝗼𝘁𝗵 𝗺𝗲𝘀𝘀𝗮𝗴𝗲𝘀  𝘄𝗶𝗹𝗹 𝘀𝗲𝗹𝗳-𝗱𝗲𝘀𝘁𝗿𝘂𝗰𝘁 𝗶𝗻 𝟯𝟬 𝘀𝗲𝗰𝗼𝗻𝗱𝘀");
-      message.channel.send(ignoreMessageEmbed).then(message =>
+         .setFooter("𝗕𝗼𝘁𝗵 𝗺𝗲𝘀𝘀𝗮𝗴𝗲𝘀  𝘄𝗶𝗹𝗹 𝘀𝗲𝗹𝗳-𝗱𝗲𝘀𝘁𝗿𝘂𝗰𝘁 𝗶𝗻 10 𝘀𝗲𝗰𝗼𝗻𝗱𝘀");
+      message.reply(ignoreMessageEmbed).then(msg =>
       {
-         message.channel.fetchMessages({limit: 10}).then(collected =>
-         { //collected is a Collection
-            collected.forEach(message =>
-            {
-               if (message.content.startsWith("!t"))
-               {
-                  message.delete(5000);
-               }
-               if (message.embeds.length > 0)
-               {
-                  message.delete(60000);
-               }
-            });
-         });
+         msg.delete(10000);
       });
    }
-
-   // -----------------------------------------------
-   // The first time this runs after a reset it will
-   // always send as Off state as set.EmbedVar = "",
-   // -----------------------------------------------
 
    console.log(`db.set Stage 1 = ` + db.setEmbedVar());
    db.getEmbedVar(guildValue);
@@ -172,6 +160,8 @@ const embedOn = function(data)
 
       if (data.text && data.text.length > 1)
       {
+         data.text = data.text.replace("<A", "<a");
+         data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ""));
          if (!data.author)
          {
             const botEmbedOn = new discord.RichEmbed()
@@ -447,6 +437,10 @@ const embedOff = function(data)
             if (data.author.icon_url) { avatarURL = data.author.icon_url;}
          }
          {
+            data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ""));
+            data.text = data.text.replace(/<А/gm, "<a");
+            data.text = data.text.replace(/<A/gm, "<a");
+
             webhook.send(data.text, {
                "username": nicknameVar,
                "avatarURL": data.author.icon_url,
