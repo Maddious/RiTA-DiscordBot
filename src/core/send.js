@@ -26,38 +26,46 @@ module.exports = function(data)
    {
       if (data.text)
       {
-         //data.text = data.text.replace(/<:.+?>/gmi, tag => tag.replace(/.+/g, ""));
-         //data.text = data.text.replace(/<(.+?)(millions)>/, `<$1>`);
-         //data.text = data.text.replace(/<(:a-z0-9)(millions)/gmi, "<$1>");
+          data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ""));
+         //  Removes un necessary dots, commas or language numeral names which cause problems
+         const regex10 = /(?<=<:[^<>]*?)\.+(?=[^<>]*>)/gm;
+         data.text = data.text.replace(regex10, ``);
+         const regex11 = /(?<=<:[^<>]*?),+(?=[^<>]*>)/gm;
+         data.text = data.text.replace(regex11, ``);
+         data.text = data.text.replace(/millions/g, ``);
+         //  Russian animated emoji fix
          if (data.text.includes("<А"))
          {
-            const regex1 = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+            const regex1 = /<([:+\s:\s*[a-z0-9ЁёА-я_\s\u00C0-\u017F]+:\s*)([0-9\s]+)>/gmi;
             const str1 = data.text;
             const subst1 = `<a:customemoji:$2>`;
 
             data.text = str1.replace(regex1, subst1);
          }
+         //  animated emoji fix
          if (data.text.includes("<A"))
          {
-            const regex2 = /<([:+\s:\s*[a-z0-9ЁёА-я_A-Z\s]+:\s*)([0-9\s]+)>/gm;
+            const regex2 = /<([:+\s:\s*[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+:\s*)([0-9\s]+)>/gm;
             const str2 = data.text;
             const subst2 = `<a:customemoji:$2>`;
 
             data.text = str2.replace(regex2, subst2);
          }
+         // animated emojis
          else if (data.text.includes("<a"))
          {
-            const regex3 = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+            const regex3 = /<([:+\s:\s*[a-z0-9ЁёА-я_\s\u00C0-\u017F]+:\s*)([0-9\s]+)>/gmi;
             const str3 = data.text;
             const subst3 = `<a:customemoji:$2>`;
 
             data.text = str3.replace(regex3, subst3);
          }
+         //   if a combination of animated emojis and normal custom emojis
          if (data.text.includes("<:"))
          {
             if (data.text.includes("<A"))
             {
-               const regex4 = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+               const regex4 = /<([:+\s:\s*[a-z0-9ЁёА-я_\s\u00C0-\u017F]+:\s*)([0-9\s]+)>/gmi;
                const str4 = data.text;
                const subst4 = `<:okthisisanemoji:$2>`;
 
@@ -65,17 +73,10 @@ module.exports = function(data)
             }
             const subst5 = "<:customemoji:$2>";
             const str5 = data.text;
-            const regx5 = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+            const regx5 = /<([:+\s:\s*[a-z0-9ЁёА-я_\s\u00C0-\u017F]+:\s*)([0-9\s]+)>/gmi;
 
             data.text = str5.replace(regx5, subst5);
          }
-         /*else if (data.text.includes("< :"))
-         {
-            const text = data.text;
-            const regx = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
-
-            data.text = text.replace(regx, "<:customemoji:$2>");
-         } */
       }
    }
    console.log(`Guild ID from message`);
