@@ -18,9 +18,9 @@ const webHookName = "Translator Messaging System";
 // eslint-disable-next-line complexity
 module.exports = function(data)
 {
-   // ---------------------------
-   // regexStatments for Emoji's
-   // ---------------------------
+   // ----------------------------
+   // Eegex Statments for Emoji's
+   // ----------------------------
 
    function languageRegex(data)
    {
@@ -39,6 +39,8 @@ module.exports = function(data)
       data.text = data.text.replace(/<@!/gm, `<@`);
       //  Change formatted special characters to normal
       data.text = data.text.replace(/：/gmi, ":");
+      data.text = data.text.replace(/，/gmi, ", ");
+      data.text = data.text.replace(/、/gmi, ", ");
       data.text = data.text.replace(/！/gmi, "");
       data.text.replace(/<A/gmi, "<a");
       data.text = data.text.replace(/＆/gmi, ``);
@@ -53,7 +55,7 @@ module.exports = function(data)
 
          if (data.text.includes("<А"))
          {
-            const regex1 = /<([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*:\s*)([0-9\s]+)>>/gmi;
+            const regex1 = /<([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*:\s*)([0-9\s]+)>/gmi;
             const str1 = data.text;
             const subst1 = `<a:customemoji:$2>`;
 
@@ -79,10 +81,11 @@ module.exports = function(data)
       }
    }
 
-   // -----------------------------------------------
+   // ----------------------------------------------------
    // The first time this runs after a reset it will
    // always send as Off state as set.EmbedVar = "",
-   // -----------------------------------------------
+   // Alot of this is debug code, but left in for testing
+   // ----------------------------------------------------
 
    console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
@@ -160,8 +163,6 @@ const embedOn = function(data)
 
       if (data.text && data.text.length > 1)
       {
-         data.text = data.text.replace("<A", "<a");
-         data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ""));
          if (!data.author)
          {
             const botEmbedOn = new discord.RichEmbed()
@@ -437,10 +438,6 @@ const embedOff = function(data)
             if (data.author.icon_url) { avatarURL = data.author.icon_url;}
          }
          {
-            data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ""));
-            data.text = data.text.replace(/<А/gm, "<a");
-            data.text = data.text.replace(/<A/gm, "<a");
-
             webhook.send(data.text, {
                "username": nicknameVar,
                "avatarURL": data.author.icon_url,
