@@ -22,60 +22,60 @@ module.exports = function(data)
    // Get Embedded Variable From DB
    // ------------------------------
 
+   function languageRegex(data)
+   {
+      // Remove Whitespaces
+      data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ""));
+      //  Remove translated numeral keywords
+      data.text = data.text.replace(/millions/gmi, ``);
+      data.text = data.text.replace(/milioni/gmi, ``);
+      // Commas Replacement
+      const regex10 = /(?<=<[^<>]*?),+(?=[^<>]*>)/gm;
+      data.text = data.text.replace(regex10, ``);
+      // Period Replacement
+      const regex11 = /(?<=<[^<>]*?)\.+(?=[^<>]*>)/gm;
+      data.text = data.text.replace(regex11, ``);
+      //  Remove Exclamation marks
+      data.text = data.text.replace(/<@!/gm, `<@`);
+      //  Change formatted special characters to normal
+      data.text = data.text.replace(/：/gmi, ":");
+      data.text = data.text.replace(/！/gmi, "");
+      data.text.replace(/<A/gmi, "<a");
+      data.text = data.text.replace(/＆/gmi, ``);
+      data.text = data.text.replace(/></gm, `> <`);
+   }
+
    if (data.author)
    {
       if (data.text)
       {
-         //data.text = data.text.replace(/<:.+?>/gmi, tag => tag.replace(/.+/g, ""));
-         //data.text = data.text.replace(/<(.+?)(millions)>/, `<$1>`);
-         //data.text = data.text.replace(/<(:a-z0-9)(millions)/gmi, "<$1>");
+         languageRegex(data);
+
          if (data.text.includes("<А"))
          {
-            const regex1 = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+            const regex1 = /<([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*:\s*)([0-9\s]+)>>/gmi;
             const str1 = data.text;
             const subst1 = `<a:customemoji:$2>`;
 
             data.text = str1.replace(regex1, subst1);
          }
-         if (data.text.includes("<A"))
-         {
-            const regex2 = /<([:+\s:\s*[a-z0-9ЁёА-я_A-Z\s]+:\s*)([0-9\s]+)>/gm;
-            const str2 = data.text;
-            const subst2 = `<a:customemoji:$2>`;
-
-            data.text = str2.replace(regex2, subst2);
-         }
-         else if (data.text.includes("<a"))
-         {
-            const regex3 = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
-            const str3 = data.text;
-            const subst3 = `<a:customemoji:$2>`;
-
-            data.text = str3.replace(regex3, subst3);
-         }
+         //   if a combination of animated emojis and normal custom emojis
          if (data.text.includes("<:"))
          {
             if (data.text.includes("<A"))
             {
-               const regex4 = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+               const regex4 = /<([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*:\s*)([0-9\s]+)>/gmi;
                const str4 = data.text;
-               const subst4 = `<:okthisisanemoji:$2>`;
+               const subst4 = `<a:customemoji:$2>`;
 
                data.text = str4.replace(regex4, subst4);
             }
             const subst5 = "<:customemoji:$2>";
             const str5 = data.text;
-            const regx5 = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
+            const regx5 = /<([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*:\s*)([0-9\s]+)>/gmi;
 
             data.text = str5.replace(regx5, subst5);
          }
-         /*else if (data.text.includes("< :"))
-         {
-            const text = data.text;
-            const regx = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
-
-            data.text = text.replace(regx, "<:customemoji:$2>");
-         } */
       }
    }
    console.log(`Guild ID from message`);
@@ -93,9 +93,22 @@ module.exports = function(data)
          .setDescription(data.text)
          .setTimestamp()
          .setFooter("𝗕𝗼𝘁𝗵 𝗺𝗲𝘀𝘀𝗮𝗴𝗲𝘀  𝘄𝗶𝗹𝗹 𝘀𝗲𝗹𝗳-𝗱𝗲𝘀𝘁𝗿𝘂𝗰𝘁 𝗶𝗻 𝟯𝟬 𝘀𝗲𝗰𝗼𝗻𝗱𝘀");
-      message.reply(ignoreMessageEmbed).then(msg =>
+      message.channel.send(ignoreMessageEmbed).then(message =>
       {
-         msg.delete(30000);
+         message.channel.fetchMessages({limit: 10}).then(collected =>
+         { //collected is a Collection
+            collected.forEach(message =>
+            {
+               if (message.content.startsWith("!t"))
+               {
+                  message.delete(5000);
+               }
+               if (message.embeds.length > 0)
+               {
+                  message.delete(60000);
+               }
+            });
+         });
       });
    }
 
@@ -114,7 +127,7 @@ module.exports = function(data)
       console.log(`db.set Stage 2 = ` + db.setEmbedVar());
       var output =
       "**:robot: " + data.bot.username + " has restarted\n\n" +
-      " :gear: Please resend your previous message or command.**\n";
+      " :gear: Please resend your previous message.**\n";
       data.color = "warn";
       data.text = output;
       return ignoreMessage();
@@ -159,11 +172,8 @@ const embedOn = function(data)
 
       if (data.text && data.text.length > 1)
       {
-         data.text = data.text.replace("<A", "<a");
-         data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ""));
          if (!data.author)
          {
-            message.delete(5000);
             const botEmbedOn = new discord.RichEmbed()
                .setColor(colors.get(data.color))
                .setAuthor(data.bot.username, data.bot.icon_url)
@@ -171,9 +181,22 @@ const embedOn = function(data)
                .setTimestamp()
                .setFooter("This message will self-destruct in one minute");
 
-            message.channel.send(botEmbedOn).then(msg =>
+            message.channel.send(botEmbedOn).then(message =>
             {
-               msg.delete(60000);
+               message.channel.fetchMessages({limit: 10}).then(collected =>
+               { //collected is a Collection
+                  collected.forEach(message =>
+                  {
+                     if (message.content.startsWith("!t"))
+                     {
+                        message.delete(5000);
+                     }
+                     if (message.embeds.length > 0)
+                     {
+                        message.delete(60000);
+                     }
+                  });
+               });
             });
          }
          else
@@ -390,17 +413,29 @@ const embedOff = function(data)
          }
          else
          {
-            message.delete(5000);
-            const botEmbed = new discord.RichEmbed()
+            const botEmbedOff = new discord.RichEmbed()
                .setColor(colors.get(data.color))
                .setAuthor(data.bot.username, data.bot.icon_url)
                .setDescription(data.text)
                .setTimestamp()
                .setFooter("This message will self-destruct in one minute");
 
-            data.channel.send(botEmbed).then(msg =>
+            message.channel.send(botEmbedOff).then(message =>
             {
-               msg.delete(60000);
+               message.channel.fetchMessages({limit: 10}).then(collected =>
+               { //collected is a Collection
+                  collected.forEach(message =>
+                  {
+                     if (message.content.startsWith("!t"))
+                     {
+                        message.delete(5000);
+                     }
+                     if (message.embeds.length > 0)
+                     {
+                        message.delete(60000);
+                     }
+                  });
+               });
             });
          }
       }
@@ -412,10 +447,6 @@ const embedOff = function(data)
             if (data.author.icon_url) { avatarURL = data.author.icon_url;}
          }
          {
-            data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ""));
-            data.text = data.text.replace(/<А/gm, "<a");
-            data.text = data.text.replace(/<A/gm, "<a");
-
             webhook.send(data.text, {
                "username": nicknameVar,
                "avatarURL": data.author.icon_url,
