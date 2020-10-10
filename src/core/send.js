@@ -19,7 +19,7 @@ const webHookName = "Translator Messaging System";
 module.exports = function(data)
 {
    // ----------------------------
-   // Eegex Statments for Emoji's
+   // Regex Statments for Emoji's
    // ----------------------------
 
    function languageRegex(data)
