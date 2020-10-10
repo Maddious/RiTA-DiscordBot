@@ -26,9 +26,9 @@ module.exports = function(data)
    {
       if (data.text)
       {
-         data.text = data.text.replace(/<:.+?>/gmi, tag => tag.replace(/.+/g, ""));
-         data.text = data.text.replace(/<(.+?)(millions)>/, `<$1>`);
-         data.text = data.text.replace(/<(:a-z0-9)(millions)/gmi, "<$1>");
+         //data.text = data.text.replace(/<:.+?>/gmi, tag => tag.replace(/.+/g, ""));
+         //data.text = data.text.replace(/<(.+?)(millions)>/, `<$1>`);
+         //data.text = data.text.replace(/<(:a-z0-9)(millions)/gmi, "<$1>");
          if (data.text.includes("<А"))
          {
             const regex1 = /<([:+\s:\s*[a-z0-9ЁёА-я_\s]+:\s*)([0-9\s]+)>/gmi;
