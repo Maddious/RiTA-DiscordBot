@@ -172,8 +172,6 @@ const embedOn = function(data)
 
       if (data.text && data.text.length > 1)
       {
-         data.text = data.text.replace("<A", "<a");
-         data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ""));
          if (!data.author)
          {
             const botEmbedOn = new discord.RichEmbed()
@@ -449,10 +447,6 @@ const embedOff = function(data)
             if (data.author.icon_url) { avatarURL = data.author.icon_url;}
          }
          {
-            data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ""));
-            data.text = data.text.replace(/<А/gm, "<a");
-            data.text = data.text.replace(/<A/gm, "<a");
-
             webhook.send(data.text, {
                "username": nicknameVar,
                "avatarURL": data.author.icon_url,
