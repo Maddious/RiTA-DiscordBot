@@ -39,17 +39,18 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 04. [**NEW** Setting up a Bot with "Deploy to Heroku"](#deploy)
 05. [Setting up a Bot Manually](#new-bot)
 06. [How to Update your Bot](#update)
-07. [C-3PO to RITA Bot Migration](#migration)
-08. [Heroku Database Support](#database)
-09. [Local Installation Support](#local)
-10. [Setup on a Raspberry Pi](#pi)
-11. [Troubleshooting](#troubleshooting)
-12. [Error Messages](#errors)
-13. [Commands](#commands)
-14. [All Build Statuses and CI Checks](#build)
-15. [Credits & License](#credits-&-license)
-16. [Design Team](#design-team)
-17. [About Us](#history)
+07. [How to Update your Database Manually](#dbm)
+08. [C-3PO to RITA Bot Migration](#migration)
+09. [Heroku Database Support](#database)
+10. [Local Installation Support](#local)
+11. [Setup on a Raspberry Pi](#pi)
+12. [Troubleshooting](#troubleshooting)
+13. [Error Messages](#errors)
+14. [Commands](#commands)
+15. [All Build Statuses and CI Checks](#build)
+16. [Credits & License](#credits-&-license)
+17. [Design Team](#design-team)
+18. [About Us](#history)
 
 ## <a name="new"></a>Whats New
 For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/CHANGELOG.md)
@@ -197,6 +198,19 @@ This Method does not need you to Fork this repository, you can run your bot stra
 * Select the bot you made in step 3 of [Setting up a New Bot](#new-bot)
 * Under **Deployment Method** make sure you have Github selected, ensure Connect to GitHub has the correct repository selected, Scroll down to the manual deploy section, and select the **Master** branch. Click deploy branch, and wait for the successfully deployed message.
 
+## <a name="dbm"></a>How to Update your Database Manually
+With 1.2.1 there comes a change to the database, the Servers table needs to new columns.
+
+You can run the `!t updatedb` to do this automatically, or if you want to do this manually then there are certain formats you need to use to have the database work correctly. Below you can find the SQL queries you will need to run to create these.
+
+#### For Heroku, if you are using Postgres Admin 4 as your method of database editor: 
+See [Heroku Database Support](#database) for more info
+* **`ALTER TABLE public.servers ADD COLUMN "embedstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'on'::character varying;`**
+* **`ALTER TABLE public.servers ADD COLUMN "bot2botstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'off'::character varying;`**
+
+#### For a local builds and a Local database:
+* **`ALTER TABLE servers ADD COLUMN "embedstyle" character varying(8)  DEFAULT 'on'`**
+* **`ALTER TABLE servers ADD COLUMN "bot2botstyle" character varying(8) DEFAULT 'off'`**
 
 ## <a name="migration"></a>C-3PO to RITA Bot Migration
 **If you already have a Heroku Bot Using C-3P0**
@@ -212,7 +226,6 @@ This Method does not need you to Fork this repository, you can run your bot stra
 * Go to Heroku and click your app of C-3PO, and locate the **Deploy** section. Scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying **Disconnect**
 * Next click search on repositories and select your fork of this project and wait for it to load. Once that is completed you need to **Deploy** the 'Master' Branch/Version of the bot.
 * Wait for it to finish deploying and you should be good to go. Turn on your worker dyno (if it was not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
-
 
 ## <a name="database"></a>Heroku Database Support
 Sometimes you need to edit the Database manually, This is not something you should be playing around with unless you really know what you are doing.
@@ -251,7 +264,6 @@ Any Database that runs with SQL Sequelize ('https://sequelize.org/master/') can 
 Copy the existing **.env.example** file and name it **.env**. Edit the Values of **DISCORD_TOKEN**, **DISCORD_BOT_OWNER_ID** and the **DATABASE_URL** according to the values that you copied earlier.
   * DATABASE_URL needs to be the path to the database file (once you install SQLite it will create a database for you in the path you put...)
   * Example -  DATABASE_URL = C:\Admin\Rita_Development\test.db
-
 
 #### 3. Install nodejs
 Install nodejs from https://nodejs.org/en/  
