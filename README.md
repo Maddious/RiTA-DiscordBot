@@ -1,14 +1,6 @@
 ## RITA ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg) 
-A Translation bot built using `discord.js` and a custom `Google Translate API`.
-
-*(The NPM Version of Google Translate API is outdated and does not work with this distribution, as such a custom and maintained version is installed.)* 
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
-
-*NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy).
-
-###   Check out our website [here](https://ritabot.org) for an easy to read wiki and quick start guide.
-###   Upon using this Repository *please* star this repo,  every star helps RITA get more and more popular to help more people.
+A Translation bot built using `discord.js` and a custom `Google Translate API`. 
+####  Upon using this Repository *please* star this repo,  every star helps RITA get more and more popular to help more people.
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
@@ -24,13 +16,19 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 [![codebeat badge](https://codebeat.co/badges/095e56cd-a926-4fa1-91d8-5cb20c11c5c6)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch)
 
+###  Check out our website [here](https://ritabot.org) for an easy to read wiki and quick start guide.
+###  To read an *article* about how to start Using RITA go [here instead](https://medium.com/@Artanis_/setup-discord-translation-bot-6899428b0cf2?source=friends_link&sk=cdf79a8e7970408e0238b271e98f2aeb)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
+
+*NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy).
+
 ## Coming Soon!
 
 01. Error Message Support Section.
 02. Auto Reverse translation for the auto function.
 03. `!t tasks #TargetChannel` Implementation.
 04. Introduction of a Streamlined Command Handler. (This will be done as a New Project)
-05. Discord.js Updated to version 12 (V1.2.2/1.3.0)
+05. Discord.js Updated to version 12 (V1.3.0)
 06. Limited Bot translation. (V1.2.2)
 
 ## Table of Contents
@@ -41,17 +39,18 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 04. [**NEW** Setting up a Bot with "Deploy to Heroku"](#deploy)
 05. [Setting up a Bot Manually](#new-bot)
 06. [How to Update your Bot](#update)
-07. [C-3PO to RITA Bot Migration](#migration)
-08. [Heroku Database Support](#database)
-09. [Local Installation Support](#local)
-10. [Setup on a Raspberry Pi](#pi)
-11. [Troubleshooting](#troubleshooting)
-12. [Error Messages](#errors)
-13. [Commands](#commands)
-14. [All Build Statuses and CI Checks](#build)
-15. [Credits & License](#credits-&-license)
-16. [Design Team](#design-team)
-17. [About Us](#history)
+07. [How to Update your Database Manually](#dbm)
+08. [C-3PO to RITA Bot Migration](#migration)
+09. [Heroku Database Support](#database)
+10. [Local Installation Support](#local)
+11. [Setup on a Raspberry Pi](#pi)
+12. [Troubleshooting](#troubleshooting)
+13. [Error Messages](#errors)
+14. [Commands](#commands)
+15. [All Build Statuses and CI Checks](#build)
+16. [Credits & License](#credits-&-license)
+17. [Design Team](#design-team)
+18. [About Us](#history)
 
 ## <a name="new"></a>Whats New
 For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/CHANGELOG.md)
@@ -72,12 +71,14 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
     * Once you have completed Step 2, the bot will have come online, but it wont have fully Initialised. 
     * To prevent a never ending loop of errors, the VERY FIRST message or command sent on the server will Initialise the DB fully. Meaning you will have to send that message again.
       * Please Note Due to [Automatic dyno restarts](https://devcenter.heroku.com/articles/dynos#automatic-dyno-restarts) the first message after each restart will share the same behaviour as above.
+* Added in command triggers and command deletion to clean up command channels.
+* Custom Emoji's are now supported and will be sent with the translated message correctly, with the exception of a few languages.
+* DM Translation have been disabled as it has been identified they never worked as intended. they will be re-introduced in a later update.
 * Various Security vulnerabilities fixed.
 * Dev Dependencies core to this bot, the `google-translate-api` & `google-translate-token` & `gulp-watch`have been updated
 * `eslint` has been replaced with `babel-eslint`
 * `!t settings updatebot` Has been **DISABLED** - This is not needed as of yet and with the similarities to the `!t settings updatedb` command it may cause issues.
 * Deploy with Heroku Setup and integration. 
-* Added in command triggers and command deletion to clean up command channels.
 
 #### New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
@@ -118,7 +119,7 @@ P.S    Please *star* the repo by clicking the star icon in the top right**
 
 This Method does not need you to Fork this repository, you can run your bot straight off of the Rita Master Branch. For update instructions click [here](#update)
 
-#### 1. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
+#### 1. Create a new [Discord App](https://discordapp.com/developers/applications)
 * Give app a friendly name and click the **Create App** button
   * I like the name **C-3PO**, but feel free to pick something different if you fear George Lucas's wrath. Maybe **C-4PO**
 * Take note of the apps **CLIENT ID**, you will need it later
@@ -129,7 +130,7 @@ This Method does not need you to Fork this repository, you can run your bot stra
 
 #### 2. Deploy to Heroku
 
-![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
 
 * In the custom variable of **DISCORD_TOKEN** put in the copied token of your created bot.
 * **DO NOT CHANGE** the **NODE_MODULES_CACHE** Variable unless you know about Heroku Caching.
@@ -152,7 +153,7 @@ This Method does not need you to Fork this repository, you can run your bot stra
 * If you don't yet have a Github account, [create one](https://github.com/join)! It's free and easy.
 * Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repository so that it will be associated with your Github account.
 
-#### 2. Create a new [Discord App](https://discordapp.com/developers/applications/me/create)
+#### 2. Create a new [Discord App](https://discordapp.com/developers/applications)
 * Give app a friendly name and click the **Create App** button
   * I like the name **C-3PO**, but feel free to pick something different if you fear George Lucas's wrath. Maybe **C-4PO**
 * Take note of the app **CLIENT ID**, you will need it later
@@ -197,6 +198,19 @@ This Method does not need you to Fork this repository, you can run your bot stra
 * Select the bot you made in step 3 of [Setting up a New Bot](#new-bot)
 * Under **Deployment Method** make sure you have Github selected, ensure Connect to GitHub has the correct repository selected, Scroll down to the manual deploy section, and select the **Master** branch. Click deploy branch, and wait for the successfully deployed message.
 
+## <a name="dbm"></a>How to Update your Database Manually
+With 1.2.1 there comes a change to the database, the Servers table needs to new columns.
+
+You can run the `!t updatedb` to do this automatically, or if you want to do this manually then there are certain formats you need to use to have the database work correctly. Below you can find the SQL queries you will need to run to create these.
+
+#### For Heroku, if you are using Postgres Admin 4 as your method of database editor: 
+See [Heroku Database Support](#database) for more info
+* **`ALTER TABLE public.servers ADD COLUMN "embedstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'on'::character varying;`**
+* **`ALTER TABLE public.servers ADD COLUMN "bot2botstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'off'::character varying;`**
+
+#### For a local builds and a Local database:
+* **`ALTER TABLE servers ADD COLUMN "embedstyle" character varying(8)  DEFAULT 'on'`**
+* **`ALTER TABLE servers ADD COLUMN "bot2botstyle" character varying(8) DEFAULT 'off'`**
 
 ## <a name="migration"></a>C-3PO to RITA Bot Migration
 **If you already have a Heroku Bot Using C-3P0**
@@ -212,7 +226,6 @@ This Method does not need you to Fork this repository, you can run your bot stra
 * Go to Heroku and click your app of C-3PO, and locate the **Deploy** section. Scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying **Disconnect**
 * Next click search on repositories and select your fork of this project and wait for it to load. Once that is completed you need to **Deploy** the 'Master' Branch/Version of the bot.
 * Wait for it to finish deploying and you should be good to go. Turn on your worker dyno (if it was not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
-
 
 ## <a name="database"></a>Heroku Database Support
 Sometimes you need to edit the Database manually, This is not something you should be playing around with unless you really know what you are doing.
@@ -251,7 +264,6 @@ Any Database that runs with SQL Sequelize ('https://sequelize.org/master/') can 
 Copy the existing **.env.example** file and name it **.env**. Edit the Values of **DISCORD_TOKEN**, **DISCORD_BOT_OWNER_ID** and the **DATABASE_URL** according to the values that you copied earlier.
   * DATABASE_URL needs to be the path to the database file (once you install SQLite it will create a database for you in the path you put...)
   * Example -  DATABASE_URL = C:\Admin\Rita_Development\test.db
-
 
 #### 3. Install nodejs
 Install nodejs from https://nodejs.org/en/  
@@ -371,9 +383,9 @@ This section/feature is being Created, Check back soon or join the [Support Disc
 
 #### --RITA-- Experimental Test Branch (Discord.js V12)
 ##### This branch should not be used on any server, most if not all functions are broken as a major update to latest discord.js version is needed.
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch-1.2.2?label=Experimental%20Version)
-[![codebeat badge](https://codebeat.co/badges/b72d7b2b-83d0-47cd-a91f-993964c6c564)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch-1-2-2)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch-1.2.2)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch-1.3.0?label=Experimental%20Version)
+[![codebeat badge](https://codebeat.co/badges/b72d7b2b-83d0-47cd-a91f-993964c6c564)](https://codebeat.co/projects/github-com-zyc0r3-ritabot-test-branch-1-3.0)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch-1.3.0)
 
 ## <a name="credits-&-license"></a>Credits & License
 
