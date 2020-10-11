@@ -43,9 +43,14 @@ module.exports = function(data)
       data.text = data.text.replace(/，/gmi, ", ");
       data.text = data.text.replace(/、/gmi, ", ");
       data.text = data.text.replace(/！/gmi, "");
-      data.text.replace(/<A/gmi, "<a");
+      data.text = data.text.replace(/<A/gmi, "<a");
+      data.text = data.text.replace(/>/gmi, ">");
+      data.text = data.text.replace(/</gm, "<");
+      data.text = data.text.replace(/<А/gmi, "<a");
       data.text = data.text.replace(/＆/gmi, ``);
       data.text = data.text.replace(/></gm, `> <`);
+      data.text = data.text.replace(/＃/gmi, "#");
+      data.text = data.text.replace(/＃/gmi, "#");
    }
 
    if (data.author)
@@ -53,7 +58,7 @@ module.exports = function(data)
       if (data.text)
       {
          languageRegex(data);
-
+         data.text = data.text.replace(/<А/gmi, "<a");
          if (data.text.includes("<А"))
          {
             const regex1 = /<([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*:\s*)([0-9\s]+)>/gmi;
@@ -348,12 +353,16 @@ const embedOff = function(data)
       {
          nicknameVar = message.member.nickname;
       }
-      else
+
+      if (data.text === undefined)
       {
          nicknameVar = message.author.username;
       }
+      if (data.text && message.member.nickname === undefined | null)
+      {
+         nicknameVar = data.author.username;
+      }
    }
-
    if (!message.member)
    {
       if (data.emoji)
@@ -419,6 +428,7 @@ const embedOff = function(data)
                "username": nicknameVar,
                "avatarURL": data.author.icon_url,
                "files": files
+
             });
          }
       }
@@ -649,3 +659,5 @@ const checkPerms = function(data, sendBox)
 
    return sendBox(sendData);
 };
+
+
