@@ -36,7 +36,8 @@ module.exports = function(data)
       const regex11 = /(?<=<[^<>]*?)\.+(?=[^<>]*>)/gm;
       data.text = data.text.replace(regex11, ``);
       //  Remove Exclamation marks
-      data.text = data.text.replace(/<@!/gm, `<@`);
+      data.text = data.text.replace(/<@!/gmi, `<@`);
+      data.text = data.text.replace(/<!@/gmi, `<@`);
       //  Change formatted special characters to normal
       data.text = data.text.replace(/：/gmi, ":");
       data.text = data.text.replace(/，/gmi, ", ");
