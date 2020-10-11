@@ -165,6 +165,7 @@ const embedOn = function(data)
       {
          if (!data.author)
          {
+            message.delete(5000);
             const botEmbedOn = new discord.RichEmbed()
                .setColor(colors.get(data.color))
                .setAuthor(data.bot.username, data.bot.icon_url)
@@ -172,22 +173,9 @@ const embedOn = function(data)
                .setTimestamp()
                .setFooter("This message will self-destruct in one minute");
 
-            message.channel.send(botEmbedOn).then(message =>
+            message.channel.send(botEmbedOn).then(msg =>
             {
-               message.channel.fetchMessages({limit: 10}).then(collected =>
-               { //collected is a Collection
-                  collected.forEach(message =>
-                  {
-                     if (message.content.startsWith("!t"))
-                     {
-                        message.delete(5000);
-                     }
-                     if (message.embeds.length > 0)
-                     {
-                        message.delete(60000);
-                     }
-                  });
-               });
+               msg.delete(60000);
             });
          }
          else
@@ -404,6 +392,7 @@ const embedOff = function(data)
          }
          else
          {
+            message.delete(5000);
             const botEmbedOff = new discord.RichEmbed()
                .setColor(colors.get(data.color))
                .setAuthor(data.bot.username, data.bot.icon_url)
@@ -411,22 +400,9 @@ const embedOff = function(data)
                .setTimestamp()
                .setFooter("This message will self-destruct in one minute");
 
-            message.channel.send(botEmbedOff).then(message =>
+            data.channel.send(botEmbedOff).then(msg =>
             {
-               message.channel.fetchMessages({limit: 10}).then(collected =>
-               { //collected is a Collection
-                  collected.forEach(message =>
-                  {
-                     if (message.content.startsWith("!t"))
-                     {
-                        message.delete(5000);
-                     }
-                     if (message.embeds.length > 0)
-                     {
-                        message.delete(60000);
-                     }
-                  });
-               });
+               msg.delete(60000);
             });
          }
       }
