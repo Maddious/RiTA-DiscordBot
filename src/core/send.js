@@ -353,12 +353,16 @@ const embedOff = function(data)
       {
          nicknameVar = message.member.nickname;
       }
-      else
+
+      if (data.text === undefined)
       {
          nicknameVar = message.author.username;
       }
+      if (data.text && message.member.nickname === undefined | null)
+      {
+         nicknameVar = data.author.username;
+      }
    }
-
    if (!message.member)
    {
       if (data.emoji)
@@ -424,6 +428,7 @@ const embedOff = function(data)
                "username": nicknameVar,
                "avatarURL": data.author.icon_url,
                "files": files
+
             });
          }
       }
@@ -654,4 +659,5 @@ const checkPerms = function(data, sendBox)
 
    return sendBox(sendData);
 };
+
 
