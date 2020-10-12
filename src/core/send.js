@@ -663,5 +663,3 @@ const checkPerms = function(data, sendBox)
 
    return sendBox(sendData);
 };
-
-
