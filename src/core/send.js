@@ -399,7 +399,7 @@ const embedOff = function(data)
          if (data.text === undefined)
          {
             webhook.send(data.text, {
-               "username": nicknameVar,
+               "username": message.member.nickname || message.author.username,
                "avatarURL": message.author.displayAvatarURL,
                "files": files
             });
@@ -429,7 +429,7 @@ const embedOff = function(data)
          }
          {
             webhook.send(data.text, {
-               "username": nicknameVar,
+               "username": message.member.nickname || data.author.name,
                "avatarURL": data.author.icon_url,
                "files": files
 
