@@ -410,6 +410,7 @@ const embedOff = function(data)
                "avatarURL": message.author.displayAvatarURL,
                "files": files
             });
+}
             }
          }
          else
