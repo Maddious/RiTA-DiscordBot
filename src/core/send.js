@@ -374,7 +374,9 @@ const embedOff = function(data)
          nicknameVar = data.author.username;
       }
    }*/
-
+if (data.author){
+nicknameVar = data.author.name || data.author.username
+}
    function sendWebhookMessage(webhook, data)
    {
       if (data.author)
@@ -398,22 +400,11 @@ const embedOff = function(data)
       {
          if (data.text === undefined)
          {
-            if (message.member)
-            {
                webhook.send(data.text, {
                   "username": message.author.username,
                   "avatarURL": message.author.displayAvatarURL,
                   "files": files
                });
-            }
-            else
-            {
-               webhook.send(data.text, {
-                  "username": message.author.username,
-                  "avatarURL": message.author.displayAvatarURL,
-                  "files": files
-               });
-            }
          }
          else
          {
