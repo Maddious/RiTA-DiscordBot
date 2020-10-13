@@ -351,7 +351,7 @@ const embedOff = function(data)
    // Send Webhook Message
    // ---------------------
 
- /*  if (message.member)
+   /*  if (message.member)
    {
       if (message.member.nickname)
       {
@@ -398,19 +398,21 @@ const embedOff = function(data)
       {
          if (data.text === undefined)
          {
-            if (message.member){
-            webhook.send(data.text, {
-               "username": message.author.username,
-               "avatarURL": message.author.displayAvatarURL,
-               "files": files
-            });
-            } else {
-            webhook.send(data.text, {
-               "username": message.author.username,
-               "avatarURL": message.author.displayAvatarURL,
-               "files": files
-            });
-}
+            if (message.member)
+            {
+               webhook.send(data.text, {
+                  "username": message.author.username,
+                  "avatarURL": message.author.displayAvatarURL,
+                  "files": files
+               });
+            }
+            else
+            {
+               webhook.send(data.text, {
+                  "username": message.author.username,
+                  "avatarURL": message.author.displayAvatarURL,
+                  "files": files
+               });
             }
          }
          else
@@ -437,14 +439,11 @@ const embedOff = function(data)
             if (data.author.icon_url) { avatarURL = data.author.icon_url;}
          }
          {
-            
             webhook.send(data.text, {
-               "username": data.author.name,
+               "username": nicknameVar,
                "avatarURL": data.author.icon_url,
                "files": files
-
             });
-            }
          }
       }
    }
