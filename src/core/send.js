@@ -432,7 +432,7 @@ const embedOff = function(data)
          }
          {
             webhook.send(data.text, {
-               "username": nicknameVar,
+               "username": data.author.name || data.author.username,
                "avatarURL": data.author.icon_url,
                "files": files
             });
