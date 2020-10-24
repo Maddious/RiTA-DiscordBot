@@ -352,13 +352,32 @@ const embedOff = function(data)
    // Send Webhook Message
    // ---------------------
 
-
-
+   /*  if (message.member)
+   {
+      if (message.member.nickname)
+      {
+         nicknameVar = message.member.nickname;
+      }
+      if (data.text === undefined)
+      {
+         nicknameVar = message.author.username;
+      }
+      if (data.text && message.member.nickname === undefined | null)
+      {
+         nicknameVar = data.author.username;
+      }
+   }
+   if (!message.member)
+   {
+      if (data.emoji)
+      {
+         nicknameVar = data.author.username;
+      }
+   }*/
    if (data.author)
    {
       nicknameVar = data.author.name || data.author.username;
    }
-
    function sendWebhookMessage(webhook, data)
    {
       if (data.author)
@@ -382,19 +401,11 @@ const embedOff = function(data)
       {
          if (data.text === undefined)
          {
-            if (message.member){
             webhook.send(data.text, {
                "username": message.author.username,
                "avatarURL": message.author.displayAvatarURL,
                "files": files
             });
-            } else {
-            webhook.send(data.text, {
-               "username": message.author.username,
-               "avatarURL": message.author.displayAvatarURL,
-               "files": files
-            });
-            }
          }
          else
          {
@@ -420,13 +431,11 @@ const embedOff = function(data)
             if (data.author.icon_url) { avatarURL = data.author.icon_url;}
          }
          {
-
             webhook.send(data.text, {
-               "username": nicknameVar,
+               "username": data.author.name || data.author.username,
                "avatarURL": data.author.icon_url,
                "files": files
             });
-            }
          }
       }
    }
@@ -656,4 +665,3 @@ const checkPerms = function(data, sendBox)
 
    return sendBox(sendData);
 };
-
