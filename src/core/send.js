@@ -51,6 +51,7 @@ module.exports = function(data)
       data.text = data.text.replace(/></gm, `> <`);
       data.text = data.text.replace(/＃/gmi, "#");
       data.text = data.text.replace(/＃/gmi, "#");
+      data.text = data.text.replace(/((\s?)(\*)(\s?))/gmis, "*")
    }
 
    if (data.author)
