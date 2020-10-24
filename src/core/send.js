@@ -51,6 +51,7 @@ module.exports = function(data)
       data.text = data.text.replace(/></gm, `> <`);
       data.text = data.text.replace(/＃/gmi, "#");
       data.text = data.text.replace(/＃/gmi, "#");
+      data.text = data.text.replace(/((\s?)(\*)(\s?))/gmis, "*")
    }
 
    if (data.author)
@@ -357,7 +358,6 @@ const embedOff = function(data)
       {
          nicknameVar = message.member.nickname;
       }
-
       if (data.text === undefined)
       {
          nicknameVar = message.author.username;
