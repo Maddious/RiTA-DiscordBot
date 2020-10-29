@@ -52,6 +52,7 @@ module.exports = function(data)
       data.text = data.text.replace(/＃/gmi, "#");
       data.text = data.text.replace(/＃/gmi, "#");
       data.text = data.text.replace(/((\s?)(\*)(\s?))/gmis, "*")
+      data.text = data.text.replace(/(?<=<[^<>]*?)([0-9]*)\s*@+(?=[^<>]*>)/gmi, "@$1")
    }
 
    if (data.author)
@@ -60,19 +61,12 @@ module.exports = function(data)
       {
          languageRegex(data);
          data.text = data.text.replace(/<А/gmi, "<a");
-         if (data.text.includes("<А"))
+         if (data.text.includes("<А" || "<a"))
          {
             const regex1 = /<(a)([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*:\s*)([0-9\s]+)>/gmi;
             const str1 = data.text;
             const subst1 = `<a:customemoji:$3>`;
             data.text = str1.replace(regex1, subst1);
-         }
-         if (data.text.includes("<a"))
-         {
-            const regex4 = /<(a)([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*:\s*)([0-9\s]+)>/gmi;
-            const str4 = data.text;
-            const subst4 = `<a:customemoji:$3>`;
-            data.text = str4.replace(regex4, subst4);
          }
          //   if a combination of animated emojis and normal custom emojis
          if (!data.text.includes("<a") && data.text.includes("<:"))
@@ -97,6 +91,7 @@ module.exports = function(data)
    // always send as Off state as set.EmbedVar = "",
    // Alot of this is debug code, but left in for testing
    // ----------------------------------------------------
+
 
    console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
@@ -129,7 +124,8 @@ module.exports = function(data)
       console.log(`db.set Stage 2 = ` + db.setEmbedVar());
       var output =
       "**:robot: " + data.bot.username + " has restarted\n\n" +
-      " :gear: Please resend your previous message.**\n";
+      " :gear: Please resend your previous message.**\n\n" +
+      "  :wrench: You may need to define the embed value using `!t embed on/off` if this message is in a loop when sending commands/messages.";
       data.color = "warn";
       data.text = output;
       return ignoreMessage();
