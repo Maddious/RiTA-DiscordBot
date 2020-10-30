@@ -1,6 +1,6 @@
-## RITA ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg) 
-A Translation bot built using `discord.js` and a custom `Google Translate API`. 
-####  Please star the repository to help us out, thanks!
+## RITA ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg)
+A Translation bot built using `discord.js` and a custom `Google Translate API`.
+####  Upon using this Repository *please* star this repo,  every star helps RITA get more and more popular to help more people.
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
@@ -61,16 +61,38 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
   * bot2bot allows for messages sent from other bots, in non embedded format to be translated as well. (Due to limitation this has been implimented but is disabled for now)
   * As the new variables above are stored in the database, they need new Columns to be added, as such updatedb will complete these actions.
 * Major code changes, new code implementations will change the DB and produce errors on first build, but this is a safe version to update to. Follow the below instructions.
-  * Step 1: Make a pull request and update from **Master** branch. 
+  * Step 1: Make a pull request and update from **Master** branch.
     * Once you update the bot and it initializes you WILL get a db error, this is normal. (we are working on suppressing these)
   * Step 2: `!t settings updatedb`
     * This will throw another error but it will build the missing columns.
     * The default value for embed is on and botbot is off.
     * Running this multiple times will cause error to be posted to webhook chan, this is a "Value exists" error. Preventing you from destroying the DB
   * Step 3: Completed, and now working.
-    * Once you have completed Step 2, the bot will have come online, but it wont have fully Initialised. 
+    * Once you have completed Step 2, the bot will have come online, but it wont have fully Initialised.
     * To prevent a never ending loop of errors, the VERY FIRST message or command sent on the server will Initialise the DB fully. Meaning you will have to send that message again.
       * Please Note Due to [Automatic dyno restarts](https://devcenter.heroku.com/articles/dynos#automatic-dyno-restarts) the first message after each restart will share the same behaviour as above.
+  * Alternative update method via command line, minimal GUI interface needed.
+    * Prerequiste. Navigate to your Herkou bot Dyno overview page. And turn the active web worker off.
+    * Step 1: Naviagte to the directory where you ran `git clone` for your fork of the RitaBot repository.
+      * `cd RitaBot`
+      * `git status` should return the following `On branch master Your branch is up to date with 'origin/master'. nothing to commit, working tree clean` if so preoceed to Step 2
+      * if how ever you get the following messages you will need to resolve them before proceeding further.
+        * `Changes not staged for commit:` you have the following options
+          * Do this if you have changes you deam nesiciary to add only
+            * (use "`git add <modified file>`" to update what will be committed) followed by `git commit -m <commit message>` and lastly `git push master`
+            * If you are adding you own commits I'm assuming you know how to deal with potential merge conflicts and can appropriatly resolve them accordingly before rebase step.
+          * The other and HIGHLY prefered method is to simply checkout the modifed files to avoid merge conflicts  (use "`git checkout -- . ` to discard changes all changes working directory)
+            * Once you think you've gotten the branch back to `working tree clean` state by running `git status` one more time. You are ready to move on to Step 2
+    * Step 2: Now just run the following commands in order
+      * `git remote add upstream https://github.com/ZyC0R3/RitaBot.git`
+      * `git fetch upstream`
+      * `git checkout master`
+      * `git rebase upstream/master`
+      * `git push -f origin master` (Note you will only have to use the `-f` flag for the first psuh)
+        * enter your username and password from your Github account that's linked to the bot to complete the `git push`
+      * Restart your stopped Web Dyno on the Heroku website.
+      * Go to `Depploy` page on your Heroku app overview, scroll to the bottom and click `Deploy Branch` at the bottom in the Manual Deploy section.
+    * Congrats update to new bot is complete. You can verify the update by checking the version of the bot after it finishes rebooting with the trusty `!t stats` command
 * Added in command triggers and command deletion to clean up command channels.
 * Custom Emoji's are now supported and will be sent with the translated message correctly, with the exception of a few languages.
 * DM Translation have been disabled as it has been identified they never worked as intended. they will be re-introduced in a later update.
@@ -78,7 +100,7 @@ For full History, See [Changelog](https://github.com/ZyC0R3/RitaBot/blob/master/
 * Dev Dependencies core to this bot, the `google-translate-api` & `google-translate-token` & `gulp-watch`have been updated
 * `eslint` has been replaced with `babel-eslint`
 * `!t settings updatebot` Has been **DISABLED** - This is not needed as of yet and with the similarities to the `!t settings updatedb` command it may cause issues.
-* Deploy with Heroku Setup and integration. 
+* Deploy with Heroku Setup and integration.
 
 #### New in 1.2.0-\*
 * No Code changes, just URL updates for New name of Bot
@@ -139,7 +161,7 @@ This Method does not need you to Fork this repository, you can run your bot stra
 * Once installed, Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
 
 #### 3. Invite your bot to your server and configure it!
-* Replace the CLIENTIDGOESHERE string in the following URL with your own apps client id from Step 1: 
+* Replace the CLIENTIDGOESHERE string in the following URL with your own apps client id from Step 1:
   * https://discordapp.com/oauth2/authorize?&client_id=CLIENTIDGOESHERE&scope=bot&permissions=8
 * Visit the resulting URL and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
@@ -149,7 +171,7 @@ This Method does not need you to Fork this repository, you can run your bot stra
 **To deploy a free translation bot that you can add to your discord server, follow these easy steps.**
 
 ![Fork](https://media.discordapp.net/attachments/739880221083304007/760461976320606218/cZuuOXkMC3W6vLfD5fKBQ6OYn5fL5JFWuBEbQRcEdHJ4FAYCZwpVIpk8meg0vG6jANXgX0KW0YT0jplWMvgyI2k2txUVetZg1YEM.png?width=366&height=103)
-#### 1. Fork this repository.  
+#### 1. Fork this repository.
 * If you don't yet have a Github account, [create one](https://github.com/join)! It's free and easy.
 * Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repository so that it will be associated with your Github account.
 
@@ -203,7 +225,7 @@ With 1.2.1 there comes a change to the database, the Servers table needs to new 
 
 You can run the `!t updatedb` to do this automatically, or if you want to do this manually then there are certain formats you need to use to have the database work correctly. Below you can find the SQL queries you will need to run to create these.
 
-#### For Heroku, if you are using Postgres Admin 4 as your method of database editor: 
+#### For Heroku, if you are using Postgres Admin 4 as your method of database editor:
 See [Heroku Database Support](#database) for more info
 * **`ALTER TABLE public.servers ADD COLUMN "embedstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'on'::character varying;`**
 * **`ALTER TABLE public.servers ADD COLUMN "bot2botstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'off'::character varying;`**
@@ -266,7 +288,7 @@ Copy the existing **.env.example** file and name it **.env**. Edit the Values of
   * Example -  DATABASE_URL = C:\Admin\Rita_Development\test.db
 
 #### 3. Install nodejs
-Install nodejs from https://nodejs.org/en/  
+Install nodejs from https://nodejs.org/en/
 
 #### 4. Run and start the bot
 Run `npm install -g gulp` in your console to install gulp. Build the bot code using `npm run-script build` and run the bot with `npm run-script start` in the command consolde.
