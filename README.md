@@ -201,7 +201,7 @@ This Method does not need you to Fork this repository, you can run your bot stra
 
 *    **Make sure that you have added the `Heroku Postgres` Addon in the Resources Tab of Heroku or else your bot shall not run!**
 
-* *If you have any issues running your bot join our [Discord Server](https://)
+* *If you have any issues running your bot join our [Discord Server](https://discord.gg/invite/mgNR64R)*
 #### 4. Invite your bot to your server and configure it!
 * Replace the CLIENTID string in the following URL with your own apps client id from Step 2: 
     *  **https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8**
