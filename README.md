@@ -17,8 +17,9 @@ A Translation bot built using `discord.js` and a custom `Google Translate API`.
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ZyC0R3/RitaBot/test-branch)
 
 ###  Check out our website [here](https://ritabot.org) for an easy to read wiki and quick start guide.
-###  To read an *article* about how to start Using RITA go [here instead](https://medium.com/@Artanis_/setup-discord-translation-bot-6899428b0cf2?source=friends_link&sk=cdf79a8e7970408e0238b271e98f2aeb)
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot)
+
+* To read an *article* about how to start Using RITA go [here instead](https://medium.com/@Artanis_/setup-discord-translation-bot-6899428b0cf2?source=friends_link&sk=cdf79a8e7970408e0238b271e98f2aeb)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Zyc0r3/RitaBot) (Please note that Heroku Button is not 100% reliable)
 
 *NEW:* One Click Build with Heroku, For instructions Please go [here](#deploy).
 
@@ -165,6 +166,7 @@ This Method does not need you to Fork this repository, you can run your bot stra
   * https://discordapp.com/oauth2/authorize?&client_id=CLIENTIDGOESHERE&scope=bot&permissions=8
 * Visit the resulting URL and add your bot to any server where you have admin privileges.
 * Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating!
+    * If your bot was not online when you invited it when it does appear online you shall need to run the command `!t settings dbfix` to make it log the server in your database
 
 ## <a name="new-bot"></a>Setting up a Bot Manually
 
