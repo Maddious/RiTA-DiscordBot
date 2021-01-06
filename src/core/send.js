@@ -51,7 +51,7 @@ module.exports = function(data)
       data.text = data.text.replace(/></gm, `> <`);
       data.text = data.text.replace(/＃/gmi, "#");
       data.text = data.text.replace(/＃/gmi, "#");
-      data.text = data.text.replace(/((\s?)(\*)(\s?))/gmis, "*")
+      data.text = data.text.replace(/((\s?)(\*)(\s?))/gmis, "*");
       data.text = data.text.replace(/(?<=<[^<>]*?)([0-9]*)\s*@+(?=[^<>]*>)/gmi, "@$1")
    }
 
