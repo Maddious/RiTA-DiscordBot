@@ -18,14 +18,20 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
    new Sequelize({
       dialect: "sqlite",
       dialectOptions: {
-         ssl: true
+         ssl: {
+            require: true,
+            rejectUnauthorized: false
+         }
       },
       storage: process.env.DATABASE_URL
    }) :
    new Sequelize(process.env.DATABASE_URL, {
       logging: console.log,
       dialectOptions: {
-         sl: true
+         ssl: {
+            require: true,
+            rejectUnauthorized: false
+         }
       }
       //logging: null,
    });
