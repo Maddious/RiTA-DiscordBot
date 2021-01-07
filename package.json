@@ -1,6 +1,6 @@
 {
   "name": "ritabot",
-  "version": "1.2.1-6",
+  "version": "1.2.1-5",
   "engines": {
     "node": "14.0.0"
   },
@@ -33,16 +33,14 @@
     "type": "git",
     "url": "https://github.com/ZyC0R3/Rita"
   },
-  "funding": {
-    "url": "https://ritabot.org"
-  },
+  "funding": "https://ritabot.org",
   "homepage": "https://ritabot.org",
   "bugs": "https://github.com/ZyC0R3/Rita/issues",
   "dependencies": {
     "common-tags": "^1.8.0",
     "discord.js": "^11.6.4",
     "dotenv": "^8.2.0",
-    "google-translate-api": "github:ZyC0R3/google-translate-api",
+    "google-translate-api": "github:ArtanisTheOne/google-translate-api",
     "iso-639-1": "^2.1.4",
     "lodash": "^4.17.20",
     "make-dir": "^3.1.0",
