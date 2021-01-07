@@ -48,7 +48,7 @@
     "make-dir": "^3.1.0",
     "pg": "^8.4.1",
     "pg-hstore": "^2.3.3",
-    "seconds-converter": "git+https://github.com/AlooAkbar/seconds-converter",
+    "seconds-converter": "github:AlooAkbar/seconds-converter",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0",
     "webhook-discord": "^3.7.7"
