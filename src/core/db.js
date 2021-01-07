@@ -25,7 +25,7 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
    new Sequelize(process.env.DATABASE_URL, {
       logging: console.log,
       dialectOptions: {
-         sl: true
+         ssl: true
       }
       //logging: null,
    });
