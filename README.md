@@ -403,12 +403,12 @@ This section/feature is being Created, Check back soon or join the [Support Disc
 
 
 ## <a name="commands"></a>Commands
-* [Translate Custom Text](https://ritabot.org)
-* [Translate by Reaction](https://ritabot.org)
-* [Translate Last Message](https://ritabot.org)
-* [Translate Channel](https://ritabot.org)
-* [Settings](https://ritabot.org)
-* [Misc. Commands](https://ritabot.org)
+* [Translate Custom Text](https://ritabot.org/trans-cust/)
+* [Translate by Reaction](https://ritabot.org/trans-reac/)
+* [Translate Last Message](https://ritabot.org/trans-last/)
+* [Translate Channel](https://ritabot.org/trans-auto/)
+* [Settings](https://ritabot.org/trans-sett/)
+* [Misc. Commands](https://ritabot.org/trans-misc/)
 
 ## <a name="build"></a>All Build Statuses and CI Checks
 
