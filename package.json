@@ -42,13 +42,13 @@
     "common-tags": "^1.8.0",
     "discord.js": "^11.6.4",
     "dotenv": "^8.2.0",
-    "google-translate-api": "git+https://github.com/ZyC0R3/google-translate-api",
+    "google-translate-api": "github:ZyC0R3/google-translate-api",
     "iso-639-1": "^2.1.4",
     "lodash": "^4.17.20",
     "make-dir": "^3.1.0",
     "pg": "^8.4.1",
     "pg-hstore": "^2.3.3",
-    "seconds-converter": "git+https://github.com/AlooAkbar/seconds-converter",
+    "seconds-converter": "github:AlooAkbar/seconds-converter",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0",
     "webhook-discord": "^3.7.7"
@@ -62,6 +62,6 @@
     "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-uglify-es": "^2.0.0",
-    "gulp-watch": "git+https://github.com/ZyC0R3/gulp-watch"
+    "gulp-watch": "github:ZyC0R3/gulp-watch.git"
   }
 }
