@@ -22,35 +22,57 @@ assignees: ZyC0R3
 3. Once this is done, And your bot is back online, run the following commands on your discord server
     * !t settings dbfix
     * !t settings updatedb
-Note: They need to be ran in the correct order. 
+Note: They need to be ran in the correct order, Make sure you run these command in the first server you added the bot too. 
+4. Test your bot now, do you still get the same error.
 
 **IF THIS HAS NOT WORKED THEN PLEASE PROVIDE  A FULL LOG**
 
-**Example *(Delete Below this line and paste your own log)***
+1. Restart All Dyno's in Heroku
+    * Go to https://dashboard.heroku.com/apps and select your bot.
+    * In the top right of the page select "More" and then "Restart all dynos"
+2. Go to your log PAge in Heroku
+    * Go to https://dashboard.heroku.com/apps and select your bot.
+    * In the top right of the page select "More" and then "View Logs"
+    **Try and opne this page as soon as you can after restarting your bot**
+    * Paste Logs below.
 
-```2021-01-22T01:56:46.546377+00:00 app[worker.1]: Executing (default): SELECT 1+1 AS result
+**Example *(Delete Below this line and paste your own log, This has been shortened, yours will be much longer)***
+
+```
+2021-01-22T01:56:40.812434+00:00 heroku[worker.1]: Restarting
+2021-01-22T01:56:40.814498+00:00 heroku[worker.1]: State changed from up to starting
+2021-01-22T01:56:42.496863+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
+2021-01-22T01:56:42.656555+00:00 heroku[worker.1]: Process exited with status 143
+2021-01-22T01:56:43.886628+00:00 heroku[worker.1]: Starting process with command `node src/bot.js`
+2021-01-22T01:56:44.471057+00:00 heroku[worker.1]: State changed from starting to up
+2021-01-22T01:56:46.546377+00:00 app[worker.1]: Executing (default): SELECT 1+1 AS result
 2021-01-22T01:56:46.905456+00:00 app[worker.1]: ----------------------------------------
 2021-01-22T01:56:46.905499+00:00 app[worker.1]: @RITA Bot is now online
-2021-01-22T01:56:46.905499+00:00 app[worker.1]: V.1.2.1-7 | ID: 693296012378374225
+2021-01-22T01:56:46.905499+00:00 app[worker.1]: V.1.2.1-7 | ID: 693296000008374225
 2021-01-22T01:56:46.905500+00:00 app[worker.1]: Made by: Collaboration
 2021-01-22T01:56:46.905500+00:00 app[worker.1]: ----------------------------------------
-2021-01-22T01:56:46.911505+00:00 app[worker.1]: Shard#0:  1 / 1 online - 3 guilds, 153 channels, 2 users
+2021-01-22T01:56:46.911505+00:00 app[worker.1]: Shard#0:  1 / 1 online - 0 guilds, 0 channels, 0 users
 2021-01-22T01:56:46.912930+00:00 app[worker.1]: ----------------------------------------
 2021-01-22T01:56:46.912930+00:00 app[worker.1]: All shards are online, running intervals
 2021-01-22T01:56:46.912930+00:00 app[worker.1]: ----------------------------------------
-2021-01-22T01:56:46.923688+00:00 app[worker.1]: Executing (default): CREATE TABLE IF NOT EXISTS "servers" ("id" VARCHAR(32) NOT NULL UNIQUE , "lang" VARCHAR(8) DEFAULT 'en', "count" INTEGER DEFAULT 0, "active" BOOLEAN DEFAULT true, "embedstyle" VARCHAR(8) DEFAULT 'on', "bot2botstyle" VARCHAR(8) DEFAULT 'off', "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL, "updatedAt" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
-2021-01-22T01:56:46.934117+00:00 app[worker.1]: Executing (default): CREATE TABLE IF NOT EXISTS "tasks" ("id"   SERIAL , "origin" VARCHAR(32), "dest" VARCHAR(32), "reply" VARCHAR(32), "server" VARCHAR(32), "active" BOOLEAN DEFAULT true, "LangTo" VARCHAR(8) DEFAULT 'en', "LangFrom" VARCHAR(8) DEFAULT 'en', "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL, "updatedAt" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
-2021-01-22T01:56:46.938663+00:00 app[worker.1]: Executing (default): INSERT INTO "servers" ("id","lang","count","active","embedstyle","bot2botstyle","createdAt","updatedAt") VALUES ($1,$2,$3,$4,$5,$6,$7,$8) ON CONFLICT ("id") DO UPDATE SET "id"=EXCLUDED."id","lang"=EXCLUDED."lang","updatedAt"=EXCLUDED."updatedAt" RETURNING "id","lang","count","active","embedstyle","bot2botstyle","createdAt","updatedAt";
-2021-01-22T01:56:46.947442+00:00 app[worker.1]: Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'servers' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
-2021-01-22T01:56:46.957765+00:00 app[worker.1]: Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'tasks' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
-2021-01-22T01:56:47.096353+00:00 app[worker.1]: Rita Managment Server - 545787876105912341
-2021-01-22T01:57:15.380039+00:00 app[worker.1]: Rita Managment Server - 545787876105912341
-2021-01-22T01:57:15.459951+00:00 app[worker.1]: Executing (default): SELECT "id", "origin", "dest", "reply", "server", "active", "LangTo", "LangFrom", "createdAt", "updatedAt" FROM "tasks" AS "tasks" WHERE "tasks"."origin" = '755900727028744232' AND "tasks"."active" = true;
+2021-01-22T01:56:46.923688+00:00 app[worker.1]: Executing (default): CREATE TABLE IF NOT EXISTS "servers";
+2021-01-22T01:56:46.934117+00:00 app[worker.1]: Executing (default): CREATE TABLE IF NOT EXISTS "tasks";
+2021-01-22T01:56:46.938663+00:00 app[worker.1]: Executing (default): INSERT INTO "servers";
+2021-01-22T01:56:47.096353+00:00 app[worker.1]: Rita Managment Server - 545000870105000000
+2021-01-22T01:57:15.459951+00:00 app[worker.1]: Executing (default): SELECT;
 2021-01-22T01:57:16.146064+00:00 app[worker.1]: Guild ID from message
-2021-01-22T01:57:16.146181+00:00 app[worker.1]: Raw = 545787876105912341
-2021-01-22T01:57:16.146276+00:00 app[worker.1]: Const = 545787876105912341
+2021-01-22T01:57:16.146181+00:00 app[worker.1]: Raw = 545700870105000000
+2021-01-22T01:57:16.146276+00:00 app[worker.1]: Const = 545700870105000000
 2021-01-22T01:57:16.146324+00:00 app[worker.1]: ---------------------
 2021-01-22T01:57:16.146461+00:00 app[worker.1]: db.set Stage 1 = 
 2021-01-22T01:57:16.147222+00:00 app[worker.1]: db.set Stage 2 = 
-2021-01-22T01:57:16.155957+00:00 app[worker.1]: Executing (default): UPDATE "servers" SET "count"="count"+ 1,"updatedAt"='2021-01-22 01:57:16.139 +00:00' WHERE "id" = '545787876105912341' RETURNING *
-2021-01-22T01:57:16.159915+00:00 app[worker.1]: Executing (default): select * from (select embedstyle as "embedstyle" from servers where id = '545787876105912341') as table1```
+2021-01-22T01:57:16.159915+00:00 app[worker.1]: Executing (default): select * from (select embedstyle as "embedstyle" from servers where id = '545700870105000000') as table1
+2021-01-22T01:57:16.181719+00:00 app[worker.1]: Guild ID from message
+2021-01-22T01:57:16.181811+00:00 app[worker.1]: Raw = 545700870105000000
+2021-01-22T01:57:16.181878+00:00 app[worker.1]: Const = 545700870105000000
+2021-01-22T01:57:16.181948+00:00 app[worker.1]: ---------------------
+2021-01-22T01:57:16.182026+00:00 app[worker.1]: db.set Stage 1 = off
+2021-01-22T01:57:16.182341+00:00 app[worker.1]: db.set Stage 3 = off
+2021-01-22T01:57:16.182397+00:00 app[worker.1]: db.set Stage 4 = off
+2021-01-22T01:57:16.190281+00:00 app[worker.1]: Executing (default): select * from (select embedstyle as "embedstyle" from servers where id = '545700870105000000') as table1
+```
