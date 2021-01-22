@@ -32,7 +32,7 @@ assignees: ZyC0R3
     **Try and opne this page as soon as you can after restarting your bot**
     * Paste Logs below or with Pastebin Link.
 
-**Example *(Delete Below this line and paste your own log, This has been shortened, yours will be much longer)***
+**Example *(Delete content of this template and paste your own log, This has been shortened, yours will be much longer)***
 
 ```
 2021-01-22T01:56:40.812434+00:00 heroku[worker.1]: Restarting
