@@ -20,23 +20,24 @@ A Free Discord Translation bot built using `Discord.js` and a custom `Google Tra
 
 ### Table of Contents
 
-* [Whats New](#new)
-* [Features](#features)
-* [Usage](#usage)
-* **[Setting up a Bot Manually](#new-bot)**
+*Please note some of these links direct you towards our website*
+
+* **[Setting up Rita on Heroku](#new-bot)**
+* **[Setting up Rita locally](#local)**
 * **[How to Update your Bot](#update)**
-* [How to Update your Database Manually](#dbm)
-* [C-3PO to RITA Bot Migration](#migration)
-* [Heroku Database Support](#database)
-* **[Local Installation](#local)**
 * **[Setup on a Raspberry Pi](#pi)**
-* [Troubleshooting](#troubleshooting)
-* [Error Messages](#errors)
-* [Commands](#commands)
-* [All Build Statuses and CI Checks](#build)
-* [Credits & License](#credits-&-license)
-* [Design Team](#design-team)
-* [About Us](#history)
+* [Heroku Database Support](#database)
+ * [Whats New with Rita](https://ritabot.org/whats-new/)
+ * [Features](https://ritabot.org/features)
+ * [Usage](https://ritabot.org/usage/)
+ * [How to Update your Database Manually](https://ritabot.org/dbsupport/)
+ * [C-3PO to RITA Bot Migration](https://ritabot.org/migration/)
+ * [Troubleshooting](https://ritabot.org/troubleshooting)
+ * [Error Messages](https://ritabot.org/common-issues)
+ * [Commands](https://ritabot.org/wiki)
+   * [Credits & License](#credits-&-license)
+   * [Design Team](#design-team)
+   * [About Us](#history)
 
 
 
