@@ -3,7 +3,8 @@
 A Free Discord Translation bot built using `Discord.js` and a custom `Google Translate API`.
 
 #### In support of us, please star this project  
-<iframe src="https://ghbtns.com/github-btn.html?user=Zyc0r3&repo=RitaBot&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
+
+![Star Rita](https://ghbtns.com/github-btn.html?user=Zyc0r3&repo=RitaBot&type=star&count=true&size=large)
 
 
 ### --RITA-- Master Branch
