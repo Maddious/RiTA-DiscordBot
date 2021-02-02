@@ -4,11 +4,6 @@ A Free Discord Translation bot built using `Discord.js` and a custom `Google Tra
 
 #### In support of us, please star this project  
 
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<!-- Place this tag where you want the button to render. -->
-<a class="github-button" href="https://github.com/Zyc0r3/RitaBot" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star Zyc0r3/RitaBot on GitHub">Star</a>
-
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
