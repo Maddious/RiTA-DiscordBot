@@ -4,7 +4,8 @@ A Free Discord Translation bot built using `Discord.js` and a custom `Google Tra
 
 #### In support of us, please star this project  
 
-![Star Rita](https://ghbtns.com/github-btn.html?user=Zyc0r3&repo=RitaBot&type=star&count=true&size=large)
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/Zyc0r3/RitaBot" data-icon="octicon-star" aria-label="Star Zyc0r3/RitaBot on GitHub">Star</a>
 
 
 ### --RITA-- Master Branch
