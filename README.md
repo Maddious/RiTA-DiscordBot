@@ -1,6 +1,9 @@
-## RITA ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg)
-A Translation bot built using `discord.js` and a custom `Google Translate API`.
-####  Upon using this Repository *please* star this repo,  every star helps RITA get more and more popular to help more people.
+## RITA 
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg)
+A Free Discord Translation bot built using `Discord.js` and a custom `Google Translate API`.
+
+#### In support of us, please star this project  
+
 
 ### --RITA-- Master Branch
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version)
