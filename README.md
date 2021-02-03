@@ -1,12 +1,16 @@
-<img src="https://ritabot.org/index/images/favicon.png" data-canonical-src="https://ritabot.org/index/images/favicon.png" width="100" height="100" /> 
+<p align="center"><a href="https://ritabot.org/"><img src="https://media3.giphy.com/media/YO4a0qsdVX3Gq3darL/giphy.gif" data-canonical-src="https://media3.giphy.com/media/YO4a0qsdVX3Gq3darL/giphy.gif" width="175" height="175" href="https://ritabot.org/"></a></p>
+<h1 align="center">Rita</h1>
+<p align="center">Breaking the language barrier for free.</p>
 
 ------
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg) ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version) [![GitHub stars](https://img.shields.io/github/stars/Zyc0r3/RitaBot)](https://github.com/Zyc0r3/RitaBot/stargazers)
+<p align="center">
+<img src="https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version"> <img src="https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?" href="https://discordapp.com/invite/mgNR64R"> <img src="https://img.shields.io/github/license/ZyC0R3/RitaBot.svg"> <img src="https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version"> <img src="https://img.shields.io/github/stars/Zyc0r3/RitaBot" href="https://github.com/Zyc0r3/RitaBot/stargazers">
+</p><br/><br/>
 
-------
 
-An open-source, free Discord Translator Bot built using `google-translate-api` and `Discord.js`. Breaking the language barrier for free.
+
+<p align="center">An open-source, free Discord Translator Bot built using <strong>google-translate-api</strong> and <strong>Discord.js</strong>.</p>
 
 ![Rita Translator Diagram](https://storage.pixteller.com/designs/designs-images/2021-02-03/05/poster-simple-quote-1-601a17471d0b6.png)
 
@@ -18,6 +22,8 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
 ## Table of Contents
 
 *Please note some of these links direct you towards our website*
+<details>
+<summary></strong>Click to expand contents</strong></summary>
 
 * [Setting up Rita on Heroku](#new-bot)
 * [Setting up Rita locally](#local)
@@ -36,19 +42,25 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
     * [Credits & License](#credits-&-license)
     * [Design Team](#design-team)
     * [About Us](#history)
-
+</details>
 
 ------
 
 ## <a name="new-bot"></a>Setting up Rita Translator on Heroku
 
+<p align="center">
+<img src="https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png">
+</p><br/><br/>
 
-
-![Fork](https://media.discordapp.net/attachments/739880221083304007/760461976320606218/cZuuOXkMC3W6vLfD5fKBQ6OYn5fL5JFWuBEbQRcEdHJ4FAYCZwpVIpk8meg0vG6jANXgX0KW0YT0jplWMvgyI2k2txUVetZg1YEM.png?width=366&height=103)
 #### 1. Fork this repository.
 * If you don't yet have a Github account, [create one](https://github.com/join)! It's free and easy.
 * Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repository so that it will be associated with your Github account.
- * Please star our project if you like it using the top-right Star icon. Every star helps share Rita with more people. 
+
+
+* Please ***star our project*** if you like it using the top-right Star icon. Every star helps us! 
+<p align="center">
+<img src="https://ritabot.org/index//images/star.png" href="https://github.com/Zyc0r3/RitaBot/stargazers">
+</p><br/><br/>
 
 #### 2. Create a new [Discord Application](https://discordapp.com/developers/applications) in the Discord Developer Portal
 * Give app a friendly name and click the **Create App** button
