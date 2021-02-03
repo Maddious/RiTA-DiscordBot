@@ -74,7 +74,7 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
 * Go to the **Overview** tab and click configure dynos. Turn off the default `web npm start` dyno and turn on the `worker node src/bot.js` dyno. Your bot will now be up and running!
 
 
-*    **Make sure that you have added the `Heroku Postgres` Addon in the Resources Tab of Heroku or else your bot shall not run!**
+###### **Make sure that you have added the `Heroku Postgres` Addon in the Resources Tab of Heroku or else your bot shall not run!**
 
 * *If you have any issues running your bot join our [Discord Server](https://discord.gg/invite/mgNR64R)*
 #### 4. Invite your bot to your server and configure it!
@@ -83,6 +83,7 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
     
 * Visit the resulting URL and add your bot to any server where you have admin privileges.
   * Once added, your bot should show up as online, **now go back to [Heroku](https://heroku.com/) and go to the "Deploy" section, scroll down to "Manual Deploy" and deploy the *master* branch. Once finished deploying type in `!t settings dbfix`, `!t settings updatedb` and`!t embed on` or `!t embed off` in chat and you are good to go!**
+    * Your bot is now setup and ready for any translation you have for it to do. Use the commands `!t help` and `!t help modules` to learn more about the commands Rita has!
   
 
 * **Important Note**
@@ -136,12 +137,12 @@ Rename the existing **.env.example** file and name it **.env**. Edit the Values 
 * Replace the **CLIENTID** string in the following URL with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=**CLIENTID**&scope=bot&permissions=8
   * Visit the resulting URL and add your bot to any server where you have admin privileges.
 
-* Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating! 
-  * When you first run it restart the bot once and then type in chat the following commands:
+* Once added, your bot should show up as online. However, the first deploy is always broken so you have to turn it off and deploy the bot again.
+  * When you first run it ***restart/deploy the bot once(again)*** and then type in chat the following commands:
     * `!t settings dbfix`
     * `!t settings updatedb`
     * `!t embed on` or `!t embed off`
-  * Happy Translating!
+  * Your bot is now setup and ready for any translation you have for it to do. Use the commands `!t help` and `!t help modules` to learn more about the commands Rita has!
 
 ------
 ### <a name="soon"></a>Coming Soon!
@@ -159,6 +160,8 @@ Rename the existing **.env.example** file and name it **.env**. Edit the Values 
 
 This project was originally released by Aziz under the MIT license. He chose to take the project private/commercial at version 0.4.2 Beta. Bobby Johnson forked the project and renamed it Louie after his dog. AlooAkbar forked Louie and added the necessary modifications for simple and free deployment of the bot using Heroku. ZyC0R3 Picked up the fork and as part of a team fixed over 200 errors and brought it in to the modern age, All would like to thank Aziz for his hard work and making these early versions OSS so that others may learn and build on his hard work to share with the community.
 
+------
+
 ### <a name="design-team"></a>Design Team
 * Zycore / [ZyC0R3](https://github.com/ZyC0R3)
 * Artanis / [ArtanisTheOne](https://github.com/ArtanisTheOne)
@@ -167,13 +170,19 @@ This project was originally released by Aziz under the MIT license. He chose to 
 * Maddious / [MadIndex](https://github.com/MadIndex)
 * defqon.1 / [wdaniel1985](https://github.com/wdaniel1985)
 
+------
+
 ### <a name="history"></a>What is Rita and who are we?
 
-*Rita is the culmination of many things, it started with a mobile game, a community of gamers, a discord server of different languages and a desire to all be understood. She is a Real-Time Translator Bot for use on Discord, Self-hosted on Heroku (or a local install) and Completly **100%** Free. She is maintained by a small group of users, each with different backgrounds and some learning as we go.*
+*Rita is the culmination of many things, it started with a mobile game, a community of gamers, a discord server of different languages and a desire to all be understood. She is a Real-Time Translator Bot for use on Discord, Hosted using Heroku and Local Devices and Completly **100%** Free. She is maintained by a small group of users, each with different backgrounds and some learning as we go.*
+
+------
 
 #### Why did you make Rita?
 
 *The mobile game itself would get old, fast. The community around it, however, is what kept us going. The one downside was we didn't all speak the same language. The game we played translated our conversations for us but Discord didn't, so the server admins used a  translation bot called C-3P0. This introduction is the start of the story.*
+
+------
 
 #### The history of Rita?
 
@@ -181,9 +190,11 @@ This project was originally released by Aziz under the MIT license. He chose to 
 
 *Originally called discord-translator and made by Aziz, then forked By NotMyself and renamed Louie, forked again By AlooAkbar and renamed C-3P0, its code was neglected, not maintained, left outdated and iterations made private for commercial gains.*
 
+------
+
 #### Why Rita and what does it stand for?
 
-*I and a group of fellow C-3P0 users decided that collectively we could do better, plagued with crashes, API changes, relentless bugs and issues, the drive to make something better was born.*
+*I and a group of fellow C-3P0 users decided that collectively we could do better, plagued with crashes, API changes, relentless bugs and issues, the drive to make something better was born. Vast changes were made, many hours were spent and now the Rita you now was brought to life.*
 
 *Rita's history and various iterations each added something extra, it just needed to be brought together and molded, molded into something amazing, moulded into Rita. The Real-Time Interchangeable Translating Assistant.*
 
