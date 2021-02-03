@@ -48,9 +48,10 @@
 
 ## <a name="new-bot"></a>Setting up Rita Translator on Heroku
 
+<p align="center">
+<img src="https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png">
+</p><br/><br/>
 
-
-<p align="center"><img src="https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png> </p>
 #### 1. Fork this repository.
 * If you don't yet have a Github account, [create one](https://github.com/join)! It's free and easy.
 * Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repository so that it will be associated with your Github account.
