@@ -1,4 +1,4 @@
-<img src="https://ritabot.org/index/images/favicon.png" data-canonical-src="https://ritabot.org/index/images/favicon.png" width="192" height="192" /> 
+<img src="https://ritabot.org/index/images/favicon.png" data-canonical-src="https://ritabot.org/index/images/favicon.png" width="100" height="100" /> 
 
 ------
 
