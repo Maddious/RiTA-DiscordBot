@@ -10,7 +10,7 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
 
 ![Rita Translator Diagram](https://storage.pixteller.com/designs/designs-images/2021-02-03/05/poster-simple-quote-1-601a17471d0b6.png)
 
-###### If you like what we are doing, please [star](https://github.com/Zyc0r3/RitaBot/stargazers) our repo
+##### If you like what we are doing, please [star](https://github.com/Zyc0r3/RitaBot/stargazers) our repo using the top-right star icon
 
 
 
