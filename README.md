@@ -30,9 +30,9 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
   * [Usage](https://ritabot.org/usage/)
   * [How to Update your Database Manually](https://ritabot.org/dbsupport/)
   * [C-3PO to RITA Bot Migration](https://ritabot.org/migration/)
-  * [Troubleshooting](https://ritabot.org/troubleshooting)
-  * [Error Messages](https://ritabot.org/common-issues)
-  * [Commands](https://ritabot.org/wiki)
+  * [Webhook Log Setup](https://ritabot.org/troubleshooting)
+  * [Common Issues](https://ritabot.org/common-issues)
+  * [Command Wiki](https://ritabot.org/wiki)
     * [Credits & License](#credits-&-license)
     * [Design Team](#design-team)
     * [About Us](#history)
@@ -40,7 +40,7 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
 
 ------
 
-## <a name="new-bot"></a>Setting up Rita Translator Manually
+## <a name="new-bot"></a>Setting up Rita Translator on Heroku
 
 
 
@@ -82,20 +82,24 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
     *  **https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8**
     
 * Visit the resulting URL and add your bot to any server where you have admin privileges.
-  * Once added, your bot should show up as online, now go back to [Heroku](https://heroku.com/) and go to the "Deploy" section, scroll down to "Manual Deploy" and deploy the *master* branch. Once finished deploying type in `!t embed on` or `!t embed off` in chat and you are good to go!
+  * Once added, your bot should show up as online, **now go back to [Heroku](https://heroku.com/) and go to the "Deploy" section, scroll down to "Manual Deploy" and deploy the *master* branch. Once finished deploying type in `!t settings dbfix`, `!t settings updatedb` and`!t embed on` or `!t embed off` in chat and you are good to go!**
+  
+
+* **Important Note**
+ * The `!t embed` command is changeable whenever you like. It simply decides wether you would like translations to be sent as Webhooks (more user-like, profile picture) or embed (bot sends message with anembed message contintaining user profile picture.)
 
 ------
 
-## <a name="update"></a>How to Update to Stable Branch
+## <a name="update"></a>How to Update to Stable Branch on Heroku
 #### 1. Checklist
 * You must have a bot already running on your server, if not then refer to [Setting up a New Bot](#new-bot)
 
-#### 2. Fork this Repository
+#### 2. Make a Pull Request to your Fork from this Repo
 * Complete a Pull Request from the master Branch of ZyC0R3/Rita to your master branch. 
   * Detailed instructions with example can be found **[here](https://www.sitepoint.com/quick-tip-sync-your-fork-with-the-original-without-the-cli/)**
 
 
-#### 3. Deploy Update in Heroku
+#### 3. Deploy Updated Fork in Heroku
 * Log in to your Heroku account.
 * Select the bot you made in Step 3 of [Setting up a New Bot](#new-bot)
 * Under **Deployment Method** make sure you have Github selected, ensure **Connect to GitHub** has the correct repository selected, Scroll down to the "Manual deploY" section, and select the **master** branch. Click deploy branch, and wait for the successfully deployed message.
@@ -103,17 +107,15 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
 #### 4. Updating Database
 
 * Once the bot has been deployed with the successfully updated fork you will need to update the database using some commands.
-* Please run the following commands in consecutive order: 
+* Run the following commands in order
   * **`!t settings updatedb`**
   * **`!t settings dbfix`**
   * **`!t embed on`** or **`!t embed off`** (value of the translation style)
-
-
 ------
 
 ## <a name="local"></a>Running Rita Locally
 
-*The bot can also be run locally without Heroku. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Please note that for the bot to continue running 24/7 the process of `node src/bot.js` should always remain online and thus your PC/hosting device must remain online too*
+*The bot can also be run locally on a device. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Please note that for the bot to continue running 24/7, the process of `node src/bot.js` should always remain online and thus your PC/hosting device must remain online too*
 
 #### 1. Create a local database
 Any Database that runs with [SQL Sequelize](https://sequelize.org/master/) can be used. My recommendation is to use the [SQL Lite](https://www.sqlite.org/index.html) database since the setup is fast and access is easy. Copy the connection details to the database for the next step. Example: The connection to a sqlite database with the name *`database.db`* stored at the same level of this README file would be *`./database.db`*.
