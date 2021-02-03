@@ -1,4 +1,6 @@
-# RITA <img src="https://ritabot.org/index/images/favicon.png" data-canonical-src="https://ritabot.org/index/images/favicon.png" width="100" height="100" />
+<img src="https://ritabot.org/index/images/favicon.png" data-canonical-src="https://ritabot.org/index/images/favicon.png" width="100" height="100" /> 
+
+# RITA 
 
 ------
 
@@ -8,6 +10,7 @@
 
 An open-source, free Discord Translator Bot built using `google-translate-api` and `Discord.js`. Breaking the language barrier for free.
 
+![Space Image 1](https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)
 
 ###### If you like what we are doing, please [star](https://github.com/Zyc0r3/RitaBot/stargazers) our repo
 
