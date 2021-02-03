@@ -4,7 +4,7 @@
 
 ------
 
-<p align="center">![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg) ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version) [![GitHub stars](https://img.shields.io/github/stars/Zyc0r3/RitaBot)](https://github.com/Zyc0r3/RitaBot/stargazers)
+<p align="center"></p>![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg) ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version) [![GitHub stars](https://img.shields.io/github/stars/Zyc0r3/RitaBot)](https://github.com/Zyc0r3/RitaBot/stargazers)
 
 ------
 
