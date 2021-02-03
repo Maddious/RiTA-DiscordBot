@@ -7,9 +7,10 @@
 <p align="center">
 <img src="https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version"> <img src="https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?" href="https://discordapp.com/invite/mgNR64R"> <img src="https://img.shields.io/github/license/ZyC0R3/RitaBot.svg"> <img src="https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version"> <img src="https://img.shields.io/github/stars/Zyc0r3/RitaBot" href="https://github.com/Zyc0r3/RitaBot/stargazers">
 </p><br/><br/>
-------
 
-An open-source, free Discord Translator Bot built using `google-translate-api` and `Discord.js`.
+
+
+<p align="center">An open-source, free Discord Translator Bot built using `google-translate-api` and `Discord.js`.</p>
 
 ![Rita Translator Diagram](https://storage.pixteller.com/designs/designs-images/2021-02-03/05/poster-simple-quote-1-601a17471d0b6.png)
 
