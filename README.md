@@ -118,17 +118,17 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
 *The bot can also be run locally on a device. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Please note that for the bot to continue running 24/7, the process of `node src/bot.js` should always remain online and thus your PC/hosting device must remain online too*
 
 #### 1. Create a local database
-Any Database that runs with [SQL Sequelize](https://sequelize.org/master/) can be used. My recommendation is to use the [SQL Lite](https://www.sqlite.org/index.html) database since the setup is fast and access is easy. Copy the connection details to the database for the next step. Example: The connection to a sqlite database with the name *`database.db`* stored at the same level of this README file would be *`./database.db`*.
+* Any Database that runs with [SQL Sequelize](https://sequelize.org/master/) can be used. My recommendation is to use the [SQL Lite](https://www.sqlite.org/index.html) database since the setup is fast and access is easy. Copy the connection details to the database for the next step. Example: The connection to a sqlite database with the name *`database.db`* stored at the same level of this README file would be *`./database.db`*.
 
 #### 2. Install necessary software
-Install [node.js](https://nodejs.org/en/) and make sure you have [Git](https://git-scm.com/downloads) and [npm](https://www.npmjs.com/get-npm) installed
+* Install [node.js](https://nodejs.org/en/) and make sure you have [Git](https://git-scm.com/downloads) and [npm](https://www.npmjs.com/get-npm) installed
 
 #### 4. Install the bot
 * Run **```git clone https://github.com/Zyc0r3/RitaBot```**
 * Download dependencies using **`npm install`**
 
 #### 5. Create a new .env File
-Rename the existing **.env.example** file and name it **.env**. Edit the Values of **DISCORD_TOKEN**, and the **DATABASE_URL** according to the values that you in [Step 2 of "Setting Up a New Bot"](#new-bot) .
+* Rename the existing **.env.example** file and name it **.env**. Edit the Values of **DISCORD_TOKEN**, and the **DATABASE_URL** according to the values that you in [Step 2 of "Setting Up a New Bot"](#new-bot) .
   * DATABASE_URL needs to be the path to the database file (if you set **`DATABASE_URL`** to any of these values: `./database.db`, `C:/FOLDER/ok.db`, `../random.db` they will all work because they lead to a directory in which SQLite then creates the `.db` file )
     * Example -  `DATABASE_URL` = `C:\Admin\Rita_Development\test.db`
 
@@ -136,12 +136,12 @@ Rename the existing **.env.example** file and name it **.env**. Edit the Values 
 * Replace the **CLIENTID** string in the following URL with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=**CLIENTID**&scope=bot&permissions=8
   * Visit the resulting URL and add your bot to any server where you have admin privileges.
 
-* Once added, your bot should show up more or less instantaneously. Type `!t help` within the discord chat for more details on how to use it. Happy translating! 
-  * When you first run it restart the bot once and then type in chat the following commands:
+* Once added, your bot should show up as online automatically. But you arent done yet!
+  * When you first run it **restart the bot by exiting the process and reopening it** once and then type in chat the following commands:
     * `!t settings dbfix`
     * `!t settings updatedb`
     * `!t embed on` or `!t embed off`
-  * Happy Translating!
+  * Your bot should now be fully up and running! Happy Translating :)
 
 ------
 ### <a name="soon"></a>Coming Soon!
