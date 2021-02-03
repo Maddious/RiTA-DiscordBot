@@ -1,4 +1,4 @@
-<p align="center">a href="https://ritabot.org/"><img src="https://media3.giphy.com/media/YO4a0qsdVX3Gq3darL/giphy.gif" data-canonical-src="https://media3.giphy.com/media/YO4a0qsdVX3Gq3darL/giphy.gif" width="175" height="175" href="https://ritabot.org/"></a></p>
+<p align="center"><a href="https://ritabot.org/"><img src="https://media3.giphy.com/media/YO4a0qsdVX3Gq3darL/giphy.gif" data-canonical-src="https://media3.giphy.com/media/YO4a0qsdVX3Gq3darL/giphy.gif" width="175" height="175" href="https://ritabot.org/"></a></p>
 <h1 align="center">Rita</h1>
 <p align="center">Breaking the language barrier for free.</p>
 
