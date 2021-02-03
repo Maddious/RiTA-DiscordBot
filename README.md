@@ -90,7 +90,7 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
 
 ------
 
-## <a name="update"></a>How to Update to Stable Branch
+## <a name="update"></a>How to Update to Stable Branch on Heroku
 #### 1. Checklist
 * You must have a bot already running on your server, if not then refer to [Setting up a New Bot](#new-bot)
 
@@ -111,13 +111,11 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
   * **`!t settings updatedb`**
   * **`!t settings dbfix`**
   * **`!t embed on`** or **`!t embed off`** (value of the translation style)
-
-
 ------
 
 ## <a name="local"></a>Running Rita Locally
 
-*The bot can also be run locally without Heroku. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Please note that for the bot to continue running 24/7 the process of `node src/bot.js` should always remain online and thus your PC/hosting device must remain online too*
+*The bot can also be run locally on a device. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Please note that for the bot to continue running 24/7, the process of `node src/bot.js` should always remain online and thus your PC/hosting device must remain online too*
 
 #### 1. Create a local database
 Any Database that runs with [SQL Sequelize](https://sequelize.org/master/) can be used. My recommendation is to use the [SQL Lite](https://www.sqlite.org/index.html) database since the setup is fast and access is easy. Copy the connection details to the database for the next step. Example: The connection to a sqlite database with the name *`database.db`* stored at the same level of this README file would be *`./database.db`*.
