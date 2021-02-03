@@ -19,7 +19,7 @@
 
 
 
-## Table of Contents
+## :book: Table of Contents
 
 *Please note some of these links direct you towards our website*
 <details>
@@ -47,7 +47,7 @@
 
 ------
 
-## <a name="new-bot"></a>Setting up Rita Translator on Heroku
+## <a name="new-bot"></a>:computer: Setting up Rita Translator on Heroku
 
 <p align="center">
 <img src="https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png">
@@ -104,7 +104,7 @@
 
 ------
 
-## <a name="update"></a>How to Update to Stable Branch on Heroku
+## <a name="update"></a>:floppy_disk: How to Update to Stable Branch on Heroku
 #### 1. Checklist
 * You must have a bot already running on your server, if not then refer to [Setting up a New Bot](#new-bot)
 
@@ -127,7 +127,7 @@
   * **`!t embed on`** or **`!t embed off`** (value of the translation style)
 ------
 
-## <a name="local"></a>Running Rita Locally
+## <a name="local"></a>:desktop_computer: Running Rita Locally
 
 *The bot can also be run locally on a device. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Please note that for the bot to continue running 24/7, the process of `node src/bot.js` should always remain online and thus your PC/hosting device must remain online too*
 
@@ -158,7 +158,7 @@ Rename the existing **.env.example** file and name it **.env**. Edit the Values 
   * Your bot is now setup and ready for any translation you have for it to do. Use the commands `!t help` and `!t help modules` to learn more about the commands Rita has!
 
 ------
-### <a name="soon"></a>Coming Soon!
+### <a name="soon"></a>:bulb: Coming Soon!
 
 01. Error Message Support Section.
 02. Auto Reverse translation for the auto function.
@@ -177,13 +177,13 @@ Rename the existing **.env.example** file and name it **.env**. Edit the Values 
 ------
 
 
-### <a name="credits-&-license"></a>Credits & License
+### <a name="credits-&-license"></a>:star_struck: Credits & License
 
 This project was originally released by Aziz under the MIT license. He chose to take the project private/commercial at version 0.4.2 Beta. Bobby Johnson forked the project and renamed it Louie after his dog. AlooAkbar forked Louie and added the necessary modifications for simple and free deployment of the bot using Heroku. ZyC0R3 Picked up the fork and as part of a team fixed over 200 errors and brought it in to the modern age, All would like to thank Aziz for his hard work and making these early versions OSS so that others may learn and build on his hard work to share with the community.
 
 ------
 
-### <a name="design-team"></a>Design Team
+### <a name="design-team"></a>:sunglasses: Design Team
 * Zycore / [ZyC0R3](https://github.com/ZyC0R3)
 * Artanis / [ArtanisTheOne](https://github.com/ArtanisTheOne)
 * Balthazar / [Jshep89](https://github.com/JShep89)
@@ -193,19 +193,19 @@ This project was originally released by Aziz under the MIT license. He chose to 
 
 ------
 
-### <a name="history"></a>What is Rita and who are we?
+### <a name="history"></a>:yum: What is Rita and who are we?
 
 *Rita is the culmination of many things, it started with a mobile game, a community of gamers, a discord server of different languages and a desire to all be understood. She is a Real-Time Translator Bot for use on Discord, Hosted using Heroku and Local Devices and Completly **100%** Free. She is maintained by a small group of users, each with different backgrounds and some learning as we go.*
 
 ------
 
-#### Why did you make Rita?
+#### :world_map: Why did you make Rita?
 
 *The mobile game itself would get old, fast. The community around it, however, is what kept us going. The one downside was we didn't all speak the same language. The game we played translated our conversations for us but Discord didn't, so the server admins used a  translation bot called C-3P0. This introduction is the start of the story.*
 
 ------
 
-#### The history of Rita?
+#### :rocket: The history of Rita?
 
 *There are loads of different translation bots out there, some are amazing, some are expensive, some are free but have limits, and others are just rubbish. C-3P0 checked all these boxes.*
 
@@ -213,7 +213,7 @@ This project was originally released by Aziz under the MIT license. He chose to 
 
 ------
 
-#### Why Rita and what does it stand for?
+#### :star2: Why Rita and what does it stand for?
 
 *I and a group of fellow C-3P0 users decided that collectively we could do better, plagued with crashes, API changes, relentless bugs and issues, the drive to make something better was born. Vast changes were made, many hours were spent and now the Rita you now was brought to life.*
 
