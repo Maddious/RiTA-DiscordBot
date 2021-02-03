@@ -15,7 +15,7 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
 
 
 
-### Table of Contents
+## Table of Contents
 
 *Please note some of these links direct you towards our website*
 
@@ -38,10 +38,11 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
     * [About Us](#history)
 
 
+------
 
-## <a name="new-bot"></a>Setting up a Bot Manually
+## <a name="new-bot"></a>Setting up Rita Translator Manually
 
-**To deploy a free translation bot that you can add to your discord server, follow these easy steps.**
+
 
 ![Fork](https://media.discordapp.net/attachments/739880221083304007/760461976320606218/cZuuOXkMC3W6vLfD5fKBQ6OYn5fL5JFWuBEbQRcEdHJ4FAYCZwpVIpk8meg0vG6jANXgX0KW0YT0jplWMvgyI2k2txUVetZg1YEM.png?width=366&height=103)
 #### 1. Fork this repository.
