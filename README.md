@@ -2,7 +2,7 @@
 
 ------
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg) ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version) [![invite](https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?)](https://discordapp.com/invite/mgNR64R) ![GitHub](https://img.shields.io/github/license/ZyC0R3/RitaBot.svg) ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch?label=Test%20Version) [![GitHub stars](https://img.shields.io/github/stars/Zyc0r3/RitaBot)](https://github.com/Zyc0r3/RitaBot/stargazers)
 
 ------
 
@@ -18,23 +18,23 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
 
 *Please note some of these links direct you towards our website*
 
-* **[Setting up Rita on Heroku](#new-bot)**
-* **[Setting up Rita locally](#local)**
-* **[How to Update your Bot](#update)**
-* **[Setup on a Raspberry Pi](#pi)**
-* [Heroku Database Support](#database)
+* [Setting up Rita on Heroku](#new-bot)
+* [Setting up Rita locally](#local)
+* [How to Update your Bot](#update)
 * [Coming Soon](#soon)
- * [Whats New with Rita](https://ritabot.org/whats-new/)
- * [Features](https://ritabot.org/features)
- * [Usage](https://ritabot.org/usage/)
- * [How to Update your Database Manually](https://ritabot.org/dbsupport/)
- * [C-3PO to RITA Bot Migration](https://ritabot.org/migration/)
- * [Troubleshooting](https://ritabot.org/troubleshooting)
- * [Error Messages](https://ritabot.org/common-issues)
- * [Commands](https://ritabot.org/wiki)
-   * [Credits & License](#credits-&-license)
-   * [Design Team](#design-team)
-   * [About Us](#history)
+  * [Heroku Database Support](https://ritabot.org/dbsupport/)
+  * [Setup on a Raspberry Pi](https://ritabot.org/raspberry-pi/)
+  * [Whats New with Rita](https://ritabot.org/whats-new/)
+  * [Features](https://ritabot.org/features)
+  * [Usage](https://ritabot.org/usage/)
+  * [How to Update your Database Manually](https://ritabot.org/dbsupport/)
+  * [C-3PO to RITA Bot Migration](https://ritabot.org/migration/)
+  * [Troubleshooting](https://ritabot.org/troubleshooting)
+  * [Error Messages](https://ritabot.org/common-issues)
+  * [Commands](https://ritabot.org/wiki)
+    * [Credits & License](#credits-&-license)
+    * [Design Team](#design-team)
+    * [About Us](#history)
 
 
 
@@ -104,56 +104,13 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
   * **`!t settings updatedb`**
   * **`!t settings dbfix`**
   * **`!t embed on`** or **`!t embed off`** (value of the translation style)
-------
 
-### <a name="migration"></a>C-3PO to RITA Bot Migration
-**If you already have a Heroku Bot Using C-3P0**
-
-#### 1. Checklist
-* Make sure you have completed the following steps before attempting to migrate translation settings.
-1. You have an already up and running C-3P0 Bot.
-2. You are using Heroku to run the old version.
-3. Make sure you do not disable, reset or delete your database (preferably Postgres from Heroku)
-4. You have already completed a Pull Request from the master Branch of ZyC0R3/Rita to your master branch.
-
-#### 2. Migrate
-* Go to Heroku and click your app of C-3PO, and locate the **Deploy** section. Scroll down until you see the current fork your C-3PO bot is running off of, next to it there should be a button saying **Disconnect**
-* Next click search on repositories and select your fork of this project and wait for it to load. Once that is completed you need to **Deploy** the 'Master' Branch/Version of the bot.
-* Wait for it to finish deploying and you should be good to go. Turn on your worker dyno (if it was not already) and make sure your DISCORD_TOKEN is connected in the variables section in Settings. All data from your previous C-3PO bot should be saved in the database of Postgres as long as you do not delete it and will connect to all the previous channel translation connections. Happy Translating!
 
 ------
 
-## <a name="database"></a>Heroku Database Support
-Sometimes you need to edit the Database manually, This is not something you should be playing around with unless you really know what you are doing.
+## <a name="local"></a>Running Rita Locally
 
-#### 1. Checklist
-1. Know that you are doing, if you don't then **don't** touch the DB. Simple.
-2. Download and Install Postgres Admin 4, Located [Here](https://www.pgadmin.org/download/) or [Here](https://www.postgresql.org/ftp/pgadmin/pgadmin4/). *This guide will be for Windows, but it shouldn't be much different for any other OS.*
-3. Locate your credentials for you Heroku Database, Log in to **Heroku** > Select your **App** > Click **Resources** > Click **Heroku Postgres** > Click **Settings** > Click **View Credentials** (*Note: Heroku rotates credentials periodically and updates applications where this database is attached.*)
-
-#### 2. Connect
-For a fresh install of pgAdmin, the dashboard likely contains only one server. This is your local server, Ignore this.
-1. Right click server(s) > create > server …
-2. Fill out the following:
-  * **Name:** This is solely for you. Name it whatever you want, I chose ‘Heroku-Run — On’
-
-*Under the connection tab:*
-  * **Hostname/Address:** This is the host credential you located in Step 3. It should look like \*\*-\*\*-\*\*...amazonaws.com
-  * **Port:** Keep the port at 5432, unless your credentials list otherwise
-  * **Maintenance databaseL** This is the database field located in Step 3 Below.
-  * **Username:**  This is the user field in the credentials
-  * **Password:** The password field located in Step 3. I highly advise checking save password so that you don’t have to copypasta this every time you want to connect.
-  * In the **SSL Tab**, mark SSL mode as require
-
-At this point, if we were to hit ‘save’ (please don’t), something very strange would happen. You’d see hundreds if not thousands of databases appear in pgAdmin. This has to do with how Heroku configures their servers. You’ll still only have access to your specific database, not those of others. In order to avoid parsing so many databases, we have to white list only those databases we care about.
-
-1. Go to the **Advanced** tab and under db restriction copy the database name (it’s the same value as the **Maintenance Database** field filled earlier).
-2. Click Save/Connect and you are done. Edit away.
-
-------
-
-## <a name="local"></a>Local Installation Support
-The bot can also be run locally without Heroku. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Start with the steps 1 and 2 in [Setting up a New Bot](#new-bot) and the continue as follows:
+*The bot can also be run locally without Heroku. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Please note that for the bot to continue running 24/7 the process of `node src/bot.js` should always remain online and thus your PC/hosting device must remain online too*
 
 #### 1. Create a local database
 Any Database that runs with SQL Sequelize ('https://sequelize.org/master/') can be used. My recommendation is to use the [SQL Lite](https://www.sqlite.org/index.html) database since the setup is fast and access is easy. Copy the connection details to the database for the next step. Example: The connection to a sqlite database with the name *database.db* stored at the same level of this README file would be *./database.db*.
@@ -181,97 +138,6 @@ Rename the existing **.env.example** file and name it **.env**. Edit the Values 
     * `!t embed on` or `!t embed off`
   * Happy Translating!
 
-### <a name="pi"></a>Setup on a Raspberry Pi
-We recommend to initially run your bot in a local environment on your laptop before you run the translator on a Raspberry Pi. The local setup allows you to get familiar with the setup and the settings.
-
-The following description allows a headless configuration. Only a network connection is required. This description is explicitly for running the bot on a Raspberry Pi 4, but the setup should be similar for earlier version.
-
-Recommendation: run it locally first before putting the code on pi. Easier to ensure that .env variables are setup correctly.
-
-#### 1. Write Raspbian on your SD card
-Download the minimal image of Raspbian (https://www.raspberrypi.org/downloads/raspbian/). This setup is based on Raspbian Buster Lite, July 2019.
-
-Use balenaEtcher(https://www.balena.io/etcher/) to write the image on your SD card.
-
-For more Information: See https://www.raspberrypi.org/documentation/installation/installing-images/README.md
-
-#### 2. Enable SSH
-Enable SSH by placing a file named “ssh” (without any extension) onto the boot partition of the SD card.
-
-#### 3. Start and Login
-* Pop your prepared SD card, power and a network cable into the Pi.
-* Find your Pi's IP Address. Check your Router's DHCP allocation table or use a mobile app like Fing (https://play.google.com/store/apps/details?id=com.overlook.android.fing) to find the IP of Pi.
-* Install WinSCP and Putty on your Laptop.
-* Start Putty and login into your Pi. Username: pi, PW: raspberry. Change your password with 'passwd'.
-
-#### 4. Initial Setup
-* Type `raspi-config` and change your locales
-* Update the package lists from repositories: `sudo apt-get update`
-* Update your repositories: `sudo apt-get dist-upgrade`
-
-#### 5. Install node and npm
-The fastes way to install the current node and npm versions (https://nodejs.org/en/download/) was to follow the description from nodesource (https://github.com/nodesource/distributions/blob/master/README.md):
-* Get the source: `curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -`
-* Install: `sudo apt-get install -y nodejs`
-* Check version: `node -v` and `npm -v`
-
-#### 6. Get the code
-It is recommend to install git and pull from your fork or main:
-* Install git: `sudo apt-get install git`
-* Create the folder for the source: `mkdir Rita`
-* Clone the repository: `git clone https://github.com/ZyC0R3/RitaBot.git`
-* Checkout the branch you need: `git checkout --track origin/1.2.0-6`
-
-Alternative: move the source code with WinSCP from your local environment to the Pi.
-
-#### 7. Install the database
-Install sqlite3 with `sudo apt-get install sqlite3`.
-
-Create an empty database file (`sqlite3 database.db`)and call `.tables`)
-
-#### 8. Copy your .env
-Use WinSCP to copy your .env file from your local environment to the Pi.
-
-#### 9. Run the code
-* Install gulp is installed: `sudo npm install -g gulp` (not sure if still necessary)
-* Make sure you are in the Rita folder
-* Get and install all packages of RITA: `npm install`
-* Build the code: `npm run-script build`
-* Start the bot: `npm run-script start`
-
-#### 10. Autostart
-There are different ways to make the bot initialize at startup. The following description is based on `init.d` and `update-rc.d`:
-* Create a `init.d` script: Edit the script template in `.pi/translate_bot` if necessary and copy it to the folder `/etc/init.d/` with `sudo mv .pi/translate_bot /etc/init.d/.`
-* Make the file executable: `sudo chmod +x /etc/init.d/translate_bot`
-* Update the system script links: `sudo update-rc.d translate_bot defaults`
-* Now, you can interact with the bot service with commands `sudo service translate_bot start`,  `sudo service translate_bot status` and `sudo service translate_bot stop`
-* The logging will be in `/var/log/translate_bot.err` and `/var/log/translate_bot.log`
-* Reboot and hope everything is running smooth: `sudo reboot`
-* Enjoy (or return to step 4 in [Setting up a New Bot](#new-bot) if you haven't done yet)
-
-#### 11. Updating the Bot
-Update method via command line, minimal GUI interface needed
-* Step 1: Naviagte to the directory where you ran `git clone` for your fork of the RitaBot repository.
-  * `cd RitaBot`
-  * `git status` should return the following `On branch master Your branch is up to date with 'origin/master'. nothing to commit, working tree clean` if so preoceed to Step 2
-  * if how ever you get the following messages you will need to resolve them before proceeding further.
-    * `Changes not staged for commit:` you have the following options
-      * Do this if you have changes you deam nesiciary to add only
-        * (use "`git add <modified file>`" to update what will be committed) followed by `git commit -m <commit message>` and lastly `git push master`
-        * If you are adding you own commits I'm assuming you know how to deal with potential merge conflicts and can appropriatly resolve them accordingly before rebase step.
-      * The other and HIGHLY prefered method is to simply checkout the modifed files to avoid merge conflicts  (use "`git checkout -- . ` to discard changes all changes working directory)
-        * Once you think you've gotten the branch back to `working tree clean` state by running `git status` one more time. You are ready to move on to Step 2
-* Step 2: Now just run the following commands in order
-  * `git remote add upstream https://github.com/ZyC0R3/RitaBot.git`
-  * `git fetch upstream`
-  * `git checkout master`
-  * `git rebase upstream/master`
-  * `git push -f origin master` (Note you will only have to use the `-f` flag for the first psuh)
-    * enter your username and password from your Github account that's linked to the bot to complete the `git push`
-  * Restart your stopped Web Dyno on the Heroku website.
-  * Go to `Depploy` page on your Heroku app overview, scroll to the bottom and click `Deploy Branch` at the bottom in the Manual Deploy section.
-* Congrats update to new bot is complete. You can verify the update by checking the version of the bot after it finishes rebooting with the trusty `!t stats` command
-
 ------
 ### <a name="soon"></a>Coming Soon!
 
@@ -283,33 +149,6 @@ Update method via command line, minimal GUI interface needed
 06. Allow Bot Translation (V1.2.2)
 
 ------
-
-### <a name="troubleshooting"></a>Troubleshooting
-* You can set up debugging Webhooks using the following steps
-    1. Create a new channel on your server to receive the Webhooks, let's say `#Webhooks`.
-    2. Go to Server Settings -> Webhooks -> Create Webhook. Select the `#Webhooks` channel, then copy the Webhook's URL. It will look something like `https://discordapp.com/api/webhooks/012345678901234567/VCj9yOOtJF9VCm-BU2F9xrbnoWD5gBZZ-UU1mZHcxi5VLgr3bPb9NanRJM8YD9cpBisL`
-    3. In the **Settings** tab of your Heroku app add the following Config Variables (values extracted from your URL):
-        * **DISCORD_DEBUG_WEBHOOK_ID** : 012345678901234567
-        * **DISCORD_DEBUG_WEBHOOK_TOKEN** : VCj9yOOtJF9VCm-BU2F9xrbnoWD5gBZZ-UU1mZHcxi5VLgr3bPb9NanRJM8YD9cpBisL
-    4. Restart your app's `worker node src/bot.js` dyno, and you will begin to receive debugging messages in your `#Webhooks` channel.
-* If your bot in unresponsive, the first thing to check is Heroku. Log in and manually restart the `worker node src/bot.js` dyno.
-* For further troubleshooting, it's helpful to install the Heroku command line interface. Once installed you can login from a terminal with `heroku login` and check your apps logs with `heroku logs --tail -a <your-app-name>`
-* If you are unable to solve a problem yourself, report it with as much detail as possible in this repository's issue tracker.
-
-------
-
-### <a name="errors"></a>Error Messages
-
-Please check our website's **[common issues](https://ritabot.org/common-issues/)** page for more.
-
-
-### <a name="commands"></a>Commands
-* [Custom Message Translation](https://ritabot.org/trans-cust/)
-* [Flag Translation](https://ritabot.org/trans-reac/)
-* [Translate Last Message](https://ritabot.org/trans-last/)
-* [Automatic Channel Translation](https://ritabot.org/trans-auto/)
-* [Translation Settings](https://ritabot.org/trans-sett/)
-* [Misc. Commands](https://ritabot.org/trans-misc/)
 
 ### <a name="credits-&-license"></a>Credits & License
 
@@ -344,8 +183,8 @@ This project was originally released by Aziz under the MIT license. He chose to 
 *Rita's history and various iterations each added something extra, it just needed to be brought together and molded, molded into something amazing, moulded into Rita. The Real-Time Interchangeable Translating Assistant.*
 
 ------
-#### *There you have it, the story, dramatised and electrified for effect, but all true, of how Rita was born.*
+###### *There you have it, the story, dramatised and electrified for effect, but all true, of how Rita was born.*
 
-------
 
-Released under MIT license.
+
+***Released under MIT license.***
