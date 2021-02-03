@@ -116,13 +116,13 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
 *The bot can also be run locally without Heroku. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Please note that for the bot to continue running 24/7 the process of `node src/bot.js` should always remain online and thus your PC/hosting device must remain online too*
 
 #### 1. Create a local database
-Any Database that runs with SQL Sequelize ('https://sequelize.org/master/') can be used. My recommendation is to use the [SQL Lite](https://www.sqlite.org/index.html) database since the setup is fast and access is easy. Copy the connection details to the database for the next step. Example: The connection to a sqlite database with the name *database.db* stored at the same level of this README file would be *./database.db*.
+Any Database that runs with [SQL Sequelize](https://sequelize.org/master/) can be used. My recommendation is to use the [SQL Lite](https://www.sqlite.org/index.html) database since the setup is fast and access is easy. Copy the connection details to the database for the next step. Example: The connection to a sqlite database with the name *`database.db`* stored at the same level of this README file would be *`./database.db`*.
 
 #### 2. Install nodejs
-Install nodejs from https://nodejs.org/en/ and make sure you have git and npm installed
+Install [node.js](https://nodejs.org/en/) and make sure you have [Git](https://git-scm.com/downloads) and [npm](https://www.npmjs.com/get-npm) installed
 
 #### 4. Install the bot
-* Run **`git clone https://github.com/Zyc0r3/RitaBot`**
+* Run **```git clone https://github.com/Zyc0r3/RitaBot```**
 * Download dependencies using **`npm install`**
 
 #### 5. Create a new .env File
