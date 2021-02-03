@@ -10,7 +10,7 @@
 
 
 
-<p align="center">An open-source, free Discord Translator Bot built using `google-translate-api` and `Discord.js`.</p>
+<p align="center">An open-source, free Discord Translator Bot built using <mark>google-translate-api</mark> and <mark>Discord.js</mark>.</p>
 
 ![Rita Translator Diagram](https://storage.pixteller.com/designs/designs-images/2021-02-03/05/poster-simple-quote-1-601a17471d0b6.png)
 
