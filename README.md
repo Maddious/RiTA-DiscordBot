@@ -1,4 +1,4 @@
-<p align="center"><img src="http://24.media.tumblr.com/tumblr_m72h3o0gGX1r721sko1_400.gif" data-canonical-src="http://24.media.tumblr.com/tumblr_m72h3o0gGX1r721sko1_400.gif" width="200" height="200" href="https://ritabot.org"></p>
+<p align="center"><img src="http://24.media.tumblr.com/tumblr_m72h3o0gGX1r721sko1_400.gif" data-canonical-src="http://24.media.tumblr.com/tumblr_m72h3o0gGX1r721sko1_400.gif" width="175" height="175" href="https://ritabot.org"></p>
 <h1 align="center">Rita</h1>
 <p align="center">Breaking the language barrier for free.</p>
 
