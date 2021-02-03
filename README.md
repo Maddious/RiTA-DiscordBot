@@ -55,7 +55,11 @@
 #### 1. Fork this repository.
 * If you don't yet have a Github account, [create one](https://github.com/join)! It's free and easy.
 * Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repository so that it will be associated with your Github account.
- * Please star our project if you like it using the top-right Star icon. Every star helps share Rita with more people. 
+      * Please ***star our project*** if you like it using the top-right Star icon. Every star helps share Rita with more people. 
+
+<p align="center">
+<img src="https://ritabot.org/index//images/star.png" href="https://github.com/Zyc0r3/RitaBot/stargazers">
+</p><br/><br/>
 
 #### 2. Create a new [Discord Application](https://discordapp.com/developers/applications) in the Discord Developer Portal
 * Give app a friendly name and click the **Create App** button
