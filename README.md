@@ -8,7 +8,7 @@
 
 An open-source, free Discord Translator Bot built using `google-translate-api` and `Discord.js`. Breaking the language barrier for free.
 
-![Space Image 1](https://images.pexels.com/photos/1252869/pexels-photo-1252869.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=325&w=478)
+![Rita Translator Diagram](https://storage.pixteller.com/designs/designs-images/2021-02-03/05/poster-simple-quote-1-601a17471d0b6.png)
 
 ###### If you like what we are doing, please [star](https://github.com/Zyc0r3/RitaBot/stargazers) our repo
 
