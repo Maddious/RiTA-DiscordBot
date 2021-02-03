@@ -22,8 +22,9 @@
 ## Table of Contents
 
 *Please note some of these links direct you towards our website*
-<detail>
+<details>
 <summary></strong>Click to expand contents</strong></summary>
+
 * [Setting up Rita on Heroku](#new-bot)
 * [Setting up Rita locally](#local)
 * [How to Update your Bot](#update)
@@ -41,7 +42,7 @@
     * [Credits & License](#credits-&-license)
     * [Design Team](#design-team)
     * [About Us](#history)
-</detail>
+</details>
 
 ------
 
