@@ -5,7 +5,7 @@
 ------
 
 <p align="center">
-<a name="top" href="https://github.com/Zyc0r3/RitaBot#top"><img src="https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version"></a> <a href="https://discordapp.com/invite/mgNR64R"><img src="https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?" href="https://discordapp.com/invite/mgNR64R"></a> <img src="https://img.shields.io/github/license/ZyC0R3/RitaBot.svg"> <a href="https://github.com/Zyc0r3/RitaBot/tree/test-branch-1.3.0/"><img src="https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch-1.3.0?label=Test%20Version"></a> <a href="https://github.com/Zyc0r3/RitaBOt/stargazers/">"<img src="https://img.shields.io/github/stars/Zyc0r3/RitaBot" href="https://github.com/Zyc0r3/RitaBot/stargazers"> </a>
+<img src="https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot?label=Stable%20Version"> <a href="https://discordapp.com/invite/mgNR64R"><img src="https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?"></a><a href="https://opensource.org/licenses/MIT"> <img src="https://img.shields.io/github/license/ZyC0R3/RitaBot.svg"> </a> <a href="https://github.com/Zyc0r3/RitaBot/tree/test-branch-1.3.0/"><img src="https://img.shields.io/github/package-json/v/ZyC0R3/RitaBot/test-branch-1.3.0?label=Test%20Version"></a> <a href="https://github.com/Zyc0r3/RitaBOt/stargazers/"> <img src="https://img.shields.io/github/stars/Zyc0r3/RitaBot" href="https://github.com/Zyc0r3/RitaBot/stargazers"> </a>
  <img src="https://img.shields.io/github/checks-status/Zyc0r3/RitaBot/ed616d5df0c63cfde954b4ea36fbab13c1ad86a6?label=build"><
 </p><br/><br/>
 
