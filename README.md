@@ -39,6 +39,7 @@
   * [Webhook Log Setup](https://ritabot.org/troubleshooting)
   * [Common Issues](https://ritabot.org/common-issues)
   * [Command Wiki](https://ritabot.org/wiki)
+    * [Supporters](#supporters)
     * [Credits & License](#credits-&-license)
     * [Design Team](#design-team)
     * [About Us](#history)
@@ -167,6 +168,14 @@ Rename the existing **.env.example** file and name it **.env**. Edit the Values 
 06. Allow Bot Translation (V1.2.2)
 
 ------
+
+### <a name="supporters"></a> :clap: Supporters
+
+[![Stargazers repo roster for @Zyc0r3/RitaBot](https://reporoster.com/stars/Zyc0r3/RitaBot)](https://github.com/Zyc0r3/RitaBot/stargazers)
+[![Forkers repo roster for @Zyc0r3/RitaBot](https://reporoster.com/forks/Zyc0r3/RitaBot)](https://github.com/Zyc0r3/RitaBot/network/members)
+
+------
+
 
 ### <a name="credits-&-license"></a>Credits & License
 
