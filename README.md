@@ -1,4 +1,4 @@
-<p align="center"><img src="https://ritabot.org/index/images/favicon.png" data-canonical-src="https://ritabot.org/index/images/favicon.png" width="100" height="100" /></p>
+<p align="center"><img src="http://24.media.tumblr.com/tumblr_m72h3o0gGX1r721sko1_400.gif" data-canonical-src="http://24.media.tumblr.com/tumblr_m72h3o0gGX1r721sko1_400.gif" width="100" height="100" href="https://ritabot.org"></p>
 <h1 align="center">Rita</h1>
 <p align="center">Breaking the language barrier for free.</p>
 
