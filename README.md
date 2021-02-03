@@ -57,7 +57,7 @@
 * Click [here](https://github.com/ZyC0R3/RitaBot/fork) or use the button in the upper righthand side of this page to fork the repository so that it will be associated with your Github account.
 
 
-* Please ***star our project*** if you like it using the top-right Star icon. Every star helps share Rita with more people. 
+* Please ***star our project*** if you like it using the top-right Star icon. Every star helps us! 
 <p align="center">
 <img src="https://ritabot.org/index//images/star.png" href="https://github.com/Zyc0r3/RitaBot/stargazers">
 </p><br/><br/>
