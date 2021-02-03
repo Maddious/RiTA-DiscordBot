@@ -118,7 +118,7 @@ An open-source, free Discord Translator Bot built using `google-translate-api` a
 #### 1. Create a local database
 Any Database that runs with [SQL Sequelize](https://sequelize.org/master/) can be used. My recommendation is to use the [SQL Lite](https://www.sqlite.org/index.html) database since the setup is fast and access is easy. Copy the connection details to the database for the next step. Example: The connection to a sqlite database with the name *`database.db`* stored at the same level of this README file would be *`./database.db`*.
 
-#### 2. Install nodejs
+#### 2. Install necessary software
 Install [node.js](https://nodejs.org/en/) and make sure you have [Git](https://git-scm.com/downloads) and [npm](https://www.npmjs.com/get-npm) installed
 
 #### 4. Install the bot
@@ -126,8 +126,8 @@ Install [node.js](https://nodejs.org/en/) and make sure you have [Git](https://g
 * Download dependencies using **`npm install`**
 
 #### 5. Create a new .env File
-Rename the existing **.env.example** file and name it **.env**. Edit the Values of **DISCORD_TOKEN**, and the **DATABASE_URL** according to the values that you [copied earlier](#new) in Step 2 of "Setting Up a New Bot" .
-  * DATABASE_URL needs to be the path to the database file (once you install SQLite it will create a database for you at the location of any path ending in a .db extension.)
+Rename the existing **.env.example** file and name it **.env**. Edit the Values of **DISCORD_TOKEN**, and the **DATABASE_URL** according to the values that you in [Step 2 of "Setting Up a New Bot"](#new-bot) .
+  * DATABASE_URL needs to be the path to the database file (if you set **`DATABASE_URL`** to any of these values: `./database.db`, `C:/FOLDER/ok.db`, `../random.db` they will all work because they lead to a directory in which SQLite then creates the `.db` file )
     * Example -  `DATABASE_URL` = `C:\Admin\Rita_Development\test.db`
 
 #### 5. Invite your bot to your server and configure it!
