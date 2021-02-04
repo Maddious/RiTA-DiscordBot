@@ -26,7 +26,7 @@
 <details>
 <summary></strong>Click to expand contents</strong></summary>
 
-* [Setting up Rita on Heroku](#new-bot)
+* [Setting up Rita](#new-bot)
 * [Setting up Rita locally](#local)
 * [How to Update your Bot](#update)
 * [Coming Soon](#soon)
