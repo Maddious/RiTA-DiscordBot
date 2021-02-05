@@ -166,7 +166,9 @@ Rename the existing **.env.example** file and name it **.env**. Edit the Values 
 03. `!t tasks #TargetChannel` Implementation.
 04. Introduction of a Streamlined Command Handler. (This will be done as a New Project)
 05. Update to Discord.js V12 (V1.3.0)
-06. Allow Bot Translation (V1.2.2)
+06. Allow Bot Translation (V1.3.0)
+07. Webhooks (`!t embed off`version) using Nickname instead of Username (1.3.0) 
+08. Check what language translation requests are orignally in to stop unnecessary translations and to make automatic-same channel translation ethical (1.3.0)
 
 ------
 
