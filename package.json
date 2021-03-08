@@ -19,7 +19,7 @@
   "contributors": [
     {
       "name": "RITA <blank@email.com>",
-      "url": "https://github.com/ZyC0R3/Rita"
+      "url": "https://github.com/ZyC0R3/RitaBot"
     }
   ],
   "keywords": [
@@ -27,15 +27,17 @@
     "discordjs",
     "bot",
     "translate",
-    "translator"
+    "translator",
+    "free translator",
+    "discordtranslator"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZyC0R3/Rita"
+    "url": "https://github.com/ZyC0R3/RitaBot.git"
   },
   "funding": "https://ritabot.org",
-  "homepage": "https://ritabot.org",
-  "bugs": "https://github.com/ZyC0R3/Rita/issues",
+  "homepage": "https://ritabot.org/",
+  "bugs": "https://github.com/ZyC0R3/RitaBot/issues",
   "dependencies": {
     "common-tags": "^1.8.0",
     "discord.js": "^11.6.4",
