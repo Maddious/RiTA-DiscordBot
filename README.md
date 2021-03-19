@@ -175,8 +175,8 @@ Rename the existing **.env.example** file and name it **.env**. Edit the Values 
 
 ### <a name="supporters"></a> :clap: Supporters
 
-[![Stargazers repo roster for @Zyc0r3/RitaBot](https://reporoster.com/stars/Zyc0r3/RitaBot)](https://github.com/Zyc0r3/RitaBot/stargazers)
-[![Forkers repo roster for @Zyc0r3/RitaBot](https://reporoster.com/forks/Zyc0r3/RitaBot)](https://github.com/Zyc0r3/RitaBot/network/members)
+[![Stargazers repo roster for @Zyc0r3/RitaBot](https://reporoster.com/stars/Zyc0r3/RitaBot)](https://github.com/RitaBot-Project/RitaBot/stargazers)
+[![Forkers repo roster for @Zyc0r3/RitaBot](https://reporoster.com/forks/Zyc0r3/RitaBot)](https://github.com/RitaBot-Project/RitaBot/network/members)
 
 ------
 
