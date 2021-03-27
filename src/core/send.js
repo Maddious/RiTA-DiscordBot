@@ -172,10 +172,20 @@ const embedOn = function(data)
       {
          if (!data.author)
          {
-            message.delete(5000);
+            if (!data.bot)
+            {
+               username = data.channel.client.user.username;
+               icon_url = data.channel.client.user.displayAvatarURL;
+            }
+            else
+            {
+               username = data.bot.username;
+               icon_url = data.bot.icon_url;
+            }
+
             const botEmbedOn = new discord.RichEmbed()
                .setColor(colors.get(data.color))
-               .setAuthor(data.bot.username, data.bot.icon_url)
+               .setAuthor(username, icon_url)
                .setDescription(data.text)
                .setTimestamp()
                .setFooter("This message will self-destruct in one minute");
