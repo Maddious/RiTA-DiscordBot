@@ -42,12 +42,10 @@
     "common-tags": "^1.8.0",
     "discord.js": "^11.6.4",
     "dotenv": "^8.2.0",
-    "find-config": "^1.0.0",
     "google-translate-api": "github:RitaBot-Project/google-translate-api",
     "iso-639-1": "^2.1.4",
     "lodash": "^4.17.20",
     "make-dir": "^3.1.0",
-    "path": "^0.12.7",
     "pg": "^8.4.1",
     "pg-hstore": "^2.3.3",
     "seconds-converter": "github:AlooAkbar/seconds-converter",
@@ -67,4 +65,3 @@
     "gulp-watch": "github:RitaBot-Project/gulp-watch"
   }
 }
-
