@@ -99,7 +99,7 @@ module.exports = function(data)
    console.log(`Const = ` + guildValue);
    console.log(`---------------------`);
 
-   function ignoreMessage()
+   function ignoreMessage(data)
    {
       const ignoreMessageEmbed = new discord.RichEmbed()
          .setColor(colors.get(data.color))
@@ -128,7 +128,7 @@ module.exports = function(data)
       "  :wrench: You may need to define the embed value using `!t embed on/off` if this message is in a loop when sending commands/messages.";
       data.color = "warn";
       data.text = output;
-      return ignoreMessage();
+      return ignoreMessage(data);
    }
    else
    // eslint-disable-next-line no-else-return
