@@ -1,6 +1,6 @@
 {
   "name": "ritabot",
-  "version": "1.2.1-9",
+  "version": "1.2.1-10",
   "engines": {
     "node": "14.0.0"
   },
@@ -51,7 +51,8 @@
     "seconds-converter": "github:AlooAkbar/seconds-converter",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0",
-    "webhook-discord": "^3.7.7"
+    "webhook-discord": "^3.7.7",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@kollavarsham/gulp-coveralls": "^0.3.3",
@@ -62,7 +63,6 @@
     "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-uglify-es": "^2.0.0",
-    "gulp-watch": "github:RitaBot-Project/gulp-watch",
-    "path": "^0.12.7"
+    "gulp-watch": "github:RitaBot-Project/gulp-watch"
   }
 }
