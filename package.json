@@ -62,6 +62,7 @@
     "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-uglify-es": "^2.0.0",
-    "gulp-watch": "github:RitaBot-Project/gulp-watch"
+    "gulp-watch": "github:RitaBot-Project/gulp-watch",
+    "path": "^0.12.7"
   }
 }
