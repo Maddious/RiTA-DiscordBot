@@ -88,8 +88,7 @@ const bufferChains = function(data, from)
          if (detectedLang === langTo)
          {
             return;
-         }
-         else if (detectedLang !== channelFrom && channelFrom !== "auto")
+         } else if (detectedLang !== channelFrom && channelFrom !== "auto")
          {
             return;
          }
@@ -288,17 +287,16 @@ module.exports = function(data) //eslint-disable-line complexity
             from: from
          }).then(res =>
          {
-            const langTo = res.raw[1][4][2]; // Language you set it to translate to when setting up !t channel command
-            const detectedLang = res.from.language.iso; // Detected language from text
-            const channelFrom = from; // Language you set when setting up !t channel command
-            if (detectedLang === langTo)
-            {
-               return;
-            }
-            else if (detectedLang !== channelFrom && channelFrom !== "auto")
-            {
-               return;
-            }
+         const langTo = res.raw[1][4][2]; // Language you set it to translate to when setting up !t channel command
+         const detectedLang = res.from.language.iso; // Detected language from text
+         const channelFrom = from; // Language you set when setting up !t channel command
+         if (detectedLang === langTo)
+         {
+            return;
+         } else if (detectedLang !== channelFrom && channelFrom !== "auto")
+         {
+            return;
+         }
 
             const title = `\`\`\`LESS\n ${lang.name} (${lang.native}) \`\`\`\n`;
             const output = "\n" + title + translateFix(res.text) + "\n";
@@ -336,8 +334,7 @@ module.exports = function(data) //eslint-disable-line complexity
          if (detectedLang === langTo)
          {
             return;
-         }
-         else if (detectedLang !== channelFrom && channelFrom !== "auto")
+         } else if (detectedLang !== channelFrom && channelFrom !== "auto")
          {
             return;
          }
