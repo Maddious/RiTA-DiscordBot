@@ -13,7 +13,7 @@ const bot2bot = require("./commands/bot2bot");
 // --------------------
 
 //eslint-disable-next-line no-unused-vars
-module.exports = function(config, message)
+module.exports = function(config, message, edited, deleted)
 {
    module.exports.message = message;
    const client = message.client;
