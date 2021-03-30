@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/RitaBot/src/bot.js"
+      "program": "${workspaceFolder}/src/bot.js"
     }
   ]
 }
