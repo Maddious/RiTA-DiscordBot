@@ -29,7 +29,6 @@ exports.listen = function(client)
    client.on("ready", () =>
    {
       db.initializeDatabase();
-      db.checkServers(client)
       // -----------------
       // Default Settings
       // -----------------
@@ -94,6 +93,7 @@ exports.listen = function(client)
             All shards are online, running intervals
             ----------------------------------------
          `);
+         db.checkServers(client)
 
          logger("custom", {
             color: "ok",
