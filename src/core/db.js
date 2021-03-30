@@ -80,6 +80,8 @@ const Servers = db.define("servers", {
    }
 });
 
+exports.Servers
+
 // --------------------------------
 // Database tasks table definition
 // --------------------------------
@@ -135,6 +137,28 @@ exports.addServer = function(id, lang)
       lang: lang
    });
 };
+// ------------------
+// Make SQL Queries
+// ------------------
+exports.checkServers = function(client)
+{
+   const guilds = client.guilds.array().length
+   const guildsArray = client.guilds.array()
+   for (i = 0; i < guilds; i++) {
+      const guild = guildsArray[i]
+      const guildID = guild.id
+      const updatedAt = Date.now();
+      const createdAt = guild.createdAt
+      query = "INSERT INTO servers(id, lang, embedstyle, bot2botstyle, createdat, updatedat) VALUES (" + guildID + ", 'en', 'on', 'off','" + createdAt + "','" + updatedAt + "') ON CONFLICT DO NOTHING"
+      db.query(query)
+
+}
+}
+
+
+
+
+
 
 // ------------------
 // Deactivate Server

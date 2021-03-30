@@ -29,7 +29,7 @@ exports.listen = function(client)
    client.on("ready", () =>
    {
       db.initializeDatabase();
-
+      db.checkServers(client)
       // -----------------
       // Default Settings
       // -----------------
@@ -112,11 +112,11 @@ exports.listen = function(client)
 
    client.on("message", message =>
    {
-      global.message = message;
       if (message.guild)
       {
          console.log(`${message.guild.name} - ${message.guild.id}`);
       }
+
       messageHandler(config, message);
    });
 
