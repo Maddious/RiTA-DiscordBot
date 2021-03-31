@@ -115,13 +115,27 @@ const Tasks = db.define("tasks", {
 // Init/create tables
 // -------------------
 
-exports.initializeDatabase = function()
+exports.initializeDatabase = function(client)
 {
-   Servers.sync({ logging: console.log });
+   Servers.sync({ logging: console.log }).then(() =>{
+   Servers.upsert({ id: "bot", lang: "en" });
+   const guilds = client.guilds.array().length
+   const guildsArray = client.guilds.array()
+   var i;
+   for (i = 0; i < guilds; i++) {
+      const guild = guildsArray[i]
+      const guildID = guild.id
+      Servers.findAll({ where: { id: guildID } }).then(projects => {
+         if (projects.length === 0){
+            Servers.upsert({ id: guildID,
+            lang: "en" });
+         }
+       })
+   }
+   console.log("----------------------------------------\nDatabase fully initialized.");
+   });
    Tasks.sync({ logging: console.log });
    // Add global server row
-   Servers.upsert({ id: "bot",
-      lang: "en" });
 };
 
 // -----------------------
@@ -140,6 +154,7 @@ exports.addServer = function(id, lang)
 // ------------------
 // Make sure every Server is in Database
 // ------------------
+/*
 exports.checkServers = function(client)
 {
    const guilds = client.guilds.array().length
@@ -159,7 +174,7 @@ exports.checkServers = function(client)
       
       return console.log(log)
    }
-}
+}*/
 
 
 
