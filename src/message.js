@@ -20,6 +20,7 @@ module.exports = function(config, message, edited, deleted)
    const bot = client.user;
    global.message = message;
 
+
    // ------------------------
    // Ignore messages by bots
    // ------------------------
