@@ -93,11 +93,9 @@ module.exports = function(data)
    // ----------------------------------------------------
 
 
-   console.log(`Guild ID from message`);
-   console.log(`Raw = ` + data.message.guild.id);
+
    const guildValue = data.message.guild.id;
-   console.log(`Const = ` + guildValue);
-   console.log(`---------------------`);
+
 
    function ignoreMessage(data)
    {
@@ -108,7 +106,7 @@ module.exports = function(data)
          .setDescription(data.text)
          .setTimestamp()
          .setFooter("𝗕𝗼𝘁𝗵 𝗺𝗲𝘀𝘀𝗮𝗴𝗲𝘀  𝘄𝗶𝗹𝗹 𝘀𝗲𝗹𝗳-𝗱𝗲𝘀𝘁𝗿𝘂𝗰𝘁 𝗶𝗻 10 𝘀𝗲𝗰𝗼𝗻𝗱𝘀");
-      message.reply(ignoreMessageEmbed).then(msg =>
+      data.message.reply(ignoreMessageEmbed).then(msg =>
       {
          msg.delete(10000);
       });
