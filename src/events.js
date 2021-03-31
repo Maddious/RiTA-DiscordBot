@@ -40,7 +40,7 @@ exports.listen = function(client)
          owner: auth.botOwner,
          defaultLanguage: "en",
          translateCmd: "!translate",
-         translateCmdShort: "!t",
+         translateCmdShort: "?t",
          maxMulti: 6,
          maxChains: 10,
          maxChainLen: 5,
