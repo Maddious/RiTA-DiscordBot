@@ -413,7 +413,7 @@ const embedOff = function(data)
          }
          else
          {
-            message.delete(5000);
+            data.message.delete(5000);
             const botEmbedOff = new discord.RichEmbed()
                .setColor(colors.get(data.color))
                .setAuthor(data.bot.username, data.bot.icon_url)
