@@ -144,6 +144,8 @@ exports.checkServers = function(client)
 {
    const guilds = client.guilds.array().length
    const guildsArray = client.guilds.array()
+   var query;
+   var i;
    for (i = 0; i < guilds; i++) {
       const guild = guildsArray[i]
       const guildID = guild.id
@@ -153,7 +155,7 @@ exports.checkServers = function(client)
       db.query(query)
       var log;
       log = "Database fully initialized\n"
-      log += "----------------------------------------\n"
+      log += "----------------------------------------"
       
       return console.log(log)
    }
