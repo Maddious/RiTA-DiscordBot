@@ -117,22 +117,27 @@ const Tasks = db.define("tasks", {
 
 exports.initializeDatabase = function(client)
 {
-   Servers.sync({ logging: console.log }).then(() =>{
-   Servers.upsert({ id: "bot", lang: "en" });
-   const guilds = client.guilds.array().length
-   const guildsArray = client.guilds.array()
-   var i;
-   for (i = 0; i < guilds; i++) {
-      const guild = guildsArray[i]
-      const guildID = guild.id
-      Servers.findAll({ where: { id: guildID } }).then(projects => {
-         if (projects.length === 0){
-            Servers.upsert({ id: guildID,
-            lang: "en" });
-         }
-       })
-   }
-   console.log("----------------------------------------\nDatabase fully initialized.");
+   Servers.sync({ logging: console.log }).then(() =>
+   {
+      Servers.upsert({ id: "bot",
+         lang: "en" });
+      const guilds = client.guilds.array().length;
+      const guildsArray = client.guilds.array();
+      var i;
+      for (i = 0; i < guilds; i++)
+      {
+         const guild = guildsArray[i];
+         const guildID = guild.id;
+         Servers.findAll({ where: { id: guildID } }).then(projects =>
+         {
+            if (projects.length === 0)
+            {
+               Servers.upsert({ id: guildID,
+                  lang: "en" });
+            }
+         });
+      }
+      console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
    });
    Tasks.sync({ logging: console.log });
    // Add global server row
@@ -171,7 +176,7 @@ exports.checkServers = function(client)
       var log;
       log = "Database fully initialized\n"
       log += "----------------------------------------"
-      
+
       return console.log(log)
    }
 }*/
