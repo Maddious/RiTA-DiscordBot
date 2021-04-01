@@ -192,7 +192,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Donate Via Open Collective",
-      link: "<https://opencollective.com/ritabot-projec>",
+      link: "<https://opencollective.com/ritabot-project>",
       icon: ":dollar: ",
       cmd: "donate",
       help: "doante",
