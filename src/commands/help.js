@@ -4,6 +4,7 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const botSend = require("../core/send");
+const auth = require("../core/auth");
 
 // ------------------------
 // Bot Help / Command List
@@ -79,7 +80,7 @@ const helpMessage = function(config, botname, param)
    // ------------------------------
    // Support & Donations
    // ------------------------------
- 
+
    var donation = "";
    if (auth.donation && auth.donation.length > 5)
    {
