@@ -54,10 +54,6 @@ const donate = function(data)
    {
       console.log(commandVariable1);
       {
-         if (err)
-         {
-            return logger("error", err);
-         }
          var outputgh =
             "**```Donate via github```**\n" +
             `Thank you for wanting to donate to the RITA Bot Project \n` +
@@ -76,10 +72,6 @@ const donate = function(data)
    {
       console.log(commandVariable1);
       {
-         if (err)
-         {
-            return logger("error", err);
-         }
          var outputoc =
           "**```Donate via Open Collective```**\n" +
           `Thank you for wanting to donate to the RITA Bot Project \n` +
