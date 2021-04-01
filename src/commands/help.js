@@ -76,11 +76,23 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help modules` +
    "```\n\n";
 
+   // ------------------------------
+   // Support & Donations
+   // ------------------------------
+ 
+   var donation = "";
+   if (auth.donation && auth.donation.length > 5)
+   {
+      donation =
+         "Like this bot? [Support the developer!](" + auth.donation + ")";
+   }
+
    // ------------
    // Help Basics
    // ------------
 
    const basics =
+   donation +
    helpSection({
       config: config,
       title: "Translate by Reacting",
@@ -176,6 +188,12 @@ const helpMessage = function(config, botname, param)
       title: "Report Bugs / Request Features",
       link: "<https://github.com/ZyC0R3/Rita/issues>",
       icon: ":raising_hand::skin-tone-3:"
+   }) +
+   helpSection({
+      config: config,
+      title: "Donations",
+      link: "https://opencollective.com/ritabot-project",
+      icon: ":dollar: "
    });
 
 
@@ -226,10 +244,7 @@ const helpMessage = function(config, botname, param)
 
    `# Translation Style Modules\n` +
    `> ${cmd} help embed\n` +
-
-
    `> ${cmd} help bot2bot\n\n` +
-
 
    `# Information Modules\n` +
    `> ${cmd} help stats\n` +
@@ -272,6 +287,7 @@ const helpMessage = function(config, botname, param)
    `> Usually 90% of bots ignore bot messages` +
    ` but this feature allows discord bots to be translated too` +
    "```";
+
    // --------------------
    // Last Message (last)
    // --------------------
@@ -471,6 +487,27 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} tasks for [#channel]\n` +
    "```";
 
+   // --------------
+   // Donations
+   // --------------
+
+   const donate =
+   `__**Want to Donate to RITA's Development **__\n\n` +
+   "```md\n" +
+
+   `# Donate\n` +
+   `> Becoming a Sponsor, Supporter or Backer of RitaBot will \n` +
+   `> allow us to continue development long into the future, \n` +
+   `> and constantly strive to add new features and functionality  \n` +
+   `> to allow all users to break the language barrier and be  \n` +
+   `> heard and understood regardless of the language spoken.\n\n` +
+   `> You can Donate at Github Sponsors\n` +
+   `> ${cmd} donate github\n\n` +
+   `> You can Donate at Open Collective\n` +
+   `> ${cmd} donate oc\n\n` +
+   `> Thank you for your continued support - RITA Dev Team` +
+   "```";
+
    // ----------------
    // Proccess result
    // ----------------
@@ -491,7 +528,8 @@ const helpMessage = function(config, botname, param)
       "modules": modules,
       "report": report,
       "embed": embed,
-      "bot2bot": bot2bot
+      "bot2bot": bot2bot,
+      "donate": donate
    };
 
    //if (paramMap.hasOwnProperty(param))
