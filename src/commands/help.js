@@ -96,7 +96,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate by Reacting",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Translate-by-Reacting>",
+      link: "<https://ritabot.gg/trans-reac/>",
       icon: ":flag_white:",
       cmd: null,
       help: "react",
@@ -106,7 +106,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate Custom Text",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Translate-Custom-Message>",
+      link: "<https://ritabot.gg/trans-cust/>",
       icon: ":abc:",
       cmd: "this",
       help: "custom",
@@ -116,7 +116,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate Last Message",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Translate-Last-Message>",
+      link: "<https://ritabot.gg/trans-last/>",
       icon: ":arrow_double_up:",
       cmd: "last",
       help: "last",
@@ -126,7 +126,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate Channel (Automatic)",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Translate-Channel-Automatic>",
+      link: "<https://ritabot.gg/trans-auto/>",
       icon: ":hash:",
       cmd: "channel",
       help: "auto",
@@ -136,7 +136,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Stats",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Get-Statistics>",
+      link: "<https://ritabot.gg/trans-misc/#statistics>",
       icon: ":bar_chart:",
       cmd: "stats",
       help: "stats",
@@ -146,7 +146,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Settings",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Settings>",
+      link: "<https://ritabot.gg/trans-sett/>",
       icon: ":gear:",
       cmd: "settings",
       help: "settings",
@@ -156,7 +156,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Misc. Settings",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Misc.-Commands>",
+      link: "<https://ritabot.gg/trans-misc/>",
       icon: ":robot:",
       cmd: "misc",
       help: "misc",
@@ -166,7 +166,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Tasks",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Misc.-Commands>",
+      link: "<https://ritabot.gg/trans-misc/#translations>",
       icon: ":clipboard:",
       cmd: "Tasks",
       help: "Tasks",
@@ -176,7 +176,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "ReadMe",
-      link: "<https://github.com/ZyC0R3/Rita/blob/master/README.md>",
+      link: "<https://ritabot.gg/secure/>",
       icon: ":bookmark_tabs:",
       cmd: "readme",
       help: "readme",
@@ -195,7 +195,7 @@ const helpMessage = function(config, botname, param)
       link: "<https://opencollective.com/ritabot-project>",
       icon: ":dollar: ",
       cmd: "donate",
-      help: "doante",
+      help: "donate",
       args: "oc",
       example: ""
    }) +
@@ -205,7 +205,7 @@ const helpMessage = function(config, botname, param)
       link: "<https://github.com/sponsors/RitaBot-Project>",
       icon: ":dollar: ",
       cmd: "donate",
-      help: "doante",
+      help: "donate",
       args: "github",
       example: ""
    });
