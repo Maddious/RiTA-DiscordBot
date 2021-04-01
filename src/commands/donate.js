@@ -53,68 +53,52 @@ const donate = function(data)
    if (commandVariable1 === "github")
    {
       console.log(commandVariable1);
-      return (
-         data.message.channel.guild.id,
-         commandVariable1,
-         function(err)
-         {
-            if (err)
-            {
-               return logger("error", err);
-            }
-            var outputgh =
+      {
+         var outputgh =
             "**```Donate via github```**\n" +
             `Thank you for wanting to donate to the RITA Bot Project \n` +
             `https://github.com/sponsors/RitaBot-Project\n\n`;
-            data.color = "info";
-            data.text = outputgh;
+         data.color = "info";
+         data.text = outputgh;
 
-            // -------------
-            // Send message
-            // -------------
+         // -------------
+         // Send message
+         // -------------
 
-            sendMessage(data);
-         }
-      );
+         sendMessage(data);
+      }
    }
    else if (commandVariable1 === "oc")
    {
       console.log(commandVariable1);
-      return (
-         data.message.channel.guild.id,
-         commandVariable1,
-         function(err)
-         {
-            if (err)
-            {
-               return logger("error", err);
-            }
-            var outputoc =
+      {
+         var outputoc =
           "**```Donate via Open Collective```**\n" +
           `Thank you for wanting to donate to the RITA Bot Project \n` +
           `https://opencollective.com/ritabot-project\n\n`;
-            data.color = "info";
-            data.text = outputoc;
+         data.color = "info";
+         data.text = outputoc;
 
-            // -------------
-            // Send message
-            // -------------
+         // -------------
+         // Send message
+         // -------------
 
-            sendMessage(data);
-         }
-      );
+         sendMessage(data);
+      }
    }
-
-   data.color = "error";
-   data.text =
+   else
+   {
+      data.color = "error";
+      data.text =
       ":warning:  **`" + commandVariable1 +
       "`** is not a valid donate option.\n";
 
-   // -------------
-   // Send message
-   // -------------
+      // -------------
+      // Send message
+      // -------------
 
-   sendMessage(data);
+      sendMessage(data);
+   }
 };
 
 // ----------------------
