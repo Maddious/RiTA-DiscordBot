@@ -192,9 +192,12 @@ const helpMessage = function(config, botname, param)
    }) +
    helpSection({
       config: config,
-      title: "Donations",
-      link: "https://opencollective.com/ritabot-project",
-      icon: ":dollar: "
+      title: "Donate",
+      icon: ":dollar: ",
+      cmd: "donate",
+      help: "doante",
+      args: "github, oc",
+      example: ""
    });
 
 
@@ -256,6 +259,7 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help misc\n` +
    `> ${cmd} help report\n` +
    `> ${cmd} help readme\n` +
+   `> ${cmd} help donate\n` +
    "```";
 
 
