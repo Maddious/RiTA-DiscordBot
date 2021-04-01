@@ -93,7 +93,6 @@ const helpMessage = function(config, botname, param)
    // ------------
 
    const basics =
-   donation +
    helpSection({
       config: config,
       title: "Translate by Reacting",
@@ -198,7 +197,8 @@ const helpMessage = function(config, botname, param)
       help: "doante",
       args: "github, oc",
       example: ""
-   });
+   }) +
+   donation;
 
 
    // -----------------
