@@ -230,7 +230,7 @@ module.exports = function(data)
          "stats": cmdStats,
          "embed": cmdEmbed.run,
          "bot2bot": cmdBot2bot.run,
-         "donate":cmdDonate,
+         "donate": cmdDonate.run,
          "version": cmdVersion,
          "invite": cmdMisc.invite,
          "shards": cmdMisc.shards,
