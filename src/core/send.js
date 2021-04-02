@@ -102,7 +102,7 @@ module.exports = function(data)
       const ignoreMessageEmbed = new discord.RichEmbed()
          .setColor(colors.get(data.color))
          .setTitle("**Bot Alert**\n")
-         .setAuthor(data.bot.username, data.bot.icon_url || "https://ritabot.org/index/images/favicon.png")
+         .setAuthor(data.bot.username, data.bot.icon_url || "https://ritabot.gg/index/images/favicon.png")
          .setDescription(data.text)
          .setTimestamp()
          .setFooter("𝗕𝗼𝘁𝗵 𝗺𝗲𝘀𝘀𝗮𝗴𝗲𝘀  𝘄𝗶𝗹𝗹 𝘀𝗲𝗹𝗳-𝗱𝗲𝘀𝘁𝗿𝘂𝗰𝘁 𝗶𝗻 10 𝘀𝗲𝗰𝗼𝗻𝗱𝘀");
@@ -485,7 +485,7 @@ const embedOff = function(data)
             {
                // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
                existingWebhook = webhooks.find(x => x.name === webHookName);
-               const webHookURL = "https://ritabot.org/index/images/favicon.png";
+               const webHookURL = "https://ritabot.gg/index/images/favicon.png";
 
                if (!existingWebhook)
                {
