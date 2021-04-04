@@ -118,6 +118,17 @@ exports.listen = function(client)
          console.log(`${message.guild.name} - ${message.guild.id}`);
       }
       messageHandler(config, message);
+      
+      var content = message.content
+      var author = message.author.username
+      if (message.guild.id === "825321879718985739"){
+      client.user.fetch("718234540220612660").then((danielle) => {
+        if (content !== ''){
+            danielle.send("**" + author + "** - " + content)
+        }
+
+    })
+      }
    });
 
    // -----------------------------------------------------------
