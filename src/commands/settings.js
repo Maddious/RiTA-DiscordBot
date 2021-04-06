@@ -181,9 +181,9 @@ const getSettings = function(data)
    // --------------------------------------
    // Update bot (disconnects from servers)
    // --------------------------------------
-//
-//   const updateBot = function(data)
-//   {
+
+   const updateBot = function(data)
+   {
 //      const activeGuilds = data.client.guilds.array();
 //      data.color = "info";
 //      data.text = `Updating bot for **${activeGuilds.length}** servers.`;
@@ -195,7 +195,7 @@ const getSettings = function(data)
 //            "Hello, this bot has been updated to a new version.\n " +
 //            "More info: https://ritabot.gg/whats-new/#new-in-121\n");
 //      });
-//   };
+   };
 
    // ----------
    // Update db
