@@ -28,7 +28,7 @@ exports.listen = function(client)
 
    client.on("ready", () =>
    {
-      db.initializeDatabase();
+      db.initializeDatabase(client);
 
       // -----------------
       // Default Settings
