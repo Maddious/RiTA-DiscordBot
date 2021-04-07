@@ -296,10 +296,7 @@ exports.updateColumns = function(data)
             type: Sequelize.STRING(8),
             defaultValue: "on"});
       }
-   });
-   db.getQueryInterface().describeTable("servers").then(tableDefinition =>
-   {
-      if (!tableDefinition.embedstyle)
+      if (!tableDefinition.bot2botstyle)
       {
          console.log("-------------> Adding bot2botstyle column");
          db.getQueryInterface().addColumn("servers", "bot2botstyle", {
