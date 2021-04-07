@@ -117,10 +117,11 @@ const Tasks = db.define("tasks", {
 
 exports.initializeDatabase = function(client)
 {
-   Servers.sync({ logging: console.log }).then(() =>
+   db.sync({ logging: console.log }).then(() =>
    {
       Servers.upsert({ id: "bot",
          lang: "en" });
+      exports.updateColumns();
       const guilds = client.guilds.array().length;
       const guildsArray = client.guilds.array();
       var i;
@@ -139,7 +140,6 @@ exports.initializeDatabase = function(client)
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
    });
-   Tasks.sync({ logging: console.log });
    // Add global server row
 };
 
@@ -304,11 +304,14 @@ exports.updateColumns = function(data)
             defaultValue: "off"});
       }
    });
-   return data.message.channel.send({embed: {
-      color: 5299300,
-      description: "**Database has been updated.**",
-      timestamp: new Date()
-   }});
+   if (data)
+   {
+      return data.message.channel.send({embed: {
+         color: 5299300,
+         description: "**Database has been updated.**",
+         timestamp: new Date()
+      }});
+   }
 };
 
 // ------------------
