@@ -304,6 +304,7 @@ exports.updateColumns = function(data)
             defaultValue: "off"});
       }
    });
+   return data.message.channel.send("Datebase has Been updated.");
 };
 
 // ------------------
@@ -512,3 +513,5 @@ exports.close = function()
 {
    return db.close();
 };
+
+
