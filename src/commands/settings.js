@@ -203,7 +203,16 @@ const getSettings = function(data)
 
    const updateDB = function(data)
    {
-      return db.updateColumns();
+      data.color = "info";
+      data.text =
+      ":white_check_mark:  **Database has been updated.**";
+
+      // -------------
+      // Send message
+      // -------------
+      db.updateColumns();
+
+      return botSend(data);
    };
 
    // --------------------------
