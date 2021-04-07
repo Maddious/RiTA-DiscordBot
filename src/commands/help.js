@@ -187,7 +187,7 @@ const helpMessage = function(config, botname, param)
       config: config,
       title: "Report Bugs / Request Features",
       link: "<https://github.com/RitaBot-Project/RitaBot/issues>",
-      icon: ":raising_hand::skin-tone-3:"
+      icon: "🙋🏽‍♀️"
    }) +
    helpSection({
       config: config,

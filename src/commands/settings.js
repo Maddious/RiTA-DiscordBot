@@ -195,6 +195,19 @@ const getSettings = function(data)
       //   "Hello, this bot has been updated to a new version.\n " +
       //   "More info: https://ritabot.gg/whats-new/#new-in-121\n");
       //});
+      return data.message.channel.send({embed: {
+         color: 13107200,
+         author: {
+            name: data.client.user.username,
+            icon_url: data.client.user.displayAvatarURL
+         },
+         description: ":no_entry_sign: This command has been disabled",
+         footer: `Requested by ${data.message.author.username}`
+
+      }}).then((msg) =>
+      {
+         msg.delete(10000);
+      });
    };
 
    // ----------
@@ -205,7 +218,7 @@ const getSettings = function(data)
    {
       data.color = "info";
       data.text =
-      ":white_check_mark:  **Database has been updated.**";
+      ":white_check_mark: **Database has been updated.**";
 
       // -------------
       // Send message
