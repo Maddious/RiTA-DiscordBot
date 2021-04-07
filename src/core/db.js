@@ -140,9 +140,7 @@ exports.initializeDatabase = function(client)
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
    });
-   // Add global server row
 };
-
 // -----------------------
 // Add Server to Database
 // -----------------------
@@ -154,33 +152,6 @@ exports.addServer = function(id, lang)
       lang: lang
    });
 };
-
-
-// ------------------
-// Make sure every Server is in Database
-// ------------------
-/*
-exports.checkServers = function(client)
-{
-   const guilds = client.guilds.array().length
-   const guildsArray = client.guilds.array()
-   var query;
-   var i;
-   for (i = 0; i < guilds; i++) {
-      const guild = guildsArray[i]
-      const guildID = guild.id
-      const updatedAt = Date.now();
-      const createdAt = guild.createdAt
-      query = "INSERT INTO servers(id, lang, embedstyle, bot2botstyle, createdat, updatedat) VALUES (" + guildID + ", 'en', 'on', 'off','" + createdAt + "','" + updatedAt + "') ON CONFLICT DO NOTHING"
-      db.query(query)
-      var log;
-      log = "Database fully initialized\n"
-      log += "----------------------------------------"
-
-      return console.log(log)
-   }
-}*/
-
 
 
 // ------------------
@@ -304,14 +275,6 @@ exports.updateColumns = function(data)
             defaultValue: "off"});
       }
    });
-   if (data)
-   {
-      return data.message.channel.send({embed: {
-         color: 5299300,
-         description: "**Database has been updated.**",
-         timestamp: new Date()
-      }});
-   }
 };
 
 // ------------------
@@ -520,5 +483,3 @@ exports.close = function()
 {
    return db.close();
 };
-
-
