@@ -93,30 +93,23 @@ module.exports = async function(data)
    // Alot of this is debug code, but left in for testing
    // ----------------------------------------------------
 
-
-
+   console.log(`Guild ID from message`);
+   console.log(`Raw = ` + data.message.guild.id);
    const guildValue = data.message.guild.id;
 
 
-   function ignoreMessage(data)
-   {
-      const ignoreMessageEmbed = new discord.RichEmbed()
-         .setColor(colors.get(data.color))
-         .setTitle("**Bot Alert**\n")
-         .setAuthor(data.bot.username, data.bot.icon_url || "https://ritabot.gg/index/images/favicon.png")
-         .setDescription(data.text)
-         .setTimestamp()
-         .setFooter("𝗕𝗼𝘁𝗵 𝗺𝗲𝘀𝘀𝗮𝗴𝗲𝘀  𝘄𝗶𝗹𝗹 𝘀𝗲𝗹𝗳-𝗱𝗲𝘀𝘁𝗿𝘂𝗰𝘁 𝗶𝗻 10 𝘀𝗲𝗰𝗼𝗻𝗱𝘀");
-      data.message.reply(ignoreMessageEmbed).then(msg =>
-      {
-         msg.delete(10000);
-      });
-   }
-
+   console.log(`db.set Stage 1 = ` + db.setEmbedVar());
+   await db.getEmbedVar(guildValue);
 
    if (db.setEmbedVar() === "")
    {
+      console.log(`db.set Stage 2 = ` + db.setEmbedVar());
       await db.getEmbedVar(guildValue);
+   }
+   else
+   // eslint-disable-next-line no-else-return
+   {
+      console.log(`db.set Stage 3 = ` + db.setEmbedVar());
    }
 
    // --------------------

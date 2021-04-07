@@ -184,17 +184,17 @@ const getSettings = function(data)
 
    const updateBot = function(data)
    {
-      const activeGuilds = data.client.guilds.array();
-      data.color = "info";
-      data.text = `Updating bot for **${activeGuilds.length}** servers.`;
-      botSend(data);
-
-      activeGuilds.forEach(guild =>
-      {
-         guild.owner.send(
-            "Hello, this bot has been updated to a new version.\n " +
-            "More info: https://ritabot.gg/whats-new/#new-in-121\n");
-      });
+      //const activeGuilds = data.client.guilds.array();
+      //data.color = "info";
+      //data.text = `Updating bot for **${activeGuilds.length}** servers.`;
+      //botSend(data);
+      //
+      //activeGuilds.forEach(guild =>
+      //{
+      //   guild.owner.send(
+      //   "Hello, this bot has been updated to a new version.\n " +
+      //   "More info: https://ritabot.gg/whats-new/#new-in-121\n");
+      //});
    };
 
    // ----------
@@ -206,23 +206,6 @@ const getSettings = function(data)
       return db.updateColumns();
    };
 
-   // -------------------
-   // Fix guild mismatch
-   // -------------------
-
-   const dbFix = function(data)
-   {
-      const activeGuilds = data.client.guilds.array();
-      data.color = "info";
-      data.text = `Updating db for **${activeGuilds.length}** servers.`;
-      botSend(data);
-
-      activeGuilds.forEach(guild =>
-      {
-         db.addServer(guild.id, data.config.defaultLanguage, db.Servers);
-      });
-   };
-
    // --------------------------
    // Execute command if exists
    // --------------------------
@@ -231,7 +214,6 @@ const getSettings = function(data)
       "setlang": setLang,
       "disconnect": disconnect,
       "listservers": listServers,
-      "dbfix": dbFix,
       "updatedb": updateDB,
       "updatebot": updateBot
    };

@@ -18,6 +18,7 @@ const cmdStats = require("./stats");
 const cmdVersion = require("./version");
 const cmdEmbed = require("./embed");
 const cmdBot2bot = require("./bot2bot");
+const cmdDonate = require("./donate");
 const cmdMisc = require("./misc");
 const cmdSettings = require("./settings");
 const cmdTranslateLast = require("./translate.last");
@@ -229,6 +230,7 @@ module.exports = function(data)
          "stats": cmdStats,
          "embed": cmdEmbed.run,
          "bot2bot": cmdBot2bot.run,
+         "donate": cmdDonate.run,
          "version": cmdVersion,
          "invite": cmdMisc.invite,
          "shards": cmdMisc.shards,

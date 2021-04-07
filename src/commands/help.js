@@ -4,6 +4,7 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const botSend = require("../core/send");
+const auth = require("../core/auth");
 
 // ------------------------
 // Bot Help / Command List
@@ -76,6 +77,17 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help modules` +
    "```\n\n";
 
+   // ------------------------------
+   // Support & Donations
+   // ------------------------------
+
+   var donation = "";
+   if (auth.donation && auth.donation.length > 5)
+   {
+      donation =
+         "Like this bot? [Support the developer!](" + auth.donation + ")";
+   }
+
    // ------------
    // Help Basics
    // ------------
@@ -84,7 +96,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate by Reacting",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Translate-by-Reacting>",
+      link: "<https://ritabot.gg/trans-reac/>",
       icon: ":flag_white:",
       cmd: null,
       help: "react",
@@ -94,7 +106,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate Custom Text",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Translate-Custom-Message>",
+      link: "<https://ritabot.gg/trans-cust/>",
       icon: ":abc:",
       cmd: "this",
       help: "custom",
@@ -104,7 +116,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate Last Message",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Translate-Last-Message>",
+      link: "<https://ritabot.gg/trans-last/>",
       icon: ":arrow_double_up:",
       cmd: "last",
       help: "last",
@@ -114,7 +126,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Translate Channel (Automatic)",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Translate-Channel-Automatic>",
+      link: "<https://ritabot.gg/trans-auto/>",
       icon: ":hash:",
       cmd: "channel",
       help: "auto",
@@ -124,7 +136,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Stats",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Get-Statistics>",
+      link: "<https://ritabot.gg/trans-misc/#statistics>",
       icon: ":bar_chart:",
       cmd: "stats",
       help: "stats",
@@ -134,7 +146,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Settings",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Settings>",
+      link: "<https://ritabot.gg/trans-sett/>",
       icon: ":gear:",
       cmd: "settings",
       help: "settings",
@@ -144,7 +156,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Misc. Settings",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Misc.-Commands>",
+      link: "<https://ritabot.gg/trans-misc/>",
       icon: ":robot:",
       cmd: "misc",
       help: "misc",
@@ -154,7 +166,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Tasks",
-      link: "<https://github.com/ZyC0R3/Rita/wiki/Misc.-Commands>",
+      link: "<https://ritabot.gg/trans-misc/#translations>",
       icon: ":clipboard:",
       cmd: "Tasks",
       help: "Tasks",
@@ -164,7 +176,7 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "ReadMe",
-      link: "<https://github.com/ZyC0R3/Rita/blob/master/README.md>",
+      link: "<https://ritabot.gg/secure/>",
       icon: ":bookmark_tabs:",
       cmd: "readme",
       help: "readme",
@@ -174,8 +186,28 @@ const helpMessage = function(config, botname, param)
    helpSection({
       config: config,
       title: "Report Bugs / Request Features",
-      link: "<https://github.com/ZyC0R3/Rita/issues>",
+      link: "<https://github.com/RitaBot-Project/RitaBot/issues>",
       icon: ":raising_hand::skin-tone-3:"
+   }) +
+   helpSection({
+      config: config,
+      title: "Donate Via Open Collective",
+      link: "<https://opencollective.com/ritabot-project>",
+      icon: ":dollar: ",
+      cmd: "donate",
+      help: "donate",
+      args: "oc",
+      example: ""
+   }) +
+   helpSection({
+      config: config,
+      title: "Donate Via Github",
+      link: "<https://github.com/sponsors/RitaBot-Project>",
+      icon: ":dollar: ",
+      cmd: "donate",
+      help: "donate",
+      args: "github",
+      example: ""
    });
 
 
@@ -226,10 +258,7 @@ const helpMessage = function(config, botname, param)
 
    `# Translation Style Modules\n` +
    `> ${cmd} help embed\n` +
-
-
    `> ${cmd} help bot2bot\n\n` +
-
 
    `# Information Modules\n` +
    `> ${cmd} help stats\n` +
@@ -240,6 +269,7 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help misc\n` +
    `> ${cmd} help report\n` +
    `> ${cmd} help readme\n` +
+   `> ${cmd} help donate\n` +
    "```";
 
 
@@ -272,6 +302,7 @@ const helpMessage = function(config, botname, param)
    `> Usually 90% of bots ignore bot messages` +
    ` but this feature allows discord bots to be translated too` +
    "```";
+
    // --------------------
    // Last Message (last)
    // --------------------
@@ -443,15 +474,6 @@ const helpMessage = function(config, botname, param)
 
    `# Displays list of servers the bot is in\n` +
    `> ${cmd} settings listservers\n\n` +
-
-   `# Fix Guild Mismatch\n` +
-   `* MAY NOT WORK WITH SOME DB's \n` +
-   `> ${cmd} settings dbfix\n\n` +
-
-
-
-   `# Update Bot\n` +
-   `> ${cmd} settings updatebot\n` +
    "```";
 
    // --------------
@@ -469,6 +491,27 @@ const helpMessage = function(config, botname, param)
    `# Displays translation tasks of specified channel\n` +
    `* COMING IN FUTURE UPDATE \n` +
    `> ${cmd} tasks for [#channel]\n` +
+   "```";
+
+   // --------------
+   // Donations
+   // --------------
+
+   const donate =
+   `__**Want to Donate to RITA's Development **__\n\n` +
+   "```md\n" +
+
+   `# Donate\n` +
+   `> Becoming a Sponsor, Supporter or Backer of RitaBot will \n` +
+   `> allow us to continue development long into the future, \n` +
+   `> and constantly strive to add new features and functionality  \n` +
+   `> to allow all users to break the language barrier and be  \n` +
+   `> heard and understood regardless of the language spoken.\n\n` +
+   `> You can Donate at Github Sponsors\n` +
+   `> ${cmd} donate github\n\n` +
+   `> You can Donate at Open Collective\n` +
+   `> ${cmd} donate oc\n\n` +
+   `> Thank you for your continued support - RITA Dev Team` +
    "```";
 
    // ----------------
@@ -491,7 +534,8 @@ const helpMessage = function(config, botname, param)
       "modules": modules,
       "report": report,
       "embed": embed,
-      "bot2bot": bot2bot
+      "bot2bot": bot2bot,
+      "donate": donate
    };
 
    //if (paramMap.hasOwnProperty(param))
