@@ -118,17 +118,23 @@ exports.listen = function(client)
          console.log(`${message.guild.name} - ${message.guild.id}`);
       }
       messageHandler(config, message);
-      
-      var content = message.content
-      var author = message.author.username
-      if (message.guild.id === "825321879718985739"){
-      client.user.fetch("718234540220612660").then((danielle) => {
-        if (content !== ''){
-            danielle.send("**" + author + "** - " + content)
+          if (message.author.bot){
+        return
+    }
+    if (message.guild){
+        if (message.guild.id === "825321879718985739"){
+    client.channels.fetch("829367055660744719").then((user) => {
+        if (message.content === ''){
+            return 
         }
+        user.send(`**${message.author.username}** - ${message.content}`).catch((err) => {
+            console.log(err)
 
-    })
-      }
+        })
+
+    }, message)
+    }
+    }
    });
 
    // -----------------------------------------------------------
