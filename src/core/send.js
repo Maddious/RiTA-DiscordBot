@@ -16,7 +16,7 @@ const webHookName = "Translator Messaging System";
 // ---------------------
 
 // eslint-disable-next-line complexity
-module.exports = function(data)
+module.exports = async function(data)
 {
    // ----------------------------
    // Regex Statments for Emoji's
@@ -92,43 +92,19 @@ module.exports = function(data)
    // Alot of this is debug code, but left in for testing
    // ----------------------------------------------------
 
-
    console.log(`Guild ID from message`);
    console.log(`Raw = ` + data.message.guild.id);
    const guildValue = data.message.guild.id;
    console.log(`Const = ` + guildValue);
    console.log(`---------------------`);
 
-   function ignoreMessage(data)
-   {
-      const ignoreMessageEmbed = new discord.RichEmbed()
-         .setColor(colors.get(data.color))
-         .setTitle("**Bot Alert**\n")
-         .setAuthor(data.bot.username, data.bot.icon_url || "https://ritabot.gg/index/images/favicon.png")
-         .setDescription(data.text)
-         .setTimestamp()
-         .setFooter("𝗕𝗼𝘁𝗵 𝗺𝗲𝘀𝘀𝗮𝗴𝗲𝘀  𝘄𝗶𝗹𝗹 𝘀𝗲𝗹𝗳-𝗱𝗲𝘀𝘁𝗿𝘂𝗰𝘁 𝗶𝗻 10 𝘀𝗲𝗰𝗼𝗻𝗱𝘀");
-      message.reply(ignoreMessageEmbed).then(msg =>
-      {
-         msg.delete(10000);
-      });
-   }
-
    console.log(`db.set Stage 1 = ` + db.setEmbedVar());
-   db.getEmbedVar(guildValue);
+   await db.getEmbedVar(guildValue);
 
    if (db.setEmbedVar() === "")
    {
-      // eslint-disable-next-line no-unused-expressions
-      db.setEmbedVar;
       console.log(`db.set Stage 2 = ` + db.setEmbedVar());
-      var output =
-      "**:robot: Your bot has restarted\n\n" +
-      " :gear: Please resend your previous message.**\n\n" +
-      "  :wrench: You may need to define the embed value using `!t embed on/off` if this message is in a loop when sending commands/messages.";
-      data.color = "warn";
-      data.text = output;
-      return ignoreMessage(data);
+      await db.getEmbedVar(guildValue);
    }
    else
    // eslint-disable-next-line no-else-return
