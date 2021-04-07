@@ -203,7 +203,7 @@ const getSettings = function(data)
 
    const updateDB = function(data)
    {
-      return db.updateColumns();
+      return db.updateColumns(data);
    };
 
    // --------------------------
