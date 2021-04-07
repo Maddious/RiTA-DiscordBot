@@ -245,7 +245,3 @@ exports.proc = function(data)
 
    botSend(data);
 };
-
-// --------------
-// Get CPU Usage
-// --------------
