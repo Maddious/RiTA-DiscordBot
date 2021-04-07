@@ -16,13 +16,14 @@ const webHookName = "Translator Messaging System";
 // ---------------------
 
 // eslint-disable-next-line complexity
-module.exports = function(data)
+module.exports = async function(data)
 {
    // ----------------------------
    // Regex Statments for Emoji's
    // ----------------------------
 
    function languageRegex(data)
+
    {
       // Remove Whitespaces
       data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ""));
@@ -112,28 +113,11 @@ module.exports = function(data)
       });
    }
 
-   console.log(`db.set Stage 1 = ` + db.setEmbedVar());
-   db.getEmbedVar(guildValue);
 
    if (db.setEmbedVar() === "")
    {
-      // eslint-disable-next-line no-unused-expressions
-      db.setEmbedVar;
-      console.log(`db.set Stage 2 = ` + db.setEmbedVar());
-      var output =
-      "**:robot: Your bot has restarted\n\n" +
-      " :gear: Please resend your previous message.**\n\n" +
-      "  :wrench: You may need to define the embed value using `!t embed on/off` if this message is in a loop when sending commands/messages.";
-      data.color = "warn";
-      data.text = output;
-      return ignoreMessage(data);
+      await db.getEmbedVar(guildValue);
    }
-   else
-   // eslint-disable-next-line no-else-return
-   {
-      console.log(`db.set Stage 3 = ` + db.setEmbedVar());
-   }
-   console.log(`db.set Stage 4 = ` + db.setEmbedVar());
 
    // --------------------
    // Primary If Statment

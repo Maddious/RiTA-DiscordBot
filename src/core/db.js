@@ -287,28 +287,24 @@ module.exports.setBot2BotVar = function(data)
 exports.updateColumns = function(data)
 {
    // Very sloppy code, neew to find a better fix.
-   db.query(`ALTER TABLE public.servers ADD COLUMN "embedstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'on'::character varying;`,function(err)
+   db.getQueryInterface().describeTable("servers").then(tableDefinition =>
    {
-      if (err)
+      if (!tableDefinition.embedstyle)
       {
-         console.log("ERROR:"+err.message);
+         console.log("-------------> Adding embedstyle column");
+         db.getQueryInterface().addColumn("servers", "embedstyle", {
+            type: Sequelize.STRING(8),
+            defaultValue: "on"});
       }
-      else
+      if (!tableDefinition.bot2botstyle)
       {
-         console.log("embedstyle column added");
+         console.log("-------------> Adding bot2botstyle column");
+         db.getQueryInterface().addColumn("servers", "bot2botstyle", {
+            type: Sequelize.STRING(8),
+            defaultValue: "off"});
       }
    });
-   db.query(`ALTER TABLE public.servers ADD COLUMN "bot2botstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'off'::character varying;`,function(err)
-   {
-      if (err)
-      {
-         console.log("ERROR:"+err.message);
-      }
-      else
-      {
-         console.log("bot2botstyle column added");
-      }
-   });
+
 
    // ------------------------------------------
    // Add Missing Variable Columns for local db
