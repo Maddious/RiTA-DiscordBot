@@ -195,6 +195,19 @@ const getSettings = function(data)
       //   "Hello, this bot has been updated to a new version.\n " +
       //   "More info: https://ritabot.gg/whats-new/#new-in-121\n");
       //});
+      return data.message.channel.send({embed: {
+         color: 13107200,
+         author: {
+            name: data.client.user.username,
+            icon_url: data.client.user.displayAvatarURL
+         },
+         description: ":no_entry_sign: This command has been disabled",
+         footer: `Requested by ${data.message.author.username}`
+
+      }}).then((msg) =>
+      {
+         msg.delete(10000);
+      });
    };
 
    // ----------
@@ -203,24 +216,16 @@ const getSettings = function(data)
 
    const updateDB = function(data)
    {
-      return db.updateColumns();
-   };
-
-   // -------------------
-   // Fix guild mismatch
-   // -------------------
-
-   const dbFix = function(data)
-   {
-      const activeGuilds = data.client.guilds.array();
       data.color = "info";
-      data.text = `Updating db for **${activeGuilds.length}** servers.`;
-      botSend(data);
+      data.text =
+      ":white_check_mark: **Database has been updated.**";
 
-      activeGuilds.forEach(guild =>
-      {
-         db.addServer(guild.id, data.config.defaultLanguage, db.Servers);
-      });
+      // -------------
+      // Send message
+      // -------------
+      db.updateColumns();
+
+      return botSend(data);
    };
 
    // --------------------------
@@ -231,7 +236,6 @@ const getSettings = function(data)
       "setlang": setLang,
       "disconnect": disconnect,
       "listservers": listServers,
-      "dbfix": dbFix,
       "updatedb": updateDB,
       "updatebot": updateBot
    };

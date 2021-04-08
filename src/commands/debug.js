@@ -5,58 +5,55 @@
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
 const colors = require("../core/colors");
+const db = require("../core/db");
+const logger = require("../core/logger");
 const discord = require("discord.js");
 
-// -------------
-// Command Code
-// -------------
+// -----------------------
+// Command code
+// -----------------------
 
 module.exports.run = function(data)
-
 {
-   // -----------------------------------
-   // Error if settings param is missing
-   // -----------------------------------
+   // -------------------------------
+   // Command allowed by admins only
+   // -------------------------------
 
-   if (!data.cmd.params)
+   if (data.message.isAdmin === false)
    {
-      data.color = "error";
-      data.text =
-         ":warning:  Missing `donate` parameter. Use `" +
-         `${data.config.translateCmdShort} help donate\` to learn more.`;
+      data.color = "warn";
+      data.text = ":cop:  This command is reserved for server adminis.";
 
       // -------------
       // Send message
       // -------------
 
-      sendMessage(data);
+      return sendMessage(data);
    }
 
-   // ----------------
-   // Execute setting
-   // ----------------
-   if (data.message)
+   if (data.message.isAdmin)
    {
-      donate(data);
+      debug(data);
    }
 };
 
+
 // -------------------------------
-// Donate varible command handaler
+// debug varible command handaler
 // -------------------------------
 
-const donate = function(data)
+const debug = function(data)
 {
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
-   if (commandVariable1 === "github")
+   if (commandVariable1 === "start")
    {
       console.log(commandVariable1);
       {
          var outputgh =
-            "**```Donate via github```**\n" +
-            `Thank you for wanting to donate to the RITA Bot Project \n` +
-            `https://github.com/sponsors/RitaBot-Project\n\n`;
+            "**```Start Debug mode```**\n" +
+            `Debug mode has been Started. \n` +
+            `Error Logs will be output to this channel \n\n`;
          data.color = "info";
          data.text = outputgh;
 
@@ -67,14 +64,14 @@ const donate = function(data)
          sendMessage(data);
       }
    }
-   else if (commandVariable1 === "oc")
+   else if (commandVariable1 === "stop")
    {
       console.log(commandVariable1);
       {
          var outputoc =
-          "**```Donate via Open Collective```**\n" +
-          `Thank you for wanting to donate to the RITA Bot Project \n` +
-          `https://opencollective.com/ritabot-project\n\n`;
+          "**```Stop Debug mode```**\n" +
+          `Debug mode has been Stopped. \n` +
+          `Error logs will not be shown.\n\n`;
          data.color = "info";
          data.text = outputoc;
 
