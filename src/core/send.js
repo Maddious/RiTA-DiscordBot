@@ -9,7 +9,7 @@ const fn = require("./helpers");
 const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
-const { message } = require("../message");
+const message = require("../message");
 const webHookName = "Translator Messaging System";
 
 // ---------------------

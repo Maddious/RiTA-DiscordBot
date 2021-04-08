@@ -111,6 +111,22 @@ const Tasks = db.define("tasks", {
    ]
 });
 
+// ---------------------------------
+// Database debug table definition
+// ---------------------------------
+
+const Debug = db.define("debug", {
+   id: {
+      type: Sequelize.STRING(32),
+      primaryKey: true,
+      unique: true,
+      allowNull: false
+   },
+   dest: Sequelize.STRING(32),
+   webhookID: Sequelize.STRING(32),
+   webhookToken: Sequelize.STRING(32)
+});
+
 // -------------------
 // Init/create tables
 // -------------------
@@ -422,6 +438,17 @@ exports.addTask = function(task)
          {
             logger("error", err);
          });
+   });
+};
+
+// ---------
+// Add debug
+// ---------
+
+exports.addDebug = function(id)
+{
+   return Debug.create({
+      id: id
    });
 };
 
