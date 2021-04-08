@@ -50,7 +50,6 @@ const debug = function(data)
    {
       console.log(commandVariable1);
       {
-
          var outputgh =
             "**```Start Debug mode```**\n" +
             `Debug mode has been Started. \n` +
