@@ -111,19 +111,63 @@ const Tasks = db.define("tasks", {
    ]
 });
 
+// ---------------------------------
+// Database debug table definition
+// ---------------------------------
+
+const Debuggers = db.define("debugger", {
+   id: {
+      type: Sequelize.STRING(32),
+      primaryKey: true,
+      unique: true,
+      allowNull: false
+   },
+   dest: Sequelize.STRING(32),
+   webhookID: Sequelize.STRING(32),
+   webhookToken: Sequelize.STRING(32),
+   active: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
+   }
+});
+
 // -------------------
 // Init/create tables
 // -------------------
 
-exports.initializeDatabase = function()
+exports.initializeDatabase = function(client)
 {
-   Servers.sync({ logging: console.log });
-   Tasks.sync({ logging: console.log });
-   // Add global server row
-   Servers.upsert({ id: "bot",
-      lang: "en" });
+   db.sync({ logging: console.log }).then(() =>
+   {
+      Servers.upsert({ id: "bot",
+         lang: "en" });
+      exports.updateColumns();
+      const guilds = client.guilds.array().length;
+      const guildsArray = client.guilds.array();
+      var i;
+      for (i = 0; i < guilds; i++)
+      {
+         const guild = guildsArray[i];
+         const guildID = guild.id;
+         Servers.findAll({ where: { id: guildID } }).then(projects =>
+         {
+            if (projects.length === 0)
+            {
+               Servers.upsert({ id: guildID,
+                  lang: "en" });
+            }
+         });
+         Debuggers.findAll({ where: { id: guildID } }).then(projects =>
+         {
+            if (projects.length === 0)
+            {
+               Debuggers.upsert({ id: guildID});
+            }
+         });
+      }
+      console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
+   });
 };
-
 // -----------------------
 // Add Server to Database
 // -----------------------
@@ -133,6 +177,17 @@ exports.addServer = function(id, lang)
    return Servers.create({
       id: id,
       lang: lang
+   });
+};
+
+// -----------------------
+// Add debugger to Database
+// -----------------------
+
+exports.addDebugger = function(id)
+{
+   return Debuggers.create({
+      id: id
    });
 };
 
@@ -240,53 +295,21 @@ module.exports.setBot2BotVar = function(data)
 exports.updateColumns = function(data)
 {
    // Very sloppy code, neew to find a better fix.
-   db.query(`ALTER TABLE public.servers ADD COLUMN "embedstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'on'::character varying;`,function(err)
+   db.getQueryInterface().describeTable("servers").then(tableDefinition =>
    {
-      if (err)
+      if (!tableDefinition.embedstyle)
       {
-         console.log("ERROR:"+err.message);
+         console.log("-------------> Adding embedstyle column");
+         db.getQueryInterface().addColumn("servers", "embedstyle", {
+            type: Sequelize.STRING(8),
+            defaultValue: "on"});
       }
-      else
+      if (!tableDefinition.bot2botstyle)
       {
-         console.log("embedstyle column added");
-      }
-   });
-   db.query(`ALTER TABLE public.servers ADD COLUMN "bot2botstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'off'::character varying;`,function(err)
-   {
-      if (err)
-      {
-         console.log("ERROR:"+err.message);
-      }
-      else
-      {
-         console.log("bot2botstyle column added");
-      }
-   });
-
-   // ------------------------------------------
-   // Add Missing Variable Columns for local db
-   // ------------------------------------------
-
-   db.query(`ALTER TABLE servers ADD COLUMN "embedstyle" character varying(8)  DEFAULT 'on'`,function(err)
-   {
-      if (err)
-      {
-         console.log("ERROR:"+err.message);
-      }
-      else
-      {
-         console.log("embedstyle column added");
-      }
-   });
-   db.query(`ALTER TABLE servers ADD COLUMN "bot2botstyle" character varying(8) DEFAULT 'off'`,function(err)
-   {
-      if (err)
-      {
-         console.log("ERROR:"+err.message);
-      }
-      else
-      {
-         console.log("bot2botstyle column added");
+         console.log("-------------> Adding bot2botstyle column");
+         db.getQueryInterface().addColumn("servers", "bot2botstyle", {
+            type: Sequelize.STRING(8),
+            defaultValue: "off"});
       }
    });
 };

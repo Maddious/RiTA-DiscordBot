@@ -187,7 +187,7 @@ const helpMessage = function(config, botname, param)
       config: config,
       title: "Report Bugs / Request Features",
       link: "<https://github.com/RitaBot-Project/RitaBot/issues>",
-      icon: ":raising_hand::skin-tone-3:"
+      icon: "🙋🏽‍♀️"
    }) +
    helpSection({
       config: config,
@@ -474,15 +474,6 @@ const helpMessage = function(config, botname, param)
 
    `# Displays list of servers the bot is in\n` +
    `> ${cmd} settings listservers\n\n` +
-
-   `# Fix Guild Mismatch\n` +
-   `* MAY NOT WORK WITH SOME DB's \n` +
-   `> ${cmd} settings dbfix\n\n` +
-
-
-
-   `# Update Bot\n` +
-   `> ${cmd} settings updatebot\n` +
    "```";
 
    // --------------

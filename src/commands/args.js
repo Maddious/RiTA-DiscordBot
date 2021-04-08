@@ -26,6 +26,7 @@ const cmdTranslateThis = require("./translate.this");
 const cmdTranslateAuto = require("./translate.auto");
 const cmdTranslateStop = require("./translate.stop");
 const cmdTranslateTasks = require("./translate.tasks");
+const cmdDebug = require("./debug");
 
 // ---------------------------------------
 // Extract a parameter's value with regex
@@ -236,7 +237,8 @@ module.exports = function(data)
          "shards": cmdMisc.shards,
          "proc": cmdMisc.proc,
          "cpu": cmdMisc.cpuUsage,
-         "settings": cmdSettings
+         "settings": cmdSettings,
+         "debug": cmdDebug.run
       };
 
       // --------------------------
