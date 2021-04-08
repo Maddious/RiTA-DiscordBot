@@ -22,7 +22,7 @@ module.exports.run = function(data)
    if (data.message.isAdmin === false)
    {
       data.color = "warn";
-      data.text = ":cop:  This command is reserved for server adminis.";
+      data.text = ":cop:  This command is reserved for server admins.";
 
       // -------------
       // Send message
@@ -39,7 +39,7 @@ module.exports.run = function(data)
 
 
 // -------------------------------
-// debug varible command handaler
+// debug varible command handler
 // -------------------------------
 
 const debug = function(data)
