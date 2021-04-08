@@ -111,6 +111,26 @@ const Tasks = db.define("tasks", {
    ]
 });
 
+// ---------------------------------
+// Database debug table definition
+// ---------------------------------
+
+const Debuggers = db.define("debugger", {
+   id: {
+      type: Sequelize.STRING(32),
+      primaryKey: true,
+      unique: true,
+      allowNull: false
+   },
+   dest: Sequelize.STRING(32),
+   webhookID: Sequelize.STRING(32),
+   webhookToken: Sequelize.STRING(32),
+   active: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
+   }
+});
+
 // -------------------
 // Init/create tables
 // -------------------
@@ -137,6 +157,13 @@ exports.initializeDatabase = function(client)
                   lang: "en" });
             }
          });
+         Debuggers.findAll({ where: { id: guildID } }).then(projects =>
+         {
+            if (projects.length === 0)
+            {
+               Debuggers.upsert({ id: guildID});
+            }
+         });
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
    });
@@ -153,6 +180,16 @@ exports.addServer = function(id, lang)
    });
 };
 
+// -----------------------
+// Add debugger to Database
+// -----------------------
+
+exports.addDebugger = function(id)
+{
+   return Debuggers.create({
+      id: id
+   });
+};
 
 // ------------------
 // Deactivate Server
