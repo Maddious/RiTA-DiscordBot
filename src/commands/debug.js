@@ -5,14 +5,13 @@
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
 const colors = require("../core/colors");
-//const db = require("../core/db");
-//const logger = require("../core/logger");
+const db = require("../core/db");
+const logger = require("../core/logger");
 const discord = require("discord.js");
 
-// ----------------------
-// Database Auth Process
-// ----------------------
-
+// -----------------------
+// Command code
+// -----------------------
 
 module.exports.run = function(data)
 {
@@ -34,44 +33,62 @@ module.exports.run = function(data)
 
    if (data.message.isAdmin)
    {
-      data.color = "warn";
-      data.text = ":white_check_mark:  This command file works, now add code!";
-
-      // -------------
-      // Send message
-      // -------------
-
-      return sendMessage(data);
+      debug(data);
    }
 };
 
-// -----------------------
-// Command code
-// -----------------------
-
-/*
 
 // -------------------------------
 // debug varible command handaler
 // -------------------------------
 
-const debugettings = function(data)
+const debug = function(data)
 {
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
-   if
-   ----- If command is !debug #destination
-   then
-   Do this
-   esle
-   // -----------------------------------
-   // Error if settings param is missing
-   // -----------------------------------
+   if (commandVariable1 === "start")
+   {
+      console.log(commandVariable1);
+      {
+
+         var outputgh =
+            "**```Start Debug mode```**\n" +
+            `Debug mode has been Started. \n` +
+            `Error Logs will be output to this channel \n\n`;
+         data.color = "info";
+         data.text = outputgh;
+
+         // -------------
+         // Send message
+         // -------------
+
+         sendMessage(data);
+      }
+   }
+   else if (commandVariable1 === "stop")
+   {
+      console.log(commandVariable1);
+      {
+         var outputoc =
+          "**```Stop Debug mode```**\n" +
+          `Debug mode has been Stopped. \n` +
+          `Error logs will not be shown.\n\n`;
+         data.color = "info";
+         data.text = outputoc;
+
+         // -------------
+         // Send message
+         // -------------
+
+         sendMessage(data);
+      }
+   }
+   else
    {
       data.color = "error";
       data.text =
-         ":warning:  Missing `#Destination` parameter. Use `" +
-         `${data.config.translateCmdShort} help debug\` to learn more.`;
+      ":warning:  **`" + commandVariable1 +
+      "`** is not a valid donate option.\n";
 
       // -------------
       // Send message
@@ -79,14 +96,7 @@ const debugettings = function(data)
 
       sendMessage(data);
    }
-
-   // -------------
-   // Send message
-   // -------------
-
-   sendMessage(data);
 };
-*/
 
 // ----------------------
 // Send message function

@@ -115,7 +115,7 @@ const Tasks = db.define("tasks", {
 // Database debug table definition
 // ---------------------------------
 
-const Debug = db.define("debug", {
+const Debugger = db.define("debugger", {
    id: {
       type: Sequelize.STRING(32),
       primaryKey: true,
@@ -124,7 +124,11 @@ const Debug = db.define("debug", {
    },
    dest: Sequelize.STRING(32),
    webhookID: Sequelize.STRING(32),
-   webhookToken: Sequelize.STRING(32)
+   webhookToken: Sequelize.STRING(32),
+   active: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true
+   }
 });
 
 // -------------------
@@ -441,15 +445,28 @@ exports.addTask = function(task)
    });
 };
 
-// ---------
-// Add debug
-// ---------
+// -------------
+// Add debugger
+// -------------
 
-exports.addDebug = function(id)
+exports.addDebugger = function(id, active)
 {
-   return Debug.create({
-      id: id
+   return Debugger.create({
+      id: id,
+      active: active
    });
+};
+// --------------------
+// Deactivate Debugger
+// --------------------
+
+exports.removeServer = function(id)
+{
+   return Debugger.update({ active: false }, { where: { id: id } }).then(
+      function (err, _result)
+      {
+         logger("error", err);
+      });
 };
 
 // ------------
