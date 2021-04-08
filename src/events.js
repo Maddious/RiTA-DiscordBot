@@ -40,8 +40,8 @@ exports.listen = function(client)
          inviteURL: auth.invite || "Set this in your .env file / config variables in Heroku",
          owner: auth.botOwner,
          defaultLanguage: "en",
-         translateCmd: "!ritabot",
-         translateCmdShort: "!rb",
+         translateCmd: "!tr",
+         translateCmdShort: "!tr",
          maxMulti: 6,
          maxChains: 10,
          maxChainLen: 5,
@@ -112,11 +112,11 @@ exports.listen = function(client)
 
    client.on("message", message =>
    {
-      global.message = message;
       if (message.guild)
       {
          console.log(`${message.guild.name} - ${message.guild.id}`);
       }
+
       messageHandler(config, message);
    });
 
@@ -231,5 +231,6 @@ exports.listen = function(client)
    {
       logger("guildJoin", guild);
       db.addServer(guild.id, config.defaultLanguage, db.Servers);
+      db.addDebugger(guild.id, db.Debuggers);
    });
 };

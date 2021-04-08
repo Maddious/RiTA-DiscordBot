@@ -84,8 +84,9 @@ const embedSettings = function(data)
                return logger("error", err);
             }
             var output =
+            `:warning: This is extremely experimental, use at your own risk! :warning:\n\n`+
             "**```Bot to Bot Translation```**\n" +
-            `Bot Message translation is not yet Implemented\n\n`;
+            `Bot to Bot Message translation is now turned : ${commandVariable1}\n\n`;
             data.color = "info";
             data.text = output;
 

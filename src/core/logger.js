@@ -18,6 +18,10 @@ const hook = new discord.WebhookClient(
 
 module.exports = function(type, data, subtype = null)
 {
+   if (hook.id === undefined)
+   {
+      return;
+   }
    const logTypes = {
       dev: devConsole,
       error: errorLog,
