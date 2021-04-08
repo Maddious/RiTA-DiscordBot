@@ -4,7 +4,7 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING]
 const path = require("path");
-const env = __dirname.slice(0, -3) + ".env"
+const env = __dirname.slice(0, -3) + ".env";
 require("dotenv").config({
    path: env
 });
