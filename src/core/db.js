@@ -7,10 +7,10 @@ const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
 const Op = Sequelize.Op;
+var dbEmbedValue ="";
 var dbBot2BotValue ="";
 var dbWebhookIDValue ="";
 var dbWebhookTokenValue ="";
-var server_obj = {};
 
 // ----------------------
 // Database Auth Process
@@ -124,9 +124,9 @@ const Tasks = db.define("tasks", {
 // Init/create tables
 // -------------------
 
-exports.initializeDatabase = async function(client)
+exports.initializeDatabase = function(client)
 {
-   db.sync({ logging: console.log }).then(async() =>
+   db.sync({ logging: console.log }).then(() =>
    {
       Servers.upsert({ id: "bot",
          lang: "en" });
@@ -149,19 +149,6 @@ exports.initializeDatabase = async function(client)
          });
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
-      const serversFindAll = await Servers.findAll({attributes: ["id", "embedstyle", "bot2botstyle"] });//.then((serversFindAll) =>
-      //{
-      for (let i = 0; i < serversFindAll.length; i++)
-      {
-         // eslint-disable-next-line prefer-const
-         let guild_id = serversFindAll[i].id;
-         // eslint-disable-next-line eqeqeq
-         if (guild_id != "bot")
-         {
-            server_obj[guild_id] = serversFindAll[i];
-         }
-      }
-      // });
    });
 };
 // -----------------------
@@ -170,11 +157,6 @@ exports.initializeDatabase = async function(client)
 
 exports.addServer = function(id, lang)
 {
-   server_obj[id] = {
-      embedstyle: "on",
-      bot2botstyle: "off",
-      id: id
-   };
    return Servers.create({
       id: id,
       lang: lang
@@ -209,7 +191,7 @@ exports.updateServerLang = function(id, lang, _cb)
 
 exports.updateEmbedVar = function(id, embedstyle, _cb)
 {
-   server_obj[id].embedstyle = embedstyle;
+   dbEmbedValue = embedstyle;
    return Servers.update({ embedstyle: embedstyle }, { where: { id: id } }).then(
       function ()
       {
@@ -223,22 +205,20 @@ exports.updateEmbedVar = function(id, embedstyle, _cb)
 
 exports.getEmbedVar = async function run(id)
 {
-   /*
    var value = await db.query(`select * from (select embedstyle as "embedstyle" from servers where id = ?) as table1`, { replacements: [id],
       type: db.QueryTypes.SELECT});
-   dbEmbedValue = value[0].embedstyle;*/
-   const object = server_obj[id];
-   return object.embedstyle;/*this.setEmbedVar();*/
+   dbEmbedValue = value[0].embedstyle;
+   return this.setEmbedVar();
 };
 
 // -------------------------------------------
 // Call Saved Embedded Variable Value From DB
 // -------------------------------------------
 
-//module.exports.setEmbedVar = function(data)
-//{
-//   return dbEmbedValue;
-//};
+module.exports.setEmbedVar = function(data)
+{
+   return dbEmbedValue;
+};
 
 
 // ------------------------------
@@ -491,7 +471,10 @@ exports.getTasksCount = function(origin, cb)
 
 exports.getServersCount = function(cb)
 {
-   return server_obj.length();
+   return Servers.count().then(c =>
+   {
+      cb("", c);
+   });
 };
 
 // ---------
