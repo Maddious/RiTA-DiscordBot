@@ -149,7 +149,7 @@ exports.initializeDatabase = async function(client)
          });
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
-      const serversFindAll = await Servers.findAll();//.then((serversFindAll) =>
+      const serversFindAll = await Servers.findAll({attributes: ["id", "embedstyle", "bot2botstyle"] });//.then((serversFindAll) =>
       //{
       for (let i = 0; i < serversFindAll.length; i++)
       {
