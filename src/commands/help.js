@@ -97,7 +97,7 @@ const helpMessage = function(config, botname, param)
       config: config,
       title: "Translate by Reacting",
       link: "<https://ritabot.gg/trans-reac/>",
-      icon: ":warning:"/*":flag_white:"*/,
+      icon: ":flag_white:",
       cmd: null,
       help: "react",
       args: null,

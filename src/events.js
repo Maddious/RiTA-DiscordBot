@@ -41,7 +41,7 @@ exports.listen = function(client)
          owner: auth.botOwner,
          defaultLanguage: "en",
          translateCmd: "!ritabot",
-         translateCmdShort: "?rb",
+         translateCmdShort: "!rb",
          maxMulti: 6,
          maxChains: 10,
          maxChainLen: 5,
