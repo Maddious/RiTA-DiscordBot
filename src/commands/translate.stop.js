@@ -68,51 +68,59 @@ module.exports = function(data)
    // ------------------
 
    const origin = data.message.channel.id;
-   const dest = destID(data.cmd.for[0], data.message.author.id);
-   const destDisplay = destResolver(data.cmd.for[0], data.message.author.id);
+   var dest = destID(data.cmd.for[0], data.message.author.id);
+   let destDisplay = destResolver(data.cmd.for[0], data.message.author.id);
 
    // ------------------------------
    // Check if task actually exists
    // ------------------------------
 
-   db.checkTask(origin, dest, function(err, res)
+
    {
-      if (err)
+      db.checkTask(origin, dest, function(err, res)
       {
-         return dbError(err, data);
-      }
+         if (err)
+         {
+            return dbError(err, data);
+         }
 
-      // -----------------------------
-      // Error if task does not exist
-      // -----------------------------
+         // -----------------------------
+         // Error if task does not exist
+         // -----------------------------
 
-      if (res.length < 1 || !res)
-      {
-         data.color = "error";
-         data.text =
+         if (res.length < 1 || !res)
+         {
+            if (!isNaN(destDisplay))
+            {
+               // eslint-disable-next-line no-param-reassign
+               destDisplay = "<@" + destDisplay + ">";
+            }
+            data.color = "error";
+            data.text =
             ":warning:  This channel is __**not**__ being translated for " +
             `**${destDisplay}**.`;
 
-         if (dest === "all")
-         {
-            data.text =
+            if (dest === "all")
+            {
+               data.text =
                ":warning:  This channel is not being automatically " +
                "translated for anyone.";
+            }
+
+            // -------------
+            // Send message
+            // -------------
+
+            return botSend(data);
          }
 
-         // -------------
-         // Send message
-         // -------------
+         // ------------------------------------------------
+         // Otherwise, proceed to remove task from database
+         // ------------------------------------------------
 
-         return botSend(data);
-      }
-
-      // ------------------------------------------------
-      // Otherwise, proceed to remove task from database
-      // ------------------------------------------------
-
-      removeTask(res, data, origin, dest, destDisplay);
-   });
+         removeTask(res, data, origin, dest, destDisplay);
+      });
+   }
 };
 
 // ----------------------
@@ -128,7 +136,11 @@ const removeTask = function(res, data, origin, dest, destDisplay)
       {
          return dbError(err, data);
       }
-
+      if (!isNaN(destDisplay))
+      {
+         // eslint-disable-next-line no-param-reassign
+         destDisplay = "<@" + destDisplay + ">";
+      }
       data.color = "ok";
       data.text =
          ":negative_squared_cross_mark:  Auto translation of this " +
@@ -159,14 +171,23 @@ const destID = function(dest, author)
    {
       return dest.slice(2,-1);
    }
-   if (dest.startsWith("<@"))
+   if (dest.startsWith("<@") && !dest.startsWith("<@!"))
    {
       return dest.slice(1,-1);
+   }
+   if (dest.startsWith("<@!"))
+   {
+      return dest.slice(3, -1);
    }
    if (dest === "me")
    {
       return "@" + author;
    }
+   if (!isNaN(dest))
+   {
+      return "@" + dest;
+   }
+
    return dest;
 };
 

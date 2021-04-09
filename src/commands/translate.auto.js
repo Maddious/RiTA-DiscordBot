@@ -35,16 +35,11 @@ module.exports = function(data)
    // ----------------
    // Language checks
    // ----------------
-   if (data.cmd.from.invalid[0] === "auto")
-   {
-      data.cmd.from.invalid[0].shift();
-      data.cmd.from.valid.push("auto");
-   }
-   if (/*data.cmd.from === "auto" || */data.cmd.from.valid.length !== 1)
+   if (data.cmd.from.valid.length !== 1)
    {
       data.color = "error";
       data.text =
-         ":warning:  Auto Function Under Construction, Please use a defined language to translate from for now.";
+         ":warning:  Please use a defined `langFrom` language to translate from.";
 
       // -------------
       // Send message
@@ -53,11 +48,11 @@ module.exports = function(data)
       return botSend(data);
    }
 
-   if (data.cmd.to.valid.length !== 1)
+   if (data.cmd.to.valid.length !== 1 || data.cmd.to.valid[0] === "auto")
    {
       data.color = "error";
       data.text =
-         ":warning:  Please specify one valid language for auto translation.";
+         ":warning:  Please use a defined `langTo` language to translate to.";
 
       // -------------
       // Send message
@@ -147,21 +142,11 @@ module.exports = function(data)
 
          if (dest === "me")
          {
-            data.color = "error";
-            data.text =
-               ":warning: DM / User Translation Function Disabled";
-
-            // -------------
-            // Send message
-            // -------------
-
-            return botSend(data);
-
             // ---------------
             // Old Code Below
             // ---------------
 
-            //taskBuffer.update("@" + data.message.author.id);
+            taskBuffer.update("@" + data.message.author.id);
          }
 
          // resolve @everyone/@here
