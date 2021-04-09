@@ -69,10 +69,12 @@ module.exports = function(config, message, edited, deleted)
       member: message.member,
       canWrite: true
    };
-
-   if (data.member.displayName) // Replace username with nickname if exists
+   if (data.message.channel.type !== "dm")
    {
-      data.message.author.username = data.member.displayName;
+      if (data.member.displayName) // Replace username with nickname if exists
+      {
+         data.message.author.username = data.member.displayName;
+      }
    }
 
    // ------------------

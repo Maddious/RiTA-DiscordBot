@@ -28,6 +28,7 @@ const cmdTranslateStop = require("./translate.stop");
 const cmdTranslateTasks = require("./translate.tasks");
 const cmdDebug = require("./debug");
 
+
 // ---------------------------------------
 // Extract a parameter's value with regex
 // ---------------------------------------
@@ -46,12 +47,27 @@ const extractParam = function(key, str, def = null, allowArray = false)
       }
       if (allowArray)
       {
+         if (key === "to")
+         {
+            const input = /to\s([a-z \s]+)\sfor/gmi;
+            const matching = input.exec(match.input);
+            if (matching[1])
+            {
+               console.log(matching[1].replace("to ", ""));
+               return matching[1].replace("to ", "");
+            }
+         }
+
+
          return fn.removeDupes(match[1].replace(/\s/igm, "").split(","));
       }
       return match[1];
    }
+
+
    return def;
 };
+
 
 // ---------------------
 // Extract number param
@@ -149,9 +165,9 @@ module.exports = function(data)
       output.main = "help";
    }
 
-   output.to = langCheck(extractParam("to", output.params, "default", true));
+   output.to = langCheck(extractParam("to", output.params, ["default"], true));
 
-   output.from = langCheck(extractParam("from", output.params, "auto", true));
+   output.from = langCheck(extractParam("from", output.params, ["auto"], true));
 
    output.for = extractParam("for", output.params, ["me"], true);
 
