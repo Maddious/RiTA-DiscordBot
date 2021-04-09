@@ -231,6 +231,5 @@ exports.listen = function(client)
    {
       logger("guildJoin", guild);
       db.addServer(guild.id, config.defaultLanguage, db.Servers);
-      db.addDebugger(guild.id, db.Debuggers);
    });
 };
