@@ -145,13 +145,6 @@ exports.initializeDatabase = function(client)
                   lang: "en" });
             }
          });
-         Debuggers.findAll({ where: { id: guildID } }).then(projects =>
-         {
-            if (projects.length === 0)
-            {
-               Debuggers.upsert({ id: guildID});
-            }
-         });
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
    });
