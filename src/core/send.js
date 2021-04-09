@@ -102,7 +102,7 @@ module.exports = async function(data)
 
    if (db.setEmbedVar() === "")
    {
-      console.log(`db.set Stage 2 = ` + db.setEmbedVar());
+      console.log(`Collecting Value for Embed`);
       await db.getEmbedVar(guildValue);
    }
    else

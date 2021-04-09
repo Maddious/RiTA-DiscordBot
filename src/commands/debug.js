@@ -49,52 +49,69 @@ const debug = function(data)
    if (commandVariable1 === "start")
    {
       console.log(commandVariable1);
-      {
-         var outputgh =
+      return db.updateWebhookVar(
+         data.message.channel.guild.id,
+         commandVariable1, //This would be the Webhook ID
+         commandVariable1, //this would be the Webhook Token
+         true,
+         function(err)
+         {
+            if (err)
+            {
+               return logger("error", err);
+            }
+            var outputgh =
             "**```Start Debug mode```**\n" +
             `Debug mode has been Started. \n` +
             `Error Logs will be output to this channel \n\n`;
-         data.color = "info";
-         data.text = outputgh;
+            data.color = "info";
+            data.text = outputgh;
 
-         // -------------
-         // Send message
-         // -------------
+            // -------------
+            // Send message
+            // -------------
 
-         sendMessage(data);
-      }
+            sendMessage(data);
+         }
+      );
    }
    else if (commandVariable1 === "stop")
    {
       console.log(commandVariable1);
-      {
-         var outputoc =
+      return db.removeWebhook(
+         data.message.channel.guild.id,
+         function(err)
+         {
+            if (err)
+            {
+               return logger("error", err);
+            }
+            var outputoc =
           "**```Stop Debug mode```**\n" +
           `Debug mode has been Stopped. \n` +
           `Error logs will not be shown.\n\n`;
-         data.color = "info";
-         data.text = outputoc;
+            data.color = "info";
+            data.text = outputoc;
 
-         // -------------
-         // Send message
-         // -------------
+            // -------------
+            // Send message
+            // -------------
 
-         sendMessage(data);
-      }
+            sendMessage(data);
+         }
+      );
    }
-   else
-   {
-      data.color = "error";
-      data.text =
+
+   data.color = "error";
+   data.text =
       ":warning:  **`" + commandVariable1 +
       "`** is not a valid donate option.\n";
 
-      // -------------
-      // Send message
-      // -------------
+   // -------------
+   // Send message
+   // -------------
 
-      sendMessage(data);
-   }
+   sendMessage(data);
 };
 
 // ----------------------
