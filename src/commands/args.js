@@ -51,7 +51,7 @@ const extractParam = function(key, str, def = null, allowArray = false)
          {
             const input = /to\s([a-z \s]+)\sfor/gmi;
             const matching = input.exec(match.input);
-            if (matching)
+            if (matching[1])
             {
                console.log(matching[1].replace("to ", ""));
                return matching[1].replace("to ", "");
@@ -61,10 +61,7 @@ const extractParam = function(key, str, def = null, allowArray = false)
 
          return fn.removeDupes(match[1].replace(/\s/igm, "").split(","));
       }
-      if (match.length > 0)
-      {
-         return match[1];
-      }
+      return match[1];
    }
 
 
