@@ -167,11 +167,7 @@ exports.addServer = function(id, lang)
 
 exports.removeServer = function(id)
 {
-   return Servers.update({ active: false }, { where: { id: id } }).then(
-      function (err, _result)
-      {
-         logger("error", err);
-      });
+   return Servers.update({ active: false }, { where: { id: id } });
 };
 
 // -------------------
