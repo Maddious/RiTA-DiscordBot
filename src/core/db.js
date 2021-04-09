@@ -114,7 +114,8 @@ const Tasks = db.define("tasks", {
    indexes: [
       {
          unique: true,
-         fields: ["origin", "dest"]
+         name: "ux_index_1",
+         fields: ["origin", "dest", "LangTo", "LangFrom"]
       }
    ]
 });
@@ -150,6 +151,7 @@ exports.initializeDatabase = function(client)
       Servers.upsert({ id: "bot",
          lang: "en" });
       exports.updateColumns();
+      db.getQueryInterface().removeIndex("tasks", "tasks_origin_dest");
       const guilds = client.guilds.array().length;
       const guildsArray = client.guilds.array();
       var i;

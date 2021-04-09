@@ -7,6 +7,7 @@ const botSend = require("../core/send");
 const fn = require("../core/helpers");
 const db = require("../core/db");
 const logger = require("../core/logger");
+const help = require("./help");
 
 // -------------------------------
 // Auto translate Channel/Author
@@ -34,8 +35,12 @@ module.exports = function(data)
    // ----------------
    // Language checks
    // ----------------
-
-   if (data.cmd.from === "auto" || data.cmd.from.valid.length !== 1)
+   if (data.cmd.from.invalid[0] === "auto")
+   {
+      data.cmd.from.invalid[0].shift();
+      data.cmd.from.valid.push("auto");
+   }
+   if (/*data.cmd.from === "auto" || */data.cmd.from.valid.length !== 1)
    {
       data.color = "error";
       data.text =
@@ -170,21 +175,11 @@ module.exports = function(data)
 
          if (dest.startsWith("<@"))
          {
-            data.color = "error";
-            data.text =
-               ":warning: DM / User Translation Function Disabled";
-
-            // -------------
-            // Send message
-            // -------------
-
-            return botSend(data);
-
             // ---------------
             // Old Code Below
             // ---------------
 
-            /*
+
             const userID = dest.slice(3,-1);
 
             fn.getUser(data.client, userID, user =>
@@ -204,7 +199,6 @@ module.exports = function(data)
                   taskBuffer.reduce();
                }
             });
-            */
          }
 
          // resolve mentioned channel(s)

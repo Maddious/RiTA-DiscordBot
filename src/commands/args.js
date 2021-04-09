@@ -46,6 +46,13 @@ const extractParam = function(key, str, def = null, allowArray = false)
       }
       if (allowArray)
       {
+         if (key === "to"){
+            match.input.match(   if (key === "to"){
+               str.match()
+         
+            })
+      
+         }
          return fn.removeDupes(match[1].replace(/\s/igm, "").split(","));
       }
       return match[1];
@@ -151,7 +158,7 @@ module.exports = function(data)
 
    output.to = langCheck(extractParam("to", output.params, "default", true));
 
-   output.from = langCheck(extractParam("from", output.params, "auto", true));
+   output.from = langCheck(extractParam("from", output.params, ["auto"], true));
 
    output.for = extractParam("for", output.params, ["me"], true);
 
