@@ -170,11 +170,6 @@ exports.initializeDatabase = function(client)
 
 exports.addServer = function(id, lang)
 {
-   server_obj[id] = {
-      embedstyle: "on",
-      bot2botstyle: "off",
-      id: id
-   };
    return Servers.create({
       id: id,
       lang: lang
