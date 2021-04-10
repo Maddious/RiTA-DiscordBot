@@ -388,7 +388,7 @@ const helpMessage = function(config, botname, param)
 
    `# Parameters\n` +
    `> to [lang] - defaults to server default language\n` +
-   `> from [lang] -  language to translate from \n` +
+   `> from [lang] -  language to translate from, now includes 'auto'\n` +
    `> for [me/@/#] - defaults to "me", admins can use mentions \n\n` +
 
    `# Examples\n` +
@@ -455,6 +455,7 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} stats \n` +
    `> ${cmd} stats global \n` +
    `> ${cmd} stats server \n` +
+   `> ${cmd} stats debug \n` +
    "```";
 
    // -----------------
@@ -474,6 +475,21 @@ const helpMessage = function(config, botname, param)
 
    `# Displays list of servers the bot is in\n` +
    `> ${cmd} settings listservers\n\n` +
+   "```";
+   
+   // -----------------
+   // Settings Command
+   // -----------------
+
+   const debug =
+   `__**Debug**__\n\n` +
+   "```md\n" +
+
+   `# Turn debug webhook on \n` +
+   `> ${cmd} debug on\n\n` +
+
+   `# Turn debug webhook off \n` +
+   `> ${cmd} debug off\n\n` +
    "```";
 
    // --------------
@@ -535,6 +551,7 @@ const helpMessage = function(config, botname, param)
       "report": report,
       "embed": embed,
       "bot2bot": bot2bot,
+      "debug": debug,
       "donate": donate
    };
 
