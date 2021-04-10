@@ -41,7 +41,7 @@ exports.listen = function(client)
          owner: auth.botOwner,
          defaultLanguage: "en",
          translateCmd: "!trans",
-         translateCmdShort: db.server_obj.prefix,
+         translateCmdShort: "!tr",
          maxMulti: 6,
          maxChains: 10,
          maxChainLen: 5,
@@ -112,6 +112,11 @@ exports.listen = function(client)
 
    client.on("message", message =>
    {
+      if (config.translateCmd !== db.server_obj[message.guild.id].prefix || config.translateCmdShort !== db.server_obj[message.guild.id].prefix)
+      {
+         config.translateCmd = db.server_obj[message.guild.id].prefix;
+         config.translateCmdShort = db.server_obj[message.guild.id].prefix;
+      }
       if (message.guild)
       {
          console.log(`${message.guild.name} - ${message.guild.id}`);
