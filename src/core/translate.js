@@ -41,7 +41,6 @@ function getUserColor(data, callback)
    data.footer = ft;
    data.author = usr;
 
-
    callback(data);
 }
 

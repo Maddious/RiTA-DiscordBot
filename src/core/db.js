@@ -546,8 +546,7 @@ exports.getServerInfo = function(id, callback)
    `(select count(distinct origin) as "activeUserTasks"` +
    `from tasks where origin like '@%' and server = ?) as table3, ` +
    `(select embedstyle as "embedstyle" from servers where id = ?) as table4, ` +
-   `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5, ` +
-   `(select webhookActive as "webhookActive" from servers where id = ?) as table6;`, { replacements: [ id, id, id, id, id, id],
+   `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5;`, { replacements: [ id, id, id, id, id],
       type: db.QueryTypes.SELECT})
       .then(
          result => callback(result),
