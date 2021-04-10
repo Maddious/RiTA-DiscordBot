@@ -8,6 +8,7 @@ const botSend = require("../core/send");
 const auth = require("../core/auth");
 const fn = require("../core/helpers");
 const logger = require("../core/logger");
+const process = require("process");
 const stripIndent = require("common-tags").stripIndent;
 const oneLine = require("common-tags").oneLine;
 const secConverter = require("seconds-converter");
@@ -206,12 +207,6 @@ exports.proc = function(data)
       **\`${byteFormat(memory.external)}\`** \`external\`
    `;
 
-   // --------------
-   // Get CPU usage
-   // --------------
-
-   const cpu = process.cpuUsage();
-
    // --------------------------
    // Get proccess/shard uptime
    // --------------------------
@@ -237,8 +232,6 @@ exports.proc = function(data)
 
       :control_knobs:  RAM:  ${memoryFormat}
 
-      :control_knobs:  CPU:  **\`${cpu}%\`**
-
       :stopwatch:  Proc Uptime:  ${uptimeFormat(procUptime)}
 
       :stopwatch:  Shard Uptime:  ${uptimeFormat(shardUptime)}
@@ -251,36 +244,4 @@ exports.proc = function(data)
    // -------------
 
    botSend(data);
-};
-
-// --------------
-// Get CPU Usage
-// --------------
-
-const cpuUsage = function()
-{
-   function secNSec2ms (secNSec)
-   {
-      return secNSec[0] * 1000 + secNSec[1] / 1000000;
-   }
-
-   var startTime = process.hrtime();
-   var startUsage = process.cpuUsage();
-
-   // spin the CPU for 500 milliseconds
-
-   var now = Date.now();
-   while (Date.now() - now < 500)
-   {
-      //do nothing
-   }
-
-   var elapTime = process.hrtime(startTime);
-   var elapUsage = process.cpuUsage(startUsage);
-   var elapTimeMS = secNSec2ms(elapTime);
-   var elapUserMS = secNSec2ms(elapUsage.user);
-   var elapSystMS = secNSec2ms(elapUsage.system);
-   var cpuPercent = Math.round(100 * (elapUserMS + elapSystMS) / elapTimeMS);
-
-   return cpuPercent;
 };

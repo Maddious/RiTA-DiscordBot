@@ -8,87 +8,61 @@ const colors = require("../core/colors");
 const db = require("../core/db");
 const logger = require("../core/logger");
 const discord = require("discord.js");
-var bot2botVar = "off";
 
-// -------------
-// Command Code
-// -------------
-
-module.exports.getBot2botVar = function(data)
-{
-   return bot2botVar;
-};
+// -----------------------
+// Command code
+// -----------------------
 
 module.exports.run = function(data)
-
 {
    // -------------------------------
    // Command allowed by admins only
    // -------------------------------
 
-   if (!data.message.isAdmin)
+   if (data.message.isAdmin === false)
    {
       data.color = "warn";
-      data.text = ":cop:  This command is reserved for server administrators.";
+      data.text = ":cop:  This command is reserved for server admins.";
 
       // -------------
       // Send message
       // -------------
 
-      sendMessage(data);
+      return sendMessage(data);
    }
 
-   // -----------------------------------
-   // Error if settings param is missing
-   // -----------------------------------
-
-   if (!data.cmd.params)
+   if (data.message.isAdmin)
    {
-      data.color = "error";
-      data.text =
-         ":warning:  Missing `embed` parameter. Use `" +
-         `${data.config.translateCmdShort} help embed\` to learn more.`;
-
-      // -------------
-      // Send message
-      // -------------
-
-      sendMessage(data);
+      prefix(data);
    }
-
-   // ----------------
-   // Execute setting
-   // ----------------
-
-   embedSettings(data);
 };
 
+
 // -------------------------------
-// embed varible command handaler
+// debug varible command handler
 // -------------------------------
 
-const embedSettings = function(data)
+const prefix = function(data)
 {
-   const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
+   const newPrefix = data.cmd.params.split(" ")[0].toLowerCase();
 
-   if (commandVariable1 === "on" || commandVariable1 === "off")
+   if (newPrefix !== "")
    {
-      console.log(commandVariable1);
-      return db.updateBot2BotVar(
+      console.log(newPrefix);
+      return db.updatePrefix(
          data.message.channel.guild.id,
-         commandVariable1,
+         newPrefix, //This would be the new prefix
          function(err)
          {
             if (err)
             {
                return logger("error", err);
             }
-            var output =
-            `:warning: This is extremely experimental, use at your own risk! :warning:\n\n`+
-            "**```Bot to Bot Translation```**\n" +
-            `Bot to Bot Message translation is now turned : ${commandVariable1}\n\n`;
+            var outputvalid =
+            "**```New command prfix has been set```**\n" +
+            `Your new prefix is **\`${newPrefix}\`**. \n\n`;
             data.color = "info";
-            data.text = output;
+            data.text = outputvalid;
 
             // -------------
             // Send message
@@ -98,11 +72,25 @@ const embedSettings = function(data)
          }
       );
    }
+   else if (newPrefix === "")
+   {
+      var outputinvalid =
+          "**```ERROR```**\n" +
+          `Please provide a new prefix. \n\n`;
+      data.color = "info";
+      data.text = outputinvalid;
+
+      // -------------
+      // Send message
+      // -------------
+
+      sendMessage(data);
+   }
 
    data.color = "error";
    data.text =
       ":warning:  **`" + commandVariable1 +
-      "`** is not a valid bot2bot option.\n";
+      "`** is not a valid debug option.\n";
 
    // -------------
    // Send message
@@ -117,7 +105,7 @@ const embedSettings = function(data)
 
 function sendMessage (data)
 {
-   message.delete(5000);
+   data.message.delete(5000);
    const richEmbedMessage = new discord.RichEmbed()
       .setColor(colors.get(data.color))
       .setAuthor(data.bot.username, data.bot.displayAvatarURL)
@@ -125,7 +113,7 @@ function sendMessage (data)
       .setTimestamp()
       .setFooter("This message will self-destruct in one minute");
 
-   return message.channel.send(richEmbedMessage).then(msg =>
+   return data.message.channel.send(richEmbedMessage).then(msg =>
    {
       msg.delete(60000);
    });

@@ -187,7 +187,7 @@ const helpMessage = function(config, botname, param)
       config: config,
       title: "Report Bugs / Request Features",
       link: "<https://github.com/RitaBot-Project/RitaBot/issues>",
-      icon: ":raising_hand::skin-tone-3:"
+      icon: "🙋🏽‍♀️"
    }) +
    helpSection({
       config: config,
@@ -388,7 +388,7 @@ const helpMessage = function(config, botname, param)
 
    `# Parameters\n` +
    `> to [lang] - defaults to server default language\n` +
-   `> from [lang] -  language to translate from \n` +
+   `> from [lang] -  language to translate from, now includes 'auto'\n` +
    `> for [me/@/#] - defaults to "me", admins can use mentions \n\n` +
 
    `# Examples\n` +
@@ -455,6 +455,7 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} stats \n` +
    `> ${cmd} stats global \n` +
    `> ${cmd} stats server \n` +
+   `> ${cmd} stats debug \n` +
    "```";
 
    // -----------------
@@ -474,15 +475,21 @@ const helpMessage = function(config, botname, param)
 
    `# Displays list of servers the bot is in\n` +
    `> ${cmd} settings listservers\n\n` +
+   "```";
 
-   `# Fix Guild Mismatch\n` +
-   `* MAY NOT WORK WITH SOME DB's \n` +
-   `> ${cmd} settings dbfix\n\n` +
+   // -----------------
+   // Settings Command
+   // -----------------
 
+   const debug =
+   `__**Debug**__\n\n` +
+   "```md\n" +
 
+   `# Turn debug webhook on \n` +
+   `> ${cmd} debug on\n\n` +
 
-   `# Update Bot\n` +
-   `> ${cmd} settings updatebot\n` +
+   `# Turn debug webhook off \n` +
+   `> ${cmd} debug off\n\n` +
    "```";
 
    // --------------
@@ -544,6 +551,7 @@ const helpMessage = function(config, botname, param)
       "report": report,
       "embed": embed,
       "bot2bot": bot2bot,
+      "debug": debug,
       "donate": donate
    };
 

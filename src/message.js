@@ -18,6 +18,8 @@ module.exports = function(config, message, edited, deleted)
    module.exports.message = message;
    const client = message.client;
    const bot = client.user;
+   global.message = message;
+
 
    // ------------------------
    // Ignore messages by bots
@@ -67,10 +69,12 @@ module.exports = function(config, message, edited, deleted)
       member: message.member,
       canWrite: true
    };
-
-   if (data.member.displayName) // Replace username with nickname if exists
+   if (data.message.channel.type !== "dm")
    {
-      data.message.author.username = data.member.displayName;
+      if (data.member.displayName) // Replace username with nickname if exists
+      {
+         data.message.author.username = data.member.displayName;
+      }
    }
 
    // ------------------

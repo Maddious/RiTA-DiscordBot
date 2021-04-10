@@ -28,7 +28,7 @@ exports.listen = function(client)
 
    client.on("ready", () =>
    {
-      db.initializeDatabase();
+      db.initializeDatabase(client);
 
       // -----------------
       // Default Settings
@@ -40,7 +40,7 @@ exports.listen = function(client)
          inviteURL: auth.invite || "Set this in your .env file / config variables in Heroku",
          owner: auth.botOwner,
          defaultLanguage: "en",
-         translateCmd: "!translate",
+         translateCmd: "!trans",
          translateCmdShort: "!tr",
          maxMulti: 6,
          maxChains: 10,
@@ -112,11 +112,11 @@ exports.listen = function(client)
 
    client.on("message", message =>
    {
-      global.message = message;
       if (message.guild)
       {
          console.log(`${message.guild.name} - ${message.guild.id}`);
       }
+
       messageHandler(config, message);
    });
 

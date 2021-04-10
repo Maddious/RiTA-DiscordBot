@@ -16,13 +16,15 @@ const webHookName = "Translator Messaging System";
 // ---------------------
 
 // eslint-disable-next-line complexity
-module.exports = function(data)
+module.exports = async function(data)
 {
+   const before = Date.now();
    // ----------------------------
    // Regex Statments for Emoji's
    // ----------------------------
 
    function languageRegex(data)
+
    {
       // Remove Whitespaces
       data.text = data.text.replace(/<.+?>/g, tag => tag.replace(/\s+/g, ""));
@@ -92,63 +94,39 @@ module.exports = function(data)
    // Alot of this is debug code, but left in for testing
    // ----------------------------------------------------
 
-
-   console.log(`Guild ID from message`);
-   console.log(`Raw = ` + data.message.guild.id);
+   //console.log(`Guild ID from message`);
+   //console.log(`Raw = ` + data.message.guild.id);
    const guildValue = data.message.guild.id;
-   console.log(`Const = ` + guildValue);
-   console.log(`---------------------`);
 
-   function ignoreMessage(data)
-   {
-      const ignoreMessageEmbed = new discord.RichEmbed()
-         .setColor(colors.get(data.color))
-         .setTitle("**Bot Alert**\n")
-         .setAuthor(data.bot.username, data.bot.icon_url || "https://ritabot.gg/index/images/favicon.png")
-         .setDescription(data.text)
-         .setTimestamp()
-         .setFooter("𝗕𝗼𝘁𝗵 𝗺𝗲𝘀𝘀𝗮𝗴𝗲𝘀  𝘄𝗶𝗹𝗹 𝘀𝗲𝗹𝗳-𝗱𝗲𝘀𝘁𝗿𝘂𝗰𝘁 𝗶𝗻 10 𝘀𝗲𝗰𝗼𝗻𝗱𝘀");
-      message.reply(ignoreMessageEmbed).then(msg =>
-      {
-         msg.delete(10000);
-      });
-   }
 
-   console.log(`db.set Stage 1 = ` + db.setEmbedVar());
-   db.getEmbedVar(guildValue);
+   //console.log(`db.set Stage 1 = ` + db.setEmbedVar());
 
-   if (db.setEmbedVar() === "")
-   {
-      // eslint-disable-next-line no-unused-expressions
-      db.setEmbedVar;
-      console.log(`db.set Stage 2 = ` + db.setEmbedVar());
-      var output =
-      "**:robot: Your bot has restarted\n\n" +
-      " :gear: Please resend your previous message.**\n\n" +
-      "  :wrench: You may need to define the embed value using `!t embed on/off` if this message is in a loop when sending commands/messages.";
-      data.color = "warn";
-      data.text = output;
-      return ignoreMessage(data);
-   }
-   else
+   //if (db.getEmbedVar(id=guildValue) === "")
+   //{
+   //console.log(`Collecting Value for Embed`);
+   //db.getEmbedVar(guildValue);
+   //}
+   //else
    // eslint-disable-next-line no-else-return
-   {
-      console.log(`db.set Stage 3 = ` + db.setEmbedVar());
-   }
-   console.log(`db.set Stage 4 = ` + db.setEmbedVar());
+   //{
+   //console.log(`db.set Stage 3 = ` + db.setEmbedVar());
+   //}
 
    // --------------------
    // Primary If Statment
    // --------------------
+   const serverEmbed = await db.getEmbedVar(id=guildValue);
 
-   if (db.setEmbedVar() === "on")
+   if (serverEmbed === "on")
    {
-      embedOn(data);
+      await embedOn(data);
    }
    else
    {
-      embedOff(data);
+      await embedOff(data);
    }
+   const after = Date.now();
+   console.log(after - before);
 };
 
 // ----------------------------
@@ -354,32 +332,6 @@ const embedOff = function(data)
       return files;
    }
 
-   // ---------------------
-   // Send Webhook Message
-   // ---------------------
-
-   /*  if (message.member)
-   {
-      if (message.member.nickname)
-      {
-         nicknameVar = message.member.nickname;
-      }
-      if (data.text === undefined)
-      {
-         nicknameVar = message.author.username;
-      }
-      if (data.text && message.member.nickname === undefined | null)
-      {
-         nicknameVar = data.author.username;
-      }
-   }
-   if (!message.member)
-   {
-      if (data.emoji)
-      {
-         nicknameVar = data.author.username;
-      }
-   }*/
    if (data.author)
    {
       nicknameVar = data.author.name || data.author.username;
@@ -408,14 +360,13 @@ const embedOff = function(data)
          if (data.text === undefined)
          {
             webhook.send(data.text, {
-               "username": message.author.username,
-               "avatarURL": message.author.displayAvatarURL,
+               "username": data.message.author.username,
+               "avatarURL": data.message.author.displayAvatarURL,
                "files": files
             });
          }
          else
          {
-            message.delete(5000);
             const botEmbedOff = new discord.RichEmbed()
                .setColor(colors.get(data.color))
                .setAuthor(data.bot.username, data.bot.icon_url)
@@ -473,7 +424,7 @@ const embedOff = function(data)
       if (data.channel.type === "dm")
       {
          const embed = new discord.RichEmbed()
-            .setAuthor(message.member.nickname || data.author.name, data.author.displayAvatarURL)
+            .setAuthor(data.author.username, data.author.displayAvatarURL)
             .setColor(colors.get(data.color))
             .setDescription(data.text)
             .setFooter(data.footer.text);

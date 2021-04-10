@@ -1,6 +1,6 @@
 {
   "name": "ritabot",
-  "version": "1.2.1-13",
+  "version": "1.2.1-17",
   "engines": {
     "node": "14.0.0"
   },
@@ -43,22 +43,22 @@
     "discord.js": "^11.6.4",
     "dotenv": "^8.2.0",
     "google-translate-api": "github:RitaBot-Project/google-translate-api",
-    "iso-639-1": "^2.1.4",
-    "lodash": "^4.17.20",
+    "iso-639-1": "^2.1.9",
+    "lodash": "^4.17.21",
     "make-dir": "^3.1.0",
-    "pg": "^8.4.1",
+    "path": "^0.12.7",
+    "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "seconds-converter": "github:AlooAkbar/seconds-converter",
-    "sequelize": "^6.3.5",
-    "sqlite3": "^5.0.0",
-    "webhook-discord": "^3.7.7",
-    "path": "^0.12.7"
+    "sequelize": "^6.6.2",
+    "sqlite3": "^5.0.2",
+    "webhook-discord": "^3.7.7"
   },
   "devDependencies": {
-    "@kollavarsham/gulp-coveralls": "^0.3.3",
+    "@kollavarsham/gulp-coveralls": "^0.3.4",
     "babel-eslint": "^10.1.0",
     "braces": "^3.0.2",
-    "eslint": "^7.11.0",
+    "eslint": "^7.23.0",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",

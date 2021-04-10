@@ -7,8 +7,11 @@ const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
 const Op = Sequelize.Op;
-var dbEmbedValue ="";
 var dbBot2BotValue ="";
+var dbWebhookIDValue ="";
+var dbWebhookTokenValue ="";
+var dbNewPrefix = "";
+var server_obj = {};
 
 // ----------------------
 // Database Auth Process
@@ -58,6 +61,7 @@ const Servers = db.define("servers", {
       unique: true,
       allowNull: false
    },
+   prefix: Sequelize.STRING(8),
    lang: {
       type: Sequelize.STRING(8),
       defaultValue: "en"
@@ -77,6 +81,12 @@ const Servers = db.define("servers", {
    bot2botstyle: {
       type: Sequelize.STRING(8),
       defaultValue: "off"
+   },
+   webhookid: Sequelize.STRING(32),
+   webhooktoken: Sequelize.STRING(255),
+   webhookactive: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
    }
 });
 
@@ -106,7 +116,8 @@ const Tasks = db.define("tasks", {
    indexes: [
       {
          unique: true,
-         fields: ["origin", "dest"]
+         name: "ux_index_1",
+         fields: ["origin", "dest", "LangTo", "LangFrom"]
       }
    ]
 });
@@ -115,21 +126,57 @@ const Tasks = db.define("tasks", {
 // Init/create tables
 // -------------------
 
-exports.initializeDatabase = function()
+exports.initializeDatabase = async function(client)
 {
-   Servers.sync({ logging: console.log });
-   Tasks.sync({ logging: console.log });
-   // Add global server row
-   Servers.upsert({ id: "bot",
-      lang: "en" });
+   db.sync({ logging: console.log }).then(async() =>
+   {
+      Servers.upsert({ id: "bot",
+         lang: "en" });
+      exports.updateColumns();
+      db.getQueryInterface().removeIndex("tasks", "tasks_origin_dest");
+      const guilds = client.guilds.array().length;
+      const guildsArray = client.guilds.array();
+      var i;
+      for (i = 0; i < guilds; i++)
+      {
+         const guild = guildsArray[i];
+         const guildID = guild.id;
+         Servers.findAll({ where: { id: guildID } }).then(projects =>
+         {
+            if (projects.length === 0)
+            {
+               Servers.upsert({ id: guildID,
+                  lang: "en" });
+            }
+         });
+      }
+      console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
+      const serversFindAll = await Servers.findAll({attributes: ["id", "embedstyle", "bot2botstyle"] });//.then((serversFindAll) =>
+      //{
+      for (let i = 0; i < serversFindAll.length; i++)
+      {
+         // eslint-disable-next-line prefer-const
+         let guild_id = serversFindAll[i].id;
+         // eslint-disable-next-line eqeqeq
+         if (guild_id != "bot")
+         {
+            server_obj[guild_id] = serversFindAll[i];
+         }
+      }
+      // });
+   });
 };
-
 // -----------------------
 // Add Server to Database
 // -----------------------
 
 exports.addServer = function(id, lang)
 {
+   server_obj[id] = {
+      embedstyle: "on",
+      bot2botstyle: "off",
+      id: id
+   };
    return Servers.create({
       id: id,
       lang: lang
@@ -142,11 +189,7 @@ exports.addServer = function(id, lang)
 
 exports.removeServer = function(id)
 {
-   return Servers.update({ active: false }, { where: { id: id } }).then(
-      function (err, _result)
-      {
-         logger("error", err);
-      });
+   return Servers.update({ active: false }, { where: { id: id } });
 };
 
 // -------------------
@@ -168,7 +211,7 @@ exports.updateServerLang = function(id, lang, _cb)
 
 exports.updateEmbedVar = function(id, embedstyle, _cb)
 {
-   dbEmbedValue = embedstyle;
+   server_obj[id].embedstyle = embedstyle;
    return Servers.update({ embedstyle: embedstyle }, { where: { id: id } }).then(
       function ()
       {
@@ -182,21 +225,9 @@ exports.updateEmbedVar = function(id, embedstyle, _cb)
 
 exports.getEmbedVar = async function run(id)
 {
-   var value = await db.query(`select * from (select embedstyle as "embedstyle" from servers where id = ?) as table1`, { replacements: [id],
-      type: db.QueryTypes.SELECT});
-   dbEmbedValue = value[0].embedstyle;
-   return this.setEmbedVar();
+   const object = server_obj[id];
+   return object.embedstyle;
 };
-
-// -------------------------------------------
-// Call Saved Embedded Variable Value From DB
-// -------------------------------------------
-
-module.exports.setEmbedVar = function(data)
-{
-   return dbEmbedValue;
-};
-
 
 // ------------------------------
 // Update Bot2Bot Variable In DB
@@ -233,6 +264,75 @@ module.exports.setBot2BotVar = function(data)
    return dbBot2BotValue;
 };
 
+// -----------------------------------------------
+// Update webhookID & webhookToken Variable In DB
+// -----------------------------------------------
+
+exports.updateWebhookVar = function(id, webhookid, webhooktoken, webhookactive, _cb)
+{
+   dbWebhookIDValue = webhookid;
+   dbWebhookTokenValue = webhooktoken;
+   return Servers.update({ webhookid: webhookid,
+      webhooktoken: webhooktoken,
+      webhookactive: webhookactive }, { where: { id: id } }).then(
+      function ()
+      {
+         _cb();
+      });
+};
+
+// --------------
+// Update prefix
+// --------------
+
+exports.updatePrefix = function(id, prefix, _cb)
+{
+   dbNewPrefix = prefix;
+   return Servers.update({ prefix: prefix }, { where: { id: id } }).then(
+      function ()
+      {
+         _cb();
+      });
+};
+
+// ----------------------------------------------
+// Get webhookID & webhookToken Variable From DB
+// ----------------------------------------------
+
+exports.getWebhookVar = async function run(id)
+{
+   var idValue = await db.query(`select * from (select webhookid as "webhookid" from servers where id = ?) as table2`, { replacements: [id],
+      type: db.QueryTypes.SELECT});
+   dbWebhookIDValue = idValue[0].webhookid;
+   var tokenValue = await db.query(`select * from (select webhooktoken as "webhooktoken" from servers where id = ?) as table2`, { replacements: [id],
+      type: db.QueryTypes.SELECT});
+   dbWebhookTokenValue = tokenValue[0].webhooktoken;
+
+   return this.setWebhookVar(dbWebhookIDValue, dbWebhookTokenValue);
+};
+
+// -----------------------------------------------------------
+// Call Saved webhookID & webhookToken Variable Value From DB
+// -----------------------------------------------------------
+
+module.exports.setWebhookVar = function(data)
+{
+   return; //I'M MISSING THE RETURN BIT, NOT SURE HOW OT SET THIS.
+};
+
+// -------------------
+// Deactivate Webhook
+// -------------------
+
+exports.removeWebhook = function(id, _cb)
+{
+   return Servers.update({ webhookactive: false }, { where: { id: id } }).then(
+      function ()
+      {
+         _cb();
+      });
+};
+
 // -----------------------------
 // Add Missing Variable Columns
 // -----------------------------
@@ -240,53 +340,46 @@ module.exports.setBot2BotVar = function(data)
 exports.updateColumns = function(data)
 {
    // Very sloppy code, neew to find a better fix.
-   db.query(`ALTER TABLE public.servers ADD COLUMN "embedstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'on'::character varying;`,function(err)
+   db.getQueryInterface().describeTable("servers").then(tableDefinition =>
    {
-      if (err)
+      if (!tableDefinition.prefix)
       {
-         console.log("ERROR:"+err.message);
+         console.log("-------------> Adding embedstyle column");
+         db.getQueryInterface().addColumn("servers", "prefix", {
+            type: Sequelize.STRING(8)});
       }
-      else
+      if (!tableDefinition.embedstyle)
       {
-         console.log("embedstyle column added");
+         console.log("-------------> Adding embedstyle column");
+         db.getQueryInterface().addColumn("servers", "embedstyle", {
+            type: Sequelize.STRING(8),
+            defaultValue: "on"});
       }
-   });
-   db.query(`ALTER TABLE public.servers ADD COLUMN "bot2botstyle" character varying(8) COLLATE pg_catalog."default" DEFAULT 'off'::character varying;`,function(err)
-   {
-      if (err)
+      if (!tableDefinition.bot2botstyle)
       {
-         console.log("ERROR:"+err.message);
+         console.log("-------------> Adding bot2botstyle column");
+         db.getQueryInterface().addColumn("servers", "bot2botstyle", {
+            type: Sequelize.STRING(8),
+            defaultValue: "off"});
       }
-      else
+      if (!tableDefinition.webhookid)
       {
-         console.log("bot2botstyle column added");
+         console.log("-------------> Adding webhookid column");
+         db.getQueryInterface().addColumn("servers", "webhookid", {
+            type: Sequelize.STRING(32)});
       }
-   });
-
-   // ------------------------------------------
-   // Add Missing Variable Columns for local db
-   // ------------------------------------------
-
-   db.query(`ALTER TABLE servers ADD COLUMN "embedstyle" character varying(8)  DEFAULT 'on'`,function(err)
-   {
-      if (err)
+      if (!tableDefinition.webhooktoken)
       {
-         console.log("ERROR:"+err.message);
+         console.log("-------------> Adding webhooktoken column");
+         db.getQueryInterface().addColumn("servers", "webhooktoken", {
+            type: Sequelize.STRING(255)});
       }
-      else
+      if (!tableDefinition.webhookactive)
       {
-         console.log("embedstyle column added");
-      }
-   });
-   db.query(`ALTER TABLE servers ADD COLUMN "bot2botstyle" character varying(8) DEFAULT 'off'`,function(err)
-   {
-      if (err)
-      {
-         console.log("ERROR:"+err.message);
-      }
-      else
-      {
-         console.log("bot2botstyle column added");
+         console.log("-------------> Adding webhookactive column");
+         db.getQueryInterface().addColumn("servers", "webhookactive", {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false});
       }
    });
 };
@@ -406,10 +499,7 @@ exports.getTasksCount = function(origin, cb)
 
 exports.getServersCount = function(cb)
 {
-   return Servers.count().then(c =>
-   {
-      cb("", c);
-   });
+   return server_obj.length();
 };
 
 // ---------
@@ -481,7 +571,11 @@ exports.getServerInfo = function(id, callback)
    `(select count(distinct origin) as "activeUserTasks"` +
    `from tasks where origin like '@%' and server = ?) as table3, ` +
    `(select embedstyle as "embedstyle" from servers where id = ?) as table4, ` +
-   `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5;`, { replacements: [ id, id, id, id, id],
+   `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5, ` +
+   `(select webhookactive as "webhookactive" from servers where id = ?) as table6,` +
+   `(select webhookid as "webhookid" from servers where id = ?) as table7,` +
+   `(select webhooktoken as "webhooktoken" from servers where id = ?) as table8,` +
+   `(select prefix as "prefix" from servers where id = ?) as table9;`, { replacements: [ id, id, id, id, id, id, id, id, id],
       type: db.QueryTypes.SELECT})
       .then(
          result => callback(result),
