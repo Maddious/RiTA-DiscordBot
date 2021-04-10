@@ -18,6 +18,7 @@ const webHookName = "Translator Messaging System";
 // eslint-disable-next-line complexity
 module.exports = async function(data)
 {
+   const before = Date.now();
    // ----------------------------
    // Regex Statments for Emoji's
    // ----------------------------
@@ -93,36 +94,39 @@ module.exports = async function(data)
    // Alot of this is debug code, but left in for testing
    // ----------------------------------------------------
 
-   console.log(`Guild ID from message`);
-   console.log(`Raw = ` + data.message.guild.id);
+   //console.log(`Guild ID from message`);
+   //console.log(`Raw = ` + data.message.guild.id);
    const guildValue = data.message.guild.id;
 
 
-   console.log(`db.set Stage 1 = ` + db.setEmbedVar());
+   //console.log(`db.set Stage 1 = ` + db.setEmbedVar());
 
-   if (db.setEmbedVar() === "")
-   {
-      console.log(`Collecting Value for Embed`);
-      await db.getEmbedVar(guildValue);
-   }
-   else
+   //if (db.getEmbedVar(id=guildValue) === "")
+   //{
+   //console.log(`Collecting Value for Embed`);
+   //db.getEmbedVar(guildValue);
+   //}
+   //else
    // eslint-disable-next-line no-else-return
-   {
-      console.log(`db.set Stage 3 = ` + db.setEmbedVar());
-   }
+   //{
+   //console.log(`db.set Stage 3 = ` + db.setEmbedVar());
+   //}
 
    // --------------------
    // Primary If Statment
    // --------------------
+   const serverEmbed = await db.getEmbedVar(id=guildValue);
 
-   if (db.setEmbedVar() === "on")
+   if (serverEmbed === "on")
    {
-      embedOn(data);
+      await embedOn(data);
    }
    else
    {
-      embedOff(data);
+      await embedOff(data);
    }
+   const after = Date.now();
+   console.log(after - before);
 };
 
 // ----------------------------
@@ -164,7 +168,7 @@ const embedOn = function(data)
                .setTimestamp()
                .setFooter("This message will self-destruct in one minute");
 
-            message.channel.send(botEmbedOn).then(msg =>
+            data.message.channel.send(botEmbedOn).then(msg =>
             {
                msg.delete(60000);
             });
@@ -382,8 +386,8 @@ const embedOff = function(data)
          if (data.text === undefined)
          {
             webhook.send(data.text, {
-               "username": message.author.username,
-               "avatarURL": message.author.displayAvatarURL,
+               "username": data.message.author.username,
+               "avatarURL": data.message.author.displayAvatarURL,
                "files": files
             });
          }
@@ -446,7 +450,7 @@ const embedOff = function(data)
       if (data.channel.type === "dm")
       {
          const embed = new discord.RichEmbed()
-            .setAuthor(message.member.nickname || data.author.name, data.author.displayAvatarURL)
+            .setAuthor(data.author.username, data.author.displayAvatarURL)
             .setColor(colors.get(data.color))
             .setDescription(data.text)
             .setFooter(data.footer.text);

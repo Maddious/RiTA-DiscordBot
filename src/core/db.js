@@ -7,10 +7,10 @@ const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
 const Op = Sequelize.Op;
-var dbEmbedValue ="";
 var dbBot2BotValue ="";
 var dbWebhookIDValue ="";
 var dbWebhookTokenValue ="";
+var server_obj = {};
 
 // ----------------------
 // Database Auth Process
@@ -124,9 +124,9 @@ const Tasks = db.define("tasks", {
 // Init/create tables
 // -------------------
 
-exports.initializeDatabase = function(client)
+exports.initializeDatabase = async function(client)
 {
-   db.sync({ logging: console.log }).then(() =>
+   db.sync({ logging: console.log }).then(async() =>
    {
       Servers.upsert({ id: "bot",
          lang: "en" });
@@ -149,6 +149,19 @@ exports.initializeDatabase = function(client)
          });
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
+      const serversFindAll = await Servers.findAll({attributes: ["id", "embedstyle", "bot2botstyle"] });//.then((serversFindAll) =>
+      //{
+      for (let i = 0; i < serversFindAll.length; i++)
+      {
+         // eslint-disable-next-line prefer-const
+         let guild_id = serversFindAll[i].id;
+         // eslint-disable-next-line eqeqeq
+         if (guild_id != "bot")
+         {
+            server_obj[guild_id] = serversFindAll[i];
+         }
+      }
+      // });
    });
 };
 // -----------------------
@@ -157,6 +170,11 @@ exports.initializeDatabase = function(client)
 
 exports.addServer = function(id, lang)
 {
+   server_obj[id] = {
+      embedstyle: "on",
+      bot2botstyle: "off",
+      id: id
+   };
    return Servers.create({
       id: id,
       lang: lang
@@ -169,11 +187,7 @@ exports.addServer = function(id, lang)
 
 exports.removeServer = function(id)
 {
-   return Servers.update({ active: false }, { where: { id: id } }).then(
-      function (err, _result)
-      {
-         logger("error", err);
-      });
+   return Servers.update({ active: false }, { where: { id: id } });
 };
 
 // -------------------
@@ -195,7 +209,7 @@ exports.updateServerLang = function(id, lang, _cb)
 
 exports.updateEmbedVar = function(id, embedstyle, _cb)
 {
-   dbEmbedValue = embedstyle;
+   server_obj[id].embedstyle = embedstyle;
    return Servers.update({ embedstyle: embedstyle }, { where: { id: id } }).then(
       function ()
       {
@@ -209,20 +223,22 @@ exports.updateEmbedVar = function(id, embedstyle, _cb)
 
 exports.getEmbedVar = async function run(id)
 {
+   /*
    var value = await db.query(`select * from (select embedstyle as "embedstyle" from servers where id = ?) as table1`, { replacements: [id],
       type: db.QueryTypes.SELECT});
-   dbEmbedValue = value[0].embedstyle;
-   return this.setEmbedVar();
+   dbEmbedValue = value[0].embedstyle;*/
+   const object = server_obj[id];
+   return object.embedstyle;/*this.setEmbedVar();*/
 };
 
 // -------------------------------------------
 // Call Saved Embedded Variable Value From DB
 // -------------------------------------------
 
-module.exports.setEmbedVar = function(data)
-{
-   return dbEmbedValue;
-};
+//module.exports.setEmbedVar = function(data)
+//{
+//   return dbEmbedValue;
+//};
 
 
 // ------------------------------
@@ -475,10 +491,7 @@ exports.getTasksCount = function(origin, cb)
 
 exports.getServersCount = function(cb)
 {
-   return Servers.count().then(c =>
-   {
-      cb("", c);
-   });
+   return server_obj.length();
 };
 
 // ---------
@@ -550,7 +563,8 @@ exports.getServerInfo = function(id, callback)
    `(select count(distinct origin) as "activeUserTasks"` +
    `from tasks where origin like '@%' and server = ?) as table3, ` +
    `(select embedstyle as "embedstyle" from servers where id = ?) as table4, ` +
-   `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5;`, { replacements: [ id, id, id, id, id],
+   `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5, ` +
+   `(select webhookActive as "webhookActive" from servers where id = ?) as table6;`, { replacements: [ id, id, id, id, id, id],
       type: db.QueryTypes.SELECT})
       .then(
          result => callback(result),
