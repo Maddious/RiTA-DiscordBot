@@ -99,7 +99,7 @@ module.exports = async function(data)
    const guildValue = data.message.guild.id;
 
 
-   //console.log(`db.set Stage 1 = ` + db.setEmbedVar());
+   console.log(`db.set Stage 1 = ` + db.getEmbedVar(guildValue));
 
    //if (db.getEmbedVar(id=guildValue) === "")
    //{
@@ -115,15 +115,15 @@ module.exports = async function(data)
    // --------------------
    // Primary If Statment
    // --------------------
-   const serverEmbed = await db.getEmbedVar(id=guildValue);
+   const serverEmbed = await db.getEmbedVar(guildValue);
 
    if (serverEmbed === "on")
    {
-      await embedOn(data);
+      embedOn(data);
    }
    else
    {
-      await embedOff(data);
+      embedOff(data);
    }
    const after = Date.now();
    console.log(after - before);
