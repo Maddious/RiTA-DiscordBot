@@ -7,7 +7,6 @@ const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
 const Op = Sequelize.Op;
-var dbEmbedValue ="";
 var dbBot2BotValue ="";
 var dbWebhookIDValue ="";
 var dbWebhookTokenValue ="";
@@ -224,23 +223,22 @@ exports.updateEmbedVar = function(id, embedstyle, _cb)
 
 exports.getEmbedVar = async function run(id)
 {
+   /*
    var value = await db.query(`select * from (select embedstyle as "embedstyle" from servers where id = ?) as table1`, { replacements: [id],
       type: db.QueryTypes.SELECT});
-   dbEmbedValue = value[0].embedstyle;
-   return this.setEmbedVar();
-   /*
+   dbEmbedValue = value[0].embedstyle;*/
    const object = server_obj[id];
-   return object.embedstyle;*/
+   return object.embedstyle;/*this.setEmbedVar();*/
 };
 
 // -------------------------------------------
 // Call Saved Embedded Variable Value From DB
 // -------------------------------------------
 
-module.exports.setEmbedVar = function(data)
-{
-   return dbEmbedValue;
-};
+//module.exports.setEmbedVar = function(data)
+//{
+//   return dbEmbedValue;
+//};
 
 
 // ------------------------------
