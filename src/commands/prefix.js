@@ -15,10 +15,16 @@ const discord = require("discord.js");
 
 module.exports.run = function(data)
 {
+   if (!data.cmd.params)
+   {
+      data.color = "error";
+      data.text = ":warning: Please provide a valid prefix to set.";
+
+      return sendMessage(data);
+   }
    // -------------------------------
    // Command allowed by admins only
    // -------------------------------
-
    if (data.message.isAdmin === false)
    {
       data.color = "warn";
@@ -59,7 +65,7 @@ const prefix = function(data)
                return logger("error", err);
             }
             var outputvalid =
-            "**```New command prfix has been set```**\n" +
+            "**```New command prefix has been set```**\n" +
             `Your new prefix is **\`${newPrefix}\`**. \n\n`;
             data.color = "info";
             data.text = outputvalid;

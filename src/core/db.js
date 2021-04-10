@@ -326,6 +326,7 @@ exports.removeWebhook = function(id, _cb)
 exports.updatePrefix = function(id, prefix, _cb)
 {
    dbNewPrefix = prefix;
+   server_obj[id].prefix = dbNewPrefix;
    return Servers.update({ prefix: prefix }, { where: { id: id } }).then(
       function ()
       {
