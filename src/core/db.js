@@ -10,6 +10,7 @@ const Op = Sequelize.Op;
 var dbBot2BotValue ="";
 var dbWebhookIDValue ="";
 var dbWebhookTokenValue ="";
+const events = require("../events");
 var server_obj = {};
 
 // ----------------------
@@ -149,7 +150,7 @@ exports.initializeDatabase = async function(client)
          });
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
-      const serversFindAll = await Servers.findAll({attributes: ["id", "embedstyle", "bot2botstyle"] });//.then((serversFindAll) =>
+      const serversFindAll = await Servers.findAll();//.then((serversFindAll) =>
       //{
       for (let i = 0; i < serversFindAll.length; i++)
       {
@@ -220,6 +221,7 @@ exports.updateEmbedVar = function(id, embedstyle, _cb)
 // ------------------------------
 // Get Embedded Variable From DB
 // ------------------------------
+exports.server_obj = server_obj;
 
 exports.getEmbedVar = async function run(id)
 {
@@ -489,7 +491,7 @@ exports.getTasksCount = function(origin, cb)
 // Get Servers Count
 // ------------------
 
-exports.getServersCount = function(cb)
+exports.getServersCount = function()
 {
    return server_obj.length();
 };

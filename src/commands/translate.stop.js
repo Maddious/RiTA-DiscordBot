@@ -68,6 +68,7 @@ module.exports = function(data)
    // ------------------
 
    const origin = data.message.channel.id;
+   data.channel = data.message.channel;
    var dest = destID(data.cmd.for[0], data.message.author.id);
    let destDisplay = destResolver(data.cmd.for[0], data.message.author.id);
 
