@@ -11,7 +11,6 @@ var dbEmbedValue ="";
 var dbBot2BotValue ="";
 var dbWebhookIDValue ="";
 var dbWebhookTokenValue ="";
-var server_obj = {};
 
 // ----------------------
 // Database Auth Process
@@ -127,7 +126,7 @@ const Tasks = db.define("tasks", {
 
 exports.initializeDatabase = function(client)
 {
-   db.sync({ logging: console.log }).then(async() =>
+   db.sync({ logging: console.log }).then(() =>
    {
       Servers.upsert({ id: "bot",
          lang: "en" });
@@ -150,19 +149,6 @@ exports.initializeDatabase = function(client)
          });
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
-      const serversFindAll = await Servers.findAll({attributes: ["id", "embedstyle", "bot2botstyle"] });//.then((serversFindAll) =>
-      //{
-      for (let i = 0; i < serversFindAll.length; i++)
-      {
-         // eslint-disable-next-line prefer-const
-         let guild_id = serversFindAll[i].id;
-         // eslint-disable-next-line eqeqeq
-         if (guild_id != "bot")
-         {
-            server_obj[guild_id] = serversFindAll[i];
-         }
-      }
-      // });
    });
 };
 // -----------------------
@@ -205,7 +191,7 @@ exports.updateServerLang = function(id, lang, _cb)
 
 exports.updateEmbedVar = function(id, embedstyle, _cb)
 {
-   server_obj[id].embedstyle = embedstyle;
+   dbEmbedValue = embedstyle;
    return Servers.update({ embedstyle: embedstyle }, { where: { id: id } }).then(
       function ()
       {
@@ -223,9 +209,6 @@ exports.getEmbedVar = async function run(id)
       type: db.QueryTypes.SELECT});
    dbEmbedValue = value[0].embedstyle;
    return this.setEmbedVar();
-   /*
-   const object = server_obj[id];
-   return object.embedstyle;*/
 };
 
 // -------------------------------------------
@@ -488,7 +471,10 @@ exports.getTasksCount = function(origin, cb)
 
 exports.getServersCount = function(cb)
 {
-   return server_obj.length();
+   return Servers.count().then(c =>
+   {
+      cb("", c);
+   });
 };
 
 // ---------
