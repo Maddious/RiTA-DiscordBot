@@ -43,7 +43,7 @@ module.exports = function(data)
          `:earth_africa:  Default bot language:  ` +
          `**\`${botLang.name} (${botLang.native})\`` +
          `**\n\n:bar_chart:  Translated **\`${stats[0].totalCount}\`** messages ` +
-         `across **\`${data.client.guilds._array.length}\`** servers\n\n` +
+         `across **\`${data.cmd.server.length}\`** servers\n\n` +
          `:regional_indicator_v:  Version:  ${version}\n\n` +
          `:repeat:  Automatic translation:  ` +
          `**\`${activeTasks}\`**  channels and  ` +
