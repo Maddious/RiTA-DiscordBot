@@ -18,7 +18,6 @@ const webHookName = "Translator Messaging System";
 // eslint-disable-next-line complexity
 module.exports = async function(data)
 {
-   const before = Date.now();
    // ----------------------------
    // Regex Statments for Emoji's
    // ----------------------------
@@ -94,30 +93,29 @@ module.exports = async function(data)
    // Alot of this is debug code, but left in for testing
    // ----------------------------------------------------
 
-   //console.log(`Guild ID from message`);
-   //console.log(`Raw = ` + data.message.guild.id);
+   console.log(`Guild ID from message`);
+   console.log(`Raw = ` + data.message.guild.id);
    const guildValue = data.message.guild.id;
 
 
-   console.log(`db.set Stage 1 = ` + db.getEmbedVar(guildValue));
+   console.log(`db.set Stage 1 = ` + db.setEmbedVar());
 
-   //if (db.getEmbedVar(id=guildValue) === "")
-   //{
-   //console.log(`Collecting Value for Embed`);
-   //db.getEmbedVar(guildValue);
-   //}
-   //else
+   if (db.setEmbedVar() === "")
+   {
+      console.log(`Collecting Value for Embed`);
+      await db.getEmbedVar(guildValue);
+   }
+   else
    // eslint-disable-next-line no-else-return
-   //{
-   //console.log(`db.set Stage 3 = ` + db.setEmbedVar());
-   //}
+   {
+      console.log(`db.set Stage 3 = ` + db.setEmbedVar());
+   }
 
    // --------------------
    // Primary If Statment
    // --------------------
-   const serverEmbed = await db.getEmbedVar(guildValue);
 
-   if (serverEmbed === "on")
+   if (db.setEmbedVar() === "on")
    {
       embedOn(data);
    }
@@ -125,8 +123,6 @@ module.exports = async function(data)
    {
       embedOff(data);
    }
-   const after = Date.now();
-   console.log(after - before);
 };
 
 // ----------------------------
