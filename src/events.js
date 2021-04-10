@@ -112,6 +112,11 @@ exports.listen = function(client)
 
    client.on("message", message =>
    {
+      if (config.translateCmd !== db.server_obj[message.guild.id].prefix || config.translateCmdShort !== db.server_obj[message.guild.id].prefix)
+      {
+         config.translateCmd = db.server_obj[message.guild.id].prefix;
+         config.translateCmdShort = db.server_obj[message.guild.id].prefix;
+      }
       if (message.guild)
       {
          console.log(`${message.guild.name} - ${message.guild.id}`);
