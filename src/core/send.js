@@ -332,32 +332,6 @@ const embedOff = function(data)
       return files;
    }
 
-   // ---------------------
-   // Send Webhook Message
-   // ---------------------
-
-   /*  if (message.member)
-   {
-      if (message.member.nickname)
-      {
-         nicknameVar = message.member.nickname;
-      }
-      if (data.text === undefined)
-      {
-         nicknameVar = message.author.username;
-      }
-      if (data.text && message.member.nickname === undefined | null)
-      {
-         nicknameVar = data.author.username;
-      }
-   }
-   if (!message.member)
-   {
-      if (data.emoji)
-      {
-         nicknameVar = data.author.username;
-      }
-   }*/
    if (data.author)
    {
       nicknameVar = data.author.name || data.author.username;

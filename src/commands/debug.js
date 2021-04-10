@@ -5,8 +5,10 @@
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
 const colors = require("../core/colors");
+const langCheck = require("../core/lang.check");
 const db = require("../core/db");
 const logger = require("../core/logger");
+const auth = require("../core/auth");
 const discord = require("discord.js");
 
 // -----------------------
@@ -105,7 +107,7 @@ const debug = function(data)
    data.color = "error";
    data.text =
       ":warning:  **`" + commandVariable1 +
-      "`** is not a valid donate option.\n";
+      "`** is not a valid debug option.\n";
 
    // -------------
    // Send message

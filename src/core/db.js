@@ -223,23 +223,9 @@ exports.updateEmbedVar = function(id, embedstyle, _cb)
 
 exports.getEmbedVar = async function run(id)
 {
-   /*
-   var value = await db.query(`select * from (select embedstyle as "embedstyle" from servers where id = ?) as table1`, { replacements: [id],
-      type: db.QueryTypes.SELECT});
-   dbEmbedValue = value[0].embedstyle;*/
    const object = server_obj[id];
-   return object.embedstyle;/*this.setEmbedVar();*/
+   return object.embedstyle;
 };
-
-// -------------------------------------------
-// Call Saved Embedded Variable Value From DB
-// -------------------------------------------
-
-//module.exports.setEmbedVar = function(data)
-//{
-//   return dbEmbedValue;
-//};
-
 
 // ------------------------------
 // Update Bot2Bot Variable In DB
@@ -564,13 +550,16 @@ exports.getServerInfo = function(id, callback)
    `from tasks where origin like '@%' and server = ?) as table3, ` +
    `(select embedstyle as "embedstyle" from servers where id = ?) as table4, ` +
    `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5, ` +
-   `(select webhookactive as "webhookactive" from servers where id = ?) as table6;`, { replacements: [ id, id, id, id, id, id],
+   `(select webhookactive as "webhookactive" from servers where id = ?) as table6,` +
+   `(select webhookid as "webhookid" from servers where id = ?) as table7,` +
+   `(select webhooktoken as "webhooktoken" from servers where id = ?) as table8;`, { replacements: [ id, id, id, id, id, id, id, id],
       type: db.QueryTypes.SELECT})
       .then(
          result => callback(result),
          err => this.updateColumns() //+ logger("error", err + "\nQuery: " + err.sql, "db")
       );
 };
+
 // ---------
 // Close DB
 // ---------

@@ -78,6 +78,24 @@ module.exports = function(data)
 
       data.color = "info";
 
+      var debugStats = "";
+      if (data.message.channel.type === "text" && data.cmd.server.length === 1)
+      {
+         const webhookIDVar = data.cmd.server[0].webhookid;
+         const webhookTokenVar = data.cmd.server[0].webhooktoken;
+         const webhookVar = data.cmd.server[0].webhookactive;
+
+         debugStats =
+               `**\`\`\`${data.message.channel.guild.name} - Server Info\`\`\`**\n` +
+               `:id: Webhook Debug ID: ` +
+               `**\`\`\`${webhookIDVar}\`\`\`**\n ` +
+               `:key: Webhook Debug Token: ` +
+               `**\`\`\`${webhookTokenVar}\`\`\`**\n ` +
+               `:information_source: Webhook Debug Active State: **\`${webhookVar}\`**`;
+      }
+
+      data.color = "info";
+
       // Special case: !t stats global
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("global"))
       {
@@ -125,6 +143,32 @@ module.exports = function(data)
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("server"))
       {
          data.text = serverStats;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return botSend(data);
+      }
+
+      if (data.cmd.params && data.cmd.params.toLowerCase().includes("debug"))
+      {
+         if (data.message.isAdmin === false)
+         {
+            data.color = "warn";
+            data.text = ":cop:  This command is reserved for server admins.";
+
+            // -------------
+            // Send message
+            // -------------
+
+            return botSend(data);
+         }
+
+         if (data.message.isAdmin)
+         {
+            data.text = debugStats;
+         }
 
          // -------------
          // Send message
