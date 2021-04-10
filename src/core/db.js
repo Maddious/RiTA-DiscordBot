@@ -12,6 +12,7 @@ var dbWebhookIDValue ="";
 var dbWebhookTokenValue ="";
 var dbNewPrefix = "";
 var server_obj = {};
+exports.server_obj = server_obj;
 
 // ----------------------
 // Database Auth Process
@@ -187,8 +188,6 @@ exports.addServer = function(id, lang)
       lang: lang
    });
 };
-
-exports.server_obj = server_obj;
 
 // ------------------
 // Deactivate Server
