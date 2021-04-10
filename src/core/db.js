@@ -61,7 +61,10 @@ const Servers = db.define("servers", {
       unique: true,
       allowNull: false
    },
-   prefix: Sequelize.STRING(8),
+   prefix: {
+      type: Sequelize.STRING(8),
+      defaultValue: "!tr"
+   },
    lang: {
       type: Sequelize.STRING(8),
       defaultValue: "en"
@@ -151,7 +154,7 @@ exports.initializeDatabase = async function(client)
          });
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
-      const serversFindAll = await Servers.findAll({attributes: ["id", "embedstyle", "bot2botstyle"] });//.then((serversFindAll) =>
+      const serversFindAll = await Servers.findAll({attributes: ["id", "embedstyle", "bot2botstyle", "prefix"] });//.then((serversFindAll) =>
       //{
       for (let i = 0; i < serversFindAll.length; i++)
       {
@@ -166,6 +169,7 @@ exports.initializeDatabase = async function(client)
       // });
    });
 };
+
 // -----------------------
 // Add Server to Database
 // -----------------------
@@ -175,13 +179,16 @@ exports.addServer = function(id, lang)
    server_obj[id] = {
       embedstyle: "on",
       bot2botstyle: "off",
-      id: id
+      id: id,
+      prefix: "!tr"
    };
    return Servers.create({
       id: id,
       lang: lang
    });
 };
+
+exports.server_obj = server_obj;
 
 // ------------------
 // Deactivate Server
@@ -281,20 +288,6 @@ exports.updateWebhookVar = function(id, webhookid, webhooktoken, webhookactive, 
       });
 };
 
-// --------------
-// Update prefix
-// --------------
-
-exports.updatePrefix = function(id, prefix, _cb)
-{
-   dbNewPrefix = prefix;
-   return Servers.update({ prefix: prefix }, { where: { id: id } }).then(
-      function ()
-      {
-         _cb();
-      });
-};
-
 // ----------------------------------------------
 // Get webhookID & webhookToken Variable From DB
 // ----------------------------------------------
@@ -311,14 +304,6 @@ exports.getWebhookVar = async function run(id)
    return this.setWebhookVar(dbWebhookIDValue, dbWebhookTokenValue);
 };
 
-// -----------------------------------------------------------
-// Call Saved webhookID & webhookToken Variable Value From DB
-// -----------------------------------------------------------
-
-module.exports.setWebhookVar = function(data)
-{
-   return; //I'M MISSING THE RETURN BIT, NOT SURE HOW OT SET THIS.
-};
 
 // -------------------
 // Deactivate Webhook
@@ -331,6 +316,30 @@ exports.removeWebhook = function(id, _cb)
       {
          _cb();
       });
+};
+
+// --------------
+// Update prefix
+// --------------
+
+exports.updatePrefix = function(id, prefix, _cb)
+{
+   dbNewPrefix = prefix;
+   return Servers.update({ prefix: prefix }, { where: { id: id } }).then(
+      function ()
+      {
+         _cb();
+      });
+};
+
+// ------------------------------
+// Get Prefix Variable From DB
+// ------------------------------
+
+exports.getPrefixVar = async function run(id)
+{
+   const object = server_obj[id];
+   return object.prefix;
 };
 
 // -----------------------------
