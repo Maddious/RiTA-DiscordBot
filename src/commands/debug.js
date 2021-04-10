@@ -46,7 +46,7 @@ const debug = function(data)
 {
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
-   if (commandVariable1 === "start")
+   if (commandVariable1 === "on")
    {
       console.log(commandVariable1);
       return db.updateWebhookVar(
@@ -75,7 +75,7 @@ const debug = function(data)
          }
       );
    }
-   else if (commandVariable1 === "stop")
+   else if (commandVariable1 === "off")
    {
       console.log(commandVariable1);
       return db.removeWebhook(
