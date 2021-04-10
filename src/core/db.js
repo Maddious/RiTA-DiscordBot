@@ -80,9 +80,9 @@ const Servers = db.define("servers", {
       type: Sequelize.STRING(8),
       defaultValue: "off"
    },
-   webhookID: Sequelize.STRING(32),
-   webhookToken: Sequelize.STRING(255),
-   webhookActive: {
+   webhookid: Sequelize.STRING(32),
+   webhooktoken: Sequelize.STRING(255),
+   webhookactive: {
       type: Sequelize.BOOLEAN,
       defaultValue: false
    }
@@ -280,13 +280,13 @@ module.exports.setBot2BotVar = function(data)
 // Update webhookID & webhookToken Variable In DB
 // -----------------------------------------------
 
-exports.updateWebhookVar = function(id, webhookID, webhookToken, webhookActive, _cb)
+exports.updateWebhookVar = function(id, webhookid, webhooktoken, webhookactive, _cb)
 {
-   dbWebhookIDValue = webhookID;
-   dbWebhookTokenValue = webhookToken;
-   return Servers.update({ webhookID: webhookID,
-      webhookToken: webhookToken,
-      webhookActive: webhookActive }, { where: { id: id } }).then(
+   dbWebhookIDValue = webhookid;
+   dbWebhookTokenValue = webhooktoken;
+   return Servers.update({ webhookid: webhookid,
+      webhooktoken: webhooktoken,
+      webhookactive: webhookactive }, { where: { id: id } }).then(
       function ()
       {
          _cb();
@@ -299,12 +299,12 @@ exports.updateWebhookVar = function(id, webhookID, webhookToken, webhookActive, 
 
 exports.getWebhookVar = async function run(id)
 {
-   var idValue = await db.query(`select * from (select webhookID as "webhookID" from servers where id = ?) as table2`, { replacements: [id],
+   var idValue = await db.query(`select * from (select webhookid as "webhookid" from servers where id = ?) as table2`, { replacements: [id],
       type: db.QueryTypes.SELECT});
-   dbWebhookIDValue = idValue[0].webhookID;
-   var tokenValue = await db.query(`select * from (select webhookToken as "webhookToken" from servers where id = ?) as table2`, { replacements: [id],
+   dbWebhookIDValue = idValue[0].webhookid;
+   var tokenValue = await db.query(`select * from (select webhooktoken as "webhooktoken" from servers where id = ?) as table2`, { replacements: [id],
       type: db.QueryTypes.SELECT});
-   dbWebhookTokenValue = tokenValue[0].webhookToken;
+   dbWebhookTokenValue = tokenValue[0].webhooktoken;
 
    return this.setWebhookVar(dbWebhookIDValue, dbWebhookTokenValue);
 };
@@ -324,7 +324,7 @@ module.exports.setWebhookVar = function(data)
 
 exports.removeWebhook = function(id, _cb)
 {
-   return Servers.update({ webhookActive: false }, { where: { id: id } }).then(
+   return Servers.update({ webhookactive: false }, { where: { id: id } }).then(
       function ()
       {
          _cb();
@@ -354,22 +354,22 @@ exports.updateColumns = function(data)
             type: Sequelize.STRING(8),
             defaultValue: "off"});
       }
-      if (!tableDefinition.webhookID)
+      if (!tableDefinition.webhookid)
       {
-         console.log("-------------> Adding webhookID column");
-         db.getQueryInterface().addColumn("servers", "webhookID", {
+         console.log("-------------> Adding webhookid column");
+         db.getQueryInterface().addColumn("servers", "webhookid", {
             type: Sequelize.STRING(32)});
       }
-      if (!tableDefinition.webhookToken)
+      if (!tableDefinition.webhooktoken)
       {
-         console.log("-------------> Adding webhookToken column");
-         db.getQueryInterface().addColumn("servers", "webhookToken", {
+         console.log("-------------> Adding webhooktoken column");
+         db.getQueryInterface().addColumn("servers", "webhooktoken", {
             type: Sequelize.STRING(255)});
       }
-      if (!tableDefinition.webhookActive)
+      if (!tableDefinition.webhookactive)
       {
-         console.log("-------------> Adding webhookActive column");
-         db.getQueryInterface().addColumn("servers", "webhookActive", {
+         console.log("-------------> Adding webhookactive column");
+         db.getQueryInterface().addColumn("servers", "webhookactive", {
             type: Sequelize.BOOLEAN,
             defaultValue: false});
       }
@@ -563,14 +563,14 @@ exports.getServerInfo = function(id, callback)
    `(select count(distinct origin) as "activeUserTasks"` +
    `from tasks where origin like '@%' and server = ?) as table3, ` +
    `(select embedstyle as "embedstyle" from servers where id = ?) as table4, ` +
-   `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5;`, { replacements: [ id, id, id, id, id],
+   `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5, ` +
+   `(select webhookactive as "webhookactive" from servers where id = ?) as table6;`, { replacements: [ id, id, id, id, id, id],
       type: db.QueryTypes.SELECT})
       .then(
          result => callback(result),
          err => this.updateColumns() //+ logger("error", err + "\nQuery: " + err.sql, "db")
       );
 };
-
 // ---------
 // Close DB
 // ---------
