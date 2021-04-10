@@ -476,7 +476,7 @@ const helpMessage = function(config, botname, param)
    `# Displays list of servers the bot is in\n` +
    `> ${cmd} settings listservers\n\n` +
    "```";
-   
+
    // -----------------
    // Settings Command
    // -----------------

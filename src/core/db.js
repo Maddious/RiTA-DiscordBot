@@ -10,6 +10,7 @@ const Op = Sequelize.Op;
 var dbBot2BotValue ="";
 var dbWebhookIDValue ="";
 var dbWebhookTokenValue ="";
+var dbNewPrefix = "";
 var server_obj = {};
 
 // ----------------------
@@ -274,6 +275,20 @@ exports.updateWebhookVar = function(id, webhookid, webhooktoken, webhookactive, 
    return Servers.update({ webhookid: webhookid,
       webhooktoken: webhooktoken,
       webhookactive: webhookactive }, { where: { id: id } }).then(
+      function ()
+      {
+         _cb();
+      });
+};
+
+// --------------
+// Update prefix
+// --------------
+
+exports.updatePrefix = function(id, prefix, _cb)
+{
+   dbNewPrefix = prefix;
+   return Servers.update({ prefix: prefix }, { where: { id: id } }).then(
       function ()
       {
          _cb();
