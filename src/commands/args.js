@@ -27,6 +27,7 @@ const cmdTranslateAuto = require("./translate.auto");
 const cmdTranslateStop = require("./translate.stop");
 const cmdTranslateTasks = require("./translate.tasks");
 const cmdDebug = require("./debug");
+const cmdPrefix = require("./prefix");
 
 
 // ---------------------------------------
@@ -257,7 +258,8 @@ module.exports = function(data)
          "proc": cmdMisc.proc,
          "cpu": cmdMisc.cpuUsage,
          "settings": cmdSettings,
-         "debug": cmdDebug.run
+         "debug": cmdDebug.run,
+         "prefix": cmdPrefix.run
       };
 
       // --------------------------

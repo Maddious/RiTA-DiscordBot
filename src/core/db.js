@@ -10,6 +10,7 @@ const Op = Sequelize.Op;
 var dbBot2BotValue ="";
 var dbWebhookIDValue ="";
 var dbWebhookTokenValue ="";
+var dbNewPrefix = "";
 var server_obj = {};
 
 // ----------------------
@@ -60,6 +61,7 @@ const Servers = db.define("servers", {
       unique: true,
       allowNull: false
    },
+   prefix: Sequelize.STRING(8),
    lang: {
       type: Sequelize.STRING(8),
       defaultValue: "en"
@@ -279,6 +281,20 @@ exports.updateWebhookVar = function(id, webhookid, webhooktoken, webhookactive, 
       });
 };
 
+// --------------
+// Update prefix
+// --------------
+
+exports.updatePrefix = function(id, prefix, _cb)
+{
+   dbNewPrefix = prefix;
+   return Servers.update({ prefix: prefix }, { where: { id: id } }).then(
+      function ()
+      {
+         _cb();
+      });
+};
+
 // ----------------------------------------------
 // Get webhookID & webhookToken Variable From DB
 // ----------------------------------------------
@@ -326,6 +342,12 @@ exports.updateColumns = function(data)
    // Very sloppy code, neew to find a better fix.
    db.getQueryInterface().describeTable("servers").then(tableDefinition =>
    {
+      if (!tableDefinition.prefix)
+      {
+         console.log("-------------> Adding embedstyle column");
+         db.getQueryInterface().addColumn("servers", "prefix", {
+            type: Sequelize.STRING(8)});
+      }
       if (!tableDefinition.embedstyle)
       {
          console.log("-------------> Adding embedstyle column");
@@ -552,7 +574,8 @@ exports.getServerInfo = function(id, callback)
    `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5, ` +
    `(select webhookactive as "webhookactive" from servers where id = ?) as table6,` +
    `(select webhookid as "webhookid" from servers where id = ?) as table7,` +
-   `(select webhooktoken as "webhooktoken" from servers where id = ?) as table8;`, { replacements: [ id, id, id, id, id, id, id, id],
+   `(select webhooktoken as "webhooktoken" from servers where id = ?) as table8,` +
+   `(select prefix as "prefix" from servers where id = ?) as table9;`, { replacements: [ id, id, id, id, id, id, id, id, id],
       type: db.QueryTypes.SELECT})
       .then(
          result => callback(result),
