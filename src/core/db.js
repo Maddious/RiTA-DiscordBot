@@ -124,7 +124,7 @@ const Tasks = db.define("tasks", {
 // Init/create tables
 // -------------------
 
-exports.initializeDatabase = async function(client)
+exports.initializeDatabase = function(client)
 {
    db.sync({ logging: console.log }).then(async() =>
    {
