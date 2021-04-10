@@ -168,7 +168,7 @@ const embedOn = function(data)
                .setTimestamp()
                .setFooter("This message will self-destruct in one minute");
 
-            data.message.channel.send(botEmbedOn).then(msg =>
+            message.channel.send(botEmbedOn).then(msg =>
             {
                msg.delete(60000);
             });
