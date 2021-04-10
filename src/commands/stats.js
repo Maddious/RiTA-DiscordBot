@@ -57,7 +57,7 @@ module.exports = function(data)
 
          const embedVar = data.cmd.server[0].embedstyle;
          const bot2BotVar = data.cmd.server[0].bot2botstyle;
-         const webhookVar = data.cmd.server[0].webhookActive;
+         const webhookVar = data.cmd.server[0].webhookactive;
 
          const activeServerTasks =
                data.cmd.server[0].activeTasks - data.cmd.server[0].activeUserTasks;
