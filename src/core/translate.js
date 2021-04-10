@@ -35,11 +35,14 @@ function getUserColor(data, callback)
    const txt = data.text;
    const ft = data.footer;
    const usr = data.author;
+   const msg = data.message;
 
    data.forward = fw;
    data.text = txt;
    data.footer = ft;
    data.author = usr;
+   data.message = msg;
+
 
    callback(data);
 }
@@ -59,6 +62,7 @@ const bufferSend = function(arr, data)
       data.color = msg.color;
       data.author = msg.author;
       data.showAuthor = true;
+      data.message = msg;
 
       // -------------
       // Send message

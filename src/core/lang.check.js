@@ -19,7 +19,8 @@ const langExceptions =
    "zh-cn": "zh-CN",
    "zh-tw": "zh-TW",
    "chinese traditional": "zh-TW",
-   "chinese simplified": "zh-CN"
+   "chinese simplified": "zh-CN",
+   "auto": "auto"
    //"chinese": "zh-CN"
 };
 
@@ -77,11 +78,6 @@ module.exports = function(lang, single = false)
       return "default";
    }
 
-   if (lang === "auto")
-   {
-      return "auto";
-   }
-
    var langs = {
       unchecked: fn.arraySplit(lang, ","),
       valid: [],
@@ -91,8 +87,20 @@ module.exports = function(lang, single = false)
 
    langs.unchecked.forEach(language =>
    {
-      const langISO = getLangISO(language.trim());
+      // ----------------
+      // Auto language
+      // ----------------
+      if (language.trim() === "auto")
+      {
+         langs.unique.push(language);
+         langs.valid.push({
+            iso: language,
+            name: language,
+            native: language});
 
+         return;
+      }
+      const langISO = getLangISO(language.trim());
       if (translate.languages.isSupported(langISO))
       {
          if (!langs.unique.includes(langISO))

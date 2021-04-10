@@ -5,8 +5,10 @@
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
 const colors = require("../core/colors");
+const langCheck = require("../core/lang.check");
 const db = require("../core/db");
 const logger = require("../core/logger");
+const auth = require("../core/auth");
 const discord = require("discord.js");
 
 // -----------------------
@@ -46,7 +48,7 @@ const debug = function(data)
 {
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
-   if (commandVariable1 === "start")
+   if (commandVariable1 === "on")
    {
       console.log(commandVariable1);
       return db.updateWebhookVar(
@@ -75,7 +77,7 @@ const debug = function(data)
          }
       );
    }
-   else if (commandVariable1 === "stop")
+   else if (commandVariable1 === "off")
    {
       console.log(commandVariable1);
       return db.removeWebhook(
@@ -105,7 +107,7 @@ const debug = function(data)
    data.color = "error";
    data.text =
       ":warning:  **`" + commandVariable1 +
-      "`** is not a valid donate option.\n";
+      "`** is not a valid debug option.\n";
 
    // -------------
    // Send message
