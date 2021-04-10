@@ -164,7 +164,7 @@ const embedOn = function(data)
                .setTimestamp()
                .setFooter("This message will self-destruct in one minute");
 
-            message.channel.send(botEmbedOn).then(msg =>
+            data.message.channel.send(botEmbedOn).then(msg =>
             {
                msg.delete(60000);
             });
@@ -382,8 +382,8 @@ const embedOff = function(data)
          if (data.text === undefined)
          {
             webhook.send(data.text, {
-               "username": message.author.username,
-               "avatarURL": message.author.displayAvatarURL,
+               "username": data.message.author.username,
+               "avatarURL": data.message.author.displayAvatarURL,
                "files": files
             });
          }
@@ -446,7 +446,7 @@ const embedOff = function(data)
       if (data.channel.type === "dm")
       {
          const embed = new discord.RichEmbed()
-            .setAuthor(message.member.nickname || data.author.name, data.author.displayAvatarURL)
+            .setAuthor(data.author.name, data.author.displayAvatarURL)
             .setColor(colors.get(data.color))
             .setDescription(data.text)
             .setFooter(data.footer.text);
