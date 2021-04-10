@@ -40,7 +40,7 @@ exports.listen = function(client)
          inviteURL: auth.invite || "Set this in your .env file / config variables in Heroku",
          owner: auth.botOwner,
          defaultLanguage: "en",
-         translateCmd: "!ritabot",
+         translateCmd: "?ritabot",
          translateCmdShort: "?rb",
          maxMulti: 6,
          maxChains: 10,

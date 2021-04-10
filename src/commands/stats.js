@@ -43,7 +43,7 @@ module.exports = function(data)
          `:earth_africa:  Default bot language:  ` +
          `**\`${botLang.name} (${botLang.native})\`` +
          `**\n\n:bar_chart:  Translated **\`${stats[0].totalCount}\`** messages ` +
-         `across **\`${data.client.guilds._array.length}\`** servers\n\n` +
+         `across **\`${data.cmd.server.length}\`** servers\n\n` +
          `:regional_indicator_v:  Version:  ${version}\n\n` +
          `:repeat:  Automatic translation:  ` +
          `**\`${activeTasks}\`**  channels and  ` +
@@ -57,7 +57,7 @@ module.exports = function(data)
 
          const embedVar = data.cmd.server[0].embedstyle;
          const bot2BotVar = data.cmd.server[0].bot2botstyle;
-         const webhookVar = data.cmd.server[0].webhookActive;
+         const webhookVar = data.cmd.server[0].webhookactive;
 
          const activeServerTasks =
                data.cmd.server[0].activeTasks - data.cmd.server[0].activeUserTasks;
@@ -73,6 +73,24 @@ module.exports = function(data)
                `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` +
                `:inbox_tray: Embedded Message Status: **\`${embedVar}\`**\n\n` +
                `:robot: Bot to Bot Translation Status: **\`${bot2BotVar}\`**\n\n` +
+               `:information_source: Webhook Debug Active State: **\`${webhookVar}\`**`;
+      }
+
+      data.color = "info";
+
+      var debugStats = "";
+      if (data.message.channel.type === "text" && data.cmd.server.length === 1)
+      {
+         const webhookIDVar = data.cmd.server[0].webhookid;
+         const webhookTokenVar = data.cmd.server[0].webhooktoken;
+         const webhookVar = data.cmd.server[0].webhookactive;
+
+         debugStats =
+               `**\`\`\`${data.message.channel.guild.name} - Server Info\`\`\`**\n` +
+               `:id: Webhook Debug ID: ` +
+               `**\`\`\`${webhookIDVar}\`\`\`**\n ` +
+               `:key: Webhook Debug Token: ` +
+               `**\`\`\`${webhookTokenVar}\`\`\`**\n ` +
                `:information_source: Webhook Debug Active State: **\`${webhookVar}\`**`;
       }
 
@@ -125,6 +143,32 @@ module.exports = function(data)
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("server"))
       {
          data.text = serverStats;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return botSend(data);
+      }
+
+      if (data.cmd.params && data.cmd.params.toLowerCase().includes("debug"))
+      {
+         if (data.message.isAdmin === false)
+         {
+            data.color = "warn";
+            data.text = ":cop:  This command is reserved for server admins.";
+
+            // -------------
+            // Send message
+            // -------------
+
+            return botSend(data);
+         }
+
+         if (data.message.isAdmin)
+         {
+            data.text = debugStats;
+         }
 
          // -------------
          // Send message
