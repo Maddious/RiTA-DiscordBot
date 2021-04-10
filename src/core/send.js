@@ -360,8 +360,8 @@ const embedOff = function(data)
          if (data.text === undefined)
          {
             webhook.send(data.text, {
-               "username": data.message.author.username,
-               "avatarURL": data.message.author.displayAvatarURL,
+               "username": message.author.username,
+               "avatarURL": message.author.displayAvatarURL,
                "files": files
             });
          }
