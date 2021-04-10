@@ -5,8 +5,10 @@
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
 const colors = require("../core/colors");
+const langCheck = require("../core/lang.check");
 const db = require("../core/db");
 const logger = require("../core/logger");
+const auth = require("../core/auth");
 const discord = require("discord.js");
 
 // -----------------------
@@ -22,7 +24,7 @@ module.exports.run = function(data)
    if (data.message.isAdmin === false)
    {
       data.color = "warn";
-      data.text = ":cop:  This command is reserved for server adminis.";
+      data.text = ":cop:  This command is reserved for server admins.";
 
       // -------------
       // Send message
@@ -39,62 +41,79 @@ module.exports.run = function(data)
 
 
 // -------------------------------
-// debug varible command handaler
+// debug varible command handler
 // -------------------------------
 
 const debug = function(data)
 {
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
-   if (commandVariable1 === "start")
+   if (commandVariable1 === "on")
    {
       console.log(commandVariable1);
-      {
-         var outputgh =
+      return db.updateWebhookVar(
+         data.message.channel.guild.id,
+         commandVariable1, //This would be the Webhook ID
+         commandVariable1, //this would be the Webhook Token
+         true,
+         function(err)
+         {
+            if (err)
+            {
+               return logger("error", err);
+            }
+            var outputgh =
             "**```Start Debug mode```**\n" +
             `Debug mode has been Started. \n` +
             `Error Logs will be output to this channel \n\n`;
-         data.color = "info";
-         data.text = outputgh;
+            data.color = "info";
+            data.text = outputgh;
 
-         // -------------
-         // Send message
-         // -------------
+            // -------------
+            // Send message
+            // -------------
 
-         sendMessage(data);
-      }
+            sendMessage(data);
+         }
+      );
    }
-   else if (commandVariable1 === "stop")
+   else if (commandVariable1 === "off")
    {
       console.log(commandVariable1);
-      {
-         var outputoc =
+      return db.removeWebhook(
+         data.message.channel.guild.id,
+         function(err)
+         {
+            if (err)
+            {
+               return logger("error", err);
+            }
+            var outputoc =
           "**```Stop Debug mode```**\n" +
           `Debug mode has been Stopped. \n` +
           `Error logs will not be shown.\n\n`;
-         data.color = "info";
-         data.text = outputoc;
+            data.color = "info";
+            data.text = outputoc;
 
-         // -------------
-         // Send message
-         // -------------
+            // -------------
+            // Send message
+            // -------------
 
-         sendMessage(data);
-      }
+            sendMessage(data);
+         }
+      );
    }
-   else
-   {
-      data.color = "error";
-      data.text =
+
+   data.color = "error";
+   data.text =
       ":warning:  **`" + commandVariable1 +
-      "`** is not a valid donate option.\n";
+      "`** is not a valid debug option.\n";
 
-      // -------------
-      // Send message
-      // -------------
+   // -------------
+   // Send message
+   // -------------
 
-      sendMessage(data);
-   }
+   sendMessage(data);
 };
 
 // ----------------------
