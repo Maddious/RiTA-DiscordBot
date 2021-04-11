@@ -482,7 +482,7 @@ const helpMessage = function(config, botname, param)
    "```";
 
    // -----------------
-   // Settings Command
+   // Debug Command
    // -----------------
 
    const debug =
@@ -506,6 +506,10 @@ const helpMessage = function(config, botname, param)
 
    `# You can now change the prefix of your bot commands \n` +
    `> ${cmd} prefix [Prefix]\n\n` +
+
+   `# Displays current prefix\n` +
+   `> ${cmd} prefix\n\n` +
+   `> ${long} prefix\n\n` +
 
    `# You can also reset your prefix back to default with \n` +
    `> ${long} prefix reset\n\n` +
