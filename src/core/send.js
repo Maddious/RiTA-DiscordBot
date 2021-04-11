@@ -88,7 +88,7 @@ module.exports = async function(data)
       }
    }
 
-   const guildValue = data.message.guild.id;
+   //const guildValue = data.message.guild.id;
    data.channel = data.message.channel;
 
    // --------------------
