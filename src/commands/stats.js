@@ -72,9 +72,11 @@ module.exports = function(data)
                `:repeat:  Automatic translation:  ` +
                `**\`${activeServerTasks}\`**  channels and  ` +
                `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` +
+               `:robot: Users in Server: **\`${data.message.client.users.size}\`**\n\n` +
                `:inbox_tray: Embedded Message Status: **\`${embedVar}\`**\n\n` +
                `:robot: Bot to Bot Translation Status: **\`${bot2BotVar}\`**\n\n` +
                `:information_source: Webhook Debug Active State: **\`${webhookVar}\`**`;
+         
       }
 
       data.color = "info";
