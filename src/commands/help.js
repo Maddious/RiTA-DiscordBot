@@ -3,8 +3,9 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const botSend = require("../core/send");
 const auth = require("../core/auth");
+const colors = require("../core/colors");
+const discord = require("discord.js");
 
 // ------------------------
 // Bot Help / Command List
@@ -32,7 +33,7 @@ module.exports = function(data)
    // Send message
    // -------------
 
-   return botSend(data);
+   return sendMessage(data);
 };
 
 // -------------
@@ -68,6 +69,7 @@ const helpMessage = function(config, botname, param)
    // ---------
 
    const cmd = config.translateCmdShort;
+   const long = config.translateCmd;
 
    const info =
    `**${botname} Bot - v.${config.version}**\n` +
@@ -270,6 +272,8 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help report\n` +
    `> ${cmd} help readme\n` +
    `> ${cmd} help donate\n` +
+   `> ${cmd} help debug\n` +
+   `> ${cmd} help prefix\n` +
    "```";
 
 
@@ -492,6 +496,21 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} debug off\n\n` +
    "```";
 
+   // ---------------
+   // Prefix Command
+   // ---------------
+
+   const prefix =
+   `__**Prefix**__\n\n` +
+   "```md\n" +
+
+   `# You can now change the prefix of your bot commands \n` +
+   `> ${cmd} prefix [Prefix]\n\n` +
+
+   `# You can also reset your prefix back to default with \n` +
+   `> ${long} prefix reset\n\n` +
+   "```";
+
    // --------------
    // Tasks Command
    // --------------
@@ -509,9 +528,9 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} tasks for [#channel]\n` +
    "```";
 
-   // --------------
+   // ----------
    // Donations
-   // --------------
+   // ----------
 
    const donate =
    `__**Want to Donate to RITA's Development **__\n\n` +
@@ -552,7 +571,8 @@ const helpMessage = function(config, botname, param)
       "embed": embed,
       "bot2bot": bot2bot,
       "debug": debug,
-      "donate": donate
+      "donate": donate,
+      "prefix": prefix
    };
 
    //if (paramMap.hasOwnProperty(param))
@@ -563,3 +583,23 @@ const helpMessage = function(config, botname, param)
 
    return paramMap.basics;
 };
+
+// ----------------------
+// Send message function
+// ----------------------
+
+function sendMessage (data)
+{
+   data.message.delete(5000);
+   const richEmbedMessage = new discord.RichEmbed()
+      .setColor(colors.get(data.color))
+      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+      .setDescription(data.text)
+      .setTimestamp()
+      .setFooter("This message will self-destruct in one minute");
+
+   return data.message.channel.send(richEmbedMessage).then(msg =>
+   {
+      msg.delete(60000);
+   });
+}

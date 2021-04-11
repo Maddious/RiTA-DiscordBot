@@ -4,7 +4,6 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /*eslint-disable no-irregular-whitespace*/
-const botSend = require("../core/send");
 const auth = require("../core/auth");
 const fn = require("../core/helpers");
 const logger = require("../core/logger");
@@ -12,6 +11,8 @@ const process = require("process");
 const stripIndent = require("common-tags").stripIndent;
 const oneLine = require("common-tags").oneLine;
 const secConverter = require("seconds-converter");
+const colors = require("../core/colors");
+const discord = require("discord.js");
 
 // ------------
 // Invite Link
@@ -32,7 +33,7 @@ exports.invite = function(data)
    // Send message
    // -------------
 
-   return botSend(data);
+   return sendMessage(data);
 };
 
 // -----------------------
@@ -77,7 +78,7 @@ exports.shards = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // --------------------------
@@ -136,7 +137,7 @@ exports.shards = function(data)
             // Send message
             // -------------
 
-            botSend(data);
+            sendMessage(data);
 
             // -------------
             // catch errors
@@ -243,5 +244,25 @@ exports.proc = function(data)
    // Send message
    // -------------
 
-   botSend(data);
+   sendMessage(data);
 };
+
+// ----------------------
+// Send message function
+// ----------------------
+
+function sendMessage (data)
+{
+   data.message.delete(5000);
+   const richEmbedMessage = new discord.RichEmbed()
+      .setColor(colors.get(data.color))
+      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+      .setDescription(data.text)
+      .setTimestamp()
+      .setFooter("This message will self-destruct in one minute");
+
+   return data.message.channel.send(richEmbedMessage).then(msg =>
+   {
+      msg.delete(60000);
+   });
+}

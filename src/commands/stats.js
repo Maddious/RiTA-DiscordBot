@@ -4,10 +4,11 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const langCheck = require("../core/lang.check");
-const botSend = require("../core/send");
 const db = require("../core/db");
 const auth = require("../core/auth");
 const logger = require("../core/logger");
+const colors = require("../core/colors");
+const discord = require("discord.js");
 
 // -------------
 // Command Code
@@ -105,7 +106,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       // Only '!t stats global' is allowed with dm
@@ -118,7 +119,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       // No server data was available
@@ -136,7 +137,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       // Case: !t stats server
@@ -148,7 +149,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("debug"))
@@ -162,7 +163,7 @@ module.exports = function(data)
             // Send message
             // -------------
 
-            return botSend(data);
+            return sendMessage(data);
          }
 
          if (data.message.isAdmin)
@@ -174,7 +175,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       data.text = globalStats + "\n\n" + serverStats;
@@ -183,6 +184,26 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    });
 };
+
+// ----------------------
+// Send message function
+// ----------------------
+
+function sendMessage (data)
+{
+   data.message.delete(5000);
+   const richEmbedMessage = new discord.RichEmbed()
+      .setColor(colors.get(data.color))
+      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+      .setDescription(data.text)
+      .setTimestamp()
+      .setFooter("This message will self-destruct in one minute");
+
+   return data.message.channel.send(richEmbedMessage).then(msg =>
+   {
+      msg.delete(60000);
+   });
+}

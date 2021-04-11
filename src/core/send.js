@@ -88,36 +88,16 @@ module.exports = async function(data)
       }
    }
 
-   // ----------------------------------------------------
-   // The first time this runs after a reset it will
-   // always send as Off state as set.EmbedVar = "",
-   // Alot of this is debug code, but left in for testing
-   // ----------------------------------------------------
-
-   //console.log(`Guild ID from message`);
-   //console.log(`Raw = ` + data.message.guild.id);
-   const guildValue = data.message.guild.id;
+   //const guildValue = data.message.guild.id;
    data.channel = data.message.channel;
-
-   //console.log(`db.set Stage 1 = ` + db.setEmbedVar());
-
-   //if (db.getEmbedVar(id=guildValue) === "")
-   //{
-   //console.log(`Collecting Value for Embed`);
-   //db.getEmbedVar(guildValue);
-   //}
-   //else
-   // eslint-disable-next-line no-else-return
-   //{
-   //console.log(`db.set Stage 3 = ` + db.setEmbedVar());
-   //}
 
    // --------------------
    // Primary If Statment
    // --------------------
-   const serverEmbed = await db.getEmbedVar(id=guildValue);
+   const embedstyle = db.server_obj[data.message.guild.id].embedstyle;
+   //const serverEmbed = await db.getEmbedVar(id=guildValue);
 
-   if (serverEmbed === "on")
+   if (embedstyle === "on")
    {
       embedOn(data);
    }

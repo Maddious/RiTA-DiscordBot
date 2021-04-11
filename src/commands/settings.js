@@ -3,9 +3,10 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const botSend = require("../core/send");
+const colors = require("../core/colors");
 const db = require("../core/db");
 const logger = require("../core/logger");
+const discord = require("discord.js");
 
 // --------------------------
 // Proccess settings params
@@ -26,7 +27,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // -----------------------------------
@@ -44,7 +45,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // ----------------
@@ -79,7 +80,7 @@ const getSettings = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       // ------------------------
@@ -99,7 +100,7 @@ const getSettings = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       // ----------------
@@ -124,7 +125,7 @@ const getSettings = function(data)
             // Send message
             // -------------
 
-            return botSend(data);
+            return sendMessage(data);
          }
       );
    };
@@ -137,7 +138,7 @@ const getSettings = function(data)
    {
       data.color = "info";
       data.text = data.bot.username + " is now disconnected from the server.";
-      botSend(data);
+      sendMessage(data);
 
       return setTimeout(function()
       {
@@ -187,7 +188,7 @@ const getSettings = function(data)
       //const activeGuilds = data.client.guilds.array();
       //data.color = "info";
       //data.text = `Updating bot for **${activeGuilds.length}** servers.`;
-      //botSend(data);
+      //sendMessage(data);
       //
       //activeGuilds.forEach(guild =>
       //{
@@ -225,7 +226,7 @@ const getSettings = function(data)
       // -------------
       db.updateColumns();
 
-      return botSend(data);
+      return sendMessage(data);
    };
 
    // --------------------------
@@ -260,5 +261,25 @@ const getSettings = function(data)
    // Send message
    // -------------
 
-   return botSend(data);
+   return sendMessage(data);
 };
+
+// ----------------------
+// Send message function
+// ----------------------
+
+function sendMessage (data)
+{
+   data.message.delete(5000);
+   const richEmbedMessage = new discord.RichEmbed()
+      .setColor(colors.get(data.color))
+      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+      .setDescription(data.text)
+      .setTimestamp()
+      .setFooter("This message will self-destruct in one minute");
+
+   return data.message.channel.send(richEmbedMessage).then(msg =>
+   {
+      msg.delete(60000);
+   });
+}
