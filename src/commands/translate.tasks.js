@@ -7,6 +7,7 @@ const langCheck = require("../core/lang.check");
 const db = require("../core/db");
 const colors = require("../core/colors");
 const discord = require("discord.js");
+const botSend = require("./send");
 
 // --------------------
 // Handle stop command
@@ -28,7 +29,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return sendMessage(data);
+      return botSend(data);
    }
 
    // -------------------------------
@@ -44,7 +45,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return sendMessage(data);
+      return botSend(data);
    }
 
    // -----------------------------------------
@@ -62,7 +63,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return sendMessage(data);
+      return botSend(data);
    }
 
    // ------------------
@@ -106,7 +107,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return sendMessage(data);
+         return botSend(data);
       }
 
       // ------------------------------------------------
@@ -130,7 +131,7 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
    // Send message
    // -------------
 
-   sendMessage(data);
+   botSend(data);
 
    for (var i = 0, len = res.length; i < len; i++)
    {
@@ -145,7 +146,7 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
       // Send message
       // -------------
 
-      sendMessage(data);
+      botSend(data);
    }
    data.text = ":negative_squared_cross_mark:  That's all I have!";
 
@@ -153,7 +154,7 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
    // Send message
    // -------------
 
-   return sendMessage(data);
+   return botSend(data);
 };
 // -----------------------
 // Destination ID handler
@@ -201,7 +202,7 @@ const dbError = function(err, data)
    // Send message
    // -------------
 
-   sendMessage(data);
+   botSend(data);
    return console.log("error", err);
 };
 

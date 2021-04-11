@@ -8,6 +8,7 @@ const translate = require("../core/translate");
 const logger = require("../core/logger");
 const colors = require("../core/colors");
 const discord = require("discord.js");
+const botSend = require("./send");
 
 const getCount = function(count)
 {
@@ -62,7 +63,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      sendMessage(data);
+      botSend(data);
       count = data.config.maxChains;
    }
 
@@ -134,7 +135,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return sendMessage(data);
+         return botSend(data);
       }
 
       // -----------------------

@@ -6,6 +6,7 @@
 const db = require("../core/db");
 const colors = require("../core/colors");
 const discord = require("discord.js");
+const botSend = require("./send");
 
 // ---------------------
 // Handle stop command
@@ -27,7 +28,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return sendMessage(data);
+      return botSend(data);
    }
 
    // -------------------------------
@@ -43,7 +44,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return sendMessage(data);
+      return botSend(data);
    }
 
    // -----------------------------------------
@@ -61,7 +62,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return sendMessage(data);
+      return botSend(data);
    }
 
    // ------------------
@@ -113,7 +114,7 @@ module.exports = function(data)
             // Send message
             // -------------
 
-            return sendMessage(data);
+            return botSend(data);
          }
 
          // ------------------------------------------------
@@ -159,7 +160,7 @@ const removeTask = function(res, data, origin, dest, destDisplay)
       // Send message
       // -------------
 
-      return sendMessage(data);
+      return botSend(data);
    });
 };
 
@@ -217,7 +218,7 @@ const dbError = function(err, data)
    // Send message
    // -------------
 
-   sendMessage(data);
+   botSend(data);
    return console.log("error", err);
 };
 

@@ -8,6 +8,7 @@ const db = require("../core/db");
 const logger = require("../core/logger");
 const colors = require("../core/colors");
 const discord = require("discord.js");
+const botSend = require("./send");
 
 // -------------------------------
 // Auto translate Channel/Author
@@ -29,7 +30,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return sendMessage(data);
+      return botSend(data);
    }
 
    // ----------------
@@ -45,7 +46,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return sendMessage(data);
+      return botSend(data);
    }
 
    if (data.cmd.to.valid.length !== 1 || data.cmd.to.valid[0] === "auto")
@@ -58,7 +59,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return sendMessage(data);
+      return botSend(data);
    }
 
    // ------------------
@@ -97,7 +98,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return sendMessage(data);
+      return botSend(data);
    }
 
    // -----------------------------------------------
@@ -124,7 +125,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return sendMessage(data);
+         return botSend(data);
       }
 
       taskLoop();
@@ -263,7 +264,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return sendMessage(data);
+         return botSend(data);
       }
 
       // ----------------------------------
@@ -281,7 +282,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return sendMessage(data);
+         return botSend(data);
       }
 
       // ---------------------
@@ -310,7 +311,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return sendMessage(data);
+      return botSend(data);
    };
 };
 
