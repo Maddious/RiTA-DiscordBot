@@ -6,7 +6,7 @@
 const db = require("./core/db");
 const fn = require("./core/helpers");
 const cmdArgs = require("./commands/args");
-const bot2bot = require("./commands/bot2bot");
+
 
 // --------------------
 // Listen for messages
@@ -19,13 +19,13 @@ module.exports = function(config, message, edited, deleted)
    const client = message.client;
    const bot = client.user;
    global.message = message;
-
+   const bot2botstyle = db.server_obj[message.guild.id].bot2botstyle;
 
    // ------------------------
    // Ignore messages by bots
    // ------------------------
 
-   if (bot2bot.getBot2botVar() === "off")
+   if (bot2botstyle === "off")
    {
       if (message.author.bot)
       {
@@ -33,7 +33,7 @@ module.exports = function(config, message, edited, deleted)
       }
    }
 
-   if (bot2bot.getBot2botVar() === "on")
+   if (bot2botstyle === "on")
    {
       if (message.author.discriminator === "0000")
       {

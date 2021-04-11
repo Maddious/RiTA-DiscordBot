@@ -8,16 +8,10 @@ const colors = require("../core/colors");
 const db = require("../core/db");
 const logger = require("../core/logger");
 const discord = require("discord.js");
-var bot2botVar = "off";
 
 // -------------
 // Command Code
 // -------------
-
-module.exports.getBot2botVar = function(data)
-{
-   return bot2botVar;
-};
 
 module.exports.run = function(data)
 

@@ -21,9 +21,18 @@ module.exports.run = function(data)
 
    if (!data.cmd.params)
    {
-      data.color = "error";
-      data.text = ":warning: Please provide a valid prefix to set.";
-
+      const cmd = data.config.translateCmdShort;
+      const object_prefix = db.server_obj[data.message.guild.id].prefix;
+      if (cmd !== object_prefix && object_prefix !== "!tr")
+      {
+         data.color = "info";
+         data.text = `:information_source: Your current prefix is: **\`${db.server_obj[message.guild.id].prefix}\`**\n\n`;
+      }
+      else
+      {
+         data.color = "info";
+         data.text = `:information_source: Your current prefix is: **\`${cmd}\`**\n\n`;
+      }
       return sendMessage(data);
    }
 

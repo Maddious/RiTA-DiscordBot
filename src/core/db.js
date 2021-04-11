@@ -181,6 +181,8 @@ exports.addServer = function(id, lang)
       embedstyle: "on",
       bot2botstyle: "off",
       id: id,
+      webhookid: null,
+      webhooktoken: null,
       prefix: "!tr"
    };
    return Servers.create({
@@ -226,17 +228,6 @@ exports.updateEmbedVar = function(id, embedstyle, _cb)
 };
 
 // ------------------------------
-// Get Embedded Variable From DB
-// ------------------------------
-exports.server_obj = server_obj;
-
-exports.getEmbedVar = async function run(id)
-{
-   const object = server_obj[id];
-   return object.embedstyle;
-};
-
-// ------------------------------
 // Update Bot2Bot Variable In DB
 // ------------------------------
 
@@ -248,27 +239,6 @@ exports.updateBot2BotVar = function(id, bot2botstyle, _cb)
       {
          _cb();
       });
-};
-
-// -----------------------------
-// Get Bot2Bot Variable From DB
-// -----------------------------
-
-exports.getBot2BotVar = async function run(id)
-{
-   var value = await db.query(`select * from (select bot2botstyle as "bot2botstyle" from servers where id = ?) as table2`, { replacements: [id],
-      type: db.QueryTypes.SELECT});
-   dbBot2BotValue = value[0].bot2botstyle;
-   return this.setBot2BotVar();
-};
-
-// ------------------------------------------
-// Call Saved Bot2Bot Variable Value From DB
-// ------------------------------------------
-
-module.exports.setBot2BotVar = function(data)
-{
-   return dbBot2BotValue;
 };
 
 // -----------------------------------------------
@@ -287,23 +257,6 @@ exports.updateWebhookVar = function(id, webhookid, webhooktoken, webhookactive, 
          _cb();
       });
 };
-
-// ----------------------------------------------
-// Get webhookID & webhookToken Variable From DB
-// ----------------------------------------------
-
-exports.getWebhookVar = async function run(id)
-{
-   var idValue = await db.query(`select * from (select webhookid as "webhookid" from servers where id = ?) as table2`, { replacements: [id],
-      type: db.QueryTypes.SELECT});
-   dbWebhookIDValue = idValue[0].webhookid;
-   var tokenValue = await db.query(`select * from (select webhooktoken as "webhooktoken" from servers where id = ?) as table2`, { replacements: [id],
-      type: db.QueryTypes.SELECT});
-   dbWebhookTokenValue = tokenValue[0].webhooktoken;
-
-   return this.setWebhookVar(dbWebhookIDValue, dbWebhookTokenValue);
-};
-
 
 // -------------------
 // Deactivate Webhook
@@ -331,16 +284,6 @@ exports.updatePrefix = function(id, prefix, _cb)
       {
          _cb();
       });
-};
-
-// ------------------------------
-// Get Prefix Variable From DB
-// ------------------------------
-
-exports.getPrefixVar = async function run(id)
-{
-   const object = server_obj[id];
-   return object.prefix;
 };
 
 // -----------------------------
