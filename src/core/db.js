@@ -63,7 +63,7 @@ const Servers = db.define("servers", {
       allowNull: false
    },
    prefix: {
-      type: Sequelize.STRING(8),
+      type: Sequelize.STRING(32),
       defaultValue: "!tr"
    },
    lang: {
@@ -299,7 +299,7 @@ exports.updateColumns = function(data)
       {
          console.log("-------------> Adding prefix column");
          db.getQueryInterface().addColumn("servers", "prefix", {
-            type: Sequelize.STRING(8),
+            type: Sequelize.STRING(32),
             defaultValue: "!tr"});
       }
       if (!tableDefinition.embedstyle)
