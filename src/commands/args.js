@@ -256,7 +256,7 @@ module.exports = function(data)
          "invite": cmdMisc.invite,
          "shards": cmdMisc.shards,
          "proc": cmdMisc.proc,
-         "cpu": cmdMisc.cpuUsage,
+         //"cpu": cmdMisc.cpuUsage,
          "settings": cmdSettings,
          "debug": cmdDebug.run,
          "prefix": cmdPrefix.run

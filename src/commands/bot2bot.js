@@ -29,39 +29,42 @@ module.exports.run = function(data)
       // Send message
       // -------------
 
-      sendMessage(data);
+      return sendMessage(data);
    }
 
-   // -----------------------------------
-   // Error if settings param is missing
-   // -----------------------------------
+   // ----------------------------------
+   // Error if bot2bot param is missing
+   // ----------------------------------
 
    if (!data.cmd.params)
    {
       data.color = "error";
       data.text =
-         ":warning:  Missing `embed` parameter. Use `" +
-         `${data.config.translateCmdShort} help embed\` to learn more.`;
+         ":warning:  Missing `bot2bot` parameter. Use `" +
+         `${data.config.translateCmdShort} help bot2bot\` to learn more.`;
 
       // -------------
       // Send message
       // -------------
 
-      sendMessage(data);
+      return sendMessage(data);
    }
 
    // ----------------
    // Execute setting
    // ----------------
 
-   embedSettings(data);
+   if (data.message.isAdmin)
+   {
+      bot2bot(data);
+   }
 };
 
-// -------------------------------
-// embed varible command handaler
-// -------------------------------
+// ---------------------------------
+// bot2bot varible command handaler
+// ---------------------------------
 
-const embedSettings = function(data)
+const bot2bot = function(data)
 {
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
@@ -88,7 +91,7 @@ const embedSettings = function(data)
             // Send message
             // -------------
 
-            sendMessage(data);
+            return sendMessage(data);
          }
       );
    }
@@ -102,7 +105,7 @@ const embedSettings = function(data)
    // Send message
    // -------------
 
-   sendMessage(data);
+   return sendMessage(data);
 };
 
 // ----------------------

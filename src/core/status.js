@@ -11,7 +11,7 @@ module.exports = function(bot, status, config, writable = true)
          bot.setPresence({
             status: "online",
             game: {
-               name: "ritabot.gg | " + config.translateCmdShort+ " help" //V." + config.version
+               name: "ritabot.gg | " + config.translateCmdShort + " help" //V." + config.version
             }
          });
       },

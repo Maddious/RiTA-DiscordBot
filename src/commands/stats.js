@@ -44,8 +44,8 @@ module.exports = function(data)
          `:earth_africa:  Default bot language:  ` +
          `**\`${botLang.name} (${botLang.native})\`` +
          `**\n\n:bar_chart:  Translated **\`${stats[0].totalCount}\`** messages ` +
-         `across **\`${data.cmd.server.length}\`** servers\n\n` +
-         `:regional_indicator_v:  Version:  ${version}\n\n` +
+         `across **\`${data.client.guilds.size}\`** servers\n\n` +
+         `:regional_indicator_v:  Versi£on:  ${version}\n\n` +
          `:repeat:  Automatic translation:  ` +
          `**\`${activeTasks}\`**  channels and  ` +
          `**\`${stats[0].activeUserTasks}\`**  users`;
@@ -72,9 +72,11 @@ module.exports = function(data)
                `:repeat:  Automatic translation:  ` +
                `**\`${activeServerTasks}\`**  channels and  ` +
                `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` +
+               `:robot: Users in Server: **\`${data.message.client.users.size}\`**\n\n` +
                `:inbox_tray: Embedded Message Status: **\`${embedVar}\`**\n\n` +
                `:robot: Bot to Bot Translation Status: **\`${bot2BotVar}\`**\n\n` +
                `:information_source: Webhook Debug Active State: **\`${webhookVar}\`**`;
+         
       }
 
       data.color = "info";

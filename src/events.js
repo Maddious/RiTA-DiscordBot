@@ -114,17 +114,16 @@ exports.listen = function(client)
    {
       if (message.channel.type !== "dm")
       {
-         if (config.translateCmdShort !== db.server_obj[message.guild.id].prefix)
+         if (db.server_obj[message.guild.id])
          {
-            config.translateCmdShort = db.server_obj[message.guild.id].prefix;
-         }
-         if (message.guild)
-         {
-            const object_prefix = db.server_obj[message.guild.id].prefix;
-            if (config.translateCmdShort !== object_prefix && object_prefix !== "!tr")
+            if (config.translateCmdShort !== db.server_obj[message.guild.id].prefix)
             {
                config.translateCmdShort = db.server_obj[message.guild.id].prefix;
             }
+            //setStatus(client.user, "online", config);
+         }
+         if (message.guild)
+         {
             console.log(`${message.guild.name} - ${message.guild.id}`);
          //need to have another if statment here, if server length is greeater than 1 then run below, if not do nothing.
          //setStatus(client.user, "online", config);
