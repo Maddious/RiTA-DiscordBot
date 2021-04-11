@@ -7,7 +7,6 @@ const colors = require("../core/colors");
 const db = require("../core/db");
 const logger = require("../core/logger");
 const discord = require("discord.js");
-const { message } = require("../message");
 
 // --------------------------
 // Proccess settings params
