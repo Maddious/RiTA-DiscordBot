@@ -354,9 +354,10 @@ exports.updateColumns = function(data)
    {
       if (!tableDefinition.prefix)
       {
-         console.log("-------------> Adding embedstyle column");
+         console.log("-------------> Adding prefix column");
          db.getQueryInterface().addColumn("servers", "prefix", {
-            type: Sequelize.STRING(8)});
+            type: Sequelize.STRING(8),
+            defaultValue: "!tr"});
       }
       if (!tableDefinition.embedstyle)
       {

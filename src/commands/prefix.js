@@ -15,6 +15,10 @@ const discord = require("discord.js");
 
 module.exports.run = function(data)
 {
+   // --------------------------
+   // If no new prefix is given
+   // --------------------------
+
    if (!data.cmd.params)
    {
       data.color = "error";
@@ -22,9 +26,11 @@ module.exports.run = function(data)
 
       return sendMessage(data);
    }
+
    // -------------------------------
    // Command allowed by admins only
    // -------------------------------
+
    if (data.message.isAdmin === false)
    {
       data.color = "warn";
@@ -45,14 +51,41 @@ module.exports.run = function(data)
 
 
 // -------------------------------
-// debug varible command handler
+// prefix varible command handler
 // -------------------------------
 
 const prefix = function(data)
 {
    const newPrefix = data.cmd.params.split(" ")[0].toLowerCase();
 
-   if (newPrefix !== "")
+   if (newPrefix === "reset")
+   {
+      var reset = "!tr";
+      console.log(newPrefix);
+      return db.updatePrefix(
+         data.message.channel.guild.id,
+         reset, //This would be the new prefix
+         function(err)
+         {
+            if (err)
+            {
+               return logger("error", err);
+            }
+            var outputvalid =
+            "**```Command prefix has been reset```**\n" +
+            `Your new prefix is **\`${reset}\`**. \n\n`;
+            data.color = "info";
+            data.text = outputvalid;
+
+            // -------------
+            // Send message
+            // -------------
+
+            sendMessage(data);
+         }
+      );
+   }
+   else if (newPrefix !== "")
    {
       console.log(newPrefix);
       return db.updatePrefix(
@@ -78,25 +111,11 @@ const prefix = function(data)
          }
       );
    }
-   else if (newPrefix === "")
-   {
-      var outputinvalid =
-          "**```ERROR```**\n" +
-          `Please provide a new prefix. \n\n`;
-      data.color = "info";
-      data.text = outputinvalid;
-
-      // -------------
-      // Send message
-      // -------------
-
-      sendMessage(data);
-   }
 
    data.color = "error";
    data.text =
       ":warning:  **`" + commandVariable1 +
-      "`** is not a valid debug option.\n";
+      "`** is not a valid prefix option.\n";
 
    // -------------
    // Send message
