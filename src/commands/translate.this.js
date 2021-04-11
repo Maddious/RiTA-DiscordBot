@@ -6,7 +6,7 @@
 const translate = require("../core/translate");
 const colors = require("../core/colors");
 const discord = require("discord.js");
-const botSend = require("./send");
+const botSend = require("../core/send");
 
 // -----------------------------
 // Translate string to language

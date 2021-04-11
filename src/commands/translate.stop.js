@@ -6,7 +6,7 @@
 const db = require("../core/db");
 const colors = require("../core/colors");
 const discord = require("discord.js");
-const botSend = require("./send");
+const botSend = require("../core/send");
 
 // ---------------------
 // Handle stop command

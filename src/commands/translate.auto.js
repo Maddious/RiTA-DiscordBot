@@ -8,7 +8,7 @@ const db = require("../core/db");
 const logger = require("../core/logger");
 const colors = require("../core/colors");
 const discord = require("discord.js");
-const botSend = require("./send");
+const botSend = require("../core/send");
 
 // -------------------------------
 // Auto translate Channel/Author

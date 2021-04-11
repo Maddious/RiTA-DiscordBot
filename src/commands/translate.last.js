@@ -8,7 +8,7 @@ const translate = require("../core/translate");
 const logger = require("../core/logger");
 const colors = require("../core/colors");
 const discord = require("discord.js");
-const botSend = require("./send");
+const botSend = require("../core/send");
 
 const getCount = function(count)
 {
