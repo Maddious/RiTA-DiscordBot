@@ -155,7 +155,6 @@ exports.initializeDatabase = async function(client)
             }
          });
       }
-      console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
       const serversFindAll = await Servers.findAll();//.then((serversFindAll) =>
       //{
       for (let i = 0; i < serversFindAll.length; i++)
@@ -180,6 +179,7 @@ exports.initializeDatabase = async function(client)
          }
          server_obj.size += guild.memberCount;
       }
+      console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
       // });
    });
 };
