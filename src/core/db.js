@@ -155,7 +155,7 @@ exports.initializeDatabase = async function(client)
          });
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
-      const serversFindAll = await Servers.findAll({attributes: ["id", "embedstyle", "bot2botstyle", "prefix"] });//.then((serversFindAll) =>
+      const serversFindAll = await Servers.findAll();//.then((serversFindAll) =>
       //{
       for (let i = 0; i < serversFindAll.length; i++)
       {
@@ -228,6 +228,7 @@ exports.updateEmbedVar = function(id, embedstyle, _cb)
 // ------------------------------
 // Get Embedded Variable From DB
 // ------------------------------
+exports.server_obj = server_obj;
 
 exports.getEmbedVar = async function run(id)
 {
@@ -324,6 +325,7 @@ exports.removeWebhook = function(id, _cb)
 exports.updatePrefix = function(id, prefix, _cb)
 {
    dbNewPrefix = prefix;
+   server_obj[id].prefix = dbNewPrefix;
    return Servers.update({ prefix: prefix }, { where: { id: id } }).then(
       function ()
       {
@@ -505,7 +507,7 @@ exports.getTasksCount = function(origin, cb)
 // Get Servers Count
 // ------------------
 
-exports.getServersCount = function(cb)
+exports.getServersCount = function()
 {
    return server_obj.length();
 };

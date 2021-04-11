@@ -119,6 +119,12 @@ exports.listen = function(client)
       }
       if (message.guild)
       {
+         const object_prefix = db.server_obj[message.guild.id].prefix;
+         if (config.translateCmd !== object_prefix && object_prefix !== "!tr"|| config.translateCmdShort !== object_prefix && object_prefix !== "!tr")
+         {
+            config.translateCmdShort = db.server_obj[message.guild.id].prefix;
+            setStatus(client.user, "online", config);
+         }
          console.log(`${message.guild.name} - ${message.guild.id}`);
       }
 
