@@ -45,7 +45,7 @@ module.exports = function(data)
          `**\`${botLang.name} (${botLang.native})\`` +
          `**\n\n:bar_chart:  Translated **\`${stats[0].totalCount}\`** messages ` +
          `across **\`${data.client.guilds.size}\`** servers ` +
-         `for **\`${db.server_obj.size} users.\`**\n\n` +
+         `for **\`${data.message.client.users.size} users.\`**\n\n` + //db.db.server_obj.size for total count in d.js v12
          `:regional_indicator_v:  Version:  ${version}\n\n` +
          `:repeat:  Automatic translation:  ` +
          `**\`${activeTasks}\`**  channels and  ` +
