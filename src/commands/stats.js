@@ -46,7 +46,7 @@ module.exports = function(data)
          `**\n\n:bar_chart:  Translated **\`${stats[0].totalCount}\`** messages ` +
          `across **\`${data.client.guilds.size}\`** servers ` +
          `for **\`${data.message.client.users.size} users.\`**\n\n` +
-         `:regional_indicator_v:  Versi£on:  ${version}\n\n` +
+         `:regional_indicator_v:  Version:  ${version}\n\n` +
          `:repeat:  Automatic translation:  ` +
          `**\`${activeTasks}\`**  channels and  ` +
          `**\`${stats[0].activeUserTasks}\`**  users`;
