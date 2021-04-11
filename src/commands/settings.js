@@ -167,7 +167,7 @@ const getSettings = function(data)
       });
 
       const splitOpts = {
-         maxLength: 1000,
+         maxLength: 2000,
          char: ""
       };
 
