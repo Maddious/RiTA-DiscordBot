@@ -30,7 +30,7 @@ module.exports = function(data)
    // Send message
    // -------------
 
-   sendMessage(data);
+   return sendMessage(data);
 };
 
 // ----------------------

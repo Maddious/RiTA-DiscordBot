@@ -31,6 +31,28 @@ module.exports.run = function(data)
       return sendMessage(data);
    }
 
+   // --------------------------------
+   // Error if debug param is missing
+   // --------------------------------
+
+   if (!data.cmd.params)
+   {
+      data.color = "error";
+      data.text =
+         ":warning:  Missing `debug` parameter. Use `" +
+         `${data.config.translateCmdShort} help debug\` to learn more.`;
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+   }
+
+   // ----------------
+   // Execute setting
+   // ----------------
+
    if (data.message.isAdmin)
    {
       debug(data);
@@ -71,7 +93,7 @@ const debug = function(data)
             // Send message
             // -------------
 
-            sendMessage(data);
+            return sendMessage(data);
          }
       );
    }
@@ -97,7 +119,7 @@ const debug = function(data)
             // Send message
             // -------------
 
-            sendMessage(data);
+            return sendMessage(data);
          }
       );
    }
@@ -111,7 +133,7 @@ const debug = function(data)
    // Send message
    // -------------
 
-   sendMessage(data);
+   return sendMessage(data);
 };
 
 // ----------------------

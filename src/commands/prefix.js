@@ -15,6 +15,22 @@ const discord = require("discord.js");
 
 module.exports.run = function(data)
 {
+   // -------------------------------
+   // Command allowed by admins only
+   // -------------------------------
+
+   if (data.message.isAdmin === false)
+   {
+      data.color = "warn";
+      data.text = ":cop:  This command is reserved for server admins.";
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+   }
+
    // --------------------------
    // If no new prefix is given
    // --------------------------
@@ -33,17 +49,6 @@ module.exports.run = function(data)
          data.color = "info";
          data.text = `:information_source: Your current prefix is: **\`${cmd}\`**\n\n`;
       }
-      return sendMessage(data);
-   }
-
-   // -------------------------------
-   // Command allowed by admins only
-   // -------------------------------
-
-   if (data.message.isAdmin === false)
-   {
-      data.color = "warn";
-      data.text = ":cop:  This command is reserved for server admins.";
 
       // -------------
       // Send message
@@ -51,6 +56,10 @@ module.exports.run = function(data)
 
       return sendMessage(data);
    }
+
+   // ----------------
+   // Execute setting
+   // ----------------
 
    if (data.message.isAdmin)
    {
@@ -90,7 +99,7 @@ const prefix = function(data)
             // Send message
             // -------------
 
-            sendMessage(data);
+            return sendMessage(data);
          }
       );
    }
@@ -116,7 +125,7 @@ const prefix = function(data)
             // Send message
             // -------------
 
-            sendMessage(data);
+            return sendMessage(data);
          }
       );
    }
@@ -130,7 +139,7 @@ const prefix = function(data)
    // Send message
    // -------------
 
-   sendMessage(data);
+   return sendMessage(data);
 };
 
 // ----------------------

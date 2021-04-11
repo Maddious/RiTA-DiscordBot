@@ -32,9 +32,9 @@ module.exports.run = function(data)
       return sendMessage(data);
    }
 
-   // -----------------------------------
-   // Error if settings param is missing
-   // -----------------------------------
+   // --------------------------------
+   // Error if embed param is missing
+   // --------------------------------
 
    if (!data.cmd.params)
    {
@@ -47,15 +47,16 @@ module.exports.run = function(data)
       // Send message
       // -------------
 
-      sendMessage(data);
+      return sendMessage(data);
    }
 
    // ----------------
    // Execute setting
    // ----------------
+
    if (data.message.isAdmin)
    {
-      embedSettings(data);
+      embed(data);
    }
 };
 
@@ -63,7 +64,7 @@ module.exports.run = function(data)
 // embed varible command handaler
 // -------------------------------
 
-const embedSettings = function(data)
+const embed = function(data)
 {
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
@@ -89,7 +90,7 @@ const embedSettings = function(data)
             // Send message
             // -------------
 
-            sendMessage(data);
+            return sendMessage(data);
          }
       );
    }
@@ -103,7 +104,7 @@ const embedSettings = function(data)
    // Send message
    // -------------
 
-   sendMessage(data);
+   return sendMessage(data);
 };
 
 // ----------------------

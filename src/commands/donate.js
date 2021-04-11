@@ -29,12 +29,13 @@ module.exports.run = function(data)
       // Send message
       // -------------
 
-      sendMessage(data);
+      return sendMessage(data);
    }
 
    // ----------------
    // Execute setting
    // ----------------
+
    if (data.message)
    {
       donate(data);
@@ -64,7 +65,7 @@ const donate = function(data)
          // Send message
          // -------------
 
-         sendMessage(data);
+         return sendMessage(data);
       }
    }
    else if (commandVariable1 === "oc")
@@ -82,22 +83,20 @@ const donate = function(data)
          // Send message
          // -------------
 
-         sendMessage(data);
+         return sendMessage(data);
       }
    }
-   else
-   {
-      data.color = "error";
-      data.text =
+
+   data.color = "error";
+   data.text =
       ":warning:  **`" + commandVariable1 +
       "`** is not a valid donate option.\n";
 
-      // -------------
-      // Send message
-      // -------------
+   // -------------
+   // Send message
+   // -------------
 
-      sendMessage(data);
-   }
+   return sendMessage(data);
 };
 
 // ----------------------
