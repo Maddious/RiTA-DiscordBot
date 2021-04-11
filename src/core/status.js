@@ -2,7 +2,7 @@
 // Update Bot Status
 // ------------------
 
-module.exports = function(bot, status, config, channel, writable = true)
+module.exports = function(bot, status, config, writable = true)
 {
    const statusMap =
    {

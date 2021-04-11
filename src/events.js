@@ -122,9 +122,10 @@ exports.listen = function(client)
          if (config.translateCmdShort !== object_prefix && object_prefix !== "!tr")
          {
             config.translateCmdShort = db.server_obj[message.guild.id].prefix;
-            setStatus(client.user, "online", config);
          }
          console.log(`${message.guild.name} - ${message.guild.id}`);
+         //need to have another if statment here, if server length is greeater than 1 then run below, if not do nothing.
+         //setStatus(client.user, "online", config);
       }
 
       messageHandler(config, message);
