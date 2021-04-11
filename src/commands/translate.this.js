@@ -3,10 +3,8 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const translate = require("../core/translate");
-const colors = require("../core/colors");
-const discord = require("discord.js");
 const botSend = require("../core/send");
+const translate = require("../core/translate");
 
 // -----------------------------
 // Translate string to language
@@ -51,23 +49,3 @@ module.exports = function(data)
 
    translate(data);
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000);
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000);
-   });
-}
