@@ -20,10 +20,15 @@ module.exports.run = function(data)
 
    if (!data.cmd.params)
    {
-      data.color = "error";
+      data.color = "info";
       data.text =
-         ":warning:  Missing `donate` parameter. Use `" +
-         `${data.config.translateCmdShort} help donate\` to learn more.`;
+         "Thank you for wanting to donate to the RITA Bot Project \n" +
+         "You can donate via the Open Collective \n" +
+         `https://opencollective.com/ritabot-project\n\n` +
+         "or via GitHub Sponsors \n" +
+         `https://github.com/sponsors/RitaBot-Project\n\n` +
+         "For more info on what we use the donations for check out \n" +
+         `https://ritabot.gg/donate/\n\n`;
 
       // -------------
       // Send message
