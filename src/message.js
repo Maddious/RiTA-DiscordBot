@@ -65,6 +65,7 @@ module.exports = function(config, message, edited, deleted)
       client: client,
       config: config,
       bot: bot,
+      channel: message.channel,
       message: message,
       member: message.member,
       canWrite: true
@@ -81,11 +82,7 @@ module.exports = function(config, message, edited, deleted)
    // Proccess Commands
    // ------------------
 
-   if (
-      message.content.startsWith(config.translateCmd) ||
-      message.content.startsWith(config.translateCmdShort) ||
-      message.isMentioned(bot)
-   )
+   if (message.content.startsWith(config.translateCmd)||message.content.startsWith(config.translateCmdShort)||message.isMentioned(bot))
    {
       return cmdArgs(data);
    }

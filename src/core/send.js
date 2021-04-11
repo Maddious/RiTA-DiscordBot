@@ -97,7 +97,7 @@ module.exports = async function(data)
    //console.log(`Guild ID from message`);
    //console.log(`Raw = ` + data.message.guild.id);
    const guildValue = data.message.guild.id;
-
+   data.channel = data.message.channel;
 
    //console.log(`db.set Stage 1 = ` + db.setEmbedVar());
 
@@ -119,11 +119,11 @@ module.exports = async function(data)
 
    if (serverEmbed === "on")
    {
-      await embedOn(data);
+      embedOn(data);
    }
    else
    {
-      await embedOff(data);
+      embedOff(data);
    }
    const after = Date.now();
    console.log(after - before);
@@ -137,6 +137,7 @@ const embedOn = function(data)
 {
    const sendBox = function(data)
    {
+      /*
       if (data.author)
       {
          data.author = {
@@ -144,7 +145,7 @@ const embedOn = function(data)
             //eslint-disable-next-line camelcase
             icon_url: data.author.displayAvatarURL
          };
-      }
+      }*/
 
       if (data.text && data.text.length > 1)
       {
@@ -168,7 +169,7 @@ const embedOn = function(data)
                .setTimestamp()
                .setFooter("This message will self-destruct in one minute");
 
-            message.channel.send(botEmbedOn).then(msg =>
+            data.channel.send(botEmbedOn).then(msg =>
             {
                msg.delete(60000);
             });
@@ -179,7 +180,10 @@ const embedOn = function(data)
                embed: {
                   title: data.title,
                   fields: data.fields,
-                  author: data.author,
+                  author: {
+                     name: data.author.username,
+                     icon_url: data.author.displayAvatarURL
+                  },
                   color: colors.get(data.color),
                   description: data.text,
                   footer: data.footer
@@ -312,7 +316,6 @@ const embedOff = function(data)
    // -------------
    // Create Files
    // -------------
-
    function createFiles(dataAttachments)
    {
       if (!dataAttachments && !dataAttachments.array().length > 0) {return;}

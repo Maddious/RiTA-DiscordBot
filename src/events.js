@@ -40,8 +40,8 @@ exports.listen = function(client)
          inviteURL: auth.invite || "Set this in your .env file / config variables in Heroku",
          owner: auth.botOwner,
          defaultLanguage: "en",
-         translateCmd: "!ritabot",
-         translateCmdShort: "!rb",
+         translateCmd: "!trans",
+         translateCmdShort: "!tr",
          maxMulti: 6,
          maxChains: 10,
          maxChainLen: 5,
@@ -112,8 +112,19 @@ exports.listen = function(client)
 
    client.on("message", message =>
    {
+      if (config.translateCmd !== db.server_obj[message.guild.id].prefix || config.translateCmdShort !== db.server_obj[message.guild.id].prefix)
+      {
+         config.translateCmd = db.server_obj[message.guild.id].prefix;
+         config.translateCmdShort = db.server_obj[message.guild.id].prefix;
+      }
       if (message.guild)
       {
+         const object_prefix = db.server_obj[message.guild.id].prefix;
+         if (config.translateCmd !== object_prefix && object_prefix !== "!tr"|| config.translateCmdShort !== object_prefix && object_prefix !== "!tr")
+         {
+            config.translateCmdShort = db.server_obj[message.guild.id].prefix;
+            setStatus(client.user, "online", config);
+         }
          console.log(`${message.guild.name} - ${message.guild.id}`);
       }
 
