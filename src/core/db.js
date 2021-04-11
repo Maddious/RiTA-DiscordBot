@@ -10,7 +10,9 @@ const Op = Sequelize.Op;
 var dbBot2BotValue ="";
 var dbWebhookIDValue ="";
 var dbWebhookTokenValue ="";
+var dbNewPrefix = "";
 var server_obj = {};
+exports.server_obj = server_obj;
 
 // ----------------------
 // Database Auth Process
@@ -59,6 +61,10 @@ const Servers = db.define("servers", {
       primaryKey: true,
       unique: true,
       allowNull: false
+   },
+   prefix: {
+      type: Sequelize.STRING(8),
+      defaultValue: "!tr"
    },
    lang: {
       type: Sequelize.STRING(8),
@@ -130,7 +136,7 @@ exports.initializeDatabase = async function(client)
    {
       Servers.upsert({ id: "bot",
          lang: "en" });
-      exports.updateColumns();
+      this.updateColumns();
       db.getQueryInterface().removeIndex("tasks", "tasks_origin_dest");
       const guilds = client.guilds.array().length;
       const guildsArray = client.guilds.array();
@@ -149,7 +155,7 @@ exports.initializeDatabase = async function(client)
          });
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
-      const serversFindAll = await Servers.findAll({attributes: ["id", "embedstyle", "bot2botstyle"] });//.then((serversFindAll) =>
+      const serversFindAll = await Servers.findAll();//.then((serversFindAll) =>
       //{
       for (let i = 0; i < serversFindAll.length; i++)
       {
@@ -164,6 +170,7 @@ exports.initializeDatabase = async function(client)
       // });
    });
 };
+
 // -----------------------
 // Add Server to Database
 // -----------------------
@@ -173,7 +180,10 @@ exports.addServer = function(id, lang)
    server_obj[id] = {
       embedstyle: "on",
       bot2botstyle: "off",
-      id: id
+      id: id,
+      webhookid: null,
+      webhooktoken: null,
+      prefix: "!tr"
    };
    return Servers.create({
       id: id,
@@ -218,16 +228,6 @@ exports.updateEmbedVar = function(id, embedstyle, _cb)
 };
 
 // ------------------------------
-// Get Embedded Variable From DB
-// ------------------------------
-
-exports.getEmbedVar = async function run(id)
-{
-   const object = server_obj[id];
-   return object.embedstyle;
-};
-
-// ------------------------------
 // Update Bot2Bot Variable In DB
 // ------------------------------
 
@@ -239,27 +239,6 @@ exports.updateBot2BotVar = function(id, bot2botstyle, _cb)
       {
          _cb();
       });
-};
-
-// -----------------------------
-// Get Bot2Bot Variable From DB
-// -----------------------------
-
-exports.getBot2BotVar = async function run(id)
-{
-   var value = await db.query(`select * from (select bot2botstyle as "bot2botstyle" from servers where id = ?) as table2`, { replacements: [id],
-      type: db.QueryTypes.SELECT});
-   dbBot2BotValue = value[0].bot2botstyle;
-   return this.setBot2BotVar();
-};
-
-// ------------------------------------------
-// Call Saved Bot2Bot Variable Value From DB
-// ------------------------------------------
-
-module.exports.setBot2BotVar = function(data)
-{
-   return dbBot2BotValue;
 };
 
 // -----------------------------------------------
@@ -279,31 +258,6 @@ exports.updateWebhookVar = function(id, webhookid, webhooktoken, webhookactive, 
       });
 };
 
-// ----------------------------------------------
-// Get webhookID & webhookToken Variable From DB
-// ----------------------------------------------
-
-exports.getWebhookVar = async function run(id)
-{
-   var idValue = await db.query(`select * from (select webhookid as "webhookid" from servers where id = ?) as table2`, { replacements: [id],
-      type: db.QueryTypes.SELECT});
-   dbWebhookIDValue = idValue[0].webhookid;
-   var tokenValue = await db.query(`select * from (select webhooktoken as "webhooktoken" from servers where id = ?) as table2`, { replacements: [id],
-      type: db.QueryTypes.SELECT});
-   dbWebhookTokenValue = tokenValue[0].webhooktoken;
-
-   return this.setWebhookVar(dbWebhookIDValue, dbWebhookTokenValue);
-};
-
-// -----------------------------------------------------------
-// Call Saved webhookID & webhookToken Variable Value From DB
-// -----------------------------------------------------------
-
-module.exports.setWebhookVar = function(data)
-{
-   return; //I'M MISSING THE RETURN BIT, NOT SURE HOW OT SET THIS.
-};
-
 // -------------------
 // Deactivate Webhook
 // -------------------
@@ -311,6 +265,21 @@ module.exports.setWebhookVar = function(data)
 exports.removeWebhook = function(id, _cb)
 {
    return Servers.update({ webhookactive: false }, { where: { id: id } }).then(
+      function ()
+      {
+         _cb();
+      });
+};
+
+// --------------
+// Update prefix
+// --------------
+
+exports.updatePrefix = function(id, prefix, _cb)
+{
+   dbNewPrefix = prefix;
+   server_obj[id].prefix = dbNewPrefix;
+   return Servers.update({ prefix: prefix }, { where: { id: id } }).then(
       function ()
       {
          _cb();
@@ -326,6 +295,13 @@ exports.updateColumns = function(data)
    // Very sloppy code, neew to find a better fix.
    db.getQueryInterface().describeTable("servers").then(tableDefinition =>
    {
+      if (!tableDefinition.prefix)
+      {
+         console.log("-------------> Adding prefix column");
+         db.getQueryInterface().addColumn("servers", "prefix", {
+            type: Sequelize.STRING(8),
+            defaultValue: "!tr"});
+      }
       if (!tableDefinition.embedstyle)
       {
          console.log("-------------> Adding embedstyle column");
@@ -475,7 +451,7 @@ exports.getTasksCount = function(origin, cb)
 // Get Servers Count
 // ------------------
 
-exports.getServersCount = function(cb)
+exports.getServersCount = function()
 {
    return server_obj.length();
 };
@@ -552,7 +528,8 @@ exports.getServerInfo = function(id, callback)
    `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5, ` +
    `(select webhookactive as "webhookactive" from servers where id = ?) as table6,` +
    `(select webhookid as "webhookid" from servers where id = ?) as table7,` +
-   `(select webhooktoken as "webhooktoken" from servers where id = ?) as table8;`, { replacements: [ id, id, id, id, id, id, id, id],
+   `(select webhooktoken as "webhooktoken" from servers where id = ?) as table8,` +
+   `(select prefix as "prefix" from servers where id = ?) as table9;`, { replacements: [ id, id, id, id, id, id, id, id, id],
       type: db.QueryTypes.SELECT})
       .then(
          result => callback(result),

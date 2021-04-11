@@ -31,7 +31,7 @@
       // eslint Warn
       "eqeqeq": "warn",
       "no-extra-parens": "warn",
-      "complexity": ["warn", 12],
+      "complexity": ["warn", 13],
       "no-multi-spaces": "warn",
       "no-multi-str": "warn",
       "no-unused-expressions": "warn",

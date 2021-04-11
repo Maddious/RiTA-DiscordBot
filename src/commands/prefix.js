@@ -15,6 +15,27 @@ const discord = require("discord.js");
 
 module.exports.run = function(data)
 {
+   // --------------------------
+   // If no new prefix is given
+   // --------------------------
+
+   if (!data.cmd.params)
+   {
+      const cmd = data.config.translateCmdShort;
+      const object_prefix = db.server_obj[data.message.guild.id].prefix;
+      if (cmd !== object_prefix && object_prefix !== "!tr")
+      {
+         data.color = "info";
+         data.text = `:information_source: Your current prefix is: **\`${db.server_obj[message.guild.id].prefix}\`**\n\n`;
+      }
+      else
+      {
+         data.color = "info";
+         data.text = `:information_source: Your current prefix is: **\`${cmd}\`**\n\n`;
+      }
+      return sendMessage(data);
+   }
+
    // -------------------------------
    // Command allowed by admins only
    // -------------------------------
@@ -33,39 +54,37 @@ module.exports.run = function(data)
 
    if (data.message.isAdmin)
    {
-      debug(data);
+      prefix(data);
    }
 };
 
 
 // -------------------------------
-// debug varible command handler
+// prefix varible command handler
 // -------------------------------
 
-const debug = function(data)
+const prefix = function(data)
 {
-   const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
+   const newPrefix = data.cmd.params.split(" ")[0].toLowerCase();
 
-   if (commandVariable1 === "on")
+   if (newPrefix === "reset")
    {
-      console.log(commandVariable1);
-      return db.updateWebhookVar(
+      var reset = "!tr";
+      console.log(newPrefix);
+      return db.updatePrefix(
          data.message.channel.guild.id,
-         commandVariable1, //This would be the Webhook ID
-         commandVariable1, //this would be the Webhook Token
-         true,
+         reset, //This would be the new prefix
          function(err)
          {
             if (err)
             {
                return logger("error", err);
             }
-            var outputgh =
-            "**```Start Debug mode```**\n" +
-            `Debug mode has been Started. \n` +
-            `Error Logs will be output to this channel \n\n`;
+            var outputvalid =
+            "**```Command prefix has been reset```**\n" +
+            `Your new prefix is **\`${reset}\`**. \n\n`;
             data.color = "info";
-            data.text = outputgh;
+            data.text = outputvalid;
 
             // -------------
             // Send message
@@ -75,23 +94,23 @@ const debug = function(data)
          }
       );
    }
-   else if (commandVariable1 === "off")
+   else if (newPrefix !== "")
    {
-      console.log(commandVariable1);
-      return db.removeWebhook(
+      console.log(newPrefix);
+      return db.updatePrefix(
          data.message.channel.guild.id,
+         newPrefix, //This would be the new prefix
          function(err)
          {
             if (err)
             {
                return logger("error", err);
             }
-            var outputoc =
-          "**```Stop Debug mode```**\n" +
-          `Debug mode has been Stopped. \n` +
-          `Error logs will not be shown.\n\n`;
+            var outputvalid =
+            "**```New command prefix has been set```**\n" +
+            `Your new prefix is **\`${newPrefix}\`**. \n\n`;
             data.color = "info";
-            data.text = outputoc;
+            data.text = outputvalid;
 
             // -------------
             // Send message
@@ -105,7 +124,7 @@ const debug = function(data)
    data.color = "error";
    data.text =
       ":warning:  **`" + commandVariable1 +
-      "`** is not a valid debug option.\n";
+      "`** is not a valid prefix option.\n";
 
    // -------------
    // Send message

@@ -2,7 +2,7 @@
 // Update Bot Status
 // ------------------
 
-module.exports = function(bot, status, config, channel, writable = true)
+module.exports = function(bot, status, config, writable = true)
 {
    const statusMap =
    {
@@ -11,7 +11,7 @@ module.exports = function(bot, status, config, channel, writable = true)
          bot.setPresence({
             status: "online",
             game: {
-               name: config.translateCmdShort + " help / " + config.translateCmd +" help - V." + config.version
+               name: "ritabot.gg | " + config.translateCmdShort+ " help" //V." + config.version
             }
          });
       },

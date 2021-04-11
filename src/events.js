@@ -40,8 +40,8 @@ exports.listen = function(client)
          inviteURL: auth.invite || "Set this in your .env file / config variables in Heroku",
          owner: auth.botOwner,
          defaultLanguage: "en",
-         translateCmd: "!ritabot",
-         translateCmdShort: "!rb",
+         translateCmd: "!translate",
+         translateCmdShort: "!tr",
          maxMulti: 6,
          maxChains: 10,
          maxChainLen: 5,
@@ -112,9 +112,23 @@ exports.listen = function(client)
 
    client.on("message", message =>
    {
-      if (message.guild)
+      if (message.channel.type !== "dm")
       {
-         console.log(`${message.guild.name} - ${message.guild.id}`);
+         if (config.translateCmdShort !== db.server_obj[message.guild.id].prefix)
+         {
+            config.translateCmdShort = db.server_obj[message.guild.id].prefix;
+         }
+         if (message.guild)
+         {
+            const object_prefix = db.server_obj[message.guild.id].prefix;
+            if (config.translateCmdShort !== object_prefix && object_prefix !== "!tr")
+            {
+               config.translateCmdShort = db.server_obj[message.guild.id].prefix;
+            }
+            console.log(`${message.guild.name} - ${message.guild.id}`);
+         //need to have another if statment here, if server length is greeater than 1 then run below, if not do nothing.
+         //setStatus(client.user, "online", config);
+         }
       }
 
       messageHandler(config, message);

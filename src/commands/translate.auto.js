@@ -3,11 +3,12 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const botSend = require("../core/send");
 const fn = require("../core/helpers");
 const db = require("../core/db");
 const logger = require("../core/logger");
-const help = require("./help");
+const colors = require("../core/colors");
+const discord = require("discord.js");
+const botSend = require("../core/send");
 
 // -------------------------------
 // Auto translate Channel/Author
@@ -29,7 +30,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // ----------------
@@ -45,7 +46,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    if (data.cmd.to.valid.length !== 1 || data.cmd.to.valid[0] === "auto")
@@ -58,7 +59,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // ------------------
@@ -97,7 +98,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // -----------------------------------------------
@@ -124,7 +125,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       taskLoop();
@@ -263,7 +264,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       // ----------------------------------
@@ -281,7 +282,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       // ---------------------
@@ -310,6 +311,26 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    };
 };
+
+// ----------------------
+// Send message function
+// ----------------------
+
+function sendMessage (data)
+{
+   data.message.delete(5000);
+   const richEmbedMessage = new discord.RichEmbed()
+      .setColor(colors.get(data.color))
+      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+      .setDescription(data.text)
+      .setTimestamp()
+      .setFooter("This message will self-destruct in one minute");
+
+   return data.message.channel.send(richEmbedMessage).then(msg =>
+   {
+      msg.delete(60000);
+   });
+}

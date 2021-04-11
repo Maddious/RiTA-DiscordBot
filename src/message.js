@@ -6,7 +6,7 @@
 const db = require("./core/db");
 const fn = require("./core/helpers");
 const cmdArgs = require("./commands/args");
-const bot2bot = require("./commands/bot2bot");
+
 
 // --------------------
 // Listen for messages
@@ -19,27 +19,28 @@ module.exports = function(config, message, edited, deleted)
    const client = message.client;
    const bot = client.user;
    global.message = message;
-
+   //const bot2botstyle = db.server_obj[message.guild.id].bot2botstyle;
 
    // ------------------------
    // Ignore messages by bots
    // ------------------------
 
-   if (bot2bot.getBot2botVar() === "off")
-   {
-      if (message.author.bot)
-      {
-         return;
-      }
-   }
 
-   if (bot2bot.getBot2botVar() === "on")
+   //if (bot2botstyle === "off")
+   //{
+   if (message.author.bot)
    {
-      if (message.author.discriminator === "0000")
-      {
-         return;
-      }
+      return;
    }
+   //}
+
+   //if (bot2botstyle === "on")
+   //{
+   //   if (message.author.discriminator === "0000")
+   //   {
+   //      return;
+   //   }
+   //}
 
    // -----------------------------------------
    // Embed member permissions in message data
@@ -65,6 +66,7 @@ module.exports = function(config, message, edited, deleted)
       client: client,
       config: config,
       bot: bot,
+      channel: message.channel,
       message: message,
       member: message.member,
       canWrite: true
@@ -81,11 +83,7 @@ module.exports = function(config, message, edited, deleted)
    // Proccess Commands
    // ------------------
 
-   if (
-      message.content.startsWith(config.translateCmd) ||
-      message.content.startsWith(config.translateCmdShort) ||
-      message.isMentioned(bot)
-   )
+   if (message.content.startsWith(config.translateCmd)||message.content.startsWith(config.translateCmdShort)||message.isMentioned(bot))
    {
       return cmdArgs(data);
    }
