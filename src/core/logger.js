@@ -103,7 +103,7 @@ const errorLog = function(error, subtype)
    hookSend({
       title: errorTitle,
       color: "err",
-      msg: "```json\n" + error.toString() + "\n```"
+      msg: "```json\n" + error.toString() + "\n" + error.stack + "```"
    });
 };
 

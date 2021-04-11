@@ -188,7 +188,7 @@ const getSettings = function(data)
       //const activeGuilds = data.client.guilds.array();
       //data.color = "info";
       //data.text = `Updating bot for **${activeGuilds.length}** servers.`;
-      //sendMessage(data);
+      //return sendMessage(data);
       //
       //activeGuilds.forEach(guild =>
       //{
@@ -202,8 +202,7 @@ const getSettings = function(data)
             name: data.client.user.username,
             icon_url: data.client.user.displayAvatarURL
          },
-         description: ":no_entry_sign: This command has been disabled",
-         footer: `Requested by ${data.message.author.username}`
+         description: ":no_entry_sign: This command has been disabled"
 
       }}).then((msg) =>
       {
