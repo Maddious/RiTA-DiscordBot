@@ -169,7 +169,7 @@ const getSettings = function(data)
       activeGuilds.forEach(guild =>
       {
          data.text += "```md\n";
-         data.text += `# ${guild.name}\n> ${guild.id}\n> ${guild.memberCount} members`;
+         data.text += `# ${guild.name}\n> ${guild.id}\n> ${guild.memberCount} members\n`;
          if (guild.owner)
          {
             data.text += `@${guild.owner.user.username}#`;
