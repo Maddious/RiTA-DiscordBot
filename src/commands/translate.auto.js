@@ -30,7 +30,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // ----------------
@@ -46,7 +46,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    if (data.cmd.to.valid.length !== 1 || data.cmd.to.valid[0] === "auto")
@@ -59,7 +59,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // ------------------
@@ -98,7 +98,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // -----------------------------------------------
@@ -125,7 +125,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       taskLoop();
@@ -264,7 +264,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       // ----------------------------------
@@ -282,7 +282,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       // ---------------------
@@ -311,7 +311,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    };
 };
 

@@ -35,7 +35,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // ------------------

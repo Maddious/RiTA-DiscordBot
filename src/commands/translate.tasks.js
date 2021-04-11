@@ -29,7 +29,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // -------------------------------
@@ -45,7 +45,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // -----------------------------------------
@@ -63,7 +63,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // ------------------
@@ -107,7 +107,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       // ------------------------------------------------
@@ -131,7 +131,7 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
    // Send message
    // -------------
 
-   botSend(data);
+   sendMessage(data);
 
    for (var i = 0, len = res.length; i < len; i++)
    {
@@ -146,7 +146,7 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
       // Send message
       // -------------
 
-      botSend(data);
+      sendMessage(data);
    }
    data.text = ":negative_squared_cross_mark:  That's all I have!";
 
@@ -154,7 +154,7 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
    // Send message
    // -------------
 
-   return botSend(data);
+   return sendMessage(data);
 };
 // -----------------------
 // Destination ID handler
@@ -202,7 +202,7 @@ const dbError = function(err, data)
    // Send message
    // -------------
 
-   botSend(data);
+   sendMessage(data);
    return console.log("error", err);
 };
 

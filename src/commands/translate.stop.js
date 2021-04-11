@@ -28,7 +28,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // -------------------------------
@@ -44,7 +44,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // -----------------------------------------
@@ -62,7 +62,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    }
 
    // ------------------
@@ -114,7 +114,7 @@ module.exports = function(data)
             // Send message
             // -------------
 
-            return botSend(data);
+            return sendMessage(data);
          }
 
          // ------------------------------------------------
@@ -160,7 +160,7 @@ const removeTask = function(res, data, origin, dest, destDisplay)
       // Send message
       // -------------
 
-      return botSend(data);
+      return sendMessage(data);
    });
 };
 
@@ -218,7 +218,7 @@ const dbError = function(err, data)
    // Send message
    // -------------
 
-   botSend(data);
+   sendMessage(data);
    return console.log("error", err);
 };
 

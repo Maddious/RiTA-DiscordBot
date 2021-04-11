@@ -19,27 +19,28 @@ module.exports = function(config, message, edited, deleted)
    const client = message.client;
    const bot = client.user;
    global.message = message;
-   const bot2botstyle = db.server_obj[message.guild.id].bot2botstyle;
+   //const bot2botstyle = db.server_obj[message.guild.id].bot2botstyle;
 
    // ------------------------
    // Ignore messages by bots
    // ------------------------
 
-   if (bot2botstyle === "off")
-   {
-      if (message.author.bot)
-      {
-         return;
-      }
-   }
 
-   if (bot2botstyle === "on")
+   //if (bot2botstyle === "off")
+   //{
+   if (message.author.bot)
    {
-      if (message.author.discriminator === "0000")
-      {
-         return;
-      }
+      return;
    }
+   //}
+
+   //if (bot2botstyle === "on")
+   //{
+   //   if (message.author.discriminator === "0000")
+   //   {
+   //      return;
+   //   }
+   //}
 
    // -----------------------------------------
    // Embed member permissions in message data
