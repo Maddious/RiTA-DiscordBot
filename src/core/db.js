@@ -136,7 +136,7 @@ exports.initializeDatabase = async function(client)
    {
       Servers.upsert({ id: "bot",
          lang: "en" });
-      exports.updateColumns();
+      this.updateColumns();
       db.getQueryInterface().removeIndex("tasks", "tasks_origin_dest");
       const guilds = client.guilds.array().length;
       const guildsArray = client.guilds.array();
