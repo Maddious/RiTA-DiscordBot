@@ -134,9 +134,10 @@ exports.initializeDatabase = async function(client)
 {
    db.sync({ logging: console.log }).then(async() =>
    {
+      await this.updateColumns();
       Servers.upsert({ id: "bot",
          lang: "en" });
-      this.updateColumns();
+      console.log("DEBUG: New columns should be added Before this point.");
       db.getQueryInterface().removeIndex("tasks", "tasks_origin_dest");
       const guilds = client.guilds.array().length;
       const guildsArray = client.guilds.array();
@@ -290,10 +291,10 @@ exports.updatePrefix = function(id, prefix, _cb)
 // Add Missing Variable Columns
 // -----------------------------
 
-exports.updateColumns = function(data)
+exports.updateColumns = async function(data)
 {
    // Very sloppy code, neew to find a better fix.
-   db.getQueryInterface().describeTable("servers").then(tableDefinition =>
+   await db.getQueryInterface().describeTable("servers").then(tableDefinition =>
    {
       if (!tableDefinition.prefix)
       {
@@ -336,6 +337,7 @@ exports.updateColumns = function(data)
             defaultValue: false});
       }
    });
+   console.log("DEBUG: All New Columns Added");
 };
 
 // ------------------
