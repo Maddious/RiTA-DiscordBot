@@ -63,7 +63,7 @@ module.exports = function(data)
       // Send message
       // -------------
 
-      botSend(data);
+      sendMessage(data);
       count = data.config.maxChains;
    }
 
@@ -135,7 +135,7 @@ module.exports = function(data)
          // Send message
          // -------------
 
-         return botSend(data);
+         return sendMessage(data);
       }
 
       // -----------------------
