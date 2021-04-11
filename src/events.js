@@ -114,7 +114,7 @@ exports.listen = function(client)
    {
       if (message.channel.type !== "dm")
       {
-         if (db.server_obj)
+         if (db.server_obj[message.guild.id])
          {
             if (config.translateCmdShort !== db.server_obj[message.guild.id].prefix)
             {
