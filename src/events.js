@@ -114,11 +114,13 @@ exports.listen = function(client)
    {
       if (message.channel.type !== "dm")
       {
-         if (db.server_obj){
-         if (config.translateCmd !== db.server_obj[message.guild.id].prefix)
+         if (db.server_obj)
          {
-            config.translateCmd = db.server_obj[message.guild.id].prefix;
-         }
+            if (config.translateCmdShort !== db.server_obj[message.guild.id].prefix)
+            {
+               config.translateCmdShort = db.server_obj[message.guild.id].prefix;
+            }
+            //setStatus(client.user, "online", config);
          }
          if (message.guild)
          {
