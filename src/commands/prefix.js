@@ -38,11 +38,11 @@ module.exports.run = function(data)
    if (!data.cmd.params)
    {
       const cmd = data.config.translateCmdShort;
-      const object_prefix = db.server_obj[data.message.guild.id].prefix;
+      const object_prefix = db.server_obj[data.message.guild.id].db.prefix;
       if (cmd !== object_prefix && object_prefix !== "!tr")
       {
          data.color = "info";
-         data.text = `:information_source: Your current prefix is: **\`${db.server_obj[message.guild.id].prefix}\`**\n\n`;
+         data.text = `:information_source: Your current prefix is: **\`${db.server_obj[message.guild.id].db.prefix}\`**\n\n`;
       }
       else
       {

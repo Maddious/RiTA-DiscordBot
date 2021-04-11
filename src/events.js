@@ -116,9 +116,9 @@ exports.listen = function(client)
       {
          if (db.server_obj[message.guild.id])
          {
-            if (config.translateCmdShort !== db.server_obj[message.guild.id].prefix)
+            if (config.translateCmdShort !== db.server_obj[message.guild.id].db.prefix)
             {
-               config.translateCmdShort = db.server_obj[message.guild.id].prefix;
+               config.translateCmdShort = db.server_obj[message.guild.id].db.prefix;
             }
             //setStatus(client.user, "online", config);
          }

@@ -94,7 +94,7 @@ module.exports = async function(data)
    // --------------------
    // Primary If Statment
    // --------------------
-   const embedstyle = db.server_obj[data.message.guild.id].embedstyle;
+   const embedstyle = db.server_obj[data.message.guild.id].db.embedstyle;
    //const serverEmbed = await db.getEmbedVar(id=guildValue);
 
    if (embedstyle === "on")

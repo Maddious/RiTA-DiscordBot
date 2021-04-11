@@ -45,7 +45,7 @@ module.exports = function(data)
          `**\`${botLang.name} (${botLang.native})\`` +
          `**\n\n:bar_chart:  Translated **\`${stats[0].totalCount}\`** messages ` +
          `across **\`${data.client.guilds.size}\`** servers ` +
-         `for **\`${data.message.client.users.size} users.\`**\n\n` +
+         `for **\`${db.server_obj[data.message.guild.id].size} users.\`**\n\n` +
          `:regional_indicator_v:  Versi£on:  ${version}\n\n` +
          `:repeat:  Automatic translation:  ` +
          `**\`${activeTasks}\`**  channels and  ` +

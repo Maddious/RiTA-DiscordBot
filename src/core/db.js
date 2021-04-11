@@ -165,8 +165,15 @@ exports.initializeDatabase = async function(client)
          // eslint-disable-next-line eqeqeq
          if (guild_id != "bot")
          {
-            server_obj[guild_id] = serversFindAll[i];
+            server_obj[guild_id] = { db: serversFindAll[i] };
          }
+      }
+      const guildClient = Array.from(client.guilds.values());
+      for (let i = 0; i < guildClient.length; i++)
+      {
+         const guild = guildClient[i];
+         server_obj[guild.id].guild = guild;
+         server_obj[guild.id].size = guild.memberCount;
       }
       // });
    });
@@ -179,12 +186,14 @@ exports.initializeDatabase = async function(client)
 exports.addServer = function(id, lang)
 {
    server_obj[id] = {
-      embedstyle: "on",
-      bot2botstyle: "off",
-      id: id,
-      webhookid: null,
-      webhooktoken: null,
-      prefix: "!tr"
+      db: {
+         embedstyle: "on",
+         bot2botstyle: "off",
+         id: id,
+         webhookid: null,
+         webhooktoken: null,
+         prefix: "!tr"
+      }
    };
    return Servers.create({
       id: id,
@@ -220,7 +229,7 @@ exports.updateServerLang = function(id, lang, _cb)
 
 exports.updateEmbedVar = function(id, embedstyle, _cb)
 {
-   server_obj[id].embedstyle = embedstyle;
+   server_obj[id].db.embedstyle = embedstyle;
    return Servers.update({ embedstyle: embedstyle }, { where: { id: id } }).then(
       function ()
       {
@@ -235,6 +244,7 @@ exports.updateEmbedVar = function(id, embedstyle, _cb)
 exports.updateBot2BotVar = function(id, bot2botstyle, _cb)
 {
    dbBot2BotValue = bot2botstyle;
+   server_obj[id].db.bot2botstyle = bot2botstyle;
    return Servers.update({ bot2botstyle: bot2botstyle }, { where: { id: id } }).then(
       function ()
       {
@@ -250,6 +260,7 @@ exports.updateWebhookVar = function(id, webhookid, webhooktoken, webhookactive, 
 {
    dbWebhookIDValue = webhookid;
    dbWebhookTokenValue = webhooktoken;
+
    return Servers.update({ webhookid: webhookid,
       webhooktoken: webhooktoken,
       webhookactive: webhookactive }, { where: { id: id } }).then(
@@ -279,7 +290,7 @@ exports.removeWebhook = function(id, _cb)
 exports.updatePrefix = function(id, prefix, _cb)
 {
    dbNewPrefix = prefix;
-   server_obj[id].prefix = dbNewPrefix;
+   server_obj[id].db.prefix = dbNewPrefix;
    return Servers.update({ prefix: prefix }, { where: { id: id } }).then(
       function ()
       {
