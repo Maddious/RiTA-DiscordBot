@@ -174,6 +174,11 @@ exports.initializeDatabase = async function(client)
          const guild = guildClient[i];
          server_obj[guild.id].guild = guild;
          server_obj[guild.id].size = guild.memberCount;
+         if (!server_obj.size)
+         {
+            server_obj.size = 0;
+         }
+         server_obj.size += guild.memberCount;
       }
       // });
    });
