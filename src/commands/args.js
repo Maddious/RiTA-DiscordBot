@@ -26,7 +26,7 @@ const cmdTranslateThis = require("./Translation Commands/translate.this");
 const cmdTranslateAuto = require("./Translation Commands/translate.auto");
 const cmdTranslateStop = require("./Translation Commands/translate.stop");
 const cmdTranslateTasks = require("./Translation Commands/translate.tasks");
-const cmdDebug = require("./Settings Commands/debug");
+const cmdDebug = require("./Future Commands/debug");
 const cmdPrefix = require("./Settings Commands/prefix");
 
 
