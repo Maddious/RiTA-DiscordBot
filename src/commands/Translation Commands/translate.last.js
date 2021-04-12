@@ -3,12 +3,12 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const fn = require("../core/helpers");
-const translate = require("../core/translate");
-const logger = require("../core/logger");
-const colors = require("../core/colors");
+const fn = require("../../core/helpers");
+const translate = require("../../core/translate");
+const logger = require("../../core/logger");
+const colors = require("../../core/colors");
 const discord = require("discord.js");
-const botSend = require("../core/send");
+const botSend = require("../../core/send");
 
 const getCount = function(count)
 {

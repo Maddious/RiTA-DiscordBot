@@ -3,10 +3,10 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const translate = require("../core/translate");
-const colors = require("../core/colors");
+const translate = require("../../core/translate");
+const colors = require("../../core/colors");
 const discord = require("discord.js");
-const botSend = require("../core/send");
+const botSend = require("../../core/send");
 
 // -----------------------------
 // Translate string to language
