@@ -10,7 +10,7 @@ const logger = require("./core/logger");
 const messageHandler = require("./message");
 const db = require("./core/db");
 const setStatus = require("./core/status");
-const react = require("./commands/Translation commands/translate.react");
+const react = require("./commands/Translation_commands/translate.react");
 const botVersion = require("../package.json").version;
 const botCreator = "Collaboration";
 
