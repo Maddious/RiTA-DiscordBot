@@ -291,7 +291,6 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} settings updatebot\n` +
    `* ${cmd} settings updatedb\n` +
    `* ${cmd} settings setlang\n` +
-   `* ${cmd} settings disconnect\n` +
    `* ${cmd} settings listservers\n\n` +
 
    `# Style Commands\n` +
@@ -483,9 +482,6 @@ const helpMessage = function(config, botname, param)
 
    `# Set default server language\n` +
    `> ${cmd} settings setLang to [lang]\n\n` +
-
-   `# Disconnect bot from server\n` +
-   `> ${cmd} settings disconnect\n\n` +
 
    `# Displays list of servers the bot is in\n` +
    `> ${cmd} settings listservers\n\n` +

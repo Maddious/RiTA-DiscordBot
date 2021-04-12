@@ -30,6 +30,7 @@ module.exports = function(data)
       return sendMessage(data);
    }
 
+
    // -----------------------------------
    // Error if settings param is missing
    // -----------------------------------
@@ -130,28 +131,19 @@ const getSettings = function(data)
       );
    };
 
-   // ---------------
-   // Disconnect bot
-   // ---------------
-
-   const disconnect = function(data)
-   {
-      data.color = "info";
-      data.text = data.bot.username + " is now disconnected from the server.";
-      sendMessage(data);
-
-      return setTimeout(function()
-      {
-         data.message.channel.guild.leave();
-      }, 3000);
-   };
-
    // -------------
    // List Servers
    // -------------
 
    const listServers = function(data)
    {
+      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+      {
+         data.color = "warn";
+         data.text = ":warning: This is a bot developer only command.";
+
+         return sendMessage(data);
+      }
       data.text = "__**Active Servers**__ - ";
 
       const activeGuilds = data.client.guilds.array();
@@ -161,9 +153,16 @@ const getSettings = function(data)
       activeGuilds.forEach(guild =>
       {
          data.text += "```md\n";
-         data.text += `> ${guild.id}\n# ${guild.name}\n`;
-         data.text += `@${guild.owner.user.username}#`;
-         data.text += guild.owner.user.discriminator + "\n```";
+         data.text += `# ${guild.name}\n> ${guild.id}\n> ${guild.memberCount} members\n`;
+         if (guild.owner)
+         {
+            data.text += `@${guild.owner.user.username}#`;
+            data.text += guild.owner.user.discriminator + "\n```";
+         }
+         else
+         {
+            data.text += "```";
+         }
       });
 
       const splitOpts = {
@@ -179,9 +178,9 @@ const getSettings = function(data)
    };
 
 
-   // --------------------------------------
-   // Update bot (disconnects from servers)
-   // --------------------------------------
+   // -----------
+   // Update bot
+   // -----------
 
    const updateBot = function(data)
    {
@@ -210,6 +209,32 @@ const getSettings = function(data)
       });
    };
 
+
+   // -----------------
+   // DM server owners
+   // -----------------
+
+   const announcement = function(data)
+   {
+      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+      {
+         data.color = "warn";
+         data.text = ":warning: This is a bot developer only command.";
+
+         return sendMessage(data);
+      }
+
+
+
+      data.client.guilds.forEach(async function(guild)
+      {
+         data.client.members.fetch(guild.ownerID).then((owner) =>
+         {
+            owner.send("**__RitaBot Announcement__**\n" + data.cmd.params + "\nIf you would like to opt out of these RitaBot announcements please join our [Discord Server](https://discord.com/invite/mgNR64R) and ping an online admin to remove you.");
+         });
+      });
+   };
+
    // ----------
    // Update db
    // ----------
@@ -234,10 +259,10 @@ const getSettings = function(data)
 
    const validSettings = {
       "setlang": setLang,
-      "disconnect": disconnect,
       "listservers": listServers,
       "updatedb": updateDB,
-      "updatebot": updateBot
+      "updatebot": updateBot,
+      "announcement": announcement
    };
 
    const settingParam = data.cmd.params.split(" ")[0].toLowerCase();
