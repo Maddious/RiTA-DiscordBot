@@ -131,22 +131,6 @@ const getSettings = function(data)
       );
    };
 
-   // ---------------
-   // Disconnect bot
-   // ---------------
-
-   const disconnect = function(data)
-   {
-      data.color = "info";
-      data.text = data.bot.username + " is now disconnected from the server.";
-      sendMessage(data);
-
-      return setTimeout(function()
-      {
-         data.message.channel.guild.leave();
-      }, 3000);
-   };
-
    // -------------
    // List Servers
    // -------------
@@ -194,9 +178,9 @@ const getSettings = function(data)
    };
 
 
-   // --------------------------------------
-   // Update bot (disconnects from servers)
-   // --------------------------------------
+   // -----------
+   // Update bot
+   // -----------
 
    const updateBot = function(data)
    {
@@ -226,9 +210,9 @@ const getSettings = function(data)
    };
 
 
-   // ----------
+   // -----------------
    // DM server owners
-   // ----------
+   // -----------------
 
    const announcement = function(data)
    {
@@ -275,7 +259,6 @@ const getSettings = function(data)
 
    const validSettings = {
       "setlang": setLang,
-      "disconnect": disconnect,
       "listservers": listServers,
       "updatedb": updateDB,
       "updatebot": updateBot,
