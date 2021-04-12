@@ -21,11 +21,11 @@ const cmdBot2bot = require("./bot2bot");
 const cmdDonate = require("./donate");
 const cmdMisc = require("./misc");
 const cmdSettings = require("./settings");
-const cmdTranslateLast = require("./translate.last");
-const cmdTranslateThis = require("./translate.this");
-const cmdTranslateAuto = require("./translate.auto");
-const cmdTranslateStop = require("./translate.stop");
-const cmdTranslateTasks = require("./translate.tasks");
+const cmdTranslateLast = require("./Translation/translate.last");
+const cmdTranslateThis = require("./Translation/translate.this");
+const cmdTranslateAuto = require("./Translation/translate.auto");
+const cmdTranslateStop = require("./Translation/translate.stop");
+const cmdTranslateTasks = require("./Translation/translate.tasks");
 const cmdDebug = require("./debug");
 const cmdPrefix = require("./prefix");
 
