@@ -146,6 +146,7 @@ module.exports = function(data)
       {
          data.message.author = reqChains[0].author;
          data.translate.original = reqChains[0].msgs.join("\n");
+         delete data.message.attachments;
          return translate(data);
       }
 
@@ -154,6 +155,7 @@ module.exports = function(data)
       // -----------------------------------
 
       data.bufferChains = reqChains;
+      delete data.message.attachments;
       return translate(data);
    }).catch(err => logger("error", err));
 };

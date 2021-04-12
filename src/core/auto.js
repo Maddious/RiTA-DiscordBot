@@ -25,10 +25,7 @@ module.exports = function(data)
       // Add !i to end of message to ignore it instead
       // ----------------------------------------------
 
-      if (
-         //ignoreRegex.test(data.message.content) ||
-         data.message.content.endsWith("!i")
-      )
+      if (data.message.content.endsWith("!i"))
       {
          return data.message.react("➖").catch((err) =>
          {

@@ -122,7 +122,7 @@ function sendMessage (data)
       .setTimestamp()
       .setFooter("This message will self-destruct in one minute");
 
-   return message.channel.send(richEmbedMessage).then(msg =>
+   return data.message.channel.send(richEmbedMessage).then(msg =>
    {
       msg.delete(60000);
    });

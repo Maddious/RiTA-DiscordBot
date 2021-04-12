@@ -18,7 +18,6 @@ module.exports = function(config, message, edited, deleted)
    module.exports.message = message;
    const client = message.client;
    const bot = client.user;
-   global.message = message;
    //const bot2botstyle = db.server_obj[message.guild.id].bot2botstyle;
 
    // ------------------------

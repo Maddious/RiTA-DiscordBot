@@ -134,15 +134,26 @@ const getSettings = function(data)
    // -------------
    // List Servers
    // -------------
+   function devOnly(data)
+   {
+      data.color = "warn";
+      data.text = ":warning: This is a developer only command.";
+
+      return sendMessage(data);
+   }
 
    const listServers = function(data)
    {
-      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+      if (process.env.DISCORD_BOT_OWNER_ID)
       {
          data.color = "warn";
-         data.text = ":warning: This is a bot developer only command.";
+         data.text = ":warning: Please set `DISCORD_BOT_OWNER_ID` as an array of User IDs allowed to use this command in configuration vars. \n\n **Ex.** ```js\nDISCORD_BOT_OWNER_ID = ['ALLOWED_USER_1_ID', 'ALLOWED_USER_2_ID', 'ALLOWED_USER_3_ID']```\n Place this with ID's in your .env file (local hosting) or environment variables (Heroku).";
 
          return sendMessage(data);
+      }
+      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+      {
+         devOnly(data);
       }
       data.text = "__**Active Servers**__ - ";
 

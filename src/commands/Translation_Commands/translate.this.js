@@ -49,6 +49,8 @@ module.exports = function(data)
       multi: true
    };
 
+   delete data.message.attachments;
+
    translate(data);
 };
 

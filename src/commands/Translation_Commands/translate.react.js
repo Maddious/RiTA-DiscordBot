@@ -76,6 +76,7 @@ module.exports = function(data, client)
             // message data
 
             data.message = message;
+            delete data.message.attachments;
             data.message.roleColor = fn.getRoleColor(data.message.member);
             data.canWrite = true;
 
