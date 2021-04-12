@@ -3,9 +3,9 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const colors = require("../core/colors");
-const db = require("../core/db");
-const logger = require("../core/logger");
+const colors = require("../../core/colors");
+const db = require("../../core/db");
+const logger = require("../../core/logger");
 const discord = require("discord.js");
 
 // --------------------------

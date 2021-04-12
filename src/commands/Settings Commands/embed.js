@@ -4,16 +4,17 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
-const colors = require("../core/colors");
-const db = require("../core/db");
-const logger = require("../core/logger");
+const colors = require("../../core/colors");
+const db = require("../../core/db");
+const logger = require("../../core/logger");
 const discord = require("discord.js");
 
-// -----------------------
-// Command code
-// -----------------------
+// -------------
+// Command Code
+// -------------
 
 module.exports.run = function(data)
+
 {
    // -------------------------------
    // Command allowed by admins only
@@ -22,7 +23,7 @@ module.exports.run = function(data)
    if (data.message.isAdmin === false)
    {
       data.color = "warn";
-      data.text = ":cop:  This command is reserved for server admins.";
+      data.text = ":cop:  This command is reserved for server adminis.";
 
       // -------------
       // Send message
@@ -32,15 +33,15 @@ module.exports.run = function(data)
    }
 
    // --------------------------------
-   // Error if debug param is missing
+   // Error if embed param is missing
    // --------------------------------
 
    if (!data.cmd.params)
    {
       data.color = "error";
       data.text =
-         ":warning:  Missing `debug` parameter. Use `" +
-         `${data.config.translateCmdShort} help debug\` to learn more.`;
+         ":warning:  Missing `embed` parameter. Use `" +
+         `${data.config.translateCmdShort} help embed\` to learn more.`;
 
       // -------------
       // Send message
@@ -55,65 +56,35 @@ module.exports.run = function(data)
 
    if (data.message.isAdmin)
    {
-      debug(data);
+      embed(data);
    }
 };
 
-
 // -------------------------------
-// debug varible command handler
+// embed varible command handaler
 // -------------------------------
 
-const debug = function(data)
+const embed = function(data)
 {
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
-   if (commandVariable1 === "on")
+   if (commandVariable1 === "on" || commandVariable1 === "off")
    {
       console.log(commandVariable1);
-      return db.updateWebhookVar(
+      return db.updateEmbedVar(
          data.message.channel.guild.id,
-         commandVariable1, //This would be the Webhook ID
-         commandVariable1, //this would be the Webhook Token
-         true,
+         commandVariable1,
          function(err)
          {
             if (err)
             {
                return logger("error", err);
             }
-            var outputgh =
-            "**```Start Debug mode```**\n" +
-            `Debug mode has been Started. \n` +
-            `Error Logs will be output to this channel \n\n`;
+            var output =
+            "**```Embedded Translation```**\n" +
+            `Embedded Message translation is now turned : ${commandVariable1}\n\n`;
             data.color = "info";
-            data.text = outputgh;
-
-            // -------------
-            // Send message
-            // -------------
-
-            return sendMessage(data);
-         }
-      );
-   }
-   else if (commandVariable1 === "off")
-   {
-      console.log(commandVariable1);
-      return db.removeWebhook(
-         data.message.channel.guild.id,
-         function(err)
-         {
-            if (err)
-            {
-               return logger("error", err);
-            }
-            var outputoc =
-          "**```Stop Debug mode```**\n" +
-          `Debug mode has been Stopped. \n` +
-          `Error logs will not be shown.\n\n`;
-            data.color = "info";
-            data.text = outputoc;
+            data.text = output;
 
             // -------------
             // Send message
@@ -127,7 +98,7 @@ const debug = function(data)
    data.color = "error";
    data.text =
       ":warning:  **`" + commandVariable1 +
-      "`** is not a valid debug option.\n";
+      "`** is not a valid embed option.\n";
 
    // -------------
    // Send message

@@ -3,11 +3,11 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const langCheck = require("../core/lang.check");
-const db = require("../core/db");
-const colors = require("../core/colors");
+const langCheck = require("../../core/lang.check");
+const db = require("../../core/db");
+const colors = require("../../core/colors");
 const discord = require("discord.js");
-const botSend = require("../core/send");
+const botSend = require("../../core/send");
 
 // --------------------
 // Handle stop command

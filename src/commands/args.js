@@ -12,22 +12,22 @@ const fn = require("../core/helpers");
 // Commands
 // ---------
 
-const cmdHelp = require("./help");
-const cmdList = require("./list");
-const cmdStats = require("./stats");
-const cmdVersion = require("./version");
-const cmdEmbed = require("./embed");
-const cmdBot2bot = require("./bot2bot");
-const cmdDonate = require("./donate");
-const cmdMisc = require("./misc");
-const cmdSettings = require("./settings");
-const cmdTranslateLast = require("./translate.last");
-const cmdTranslateThis = require("./translate.this");
-const cmdTranslateAuto = require("./translate.auto");
-const cmdTranslateStop = require("./translate.stop");
-const cmdTranslateTasks = require("./translate.tasks");
-const cmdDebug = require("./debug");
-const cmdPrefix = require("./prefix");
+const cmdHelp = require("./Utility Commands/help");
+const cmdList = require("./Info Commands/list");
+const cmdStats = require("./Info Commands/stats");
+const cmdVersion = require("./Info Commands/version");
+const cmdEmbed = require("./Settings Commands/embed");
+const cmdBot2bot = require("./Settings Commands/bot2bot");
+const cmdDonate = require("./Utility Commands/donate");
+const cmdMisc = require("./Info Commands/misc");
+const cmdSettings = require("./Settings Commands/settings");
+const cmdTranslateLast = require("./Translation Commands/translate.last");
+const cmdTranslateThis = require("./Translation Commands/translate.this");
+const cmdTranslateAuto = require("./Translation Commands/translate.auto");
+const cmdTranslateStop = require("./Translation Commands/translate.stop");
+const cmdTranslateTasks = require("./Translation Commands/translate.tasks");
+const cmdDebug = require("./Settings Commands/debug");
+const cmdPrefix = require("./Settings Commands/prefix");
 
 
 // ---------------------------------------

@@ -4,14 +4,14 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /*eslint-disable no-irregular-whitespace*/
-const auth = require("../core/auth");
-const fn = require("../core/helpers");
-const logger = require("../core/logger");
+const auth = require("../../core/auth");
+const fn = require("../../core/helpers");
+const logger = require("../../core/logger");
 const process = require("process");
 const stripIndent = require("common-tags").stripIndent;
 const oneLine = require("common-tags").oneLine;
 const secConverter = require("seconds-converter");
-const colors = require("../core/colors");
+const colors = require("../../core/colors");
 const discord = require("discord.js");
 
 // ------------
