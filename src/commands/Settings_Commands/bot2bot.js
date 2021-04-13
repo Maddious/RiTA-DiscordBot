@@ -114,7 +114,7 @@ const bot2bot = function(data)
 
 function sendMessage (data)
 {
-   message.delete(5000);
+   data.message.delete(5000);
    const richEmbedMessage = new discord.RichEmbed()
       .setColor(colors.get(data.color))
       .setAuthor(data.bot.username, data.bot.displayAvatarURL)
