@@ -3,10 +3,7 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const colors = require("../../core/colors");
-const discord = require("discord.js");
-//const logger = require("../../core/logger");
-//const botSend = require("../core/send");
+const sendMessage = require("../../core/command.send");
 
 // ---------------------
 // Supported Languages
@@ -56,23 +53,3 @@ module.exports = function(data)
 
    return sendMessage(data);
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, list.js = ", err));
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, list.js = ", err));
-   });
-}

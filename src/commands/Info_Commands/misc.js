@@ -11,8 +11,7 @@ const process = require("process");
 const stripIndent = require("common-tags").stripIndent;
 const oneLine = require("common-tags").oneLine;
 const secConverter = require("seconds-converter");
-const colors = require("../../core/colors");
-const discord = require("discord.js");
+const sendMessage = require("../../core/command.send");
 
 // ------------
 // Invite Link
@@ -42,11 +41,6 @@ exports.invite = function(data)
 
 exports.shards = function(data)
 {
-   if (!data.message.author.id === data.config.owner)
-   {
-      return;
-   }
-
    // ---------------
    // Get shard info
    // ---------------
@@ -153,11 +147,6 @@ exports.shards = function(data)
 
 exports.proc = function(data)
 {
-   if (!data.message.author.id === data.config.owner)
-   {
-      return;
-   }
-
    // ------------------
    // Get proccess data
    // ------------------
@@ -246,23 +235,3 @@ exports.proc = function(data)
 
    sendMessage(data);
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, misc.js = ", err));
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, misc.js = ", err));
-   });
-}
