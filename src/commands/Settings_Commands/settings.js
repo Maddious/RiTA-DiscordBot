@@ -193,7 +193,7 @@ const getSettings = function(data)
    // -----------------
    // DM server owners
    // -----------------
-/*
+   /*
    const announcement = async function(data)
    {
       const guildArray = Array.from(bot.client.guilds.values());
@@ -221,11 +221,11 @@ const getSettings = function(data)
    // Update db
    // ----------
 
-   const updateDB = function(data)
+   function updateDB(data)
    {
       data.color = "info";
       data.text =
-      ":white_check_mark: **Database has been updated.**";
+         ":white_check_mark: **Database has been updated.**";
 
       // -------------
       // Send message
@@ -233,7 +233,7 @@ const getSettings = function(data)
       db.updateColumns();
 
       return sendMessage(data);
-   };
+   }
 
    // --------------------------
    // Execute command if exists
