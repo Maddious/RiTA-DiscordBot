@@ -144,7 +144,7 @@ const getSettings = function(data)
 
    const listServers = function(data)
    {
-      if (process.env.DISCORD_BOT_OWNER_ID)
+      if (!process.env.DISCORD_BOT_OWNER_ID)
       {
          data.color = "warn";
          data.text = ":warning: Please set `DISCORD_BOT_OWNER_ID` as an array of User IDs allowed to use this command in configuration vars. \n\n **Ex.** ```js\nDISCORD_BOT_OWNER_ID = ['ALLOWED_USER_1_ID', 'ALLOWED_USER_2_ID', 'ALLOWED_USER_3_ID']```\n Place this with ID's in your .env file (local hosting) or environment variables (Heroku).";
