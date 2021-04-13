@@ -3,10 +3,7 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const colors = require("../../core/colors");
-const discord = require("discord.js");
-//const auth = require("../../core/auth");
-//const logger = require("../../core/logger");
+const sendMessage = require("../../core/command.send");
 
 // ------------------------
 // Bot Help / Command List
@@ -644,23 +641,3 @@ const helpMessage = function(config, botname, param)
 
    return paramMap.basics;
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, help.js = ", err));
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, help.js = ", err));
-   });
-}
