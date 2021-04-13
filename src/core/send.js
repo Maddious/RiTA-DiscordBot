@@ -19,6 +19,8 @@ const webHookName = "Translator Messaging System";
 module.exports = async function(data)
 {
    const before = Date.now();
+
+   global.messageData = data.message;
    // ----------------------------
    // Regex Statments for Emoji's
    // ----------------------------
@@ -102,8 +104,20 @@ module.exports = async function(data)
       embedOn(data);
    }
    else
+   if (data.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))
    {
       embedOff(data);
+   }
+   else
+   {
+      data.text = `:warning: ${data.bot.username} does not have sufficient permissions to send Webhook Messages. Please give ${data.bot.username} the \`MANAGE_WEBHOOKS\` permission.`;
+      data.color = "warn";
+
+      return data.channel.send({embed: {
+         description: data.text,
+         color: colors.get(data.color)
+      }
+      });
    }
    const after = Date.now();
    console.log(after - before);
@@ -129,92 +143,91 @@ const embedOn = function(data)
 
       if (data.text && data.text.length > 1)
       {
-         if (!data.author)
-         {
-            if (!data.bot)
-            {
-               username = data.channel.client.user.username;
-               icon_url = data.channel.client.user.displayAvatarURL;
+         //if (!data.author)
+         //{
+         //if (!data.bot)
+         //{
+         //username = data.channel.client.user.username;
+         // icon_url = data.channel.client.user.displayAvatarURL;
+         //}
+         //else
+         //{
+         //username = data.bot.username;
+         // icon_url = data.bot.icon_url;
+         //}
+
+         //const botEmbedOn = new discord.RichEmbed()
+         //.setColor(colors.get(data.color))
+         //.setAuthor(username, icon_url)
+         //.setDescription(data.text)
+         //.setTimestamp()
+         // .setFooter("This message will self-destruct in one minute");
+
+         //data.channel.send(botEmbedOn).then(msg =>
+         //{
+         //  msg.delete(60000);
+         // });
+         //}
+         //else
+         //{
+         data.channel.send({
+            embed: {
+               title: data.title,
+               fields: data.fields,
+               author: {
+                  name: data.author.username,
+                  icon_url: data.author.displayAvatarURL
+               },
+               color: colors.get(data.color),
+               description: data.text,
+               footer: data.footer
             }
-            else
+         }).then(() =>
+         {
+            sendEmbeds(data);
+            sendAttachments(data);
+         }).catch(err =>
+         {
+            var errMsg = err;
+            logger("dev", err);
+
+            // ------------------------
+            // Error for long messages
+            // ------------------------
+
+            if (err.code && err.code === 50035)
             {
-               username = data.bot.username;
-               icon_url = data.bot.icon_url;
+               data.channel.send(":warning:  Message is too long.");
             }
 
-            const botEmbedOn = new discord.RichEmbed()
-               .setColor(colors.get(data.color))
-               .setAuthor(username, icon_url)
-               .setDescription(data.text)
-               .setTimestamp()
-               .setFooter("This message will self-destruct in one minute");
+            // -----------------------------------------------------------
+            // Handle error for users who cannot recieve private messages
+            // -----------------------------------------------------------
 
-            data.channel.send(botEmbedOn).then(msg =>
+            if (err.code && err.code === 50007 && data.origin)
             {
-               msg.delete(60000);
-            });
-         }
-         else
-         {
-            data.channel.send({
-               embed: {
-                  title: data.title,
-                  fields: data.fields,
-                  author: {
-                     name: data.author.username,
-                     icon_url: data.author.displayAvatarURL
-                  },
-                  color: colors.get(data.color),
-                  description: data.text,
-                  footer: data.footer
-               }
-            }).then(() =>
-            {
-               sendEmbeds(data);
-               sendAttachments(data);
-            }).catch(err =>
-            {
-               var errMsg = err;
-               logger("dev", err);
+               const badUser = data.channel.recipient;
+               errMsg = `@${badUser.username}#${badUser.discriminator}\n` + err;
 
-               // ------------------------
-               // Error for long messages
-               // ------------------------
-
-               if (err.code && err.code === 50035)
+               db.removeTask(data.origin.id, `@${badUser.id}`, function(er)
                {
-                  data.channel.send(":warning:  Message is too long.");
-               }
-
-               // -----------------------------------------------------------
-               // Handle error for users who cannot recieve private messages
-               // -----------------------------------------------------------
-
-               if (err.code && err.code === 50007 && data.origin)
-               {
-                  const badUser = data.channel.recipient;
-                  errMsg = `@${badUser.username}#${badUser.discriminator}\n` + err;
-
-                  db.removeTask(data.origin.id, `@${badUser.id}`, function(er)
+                  if (er)
                   {
-                     if (er)
-                     {
-                        return logger("error", er);
-                     }
+                     return logger("error", er);
+                  }
 
-                     return data.origin.send(
-                        `:no_entry: User ${badUser} cannot recieve direct messages ` +
+                  return data.origin.send(
+                     `:no_entry: User ${badUser} cannot recieve direct messages ` +
                            `by bot because of **privacy settings**.\n\n__Auto ` +
                            `translation has been stopped. To fix this:__\n` +
                            "```prolog\nServer > Privacy Settings > " +
                            "'Allow direct messages from server members'\n```"
-                     );
-                  });
-               }
+                  );
+               });
+            }
 
-               logger("error", errMsg);
-            });
-         }
+            logger("error", errMsg);
+         });
       }
       else if (data.attachments.array().length > 0)
       {
@@ -257,9 +270,13 @@ const embedOn = function(data)
 
    const sendAttachments = function(data)
    {
+      if (!data.attachments)
+      {
+         return;
+      }
       var attachments = data.attachments.array();
 
-      if (data.forward && attachments && attachments.length > 0)
+      if (attachments && attachments.length > 0)
       {
          const maxAtt = data.config.maxEmbeds;
 
@@ -279,7 +296,7 @@ const embedOn = function(data)
                attachments[i].url,
                attachments[i].filename
             );
-            data.channel.send(attachmentObj);
+            data.channel.send(`**${messageData.author.username}** sent a file:`, {file: attachmentObj});
          }
       }
    };
@@ -315,69 +332,50 @@ const embedOff = function(data)
       return files;
    }
 
-   if (data.author)
-   {
-      nicknameVar = data.author.name || data.author.username;
-   }
    function sendWebhookMessage(webhook, data)
    {
-      if (data.author)
+      /*if (data.author)
       {
          data.author = {
             name: data.author.username,
             // eslint-disable-next-line camelcase
             icon_url: data.author.displayAvatarURL
          };
-      }
-      if (data.bot)
-      {
-         data.bot = {
-            username: data.bot.username,
-            // eslint-disable-next-line camelcase
-            icon_url: data.bot.displayAvatarURL
-         };
-      }
-      const files = createFiles(data.attachments);
-      if (!data.author)
-      {
-         if (data.text === undefined)
-         {
-            webhook.send(data.text, {
-               "username": message.author.username,
-               "avatarURL": message.author.displayAvatarURL,
-               "files": files
-            });
-         }
-         else
-         {
-            const botEmbedOff = new discord.RichEmbed()
-               .setColor(colors.get(data.color))
-               .setAuthor(data.bot.username, data.bot.icon_url)
-               .setDescription(data.text)
-               .setTimestamp()
-               .setFooter("This message will self-destruct in one minute");
+      }*/ // Just use data.author.username
+      var files;
 
-            data.channel.send(botEmbedOff).then(msg =>
-            {
-               msg.delete(60000);
-            });
+      if (data.attachments)
+      {
+         if (data.attachments.size !== 0)
+         {
+            files = createFiles(data.attachments);
          }
       }
       else
       {
-         if (data.author)
-         {
-            if (data.author.name) { username = data.author.name;}
-            if (data.author.icon_url) { avatarURL = data.author.icon_url;}
-         }
-         {
-            webhook.send(data.text, {
-               "username": data.author.name || data.author.username,
-               "avatarURL": data.author.icon_url,
-               "files": files
-            });
-         }
+         files = null;
       }
+      if (files !== null && data.text === undefined)
+      {
+         return webhook.send(null, {
+            "username": messageData.author.username,
+            "avatarURL": messageData.author.displayAvatarURL,
+            "files": files
+         });
+      }
+
+      //if (data.author)
+      //{
+      //   if (data.author.name) { username = data.author.name;}
+      //   if (data.author.icon_url) { avatarURL = data.author.icon_url;}
+      //}
+      //{
+      return webhook.send(data.text, {
+         "username": data.author.username || data.message,
+         "avatarURL": data.author.displayAvatarURL,
+         "files": files
+      });
+      //}
    }
 
    // ---------------------
@@ -391,10 +389,7 @@ const embedOff = function(data)
 
       let color = colors.get(data.color);
       let avatarURL;
-      if (data.author && data.author.icon_url)
-      {
-         avatarURL = data.author.displayAvatarURL;
-      }
+      //var messageData = message.data;
       if (!channel) {return console.log("Channel not specified.");}
       // Sets the color of embed message but no embed message used so thus unused.
       if (!color) {color = colors.get(data.color);}

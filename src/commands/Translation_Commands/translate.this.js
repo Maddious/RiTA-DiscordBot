@@ -6,7 +6,8 @@
 const translate = require("../../core/translate");
 const colors = require("../../core/colors");
 const discord = require("discord.js");
-const botSend = require("../../core/send");
+//const logger = require("../../core/logger");
+//const botSend = require("../../core/send");
 
 // -----------------------------
 // Translate string to language
@@ -49,6 +50,8 @@ module.exports = function(data)
       multi: true
    };
 
+   delete data.message.attachments;
+
    translate(data);
 };
 
@@ -58,7 +61,7 @@ module.exports = function(data)
 
 function sendMessage (data)
 {
-   data.message.delete(5000);
+   data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, translate.this.js = ", err));
    const richEmbedMessage = new discord.RichEmbed()
       .setColor(colors.get(data.color))
       .setAuthor(data.bot.username, data.bot.displayAvatarURL)
@@ -68,6 +71,6 @@ function sendMessage (data)
 
    return data.message.channel.send(richEmbedMessage).then(msg =>
    {
-      msg.delete(60000);
+      msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, translate.this.js = ", err));
    });
 }

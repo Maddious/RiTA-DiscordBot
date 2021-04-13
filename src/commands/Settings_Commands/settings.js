@@ -134,15 +134,26 @@ const getSettings = function(data)
    // -------------
    // List Servers
    // -------------
+   function devOnly(data)
+   {
+      data.color = "warn";
+      data.text = ":warning: This is a developer only command.";
+
+      return sendMessage(data);
+   }
 
    const listServers = function(data)
    {
-      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+      if (process.env.DISCORD_BOT_OWNER_ID)
       {
          data.color = "warn";
-         data.text = ":warning: This is a bot developer only command.";
+         data.text = ":warning: Please set `DISCORD_BOT_OWNER_ID` as an array of User IDs allowed to use this command in configuration vars. \n\n **Ex.** ```js\nDISCORD_BOT_OWNER_ID = ['ALLOWED_USER_1_ID', 'ALLOWED_USER_2_ID', 'ALLOWED_USER_3_ID']```\n Place this with ID's in your .env file (local hosting) or environment variables (Heroku).";
 
          return sendMessage(data);
+      }
+      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+      {
+         devOnly(data);
       }
       data.text = "__**Active Servers**__ - ";
 
@@ -205,7 +216,7 @@ const getSettings = function(data)
 
       }}).then((msg) =>
       {
-         msg.delete(10000);
+         msg.delete(10000).catch(err => console.log("UpdateBot Bot Message Deleted Error, settings.js = ", err));
       });
    };
 
@@ -294,7 +305,7 @@ const getSettings = function(data)
 
 function sendMessage (data)
 {
-   data.message.delete(5000);
+   data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, settings.js = ", err));
    const richEmbedMessage = new discord.RichEmbed()
       .setColor(colors.get(data.color))
       .setAuthor(data.bot.username, data.bot.displayAvatarURL)
@@ -304,6 +315,6 @@ function sendMessage (data)
 
    return data.message.channel.send(richEmbedMessage).then(msg =>
    {
-      msg.delete(60000);
+      msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, settings.js = ", err));
    });
 }

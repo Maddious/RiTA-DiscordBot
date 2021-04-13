@@ -5,6 +5,7 @@
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const auth = require("../../core/auth");
 const colors = require("../../core/colors");
+//const logger = require("../../core/logger");
 const discord = require("discord.js");
 
 // -------------
@@ -22,9 +23,9 @@ module.exports = function(data)
 
    data.color = "info";
    data.text = `:robot:  Current bot version is ${version}`;
-   console.log("----------------- Data -----------------");
-   console.log(data);
-   console.log("----------------- Data -----------------");
+   //console.log("----------------- Data -----------------");
+   //console.log(data);
+   //console.log("----------------- Data -----------------");
 
    // -------------
    // Send message
@@ -39,7 +40,7 @@ module.exports = function(data)
 
 function sendMessage (data)
 {
-   data.message.delete(5000);
+   data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, version.js = ", err));
    const richEmbedMessage = new discord.RichEmbed()
       .setColor(colors.get(data.color))
       .setAuthor(data.bot.username, data.bot.displayAvatarURL)
@@ -49,7 +50,7 @@ function sendMessage (data)
 
    return data.message.channel.send(richEmbedMessage).then(msg =>
    {
-      msg.delete(60000);
+      msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, version.js = ", err));
    });
 }
 
