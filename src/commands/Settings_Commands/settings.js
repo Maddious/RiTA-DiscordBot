@@ -216,7 +216,7 @@ const getSettings = function(data)
 
       }}).then((msg) =>
       {
-         msg.delete(10000);
+         msg.delete(10000).catch(err => console.log("UpdateBot Bot Message Deleted Error, settings.js = ", err));
       });
    };
 
