@@ -133,14 +133,6 @@ const getSettings = function(data)
    // -------------
    // List Servers
    // -------------
-   function devOnly(data)
-   {
-      data.color = "warn";
-      data.text = ":warning: This is a developer only command.";
-
-      return sendMessage(data);
-   }
-
    const listServers = function(data)
    {
       if (!process.env.DISCORD_BOT_OWNER_ID)
@@ -150,10 +142,14 @@ const getSettings = function(data)
 
          return sendMessage(data);
       }
+
       if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
       {
-         devOnly(data);
+         data.color = "warn";
+         data.text = ":warning: This is a developer only command.";
+         return sendMessage(data);
       }
+
       data.text = "__**Active Servers**__ - ";
 
       const activeGuilds = data.client.guilds.array();
