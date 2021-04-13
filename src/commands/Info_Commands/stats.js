@@ -7,8 +7,7 @@ const langCheck = require("../../core/lang.check");
 const db = require("../../core/db");
 const auth = require("../../core/auth");
 const logger = require("../../core/logger");
-const colors = require("../../core/colors");
-const discord = require("discord.js");
+const sendMessage = require("../../core/command.send");
 
 // -------------
 // Command Code
@@ -189,23 +188,3 @@ module.exports = function(data)
       return sendMessage(data);
    });
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, stats.js = ", err));
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, stats.js = ", err));
-   });
-}
