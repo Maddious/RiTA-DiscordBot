@@ -12,22 +12,22 @@ const fn = require("../core/helpers");
 // Commands
 // ---------
 
-const cmdHelp = require("./Utility_Commands/help");
-const cmdList = require("./Info_Commands/list");
-const cmdStats = require("./Info_Commands/stats");
-const cmdVersion = require("./Info_Commands/version");
-const cmdEmbed = require("./Settings_Commands/embed");
-const cmdBot2bot = require("./Settings_Commands/bot2bot");
-const cmdDonate = require("./Utility_Commands/donate");
-const cmdMisc = require("./Info_Commands/misc");
-const cmdSettings = require("./Settings_Commands/settings");
-const cmdTranslateLast = require("./Translation_Commands/translate.last");
-const cmdTranslateThis = require("./Translation_Commands/translate.this");
-const cmdTranslateAuto = require("./Translation_Commands/translate.auto");
-const cmdTranslateStop = require("./Translation_Commands/translate.stop");
-const cmdTranslateTasks = require("./Translation_Commands/translate.tasks");
-const cmdDebug = require("./Future_Commands/debug");
-const cmdPrefix = require("./Settings_Commands/prefix");
+const cmdHelp = require("./utility_commands/help");
+const cmdList = require("./info_commands/list");
+const cmdStats = require("./info_commands/stats");
+const cmdVersion = require("./info_commands/version");
+const cmdEmbed = require("./settings_commands/embed");
+const cmdBot2bot = require("./settings_commands/bot2bot");
+const cmdDonate = require("./utility_commands/donate");
+const cmdMisc = require("./info_commands/misc");
+const cmdSettings = require("./settings_commands/settings");
+const cmdTranslateLast = require("./translation_commands/translate.last");
+const cmdTranslateThis = require("./translation_commands/translate.this");
+const cmdTranslateAuto = require("./translation_commands/translate.auto");
+const cmdTranslateStop = require("./translation_commands/translate.stop");
+const cmdTranslateTasks = require("./translation_commands/translate.tasks");
+const cmdDebug = require("./future_commands/debug");
+const cmdPrefix = require("./settings_commands/prefix");
 
 
 // ---------------------------------------
