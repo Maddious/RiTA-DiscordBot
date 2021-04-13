@@ -17,17 +17,6 @@ module.exports = function(data)
    // Command allowed by admins only
    // -------------------------------
 
-   if (!data.message.isAdmin)
-   {
-      data.color = "warn";
-      data.text = ":cop:  This command is reserved for server administrators.";
-
-      // -------------
-      // Send message
-      // -------------
-
-      return sendMessage(data);
-   }
 
 
    // -----------------------------------
@@ -135,21 +124,6 @@ const getSettings = function(data)
    // -------------
    const listServers = function(data)
    {
-      if (!process.env.DISCORD_BOT_OWNER_ID)
-      {
-         data.color = "warn";
-         data.text = ":warning: Please set `DISCORD_BOT_OWNER_ID` as an array of User IDs allowed to use this command in configuration vars. \n\n **Ex.** ```js\nDISCORD_BOT_OWNER_ID = ['ALLOWED_USER_1_ID', 'ALLOWED_USER_2_ID', 'ALLOWED_USER_3_ID']```\n Place this with ID's in your .env file (local hosting) or environment variables (Heroku).";
-
-         return sendMessage(data);
-      }
-
-      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
-      {
-         data.color = "warn";
-         data.text = ":warning: This is a developer only command.";
-         return sendMessage(data);
-      }
-
       data.text = "__**Active Servers**__ - ";
 
       const activeGuilds = data.client.guilds.array();
@@ -219,27 +193,29 @@ const getSettings = function(data)
    // -----------------
    // DM server owners
    // -----------------
-
-   const announcement = function(data)
+/*
+   const announcement = async function(data)
    {
-      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+      const guildArray = Array.from(bot.client.guilds.values());
+      var i;
+      for (i = 0; i < guildArray.length; i++)
       {
-         data.color = "warn";
-         data.text = ":warning: This is a bot developer only command.";
-
-         return sendMessage(data);
-      }
-
-
-
-      data.client.guilds.forEach(async function(guild)
-      {
-         data.client.members.fetch(guild.ownerID).then((owner) =>
+         console.log("Hello");
+         const guild = await guildArray[i];
+         var owner = await guild.ownerID;
+         // eslint-disable-next-line quotes
+         owner = Number(owner)
+         // eslint-disable-next-line no-undef
+         owner = owner.replace(/([0-9]+)/g, "$1");
+         console.log("Done");
+         await data.client.users.get(owner).send("Testing").catch((err) =>
          {
-            owner.send("**__RitaBot Announcement__**\n" + data.cmd.params + "\nIf you would like to opt out of these RitaBot announcements please join our [Discord Server](https://discord.com/invite/mgNR64R) and ping an online admin to remove you.");
+            console.log(err);
          });
-      });
-   };
+      }
+   };*/
+
+   // Announcements not possible until D.js v12
 
    // ----------
    // Update db
@@ -267,12 +243,19 @@ const getSettings = function(data)
       "setlang": setLang,
       "listservers": listServers,
       "updatedb": updateDB,
-      "updatebot": updateBot,
-      "announcement": announcement
+      "updatebot": updateBot
+      //"announcement": announcement
    };
 
    const settingParam = data.cmd.params.split(" ")[0].toLowerCase();
-
+   if (settingParam !== "listservers")
+   {
+      checkAdmin(data);
+   }
+   else
+   {
+      checkDev(data);
+   }
    if (Object.prototype.hasOwnProperty.call(validSettings,settingParam))
    {
       return validSettings[settingParam](data);
@@ -293,3 +276,35 @@ const getSettings = function(data)
 
    return sendMessage(data);
 };
+function checkAdmin(data)
+{
+   if (!data.message.isAdmin)
+   {
+      data.color = "warn";
+      data.text = ":cop:  This command is reserved for server administrators.";
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+   }
+}
+
+function checkDev(data)
+{
+   if (!process.env.DISCORD_BOT_OWNER_ID)
+   {
+      data.color = "warn";
+      data.text = ":warning: Please set `DISCORD_BOT_OWNER_ID` as an array of User IDs allowed to use this command in configuration vars. \n\n **Ex.** ```js\nDISCORD_BOT_OWNER_ID = ['ALLOWED_USER_1_ID', 'ALLOWED_USER_2_ID', 'ALLOWED_USER_3_ID']```\n Place this with ID's in your .env file (local hosting) or environment variables (Heroku).";
+
+      return sendMessage(data);
+   }
+
+   if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   {
+      data.color = "warn";
+      data.text = ":warning: This is a developer only command.";
+      return sendMessage(data);
+   }
+}
