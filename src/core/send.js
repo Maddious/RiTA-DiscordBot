@@ -503,10 +503,10 @@ const checkPerms = function(data, sendBox)
          forward: data.forward,
          origin: null,
          bot: data.bot,
-         author: {
-            name: data.bot.username,
-            icon_url: data.bot.displayAvatarURL
-         }
+         //author: {
+         //   name: data.bot.username,
+         //   icon_url: data.bot.displayAvatarURL
+         //}
       };
    }
 
