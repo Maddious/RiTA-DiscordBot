@@ -110,6 +110,7 @@ module.exports = async function(data)
    }
    else
    {
+      console.log("Perms Error");
       data.text = `:warning: ${data.bot.username} does not have sufficient permissions to send Webhook Messages. Please give ${data.bot.username} the \`MANAGE_WEBHOOKS\` permission.`;
       data.color = "warn";
 
