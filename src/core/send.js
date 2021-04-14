@@ -216,7 +216,7 @@ const embedOn = function(data)
                {
                   if (er)
                   {
-                     return logger("error", er, "dm", data.message.guild.name);
+                     return logger("error", er, "dm");
                   }
 
                   return data.origin.send(
@@ -229,7 +229,7 @@ const embedOn = function(data)
                });
             }
 
-            logger("error", errMsg, "dm", data.message.guild.name);
+            logger("error", errMsg);
          });
       }
       else if (data.attachments.array().length > 0)
