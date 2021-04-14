@@ -513,10 +513,9 @@ const checkPerms = function(data, sendBox)
    // ---------------------------------------------------
    // Notify server owner if bot cannot write to channel
    // ---------------------------------------------------
-   console.log("Write Error 1" + data.canWrite);
    if (!data.canWrite)
    {
-      console.log("Write Error 2" + data.canWrite);
+      console.log("Perm Check 1 " + data.canWrite);
       const writeErr =
          ":no_entry:  **Translate bot** does not have permission to write at " +
          `the **${sendData.channel.name}** channel on your server **` +
@@ -526,7 +525,7 @@ const checkPerms = function(data, sendBox)
          .send(writeErr)
          .catch(err => logger("error", err, "warning", data.message.guild.name));
    }
-   console.log("Write Error 3" + data.canWrite);
+   console.log("Perm Check 2 " + data.canWrite);
 
    if (data.forward)
    {
