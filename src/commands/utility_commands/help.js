@@ -223,7 +223,7 @@ const helpMessage = function(config, botname, param)
    `# Information Modules\n` +
    `> ${cmd} help stats\n` +
    `> ${cmd} help tasks\n` +
-   `> ${cmd} help settings\n\n` +
+   `> ${cmd} help settings (Dev Only)\n\n` +
 
    `# Other Modules\n` +
    `> ${cmd} help misc\n` +
@@ -284,12 +284,6 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} proc\n` +
    `* ${cmd} shards\n` +
    `* ${cmd} list\n\n` +
-
-   `# Settings Commands\n` +
-   `* ${cmd} settings updatebot\n` +
-   `* ${cmd} settings updatedb\n` +
-   `* ${cmd} settings setlang\n` +
-   `* ${cmd} settings listservers\n\n` +
 
    `# Style Commands\n` +
    `* ${cmd} embed [on/off]\n` +
@@ -475,15 +469,7 @@ const helpMessage = function(config, botname, param)
 
    const settings =
    `__**Settings**__\n\n` +
-   `These commands are available only to admins in server channels.` +
-   "```md\n" +
-
-   `# Set default server language\n` +
-   `> ${cmd} settings setLang to [lang]\n\n` +
-
-   `# Displays list of servers the bot is in\n` +
-   `> ${cmd} settings listservers\n\n` +
-   "```";
+   `These commands are available only to Developers.`;
 
    // -------------------
    // Statistics Command
