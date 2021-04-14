@@ -120,7 +120,7 @@ module.exports = async function(data)
       });
    }
    const after = Date.now();
-   console.log("Time taken to Manage regex" + after - before);
+   console.log(after - before);
 };
 
 // ----------------------------
