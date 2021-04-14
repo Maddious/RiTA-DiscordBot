@@ -103,18 +103,18 @@ module.exports = async function(data)
 
    if (embedstyle === "on")
    {
-      console.log("Embed on");
+      console.log("DEBUG: Embed on");
       embedOn(data);
    }
    else
    if (data.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))
    {
-      console.log("Embed off");
+      console.log("DEBUG: Embed off");
       embedOff(data);
    }
    else
    {
-      console.log("Perms Error");
+      console.log("DEBUG: Perms Error");
       data.text = `:warning: ${data.bot.username} does not have sufficient permissions to send Webhook Messages. Please give ${data.bot.username} the \`MANAGE_WEBHOOKS\` permission.`;
       data.color = "warn";
 
@@ -151,7 +151,7 @@ const embedOn = function(data)
          {
             if (!data.author)
             {
-               console.log("Is bot.author");
+               console.log("DEBUG: Is bot.author - embed on");
                // eslint-disable-next-line no-redeclare
                var embed = {
                   title: data.title,
@@ -167,7 +167,7 @@ const embedOn = function(data)
             }
             else
             {
-               console.log("Is data.author");
+               console.log("DEBUG: Is data.author - embed on");
                // eslint-disable-next-line no-redeclare
                var embed = {
                   title: data.title,
@@ -206,7 +206,7 @@ const embedOn = function(data)
 
             if (err.code && err.code === 50013)
             {
-               console.log("Error 50013");
+               console.log("DEBUG: Error 50013 - Origin");
                //return logger("custom", err, "send", data.guild.name);
                return logger("custom", {
                   color: "ok",
@@ -392,7 +392,7 @@ const embedOff = function(data)
       {
          if (!data.author)
          {
-            console.log("Is bot.author");
+            console.log("DEBUG: Is bot.author embed off");
             webhook.send(data.text, {
                //If you get a error at the below line then the bot does not have write permissions.
                "username": data.bot.username || data.message,
@@ -402,7 +402,7 @@ const embedOff = function(data)
          }
          else
          {
-            console.log("Is data.author");
+            console.log("DEBUG: Is data.author embed off");
             webhook.send(data.text, {
                //If you get a error at the below line then the bot does not have write permissions.
                "username": data.author.username || data.message,
@@ -555,8 +555,8 @@ const checkPerms = function(data, sendBox)
    // ---------------------------------------------------
    if (!data.canWrite)
    {
-      console.log("Perms Error, Write Restricted 1");
-      console.log("Perm Check 1 " + data.canWrite);
+      console.log("DEBUG: Perms Error, Write Restricted 1");
+      console.log("DEBUG: Perm Check 1 " + data.canWrite);
       const writeErr =
          `:no_entry:  **${data.bot.username}** does not have permission to write in ` +
          `the ${sendData.channel.id} channel on your server **` +
@@ -566,7 +566,7 @@ const checkPerms = function(data, sendBox)
          .send(writeErr)
          .catch(err => console.log("error", err, "warning", data.message.guild.name));
    }
-   console.log("Perm Check 2 " + data.canWrite);
+   console.log("DEBUG: Perm Check 2 " + data.canWrite);
 
    if (data.forward)
    {
@@ -618,7 +618,7 @@ const checkPerms = function(data, sendBox)
             // Notify server owner if bot cannot write to forwarding channel
             // --------------------------------------------------------------
 
-            console.log("Error 50013");
+            console.log("DEBUG: Error 50013 - Destination");
             //return logger("custom", err, "send", data.guild.name);
             logger("custom", {
                color: "ok",
@@ -630,7 +630,7 @@ const checkPerms = function(data, sendBox)
                   The server owner has been notified . \n`
             });
 
-            console.log("Perms Error, Write Restricted 2");
+            console.log("DEBUG: Perms Error, Write Restricted 2");
             const writeErr =
             `:no_entry:  **${data.bot.username}** does not have permission to write in ` +
             `the ${forwardChannel} channel on your server **` +
