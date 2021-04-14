@@ -6,6 +6,8 @@
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
+const fs = require("fs");
+const path = require("path");
 
 // --------------------------
 // Proccess settings params
@@ -137,7 +139,7 @@ const getSettings = function(data)
    // -------------
    const listServers = function(data)
    {
-      data.text = "__**Active Servers**__ - ";
+      data.text = "Active Servers - ";
 
       const activeGuilds = data.client.guilds.array();
 
@@ -145,29 +147,24 @@ const getSettings = function(data)
 
       activeGuilds.forEach(guild =>
       {
-         data.text += "```md\n";
-         data.text += `# ${guild.name}\n> ${guild.id}\n> ${guild.memberCount} members\n`;
+         data.text += `${guild.name}\n${guild.id}\n${guild.memberCount} members\n`;
          if (guild.owner)
          {
-            data.text += `@${guild.owner.user.username}#`;
-            data.text += guild.owner.user.discriminator + "\n```";
+            data.text += `${guild.owner.user.username}#`;
+            data.text += guild.owner.user.discriminator + "\n\n";
          }
          else
          {
-            data.text += "```";
+            data.text += "End List";
          }
       });
 
-      const splitOpts = {
-         maxLength: 2000,
-         char: ""
-      };
-
-      // -------------
-      // Send message
-      // -------------
-
-      return data.message.channel.send(data.text, {split: splitOpts});
+      // ------------------
+      // Send message/file
+      // ------------------
+      data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, command.send.js = ", err));
+      fs.writeFileSync(path.resolve(__dirname, "../../files/serverlist.txt"),data.text);
+      data.message.channel.send("Server List.", { files: ["./src/files/serverlist.txt"] });
    };
 
 
