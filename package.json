@@ -1,6 +1,6 @@
 {
   "name": "ritabot",
-  "version": "1.2.1-24",
+  "version": "1.2.1-25",
   "engines": {
     "node": "14.0.0"
   },
@@ -47,7 +47,7 @@
     "lodash": "^4.17.21",
     "make-dir": "^3.1.0",
     "path": "^0.12.7",
-    "pg": "^8.5.1",
+    "pg": "^8.6.0",
     "pg-hstore": "^2.3.3",
     "seconds-converter": "github:AlooAkbar/seconds-converter",
     "sequelize": "^6.6.2",
@@ -58,7 +58,7 @@
     "@kollavarsham/gulp-coveralls": "^0.3.4",
     "babel-eslint": "^10.1.0",
     "braces": "^3.0.2",
-    "eslint": "^7.23.0",
+    "eslint": "^7.24.0",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",

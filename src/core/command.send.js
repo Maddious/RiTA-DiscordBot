@@ -37,7 +37,31 @@ module.exports = async function(data)
       return data.message.channel.send(richEmbedMessage).then(msg =>
       {
          msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, command.send.js = ", err));
-      });
+      })//.catch(err => console.log("error", err, "warning", data.message.guild.name));
+         .catch(err =>
+         {
+            if (err.code && err.code === 50013)
+            {
+               console.log("Error 50013");
+               //return logger("custom", err, "send", data.guild.name);
+               logger("custom", {
+                  color: "ok",
+                  msg: `:exclamation: Write Permission Error \n
+                  Server: **${data.channel.guild.name}** \n
+                  Channel: **${data.channel.name}**\n
+                  Chan ID: **${data.channel.id}**\n
+                  Owner: **${data.channel.guild.owner}**\n
+                  The server owner has been notified. \n`
+               });
+               const writeErr =
+               `:no_entry:  **${data.bot.username}** does not have permission to write in your server **` +
+               `${data.channel.guild.name}**. Please fix.`;
+
+               return data.channel.guild.owner
+                  .send(writeErr)
+                  .catch(err => console.log("error", err, "warning", data.message.guild.name));
+            }
+         });
    }
    console.log("Sufficient Permission");
    data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, command.send.js = ", err));
@@ -51,5 +75,29 @@ module.exports = async function(data)
    return data.message.channel.send(richEmbedMessage).then(msg =>
    {
       msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, command.send.js = ", err));
-   });
+   })//.catch(err => console.log("error", err, "warning", data.message.guild.name));
+      .catch(err =>
+      {
+         if (err.code && err.code === 50013)
+         {
+            console.log("Error 50013");
+            //return logger("custom", err, "send", data.guild.name);
+            logger("custom", {
+               color: "ok",
+               msg: `:exclamation: Write Permission Error \n
+               Server: **${data.channel.guild.name}** \n
+               Channel: **${data.channel.name}**\n
+               Chan ID: **${data.channel.id}**\n
+               Owner: **${data.channel.guild.owner}**\n
+               The server owner has been notified. \n`
+            });
+            const writeErr =
+               `:no_entry:  **${data.bot.username}** does not have permission to write in your server **` +
+               `${data.channel.guild.name}**. Please fix.`;
+
+            return data.channel.guild.owner
+               .send(writeErr)
+               .catch(err => console.log("error", err, "warning", data.message.guild.name));
+         }
+      });
 };

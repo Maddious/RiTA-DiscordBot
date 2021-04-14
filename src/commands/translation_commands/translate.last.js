@@ -23,6 +23,29 @@ const getCount = function(count)
 
 module.exports = function(data)
 {
+   /*
+   data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, command.send.js = ", err));
+   return data.message.channel.send({embed: {
+      color: 13107200,
+      author: {
+         name: data.client.user.username,
+         icon_url: data.client.user.displayAvatarURL
+      },
+      description: `:no_entry_sign: This command has been disabled Pending a fix \n
+      We apologise for any inconvenience this may cause.`
+
+   }}).then((msg) =>
+   {
+      msg.delete(10000).catch(err => console.log("UpdateBot Bot Message Deleted Error, settings.js = ", err));
+   });
+};
+
+// -----------------------------
+// Command Disabled Pending Fix
+// -----------------------------
+*/
+
+
    // -------------------------
    // Prepare translation data
    // -------------------------
@@ -47,7 +70,7 @@ module.exports = function(data)
    if (count.startsWith("-") || count === "1")
    {
       mode = "single";
-      data.translate.multi = true;
+      data.translate.multi = false;
    }
 
    if (mode === "all" && Math.abs(count) > data.config.maxChains)
@@ -104,6 +127,7 @@ module.exports = function(data)
                chains.push({
                   author: messagesArray[i].author,
                   msgs: [messagesArray[i].content],
+                  id: [messagesArray[i].id],
                   time: messagesArray[i].createdTimestamp,
                   color: fn.getRoleColor(messagesArray[i].member)
                });
@@ -144,6 +168,7 @@ module.exports = function(data)
       {
          data.message.author = reqChains[0].author;
          data.translate.original = reqChains[0].msgs.join("\n");
+         data.message.guild.id = reqChains[0].id;
          delete data.message.attachments;
          return translate(data);
       }
