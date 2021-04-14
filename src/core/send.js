@@ -624,7 +624,7 @@ const checkPerms = function(data, sendBox)
                color: "ok",
                msg: `:exclamation: Write Permission Error - Destination\n
                   Server: **${data.channel.guild.name}** \n
-                  Channel: **${forwardChannel}**\n
+                  Channel: **${forwardChannel.name}**\n
                   Chan ID: **${forwardChannel.id}**\n
                   Owner: **${data.channel.guild.owner}**\n
                   The server owner has been notified . \n`
@@ -633,7 +633,7 @@ const checkPerms = function(data, sendBox)
             console.log("DEBUG: Perms Error, Write Restricted 2");
             const writeErr =
             `:no_entry:  **${data.bot.username}** does not have permission to write in ` +
-            `the ${forwardChannel} channel on your server **` +
+            `the ${forwardChannel.name} channel on your server **` +
             `${sendData.channel.guild.name}**. Please fix.`;
 
             return sendData.channel.guild.owner
