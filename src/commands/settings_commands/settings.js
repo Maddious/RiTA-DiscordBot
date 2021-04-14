@@ -159,7 +159,7 @@ const getSettings = function(data)
       });
 
       const splitOpts = {
-         maxLength: 2000,
+         //maxLength: 1900,
          char: ""
       };
 
