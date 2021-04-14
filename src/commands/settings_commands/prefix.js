@@ -86,7 +86,7 @@ const prefix = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var outputvalid =
             "**```Command prefix has been reset```**\n" +
@@ -112,7 +112,7 @@ const prefix = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var outputvalid =
             "**```New command prefix has been set```**\n" +

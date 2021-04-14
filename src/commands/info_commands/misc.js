@@ -81,7 +81,7 @@ exports.shards = function(data)
 
    const shardErr = function(err)
    {
-      return logger("error", err, "shardFetch");
+      return logger("error", err, "shardFetch", data.message.guild.name);
    };
 
    shard.fetchClientValues("guilds.size").then(guildsSize =>

@@ -511,7 +511,7 @@ exports.addTask = function(task)
       })
          .catch(err =>
          {
-            logger("error", err);
+            logger("error", err, "command", task.server);
          });
    });
 };

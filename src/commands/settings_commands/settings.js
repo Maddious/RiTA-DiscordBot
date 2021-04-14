@@ -116,7 +116,7 @@ const getSettings = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "db", data.message.guild.name);
             }
             data.color = "ok";
             data.text =
@@ -198,7 +198,7 @@ const getSettings = function(data)
 
       }}).then((msg) =>
       {
-         msg.delete(10000).catch(err => console.log("UpdateBot Bot Message Deleted Error, settings.js = ", err));
+         msg.delete(5000).catch(err => console.log("UpdateBot Bot Message Deleted Error, settings.js = ", err));
       });
    };
 
