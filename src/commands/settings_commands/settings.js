@@ -17,7 +17,20 @@ module.exports = function(data)
    // Command allowed by admins only
    // -------------------------------
 
+   if (!process.env.DISCORD_BOT_OWNER_ID)
+   {
+      data.color = "warn";
+      data.text = ":warning: Please set `DISCORD_BOT_OWNER_ID` as an array of User IDs allowed to use this command in configuration vars. \n\n **Ex.** ```js\nDISCORD_BOT_OWNER_ID = ['ALLOWED_USER_1_ID', 'ALLOWED_USER_2_ID', 'ALLOWED_USER_3_ID']```\n Place this with ID's in your .env file (local hosting) or environment variables (Heroku).";
 
+      return sendMessage(data);
+   }
+
+   if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   {
+      data.color = "warn";
+      data.text = ":warning: These Commands are for developers only.";
+      return sendMessage(data);
+   }
 
    // -----------------------------------
    // Error if settings param is missing
@@ -248,14 +261,6 @@ const getSettings = function(data)
    };
 
    const settingParam = data.cmd.params.split(" ")[0].toLowerCase();
-   if (settingParam !== "listservers")
-   {
-      checkAdmin(data);
-   }
-   else
-   {
-      checkDev(data);
-   }
    if (Object.prototype.hasOwnProperty.call(validSettings,settingParam))
    {
       return validSettings[settingParam](data);
@@ -276,35 +281,4 @@ const getSettings = function(data)
 
    return sendMessage(data);
 };
-function checkAdmin(data)
-{
-   if (!data.message.isAdmin)
-   {
-      data.color = "warn";
-      data.text = ":cop:  This command is reserved for server administrators.";
 
-      // -------------
-      // Send message
-      // -------------
-
-      return sendMessage(data);
-   }
-}
-
-function checkDev(data)
-{
-   if (!process.env.DISCORD_BOT_OWNER_ID)
-   {
-      data.color = "warn";
-      data.text = ":warning: Please set `DISCORD_BOT_OWNER_ID` as an array of User IDs allowed to use this command in configuration vars. \n\n **Ex.** ```js\nDISCORD_BOT_OWNER_ID = ['ALLOWED_USER_1_ID', 'ALLOWED_USER_2_ID', 'ALLOWED_USER_3_ID']```\n Place this with ID's in your .env file (local hosting) or environment variables (Heroku).";
-
-      return sendMessage(data);
-   }
-
-   if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
-   {
-      data.color = "warn";
-      data.text = ":warning: This is a developer only command.";
-      return sendMessage(data);
-   }
-}
