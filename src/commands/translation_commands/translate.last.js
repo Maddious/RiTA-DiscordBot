@@ -23,7 +23,6 @@ const getCount = function(count)
 
 module.exports = function(data)
 {
-   /*
    data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, command.send.js = ", err));
    return data.message.channel.send({embed: {
       color: 13107200,
@@ -43,8 +42,8 @@ module.exports = function(data)
 // -----------------------------
 // Command Disabled Pending Fix
 // -----------------------------
-*/
 
+/*
 
    // -------------------------
    // Prepare translation data
@@ -70,7 +69,7 @@ module.exports = function(data)
    if (count.startsWith("-") || count === "1")
    {
       mode = "single";
-      data.translate.multi = false;
+      data.translate.multi = true;
    }
 
    if (mode === "all" && Math.abs(count) > data.config.maxChains)
@@ -182,3 +181,4 @@ module.exports = function(data)
       return translate(data);
    }).catch(err => logger("error", err, "command", data.message.guild.name));
 };
+*/
