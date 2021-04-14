@@ -155,5 +155,5 @@ module.exports = function(data)
       data.bufferChains = reqChains;
       delete data.message.attachments;
       return translate(data);
-   }).catch(err => logger("error", err));
+   }).catch(err => logger("error", err, "command", data.message.guild.name));
 };

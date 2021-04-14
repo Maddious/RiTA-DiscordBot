@@ -107,7 +107,7 @@ module.exports = function(data)
    {
       if (err)
       {
-         logger("error", err);
+         logger("error", err, "command", data.message.guild.name);
       }
 
       const taskCount = res[Object.keys(res)[0]];

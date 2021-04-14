@@ -170,7 +170,10 @@ const embedOn = function(data)
          //}
          //else
          //{
+
          data.channel.send({
+
+
             embed: {
                title: data.title,
                fields: data.fields,
@@ -213,7 +216,7 @@ const embedOn = function(data)
                {
                   if (er)
                   {
-                     return logger("error", er);
+                     return logger("error", er, "dm", data.message.guild.name);
                   }
 
                   return data.origin.send(
@@ -226,7 +229,7 @@ const embedOn = function(data)
                });
             }
 
-            logger("error", errMsg);
+            logger("error", errMsg, "dm", data.message.guild.name);
          });
       }
       else if (data.attachments.array().length > 0)
@@ -370,7 +373,8 @@ const embedOff = function(data)
       //   if (data.author.icon_url) { avatarURL = data.author.icon_url;}
       //}
       //{
-      return webhook.send(data.text, {
+      webhook.send(data.text, {
+         //If you get a error at the below line then the bot does not have write permissions.
          "username": data.author.username || data.message,
          "avatarURL": data.author.displayAvatarURL,
          "files": files
@@ -498,16 +502,21 @@ const checkPerms = function(data, sendBox)
          attachments: data.message.attachments,
          forward: data.forward,
          origin: null,
-         bot: data.bot
+         bot: data.bot,
+         author: {
+            name: data.bot.username,
+            icon_url: data.bot.displayAvatarURL
+         }
       };
    }
 
    // ---------------------------------------------------
    // Notify server owner if bot cannot write to channel
    // ---------------------------------------------------
-
+   console.log("Write Error 1" + data.canWrite);
    if (!data.canWrite)
    {
+      console.log("Write Error 2" + data.canWrite);
       const writeErr =
          ":no_entry:  **Translate bot** does not have permission to write at " +
          `the **${sendData.channel.name}** channel on your server **` +
@@ -515,8 +524,9 @@ const checkPerms = function(data, sendBox)
 
       return sendData.channel.guild.owner
          .send(writeErr)
-         .catch(err => logger("error", err));
+         .catch(err => logger("error", err, "warning", data.message.guild.name));
    }
+   console.log("Write Error 3" + data.canWrite);
 
    if (data.forward)
    {

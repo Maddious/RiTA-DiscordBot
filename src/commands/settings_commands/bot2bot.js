@@ -77,7 +77,7 @@ const bot2bot = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var output =
             `:warning: This is extremely experimental, use at your own risk! :warning:\n\n`+

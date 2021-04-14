@@ -16,7 +16,7 @@ module.exports = function(data)
 {
    if (data.err)
    {
-      return logger("error", data.err);
+      return logger("error", data.err, "db", data.message.guild.name);
    }
 
    if (data.rows.length > 0)
@@ -148,7 +148,7 @@ const startTranslation = function(data, i, row)
                data.footer = footerExtra;
                data.forward = dm.id;
                sendTranslation(data);
-            }).catch(err => logger("error", err));
+            }).catch(err => logger("error", err, "dm", data.message.guild.name));
          }
       });
    }

@@ -80,7 +80,7 @@ const debug = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var outputgh =
             "**```Start Debug mode```**\n" +
@@ -106,7 +106,7 @@ const debug = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var outputoc =
           "**```Stop Debug mode```**\n" +
