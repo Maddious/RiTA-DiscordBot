@@ -3,10 +3,10 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const auth = require("../core/auth");
-const colors = require("../core/colors");
+const sendMessage = require("../../core/command.send");
+const colors = require("../../core/colors");
 const discord = require("discord.js");
-
+const richEmbedMessage = new discord.RichEmbed();
 // ------------------------
 // Bot Help / Command List
 // ------------------------
@@ -21,19 +21,55 @@ module.exports = function(data)
 
    var getHelpWith = "basics";
 
-   if (data.cmd.params)
+   if (data.cmd.params === "settings")
    {
       const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
       getHelpWith = cleanParam;
+
+      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+      {
+         getHelpWith = cleanParam;
+         data.text = helpMessage(data.config, data.bot.username, getHelpWith);
+
+         console.log("Insufficient Permission");
+         data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, help.js = ", err));
+         richEmbedMessage
+            .setColor(colors.get(data.color))
+            .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+            .setDescription("This command is available only to Developers. \n\n")
+            .setTimestamp()
+            .setFooter("This message will self-destruct in one minute");
+
+         // -------------
+         // Send message
+         // -------------
+
+         return data.message.channel.send(richEmbedMessage).then(msg =>
+         {
+            msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, help.js = ", err));
+         });
+      }
+      getHelpWith = cleanParam;
+      data.text = helpMessage(data.config, data.bot.username, getHelpWith);
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
    }
+   else if (data.cmd.params !== "settings")
+   {
+      const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
+      getHelpWith = cleanParam;
+      data.text = helpMessage(data.config, data.bot.username, getHelpWith);
 
-   data.text = helpMessage(data.config, data.bot.username, getHelpWith);
+      // -------------
+      // Send message
+      // -------------
 
-   // -------------
-   // Send message
-   // -------------
-
-   return sendMessage(data);
+      return sendMessage(data);
+   }
 };
 
 // -------------
@@ -76,19 +112,9 @@ const helpMessage = function(config, botname, param)
    `Translates Discord messages (based on \`Google API\`).\n\n` +
    "```md\n" +
    `# All the commands can be found by entering the following:\n` +
-   `> ${cmd} help modules` +
+   `* ${cmd} help commands for a list of all avaliable commands or \n` +
+   `* ${cmd} help modules for a list of avaliable command modules` +
    "```\n\n";
-
-   // ------------------------------
-   // Support & Donations
-   // ------------------------------
-
-   var donation = "";
-   if (auth.donation && auth.donation.length > 5)
-   {
-      donation =
-         "Like this bot? [Support the developer!](" + auth.donation + ")";
-   }
 
    // ------------
    // Help Basics
@@ -213,36 +239,6 @@ const helpMessage = function(config, botname, param)
    });
 
 
-   // -----------------
-   // ReadMe + Discord
-   // -----------------
-
-   const readme =
-
-   `**Github ReadMe**\n\n` +
-   "```md\n" +
-   `# To read the GitHub read me go here:\n` +
-   `> ( https://github.com/ZyC0R3/RitaBot/blob/master/README.md ) \n\n` +
-   `# If you need to update your bot's version you can do so here:\n` +
-   `> ( https://github.com/ZyC0R3/RitaBot#migration )\n\n` +
-   `# You can join Rita's Discord Support Server here: \n\n` +
-   `> https://discord.gg/mgNR64R` +
-   "```\n\n";
-
-
-   // --------------------------------
-   // Report Bugs + Report in Discord
-   // --------------------------------
-
-   const report =
-   `**Report Bugs**\n` +
-   "```md\n" +
-   `# You can report issues in Github here:\n` +
-   `> ( https://github.com/ZyC0R3/RitaBot/issues )\n\n` +
-   `# Rita also has a support server with it's developers and contributors... You may join that here: \n` +
-   `> https://discord.com/invite/mgNR64R \n` +
-   "```\n\n";
-
    // ----------------
    // Module Commands
    // ----------------
@@ -265,7 +261,7 @@ const helpMessage = function(config, botname, param)
    `# Information Modules\n` +
    `> ${cmd} help stats\n` +
    `> ${cmd} help tasks\n` +
-   `> ${cmd} help settings\n\n` +
+   `> ${cmd} help settings (Dev Only)\n\n` +
 
    `# Other Modules\n` +
    `> ${cmd} help misc\n` +
@@ -276,36 +272,110 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} help prefix\n` +
    "```";
 
+   // -----------------
+   // ReadMe + Discord
+   // -----------------
 
-   // -----------
-   // Embed Help
-   // -----------
-   const embed =
-   `__**Styles**__\n\n` +
+   const readme =
+
+   `**Github ReadMe**\n\n` +
+   `To read the GitHub read me go here:\n` +
+   `- https://github.com/RitaBot-Project/RitaBot/blob/master/README.md  \n\n` +
+   `If you need to update your bot's version you can do so here:\n` +
+   `- https://ritabot.gg/update/ \n\n` +
+   `You can join Rita's Discord Support Server here: \n` +
+   `- https://discord.gg/mgNR64R` +
+   "\n\n";
+
+   // --------------------------------
+   // Report Bugs + Report in Discord
+   // --------------------------------
+
+   const report =
+   `**Report Bugs**\n\n` +
+   `You can report issues in Github here:\n` +
+   `- https://github.com/RitaBot-Project/RitaBot/issues\n\n` +
+   `Rita also has a support server with it's developers and contributors: \n` +
+   `- https://discord.gg/mgNR64R \n` +
+   "\n\n";
+
+   // --------------
+   // Commands List
+   // --------------
+
+   const commands =
+   `__**All Available Commands**__\n\n` +
+   `This is a list of all avaliable commands\n` +
+   "```md\n" +
+   `# Translation Commands\n` +
+   `* ${cmd} this to [lang] from [lang]: [msg]\n` +
+   `* ${cmd} last (Command Disabled)\n` +
+   `* ${cmd} channel to [lang] from [lang] for [me/@/#]\n` +
+   `* ${cmd} auto to [lang] for [me/@/#]\n` +
+   `* ${cmd} stop for [me/@/#]\n\n` +
+
+   `# Information Commands\n` +
+   `* ${cmd} tasks\n` +
+   `* ${cmd} stats [server/global]\n` +
+   `* ${cmd} version\n` +
+   `* ${cmd} proc\n` +
+   `* ${cmd} shards\n` +
+   `* ${cmd} list\n\n` +
+
+   `# Style Commands\n` +
+   `* ${cmd} embed [on/off]\n` +
+   `* ${cmd} bot2bot [on/off]\n` +
+   `* ${cmd} prefix [prefix]\n\n` +
+
+   `# Misc Commands\n` +
+   `* ${cmd} invite\n` +
+   `* ${cmd} help modules\n\n` +
+
+   `# Debug Commands\n` +
+   `* ${cmd} debug [on/pff]\n` +
+   `* ${cmd} stats debug (Admin Only)\n\n` +
+
+   `# Want to Support RITA\n` +
+   `* ${cmd} donate [oc/github]\n\n` +
+   "```";
+
+   // ----------------------
+   // Custom message (this)
+   // ----------------------
+
+   const custom =
+   `__**Translate Custom Message**__\n\n` +
+   `Translates a custom message entered by user.\n` +
    "```md\n" +
 
-   `# Embed Style\n` +
-   `> Turns on Embed Translation\n` +
-   `> ${cmd} embed on\n\n` +
-   `> Turns on Webhook Translation Sending\n` +
-   `> ${cmd} embed off\n\n` +
-   "```";
-   // -------------
-   // Bot2bot Help
-   // -------------
+   `# Command\n` +
+   `> ${cmd} this: [msg] \n` +
+   `> ${cmd} this to [lang] from [lang]: [msg] \n\n` +
 
-   const bot2bot =
-   `__**bot to Bot Translation**__\n\n` +
-   "```md\n" +
+   `# Parameters\n` +
+   `> to [lang] - defaults to server default language\n` +
+   `> to [lang, lang, ...] - translates to multiple languages\n` +
+   `> from [lang] - defaults to automatic detection\n\n` +
 
-   `# Bot to Bot\n` +
-   `> Turns on Bot2Bot Translations\n` +
-   `> ${cmd} bot2bot on\n\n` +
-   `> Turns off Bot2Bot Translations\n` +
-   `> ${cmd} bot2bot off\n\n` +
-   `> Usually 90% of bots ignore bot messages` +
-   ` but this feature allows discord bots to be translated too` +
+   `# Examples\n` +
+   `* ${cmd} this: bonjour \n` +
+   `* ${cmd} this to spanish: hello world \n` +
+   `* ${cmd} this to arabic, hebrew: I love you \n` +
+   `* ${cmd} this to de from en: how are you? \n` +
    "```";
+
+   // --------------------
+   // Flag Emoji Reaction
+   // --------------------
+
+   const react =
+   `__**Translate by reaction**__\n\n` +
+   `# Add a message reaction with the flag of the language` +
+   `you wish to translate to\n\n` +
+   `# Examples\n` +
+   `:flag_gb: = English\n` +
+   `:flag_fr: = French\n\n` +
+   ` Please note that only official country flags are registered`;
 
    // --------------------
    // Last Message (last)
@@ -335,45 +405,6 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} last -6 to english from german` +
    "```";
 
-   // --------------------
-   // Flag Emoji Reaction
-   // --------------------
-
-   const react =
-   `__**Translate by reaction**__\n\n` +
-   `# Add a message reaction with the flag of the language` +
-   `you wish to translate to\n\n` +
-   `# Examples\n` +
-   `:flag_gb: = English\n` +
-   `:flag_fr: = French\n\n` +
-   ` Please note that only official country flags are registered`;
-
-
-   // ----------------------
-   // Custom message (this)
-   // ----------------------
-
-   const custom =
-   `__**Translate Custom Message**__\n\n` +
-   `Translates a custom message entered by user.\n` +
-   "```md\n" +
-
-   `# Command\n` +
-   `> ${cmd} this: [msg] \n` +
-   `> ${cmd} this to [lang] from [lang]: [msg] \n\n` +
-
-   `# Parameters\n` +
-   `> to [lang] - defaults to server default language\n` +
-   `> to [lang, lang, ...] - translates to multiple languages\n` +
-   `> from [lang] - defaults to automatic detection\n\n` +
-
-   `# Examples\n` +
-   `* ${cmd} this: bonjour \n` +
-   `* ${cmd} this to spanish: hello world \n` +
-   `* ${cmd} this to arabic, hebrew: I love you \n` +
-   `* ${cmd} this to de from en: how are you? \n` +
-   "```";
-
    // -------------------------
    // Auto translate (channel)
    // -------------------------
@@ -400,6 +431,23 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} channel to en from de for #englishChannel \n` +
    `* ${cmd} channel to de from en for @steve \n` +
    `* ${cmd} channel to en from ru for #ch1, #ch2, #usr1 \n` +
+   "```";
+
+   // --------------
+   // Tasks Command
+   // --------------
+
+   const tasks =
+   `__**Channel Tasks**__\n\n` +
+   `Displays translation tasks of the current channel` +
+   "```md\n" +
+
+   `# Displays translation tasks of the current channel\n` +
+   `> ${cmd} tasks\n\n` +
+
+   `# Displays translation tasks of specified channel\n` +
+   `* COMING IN FUTURE UPDATE \n` +
+   `> ${cmd} tasks for [#channel]\n` +
    "```";
 
    // ----------------------
@@ -443,7 +491,33 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} invite\n\n` +
 
    `# Supported Languages\n` +
-   `> ${cmd} list\n` +
+   `> ${cmd} list\n\n` +
+
+   `# Donate\n` +
+   `> ${cmd} donate [oc/github]\n\n` +
+
+   `# Prefix\n` +
+   `> ${cmd} prefix\n\n` +
+   "```";
+
+   // -----------------
+   // Settings Command
+   // -----------------
+
+   const settings =
+   `__**Settings**__\n\n` +
+   "```md\n" +
+   `# Defunct Command\n` +
+   `> ${cmd} settings updatebot\n\n` +
+
+   `# Update bot Database with new columns\n` +
+   `> ${cmd} settings updatedb\n\n` +
+
+   `# Set default server language\n` +
+   `> ${cmd} settings setLang to [lang]\n\n` +
+
+   `# Displays list of servers the bot is in\n` +
+   `> ${cmd} settings listservers\n\n` +
    "```";
 
    // -------------------
@@ -458,42 +532,71 @@ const helpMessage = function(config, botname, param)
    `> ${cmd} version \n` +
    `> ${cmd} stats \n` +
    `> ${cmd} stats global \n` +
-   `> ${cmd} stats server \n` +
+   `> ${cmd} stats server \n\n` +
+
+   `* Admin Only - Do not use in public channels\n` +
    `> ${cmd} stats debug \n` +
    "```";
 
-   // -----------------
-   // Settings Command
-   // -----------------
+   // -----------
+   // Embed Help
+   // -----------
 
-   const settings =
-   `__**Settings**__\n\n` +
-   `These commands are available only to admins in server channels.` +
+   const embed =
+   `__**Message Embed Styles**__\n\n` +
    "```md\n" +
 
-   `# Set default server language\n` +
-   `> ${cmd} settings setLang to [lang]\n\n` +
+   `# Command\n` +
+   `> ${cmd} embed [on/off]\n\n` +
 
-   `# Disconnect bot from server\n` +
-   `> ${cmd} settings disconnect\n\n` +
+   `# Parameters\n` +
+   `> on - Turns on Embed Translation\n` +
+   `> off - Turns on Webhook Translation Sending\n\n` +
 
-   `# Displays list of servers the bot is in\n` +
-   `> ${cmd} settings listservers\n\n` +
+   `# Examples\n` +
+   `* ${cmd} embed on \n` +
+   `* ${cmd} embed off \n` +
+   "```";
+
+   // -------------
+   // Bot2bot Help
+   // -------------
+
+   const bot2bot =
+   `__**Bot to Bot Translation**__\n\n` +
+   "```md\n" +
+   `* Usually 90% of bots ignore other bot messages but this feature attemptes to translate them.\n\n` +
+
+   `# Command\n` +
+   `> ${cmd} bot2bot [on/off]\n\n` +
+
+   `# Parameters\n` +
+   `> on - Turns on Bot2Bot Translations\n` +
+   `> off - Turns off Bot2Bot Translations\n\n` +
+
+   `# Examples\n` +
+   `* ${cmd} bot2bot on \n` +
+   `* ${cmd} bot2bot off \n` +
    "```";
 
    // -----------------
-   // Settings Command
+   // Debug Command
    // -----------------
 
    const debug =
-   `__**Debug**__\n\n` +
+   `__**Debug Webhook**__\n\n` +
    "```md\n" +
 
-   `# Turn debug webhook on \n` +
-   `> ${cmd} debug on\n\n` +
+   `# Command\n` +
+   `> ${cmd} debug [on/off]\n\n` +
 
-   `# Turn debug webhook off \n` +
-   `> ${cmd} debug off\n\n` +
+   `# Parameters\n` +
+   `> on - Turns debug webhook on\n` +
+   `> off - Turns debug webhook off\n\n` +
+
+   `# Examples\n` +
+   `* ${cmd} debug on \n` +
+   `* ${cmd} debug off \n` +
    "```";
 
    // ---------------
@@ -504,28 +607,19 @@ const helpMessage = function(config, botname, param)
    `__**Prefix**__\n\n` +
    "```md\n" +
 
-   `# You can now change the prefix of your bot commands \n` +
-   `> ${cmd} prefix [Prefix]\n\n` +
+   `# Command\n` +
+   `> ${cmd} prefix [prefix]\n\n` +
+   `> ${long} prefix [prefix]\n\n` +
 
-   `# You can also reset your prefix back to default with \n` +
-   `> ${long} prefix reset\n\n` +
-   "```";
+   `# Parameters\n` +
+   `> [prefix] - Changes the prefix of your bot commands\n` +
+   `> reset - Reset your prefix back to default\n\n` +
 
-   // --------------
-   // Tasks Command
-   // --------------
-
-   const tasks =
-   `__**Channel Tasks**__\n\n` +
-   `Displays translation tasks of the current channel` +
-   "```md\n" +
-
-   `# Displays translation tasks of the current channel\n` +
-   `> ${cmd} tasks\n\n` +
-
-   `# Displays translation tasks of specified channel\n` +
-   `* COMING IN FUTURE UPDATE \n` +
-   `> ${cmd} tasks for [#channel]\n` +
+   `# Examples\n` +
+   `* ${cmd} prefix $tr - your prefix would now be $tr \n` +
+   `* ${long} prefix $tr - your prefix would now be $tr \n` +
+   `* ${cmd} prefix reset - resets your prefix back to !tr\n` +
+   `* ${long} prefix reset - resets your prefix back to !tr\n` +
    "```";
 
    // ----------
@@ -537,15 +631,15 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Donate\n` +
-   `> Becoming a Sponsor, Supporter or Backer of RitaBot will \n` +
-   `> allow us to continue development long into the future, \n` +
-   `> and constantly strive to add new features and functionality  \n` +
-   `> to allow all users to break the language barrier and be  \n` +
-   `> heard and understood regardless of the language spoken.\n\n` +
+   `* Becoming a Sponsor, Supporter or Backer of RitaBot will \n` +
+   `* allow us to continue development long into the future, \n` +
+   `* and constantly strive to add new features and functionality  \n` +
+   `* to allow all users to break the language barrier and be  \n` +
+   `* heard and understood regardless of the language spoken\n\n` +
    `> You can Donate at Github Sponsors\n` +
-   `> ${cmd} donate github\n\n` +
+   `* ${cmd} donate github\n\n` +
    `> You can Donate at Open Collective\n` +
-   `> ${cmd} donate oc\n\n` +
+   `* ${cmd} donate oc\n\n` +
    `> Thank you for your continued support - RITA Dev Team` +
    "```";
 
@@ -556,23 +650,24 @@ const helpMessage = function(config, botname, param)
    const paramMap =
    {
       "basics": info + basics,
+      "modules": modules,
+      "readme": readme,
+      "report": report,
+      "commands": commands,
       "custom": custom,
       "react": react,
       "last": last,
       "auto": auto,
+      "tasks": tasks,
       "stop": stop,
       "misc": misc,
       "settings": settings,
-      "tasks": tasks,
       "stats": stats,
-      "readme": readme,
-      "modules": modules,
-      "report": report,
       "embed": embed,
       "bot2bot": bot2bot,
       "debug": debug,
-      "donate": donate,
-      "prefix": prefix
+      "prefix": prefix,
+      "donate": donate
    };
 
    //if (paramMap.hasOwnProperty(param))
@@ -583,23 +678,3 @@ const helpMessage = function(config, botname, param)
 
    return paramMap.basics;
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000);
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000);
-   });
-}

@@ -3,11 +3,11 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const langCheck = require("../core/lang.check");
-const translate = require("../core/translate");
-const fn = require("../core/helpers");
-const logger = require("../core/logger");
-const countryLangs = require("../core/country.langs");
+const langCheck = require("../../core/lang.check");
+const translate = require("../../core/translate");
+const fn = require("../../core/helpers");
+const logger = require("../../core/logger");
+const countryLangs = require("../../core/country.langs");
 
 // ----------------------------------------------------
 // Translate a message through discord reaction (flag)
@@ -45,7 +45,7 @@ module.exports = function(data, client)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
 
             // ignore bots
@@ -76,6 +76,7 @@ module.exports = function(data, client)
             // message data
 
             data.message = message;
+            delete data.message.attachments;
             data.message.roleColor = fn.getRoleColor(data.message.member);
             data.canWrite = true;
 

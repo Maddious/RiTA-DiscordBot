@@ -4,10 +4,9 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
-const colors = require("../core/colors");
-const db = require("../core/db");
-const logger = require("../core/logger");
-const discord = require("discord.js");
+const colors = require("../../core/colors");
+const db = require("../../core/db");
+const sendMessage = require("../../core/command.send");
 
 // -------------
 // Command Code
@@ -32,9 +31,9 @@ module.exports.run = function(data)
       return sendMessage(data);
    }
 
-   // -----------------------------------
-   // Error if settings param is missing
-   // -----------------------------------
+   // --------------------------------
+   // Error if embed param is missing
+   // --------------------------------
 
    if (!data.cmd.params)
    {
@@ -47,15 +46,16 @@ module.exports.run = function(data)
       // Send message
       // -------------
 
-      sendMessage(data);
+      return sendMessage(data);
    }
 
    // ----------------
    // Execute setting
    // ----------------
+
    if (data.message.isAdmin)
    {
-      embedSettings(data);
+      embed(data);
    }
 };
 
@@ -63,7 +63,7 @@ module.exports.run = function(data)
 // embed varible command handaler
 // -------------------------------
 
-const embedSettings = function(data)
+const embed = function(data)
 {
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
@@ -77,7 +77,7 @@ const embedSettings = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var output =
             "**```Embedded Translation```**\n" +
@@ -89,7 +89,7 @@ const embedSettings = function(data)
             // Send message
             // -------------
 
-            sendMessage(data);
+            return sendMessage(data);
          }
       );
    }
@@ -103,25 +103,5 @@ const embedSettings = function(data)
    // Send message
    // -------------
 
-   sendMessage(data);
+   return sendMessage(data);
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000);
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000);
-   });
-}

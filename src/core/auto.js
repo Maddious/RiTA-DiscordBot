@@ -16,7 +16,7 @@ module.exports = function(data)
 {
    if (data.err)
    {
-      return logger("error", data.err);
+      return logger("error", data.err, "db", data.message.guild.name);
    }
 
    if (data.rows.length > 0)
@@ -25,10 +25,7 @@ module.exports = function(data)
       // Add !i to end of message to ignore it instead
       // ----------------------------------------------
 
-      if (
-         //ignoreRegex.test(data.message.content) ||
-         data.message.content.endsWith("!i")
-      )
+      if (data.message.content.endsWith("!i"))
       {
          return data.message.react("➖").catch((err) =>
          {
@@ -151,7 +148,7 @@ const startTranslation = function(data, i, row)
                data.footer = footerExtra;
                data.forward = dm.id;
                sendTranslation(data);
-            }).catch(err => logger("error", err));
+            }).catch(err => logger("error", err, "dm", data.message.guild.name));
          }
       });
    }

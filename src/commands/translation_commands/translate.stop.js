@@ -3,10 +3,8 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const db = require("../core/db");
-const colors = require("../core/colors");
-const discord = require("discord.js");
-const botSend = require("../core/send");
+const db = require("../../core/db");
+const sendMessage = require("../../core/command.send");
 
 // ---------------------
 // Handle stop command
@@ -77,7 +75,6 @@ module.exports = function(data)
    // ------------------------------
    // Check if task actually exists
    // ------------------------------
-
 
    {
       db.checkTask(origin, dest, function(err, res)
@@ -221,23 +218,3 @@ const dbError = function(err, data)
    sendMessage(data);
    return console.log("error", err);
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000);
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000);
-   });
-}

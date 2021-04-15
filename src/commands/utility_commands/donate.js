@@ -4,8 +4,7 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
-const colors = require("../core/colors");
-const discord = require("discord.js");
+const sendMessage = require("../../core/command.send");
 
 // -------------
 // Command Code
@@ -20,21 +19,27 @@ module.exports.run = function(data)
 
    if (!data.cmd.params)
    {
-      data.color = "error";
+      data.color = "info";
       data.text =
-         ":warning:  Missing `donate` parameter. Use `" +
-         `${data.config.translateCmdShort} help donate\` to learn more.`;
+         "Thank you for wanting to donate to the RITA Bot Project \n" +
+         "You can donate via the Open Collective \n" +
+         `https://opencollective.com/ritabot-project\n\n` +
+         "or via GitHub Sponsors \n" +
+         `https://github.com/sponsors/RitaBot-Project\n\n` +
+         "For more info on what we use the donations for check out \n" +
+         `https://ritabot.gg/donate/\n\n`;
 
       // -------------
       // Send message
       // -------------
 
-      sendMessage(data);
+      return sendMessage(data);
    }
 
    // ----------------
    // Execute setting
    // ----------------
+
    if (data.message)
    {
       donate(data);
@@ -64,7 +69,7 @@ const donate = function(data)
          // Send message
          // -------------
 
-         sendMessage(data);
+         return sendMessage(data);
       }
    }
    else if (commandVariable1 === "oc")
@@ -82,40 +87,18 @@ const donate = function(data)
          // Send message
          // -------------
 
-         sendMessage(data);
+         return sendMessage(data);
       }
    }
-   else
-   {
-      data.color = "error";
-      data.text =
+
+   data.color = "error";
+   data.text =
       ":warning:  **`" + commandVariable1 +
       "`** is not a valid donate option.\n";
 
-      // -------------
-      // Send message
-      // -------------
+   // -------------
+   // Send message
+   // -------------
 
-      sendMessage(data);
-   }
+   return sendMessage(data);
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000);
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000);
-   });
-}

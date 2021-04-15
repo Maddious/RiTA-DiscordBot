@@ -3,12 +3,11 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const langCheck = require("../core/lang.check");
-const db = require("../core/db");
-const auth = require("../core/auth");
-const logger = require("../core/logger");
-const colors = require("../core/colors");
-const discord = require("discord.js");
+const langCheck = require("../../core/lang.check");
+const db = require("../../core/db");
+const auth = require("../../core/auth");
+const logger = require("../../core/logger");
+const sendMessage = require("../../core/command.send");
 
 // -------------
 // Command Code
@@ -44,7 +43,8 @@ module.exports = function(data)
          `:earth_africa:  Default bot language:  ` +
          `**\`${botLang.name} (${botLang.native})\`` +
          `**\n\n:bar_chart:  Translated **\`${stats[0].totalCount}\`** messages ` +
-         `across **\`${data.cmd.server.length}\`** servers\n\n` +
+         `across **\`${data.client.guilds.size}\`** servers ` +
+         `for **\`${db.server_obj.size} users.\`**\n\n` + // for total count in d.js v12
          `:regional_indicator_v:  Version:  ${version}\n\n` +
          `:repeat:  Automatic translation:  ` +
          `**\`${activeTasks}\`**  channels and  ` +
@@ -72,6 +72,7 @@ module.exports = function(data)
                `:repeat:  Automatic translation:  ` +
                `**\`${activeServerTasks}\`**  channels and  ` +
                `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` +
+               `:person_facepalming: Users in Server: **\`${data.message.channel.guild.memberCount}\`**\n\n` +
                `:inbox_tray: Embedded Message Status: **\`${embedVar}\`**\n\n` +
                `:robot: Bot to Bot Translation Status: **\`${bot2BotVar}\`**\n\n` +
                `:information_source: Webhook Debug Active State: **\`${webhookVar}\`**`;
@@ -187,23 +188,3 @@ module.exports = function(data)
       return sendMessage(data);
    });
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000);
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000);
-   });
-}

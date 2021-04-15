@@ -4,15 +4,14 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /*eslint-disable no-irregular-whitespace*/
-const auth = require("../core/auth");
-const fn = require("../core/helpers");
-const logger = require("../core/logger");
+const auth = require("../../core/auth");
+const fn = require("../../core/helpers");
+const logger = require("../../core/logger");
 const process = require("process");
 const stripIndent = require("common-tags").stripIndent;
 const oneLine = require("common-tags").oneLine;
 const secConverter = require("seconds-converter");
-const colors = require("../core/colors");
-const discord = require("discord.js");
+const sendMessage = require("../../core/command.send");
 
 // ------------
 // Invite Link
@@ -42,11 +41,6 @@ exports.invite = function(data)
 
 exports.shards = function(data)
 {
-   if (!data.message.author.id === data.config.owner)
-   {
-      return;
-   }
-
    // ---------------
    // Get shard info
    // ---------------
@@ -87,7 +81,7 @@ exports.shards = function(data)
 
    const shardErr = function(err)
    {
-      return logger("error", err, "shardFetch");
+      return logger("error", err, "shardFetch", data.message.guild.name);
    };
 
    shard.fetchClientValues("guilds.size").then(guildsSize =>
@@ -153,11 +147,6 @@ exports.shards = function(data)
 
 exports.proc = function(data)
 {
-   if (!data.message.author.id === data.config.owner)
-   {
-      return;
-   }
-
    // ------------------
    // Get proccess data
    // ------------------
@@ -246,23 +235,3 @@ exports.proc = function(data)
 
    sendMessage(data);
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000);
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000);
-   });
-}

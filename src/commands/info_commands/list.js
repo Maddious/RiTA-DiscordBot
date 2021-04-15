@@ -3,7 +3,7 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const botSend = require("../core/send");
+const sendMessage = require("../../core/command.send");
 
 // ---------------------
 // Supported Languages
@@ -51,5 +51,5 @@ module.exports = function(data)
    // Send message
    // -------------
 
-   return botSend(data);
+   return sendMessage(data);
 };

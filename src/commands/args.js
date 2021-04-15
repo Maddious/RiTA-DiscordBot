@@ -12,22 +12,22 @@ const fn = require("../core/helpers");
 // Commands
 // ---------
 
-const cmdHelp = require("./help");
-const cmdList = require("./list");
-const cmdStats = require("./stats");
-const cmdVersion = require("./version");
-const cmdEmbed = require("./embed");
-const cmdBot2bot = require("./bot2bot");
-const cmdDonate = require("./donate");
-const cmdMisc = require("./misc");
-const cmdSettings = require("./settings");
-const cmdTranslateLast = require("./translate.last");
-const cmdTranslateThis = require("./translate.this");
-const cmdTranslateAuto = require("./translate.auto");
-const cmdTranslateStop = require("./translate.stop");
-const cmdTranslateTasks = require("./translate.tasks");
-const cmdDebug = require("./debug");
-const cmdPrefix = require("./prefix");
+const cmdHelp = require("./utility_commands/help");
+const cmdList = require("./info_commands/list");
+const cmdStats = require("./info_commands/stats");
+const cmdVersion = require("./info_commands/version");
+const cmdEmbed = require("./settings_commands/embed");
+const cmdBot2bot = require("./settings_commands/bot2bot");
+const cmdDonate = require("./utility_commands/donate");
+const cmdMisc = require("./info_commands/misc");
+const cmdSettings = require("./settings_commands/settings");
+const cmdTranslateLast = require("./translation_commands/translate.last");
+const cmdTranslateThis = require("./translation_commands/translate.this");
+const cmdTranslateAuto = require("./translation_commands/translate.auto");
+const cmdTranslateStop = require("./translation_commands/translate.stop");
+const cmdTranslateTasks = require("./translation_commands/translate.tasks");
+const cmdDebug = require("./future_commands/debug");
+const cmdPrefix = require("./settings_commands/prefix");
 
 
 // ---------------------------------------
@@ -256,7 +256,7 @@ module.exports = function(data)
          "invite": cmdMisc.invite,
          "shards": cmdMisc.shards,
          "proc": cmdMisc.proc,
-         "cpu": cmdMisc.cpuUsage,
+         //"cpu": cmdMisc.cpuUsage,
          "settings": cmdSettings,
          "debug": cmdDebug.run,
          "prefix": cmdPrefix.run

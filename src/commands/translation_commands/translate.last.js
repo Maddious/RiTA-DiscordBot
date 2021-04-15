@@ -3,12 +3,10 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const fn = require("../core/helpers");
-const translate = require("../core/translate");
-const logger = require("../core/logger");
-const colors = require("../core/colors");
-const discord = require("discord.js");
-const botSend = require("../core/send");
+const fn = require("../../core/helpers");
+const translate = require("../../core/translate");
+const logger = require("../../core/logger");
+const sendMessage = require("../../core/command.send");
 
 const getCount = function(count)
 {
@@ -25,6 +23,28 @@ const getCount = function(count)
 
 module.exports = function(data)
 {
+   data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, command.send.js = ", err));
+   return data.message.channel.send({embed: {
+      color: 13107200,
+      author: {
+         name: data.client.user.username,
+         icon_url: data.client.user.displayAvatarURL
+      },
+      description: `:no_entry_sign: This command has been disabled Pending a fix \n
+      We apologise for any inconvenience this may cause.`
+
+   }}).then((msg) =>
+   {
+      msg.delete(10000).catch(err => console.log("UpdateBot Bot Message Deleted Error, settings.js = ", err));
+   });
+};
+
+// -----------------------------
+// Command Disabled Pending Fix
+// -----------------------------
+
+/*
+
    // -------------------------
    // Prepare translation data
    // -------------------------
@@ -106,6 +126,7 @@ module.exports = function(data)
                chains.push({
                   author: messagesArray[i].author,
                   msgs: [messagesArray[i].content],
+                  id: [messagesArray[i].id],
                   time: messagesArray[i].createdTimestamp,
                   color: fn.getRoleColor(messagesArray[i].member)
                });
@@ -146,6 +167,8 @@ module.exports = function(data)
       {
          data.message.author = reqChains[0].author;
          data.translate.original = reqChains[0].msgs.join("\n");
+         data.message.guild.id = reqChains[0].id;
+         delete data.message.attachments;
          return translate(data);
       }
 
@@ -154,26 +177,8 @@ module.exports = function(data)
       // -----------------------------------
 
       data.bufferChains = reqChains;
+      delete data.message.attachments;
       return translate(data);
-   }).catch(err => logger("error", err));
+   }).catch(err => logger("error", err, "command", data.message.guild.name));
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000);
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000);
-   });
-}
+*/

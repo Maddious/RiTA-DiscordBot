@@ -3,10 +3,11 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-const colors = require("../core/colors");
-const db = require("../core/db");
-const logger = require("../core/logger");
-const discord = require("discord.js");
+const db = require("../../core/db");
+const logger = require("../../core/logger");
+const sendMessage = require("../../core/command.send");
+const fs = require("fs");
+const path = require("path");
 
 // --------------------------
 // Proccess settings params
@@ -18,10 +19,22 @@ module.exports = function(data)
    // Command allowed by admins only
    // -------------------------------
 
-   if (!data.message.isAdmin)
+   if (!process.env.DISCORD_BOT_OWNER_ID)
    {
       data.color = "warn";
-      data.text = ":cop:  This command is reserved for server administrators.";
+      data.text = ":warning: Please set `DISCORD_BOT_OWNER_ID` as an array of User IDs allowed to use this command in configuration vars. \n\n **Ex.** ```js\nDISCORD_BOT_OWNER_ID = ['ALLOWED_USER_1_ID', 'ALLOWED_USER_2_ID', 'ALLOWED_USER_3_ID']```\n Place this with ID's in your .env file (local hosting) or environment variables (Heroku).";
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+   }
+
+   if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   {
+      data.color = "warn";
+      data.text = ":warning: These Commands are for developers only.";
 
       // -------------
       // Send message
@@ -114,7 +127,7 @@ const getSettings = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "db", data.message.guild.name);
             }
             data.color = "ok";
             data.text =
@@ -130,29 +143,13 @@ const getSettings = function(data)
       );
    };
 
-   // ---------------
-   // Disconnect bot
-   // ---------------
-
-   const disconnect = function(data)
-   {
-      data.color = "info";
-      data.text = data.bot.username + " is now disconnected from the server.";
-      sendMessage(data);
-
-      return setTimeout(function()
-      {
-         data.message.channel.guild.leave();
-      }, 3000);
-   };
-
    // -------------
    // List Servers
    // -------------
 
    const listServers = function(data)
    {
-      data.text = "__**Active Servers**__ - ";
+      data.text = "Active Servers - ";
 
       const activeGuilds = data.client.guilds.array();
 
@@ -160,35 +157,38 @@ const getSettings = function(data)
 
       activeGuilds.forEach(guild =>
       {
-         data.text += "```md\n";
-         data.text += `> ${guild.id}\n# ${guild.name}\n`;
-         data.text += `@${guild.owner.user.username}#`;
-         data.text += guild.owner.user.discriminator + "\n```";
+         data.text += `${guild.name}\n${guild.id}\n${guild.memberCount} members\n`;
+         if (guild.owner)
+         {
+            data.text += `${guild.owner.user.username}#`;
+            data.text += guild.owner.user.discriminator + "\n\n";
+         }
+         else
+         {
+            data.text += "End List";
+         }
       });
 
-      const splitOpts = {
-         maxLength: 2000,
-         char: ""
-      };
+      // ------------------
+      // Send message/file
+      // ------------------
 
-      // -------------
-      // Send message
-      // -------------
-
-      return data.message.channel.send(data.text, {split: splitOpts});
+      data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, command.send.js = ", err));
+      fs.writeFileSync(path.resolve(__dirname, "../../files/serverlist.txt"),data.text);
+      data.message.channel.send("Server List.", { files: ["./src/files/serverlist.txt"] });
    };
 
 
-   // --------------------------------------
-   // Update bot (disconnects from servers)
-   // --------------------------------------
+   // -----------
+   // Update bot
+   // -----------
 
    const updateBot = function(data)
    {
       //const activeGuilds = data.client.guilds.array();
       //data.color = "info";
       //data.text = `Updating bot for **${activeGuilds.length}** servers.`;
-      //sendMessage(data);
+      //return sendMessage(data);
       //
       //activeGuilds.forEach(guild =>
       //{
@@ -202,32 +202,60 @@ const getSettings = function(data)
             name: data.client.user.username,
             icon_url: data.client.user.displayAvatarURL
          },
-         description: ":no_entry_sign: This command has been disabled",
-         footer: `Requested by ${data.message.author.username}`
+         description: ":no_entry_sign: This command has been disabled"
 
       }}).then((msg) =>
       {
-         msg.delete(10000);
+         msg.delete(5000).catch(err => console.log("UpdateBot Bot Message Deleted Error, settings.js = ", err));
       });
    };
+
+
+   // -----------------
+   // DM server owners
+   // -----------------
+   /*
+   const announcement = async function(data)
+   {
+      const guildArray = Array.from(bot.client.guilds.values());
+      var i;
+      for (i = 0; i < guildArray.length; i++)
+      {
+         console.log("Hello");
+         const guild = await guildArray[i];
+         var owner = await guild.ownerID;
+         // eslint-disable-next-line quotes
+         owner = Number(owner)
+         // eslint-disable-next-line no-undef
+         owner = owner.replace(/([0-9]+)/g, "$1");
+         console.log("Done");
+         await data.client.users.get(owner).send("Testing").catch((err) =>
+         {
+            console.log(err);
+         });
+      }
+   };*/
+
+   // Announcements not possible until D.js v12
 
    // ----------
    // Update db
    // ----------
 
-   const updateDB = function(data)
+   function updateDB(data)
    {
       data.color = "info";
       data.text =
-      ":white_check_mark: **Database has been updated.**";
+         ":white_check_mark: **Database has been updated.**";
 
       // -------------
       // Send message
       // -------------
+
       db.updateColumns();
 
       return sendMessage(data);
-   };
+   }
 
    // --------------------------
    // Execute command if exists
@@ -235,14 +263,13 @@ const getSettings = function(data)
 
    const validSettings = {
       "setlang": setLang,
-      "disconnect": disconnect,
       "listservers": listServers,
       "updatedb": updateDB,
       "updatebot": updateBot
+      //"announcement": announcement
    };
 
    const settingParam = data.cmd.params.split(" ")[0].toLowerCase();
-
    if (Object.prototype.hasOwnProperty.call(validSettings,settingParam))
    {
       return validSettings[settingParam](data);
@@ -264,22 +291,3 @@ const getSettings = function(data)
    return sendMessage(data);
 };
 
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000);
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000);
-   });
-}

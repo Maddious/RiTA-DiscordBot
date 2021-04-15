@@ -4,10 +4,9 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
-const colors = require("../core/colors");
-const db = require("../core/db");
-const logger = require("../core/logger");
-const discord = require("discord.js");
+const colors = require("../../core/colors");
+const db = require("../../core/db");
+const sendMessage = require("../../core/command.send");
 
 // -----------------------
 // Command code
@@ -15,27 +14,6 @@ const discord = require("discord.js");
 
 module.exports.run = function(data)
 {
-   // --------------------------
-   // If no new prefix is given
-   // --------------------------
-
-   if (!data.cmd.params)
-   {
-      const cmd = data.config.translateCmdShort;
-      const object_prefix = db.server_obj[data.message.guild.id].prefix;
-      if (cmd !== object_prefix && object_prefix !== "!tr")
-      {
-         data.color = "info";
-         data.text = `:information_source: Your current prefix is: **\`${db.server_obj[message.guild.id].prefix}\`**\n\n`;
-      }
-      else
-      {
-         data.color = "info";
-         data.text = `:information_source: Your current prefix is: **\`${cmd}\`**\n\n`;
-      }
-      return sendMessage(data);
-   }
-
    // -------------------------------
    // Command allowed by admins only
    // -------------------------------
@@ -51,6 +29,36 @@ module.exports.run = function(data)
 
       return sendMessage(data);
    }
+
+   // --------------------------
+   // If no new prefix is given
+   // --------------------------
+
+   if (!data.cmd.params)
+   {
+      const cmd = data.config.translateCmdShort;
+      const object_prefix = db.server_obj[data.message.guild.id].db.prefix;
+      if (cmd !== object_prefix && object_prefix !== "!tr")
+      {
+         data.color = "info";
+         data.text = `:information_source: Your current prefix is: **\`${db.server_obj[message.guild.id].db.prefix}\`**\n\n`;
+      }
+      else
+      {
+         data.color = "info";
+         data.text = `:information_source: Your current prefix is: **\`${cmd}\`**\n\n`;
+      }
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+   }
+
+   // ----------------
+   // Execute setting
+   // ----------------
 
    if (data.message.isAdmin)
    {
@@ -78,7 +86,7 @@ const prefix = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var outputvalid =
             "**```Command prefix has been reset```**\n" +
@@ -90,7 +98,7 @@ const prefix = function(data)
             // Send message
             // -------------
 
-            sendMessage(data);
+            return sendMessage(data);
          }
       );
    }
@@ -104,7 +112,7 @@ const prefix = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var outputvalid =
             "**```New command prefix has been set```**\n" +
@@ -116,7 +124,7 @@ const prefix = function(data)
             // Send message
             // -------------
 
-            sendMessage(data);
+            return sendMessage(data);
          }
       );
    }
@@ -130,25 +138,5 @@ const prefix = function(data)
    // Send message
    // -------------
 
-   sendMessage(data);
+   return sendMessage(data);
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000);
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000);
-   });
-}

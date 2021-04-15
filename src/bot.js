@@ -18,7 +18,7 @@ const auth = require("./core/auth");
 const events = require("./events");
 
 events.listen(client);
-
+exports.client = client;
 // ---------------
 // Initialize Bot
 // ---------------

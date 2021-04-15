@@ -16,7 +16,7 @@ const hook = new discord.WebhookClient(
 // logger code
 // ------------
 
-module.exports = function(type, data, subtype = null)
+module.exports = function(type, data, subtype = null, id = "Unknown")
 {
    if (hook.id === undefined)
    {
@@ -34,7 +34,7 @@ module.exports = function(type, data, subtype = null)
    //if (logTypes.hasOwnProperty(type))
    if (Object.prototype.hasOwnProperty.call(logTypes,type))
    {
-      return logTypes[type](data, subtype);
+      return logTypes[type](data, subtype, id);
    }
 };
 
@@ -74,7 +74,7 @@ const hookSend = function(data)
 // Error Logger
 // -------------
 
-const errorLog = function(error, subtype)
+const errorLog = function(error, subtype, id)
 {
    let errorTitle = null;
 
@@ -89,8 +89,10 @@ const errorLog = function(error, subtype)
       db: ":outbox_tray:  Database Error",
       uncaught: ":japanese_goblin:  Uncaught Exception",
       unhandled: ":japanese_ogre:  Unhandled promise rejection",
-      warning: ":exclamation:  Proccess Warning",
+      warning: ":exclamation:  Process Warning",
       api: ":boom:  External API Error",
+      discord: ":notepad_spiral: DiscordAPIError: Unknown Message",
+      command: ":chains: Command Error",
       shardFetch: ":pager:  Discord - shard.fetchClientValues"
    };
 
@@ -103,7 +105,8 @@ const errorLog = function(error, subtype)
    hookSend({
       title: errorTitle,
       color: "err",
-      msg: "```json\n" + error.toString() + "\n```"
+      // eslint-disable-next-line no-useless-concat
+      msg: "```json\n" + error.toString() + "\n" + error.stack + "\n\n" + "Error originated from server: " + id + "```"
    });
 };
 

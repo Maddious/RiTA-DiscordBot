@@ -4,10 +4,9 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
-const colors = require("../core/colors");
-const db = require("../core/db");
-const logger = require("../core/logger");
-const discord = require("discord.js");
+const db = require("../../core/db");
+const logger = require("../../core/logger");
+const sendMessage = require("../../core/command.send");
 
 // -----------------------
 // Command code
@@ -31,12 +30,33 @@ module.exports.run = function(data)
       return sendMessage(data);
    }
 
+   // --------------------------------
+   // Error if debug param is missing
+   // --------------------------------
+
+   if (!data.cmd.params)
+   {
+      data.color = "error";
+      data.text =
+         ":warning:  Missing `debug` parameter. Use `" +
+         `${data.config.translateCmdShort} help debug\` to learn more.`;
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+   }
+
+   // ----------------
+   // Execute setting
+   // ----------------
+
    if (data.message.isAdmin)
    {
       debug(data);
    }
 };
-
 
 // -------------------------------
 // debug varible command handler
@@ -58,7 +78,7 @@ const debug = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var outputgh =
             "**```Start Debug mode```**\n" +
@@ -71,7 +91,7 @@ const debug = function(data)
             // Send message
             // -------------
 
-            sendMessage(data);
+            return sendMessage(data);
          }
       );
    }
@@ -84,7 +104,7 @@ const debug = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var outputoc =
           "**```Stop Debug mode```**\n" +
@@ -97,7 +117,7 @@ const debug = function(data)
             // Send message
             // -------------
 
-            sendMessage(data);
+            return sendMessage(data);
          }
       );
    }
@@ -111,25 +131,5 @@ const debug = function(data)
    // Send message
    // -------------
 
-   sendMessage(data);
+   return sendMessage(data);
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000);
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000);
-   });
-}

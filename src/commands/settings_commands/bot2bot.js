@@ -4,10 +4,9 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
-const colors = require("../core/colors");
-const db = require("../core/db");
-const logger = require("../core/logger");
-const discord = require("discord.js");
+const colors = require("../../core/colors");
+const db = require("../../core/db");
+const sendMessage = require("../../core/command.send");
 
 // -------------
 // Command Code
@@ -29,39 +28,42 @@ module.exports.run = function(data)
       // Send message
       // -------------
 
-      sendMessage(data);
+      return sendMessage(data);
    }
 
-   // -----------------------------------
-   // Error if settings param is missing
-   // -----------------------------------
+   // ----------------------------------
+   // Error if bot2bot param is missing
+   // ----------------------------------
 
    if (!data.cmd.params)
    {
       data.color = "error";
       data.text =
-         ":warning:  Missing `embed` parameter. Use `" +
-         `${data.config.translateCmdShort} help embed\` to learn more.`;
+         ":warning:  Missing `bot2bot` parameter. Use `" +
+         `${data.config.translateCmdShort} help bot2bot\` to learn more.`;
 
       // -------------
       // Send message
       // -------------
 
-      sendMessage(data);
+      return sendMessage(data);
    }
 
    // ----------------
    // Execute setting
    // ----------------
 
-   embedSettings(data);
+   if (data.message.isAdmin)
+   {
+      bot2bot(data);
+   }
 };
 
-// -------------------------------
-// embed varible command handaler
-// -------------------------------
+// ---------------------------------
+// bot2bot varible command handaler
+// ---------------------------------
 
-const embedSettings = function(data)
+const bot2bot = function(data)
 {
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
@@ -75,7 +77,7 @@ const embedSettings = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var output =
             `:warning: This is extremely experimental, use at your own risk! :warning:\n\n`+
@@ -88,7 +90,7 @@ const embedSettings = function(data)
             // Send message
             // -------------
 
-            sendMessage(data);
+            return sendMessage(data);
          }
       );
    }
@@ -102,25 +104,5 @@ const embedSettings = function(data)
    // Send message
    // -------------
 
-   sendMessage(data);
+   return sendMessage(data);
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   message.delete(5000);
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000);
-   });
-}
