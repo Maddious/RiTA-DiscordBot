@@ -323,40 +323,40 @@ exports.updateColumns = async function(data)
    {
       if (!tableDefinition.prefix)
       {
-         console.log("-------------> Adding prefix column");
+         console.log("DEBUG:-------------> Adding prefix column");
          db.getQueryInterface().addColumn("servers", "prefix", {
             type: Sequelize.STRING(32),
             defaultValue: "!tr"});
       }
       if (!tableDefinition.embedstyle)
       {
-         console.log("-------------> Adding embedstyle column");
+         console.log("DEBUG:-------------> Adding embedstyle column");
          db.getQueryInterface().addColumn("servers", "embedstyle", {
             type: Sequelize.STRING(8),
             defaultValue: "on"});
       }
       if (!tableDefinition.bot2botstyle)
       {
-         console.log("-------------> Adding bot2botstyle column");
+         console.log("DEBUG:-------------> Adding bot2botstyle column");
          db.getQueryInterface().addColumn("servers", "bot2botstyle", {
             type: Sequelize.STRING(8),
             defaultValue: "off"});
       }
       if (!tableDefinition.webhookid)
       {
-         console.log("-------------> Adding webhookid column");
+         console.log("DEBUG:-------------> Adding webhookid column");
          db.getQueryInterface().addColumn("servers", "webhookid", {
             type: Sequelize.STRING(32)});
       }
       if (!tableDefinition.webhooktoken)
       {
-         console.log("-------------> Adding webhooktoken column");
+         console.log("DEBUG:-------------> Adding webhooktoken column");
          db.getQueryInterface().addColumn("servers", "webhooktoken", {
             type: Sequelize.STRING(255)});
       }
       if (!tableDefinition.webhookactive)
       {
-         console.log("-------------> Adding webhookactive column");
+         console.log("DEBUG:-------------> Adding webhookactive column");
          db.getQueryInterface().addColumn("servers", "webhookactive", {
             type: Sequelize.BOOLEAN,
             defaultValue: false});
@@ -450,7 +450,7 @@ exports.removeTask = function(origin, dest, cb)
    console.log("DEBUG: Stage Remove Channel Task");
    if (dest === "all")
    {
-      console.log("removeTask() - all");
+      console.log("DEBUG: removeTask() - all");
       return Tasks.destroy({ where: { [Op.or]: [{ origin: origin },{ dest: origin }] } }).then(
          function (err, result)
          {
@@ -472,7 +472,7 @@ exports.removeTask = function(origin, dest, cb)
 
 exports.getTasksCount = function(origin, cb)
 {
-   console.log("Get Task Count");
+   console.log("DEBUG: Get Task Count");
    return Tasks.count({ where: {"origin": origin }}).then(c =>
    {
       cb("", c);

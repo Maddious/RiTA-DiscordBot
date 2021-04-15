@@ -72,7 +72,7 @@ const COMMANDNAME = function(data)
 
    if (commandVariable1 === "Variable1")
    {
-      console.log(commandVariable1);
+      console.log("DEBUG: " + commandVariable1);
 
       // ------------------
 
@@ -88,7 +88,7 @@ const COMMANDNAME = function(data)
    }
    else if (commandVariable1 === "Variable2")
    {
-      console.log(commandVariable1);
+      console.log("DEBUG: " + commandVariable1);
 
       // ------------------
 

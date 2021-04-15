@@ -131,7 +131,7 @@ const removeTask = function(res, data, origin, dest, destDisplay)
 {
    db.removeTask(origin, dest, function(err)
    {
-      console.log("remoteTask()");
+      console.log("DEBUG: remoteTask()");
       if (err)
       {
          return dbError(err, data);

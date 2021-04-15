@@ -68,7 +68,7 @@ const debug = function(data)
 
    if (commandVariable1 === "on")
    {
-      console.log(commandVariable1);
+      console.log("DEBUG: debug variable " + commandVariable1);
       return db.updateWebhookVar(
          data.message.channel.guild.id,
          commandVariable1, //This would be the Webhook ID
@@ -97,7 +97,7 @@ const debug = function(data)
    }
    else if (commandVariable1 === "off")
    {
-      console.log(commandVariable1);
+      console.log("DEBUG: debug variable " + commandVariable1);
       return db.removeWebhook(
          data.message.channel.guild.id,
          function(err)
