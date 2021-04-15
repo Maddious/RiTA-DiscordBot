@@ -156,7 +156,7 @@ const embedOn = function(data)
                var embed = {
                   title: data.title,
                   fields: data.fields,
-                  uthor: {
+                  author: {
                      name: data.bot.username,
                      icon_url: data.bot.displayAvatarURL
                   },
@@ -172,7 +172,7 @@ const embedOn = function(data)
                var embed = {
                   title: data.title,
                   fields: data.fields,
-                  uthor: {
+                  author: {
                      name: data.author.username,
                      icon_url: data.author.displayAvatarURL
                   },
