@@ -4,6 +4,6 @@ SQLlite
 *.exe
 sqlite3.dll
 sqlite3.def
-serverlist.txt
+src/files/serverlist.txt
 *.db
 .env
