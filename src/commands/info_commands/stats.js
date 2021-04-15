@@ -155,22 +155,23 @@ module.exports = function(data)
 
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("debug"))
       {
-         if (data.message.isAdmin === false)
+         Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
          {
-            data.color = "warn";
-            data.text = ":cop:  This command is reserved for server admins.";
+            if (data.message.isAdmin === false)
+            {
+               {data.color = "warn";}
+               data.text = ":cop:  This command is reserved for server adminis.";
 
-            // -------------
-            // Send message
-            // -------------
+               // -------------
+               // Send message
+               // -------------
 
-            return sendMessage(data);
+               return sendMessage(data);
+            }
+            break Override;
          }
 
-         if (data.message.isAdmin)
-         {
-            data.text = debugStats;
-         }
+         data.text = debugStats;
 
          // -------------
          // Send message

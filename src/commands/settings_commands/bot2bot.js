@@ -19,16 +19,20 @@ module.exports.run = function(data)
    // Command allowed by admins only
    // -------------------------------
 
-   if (!data.message.isAdmin)
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
-      data.color = "warn";
-      data.text = ":cop:  This command is reserved for server administrators.";
+      if (data.message.isAdmin === false)
+      {
+         {data.color = "warn";}
+         data.text = ":cop:  This command is reserved for server adminis.";
 
-      // -------------
-      // Send message
-      // -------------
+         // -------------
+         // Send message
+         // -------------
 
-      return sendMessage(data);
+         return sendMessage(data);
+      }
+      break Override;
    }
 
    // ----------------------------------
@@ -53,10 +57,7 @@ module.exports.run = function(data)
    // Execute setting
    // ----------------
 
-   if (data.message.isAdmin)
-   {
-      bot2bot(data);
-   }
+   bot2bot(data);
 };
 
 // ---------------------------------
