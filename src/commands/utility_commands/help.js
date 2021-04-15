@@ -58,7 +58,12 @@ module.exports = function(data)
 
       return sendMessage(data);
    }
-   else if (data.cmd.params !== "settings")
+   else if (data.cmd.params === null)
+   {
+      data.text = helpMessage(data.config, data.bot.username, getHelpWith);
+      return sendMessage(data);
+   }
+   else if (data.cmd.params !== "settings" || null)
    {
       const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
       getHelpWith = cleanParam;
@@ -70,6 +75,14 @@ module.exports = function(data)
 
       return sendMessage(data);
    }
+
+   data.text = helpMessage(data.config, data.bot.username, getHelpWith);
+
+   // -------------
+   // Send message
+   // -------------
+
+   return sendMessage(data);
 };
 
 // -------------
