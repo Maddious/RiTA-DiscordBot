@@ -33,6 +33,9 @@ module.exports = async function(data)
          .setDescription("Developer Identity confirmed: \n\n" + data.text)
          .setTimestamp()
          .setFooter("This message will self-destruct in one minute");
+      // -------------
+      // Send message
+      // -------------
 
       return data.message.channel.send(richEmbedMessage).then(msg =>
       {
@@ -57,6 +60,10 @@ module.exports = async function(data)
                `:no_entry:  **${data.bot.username}** does not have permission to write in your server **` +
                `${data.channel.guild.name}**. Please fix.`;
 
+               // -------------
+               // Send message
+               // -------------
+
                return data.channel.guild.owner
                   .send(writeErr)
                   .catch(err => console.log("error", err, "warning", data.message.guild.name));
@@ -71,6 +78,10 @@ module.exports = async function(data)
       .setDescription(data.text)
       .setTimestamp()
       .setFooter("This message will self-destruct in one minute");
+
+   // -------------
+   // Send message
+   // -------------
 
    return data.message.channel.send(richEmbedMessage).then(msg =>
    {
@@ -94,6 +105,10 @@ module.exports = async function(data)
             const writeErr =
                `:no_entry:  **${data.bot.username}** does not have permission to write in your server **` +
                `${data.channel.guild.name}**. Please fix.`;
+
+            // -------------
+            // Send message
+            // -------------
 
             return data.channel.guild.owner
                .send(writeErr)

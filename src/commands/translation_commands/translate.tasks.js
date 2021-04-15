@@ -154,6 +154,7 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
 
    return sendMessage(data);
 };
+
 // -----------------------
 // Destination ID handler
 // -----------------------

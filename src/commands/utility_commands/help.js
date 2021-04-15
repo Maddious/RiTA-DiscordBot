@@ -4,7 +4,9 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const sendMessage = require("../../core/command.send");
-
+const colors = require("../../core/colors");
+const discord = require("discord.js");
+const richEmbedMessage = new discord.RichEmbed();
 // ------------------------
 // Bot Help / Command List
 // ------------------------
@@ -19,19 +21,55 @@ module.exports = function(data)
 
    var getHelpWith = "basics";
 
-   if (data.cmd.params)
+   if (data.cmd.params === "settings")
    {
       const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
       getHelpWith = cleanParam;
+
+      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+      {
+         getHelpWith = cleanParam;
+         data.text = helpMessage(data.config, data.bot.username, getHelpWith);
+
+         console.log("Insufficient Permission");
+         data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, help.js = ", err));
+         richEmbedMessage
+            .setColor(colors.get(data.color))
+            .setAuthor(data.bot.username, data.bot.displayAvatarURL)
+            .setDescription("This command is available only to Developers. \n\n")
+            .setTimestamp()
+            .setFooter("This message will self-destruct in one minute");
+
+         // -------------
+         // Send message
+         // -------------
+
+         return data.message.channel.send(richEmbedMessage).then(msg =>
+         {
+            msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, help.js = ", err));
+         });
+      }
+      getHelpWith = cleanParam;
+      data.text = helpMessage(data.config, data.bot.username, getHelpWith);
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
    }
+   else if (data.cmd.params !== "settings")
+   {
+      const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
+      getHelpWith = cleanParam;
+      data.text = helpMessage(data.config, data.bot.username, getHelpWith);
 
-   data.text = helpMessage(data.config, data.bot.username, getHelpWith);
+      // -------------
+      // Send message
+      // -------------
 
-   // -------------
-   // Send message
-   // -------------
-
-   return sendMessage(data);
+      return sendMessage(data);
+   }
 };
 
 // -------------
@@ -249,7 +287,6 @@ const helpMessage = function(config, botname, param)
    `- https://discord.gg/mgNR64R` +
    "\n\n";
 
-
    // --------------------------------
    // Report Bugs + Report in Discord
    // --------------------------------
@@ -272,7 +309,7 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
    `# Translation Commands\n` +
    `* ${cmd} this to [lang] from [lang]: [msg]\n` +
-   `* ${cmd} last [n] to [lang] from [lang]\n` +
+   `* ${cmd} last (Command Disabled)\n` +
    `* ${cmd} channel to [lang] from [lang] for [me/@/#]\n` +
    `* ${cmd} auto to [lang] for [me/@/#]\n` +
    `* ${cmd} stop for [me/@/#]\n\n` +
@@ -296,7 +333,7 @@ const helpMessage = function(config, botname, param)
 
    `# Debug Commands\n` +
    `* ${cmd} debug [on/pff]\n` +
-   `* ${cmd} stats debug\n\n` +
+   `* ${cmd} stats debug (Admin Only)\n\n` +
 
    `# Want to Support RITA\n` +
    `* ${cmd} donate [oc/github]\n\n` +
@@ -469,7 +506,19 @@ const helpMessage = function(config, botname, param)
 
    const settings =
    `__**Settings**__\n\n` +
-   `These commands are available only to Developers.`;
+   "```md\n" +
+   `# Defunct Command\n` +
+   `> ${cmd} settings updatebot\n\n` +
+
+   `# Update bot Database with new columns\n` +
+   `> ${cmd} settings updatedb\n\n` +
+
+   `# Set default server language\n` +
+   `> ${cmd} settings setLang to [lang]\n\n` +
+
+   `# Displays list of servers the bot is in\n` +
+   `> ${cmd} settings listservers\n\n` +
+   "```";
 
    // -------------------
    // Statistics Command
@@ -492,6 +541,7 @@ const helpMessage = function(config, botname, param)
    // -----------
    // Embed Help
    // -----------
+
    const embed =
    `__**Message Embed Styles**__\n\n` +
    "```md\n" +
@@ -507,6 +557,7 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} embed on \n` +
    `* ${cmd} embed off \n` +
    "```";
+
    // -------------
    // Bot2bot Help
    // -------------

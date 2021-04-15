@@ -34,6 +34,7 @@ module.exports = function(data)
    // ----------------
    // Language checks
    // ----------------
+
    if (data.cmd.from.valid.length !== 1)
    {
       data.color = "error";

@@ -90,6 +90,7 @@ module.exports = function(lang, single = false)
       // ----------------
       // Auto language
       // ----------------
+
       if (language.trim() === "auto")
       {
          langs.unique.push(language);

@@ -4,10 +4,9 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
-const colors = require("../../core/colors");
 const db = require("../../core/db");
 const logger = require("../../core/logger");
-const discord = require("discord.js");
+const sendMessage = require("../../core/command.send");
 
 // -----------------------
 // Command code
@@ -58,7 +57,6 @@ module.exports.run = function(data)
       debug(data);
    }
 };
-
 
 // -------------------------------
 // debug varible command handler
@@ -135,23 +133,3 @@ const debug = function(data)
 
    return sendMessage(data);
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, debug.js = ", err));
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, debug.js = ", err));
-   });
-}

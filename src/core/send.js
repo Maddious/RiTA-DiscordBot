@@ -193,7 +193,6 @@ const embedOn = function(data)
          }).catch(err =>
          {
             var errMsg = err;
-            //logger("dev", err);
 
             // ------------------------
             // Error for long messages
@@ -207,7 +206,6 @@ const embedOn = function(data)
             if (err.code && err.code === 50013)
             {
                console.log("DEBUG: Error 50013 - Origin");
-               //return logger("custom", err, "send", data.guild.name);
                return logger("custom", {
                   color: "ok",
                   msg: `:exclamation: Write Permission Error - Origin \n
@@ -353,14 +351,6 @@ const embedOff = function(data)
 
    function sendWebhookMessage(webhook, data)
    {
-      /*if (data.author)
-      {
-         data.author = {
-            name: data.author.username,
-            // eslint-disable-next-line camelcase
-            icon_url: data.author.displayAvatarURL
-         };
-      }*/ // Just use data.author.username
       var files;
 
       if (data.attachments)
@@ -383,12 +373,6 @@ const embedOff = function(data)
          });
       }
 
-      //if (data.author)
-      //{
-      //   if (data.author.name) { username = data.author.name;}
-      //   if (data.author.icon_url) { avatarURL = data.author.icon_url;}
-      //}
-      //{
       {
          if (!data.author)
          {
@@ -411,14 +395,6 @@ const embedOff = function(data)
             });
          }
       }
-      /*
-      webhook.send(data.text, {
-         //If you get a error at the below line then the bot does not have write permissions.
-         "username": data.author.username || data.message,
-         "avatarURL": data.author.displayAvatarURL,
-         "files": files
-      });
-      */
    }
 
    // ---------------------
@@ -432,7 +408,6 @@ const embedOff = function(data)
 
       let color = colors.get(data.color);
       let avatarURL;
-      //var messageData = message.data;
       if (!channel) {return console.log("Channel not specified.");}
       // Sets the color of embed message but no embed message used so thus unused.
       if (!color) {color = colors.get(data.color);}
@@ -543,16 +518,13 @@ const checkPerms = function(data, sendBox)
          forward: data.forward,
          origin: null,
          bot: data.bot
-         //author: {
-         //   name: data.bot.username,
-         //   icon_url: data.bot.displayAvatarURL
-         //}
       };
    }
 
    // ---------------------------------------------------
    // Notify server owner if bot cannot write to channel
    // ---------------------------------------------------
+
    if (!data.canWrite)
    {
       console.log("DEBUG: Perms Error, Write Restricted 1");
@@ -619,7 +591,6 @@ const checkPerms = function(data, sendBox)
             // --------------------------------------------------------------
 
             console.log("DEBUG: Error 50013 - Destination");
-            //return logger("custom", err, "send", data.guild.name);
             logger("custom", {
                color: "ok",
                msg: `:exclamation: Write Permission Error - Destination\n

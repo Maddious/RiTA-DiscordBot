@@ -76,7 +76,6 @@ module.exports = function(data)
    // Check if task actually exists
    // ------------------------------
 
-
    {
       db.checkTask(origin, dest, function(err, res)
       {

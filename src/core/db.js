@@ -394,6 +394,7 @@ exports.channelTasks = function(data)
       return autoTranslate(data);
    }
 };
+
 // ------------------------------
 // Get tasks for channel or user
 // ------------------------------

@@ -24,6 +24,10 @@ module.exports = function(data)
       data.color = "warn";
       data.text = ":warning: Please set `DISCORD_BOT_OWNER_ID` as an array of User IDs allowed to use this command in configuration vars. \n\n **Ex.** ```js\nDISCORD_BOT_OWNER_ID = ['ALLOWED_USER_1_ID', 'ALLOWED_USER_2_ID', 'ALLOWED_USER_3_ID']```\n Place this with ID's in your .env file (local hosting) or environment variables (Heroku).";
 
+      // -------------
+      // Send message
+      // -------------
+
       return sendMessage(data);
    }
 
@@ -31,6 +35,11 @@ module.exports = function(data)
    {
       data.color = "warn";
       data.text = ":warning: These Commands are for developers only.";
+
+      // -------------
+      // Send message
+      // -------------
+
       return sendMessage(data);
    }
 
@@ -137,6 +146,7 @@ const getSettings = function(data)
    // -------------
    // List Servers
    // -------------
+
    const listServers = function(data)
    {
       data.text = "Active Servers - ";
@@ -162,6 +172,7 @@ const getSettings = function(data)
       // ------------------
       // Send message/file
       // ------------------
+
       data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, command.send.js = ", err));
       fs.writeFileSync(path.resolve(__dirname, "../../files/serverlist.txt"),data.text);
       data.message.channel.send("Server List.", { files: ["./src/files/serverlist.txt"] });
@@ -240,6 +251,7 @@ const getSettings = function(data)
       // -------------
       // Send message
       // -------------
+
       db.updateColumns();
 
       return sendMessage(data);
