@@ -370,14 +370,14 @@ const embedOn = function embedOn (data)
                // Error for long messages
                // ------------------------
 
-               if (err.code && err.code === error.Content)
+               if (err.code && err.code === error.content || error.access)
                {
 
                   data.channel.send(":warning:  Message is too long.");
 
                }
 
-               if (err.code && err.code === error.perm)
+               if (err.code && err.code === error.perm || error.access)
                {
 
                   console.log("DEBUG: Error 50013 - Origin");
@@ -397,7 +397,7 @@ const embedOn = function embedOn (data)
                // Handle error for users who cannot recieve private messages
                // -----------------------------------------------------------
 
-               if (err.code && err.code === error.sendDm && data.origin)
+               if (err.code && err.code === error.sendDm || error.access)
                {
 
                   const badUser = data.channel.recipient;

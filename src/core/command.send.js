@@ -33,7 +33,7 @@ function sendMessage (data)
       catch((err) =>
       {
 
-         if (err.code && err.code === error.perm)
+         if (err.code && err.code === error.perm || error.access)
          {
 
             console.log("Error 50013");
@@ -42,7 +42,7 @@ function sendMessage (data)
                "custom",
                {
                   "color": "ok",
-                  "msg": `:exclamation: blah Permission Error \n
+                  "msg": `:exclamation: Write Permission Error \n
                   Server: **${data.channel.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
