@@ -108,6 +108,7 @@
       "multiline-comment-style":["off", "separate-lines"],
       "handle-callback-err": "off",
       "no-sync": "off",
+      "no-negated-condition": "off",
       // ---------------------
       // These could be fixed
       // ---------------------
@@ -120,7 +121,6 @@
       "require-unicode-regexp": "warn",
       "prefer-named-capture-group": "warn",
       "prefer-regex-literals": "warn",
-      "no-negated-condition": "warn",
       "no-ternary": "warn",
       "no-nested-ternary": "warn",
       "new-cap": "warn"
