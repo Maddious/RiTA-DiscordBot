@@ -2,11 +2,16 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const colors = require("./colors");
 const discord = require("discord.js");
 const richEmbedMessage = new discord.RichEmbed();
 const logger = require("./logger");
+const error = require("./error");
+const time = {
+   "long": 60000,
+   "short": 5000
+};
 
 // ---------------------
 // Send Data to Channel
@@ -18,7 +23,7 @@ function sendMessage (data)
    return data.message.channel.send(richEmbedMessage).then((msg) =>
    {
 
-      msg.delete(60000).catch((err) => console.log(
+      msg.delete(time.long).catch((err) => console.log(
          "Bot Message Deleted Error, command.send.js = ",
          err
       ));
@@ -28,16 +33,16 @@ function sendMessage (data)
       catch((err) =>
       {
 
-         if (err.code && err.code === 50013)
+         if (err.code && err.code === error.perm)
          {
 
             console.log("Error 50013");
-            // return logger("custom", err, "send", data.guild.name);
+            // Return logger("custom", err, "send", data.guild.name);
             logger(
                "custom",
                {
-                  color: "ok",
-                  msg: `:exclamation: Write Permission Error \n
+                  "color": "ok",
+                  "msg": `:exclamation: blah Permission Error \n
                   Server: **${data.channel.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
@@ -84,7 +89,7 @@ module.exports = function run (data)
    {
 
       console.log("Developer Override");
-      data.message.delete(5000).catch((err) => console.log(
+      data.message.delete(time.short).catch((err) => console.log(
          "Command Message Deleted Error, command.send.js = ",
          err
       ));
@@ -105,7 +110,7 @@ module.exports = function run (data)
 
    }
    console.log("Sufficient Permission");
-   data.message.delete(5000).catch((err) => console.log(
+   data.message.delete(time.short).catch((err) => console.log(
       "Command Message Deleted Error, command.send.js = ",
       err
    ));

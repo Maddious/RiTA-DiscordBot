@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING]
 const discord = require("discord.js");
 const auth = require("./core/auth");
 
@@ -30,7 +30,7 @@ if (auth.shards)
 }
 
 const shardingOptions = {
-   totalShards: shards
+   "totalShards": shards
 };
 
 const manager = new discord.ShardingManager(

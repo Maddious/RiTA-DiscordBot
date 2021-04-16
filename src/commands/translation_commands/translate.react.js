@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
 const langCheck = require("../../core/lang.check");
 const translate = require("../../core/translate");
@@ -64,7 +64,7 @@ module.exports = function run (data, client)
 
             }
 
-            // ignore bots
+            // Ignore bots
 
             if (message.author.bot)
             {
@@ -75,7 +75,7 @@ module.exports = function run (data, client)
 
             const flagExists = message.reactions.get(emoji);
 
-            // prevent flag spam
+            // Prevent flag spam
 
             if (flagExists)
             {
@@ -84,16 +84,16 @@ module.exports = function run (data, client)
 
             }
 
-            // translate data
+            // Translate data
 
             data.translate = {
-               from: langCheck("auto"),
-               multi: true,
-               original: message.content,
-               to: langCheck(countryLangs[emoji].langs)
+               "from": langCheck("auto"),
+               "multi": true,
+               "original": message.content,
+               "to": langCheck(countryLangs[emoji].langs)
             };
 
-            // message data
+            // Message data
 
             data.message = message;
             delete data.message.attachments;

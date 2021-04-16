@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
 const langCheck = require("../../core/lang.check");
 const db = require("../../core/db");
@@ -72,7 +72,7 @@ const shoutTasks = function shoutTasks (res, data,)
 
    sendMessage(data);
 
-   for (let i = 0, len = res.length; i < len; i++)
+   for (let i = 0, len = res.length; i < len; i += 1)
    {
 
       const task = res[i];

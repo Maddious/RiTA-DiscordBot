@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING]
 const db = require("./core/db");
 const fn = require("./core/helpers");
 const cmdArgs = require("./commands/args");
@@ -19,14 +19,14 @@ module.exports = function run (config, message, edited, deleted)
    module.exports.message = message;
    const client = message.client;
    const bot = client.user;
-   // const bot2botstyle = db.server_obj[message.guild.id].bot2botstyle;
+   // Const bot2botstyle = db.server_obj[message.guild.id].bot2botstyle;
 
    // ------------------------
    // Ignore messages by bots
    // ------------------------
 
 
-   // if (bot2botstyle === "off")
+   // If (bot2botstyle === "off")
    // {
    if (message.author.bot)
    {
@@ -36,11 +36,11 @@ module.exports = function run (config, message, edited, deleted)
    }
    // }
 
-   // if (bot2botstyle === "on")
+   // If (bot2botstyle === "on")
    // {
-   //   if (message.author.discriminator === "0000")
+   //   If (message.author.discriminator === "0000")
    //   {
-   //      return;
+   //      Return;
    //   }
    // }
 
@@ -72,11 +72,11 @@ module.exports = function run (config, message, edited, deleted)
 
    const data = {
       bot,
-      canWrite: true,
-      channel: message.channel,
+      "canWrite": true,
+      "channel": message.channel,
       client,
       config,
-      member: message.member,
+      "member": message.member,
       message
    };
    if (data.message.channel.type !== "dm")

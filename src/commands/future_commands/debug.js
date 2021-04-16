@@ -2,13 +2,13 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
 
 // -------------------------------
-// debug varible command handler
+// Debug varible command handler
 // -------------------------------
 
 const debug = function debug (data)
@@ -24,7 +24,7 @@ const debug = function debug (data)
          data.message.channel.guild.id,
          // This would be the Webhook ID
          commandVariable1,
-         // this would be the Webhook Token
+         // This would be the Webhook Token
          commandVariable1,
          true,
          function error (err)

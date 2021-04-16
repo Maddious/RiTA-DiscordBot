@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
 const translate = require("./translate");
 const logger = require("./logger");
@@ -57,7 +57,7 @@ const startTranslation = function startTranslation (data, i, row)
    // ---------------------------------
 
    data.footer = {
-      text: "via "
+      "text": "via "
    };
 
    if (data.message.channel.type === "text")
@@ -84,8 +84,8 @@ const startTranslation = function startTranslation (data, i, row)
    {
 
       const footerExtra = {
-         icon_url: data.message.guild.iconURL,
-         text: `${data.footer.text
+         "icon_url": data.message.guild.iconURL,
+         "text": `${data.footer.text
          } ‹ ${data.message.guild.name} | reply with ${replyID}:`
 
       };
@@ -189,9 +189,9 @@ const analyzeRows = function analyzeRows (data, i)
    // ------------------------
 
    data.translate = {
-      from: {valid: [{iso: row.LangFrom}]},
-      original: data.message.content,
-      to: {valid: [{iso: row.LangTo}]}
+      "from": {"valid": [{"iso": row.LangFrom}]},
+      "original": data.message.content,
+      "to": {"valid": [{"iso": row.LangTo}]}
    };
 
    // ------------------
@@ -244,7 +244,7 @@ module.exports = function run (data)
 
       data.proccess = true;
 
-      for (let i = 0; i < data.rows.length; i++)
+      for (let i = 0; i < data.rows.length; i += 1)
       {
 
          analyzeRows(

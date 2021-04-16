@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
 const translate = require("../../core/translate");
 const sendMessage = require("../../core/command.send");
@@ -45,10 +45,10 @@ module.exports = function run (data)
    // ------------------
 
    data.translate = {
-      from: data.cmd.from,
-      multi: true,
-      original: data.cmd.content,
-      to: data.cmd.to
+      "from": data.cmd.from,
+      "multi": true,
+      "original": data.cmd.content,
+      "to": data.cmd.to
    };
 
    delete data.message.attachments;

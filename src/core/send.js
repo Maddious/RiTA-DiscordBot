@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
 /* eslint-disable no-var */
 /* eslint-disable vars-on-top */
@@ -14,6 +14,7 @@ const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
 const webHookName = "Translator Messaging System";
+const error = require("./error");
 
 // -----------------
 // Permission Check
@@ -30,19 +31,19 @@ const checkPerms = function checkPerms (data, sendBox)
    {
 
       var sendData = {
-         attachments: data.message.attachments,
-         bot: data.bot,
-         channel: data.message.channel,
-         color: data.color,
-         config: data.config,
-         embeds: data.message.embeds,
-         fields: data.fields,
-         footer: data.footer,
-         forward: data.forward,
-         guild: data.message.guild,
-         origin: null,
-         text: data.text,
-         title: data.title
+         "attachments": data.message.attachments,
+         "bot": data.bot,
+         "channel": data.message.channel,
+         "color": data.color,
+         "config": data.config,
+         "embeds": data.message.embeds,
+         "fields": data.fields,
+         "footer": data.footer,
+         "forward": data.forward,
+         "guild": data.message.guild,
+         "origin": null,
+         "text": data.text,
+         "title": data.title
       };
 
    }
@@ -127,8 +128,8 @@ const checkPerms = function checkPerms (data, sendBox)
 
             console.log("DEBUG: Error 50013 - Destination");
             logger("custom", {
-               color: "ok",
-               msg: `:exclamation: Write Permission Error - Destination\n
+               "color": "ok",
+               "msg": `:exclamation: Write Permission Error - Destination\n
                   Server: **${data.channel.guild.name}** \n
                   Channel: **${forwardChannel.name}**\n
                   Chan ID: **${forwardChannel.id}**\n
@@ -219,16 +220,16 @@ const embedOn = function embedOn (data)
 
             // eslint-disable-next-line no-use-before-define
             sendBox({
-               channel: data.channel,
-               color: "warn",
-               text: `:warning:  Cannot embed more than ${maxEmbeds} links.`
+               "channel": data.channel,
+               "color": "warn",
+               "text": `:warning:  Cannot embed more than ${maxEmbeds} links.`
             });
 
             data.embeds = data.embeds.slice(0, maxEmbeds);
 
          }
 
-         for (let i = 0; i < data.embeds.length; i++)
+         for (let i = 0; i < data.embeds.length; i += 1)
          {
 
             data.channel.send(data.embeds[i].url);
@@ -264,23 +265,23 @@ const embedOn = function embedOn (data)
 
             // eslint-disable-next-line no-use-before-define
             sendBox({
-               channel: data.channel,
-               color: "warn",
-               text: `:warning:  Cannot attach more than ${maxAtt} files.`
+               "channel": data.channel,
+               "color": "warn",
+               "text": `:warning:  Cannot attach more than ${maxAtt} files.`
 
             });
             attachments = attachments.slice(0, maxAtt);
 
          }
 
-         for (let i = 0; i < attachments.length; i++)
+         for (let i = 0; i < attachments.length; i += 1)
          {
 
             const attachmentObj = new discord.Attachment(
                attachments[i].url,
                attachments[i].filename
             );
-            data.channel.send(`**${messageData.author.username}** sent a file:`, {file: attachmentObj});
+            data.channel.send(`**${messageData.author.username}** sent a file:`, {"file": attachmentObj});
 
          }
 
@@ -297,7 +298,7 @@ const embedOn = function embedOn (data)
 
 
       /*
-      if (data.author)
+      If (data.author)
       {
          data.author = {
             name: data.author.username,
@@ -317,15 +318,15 @@ const embedOn = function embedOn (data)
                console.log("DEBUG: Is bot.author - embed on");
                // eslint-disable-next-line no-redeclare
                var embed = {
-                  author: {
-                     icon_url: data.bot.displayAvatarURL,
-                     name: data.bot.username
+                  "author": {
+                     "icon_url": data.bot.displayAvatarURL,
+                     "name": data.bot.username
                   },
-                  color: colors.get(data.color),
-                  description: data.text,
-                  fields: data.fields,
-                  footer: data.footer,
-                  title: data.title
+                  "color": colors.get(data.color),
+                  "description": data.text,
+                  "fields": data.fields,
+                  "footer": data.footer,
+                  "title": data.title
                };
 
             }
@@ -335,15 +336,15 @@ const embedOn = function embedOn (data)
                console.log("DEBUG: Is data.author - embed on");
                // eslint-disable-next-line no-redeclare
                var embed = {
-                  author: {
-                     icon_url: data.author.displayAvatarURL,
-                     name: data.author.username
+                  "author": {
+                     "icon_url": data.author.displayAvatarURL,
+                     "name": data.author.username
                   },
-                  color: colors.get(data.color),
-                  description: data.text,
-                  fields: data.fields,
-                  footer: data.footer,
-                  title: data.title
+                  "color": colors.get(data.color),
+                  "description": data.text,
+                  "fields": data.fields,
+                  "footer": data.footer,
+                  "title": data.title
                };
 
             }
@@ -369,20 +370,20 @@ const embedOn = function embedOn (data)
                // Error for long messages
                // ------------------------
 
-               if (err.code && err.code === 50035)
+               if (err.code && err.code === error.Content)
                {
 
                   data.channel.send(":warning:  Message is too long.");
 
                }
 
-               if (err.code && err.code === 50013)
+               if (err.code && err.code === error.perm)
                {
 
                   console.log("DEBUG: Error 50013 - Origin");
                   return logger("custom", {
-                     color: "ok",
-                     msg: `:exclamation: Write Permission Error - Origin \n
+                     "color": "ok",
+                     "msg": `:exclamation: Write Permission Error - Origin \n
                   Server: **${data.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
@@ -396,7 +397,7 @@ const embedOn = function embedOn (data)
                // Handle error for users who cannot recieve private messages
                // -----------------------------------------------------------
 
-               if (err.code && err.code === 50007 && data.origin)
+               if (err.code && err.code === error.sendDm && data.origin)
                {
 
                   const badUser = data.channel.recipient;
@@ -464,7 +465,7 @@ const embedOff = function embedOff (data)
       if (attachments && attachments.length > 0)
       {
 
-         for (let i = 0; i < attachments.length; i++)
+         for (let i = 0; i < attachments.length; i += 1)
          {
 
             const attachmentObj = new discord.Attachment(
@@ -575,16 +576,16 @@ const embedOff = function embedOff (data)
 
             // eslint-disable-next-line no-use-before-define
             sendBox({
-               channel: data.channel,
-               color: "warn",
-               text: `:warning:  Cannot attach more than ${maxAtt} files.`
+               "channel": data.channel,
+               "color": "warn",
+               "text": `:warning:  Cannot attach more than ${maxAtt} files.`
 
             });
             attachments = attachments.slice(0, maxAtt);
 
          }
 
-         for (let i = 0; i < attachments.length; i++)
+         for (let i = 0; i < attachments.length; i += 1)
          {
 
             const attachmentObj = new discord.Attachment(
@@ -758,7 +759,7 @@ module.exports = function run (data)
             data.text = str1.replace(regex1, subst1);
 
          }
-         //   if a combination of animated emojis and normal custom emojis
+         //   If a combination of animated emojis and normal custom emojis
          if (!data.text.includes("<a") && data.text.includes("<:"))
          {
 
@@ -782,7 +783,7 @@ module.exports = function run (data)
 
    }
 
-   // const guildValue = data.message.guild.id;
+   // Const guildValue = data.message.guild.id;
    data.channel = data.message.channel;
 
    // --------------------
@@ -813,9 +814,9 @@ module.exports = function run (data)
    data.text = `:warning: ${data.bot.username} does not have sufficient permissions to send Webhook Messages. Please give ${data.bot.username} the \`MANAGE_WEBHOOKS\` permission.`;
    data.color = "warn";
 
-   return data.channel.send({embed: {
-      color: colors.get(data.color),
-      description: data.text
+   return data.channel.send({"embed": {
+      "color": colors.get(data.color),
+      "description": data.text
 
    }});
 

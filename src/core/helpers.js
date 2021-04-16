@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
 const logger = require("./logger");
 
@@ -123,7 +123,7 @@ exports.chunkString = function chunkString (str, len)
    const _ret = new Array(_size);
    let _offset = null;
 
-   for (let _i = 0; _i < _size; _i++)
+   for (let _i = 0; _i < _size; _i += 1)
    {
 
       _offset = _i * len;
@@ -185,7 +185,7 @@ exports.getUser = function getUser (client, userID, cb)
 
    }
 
-   // user not in cache, fetch 'em
+   // User not in cache, fetch 'em
 
    client.fetchUser(userID).then(cb).
       catch((err) =>
@@ -217,7 +217,7 @@ exports.getChannel = function getChannel (client, channelID, userID, cb)
 
    }
 
-   // not in cache, create DM
+   // Not in cache, create DM
 
    if (userID)
    {
@@ -270,7 +270,7 @@ exports.getMessage = function getMessage (client, messageID, channelID, userID, 
 
          }
 
-         // message not in channel cache
+         // Message not in channel cache
 
          channel.fetchMessage(messageID).then(cb).
             catch((err) => cb(

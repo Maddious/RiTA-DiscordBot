@@ -2,13 +2,13 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING]
 const env = `${__dirname.slice(
    0,
    -3
 )}.env`;
 require("dotenv").config({
-   path: env
+   "path": env
 });
 const discord = require("discord.js");
 const client = new discord.Client();

@@ -9,4 +9,10 @@
 // Command Code
 // -------------
 
-// This is a place holder for new a command.
+module.exports = {
+   "error": {
+      "Content": "50035",
+      "perm": "50013",
+      "sendDm": "50007"
+   }
+};

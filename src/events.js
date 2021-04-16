@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING]
 const stripIndent = require("common-tags").stripIndent;
 const oneLine = require("common-tags").oneLine;
 const auth = require("./core/auth");
@@ -39,18 +39,18 @@ exports.listen = function listen (client)
          // -----------------
 
          config = {
-            botServer: "https://discord.gg/mgNR64R",
-            defaultLanguage: "en",
-            inviteURL: auth.invite || "Set this in your .env file / config variables in Heroku",
-            maxChainLen: 5,
-            maxChains: 10,
-            maxEmbeds: 5,
-            maxMulti: 6,
-            maxTasksPerChannel: 10,
-            owner: auth.botOwner,
-            translateCmd: "!translate",
-            translateCmdShort: "!tr",
-            version: botVersion
+            "botServer": "https://discord.gg/mgNR64R",
+            "defaultLanguage": "en",
+            "inviteURL": auth.invite || "Set this in your .env file / config variables in Heroku",
+            "maxChainLen": 5,
+            "maxChains": 10,
+            "maxEmbeds": 5,
+            "maxMulti": 6,
+            "maxTasksPerChannel": 10,
+            "owner": auth.botOwner,
+            "translateCmd": "!translate",
+            "translateCmdShort": "!tr",
+            "version": botVersion
          };
 
          let shard = client.shard;
@@ -59,8 +59,8 @@ exports.listen = function listen (client)
          {
 
             shard = {
-               count: 1,
-               id: 0
+               "count": 1,
+               "id": 0
             };
 
          }
@@ -111,8 +111,8 @@ exports.listen = function listen (client)
             logger(
                "custom",
                {
-                  color: "ok",
-                  msg: oneLine`
+                  "color": "ok",
+                  "msg": oneLine`
                :wave:  **${client.user.username}**
                is now online - \`v.${botVersion}\` -
                **${shard.count}** shards
@@ -146,15 +146,15 @@ exports.listen = function listen (client)
                   config.translateCmdShort = db.server_obj[message.guild.id].db.prefix;
 
                }
-               // setStatus(client.user, "online", config);
+               // SetStatus(client.user, "online", config);
 
             }
             if (message.guild)
             {
 
                console.log(`${message.guild.name} - ${message.guild.id}`);
-               // need to have another if statment here, if server length is greeater than 1 then run below, if not do nothing.
-               // setStatus(client.user, "online", config);
+               // Need to have another if statment here, if server length is greeater than 1 then run below, if not do nothing.
+               // SetStatus(client.user, "online", config);
 
             }
 
@@ -172,18 +172,18 @@ exports.listen = function listen (client)
    //  Message edit, Will be fully implemented in future release
    // -----------------------------------------------------------
 
-   // client.on("messageUpdate", (oldMessage, newMessage) =>
+   // Client.on("messageUpdate", (oldMessage, newMessage) =>
    // {
-   //   messageHandler(config, oldMessage, newMessage);
+   //   MessageHandler(config, oldMessage, newMessage);
    // });
 
    // ---------------
    // Message delete
    // ---------------
 
-   // client.on("messageDelete", (message) =>
+   // Client.on("messageDelete", (message) =>
    // {
-   //   messageHandler(config, message, null, true);
+   //   MessageHandler(config, message, null, true);
    // });
 
    // -----------

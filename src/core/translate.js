@@ -3,7 +3,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
 const translate = require("google-translate-api");
 const db = require("./db");
@@ -141,10 +141,10 @@ const bufferChains = function bufferChains (data, from)
             {
 
                translatedChains.push({
-                  author: gotData.author,
-                  color: gotData.color,
-                  text: output,
-                  time: chain.time
+                  "author": gotData.author,
+                  "color": gotData.color,
+                  "text": output,
+                  "time": chain.time
                });
 
                if (fn.bufferEnd(
@@ -351,13 +351,13 @@ module.exports = function run (data) // eslint-disable-line complexity
       data.text = "";
 
       translateBuffer[bufferID] = {
-         count: 0,
-         len: data.translate.to.valid.length,
-         text: "",
+         "count": 0,
+         "len": data.translate.to.valid.length,
+         "text": "",
          update (newMsg)
          {
 
-            this.count++;
+            this.count += 1;
             this.text += newMsg;
 
             if (this.count === this.len)
@@ -383,7 +383,7 @@ module.exports = function run (data) // eslint-disable-line complexity
             data.translate.original,
             {
                from,
-               to: lang.iso
+               "to": lang.iso
             }
          ).then((res) =>
          {
@@ -427,7 +427,7 @@ module.exports = function run (data) // eslint-disable-line complexity
 
    const opts = {
       from,
-      to: data.translate.to.valid[0].iso
+      "to": data.translate.to.valid[0].iso
    };
 
    const fw = data.forward;

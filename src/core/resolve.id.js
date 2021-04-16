@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable sort-keys */
 /* eslint-disable default-param-last */
 
@@ -88,10 +88,10 @@ exports.main = function main (client, id, output = null, guild)
 
    const resolved = {
       id,
-      name: null,
-      obj: null,
-      prefix: module.exports.idPrefix(id),
-      pure: module.exports.idPure(id)
+      "name": null,
+      "obj": null,
+      "prefix": module.exports.idPrefix(id),
+      "pure": module.exports.idPure(id)
    };
 
    const prefixMap =

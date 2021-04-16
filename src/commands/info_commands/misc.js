@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-irregular-whitespace*/
 const auth = require("../../core/auth");
 const fn = require("../../core/helpers");
@@ -25,7 +25,7 @@ exports.invite = function invite (data)
    data.text += `\`v${data.config.version}\` to your server\n\n`;
    data.text += `${auth.invite}`;
    data.footer = {
-      text:
+      "text":
          "Requires VIEW, SEND, REACT, EMBED, ATTACH and MENTION permissions.\n"
    };
 
@@ -60,7 +60,7 @@ exports.shards = function shards (data)
       data.title = "Shards Info";
 
       data.footer = {
-         text: "Single Process - No Sharding Manager"
+         "text": "Single Process - No Sharding Manager"
       };
 
       data.color = "info";
@@ -107,13 +107,14 @@ exports.shards = function shards (data)
 
             const output = [];
 
+            // eslint-disable-next-line no-plusplus
             for (let i = 0; i < shard.count; ++i)
             {
 
                output.push({
-                  inline: true,
-                  name: `:pager: - Shard #${i}`,
-                  value: stripIndent`
+                  "inline": true,
+                  "name": `:pager: - Shard #${i}`,
+                  "value": stripIndent`
                      ​
                      **\`${guildsSize[i]}\`** guilds
 
@@ -145,7 +146,7 @@ exports.shards = function shards (data)
             data.fields = output;
 
             // -------------
-            // catch errors
+            // Catch errors
             // -------------
 
          }).
@@ -190,8 +191,8 @@ exports.proc = function proc (data)
    {
 
       shard = {
-         count: 1,
-         id: 0
+         "count": 1,
+         "id": 0
 
       };
 

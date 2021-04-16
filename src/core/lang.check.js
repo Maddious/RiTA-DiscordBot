@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable sort-keys */
 const translate = require("google-translate-api");
 const ISO6391 = require("iso-639-1");
@@ -103,13 +103,13 @@ module.exports = function run (lang, single = false)
    }
 
    const langs = {
-      unchecked: fn.arraySplit(
+      "unchecked": fn.arraySplit(
          lang,
          ","
       ),
-      valid: [],
-      unique: [],
-      invalid: []
+      "valid": [],
+      "unique": [],
+      "invalid": []
    };
 
    langs.unchecked.forEach((language) =>
@@ -123,9 +123,9 @@ module.exports = function run (lang, single = false)
       {
 
          langs.unique.push(language);
-         langs.valid.push({iso: language,
-            name: language,
-            native: language});
+         langs.valid.push({"iso": language,
+            "name": language,
+            "native": language});
 
          return;
 
@@ -139,9 +139,9 @@ module.exports = function run (lang, single = false)
 
             langs.unique.push(langISO);
             langs.valid.push({
-               iso: langISO,
-               name: ISO6391.getName(langInvertException(langISO)),
-               native: ISO6391.getNativeName(langInvertException(langISO))
+               "iso": langISO,
+               "name": ISO6391.getName(langInvertException(langISO)),
+               "native": ISO6391.getNativeName(langInvertException(langISO))
             });
 
          }
@@ -157,7 +157,7 @@ module.exports = function run (lang, single = false)
 
    });
 
-   // clean up
+   // Clean up
 
    langs.invalid = fn.removeDupes(langs.invalid);
 

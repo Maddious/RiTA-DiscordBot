@@ -8,7 +8,7 @@ const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
 
 // ------------------------------
-// embed varible command handler
+// Embed varible command handler
 // ------------------------------
 
 const embed = function embed (data)

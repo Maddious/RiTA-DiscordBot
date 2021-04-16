@@ -112,17 +112,17 @@
       // ---------------------
       // These could be fixed
       // ---------------------
-      "no-magic-numbers": "warn",
-      "prefer-arrow-callback": "warn",
+      "no-magic-numbers": ["warn", { "ignoreArrayIndexes": true}],
+      "prefer-arrow-callback": "off",
       "capitalized-comments": "warn",
       "quote-props": "warn",
-      "no-mixed-operators": "warn",
+      "no-mixed-operators": "off",
       "no-plusplus": "warn",
-      "require-unicode-regexp": "warn",
-      "prefer-named-capture-group": "warn",
-      "prefer-regex-literals": "warn",
-      "no-ternary": "warn",
-      "no-nested-ternary": "warn",
-      "new-cap": "warn"
+      "require-unicode-regexp": "off",
+      "prefer-named-capture-group": "off",
+      "prefer-regex-literals": "off",
+      "no-ternary": "off",
+      "no-nested-ternary": "off",
+      "new-cap": ["warn", {"properties": false}]
     }
 }

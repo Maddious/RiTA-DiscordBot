@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
@@ -150,7 +150,7 @@ const getSettings = function getSettings (data)
       );
       data.message.channel.send(
          "Server List.",
-         {files: ["./src/files/serverlist.txt"]}
+         {"files": ["./src/files/serverlist.txt"]}
       );
 
    };
@@ -163,24 +163,24 @@ const getSettings = function getSettings (data)
    const updateBot = function updateBot (data)
    {
 
-      // const activeGuilds = data.client.guilds.array();
-      // data.color = "info";
-      // data.text = `Updating bot for **${activeGuilds.length}** servers.`;
-      // return sendMessage(data);
+      // Const activeGuilds = data.client.guilds.array();
+      // Data.color = "info";
+      // Data.text = `Updating bot for **${activeGuilds.length}** servers.`;
+      // Return sendMessage(data);
       //
-      // activeGuilds.forEach(guild =>
+      // ActiveGuilds.forEach(guild =>
       // {
-      //   guild.owner.send(
+      //   Guild.owner.send(
       //   "Hello, this bot has been updated to a new version.\n " +
       //   "More info: https://ritabot.gg/whats-new/#new-in-121\n");
       // });
-      return data.message.channel.send({embed: {
-         author: {
-            icon_url: data.client.user.displayAvatarURL,
-            name: data.client.user.username
+      return data.message.channel.send({"embed": {
+         "author": {
+            "icon_url": data.client.user.displayAvatarURL,
+            "name": data.client.user.username
          },
-         color: 13107200,
-         description: ":no_entry_sign: This command has been disabled"
+         "color": 13107200,
+         "description": ":no_entry_sign: This command has been disabled"
 
       }}).then((msg) =>
       {
@@ -200,7 +200,7 @@ const getSettings = function getSettings (data)
    // Announcements not possible until D.js v12
 
    /*
-   const announcement = async function(data)
+   Const announcement = async function(data)
    {
       const guildArray = Array.from(bot.client.guilds.values());
       var i;

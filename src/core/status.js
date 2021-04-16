@@ -30,7 +30,7 @@ module.exports = function run (bot, status, config, writable = true)
       {
 
          bot.setPresence({
-            status: "dnd"
+            "status": "dnd"
          });
 
       },
@@ -39,7 +39,7 @@ module.exports = function run (bot, status, config, writable = true)
       {
 
          bot.setPresence({
-            status: "online"
+            "status": "online"
          });
 
       },
@@ -47,27 +47,27 @@ module.exports = function run (bot, status, config, writable = true)
       "online" ()
       {
 
-         // run this on stratup
+         // Run this on stratup
          bot.setPresence({
-            game: {
-               name: activevar[0]
+            "game": {
+               "name": activevar[0]
             },
-            status: "online"
+            "status": "online"
 
          });
          setInterval(
-            // every 20 seconds generate a random number and update status to that
+            // Every 20 seconds generate a random number and update status to that
             function res ()
             {
 
                const actID = Math.floor(Math.random() * 6);
                bot.setPresence({
 
-                  game: {
-                     name: activevar[actID],
-                     type: statusvar[actID]
+                  "game": {
+                     "name": activevar[actID],
+                     "type": statusvar[actID]
                   },
-                  status: "online"
+                  "status": "online"
                });
 
             },

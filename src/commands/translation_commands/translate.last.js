@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-//  codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+//  Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const fn = require("../../core/helpers");
 const translate = require("../../core/translate");
 const logger = require("../../core/logger");
@@ -20,13 +20,13 @@ module.exports.run = function run (data)
       "Command Message Deleted Error, command.send.js = ",
       err
    ));
-   return data.message.channel.send({embed: {
-      author: {
-         icon_url: data.client.user.displayAvatarURL,
-         name: data.client.user.username
+   return data.message.channel.send({"embed": {
+      "author": {
+         "icon_url": data.client.user.displayAvatarURL,
+         "name": data.client.user.username
       },
-      color: 13107200,
-      description: `:no_entry_sign: This command has been disabled Pending a fix \n
+      "color": 13107200,
+      "description": `:no_entry_sign: This command has been disabled Pending a fix \n
      We apologise for any inconvenience this may cause.`
 
    }}).then((msg) =>
@@ -67,8 +67,8 @@ module.exports.old = function old (data)
    // -------------------------
 
    data.translate = {
-      from: data.cmd.from,
-      to: data.cmd.to
+      "from": data.cmd.from,
+      "to": data.cmd.to
 
    };
 
@@ -131,7 +131,7 @@ module.exports.old = function old (data)
       let lastAuthor = null;
       const chains = [];
 
-      for (let i = 0; i < messagesArray.length; i++)
+      for (let i = 0; i < messagesArray.length; i += 1)
       {
 
          if (
@@ -154,11 +154,11 @@ module.exports.old = function old (data)
             {
 
                chains.push({
-                  author: messagesArray[i].author,
-                  color: fn.getRoleColor(messagesArray[i].member),
-                  id: [messagesArray[i].id],
-                  msgs: [messagesArray[i].content],
-                  time: messagesArray[i].createdTimestamp
+                  "author": messagesArray[i].author,
+                  "color": fn.getRoleColor(messagesArray[i].member),
+                  "id": [messagesArray[i].id],
+                  "msgs": [messagesArray[i].content],
+                  "time": messagesArray[i].createdTimestamp
                });
                lastAuthor = messagesArray[i].author.id;
 

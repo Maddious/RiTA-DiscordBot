@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-use-before-define */
 /* eslint-disable vars-on-top */
 /* eslint-disable sort-keys */
@@ -77,18 +77,18 @@ module.exports = function run (data)
    // ------------------
 
    data.task = {
-      origin: data.message.channel.id,
-      for: data.cmd.for,
-      dest: [],
-      invalid: [],
-      from: data.cmd.from.valid[0].iso,
-      to: data.cmd.to.valid[0].iso,
-      server: data.message.guild.id,
-      reply: data.message.guild.nameAcronym
+      "origin": data.message.channel.id,
+      "for": data.cmd.for,
+      "dest": [],
+      "invalid": [],
+      "from": data.cmd.from.valid[0].iso,
+      "to": data.cmd.to.valid[0].iso,
+      "server": data.message.guild.id,
+      "reply": data.message.guild.nameAcronym
    };
 
    // --------------------
-   // log task data (dev)
+   // Log task data (dev)
    // --------------------
 
    logger("dev", data.task);
@@ -164,7 +164,7 @@ module.exports = function run (data)
       data.task.for.forEach((dest) => // eslint-disable-line complexity
       {
 
-         // resolve `me` / original message author
+         // Resolve `me` / original message author
 
          if (dest === "me")
          {
@@ -177,7 +177,7 @@ module.exports = function run (data)
 
          }
 
-         // resolve @everyone/@here
+         // Resolve @everyone/@here
 
          if (dest === "@everyone" || dest === "@here")
          {
@@ -186,7 +186,7 @@ module.exports = function run (data)
 
          }
 
-         // resolve mentioned user(s)
+         // Resolve mentioned user(s)
 
          if (dest.startsWith("<@"))
          {
@@ -227,7 +227,7 @@ module.exports = function run (data)
 
          }
 
-         // resolve mentioned channel(s)
+         // Resolve mentioned channel(s)
 
          if (dest.startsWith("<#"))
          {
@@ -250,7 +250,7 @@ module.exports = function run (data)
 
          }
 
-         // invalid dests
+         // Invalid dests
 
          if (
             dest.startsWith("@") ||
@@ -273,11 +273,12 @@ module.exports = function run (data)
 
    // eslint-disable-next-line no-var
    var taskBuffer = {
-      len: data.task.for.length,
-      dest: [],
+      "len": data.task.for.length,
+      "dest": [],
       reduce ()
       {
 
+         // eslint-disable-next-line no-plusplus
          this.len--;
          this.check();
 

@@ -3,14 +3,14 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const logger = require("../../core/logger");
 const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
 const message = require("../../message");
 
 // -------------------------------
-// prefix varible command handler
+// Prefix varible command handler
 // -------------------------------
 
 const prefix = function prefix (data)

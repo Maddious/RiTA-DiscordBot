@@ -2,13 +2,13 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const logger = require("../../core/logger");
 const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
 
 // --------------------------------
-// bot2bot varible command handler
+// Bot2bot varible command handler
 // --------------------------------
 
 const bot2bot = function bot2bot (data)

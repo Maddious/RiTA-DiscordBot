@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const langCheck = require("../core/lang.check");
 const logger = require("../core/logger");
 const db = require("../core/db");
@@ -198,12 +198,12 @@ module.exports = function run (data)
 {
 
    const output = {
-      main: stripPrefix(
+      "main": stripPrefix(
          data.message,
          data.config,
          `${data.bot}`
       ).trim(),
-      params: null
+      "params": null
    };
 
    checkContent(
@@ -300,7 +300,7 @@ module.exports = function run (data)
          data.cmd = output;
 
          // -----------------------------
-         // check if channel is writable
+         // Check if channel is writable
          // -----------------------------
 
          data.canWrite = true;
@@ -317,7 +317,7 @@ module.exports = function run (data)
          }
 
          // -----------------------
-         // log command data (dev)
+         // Log command data (dev)
          // -----------------------
 
          logger(
