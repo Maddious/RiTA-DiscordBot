@@ -370,7 +370,7 @@ const embedOn = function embedOn (data)
                // Error for long messages
                // ------------------------
 
-               if (err.code && err.code === error.content || error.access)
+               if (err.code && err.code === error.content)
                {
 
                   data.channel.send(":warning:  Message is too long.");
@@ -397,7 +397,7 @@ const embedOn = function embedOn (data)
                // Handle error for users who cannot recieve private messages
                // -----------------------------------------------------------
 
-               if (err.code && err.code === error.sendDm || error.access)
+               if (err.code && err.code === error.sendDm && data.origin)
                {
 
                   const badUser = data.channel.recipient;
