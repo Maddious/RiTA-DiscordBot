@@ -59,7 +59,7 @@ module.exports = function run (data, client)
                   "error",
                   err,
                   "command",
-                  data.message.guild.name
+                  data.message.channel.guild.name
                );
 
             }

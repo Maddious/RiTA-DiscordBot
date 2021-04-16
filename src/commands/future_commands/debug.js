@@ -33,7 +33,7 @@ const debug = function debug (data)
             if (err)
             {
 
-               return logger("error", err, "command", data.message.guild.name);
+               return logger("error", err, "command", data.message.channel.guild.name);
 
             }
             const outputgh =
@@ -65,7 +65,7 @@ const debug = function debug (data)
             if (err)
             {
 
-               return logger("error", err, "command", data.message.guild.name);
+               return logger("error", err, "command", data.message.channel.guild.name);
 
             }
             const outputoc =

@@ -128,7 +128,7 @@ module.exports = function run (data)
       if (err)
       {
 
-         logger("error", err, "command", data.message.guild.name);
+         logger("error", err, "command", data.message.channel.guild.name);
 
       }
 

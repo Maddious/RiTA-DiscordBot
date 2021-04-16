@@ -33,7 +33,7 @@ const embed = function embed (data)
                   "error",
                   err,
                   "command",
-                  data.message.guild.name
+                  data.message.channel.guild.name
                );
 
             }

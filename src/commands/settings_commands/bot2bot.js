@@ -33,7 +33,7 @@ const bot2bot = function bot2bot (data)
                   "error",
                   err,
                   "command",
-                  data.message.guild.name
+                  data.message.channel.guild.name
                );
 
             }

@@ -145,7 +145,7 @@ const checkPerms = function checkPerms (data, sendBox)
 
             return sendData.channel.guild.owner.
                send(writeErr).
-               catch((err) => console.log("error", err, "warning", data.message.guild.name));
+               catch((err) => console.log("error", err, "warning", sendData.channel.guild.name));
 
          }
 
@@ -370,7 +370,7 @@ const embedOn = function embedOn (data)
                // Error for long messages
                // ------------------------
 
-               if (err.code && err.code === error.content || error.access)
+               if (err.code && err.code === error.content)
                {
 
                   data.channel.send(":warning:  Message is too long.");
@@ -397,19 +397,19 @@ const embedOn = function embedOn (data)
                // Handle error for users who cannot recieve private messages
                // -----------------------------------------------------------
 
-               if (err.code && err.code === error.sendDm || error.access)
+               if (err.code && err.code === error.sendDm && data.origin)
                {
 
                   const badUser = data.channel.recipient;
                   errMsg = `@${badUser.username}#${badUser.discriminator}\n${err}`;
 
-                  db.removeTask(data.origin.id, `@${badUser.id}`, function error (er)
+                  db.removeTask(data.origin.id, `@${badUser.id}`, function error (err)
                   {
 
-                     if (er)
+                     if (err)
                      {
 
-                        return logger("error", er, "dm", data.guild.name);
+                        return logger("error", err, "dm", data.message.channel.guild.name);
 
                      }
 
@@ -423,7 +423,7 @@ const embedOn = function embedOn (data)
 
                }
 
-               logger("error", errMsg, "warning", data.guild.name);
+               logger("error", errMsg, "warning", data.message.channel.guild.name);
 
             });
 
