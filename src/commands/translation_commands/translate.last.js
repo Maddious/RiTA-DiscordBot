@@ -7,6 +7,10 @@ const fn = require("../../core/helpers");
 const translate = require("../../core/translate");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
+const time = {
+   "long": 10000,
+   "short": 5000
+};
 
 // -----------------------------
 // Command Disabled Pending Fix
@@ -16,7 +20,7 @@ module.exports.run = function run (data)
 {
 
 
-   data.message.delete(5000).catch((err) => console.log(
+   data.message.delete(time.short).catch((err) => console.log(
       "Command Message Deleted Error, command.send.js = ",
       err
    ));
@@ -32,7 +36,7 @@ module.exports.run = function run (data)
    }}).then((msg) =>
    {
 
-      msg.delete(10000).catch((err) => console.log(
+      msg.delete(time.long).catch((err) => console.log(
          "UpdateBot Bot Message Deleted Error, settings.js = ",
          err
       ));

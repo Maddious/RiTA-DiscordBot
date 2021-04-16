@@ -4,6 +4,7 @@
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-irregular-whitespace*/
+/* eslint-disable no-magic-numbers */
 const auth = require("../../core/auth");
 const fn = require("../../core/helpers");
 const logger = require("../../core/logger");

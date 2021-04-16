@@ -1,3 +1,14 @@
+// -----------------
+// Global variables
+// -----------------
+
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+
+const time = {
+   "long": 10000,
+   "short": 20000
+};
+
 // ------------------
 // Update Bot Status
 // ------------------
@@ -71,7 +82,7 @@ module.exports = function run (bot, status, config, writable = true)
                });
 
             },
-            20000
+            time.short
          );
 
       }
