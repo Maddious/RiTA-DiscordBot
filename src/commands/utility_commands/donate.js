@@ -56,7 +56,7 @@ const donate = function(data)
 
    if (commandVariable1 === "github")
    {
-      console.log(commandVariable1);
+      console.log("DEBUG: donate " + commandVariable1);
       {
          var outputgh =
             "**```Donate via github```**\n" +
@@ -74,7 +74,7 @@ const donate = function(data)
    }
    else if (commandVariable1 === "oc")
    {
-      console.log(commandVariable1);
+      console.log("DEBUG: donate "+ commandVariable1);
       {
          var outputoc =
           "**```Donate via Open Collective```**\n" +

@@ -45,7 +45,7 @@ module.exports = function(data, client)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
 
             // ignore bots

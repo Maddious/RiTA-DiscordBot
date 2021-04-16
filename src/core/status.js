@@ -28,13 +28,6 @@ module.exports = function(bot, status, config, writable = true)
                }
             });
          }, 20000);
-         /*const index = Math.floor(Math.random() * (activities_list.length - 1) + 1);
-         bot.setPresence({
-            status: "online",
-            game: {
-               name: "ritabot.gg | " + config.translateCmdShort + " help" //V." + config.version
-            }
-         });*/
       },
 
       "busy": function()
@@ -52,7 +45,6 @@ module.exports = function(bot, status, config, writable = true)
       }
    };
 
-   //if (status && statusMap.hasOwnProperty(status) && writable)
    if (Object.prototype.hasOwnProperty.call(status && statusMap,status) && writable)
    {
       return statusMap[status]();

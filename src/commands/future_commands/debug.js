@@ -4,10 +4,9 @@
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
-const colors = require("../../core/colors");
 const db = require("../../core/db");
 const logger = require("../../core/logger");
-const discord = require("discord.js");
+const sendMessage = require("../../core/command.send");
 
 // -----------------------
 // Command code
@@ -19,18 +18,21 @@ module.exports.run = function(data)
    // Command allowed by admins only
    // -------------------------------
 
-   if (data.message.isAdmin === false)
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
-      data.color = "warn";
-      data.text = ":cop:  This command is reserved for server admins.";
+      if (data.message.isAdmin === false)
+      {
+         data.color = "warn";
+         data.text = ":cop:  This command is reserved for server admins.";
 
-      // -------------
-      // Send message
-      // -------------
+         // -------------
+         // Send message
+         // -------------
 
-      return sendMessage(data);
+         return sendMessage(data);
+      }
+      break Override;
    }
-
    // --------------------------------
    // Error if debug param is missing
    // --------------------------------
@@ -53,12 +55,8 @@ module.exports.run = function(data)
    // Execute setting
    // ----------------
 
-   if (data.message.isAdmin)
-   {
-      debug(data);
-   }
+   debug(data);
 };
-
 
 // -------------------------------
 // debug varible command handler
@@ -70,7 +68,7 @@ const debug = function(data)
 
    if (commandVariable1 === "on")
    {
-      console.log(commandVariable1);
+      console.log("DEBUG: debug variable " + commandVariable1);
       return db.updateWebhookVar(
          data.message.channel.guild.id,
          commandVariable1, //This would be the Webhook ID
@@ -80,7 +78,7 @@ const debug = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var outputgh =
             "**```Start Debug mode```**\n" +
@@ -99,14 +97,14 @@ const debug = function(data)
    }
    else if (commandVariable1 === "off")
    {
-      console.log(commandVariable1);
+      console.log("DEBUG: debug variable " + commandVariable1);
       return db.removeWebhook(
          data.message.channel.guild.id,
          function(err)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var outputoc =
           "**```Stop Debug mode```**\n" +
@@ -135,23 +133,3 @@ const debug = function(data)
 
    return sendMessage(data);
 };
-
-// ----------------------
-// Send message function
-// ----------------------
-
-function sendMessage (data)
-{
-   data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, debug.js = ", err));
-   const richEmbedMessage = new discord.RichEmbed()
-      .setColor(colors.get(data.color))
-      .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-      .setDescription(data.text)
-      .setTimestamp()
-      .setFooter("This message will self-destruct in one minute");
-
-   return data.message.channel.send(richEmbedMessage).then(msg =>
-   {
-      msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, debug.js = ", err));
-   });
-}

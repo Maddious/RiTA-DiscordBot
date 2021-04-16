@@ -34,6 +34,7 @@ module.exports = function(data)
    // ----------------
    // Language checks
    // ----------------
+
    if (data.cmd.from.valid.length !== 1)
    {
       data.color = "error";
@@ -84,19 +85,22 @@ module.exports = function(data)
    // ------------------------------------------
    // Error if non-manager sets channel as dest
    // ------------------------------------------
-
-   if (data.cmd.for[0] !== "me" && !data.message.isManager)
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
-      data.color = "error";
-      data.text =
+      if (data.cmd.for[0] !== "me" && !data.message.isManager)
+      {
+         data.color = "error";
+         data.text =
          ":cop:  You need to be a channel manager to " +
          "auto translate for others.";
 
-      // -------------
-      // Send message
-      // -------------
+         // -------------
+         // Send message
+         // -------------
 
-      return sendMessage(data);
+         return sendMessage(data);
+      }
+      break Override;
    }
 
    // -----------------------------------------------
@@ -107,7 +111,7 @@ module.exports = function(data)
    {
       if (err)
       {
-         logger("error", err);
+         logger("error", err, "command", data.message.guild.name);
       }
 
       const taskCount = res[Object.keys(res)[0]];
@@ -268,19 +272,22 @@ module.exports = function(data)
       // ----------------------------------
       // Multiple dests set by non-manager
       // ----------------------------------
-
-      if (data.task.dest.length > 1 && !data.message.isManager)
+      Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
       {
-         data.color = "error";
-         data.text =
+         if (data.task.dest.length > 1 && !data.message.isManager)
+         {
+            data.color = "error";
+            data.text =
             ":cop::skin-tone-3:  You need to be a channel manager " +
             "to auto translate this channel for others.";
 
-         // -------------
-         // Send message
-         // -------------
+            // -------------
+            // Send message
+            // -------------
 
-         return sendMessage(data);
+            return sendMessage(data);
+         }
+         break Override;
       }
 
       // ---------------------

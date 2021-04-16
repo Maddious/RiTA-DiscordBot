@@ -7,6 +7,7 @@
 const colors = require("../../core/colors");
 const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
+
 // -------------
 // Command Code
 // -------------
@@ -18,16 +19,20 @@ module.exports.run = function(data)
    // Command allowed by admins only
    // -------------------------------
 
-   if (data.message.isAdmin === false)
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
-      data.color = "warn";
-      data.text = ":cop:  This command is reserved for server adminis.";
+      if (data.message.isAdmin === false)
+      {
+         {data.color = "warn";}
+         data.text = ":cop:  This command is reserved for server adminis.";
 
-      // -------------
-      // Send message
-      // -------------
+         // -------------
+         // Send message
+         // -------------
 
-      return sendMessage(data);
+         return sendMessage(data);
+      }
+      break Override;
    }
 
    // --------------------------------
@@ -52,10 +57,7 @@ module.exports.run = function(data)
    // Execute setting
    // ----------------
 
-   if (data.message.isAdmin)
-   {
-      embed(data);
-   }
+   embed(data);
 };
 
 // -------------------------------
@@ -68,7 +70,7 @@ const embed = function(data)
 
    if (commandVariable1 === "on" || commandVariable1 === "off")
    {
-      console.log(commandVariable1);
+      console.log("DEBUG: embed variable " + commandVariable1);
       return db.updateEmbedVar(
          data.message.channel.guild.id,
          commandVariable1,
@@ -76,7 +78,7 @@ const embed = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var output =
             "**```Embedded Translation```**\n" +

@@ -19,16 +19,20 @@ module.exports.run = function(data)
    // Command allowed by admins only
    // -------------------------------
 
-   if (!data.message.isAdmin)
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
-      data.color = "warn";
-      data.text = ":cop:  This command is reserved for server administrators.";
+      if (data.message.isAdmin === false)
+      {
+         {data.color = "warn";}
+         data.text = ":cop:  This command is reserved for server adminis.";
 
-      // -------------
-      // Send message
-      // -------------
+         // -------------
+         // Send message
+         // -------------
 
-      return sendMessage(data);
+         return sendMessage(data);
+      }
+      break Override;
    }
 
    // ----------------------------------
@@ -53,10 +57,7 @@ module.exports.run = function(data)
    // Execute setting
    // ----------------
 
-   if (data.message.isAdmin)
-   {
-      bot2bot(data);
-   }
+   bot2bot(data);
 };
 
 // ---------------------------------
@@ -69,7 +70,7 @@ const bot2bot = function(data)
 
    if (commandVariable1 === "on" || commandVariable1 === "off")
    {
-      console.log(commandVariable1);
+      console.log("DEBUG: bot2bot variable " + commandVariable1);
       return db.updateBot2BotVar(
          data.message.channel.guild.id,
          commandVariable1,
@@ -77,7 +78,7 @@ const bot2bot = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var output =
             `:warning: This is extremely experimental, use at your own risk! :warning:\n\n`+

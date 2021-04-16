@@ -18,16 +18,20 @@ module.exports.run = function(data)
    // Command allowed by admins only
    // -------------------------------
 
-   if (data.message.isAdmin === false)
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
-      data.color = "warn";
-      data.text = ":cop:  This command is reserved for server admins.";
+      if (data.message.isAdmin === false)
+      {
+         {data.color = "warn";}
+         data.text = ":cop:  This command is reserved for server adminis.";
 
-      // -------------
-      // Send message
-      // -------------
+         // -------------
+         // Send message
+         // -------------
 
-      return sendMessage(data);
+         return sendMessage(data);
+      }
+      break Override;
    }
 
    // --------------------------
@@ -60,10 +64,7 @@ module.exports.run = function(data)
    // Execute setting
    // ----------------
 
-   if (data.message.isAdmin)
-   {
-      prefix(data);
-   }
+   prefix(data);
 };
 
 
@@ -78,7 +79,7 @@ const prefix = function(data)
    if (newPrefix === "reset")
    {
       var reset = "!tr";
-      console.log(newPrefix);
+      console.log("DEBUG: New Prefix " + newPrefix);
       return db.updatePrefix(
          data.message.channel.guild.id,
          reset, //This would be the new prefix
@@ -86,7 +87,7 @@ const prefix = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var outputvalid =
             "**```Command prefix has been reset```**\n" +
@@ -104,7 +105,7 @@ const prefix = function(data)
    }
    else if (newPrefix !== "")
    {
-      console.log(newPrefix);
+      console.log("DEBUG: New Prefix " + newPrefix);
       return db.updatePrefix(
          data.message.channel.guild.id,
          newPrefix, //This would be the new prefix
@@ -112,7 +113,7 @@ const prefix = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "command", data.message.guild.name);
             }
             var outputvalid =
             "**```New command prefix has been set```**\n" +

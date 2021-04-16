@@ -6,6 +6,8 @@
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
+const fs = require("fs");
+const path = require("path");
 
 // --------------------------
 // Proccess settings params
@@ -17,7 +19,29 @@ module.exports = function(data)
    // Command allowed by admins only
    // -------------------------------
 
+   if (!process.env.DISCORD_BOT_OWNER_ID)
+   {
+      data.color = "warn";
+      data.text = ":warning: Please set `DISCORD_BOT_OWNER_ID` as an array of User IDs allowed to use this command in configuration vars. \n\n **Ex.** ```js\nDISCORD_BOT_OWNER_ID = ['ALLOWED_USER_1_ID', 'ALLOWED_USER_2_ID', 'ALLOWED_USER_3_ID']```\n Place this with ID's in your .env file (local hosting) or environment variables (Heroku).";
 
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+   }
+
+   if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   {
+      data.color = "warn";
+      data.text = ":warning: These Commands are for developers only.";
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+   }
 
    // -----------------------------------
    // Error if settings param is missing
@@ -103,7 +127,7 @@ const getSettings = function(data)
          {
             if (err)
             {
-               return logger("error", err);
+               return logger("error", err, "db", data.message.guild.name);
             }
             data.color = "ok";
             data.text =
@@ -122,9 +146,10 @@ const getSettings = function(data)
    // -------------
    // List Servers
    // -------------
+
    const listServers = function(data)
    {
-      data.text = "__**Active Servers**__ - ";
+      data.text = "Active Servers - ";
 
       const activeGuilds = data.client.guilds.array();
 
@@ -132,29 +157,25 @@ const getSettings = function(data)
 
       activeGuilds.forEach(guild =>
       {
-         data.text += "```md\n";
-         data.text += `# ${guild.name}\n> ${guild.id}\n> ${guild.memberCount} members\n`;
+         data.text += `${guild.name}\n${guild.id}\n${guild.memberCount} members\n`;
          if (guild.owner)
          {
-            data.text += `@${guild.owner.user.username}#`;
-            data.text += guild.owner.user.discriminator + "\n```";
+            data.text += `${guild.owner.user.username}#`;
+            data.text += guild.owner.user.discriminator + "\n\n";
          }
          else
          {
-            data.text += "```";
+            data.text += "End List";
          }
       });
 
-      const splitOpts = {
-         maxLength: 2000,
-         char: ""
-      };
+      // ------------------
+      // Send message/file
+      // ------------------
 
-      // -------------
-      // Send message
-      // -------------
-
-      return data.message.channel.send(data.text, {split: splitOpts});
+      data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, command.send.js = ", err));
+      fs.writeFileSync(path.resolve(__dirname, "../../files/serverlist.txt"),data.text);
+      data.message.channel.send("Server List.", { files: ["./src/files/serverlist.txt"] });
    };
 
 
@@ -185,7 +206,7 @@ const getSettings = function(data)
 
       }}).then((msg) =>
       {
-         msg.delete(10000).catch(err => console.log("UpdateBot Bot Message Deleted Error, settings.js = ", err));
+         msg.delete(5000).catch(err => console.log("UpdateBot Bot Message Deleted Error, settings.js = ", err));
       });
    };
 
@@ -230,6 +251,7 @@ const getSettings = function(data)
       // -------------
       // Send message
       // -------------
+
       db.updateColumns();
 
       return sendMessage(data);
@@ -248,14 +270,6 @@ const getSettings = function(data)
    };
 
    const settingParam = data.cmd.params.split(" ")[0].toLowerCase();
-   if (settingParam !== "listservers")
-   {
-      checkAdmin(data);
-   }
-   else
-   {
-      checkDev(data);
-   }
    if (Object.prototype.hasOwnProperty.call(validSettings,settingParam))
    {
       return validSettings[settingParam](data);
@@ -276,35 +290,4 @@ const getSettings = function(data)
 
    return sendMessage(data);
 };
-function checkAdmin(data)
-{
-   if (!data.message.isAdmin)
-   {
-      data.color = "warn";
-      data.text = ":cop:  This command is reserved for server administrators.";
 
-      // -------------
-      // Send message
-      // -------------
-
-      return sendMessage(data);
-   }
-}
-
-function checkDev(data)
-{
-   if (!process.env.DISCORD_BOT_OWNER_ID)
-   {
-      data.color = "warn";
-      data.text = ":warning: Please set `DISCORD_BOT_OWNER_ID` as an array of User IDs allowed to use this command in configuration vars. \n\n **Ex.** ```js\nDISCORD_BOT_OWNER_ID = ['ALLOWED_USER_1_ID', 'ALLOWED_USER_2_ID', 'ALLOWED_USER_3_ID']```\n Place this with ID's in your .env file (local hosting) or environment variables (Heroku).";
-
-      return sendMessage(data);
-   }
-
-   if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
-   {
-      data.color = "warn";
-      data.text = ":warning: This is a developer only command.";
-      return sendMessage(data);
-   }
-}

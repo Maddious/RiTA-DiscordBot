@@ -44,7 +44,7 @@ module.exports = function(data)
          `**\`${botLang.name} (${botLang.native})\`` +
          `**\n\n:bar_chart:  Translated **\`${stats[0].totalCount}\`** messages ` +
          `across **\`${data.client.guilds.size}\`** servers ` +
-         `for **\`${data.message.client.users.size} users.\`**\n\n` + //db.server_obj.size for total count in d.js v12
+         `for **\`${db.server_obj.size} users.\`**\n\n` + // for total count in d.js v12
          `:regional_indicator_v:  Version:  ${version}\n\n` +
          `:repeat:  Automatic translation:  ` +
          `**\`${activeTasks}\`**  channels and  ` +
@@ -155,22 +155,23 @@ module.exports = function(data)
 
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("debug"))
       {
-         if (data.message.isAdmin === false)
+         Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
          {
-            data.color = "warn";
-            data.text = ":cop:  This command is reserved for server admins.";
+            if (data.message.isAdmin === false)
+            {
+               {data.color = "warn";}
+               data.text = ":cop:  This command is reserved for server adminis.";
 
-            // -------------
-            // Send message
-            // -------------
+               // -------------
+               // Send message
+               // -------------
 
-            return sendMessage(data);
+               return sendMessage(data);
+            }
+            break Override;
          }
 
-         if (data.message.isAdmin)
-         {
-            data.text = debugStats;
-         }
+         data.text = debugStats;
 
          // -------------
          // Send message

@@ -50,18 +50,22 @@ module.exports = function(data)
    // Disallow non-managers to stop for others
    // -----------------------------------------
 
-   if (data.cmd.for[0] !== "me" && !data.message.isManager)
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
-      data.color = "error";
-      data.text =
+      if (data.cmd.for[0] !== "me" && !data.message.isManager)
+      {
+         data.color = "error";
+         data.text =
          ":cop:  You need to be a channel manager to stop auto translating " +
          "this channel for others.";
 
-      // -------------
-      // Send message
-      // -------------
+         // -------------
+         // Send message
+         // -------------
 
-      return sendMessage(data);
+         return sendMessage(data);
+      }
+      break Override;
    }
 
    // ------------------
@@ -154,6 +158,7 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
 
    return sendMessage(data);
 };
+
 // -----------------------
 // Destination ID handler
 // -----------------------
