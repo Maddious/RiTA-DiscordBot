@@ -3,13 +3,13 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-/* eslint-disable no-irregular-whitespace*/
+/*eslint-disable no-irregular-whitespace*/
 const auth = require("../../core/auth");
 const fn = require("../../core/helpers");
 const logger = require("../../core/logger");
 const process = require("process");
-const {stripIndent} = require("common-tags");
-const {oneLine} = require("common-tags");
+const stripIndent = require("common-tags").stripIndent;
+const oneLine = require("common-tags").oneLine;
 const secConverter = require("seconds-converter");
 const sendMessage = require("../../core/command.send");
 
@@ -17,9 +17,8 @@ const sendMessage = require("../../core/command.send");
 // Invite Link
 // ------------
 
-exports.invite = function invite (data)
+exports.invite = function(data)
 {
-
    data.color = "info";
    data.text = `Invite ${data.bot} `;
    data.text += `\`v${data.config.version}\` to your server\n\n`;
@@ -34,25 +33,22 @@ exports.invite = function invite (data)
    // -------------
 
    return sendMessage(data);
-
 };
 
 // -----------------------
 // Get info on all shards
 // -----------------------
 
-exports.shards = function shards (data)
+exports.shards = function(data)
 {
-
    // ---------------
    // Get shard info
    // ---------------
 
-   const {shard} = data.message.client;
+   const shard = data.message.client.shard;
 
    if (!shard)
    {
-
       // ---------------
       // Render message
       // ---------------
@@ -65,54 +61,42 @@ exports.shards = function shards (data)
 
       data.color = "info";
 
-      data.text = `​\n${oneLine`
+      data.text = "​\n" + oneLine`
          :bar_chart:  ​
          **${data.message.client.guilds.size}**  guilds  ·  ​
          **${data.message.client.channels.size}**  channels  ·  ​
          **${data.message.client.users.size}**  users
-      `}\n​`;
+      ` + "\n​";
 
       // -------------
       // Send message
       // -------------
 
       return sendMessage(data);
-
    }
 
    // --------------------------
    // Get proccess/shard uptime
    // --------------------------
 
-   const shardErr = function shardErr (err)
+   const shardErr = function(err)
    {
-
-      return logger(
-         "error",
-         err,
-         "shardFetch",
-         data.message.guild.name
-      );
-
+      return logger("error", err, "shardFetch", data.message.guild.name);
    };
 
-   shard.fetchClientValues("guilds.size").then((guildsSize) =>
+   shard.fetchClientValues("guilds.size").then(guildsSize =>
    {
-
-      shard.fetchClientValues("channels.size").then((channelsSize) =>
+      shard.fetchClientValues("channels.size").then(channelsSize =>
       {
-
-         shard.fetchClientValues("users.size").then((usersSize) =>
+         shard.fetchClientValues("users.size").then(usersSize =>
          {
-
             const output = [];
 
             for (let i = 0; i < shard.count; ++i)
             {
-
                output.push({
-                  inline: true,
                   name: `:pager: - Shard #${i}`,
+                  inline: true,
                   value: stripIndent`
                      ​
                      **\`${guildsSize[i]}\`** guilds
@@ -123,7 +107,6 @@ exports.shards = function shards (data)
                      ​
                   `
                });
-
             }
 
             // ---------------
@@ -132,46 +115,38 @@ exports.shards = function shards (data)
 
             data.title = "Shards Info";
 
-            data.text = `​\n${oneLine`
+            data.text = "​\n" + oneLine`
                :bar_chart:   Total:  ​
                **${shard.count}**  shards  ·  ​
                **${fn.arraySum(guildsSize)}**  guilds  ·  ​
                **${fn.arraySum(channelsSize)}**  channels  ·  ​
                **${fn.arraySum(usersSize)}**  users
-            `}\n​`;
+            ` + "\n​";
 
             data.color = "info";
 
             data.fields = output;
 
             // -------------
-            // catch errors
+            // Send message
             // -------------
 
-         }).
-            catch(shardErr);
+            sendMessage(data);
 
-      }).
-         catch(shardErr);
-
-   }).
-      catch(shardErr);
-
-   // -------------
-   // Send message
-   // -------------
-
-   return sendMessage(data);
-
+            // -------------
+            // catch errors
+            // -------------
+         }).catch(shardErr);
+      }).catch(shardErr);
+   }).catch(shardErr);
 };
 
 // ----------------------
 // Current proccess info
 // ----------------------
 
-exports.proc = function proc (data)
+exports.proc = function(data)
 {
-
    // ------------------
    // Get proccess data
    // ------------------
@@ -184,37 +159,30 @@ exports.proc = function proc (data)
    // Get shard info
    // ---------------
 
-   let {shard} = data.message.client;
+   let shard = data.message.client.shard;
 
    if (!shard)
    {
-
       shard = {
-         count: 1,
-         id: 0
-
+         id: 0,
+         count: 1
       };
-
    }
 
    // -----------------------
    // Byte formatter (mb/gb)
    // -----------------------
 
-   const byteFormat = function byteFormat (bytes)
+   const byteFormat = function(bytes)
    {
-
       if (bytes > 750000000)
       {
-
          const gb = bytes / 1000 / 1000 / 1000;
-         return `${gb.toFixed(3)} gb`;
-
+         return gb.toFixed(3) + " gb";
       }
 
       const mb = bytes / 1000 / 1000;
-      return `${mb.toFixed(2)} mb`;
-
+      return mb.toFixed(2) + " mb";
    };
 
    // -----------------
@@ -233,21 +201,16 @@ exports.proc = function proc (data)
    // Get proccess/shard uptime
    // --------------------------
 
-   const procUptime = secConverter(
-      Math.round(process.uptime()),
-      "sec"
-   );
+   const procUptime = secConverter(Math.round(process.uptime()), "sec");
 
    const shardUptime = secConverter(data.message.client.uptime);
 
-   const uptimeFormat = function uptimeFormat (uptime)
+   const uptimeFormat = function(uptime)
    {
-
       return oneLine`
          **\`${uptime.days}\`** days
          **\`${uptime.hours}:${uptime.minutes}:${uptime.seconds}\`**
       `;
-
    };
 
    // ---------------
@@ -271,5 +234,4 @@ exports.proc = function proc (data)
    // -------------
 
    sendMessage(data);
-
 };

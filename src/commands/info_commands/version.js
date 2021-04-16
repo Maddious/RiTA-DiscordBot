@@ -10,16 +10,13 @@ const sendMessage = require("../../core/command.send");
 // Command Code
 // -------------
 
-module.exports = function run (data)
+module.exports = function(data)
 {
-
-   let version = `**\`${data.config.version}\`**`;
+   var version = `**\`${data.config.version}\`**`;
 
    if (auth.changelog)
    {
-
       version += ` ([changelog](${auth.changelog}))`;
-
    }
 
    data.color = "info";
@@ -30,5 +27,4 @@ module.exports = function run (data)
    // -------------
 
    return sendMessage(data);
-
 };

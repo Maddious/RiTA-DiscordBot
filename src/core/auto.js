@@ -3,53 +3,105 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-/* eslint-disable consistent-return */
 const translate = require("./translate");
 const logger = require("./logger");
 const botSend = require("./send");
 const fn = require("./helpers");
 
-// --------------
-// Proccess task
-// --------------
+// -----------------
+// Get data from db
+// -----------------
 
-const sendTranslation = function sendTranslation (data)
+module.exports = function(data)
 {
-
-   if (data.proccess)
+   if (data.err)
    {
-
-      if (
-         data.message.content === "" &&
-         data.message.attachments.array().length > 0
-      )
-      {
-
-         // -------------
-         // Send message
-         // -------------
-
-         return botSend(data);
-
-      }
-
-      // -------------
-      // Send message
-      // -------------
-
-      return translate(data);
-
+      return logger("error", data.err, "db", data.message.guild.name);
    }
 
+   if (data.rows.length > 0)
+   {
+      // ----------------------------------------------
+      // Add !i to end of message to ignore it instead
+      // ----------------------------------------------
+
+      if (data.message.content.endsWith("!i"))
+      {
+         return data.message.react("➖").catch((err) =>
+         {
+            return logger("dev", `${err}\n\n'# Cannot react`);
+         });
+      }
+
+      data.proccess = true;
+
+      for (var i = 0; i < data.rows.length; i++)
+      {
+         analyzeRows(data, i);
+      }
+   }
 };
+
+// ---------------------
+// Analyze rows in loop
+// ---------------------
+
+const analyzeRows = function(data, i)
+{
+   const row = data.rows[i];
+
+   // -------------------------------
+   // Set forward channel for sender
+   // -------------------------------
+
+   if (row.dest !== data.message.channel.id)
+   {
+      data.forward = row.dest;
+      data.embeds = data.message.embeds;
+      data.attachments = data.message.attachments;
+
+      if (data.message.channel.type === "dm")
+      {
+         const replyIndex = data.message.content.indexOf(":");
+         const reply = data.message.content.slice(0, replyIndex);
+         const replyCon = data.message.content.slice(replyIndex + 1);
+
+         if (reply === row.reply)
+         {
+            data.proccess = true;
+            data.message.content = replyCon;
+         }
+         else
+         {
+            data.proccess = false;
+         }
+      }
+   }
+
+   // ------------------------
+   // Set translation options
+   // ------------------------
+
+   data.translate = {
+      original: data.message.content,
+      to: { valid: [{iso: row.LangTo}] },
+      from: { valid: [{iso: row.LangFrom}] }
+   };
+
+   // ------------------
+   // Start translation
+   // ------------------
+
+   startTranslation(data, i, row);
+};
+
 
 // ------------------
 // Start translation
 // ------------------
 
-const startTranslation = function startTranslation (data, i, row)
+const startTranslation = function(data, i, row)
 {
-
    const replyID = row.reply;
 
    // ---------------------------------
@@ -62,16 +114,12 @@ const startTranslation = function startTranslation (data, i, row)
 
    if (data.message.channel.type === "text")
    {
-
-      data.footer.text += `#${data.message.channel.name}`;
-
+      data.footer.text += "#" + data.message.channel.name;
    }
 
    if (data.message.channel.type === "dm")
    {
-
       data.footer.text += "DM";
-
    }
 
    const footerOriginal = data.footer;
@@ -82,45 +130,27 @@ const startTranslation = function startTranslation (data, i, row)
 
    if (row.dest.startsWith("@"))
    {
-
       const footerExtra = {
-         icon_url: data.message.guild.iconURL,
-         text: `${data.footer.text
-         } ‹ ${data.message.guild.name} | reply with ${replyID}:`
-
+         text: data.footer.text +
+         ` ‹ ${data.message.guild.name} | reply with ${replyID}:`,
+         //eslint-disable-next-line camelcase
+         icon_url: data.message.guild.iconURL
       };
 
       const userID = row.dest.slice(1);
 
-      fn.getUser(
-         data.client,
-         userID,
-         (user) =>
+      fn.getUser(data.client, userID, user =>
+      {
+         if (user && user.createDM)
          {
-
-            if (user && user.createDM)
+            user.createDM().then(dm =>
             {
-
-               user.createDM().then((dm) =>
-               {
-
-                  data.footer = footerExtra;
-                  data.forward = dm.id;
-                  sendTranslation(data);
-
-               }).
-                  catch((err) => logger(
-                     "error",
-                     err,
-                     "dm",
-                     data.message.guild.name
-                  ));
-
-            }
-
+               data.footer = footerExtra;
+               data.forward = dm.id;
+               sendTranslation(data);
+            }).catch(err => logger("error", err, "dm", data.message.guild.name));
          }
-      );
-
+      });
    }
 
    // -------------------------
@@ -129,131 +159,35 @@ const startTranslation = function startTranslation (data, i, row)
 
    else
    {
-
       data.footer = footerOriginal;
       sendTranslation(data);
-
    }
-
-};
-// ---------------------
-// Analyze rows in loop
-// ---------------------
-
-const analyzeRows = function analyzeRows (data, i)
-{
-
-   const row = data.rows[i];
-
-   // -------------------------------
-   // Set forward channel for sender
-   // -------------------------------
-
-   if (row.dest !== data.message.channel.id)
-   {
-
-      data.forward = row.dest;
-      data.embeds = data.message.embeds;
-      data.attachments = data.message.attachments;
-
-      if (data.message.channel.type === "dm")
-      {
-
-         const replyIndex = data.message.content.indexOf(":");
-         const reply = data.message.content.slice(
-            0,
-            replyIndex
-         );
-         const replyCon = data.message.content.slice(replyIndex + 1);
-
-         if (reply === row.reply)
-         {
-
-            data.proccess = true;
-            data.message.content = replyCon;
-
-         }
-         else
-         {
-
-            data.proccess = false;
-
-         }
-
-      }
-
-   }
-
-   // ------------------------
-   // Set translation options
-   // ------------------------
-
-   data.translate = {
-      from: {valid: [{iso: row.LangFrom}]},
-      original: data.message.content,
-      to: {valid: [{iso: row.LangTo}]}
-   };
-
-   // ------------------
-   // Start translation
-   // ------------------
-
-   startTranslation(
-      data,
-      i,
-      row
-   );
-
 };
 
-// -----------------
-// Get data from db
-// -----------------
+// --------------
+// Proccess task
+// --------------
 
-module.exports = function run (data)
+const sendTranslation = function(data)
 {
-
-   if (data.err)
+   if (data.proccess)
    {
-
-      return logger(
-         "error",
-         data.err,
-         "db",
-         data.message.guild.name
-      );
-
-   }
-
-   if (data.rows.length > 0)
-   {
-
-      // ----------------------------------------------
-      // Add !i to end of message to ignore it instead
-      // ----------------------------------------------
-
-      if (data.message.content.endsWith("!i"))
+      if (
+         data.message.content === "" &&
+         data.message.attachments.array().length > 0
+      )
       {
+         // -------------
+         // Send message
+         // -------------
 
-         return data.message.react("➖").catch((err) => logger(
-            "dev",
-            `${err}\n\n'# Cannot react`
-         ));
-
+         return botSend(data);
       }
 
-      data.proccess = true;
+      // -------------
+      // Send message
+      // -------------
 
-      for (let i = 0; i < data.rows.length; i++)
-      {
-
-         analyzeRows(
-            data,
-            i
-         );
-
-      }
-
+      return translate(data);
    }
-
 };

@@ -1,5 +1,3 @@
-/* eslint-disable array-element-newline */
-/* eslint-disable sort-keys */
 // -----------------------------------------------------------
 // List of countries, mapped by their unicode emoji
 // includes array of official country languages (ISO 639-1/2)
