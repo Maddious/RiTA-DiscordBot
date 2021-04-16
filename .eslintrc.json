@@ -75,6 +75,10 @@
       "no-extra-semi": "warn",
       "no-prototype-builtins": "warn",
       "padded-blocks": ["warn", "always"],
+      "new-cap": ["warn", {"properties": false}],
+      "capitalized-comments": "warn",
+      "quote-props": "warn",
+      "no-plusplus": "warn",
       // -----------
       // eslint Off
       // -----------
@@ -102,6 +106,8 @@
       "function-call-argument-newline": "off",
       "no-process-env": "off",
       "no-underscore-dangle": "off",
+      "no-magic-numbers": "off",
+      "prefer-arrow-callback": "off",
       // --------------
       // DO NOT CHANGE
       // --------------
@@ -109,20 +115,14 @@
       "handle-callback-err": "off",
       "no-sync": "off",
       "no-negated-condition": "off",
+      "no-mixed-operators": "off",
+      "no-ternary": "off",
+      "no-nested-ternary": "off",
       // ---------------------
       // These could be fixed
       // ---------------------
-      "no-magic-numbers": ["warn", { "ignoreArrayIndexes": true}],
-      "prefer-arrow-callback": "off",
-      "capitalized-comments": "warn",
-      "quote-props": "warn",
-      "no-mixed-operators": "off",
-      "no-plusplus": "warn",
       "require-unicode-regexp": "off",
       "prefer-named-capture-group": "off",
-      "prefer-regex-literals": "off",
-      "no-ternary": "off",
-      "no-nested-ternary": "off",
-      "new-cap": ["warn", {"properties": false}]
+      "prefer-regex-literals": "off" 
     }
 }

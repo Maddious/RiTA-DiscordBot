@@ -7,6 +7,10 @@ const sendMessage = require("../../core/command.send");
 const colors = require("../../core/colors");
 const discord = require("discord.js");
 const richEmbedMessage = new discord.RichEmbed();
+const time = {
+   "long": 60000,
+   "short": 5000
+};
 
 // -------------
 // Help Section
@@ -645,7 +649,7 @@ module.exports = function run (data)
          );
 
          console.log("Insufficient Permission");
-         data.message.delete(5000).catch((err) => console.log(
+         data.message.delete(time.short).catch((err) => console.log(
             "Command Message Deleted Error, help.js = ",
             err
          ));
@@ -666,7 +670,7 @@ module.exports = function run (data)
          return data.message.channel.send(richEmbedMessage).then((msg) =>
          {
 
-            msg.delete(60000).catch((err) => console.log(
+            msg.delete(time.long).catch((err) => console.log(
                "Bot Message Deleted Error, help.js = ",
                err
             ));
