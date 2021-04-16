@@ -11,7 +11,8 @@
 
 module.exports = {
    "error": {
-      "Read": "You lack permissions to perform that action",
-      "perm": "50013"
+      "Content": "50035",
+      "perm": "50013",
+      "sendDm": "50007"
    }
 };

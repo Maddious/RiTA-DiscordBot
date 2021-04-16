@@ -14,6 +14,7 @@ const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
 const webHookName = "Translator Messaging System";
+const error = require("./error");
 
 // -----------------
 // Permission Check
@@ -369,14 +370,14 @@ const embedOn = function embedOn (data)
                // Error for long messages
                // ------------------------
 
-               if (err.code && err.code === 50035)
+               if (err.code && err.code === error.Content)
                {
 
                   data.channel.send(":warning:  Message is too long.");
 
                }
 
-               if (err.code && err.code === 50013)
+               if (err.code && err.code === error.perm)
                {
 
                   console.log("DEBUG: Error 50013 - Origin");
@@ -396,7 +397,7 @@ const embedOn = function embedOn (data)
                // Handle error for users who cannot recieve private messages
                // -----------------------------------------------------------
 
-               if (err.code && err.code === 50007 && data.origin)
+               if (err.code && err.code === error.sendDm && data.origin)
                {
 
                   const badUser = data.channel.recipient;
