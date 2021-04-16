@@ -11,7 +11,9 @@
     "extends": "eslint:all",
     "parser": "babel-eslint",
     "rules": {
+      // -------------
       // eslint Error
+      // -------------
       "new-parens": "error",
       "no-lonely-if": "error",
       "no-multi-assign": "error",
@@ -40,7 +42,9 @@
       "no-unreachable": "error",
       "no-unused-vars": "error",
       "no-multi-spaces": "error",
+      // ------------
       // eslint Warn
+      // ------------
       "eqeqeq": "warn",
       "no-extra-parens": "warn",
       "no-multi-str": "warn",
@@ -71,12 +75,16 @@
       "no-extra-semi": "warn",
       "no-prototype-builtins": "warn",
       "padded-blocks": ["warn", "always"],
+      // -----------
       // eslint Off
+      // -----------
       "block-scoped-var": "off",
       "no-console": "off",
       "camelcase": "off",
       "no-dupe-keys": "off",
-      //eslint all override defaults
+      // -----------------------------
+      // eslint all override defaults
+      // -----------------------------
       "max-lines-per-function": "off",
       "max-statements": "off",
       "no-labels": "off",
@@ -88,20 +96,21 @@
       "no-undefined": "off",
       "func-style": "off",
       "no-shadow": "off",
-      "no-ternary": "off",
-      "no-nested-ternary": "off",
-      "new-cap": "off",
       "array-bracket-newline": "off",
       "array-element-newline": "off",
       "array-bracket-spacing": "off",
       "function-call-argument-newline": "off",
       "no-process-env": "off",
       "no-underscore-dangle": "off",
-      //DO NOT CHANGE
+      // --------------
+      // DO NOT CHANGE
+      // --------------
       "multiline-comment-style":["off", "separate-lines"],
       "handle-callback-err": "off",
       "no-sync": "off",
+      // ---------------------
       // These could be fixed
+      // ---------------------
       "no-magic-numbers": "warn",
       "prefer-arrow-callback": "warn",
       "capitalized-comments": "warn",
@@ -111,6 +120,9 @@
       "require-unicode-regexp": "warn",
       "prefer-named-capture-group": "warn",
       "prefer-regex-literals": "warn",
-      "no-negated-condition": "warn"
+      "no-negated-condition": "warn",
+      "no-ternary": "warn",
+      "no-nested-ternary": "warn",
+      "new-cap": "warn"
     }
 }
