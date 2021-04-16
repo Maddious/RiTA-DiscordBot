@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-undef */
 /* eslint-disable no-var */
 /* eslint-disable vars-on-top */
@@ -22,7 +22,6 @@ const webHookName = "Translator Messaging System";
 const checkPerms = function checkPerms (data, sendBox)
 {
 
-<<<<<<< Updated upstream
    // ------------------------------------------------------------------------
    // Analyze Data and determine sending style (system message or author box)
    // ------------------------------------------------------------------------
@@ -31,28 +30,22 @@ const checkPerms = function checkPerms (data, sendBox)
    {
 
       var sendData = {
-         attachments: data.message.attachments,
-         bot: data.bot,
-         channel: data.message.channel,
-         color: data.color,
-         config: data.config,
-         embeds: data.message.embeds,
-         fields: data.fields,
-         footer: data.footer,
-         forward: data.forward,
-         guild: data.message.guild,
-         origin: null,
-         text: data.text,
-         title: data.title
+         "attachments": data.message.attachments,
+         "bot": data.bot,
+         "channel": data.message.channel,
+         "color": data.color,
+         "config": data.config,
+         "embeds": data.message.embeds,
+         "fields": data.fields,
+         "footer": data.footer,
+         "forward": data.forward,
+         "guild": data.message.guild,
+         "origin": null,
+         "text": data.text,
+         "title": data.title
       };
 
    }
-=======
-   global.messageData = data.message;
-   // ----------------------------
-   // Regex Statments for Emoji's
-   // ----------------------------
->>>>>>> Stashed changes
 
    // ---------------------------------------------------
    // Notify server owner if bot cannot write to channel
@@ -114,7 +107,6 @@ const checkPerms = function checkPerms (data, sendBox)
 
          else
          {
-<<<<<<< Updated upstream
 
             sendData.footer = null;
             sendData.embeds = null;
@@ -135,8 +127,8 @@ const checkPerms = function checkPerms (data, sendBox)
 
             console.log("DEBUG: Error 50013 - Destination");
             logger("custom", {
-               color: "ok",
-               msg: `:exclamation: Write Permission Error - Destination\n
+               "color": "ok",
+               "msg": `:exclamation: Write Permission Error - Destination\n
                   Server: **${data.channel.guild.name}** \n
                   Channel: **${forwardChannel.name}**\n
                   Chan ID: **${forwardChannel.id}**\n
@@ -154,12 +146,6 @@ const checkPerms = function checkPerms (data, sendBox)
                send(writeErr).
                catch((err) => console.log("error", err, "warning", data.message.guild.name));
 
-=======
-            const regex20 = /<(a)([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*:\s*)([0-9\s]+)>/gmi;
-            const regex30 = /<:([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*(:)\s*)([0-9\s]+)>/gmi;
-            data.text.replace(regex20, "<a:customemoji:$3>");
-            data.text.replace(regex30, "<:customemoji:$3>");
->>>>>>> Stashed changes
          }
 
       }
@@ -222,7 +208,6 @@ const embedOn = function embedOn (data)
 
    const sendEmbeds = function sendEmbeds (data)
    {
-<<<<<<< Updated upstream
 
       if (data.forward && data.embeds && data.embeds.length > 0)
       {
@@ -234,16 +219,16 @@ const embedOn = function embedOn (data)
 
             // eslint-disable-next-line no-use-before-define
             sendBox({
-               channel: data.channel,
-               color: "warn",
-               text: `:warning:  Cannot embed more than ${maxEmbeds} links.`
+               "channel": data.channel,
+               "color": "warn",
+               "text": `:warning:  Cannot embed more than ${maxEmbeds} links.`
             });
 
             data.embeds = data.embeds.slice(0, maxEmbeds);
 
          }
 
-         for (let i = 0; i < data.embeds.length; i++)
+         for (let i = 0; i < data.embeds.length; i += 1)
          {
 
             data.channel.send(data.embeds[i].url);
@@ -279,23 +264,23 @@ const embedOn = function embedOn (data)
 
             // eslint-disable-next-line no-use-before-define
             sendBox({
-               channel: data.channel,
-               color: "warn",
-               text: `:warning:  Cannot attach more than ${maxAtt} files.`
+               "channel": data.channel,
+               "color": "warn",
+               "text": `:warning:  Cannot attach more than ${maxAtt} files.`
 
             });
             attachments = attachments.slice(0, maxAtt);
 
          }
 
-         for (let i = 0; i < attachments.length; i++)
+         for (let i = 0; i < attachments.length; i += 1)
          {
 
             const attachmentObj = new discord.Attachment(
                attachments[i].url,
                attachments[i].filename
             );
-            data.channel.send(`**${messageData.author.username}** sent a file:`, {file: attachmentObj});
+            data.channel.send(`**${messageData.author.username}** sent a file:`, {"file": attachmentObj});
 
          }
 
@@ -311,10 +296,8 @@ const embedOn = function embedOn (data)
    {
 
 
-=======
->>>>>>> Stashed changes
       /*
-      if (data.author)
+      If (data.author)
       {
          data.author = {
             name: data.author.username,
@@ -334,24 +317,15 @@ const embedOn = function embedOn (data)
                console.log("DEBUG: Is bot.author - embed on");
                // eslint-disable-next-line no-redeclare
                var embed = {
-<<<<<<< Updated upstream
-=======
-                  title: data.title,
-                  fields: data.fields,
->>>>>>> Stashed changes
-                  author: {
-                     icon_url: data.bot.displayAvatarURL,
-                     name: data.bot.username
+                  "author": {
+                     "icon_url": data.bot.displayAvatarURL,
+                     "name": data.bot.username
                   },
-                  color: colors.get(data.color),
-                  description: data.text,
-<<<<<<< Updated upstream
-                  fields: data.fields,
-                  footer: data.footer,
-                  title: data.title
-=======
-                  footer: data.footer
->>>>>>> Stashed changes
+                  "color": colors.get(data.color),
+                  "description": data.text,
+                  "fields": data.fields,
+                  "footer": data.footer,
+                  "title": data.title
                };
 
             }
@@ -361,24 +335,15 @@ const embedOn = function embedOn (data)
                console.log("DEBUG: Is data.author - embed on");
                // eslint-disable-next-line no-redeclare
                var embed = {
-<<<<<<< Updated upstream
-=======
-                  title: data.title,
-                  fields: data.fields,
->>>>>>> Stashed changes
-                  author: {
-                     icon_url: data.author.displayAvatarURL,
-                     name: data.author.username
+                  "author": {
+                     "icon_url": data.author.displayAvatarURL,
+                     "name": data.author.username
                   },
-                  color: colors.get(data.color),
-                  description: data.text,
-<<<<<<< Updated upstream
-                  fields: data.fields,
-                  footer: data.footer,
-                  title: data.title
-=======
-                  footer: data.footer
->>>>>>> Stashed changes
+                  "color": colors.get(data.color),
+                  "description": data.text,
+                  "fields": data.fields,
+                  "footer": data.footer,
+                  "title": data.title
                };
 
             }
@@ -398,7 +363,6 @@ const embedOn = function embedOn (data)
             catch((err) =>
             {
 
-<<<<<<< Updated upstream
                let errMsg = err;
 
                // ------------------------
@@ -417,16 +381,8 @@ const embedOn = function embedOn (data)
 
                   console.log("DEBUG: Error 50013 - Origin");
                   return logger("custom", {
-                     color: "ok",
-                     msg: `:exclamation: Write Permission Error - Origin \n
-=======
-            if (err.code && err.code === 50013)
-            {
-               console.log("DEBUG: Error 50013 - Origin");
-               return logger("custom", {
-                  color: "ok",
-                  msg: `:exclamation: Write Permission Error - Origin \n
->>>>>>> Stashed changes
+                     "color": "ok",
+                     "msg": `:exclamation: Write Permission Error - Origin \n
                   Server: **${data.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
@@ -508,26 +464,9 @@ const embedOff = function embedOff (data)
       if (attachments && attachments.length > 0)
       {
 
-         for (let i = 0; i < attachments.length; i++)
+         for (let i = 0; i < attachments.length; i += 1)
          {
 
-<<<<<<< Updated upstream
-=======
-const embedOff = function(data)
-{
-   // -------------
-   // Create Files
-   // -------------
-   function createFiles(dataAttachments)
-   {
-      if (!dataAttachments && !dataAttachments.array().length > 0) {return;}
-      var attachments = dataAttachments.array();
-      const files = [];
-      if (attachments && attachments.length > 0)
-      {
-         for (let i = 0; i < attachments.length; i++)
-         {
->>>>>>> Stashed changes
             const attachmentObj = new discord.Attachment(
                attachments[i].url,
                attachments[i].filename
@@ -585,7 +524,6 @@ const embedOff = function(data)
 
             console.log("DEBUG: Is bot.author embed off");
             webhook.send(data.text, {
-<<<<<<< Updated upstream
                // If you get a error at the below line then the bot does not have write permissions.
 
                "avatarURL": data.bot.displayAvatarURL,
@@ -637,16 +575,16 @@ const embedOff = function(data)
 
             // eslint-disable-next-line no-use-before-define
             sendBox({
-               channel: data.channel,
-               color: "warn",
-               text: `:warning:  Cannot attach more than ${maxAtt} files.`
+               "channel": data.channel,
+               "color": "warn",
+               "text": `:warning:  Cannot attach more than ${maxAtt} files.`
 
             });
             attachments = attachments.slice(0, maxAtt);
 
          }
 
-         for (let i = 0; i < attachments.length; i++)
+         for (let i = 0; i < attachments.length; i += 1)
          {
 
             const attachmentObj = new discord.Attachment(
@@ -655,23 +593,6 @@ const embedOff = function(data)
             );
             data.channel.send(attachmentObj);
 
-=======
-               //If you get a error at the below line then the bot does not have write permissions.
-               "username": data.bot.username || data.message,
-               "avatarURL": data.bot.displayAvatarURL,
-               "files": files
-            });
-         }
-         else
-         {
-            console.log("DEBUG: Is data.author embed off");
-            webhook.send(data.text, {
-               //If you get a error at the below line then the bot does not have write permissions.
-               "username": data.author.username || data.message,
-               "avatarURL": data.author.displayAvatarURL,
-               "files": files
-            });
->>>>>>> Stashed changes
          }
 
       }
@@ -830,7 +751,6 @@ module.exports = function run (data)
          data.text = data.text.replace(/<А/gmi, "<a");
          if (data.text.includes("<А" || "<a"))
          {
-<<<<<<< Updated upstream
 
             const regex1 = /<(a)([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*:\s*)([0-9\s]+)>/gmi;
             const str1 = data.text;
@@ -838,18 +758,8 @@ module.exports = function run (data)
             data.text = str1.replace(regex1, subst1);
 
          }
-         //   if a combination of animated emojis and normal custom emojis
+         //   If a combination of animated emojis and normal custom emojis
          if (!data.text.includes("<a") && data.text.includes("<:"))
-=======
-            canWriteDest = fn.checkPerm(
-               forwardChannel.guild.me,
-               forwardChannel,
-               "SEND_MESSAGES"
-            );
-         }
-
-         if (canWriteDest)
->>>>>>> Stashed changes
          {
 
             const subst5 = "<:customemoji:$3>";
@@ -870,23 +780,10 @@ module.exports = function run (data)
 
       }
 
-<<<<<<< Updated upstream
    }
 
-   // const guildValue = data.message.guild.id;
+   // Const guildValue = data.message.guild.id;
    data.channel = data.message.channel;
-=======
-            console.log("DEBUG: Error 50013 - Destination");
-            logger("custom", {
-               color: "ok",
-               msg: `:exclamation: Write Permission Error - Destination\n
-                  Server: **${data.channel.guild.name}** \n
-                  Channel: **${forwardChannel.name}**\n
-                  Chan ID: **${forwardChannel.id}**\n
-                  Owner: **${data.channel.guild.owner}**\n
-                  The server owner has been notified . \n`
-            });
->>>>>>> Stashed changes
 
    // --------------------
    // Primary If Statment
@@ -912,21 +809,13 @@ module.exports = function run (data)
    const after = Date.now();
    console.log(after - before);
 
-<<<<<<< Updated upstream
    console.log("DEBUG: Perms Error");
    data.text = `:warning: ${data.bot.username} does not have sufficient permissions to send Webhook Messages. Please give ${data.bot.username} the \`MANAGE_WEBHOOKS\` permission.`;
    data.color = "warn";
-=======
-      if (data.author)
-      {
-         sendData.author = data.author;
-      }
-   }
->>>>>>> Stashed changes
 
-   return data.channel.send({embed: {
-      color: colors.get(data.color),
-      description: data.text
+   return data.channel.send({"embed": {
+      "color": colors.get(data.color),
+      "description": data.text
 
    }});
 

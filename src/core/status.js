@@ -30,15 +30,8 @@ module.exports = function run (bot, status, config, writable = true)
       {
 
          bot.setPresence({
-<<<<<<< Updated upstream
-            status: "dnd"
+            "status": "dnd"
          });
-=======
-            status: "online",
-            game: {
-               name: activevar[0]
-            } //run this on stratup
->>>>>>> Stashed changes
 
       },
 
@@ -46,51 +39,41 @@ module.exports = function run (bot, status, config, writable = true)
       {
 
          bot.setPresence({
-<<<<<<< Updated upstream
-            status: "online"
-=======
-            status: "dnd"
->>>>>>> Stashed changes
+            "status": "online"
          });
 
       },
 
       "online" ()
       {
-<<<<<<< Updated upstream
 
-         // run this on stratup
+         // Run this on stratup
          bot.setPresence({
-            game: {
-               name: activevar[0]
+            "game": {
+               "name": activevar[0]
             },
-            status: "online"
+            "status": "online"
 
          });
          setInterval(
-            // every 20 seconds generate a random number and update status to that
+            // Every 20 seconds generate a random number and update status to that
             function res ()
             {
 
                const actID = Math.floor(Math.random() * 6);
                bot.setPresence({
 
-                  game: {
-                     name: activevar[actID],
-                     type: statusvar[actID]
+                  "game": {
+                     "name": activevar[actID],
+                     "type": statusvar[actID]
                   },
-                  status: "online"
+                  "status": "online"
                });
 
             },
             20000
          );
 
-=======
-         bot.setPresence({
-            status: "online"
-         });
->>>>>>> Stashed changes
       }
    };
 

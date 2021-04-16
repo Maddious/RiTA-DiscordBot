@@ -2,11 +2,8 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-<<<<<<< Updated upstream
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
-=======
->>>>>>> Stashed changes
 const langCheck = require("../../core/lang.check");
 const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
@@ -75,11 +72,7 @@ const shoutTasks = function shoutTasks (res, data,)
 
    sendMessage(data);
 
-<<<<<<< Updated upstream
-   for (let i = 0, len = res.length; i < len; i++)
-=======
-   for (var i = 0, len = res.length; i < len; i++)
->>>>>>> Stashed changes
+   for (let i = 0, len = res.length; i < len; i += 1)
    {
 
       const task = res[i];

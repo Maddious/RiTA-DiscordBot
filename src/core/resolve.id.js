@@ -2,12 +2,9 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-<<<<<<< Updated upstream
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable sort-keys */
 /* eslint-disable default-param-last */
-=======
->>>>>>> Stashed changes
 
 // -----------
 // ID Helpers
@@ -88,22 +85,13 @@ exports.idConvert = function idConvert (string, client, guild)
 
 exports.main = function main (client, id, output = null, guild)
 {
-<<<<<<< Updated upstream
 
    const resolved = {
       id,
-      name: null,
-      obj: null,
-      prefix: module.exports.idPrefix(id),
-      pure: module.exports.idPure(id)
-=======
-   var resolved = {
-      id: id,
-      prefix: module.exports.idPrefix(id),
-      pure: module.exports.idPure(id),
-      name: null,
-      obj: null
->>>>>>> Stashed changes
+      "name": null,
+      "obj": null,
+      "prefix": module.exports.idPrefix(id),
+      "pure": module.exports.idPure(id)
    };
 
    const prefixMap =

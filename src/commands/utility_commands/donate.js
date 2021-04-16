@@ -2,12 +2,8 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-<<<<<<< Updated upstream
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 
-=======
-/* eslint-disable no-undef */
->>>>>>> Stashed changes
 const sendMessage = require("../../core/command.send");
 
 // ------------------------------

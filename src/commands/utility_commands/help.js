@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const sendMessage = require("../../core/command.send");
 const colors = require("../../core/colors");
 const discord = require("discord.js");
@@ -51,133 +51,120 @@ const helpMessage = function helpMessage (config, botname, param)
 
    const basics =
    helpSection({
-<<<<<<< Updated upstream
-      args: null,
-=======
-      config: config,
-      title: "Translate by Reacting",
-      link: "<https://ritabot.gg/trans-reac/>",
-      icon: ":flag_white:",
->>>>>>> Stashed changes
-      cmd: null,
+      "args": null,
+      "cmd": null,
       config,
-      example: "!t help react for examples",
-      help: "react",
-      icon: ":flag_white:",
-      link: "<https://ritabot.gg/trans-reac/>",
-      title: "Translate by Reacting"
+      "example": "!t help react for examples",
+      "help": "react",
+      "icon": ":flag_white:",
+      "link": "<https://ritabot.gg/trans-reac/>",
+      "title": "Translate by Reacting"
    }) +
    helpSection({
-      args: "to [lang] from [lang]: [msg]",
-      cmd: "this",
+      "args": "to [lang] from [lang]: [msg]",
+      "cmd": "this",
       config,
-      example: "to french from english: hello",
-      help: "custom",
-      icon: ":abc:",
-      link: "<https://ritabot.gg/trans-cust/>",
-      title: "Translate Custom Text"
+      "example": "to french from english: hello",
+      "help": "custom",
+      "icon": ":abc:",
+      "link": "<https://ritabot.gg/trans-cust/>",
+      "title": "Translate Custom Text"
    }) +
    helpSection({
-      args: "[count] from [lang] to [lang]",
-      cmd: "last",
+      "args": "[count] from [lang] to [lang]",
+      "cmd": "last",
       config,
-      example: "3 from german to spanish",
-      help: "last",
-      icon: ":arrow_double_up:",
-      link: "<https://ritabot.gg/trans-last/>",
-      title: "Translate Last Message"
+      "example": "3 from german to spanish",
+      "help": "last",
+      "icon": ":arrow_double_up:",
+      "link": "<https://ritabot.gg/trans-last/>",
+      "title": "Translate Last Message"
    }) +
    helpSection({
-      args: "from [lang] to [lang] for [@/#]",
-      cmd: "channel",
+      "args": "from [lang] to [lang] for [@/#]",
+      "cmd": "channel",
       config,
-      example: "from hebrew to arabic for me",
-      help: "auto",
-      icon: ":hash:",
-      link: "<https://ritabot.gg/trans-auto/>",
-      title: "Translate Channel (Automatic)"
+      "example": "from hebrew to arabic for me",
+      "help": "auto",
+      "icon": ":hash:",
+      "link": "<https://ritabot.gg/trans-auto/>",
+      "title": "Translate Channel (Automatic)"
    }) +
    helpSection({
-      args: "stats [server/global]",
-      cmd: "stats",
+      "args": "stats [server/global]",
+      "cmd": "stats",
       config,
-      example: "",
-      help: "stats",
-      icon: ":bar_chart:",
-      link: "<https://ritabot.gg/trans-misc/#statistics>",
-      title: "Stats"
+      "example": "",
+      "help": "stats",
+      "icon": ":bar_chart:",
+      "link": "<https://ritabot.gg/trans-misc/#statistics>",
+      "title": "Stats"
    }) +
    helpSection({
-      args: "setLang to [lang]",
-      cmd: "settings",
+      "args": "setLang to [lang]",
+      "cmd": "settings",
       config,
-      example: "setLang to italian",
-      help: "settings",
-      icon: ":gear:",
-      link: "<https://ritabot.gg/trans-sett/>",
-      title: "Settings"
+      "example": "setLang to italian",
+      "help": "settings",
+      "icon": ":gear:",
+      "link": "<https://ritabot.gg/trans-sett/>",
+      "title": "Settings"
    }) +
    helpSection({
-      args: "",
-      cmd: "misc",
+      "args": "",
+      "cmd": "misc",
       config,
-      example: "",
-      help: "misc",
-      icon: ":robot:",
-      link: "<https://ritabot.gg/trans-misc/>",
-      title: "Misc. Settings"
+      "example": "",
+      "help": "misc",
+      "icon": ":robot:",
+      "link": "<https://ritabot.gg/trans-misc/>",
+      "title": "Misc. Settings"
    }) +
    helpSection({
-      args: "",
-      cmd: "Tasks",
+      "args": "",
+      "cmd": "Tasks",
       config,
-      example: "",
-      help: "Tasks",
-      icon: ":clipboard:",
-      link: "<https://ritabot.gg/trans-misc/#translations>",
-      title: "Tasks"
+      "example": "",
+      "help": "Tasks",
+      "icon": ":clipboard:",
+      "link": "<https://ritabot.gg/trans-misc/#translations>",
+      "title": "Tasks"
    }) +
    helpSection({
-      args: "",
-      cmd: "readme",
+      "args": "",
+      "cmd": "readme",
       config,
-      example: "",
-      help: "readme",
-      icon: ":bookmark_tabs:",
-      link: "<https://ritabot.gg/secure/>",
-      title: "ReadMe"
+      "example": "",
+      "help": "readme",
+      "icon": ":bookmark_tabs:",
+      "link": "<https://ritabot.gg/secure/>",
+      "title": "ReadMe"
    }) +
    helpSection({
       config,
-      icon: "🙋🏽‍♀️",
-      link: "<https://github.com/RitaBot-Project/RitaBot/issues>",
-      title: "Report Bugs / Request Features"
+      "icon": "🙋🏽‍♀️",
+      "link": "<https://github.com/RitaBot-Project/RitaBot/issues>",
+      "title": "Report Bugs / Request Features"
    }) +
    helpSection({
-      args: "oc",
-      cmd: "donate",
-<<<<<<< Updated upstream
+      "args": "oc",
+      "cmd": "donate",
       config,
-      example: "",
-      help: "donate",
-      icon: ":dollar: ",
-      link: "<https://opencollective.com/ritabot-project>",
-      title: "Donate Via Open Collective"
+      "example": "",
+      "help": "donate",
+      "icon": ":dollar: ",
+      "link": "<https://opencollective.com/ritabot-project>",
+      "title": "Donate Via Open Collective"
    }) +
    helpSection({
-      args: "github",
-      cmd: "donate",
+      "args": "github",
+      "cmd": "donate",
       config,
-      example: "",
-      help: "donate",
-      icon: ":dollar: ",
-      link: "<https://github.com/sponsors/RitaBot-Project>",
-      title: "Donate Via Github"
-=======
-      help: "donate",
-      args: "github",
-      example: ""
->>>>>>> Stashed changes
+      "example": "",
+      "help": "donate",
+      "icon": ":dollar: ",
+      "link": "<https://github.com/sponsors/RitaBot-Project>",
+      "title": "Donate Via Github"
    });
 
    // ----------------
@@ -611,16 +598,11 @@ const helpMessage = function helpMessage (config, botname, param)
       tasks
    };
 
-<<<<<<< Updated upstream
-   // if (paramMap.hasOwnProperty(param))
+   // If (paramMap.hasOwnProperty(param))
    if (Object.prototype.hasOwnProperty.call(
       paramMap,
       param
    ))
-=======
-   //if (paramMap.hasOwnProperty(param))
-   if (Object.prototype.hasOwnProperty.call(paramMap,param))
->>>>>>> Stashed changes
    {
 
       return paramMap[param];

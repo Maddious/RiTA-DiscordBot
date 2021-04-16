@@ -9,4 +9,9 @@
 // Command Code
 // -------------
 
-// This is a place holder for new a command.
+module.exports = {
+   "error": {
+      "Read": "Number",
+      "write": "50013"
+   }
+};

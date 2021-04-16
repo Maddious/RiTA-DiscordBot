@@ -2,11 +2,8 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-<<<<<<< Updated upstream
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
-=======
->>>>>>> Stashed changes
 const logger = require("./logger");
 
 // --------------------------------------
@@ -122,15 +119,11 @@ exports.arraySplit = function arraySplit (input, sep)
 exports.chunkString = function chunkString (str, len)
 {
 
-<<<<<<< Updated upstream
    const _size = Math.ceil(str.length / len);
    const _ret = new Array(_size);
    let _offset = null;
 
-   for (let _i = 0; _i < _size; _i++)
-=======
-   for (var _i=0; _i<_size; _i++)
->>>>>>> Stashed changes
+   for (let _i = 0; _i < _size; _i += 1)
    {
 
       _offset = _i * len;
@@ -192,8 +185,7 @@ exports.getUser = function getUser (client, userID, cb)
 
    }
 
-   // user not in cache, fetch 'em
-<<<<<<< Updated upstream
+   // User not in cache, fetch 'em
 
    client.fetchUser(userID).then(cb).
       catch((err) =>
@@ -206,8 +198,6 @@ exports.getUser = function getUser (client, userID, cb)
          );
 
       });
-=======
->>>>>>> Stashed changes
 
 };
 
@@ -227,7 +217,7 @@ exports.getChannel = function getChannel (client, channelID, userID, cb)
 
    }
 
-   // not in cache, create DM
+   // Not in cache, create DM
 
    if (userID)
    {
@@ -270,7 +260,6 @@ exports.getMessage = function getMessage (client, messageID, channelID, userID, 
       userID,
       (channel) =>
       {
-<<<<<<< Updated upstream
 
          const message = channel.messages.get(messageID);
 
@@ -281,7 +270,7 @@ exports.getMessage = function getMessage (client, messageID, channelID, userID, 
 
          }
 
-         // message not in channel cache
+         // Message not in channel cache
 
          channel.fetchMessage(messageID).then(cb).
             catch((err) => cb(
@@ -289,9 +278,6 @@ exports.getMessage = function getMessage (client, messageID, channelID, userID, 
                err
             ));
 
-=======
-         return cb(message);
->>>>>>> Stashed changes
       }
    );
 

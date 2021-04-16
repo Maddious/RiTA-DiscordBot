@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const langCheck = require("../core/lang.check");
 const logger = require("../core/logger");
 const db = require("../core/db");
@@ -196,19 +196,14 @@ const stripPrefix = function stripPrefix (message, config, bot)
 
 module.exports = function run (data)
 {
-<<<<<<< Updated upstream
 
    const output = {
-      main: stripPrefix(
+      "main": stripPrefix(
          data.message,
          data.config,
          `${data.bot}`
       ).trim(),
-=======
-   var output = {
-      main: stripPrefix(data.message, data.config, `${data.bot}`).trim(),
->>>>>>> Stashed changes
-      params: null
+      "params": null
    };
 
    checkContent(
@@ -297,7 +292,6 @@ module.exports = function run (data)
             }
 
          }
-<<<<<<< Updated upstream
 
          // ----------------------------------
          // Add command info to main data var
@@ -306,15 +300,12 @@ module.exports = function run (data)
          data.cmd = output;
 
          // -----------------------------
-         // check if channel is writable
+         // Check if channel is writable
          // -----------------------------
 
          data.canWrite = true;
 
          if (data.message.channel.type === "text")
-=======
-         else
->>>>>>> Stashed changes
          {
 
             data.canWrite = fn.checkPerm(
@@ -325,20 +316,14 @@ module.exports = function run (data)
 
          }
 
-<<<<<<< Updated upstream
          // -----------------------
-         // log command data (dev)
+         // Log command data (dev)
          // -----------------------
 
          logger(
             "cmd",
             data
          );
-=======
-      // ----------------------------------
-      // Add command info to main data var
-      // ----------------------------------
->>>>>>> Stashed changes
 
          // ---------------
          // Legal Commands

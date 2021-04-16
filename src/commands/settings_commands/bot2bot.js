@@ -2,14 +2,13 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-<<<<<<< Updated upstream
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const logger = require("../../core/logger");
 const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
 
 // --------------------------------
-// bot2bot varible command handler
+// Bot2bot varible command handler
 // --------------------------------
 
 const bot2bot = function bot2bot (data)
@@ -69,13 +68,6 @@ const bot2bot = function bot2bot (data)
 
 };
 
-=======
-/* eslint-disable no-undef */
-const colors = require("../../core/colors");
-const db = require("../../core/db");
-const sendMessage = require("../../core/command.send");
-
->>>>>>> Stashed changes
 // -------------
 // Command Code
 // -------------

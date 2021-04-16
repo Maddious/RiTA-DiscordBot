@@ -2,11 +2,8 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-<<<<<<< Updated upstream
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
-=======
->>>>>>> Stashed changes
 const translate = require("./translate");
 const logger = require("./logger");
 const botSend = require("./send");
@@ -52,7 +49,6 @@ const sendTranslation = function sendTranslation (data)
 
 const startTranslation = function startTranslation (data, i, row)
 {
-<<<<<<< Updated upstream
 
    const replyID = row.reply;
 
@@ -61,7 +57,7 @@ const startTranslation = function startTranslation (data, i, row)
    // ---------------------------------
 
    data.footer = {
-      text: "via "
+      "text": "via "
    };
 
    if (data.message.channel.type === "text")
@@ -72,9 +68,6 @@ const startTranslation = function startTranslation (data, i, row)
    }
 
    if (data.message.channel.type === "dm")
-=======
-   if (data.err)
->>>>>>> Stashed changes
    {
 
       data.footer.text += "DM";
@@ -90,10 +83,9 @@ const startTranslation = function startTranslation (data, i, row)
    if (row.dest.startsWith("@"))
    {
 
-<<<<<<< Updated upstream
       const footerExtra = {
-         icon_url: data.message.guild.iconURL,
-         text: `${data.footer.text
+         "icon_url": data.message.guild.iconURL,
+         "text": `${data.footer.text
          } ‹ ${data.message.guild.name} | reply with ${replyID}:`
 
       };
@@ -104,11 +96,6 @@ const startTranslation = function startTranslation (data, i, row)
          data.client,
          userID,
          (user) =>
-=======
-      if (data.message.content.endsWith("!i"))
-      {
-         return data.message.react("➖").catch((err) =>
->>>>>>> Stashed changes
          {
 
             if (user && user.createDM)
@@ -202,15 +189,9 @@ const analyzeRows = function analyzeRows (data, i)
    // ------------------------
 
    data.translate = {
-<<<<<<< Updated upstream
-      from: {valid: [{iso: row.LangFrom}]},
-      original: data.message.content,
-      to: {valid: [{iso: row.LangTo}]}
-=======
-      original: data.message.content,
-      to: { valid: [{iso: row.LangTo}] },
-      from: { valid: [{iso: row.LangFrom}] }
->>>>>>> Stashed changes
+      "from": {"valid": [{"iso": row.LangFrom}]},
+      "original": data.message.content,
+      "to": {"valid": [{"iso": row.LangTo}]}
    };
 
    // ------------------
@@ -263,18 +244,7 @@ module.exports = function run (data)
 
       data.proccess = true;
 
-<<<<<<< Updated upstream
-      for (let i = 0; i < data.rows.length; i++)
-=======
-const sendTranslation = function(data)
-{
-   if (data.proccess)
-   {
-      if (
-         data.message.content === "" &&
-         data.message.attachments.array().length > 0
-      )
->>>>>>> Stashed changes
+      for (let i = 0; i < data.rows.length; i += 1)
       {
 
          analyzeRows(

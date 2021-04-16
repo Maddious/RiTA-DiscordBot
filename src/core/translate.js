@@ -3,11 +3,8 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-<<<<<<< Updated upstream
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
-=======
->>>>>>> Stashed changes
 const translate = require("google-translate-api");
 const db = require("./db");
 const botSend = require("./send");
@@ -142,13 +139,12 @@ const bufferChains = function bufferChains (data, from)
             chain,
             function getUserColor (gotData)
             {
-<<<<<<< Updated upstream
 
                translatedChains.push({
-                  author: gotData.author,
-                  color: gotData.color,
-                  text: output,
-                  time: chain.time
+                  "author": gotData.author,
+                  "color": gotData.color,
+                  "text": output,
+                  "time": chain.time
                });
 
                if (fn.bufferEnd(
@@ -164,9 +160,6 @@ const bufferChains = function bufferChains (data, from)
 
                }
 
-=======
-               bufferSend(translatedChains, data);
->>>>>>> Stashed changes
             }
          );
 
@@ -358,18 +351,13 @@ module.exports = function run (data) // eslint-disable-line complexity
       data.text = "";
 
       translateBuffer[bufferID] = {
-         count: 0,
-         len: data.translate.to.valid.length,
-         text: "",
-<<<<<<< Updated upstream
+         "count": 0,
+         "len": data.translate.to.valid.length,
+         "text": "",
          update (newMsg)
          {
 
-=======
-         update: function(newMsg, data)
-         {
->>>>>>> Stashed changes
-            this.count++;
+            this.count += 1;
             this.text += newMsg;
 
             if (this.count === this.len)
@@ -390,21 +378,14 @@ module.exports = function run (data) // eslint-disable-line complexity
 
       data.translate.to.valid.forEach((lang) =>
       {
-<<<<<<< Updated upstream
 
          translate(
             data.translate.original,
             {
                from,
-               to: lang.iso
+               "to": lang.iso
             }
          ).then((res) =>
-=======
-         translate(data.translate.original, {
-            to: lang.iso,
-            from: from
-         }).then(res =>
->>>>>>> Stashed changes
          {
 
             // Language you set it to translate to when setting up !t channel command
@@ -445,13 +426,8 @@ module.exports = function run (data) // eslint-disable-line complexity
    // ------------------------
 
    const opts = {
-<<<<<<< Updated upstream
       from,
-      to: data.translate.to.valid[0].iso
-=======
-      to: data.translate.to.valid[0].iso,
-      from: from
->>>>>>> Stashed changes
+      "to": data.translate.to.valid[0].iso
    };
 
    const fw = data.forward;

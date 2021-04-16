@@ -2,11 +2,7 @@
 // Global variables
 // -----------------
 
-<<<<<<< Updated upstream
-//  codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-=======
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
->>>>>>> Stashed changes
+//  Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const fn = require("../../core/helpers");
 const translate = require("../../core/translate");
 const logger = require("../../core/logger");
@@ -20,32 +16,18 @@ module.exports.run = function run (data)
 {
 
 
-<<<<<<< Updated upstream
    data.message.delete(5000).catch((err) => console.log(
       "Command Message Deleted Error, command.send.js = ",
       err
    ));
-   return data.message.channel.send({embed: {
-      author: {
-         icon_url: data.client.user.displayAvatarURL,
-         name: data.client.user.username
+   return data.message.channel.send({"embed": {
+      "author": {
+         "icon_url": data.client.user.displayAvatarURL,
+         "name": data.client.user.username
       },
-      color: 13107200,
-      description: `:no_entry_sign: This command has been disabled Pending a fix \n
+      "color": 13107200,
+      "description": `:no_entry_sign: This command has been disabled Pending a fix \n
      We apologise for any inconvenience this may cause.`
-=======
-module.exports = function(data)
-{
-   data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, command.send.js = ", err));
-   return data.message.channel.send({embed: {
-      color: 13107200,
-      author: {
-         name: data.client.user.username,
-         icon_url: data.client.user.displayAvatarURL
-      },
-      description: `:no_entry_sign: This command has been disabled Pending a fix \n
-      We apologise for any inconvenience this may cause.`
->>>>>>> Stashed changes
 
    }}).then((msg) =>
    {
@@ -85,14 +67,9 @@ module.exports.old = function old (data)
    // -------------------------
 
    data.translate = {
-<<<<<<< Updated upstream
-      from: data.cmd.from,
-      to: data.cmd.to
+      "from": data.cmd.from,
+      "to": data.cmd.to
 
-=======
-      to: data.cmd.to,
-      from: data.cmd.from
->>>>>>> Stashed changes
    };
 
    // ----------------
@@ -151,17 +128,10 @@ module.exports.old = function old (data)
    {
 
       const messagesArray = messages.array().reverse();
-<<<<<<< Updated upstream
       let lastAuthor = null;
       const chains = [];
 
-      for (let i = 0; i < messagesArray.length; i++)
-=======
-      var lastAuthor;
-      var chains = [];
-
-      for (var i = 0; i < messagesArray.length; i++)
->>>>>>> Stashed changes
+      for (let i = 0; i < messagesArray.length; i += 1)
       {
 
          if (
@@ -184,16 +154,11 @@ module.exports.old = function old (data)
             {
 
                chains.push({
-                  author: messagesArray[i].author,
-                  color: fn.getRoleColor(messagesArray[i].member),
-                  id: [messagesArray[i].id],
-<<<<<<< Updated upstream
-                  msgs: [messagesArray[i].content],
-                  time: messagesArray[i].createdTimestamp
-=======
-                  time: messagesArray[i].createdTimestamp,
-                  color: fn.getRoleColor(messagesArray[i].member)
->>>>>>> Stashed changes
+                  "author": messagesArray[i].author,
+                  "color": fn.getRoleColor(messagesArray[i].member),
+                  "id": [messagesArray[i].id],
+                  "msgs": [messagesArray[i].content],
+                  "time": messagesArray[i].createdTimestamp
                });
                lastAuthor = messagesArray[i].author.id;
 

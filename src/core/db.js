@@ -2,12 +2,9 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-<<<<<<< Updated upstream
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable sort-keys */
 /* eslint-disable no-unused-vars */
-=======
->>>>>>> Stashed changes
 const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
@@ -23,42 +20,26 @@ exports.server_obj = server_obj;
 console.log("DEBUG: Pre Stage Database Auth Process");
 const db = process.env.DATABASE_URL.endsWith(".db") ?
    new Sequelize({
-      dialect: "sqlite",
-<<<<<<< Updated upstream
-=======
-      dialectOptions: {
-         ssl: {
-            require: true,
-            rejectUnauthorized: false
+      "dialect": "sqlite",
+      "dialectOptions": {
+         "ssl": {
+            "require": true,
+            "rejectUnauthorized": false
          }
       },
-      storage: process.env.DATABASE_URL
-   }) :
-   new Sequelize(process.env.DATABASE_URL, {
-      logging: console.log,
->>>>>>> Stashed changes
-      dialectOptions: {
-         ssl: {
-            require: true,
-            rejectUnauthorized: false
-         }
-<<<<<<< Updated upstream
-      },
-      storage: process.env.DATABASE_URL
+      "storage": process.env.DATABASE_URL
    }) :
    new Sequelize(
       process.env.DATABASE_URL,
       {
-         logging: console.log,
-         dialectOptions: {
-            ssl: {
-               require: true,
-               rejectUnauthorized: false
+         "logging": console.log,
+         "dialectOptions": {
+            "ssl": {
+               "require": true,
+               "rejectUnauthorized": false
             }
          }
-      // logging: null,
-=======
->>>>>>> Stashed changes
+      // Logging: null,
       }
    );
 
@@ -88,84 +69,45 @@ db.
 // ---------------------------------
 
 console.log("DEBUG: Pre Stage Database server table definition");
-<<<<<<< Updated upstream
 const Servers = db.define(
    "servers",
    {
-      id: {
-         type: Sequelize.STRING(32),
-         primaryKey: true,
-         unique: true,
-         allowNull: false
+      "id": {
+         "type": Sequelize.STRING(32),
+         "primaryKey": true,
+         "unique": true,
+         "allowNull": false
       },
-      prefix: {
-         type: Sequelize.STRING(32),
-         defaultValue: "!tr"
+      "prefix": {
+         "type": Sequelize.STRING(32),
+         "defaultValue": "!tr"
       },
-      lang: {
-         type: Sequelize.STRING(8),
-         defaultValue: "en"
+      "lang": {
+         "type": Sequelize.STRING(8),
+         "defaultValue": "en"
       },
-      count: {
-         type: Sequelize.INTEGER,
-         defaultValue: 0
+      "count": {
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
       },
-      active: {
-         type: Sequelize.BOOLEAN,
-         defaultValue: true
+      "active": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": true
       },
-      embedstyle: {
-         type: Sequelize.STRING(8),
-         defaultValue: "on"
+      "embedstyle": {
+         "type": Sequelize.STRING(8),
+         "defaultValue": "on"
       },
-      bot2botstyle: {
-         type: Sequelize.STRING(8),
-         defaultValue: "off"
+      "bot2botstyle": {
+         "type": Sequelize.STRING(8),
+         "defaultValue": "off"
       },
-      webhookid: Sequelize.STRING(32),
-      webhooktoken: Sequelize.STRING(255),
-      webhookactive: {
-         type: Sequelize.BOOLEAN,
-         defaultValue: false
+      "webhookid": Sequelize.STRING(32),
+      "webhooktoken": Sequelize.STRING(255),
+      "webhookactive": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": false
       }
-=======
-const Servers = db.define("servers", {
-   id: {
-      type: Sequelize.STRING(32),
-      primaryKey: true,
-      unique: true,
-      allowNull: false
-   },
-   prefix: {
-      type: Sequelize.STRING(32),
-      defaultValue: "!tr"
-   },
-   lang: {
-      type: Sequelize.STRING(8),
-      defaultValue: "en"
-   },
-   count: {
-      type: Sequelize.INTEGER,
-      defaultValue: 0
-   },
-   active: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: true
-   },
-   embedstyle: {
-      type: Sequelize.STRING(8),
-      defaultValue: "on"
-   },
-   bot2botstyle: {
-      type: Sequelize.STRING(8),
-      defaultValue: "off"
-   },
-   webhookid: Sequelize.STRING(32),
-   webhooktoken: Sequelize.STRING(255),
-   webhookactive: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false
->>>>>>> Stashed changes
    }
 );
 
@@ -174,33 +116,32 @@ const Servers = db.define("servers", {
 // --------------------------------
 
 console.log("DEBUG: Pre Stage Database tasks table definition");
-<<<<<<< Updated upstream
 const Tasks = db.define(
    "tasks",
    {
-      origin: Sequelize.STRING(32),
-      dest: Sequelize.STRING(32),
-      reply: Sequelize.STRING(32),
-      server: Sequelize.STRING(32),
-      active: {
-         type: Sequelize.BOOLEAN,
-         defaultValue: true
+      "origin": Sequelize.STRING(32),
+      "dest": Sequelize.STRING(32),
+      "reply": Sequelize.STRING(32),
+      "server": Sequelize.STRING(32),
+      "active": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": true
       },
-      LangTo: {
-         type: Sequelize.STRING(8),
-         defaultValue: "en"
+      "LangTo": {
+         "type": Sequelize.STRING(8),
+         "defaultValue": "en"
       },
-      LangFrom: {
-         type: Sequelize.STRING(8),
-         defaultValue: "en"
+      "LangFrom": {
+         "type": Sequelize.STRING(8),
+         "defaultValue": "en"
       }
    },
    {
-      indexes: [
+      "indexes": [
          {
-            unique: true,
-            name: "ux_index_1",
-            fields: [
+            "unique": true,
+            "name": "ux_index_1",
+            "fields": [
                "origin",
                "dest",
                "LangTo",
@@ -208,24 +149,6 @@ const Tasks = db.define(
             ]
          }
       ]
-=======
-const Tasks = db.define("tasks", {
-   origin: Sequelize.STRING(32),
-   dest: Sequelize.STRING(32),
-   reply: Sequelize.STRING(32),
-   server: Sequelize.STRING(32),
-   active: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: true
-   },
-   LangTo: {
-      type: Sequelize.STRING(8),
-      defaultValue: "en"
-   },
-   LangFrom: {
-      type: Sequelize.STRING(8),
-      defaultValue: "en"
->>>>>>> Stashed changes
    }
 );
 
@@ -238,21 +161,12 @@ exports.initializeDatabase = async function initializeDatabase (client)
 {
 
    console.log("DEBUG: Stage Init/create tables - Pre Sync");
-<<<<<<< Updated upstream
-   db.sync({logging: console.log}).then(async () =>
-=======
-   db.sync({ logging: console.log }).then(async() =>
->>>>>>> Stashed changes
+   db.sync({"logging": console.log}).then(async () =>
    {
 
       await this.updateColumns();
-<<<<<<< Updated upstream
-      Servers.upsert({id: "bot",
-         lang: "en"});
-=======
-      Servers.upsert({ id: "bot",
-         lang: "en" });
->>>>>>> Stashed changes
+      Servers.upsert({"id": "bot",
+         "lang": "en"});
       console.log("DEBUG: New columns should be added Before this point.");
       db.getQueryInterface().removeIndex(
          "tasks",
@@ -260,48 +174,30 @@ exports.initializeDatabase = async function initializeDatabase (client)
       );
       const guilds = client.guilds.array().length;
       const guildsArray = client.guilds.array();
-<<<<<<< Updated upstream
       let i = 0;
-=======
-      var i;
->>>>>>> Stashed changes
-      for (i = 0; i < guilds; i++)
+      for (i = 0; i < guilds; i += 1)
       {
 
          const guild = guildsArray[i];
          const guildID = guild.id;
-<<<<<<< Updated upstream
-         Servers.findAll({where: {id: guildID}}).then((projects) =>
-=======
-         Servers.findAll({ where: { id: guildID } }).then(projects =>
->>>>>>> Stashed changes
+         Servers.findAll({"where": {"id": guildID}}).then((projects) =>
          {
 
             if (projects.length === 0)
             {
-<<<<<<< Updated upstream
 
-               Servers.upsert({id: guildID,
-                  lang: "en"});
+               Servers.upsert({"id": guildID,
+                  "lang": "en"});
 
-=======
-               Servers.upsert({ id: guildID,
-                  lang: "en" });
->>>>>>> Stashed changes
             }
 
          });
 
       }
       console.log("DEBUG: Stage Init/create tables - Pre serversFindAll");
-<<<<<<< Updated upstream
       const serversFindAll = await Servers.findAll();
       // {
-=======
-      const serversFindAll = await Servers.findAll();//.then((serversFindAll) =>
-      //{
->>>>>>> Stashed changes
-      for (let i = 0; i < serversFindAll.length; i++)
+      for (let i = 0; i < serversFindAll.length; i += 1)
       {
 
          // eslint-disable-next-line prefer-const
@@ -309,19 +205,15 @@ exports.initializeDatabase = async function initializeDatabase (client)
          // eslint-disable-next-line eqeqeq
          if (guild_id != "bot")
          {
-<<<<<<< Updated upstream
 
-            server_obj[guild_id] = {db: serversFindAll[i]};
+            server_obj[guild_id] = {"db": serversFindAll[i]};
 
-=======
-            server_obj[guild_id] = { db: serversFindAll[i] };
->>>>>>> Stashed changes
          }
 
       }
       console.log("DEBUG: Stage Init/create tables - Pre guildClient");
       const guildClient = Array.from(client.guilds.values());
-      for (let i = 0; i < guildClient.length; i++)
+      for (let i = 0; i < guildClient.length; i += 1)
       {
 
          const guild = guildClient[i];
@@ -352,13 +244,13 @@ exports.addServer = async function addServer (id, lang)
 
    console.log("DEBUG: Stage Add Server to Database");
    server_obj[id] = {
-      db: {
-         embedstyle: "on",
-         bot2botstyle: "off",
+      "db": {
+         "embedstyle": "on",
+         "bot2botstyle": "off",
          id,
-         webhookid: null,
-         webhooktoken: null,
-         prefix: "!tr"
+         "webhookid": null,
+         "webhooktoken": null,
+         "prefix": "!tr"
       }
    };
    await Servers.create({
@@ -379,15 +271,11 @@ exports.removeServer = function removeServer (id)
 {
 
    console.log("DEBUG: Stage Deactivate Server");
-<<<<<<< Updated upstream
    return Servers.update(
-      {active: false},
-      {where: {id}}
+      {"active": false},
+      {"where": {id}}
    );
 
-=======
-   return Servers.update({ active: false }, { where: { id: id } });
->>>>>>> Stashed changes
 };
 
 // -------------------
@@ -398,10 +286,9 @@ exports.updateServerLang = function updateServerLang (id, lang, _cb)
 {
 
    console.log("DEBUG: Stage Update Server Lang");
-<<<<<<< Updated upstream
    return Servers.update(
       {lang},
-      {where: {id}}
+      {"where": {id}}
    ).then(function update ()
    {
 
@@ -409,13 +296,6 @@ exports.updateServerLang = function updateServerLang (id, lang, _cb)
 
    });
 
-=======
-   return Servers.update({ lang: lang }, { where: { id: id } }).then(
-      function ()
-      {
-         _cb();
-      });
->>>>>>> Stashed changes
 };
 
 // -------------------------------
@@ -427,10 +307,9 @@ exports.updateEmbedVar = function updateEmbedVar (id, embedstyle, _cb)
 
    console.log("DEBUG: Stage Update Embedded Variable in DB");
    server_obj[id].db.embedstyle = embedstyle;
-<<<<<<< Updated upstream
    return Servers.update(
       {embedstyle},
-      {where: {id}}
+      {"where": {id}}
    ).then(function update ()
    {
 
@@ -438,13 +317,6 @@ exports.updateEmbedVar = function updateEmbedVar (id, embedstyle, _cb)
 
    });
 
-=======
-   return Servers.update({ embedstyle: embedstyle }, { where: { id: id } }).then(
-      function ()
-      {
-         _cb();
-      });
->>>>>>> Stashed changes
 };
 
 // ------------------------------
@@ -456,10 +328,9 @@ exports.updateBot2BotVar = function updateBot2BotVar (id, bot2botstyle, _cb)
 
    console.log("DEBUG: Stage Update Bot2Bot Variable In DB");
    server_obj[id].db.bot2botstyle = bot2botstyle;
-<<<<<<< Updated upstream
    return Servers.update(
       {bot2botstyle},
-      {where: {id}}
+      {"where": {id}}
    ).then(function update ()
    {
 
@@ -467,13 +338,6 @@ exports.updateBot2BotVar = function updateBot2BotVar (id, bot2botstyle, _cb)
 
    });
 
-=======
-   return Servers.update({ bot2botstyle: bot2botstyle }, { where: { id: id } }).then(
-      function ()
-      {
-         _cb();
-      });
->>>>>>> Stashed changes
 };
 
 // -----------------------------------------------
@@ -485,12 +349,11 @@ exports.updateWebhookVar = function updateWebhookVar (id, webhookid, webhooktoke
 
    console.log("DEBUG: Stage Update webhookID & webhookToken Variable In DB");
 
-<<<<<<< Updated upstream
    return Servers.update(
       {webhookid,
          webhooktoken,
          webhookactive},
-      {where: {id}}
+      {"where": {id}}
    ).then(function update ()
    {
 
@@ -498,15 +361,6 @@ exports.updateWebhookVar = function updateWebhookVar (id, webhookid, webhooktoke
 
    });
 
-=======
-   return Servers.update({ webhookid: webhookid,
-      webhooktoken: webhooktoken,
-      webhookactive: webhookactive }, { where: { id: id } }).then(
-      function ()
-      {
-         _cb();
-      });
->>>>>>> Stashed changes
 };
 
 // -------------------------
@@ -517,10 +371,9 @@ exports.removeWebhook = function removeWebhook (id, _cb)
 {
 
    console.log("DEBUG: Stage Deactivate debug Webhook");
-<<<<<<< Updated upstream
    return Servers.update(
-      {webhookactive: false},
-      {where: {id}}
+      {"webhookactive": false},
+      {"where": {id}}
    ).then(function update ()
    {
 
@@ -528,13 +381,6 @@ exports.removeWebhook = function removeWebhook (id, _cb)
 
    });
 
-=======
-   return Servers.update({ webhookactive: false }, { where: { id: id } }).then(
-      function ()
-      {
-         _cb();
-      });
->>>>>>> Stashed changes
 };
 
 // --------------
@@ -547,10 +393,9 @@ exports.updatePrefix = function updatePrefix (id, prefix, _cb)
    console.log("DEBUG: Stage Update prefix");
    dbNewPrefix = prefix;
    server_obj[id].db.prefix = dbNewPrefix;
-<<<<<<< Updated upstream
    return Servers.update(
       {prefix},
-      {where: {id}}
+      {"where": {id}}
    ).then(function update ()
    {
 
@@ -558,13 +403,6 @@ exports.updatePrefix = function updatePrefix (id, prefix, _cb)
 
    });
 
-=======
-   return Servers.update({ prefix: prefix }, { where: { id: id } }).then(
-      function ()
-      {
-         _cb();
-      });
->>>>>>> Stashed changes
 };
 
 // -----------------------------
@@ -576,7 +414,6 @@ exports.updateColumns = async function updateColumns ()
 
    console.log("DEBUG: Stage Add Missing Variable Columns");
    // Very sloppy code, neew to find a better fix.
-<<<<<<< Updated upstream
    await db.getQueryInterface().describeTable("servers").
       then((tableDefinition) =>
       {
@@ -588,8 +425,8 @@ exports.updateColumns = async function updateColumns ()
             db.getQueryInterface().addColumn(
                "servers",
                "prefix",
-               {type: Sequelize.STRING(32),
-                  defaultValue: "!tr"}
+               {"type": Sequelize.STRING(32),
+                  "defaultValue": "!tr"}
             );
 
          }
@@ -600,8 +437,8 @@ exports.updateColumns = async function updateColumns ()
             db.getQueryInterface().addColumn(
                "servers",
                "embedstyle",
-               {type: Sequelize.STRING(8),
-                  defaultValue: "on"}
+               {"type": Sequelize.STRING(8),
+                  "defaultValue": "on"}
             );
 
          }
@@ -612,8 +449,8 @@ exports.updateColumns = async function updateColumns ()
             db.getQueryInterface().addColumn(
                "servers",
                "bot2botstyle",
-               {type: Sequelize.STRING(8),
-                  defaultValue: "off"}
+               {"type": Sequelize.STRING(8),
+                  "defaultValue": "off"}
             );
 
          }
@@ -624,7 +461,7 @@ exports.updateColumns = async function updateColumns ()
             db.getQueryInterface().addColumn(
                "servers",
                "webhookid",
-               {type: Sequelize.STRING(32)}
+               {"type": Sequelize.STRING(32)}
             );
 
          }
@@ -635,7 +472,7 @@ exports.updateColumns = async function updateColumns ()
             db.getQueryInterface().addColumn(
                "servers",
                "webhooktoken",
-               {type: Sequelize.STRING(255)}
+               {"type": Sequelize.STRING(255)}
             );
 
          }
@@ -646,8 +483,8 @@ exports.updateColumns = async function updateColumns ()
             db.getQueryInterface().addColumn(
                "servers",
                "webhookactive",
-               {type: Sequelize.BOOLEAN,
-                  defaultValue: false}
+               {"type": Sequelize.BOOLEAN,
+                  "defaultValue": false}
             );
 
          }
@@ -656,52 +493,6 @@ exports.updateColumns = async function updateColumns ()
 
    return console.log("DEBUG: All New Columns Added");
 
-=======
-   await db.getQueryInterface().describeTable("servers").then(tableDefinition =>
-   {
-      if (!tableDefinition.prefix)
-      {
-         console.log("-------------> Adding prefix column");
-         db.getQueryInterface().addColumn("servers", "prefix", {
-            type: Sequelize.STRING(32),
-            defaultValue: "!tr"});
-      }
-      if (!tableDefinition.embedstyle)
-      {
-         console.log("-------------> Adding embedstyle column");
-         db.getQueryInterface().addColumn("servers", "embedstyle", {
-            type: Sequelize.STRING(8),
-            defaultValue: "on"});
-      }
-      if (!tableDefinition.bot2botstyle)
-      {
-         console.log("-------------> Adding bot2botstyle column");
-         db.getQueryInterface().addColumn("servers", "bot2botstyle", {
-            type: Sequelize.STRING(8),
-            defaultValue: "off"});
-      }
-      if (!tableDefinition.webhookid)
-      {
-         console.log("-------------> Adding webhookid column");
-         db.getQueryInterface().addColumn("servers", "webhookid", {
-            type: Sequelize.STRING(32)});
-      }
-      if (!tableDefinition.webhooktoken)
-      {
-         console.log("-------------> Adding webhooktoken column");
-         db.getQueryInterface().addColumn("servers", "webhooktoken", {
-            type: Sequelize.STRING(255)});
-      }
-      if (!tableDefinition.webhookactive)
-      {
-         console.log("-------------> Adding webhookactive column");
-         db.getQueryInterface().addColumn("servers", "webhookactive", {
-            type: Sequelize.BOOLEAN,
-            defaultValue: false});
-      }
-   });
-   console.log("DEBUG: All New Columns Added");
->>>>>>> Stashed changes
 };
 
 // ------------------
@@ -722,11 +513,10 @@ exports.channelTasks = function channelTasks (data)
    }
    try
    {
-<<<<<<< Updated upstream
 
       // eslint-disable-next-line no-unused-vars
-      const taskList = Tasks.findAll({where: {origin: id,
-         active: true}}).then(function res (result)
+      const taskList = Tasks.findAll({"where": {"origin": id,
+         "active": true}}).then(function res (result)
       {
 
          data.rows = result;
@@ -734,15 +524,6 @@ exports.channelTasks = function channelTasks (data)
 
       });
 
-=======
-      const taskList = Tasks.findAll({ where: { origin: id,
-         active: true }}).then(
-         function (result)
-         {
-            data.rows = result;
-            return autoTranslate(data);
-         });
->>>>>>> Stashed changes
    }
    catch (e)
    {
@@ -768,24 +549,12 @@ exports.getTasks = function getTasks (origin, dest, cb)
    console.log("DEBUG: Stage Get tasks for channel or user");
    if (dest === "me")
    {
-<<<<<<< Updated upstream
 
       return Tasks.findAll(
-         {where: {origin,
+         {"where": {origin,
             dest}},
-         {raw: true}
+         {"raw": true}
       ).then(function res (result, err)
-=======
-      return Tasks.findAll({ where: { origin: origin,
-         dest: dest } }, {raw: true}).then(
-         function (result, err)
-         {
-            cb(err, result);
-         });
-   }
-   return Tasks.findAll({ where: { origin: origin } }, {raw: true}).then(
-      function (result, err)
->>>>>>> Stashed changes
       {
 
          cb(
@@ -794,12 +563,11 @@ exports.getTasks = function getTasks (origin, dest, cb)
          );
 
       });
-<<<<<<< Updated upstream
 
    }
    return Tasks.findAll(
-      {where: {origin}},
-      {raw: true}
+      {"where": {origin}},
+      {"raw": true}
    ).then(function res (result, err)
    {
 
@@ -810,8 +578,6 @@ exports.getTasks = function getTasks (origin, dest, cb)
 
    });
 
-=======
->>>>>>> Stashed changes
 };
 
 // --------------------------------
@@ -824,23 +590,11 @@ exports.checkTask = function checkTask (origin, dest, cb)
    console.log("DEBUG: Stage Check if dest is found in tasks");
    if (dest === "all")
    {
-<<<<<<< Updated upstream
 
       return Tasks.findAll(
-         {where: {origin}},
-         {raw: true}
+         {"where": {origin}},
+         {"raw": true}
       ).then(function res (result, err)
-=======
-      return Tasks.findAll({ where: { origin: origin } }, {raw: true}).then(
-         function (result, err)
-         {
-            cb(err, result);
-         });
-   }
-   return Tasks.findAll({ where: { origin: origin,
-      dest: dest } }, {raw: true}).then(
-      function (result, err)
->>>>>>> Stashed changes
       {
 
          cb(
@@ -849,13 +603,12 @@ exports.checkTask = function checkTask (origin, dest, cb)
          );
 
       });
-<<<<<<< Updated upstream
 
    }
    return Tasks.findAll(
-      {where: {origin,
+      {"where": {origin,
          dest}},
-      {raw: true}
+      {"raw": true}
    ).then(function res (result, err)
    {
 
@@ -866,8 +619,6 @@ exports.checkTask = function checkTask (origin, dest, cb)
 
    });
 
-=======
->>>>>>> Stashed changes
 };
 
 // --------------------
@@ -880,26 +631,12 @@ exports.removeTask = function removeTask (origin, dest, cb)
    console.log("DEBUG: Stage Remove Channel Task");
    if (dest === "all")
    {
-<<<<<<< Updated upstream
 
       console.log("DEBUG: removeTask() - all");
-      return Tasks.destroy({where: {[Op.or]: [
+      return Tasks.destroy({"where": {[Op.or]: [
          {origin},
-         {dest: origin}
+         {"dest": origin}
       ]}}).then(function error (err, result)
-=======
-      console.log("removeTask() - all");
-      return Tasks.destroy({ where: { [Op.or]: [{ origin: origin },{ dest: origin }] } }).then(
-         function (err, result)
-         {
-            cb(null, result);
-         });
-   }
-   return Tasks.destroy({ where: { [Op.or]: [{ origin: origin,
-      dest: dest },{ origin: dest,
-      dest: origin }] } }).then(
-      function (err, result)
->>>>>>> Stashed changes
       {
 
          cb(
@@ -908,14 +645,13 @@ exports.removeTask = function removeTask (origin, dest, cb)
          );
 
       });
-<<<<<<< Updated upstream
 
    }
-   return Tasks.destroy({where: {[Op.or]: [
+   return Tasks.destroy({"where": {[Op.or]: [
       {origin,
          dest},
-      {origin: dest,
-         dest: origin}
+      {"origin": dest,
+         "dest": origin}
    ]}}).then(function error (err, result)
    {
 
@@ -926,8 +662,6 @@ exports.removeTask = function removeTask (origin, dest, cb)
 
    });
 
-=======
->>>>>>> Stashed changes
 };
 
 // ---------------
@@ -936,14 +670,9 @@ exports.removeTask = function removeTask (origin, dest, cb)
 
 exports.getTasksCount = function getTasksCount (origin, cb)
 {
-<<<<<<< Updated upstream
 
    console.log("DEBUG: Get Task Count");
-   return Tasks.count({where: {origin}}).then((c) =>
-=======
-   console.log("Get Task Count");
-   return Tasks.count({ where: {"origin": origin }}).then(c =>
->>>>>>> Stashed changes
+   return Tasks.count({"where": {origin}}).then((c) =>
    {
 
       cb(
@@ -979,13 +708,13 @@ exports.addTask = function addTask (task)
    {
 
       Tasks.upsert({
-         origin: task.origin,
+         "origin": task.origin,
          dest,
-         reply: task.reply,
-         server: task.server,
-         active: true,
-         LangTo: task.to,
-         LangFrom: task.from
+         "reply": task.reply,
+         "server": task.server,
+         "active": true,
+         "LangTo": task.to,
+         "LangFrom": task.from
       }).then(() =>
       {
 
@@ -1019,15 +748,11 @@ exports.increaseServers = function increaseServers (id)
 {
 
    console.log("DEBUG: Stage Update stat");
-<<<<<<< Updated upstream
    return Servers.increment(
       "count",
-      {where: {id}}
+      {"where": {id}}
    );
 
-=======
-   return Servers.increment("count", { where: { id: id }});
->>>>>>> Stashed changes
 };
 
 // --------------
@@ -1046,9 +771,8 @@ exports.getStats = function getStats (callback)
   `(select count(distinct origin) as "activeTasks" ` +
   `from tasks where active = TRUE) as table4, ` +
   `(select count(distinct origin) as "activeUserTasks" ` +
-<<<<<<< Updated upstream
   `from tasks where active = TRUE and origin like '@%') as table5;`,
-      {type: Sequelize.QueryTypes.SELECT}
+      {"type": Sequelize.QueryTypes.SELECT}
    ).
       then(
          (result) => callback(result),
@@ -1057,12 +781,6 @@ exports.getStats = function getStats (callback)
             `${err}\nQuery: ${err.sql}`,
             "db"
          )
-=======
-  `from tasks where active = TRUE and origin like '@%') as table5;`, { type: Sequelize.QueryTypes.SELECT})
-      .then(
-         result => callback(result),
-         err => logger("error", err + "\nQuery: " + err.sql, "db")
->>>>>>> Stashed changes
       );
 
 };
@@ -1086,19 +804,11 @@ exports.getServerInfo = function getServerInfo (id, callback)
    `(select webhookactive as "webhookactive" from servers where id = ?) as table6,` +
    `(select webhookid as "webhookid" from servers where id = ?) as table7,` +
    `(select webhooktoken as "webhooktoken" from servers where id = ?) as table8,` +
-<<<<<<< Updated upstream
-   `(select prefix as "prefix" from servers where id = ?) as table9;`, {replacements: [ id, id, id, id, id, id, id, id, id],
-      type: db.QueryTypes.SELECT}).
+   `(select prefix as "prefix" from servers where id = ?) as table9;`, {"replacements": [ id, id, id, id, id, id, id, id, id],
+      "type": db.QueryTypes.SELECT}).
       then(
          (result) => callback(result),
          (err) => this.updateColumns()
-=======
-   `(select prefix as "prefix" from servers where id = ?) as table9;`, { replacements: [ id, id, id, id, id, id, id, id, id],
-      type: db.QueryTypes.SELECT})
-      .then(
-         result => callback(result),
-         err => this.updateColumns() //+ logger("error", err + "\nQuery: " + err.sql, "db")
->>>>>>> Stashed changes
       );
 
 };

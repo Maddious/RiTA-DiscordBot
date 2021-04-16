@@ -2,7 +2,7 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING]
 const stripIndent = require("common-tags").stripIndent;
 const oneLine = require("common-tags").oneLine;
 const auth = require("./core/auth");
@@ -31,7 +31,6 @@ exports.listen = function listen (client)
       "ready",
       () =>
       {
-<<<<<<< Updated upstream
 
          db.initializeDatabase(client);
 
@@ -40,34 +39,28 @@ exports.listen = function listen (client)
          // -----------------
 
          config = {
-            botServer: "https://discord.gg/mgNR64R",
-            defaultLanguage: "en",
-            inviteURL: auth.invite || "Set this in your .env file / config variables in Heroku",
-            maxChainLen: 5,
-            maxChains: 10,
-            maxEmbeds: 5,
-            maxMulti: 6,
-            maxTasksPerChannel: 10,
-            owner: auth.botOwner,
-            translateCmd: "!translate",
-            translateCmdShort: "!tr",
-            version: botVersion
-=======
-         shard = {
-            id: 0,
-            count: 1
->>>>>>> Stashed changes
+            "botServer": "https://discord.gg/mgNR64R",
+            "defaultLanguage": "en",
+            "inviteURL": auth.invite || "Set this in your .env file / config variables in Heroku",
+            "maxChainLen": 5,
+            "maxChains": 10,
+            "maxEmbeds": 5,
+            "maxMulti": 6,
+            "maxTasksPerChannel": 10,
+            "owner": auth.botOwner,
+            "translateCmd": "!translate",
+            "translateCmdShort": "!tr",
+            "version": botVersion
          };
 
-<<<<<<< Updated upstream
          let shard = client.shard;
 
          if (!shard)
          {
 
             shard = {
-               count: 1,
-               id: 0
+               "count": 1,
+               "id": 0
             };
 
          }
@@ -76,11 +69,6 @@ exports.listen = function listen (client)
          {
 
             console.log(stripIndent`
-=======
-      if (shard.id === 0)
-      {
-         console.log(stripIndent`
->>>>>>> Stashed changes
             ----------------------------------------
             @${client.user.username} Bot is now online
             V.${config.version} | ID: ${client.user.id}
@@ -120,17 +108,11 @@ exports.listen = function listen (client)
             ----------------------------------------
          `);
 
-<<<<<<< Updated upstream
             logger(
                "custom",
                {
-                  color: "ok",
-                  msg: oneLine`
-=======
-         logger("custom", {
-            color: "ok",
-            msg: oneLine`
->>>>>>> Stashed changes
+                  "color": "ok",
+                  "msg": oneLine`
                :wave:  **${client.user.username}**
                is now online - \`v.${botVersion}\` -
                **${shard.count}** shards
@@ -157,7 +139,6 @@ exports.listen = function listen (client)
 
             if (db.server_obj[message.guild.id])
             {
-<<<<<<< Updated upstream
 
                if (config.translateCmdShort !== db.server_obj[message.guild.id].db.prefix)
                {
@@ -165,19 +146,16 @@ exports.listen = function listen (client)
                   config.translateCmdShort = db.server_obj[message.guild.id].db.prefix;
 
                }
-               // setStatus(client.user, "online", config);
+               // SetStatus(client.user, "online", config);
 
             }
             if (message.guild)
             {
 
                console.log(`${message.guild.name} - ${message.guild.id}`);
-               // need to have another if statment here, if server length is greeater than 1 then run below, if not do nothing.
-               // setStatus(client.user, "online", config);
+               // Need to have another if statment here, if server length is greeater than 1 then run below, if not do nothing.
+               // SetStatus(client.user, "online", config);
 
-=======
-               config.translateCmdShort = db.server_obj[message.guild.id].db.prefix;
->>>>>>> Stashed changes
             }
 
          }
@@ -194,33 +172,19 @@ exports.listen = function listen (client)
    //  Message edit, Will be fully implemented in future release
    // -----------------------------------------------------------
 
-<<<<<<< Updated upstream
-   // client.on("messageUpdate", (oldMessage, newMessage) =>
+   // Client.on("messageUpdate", (oldMessage, newMessage) =>
    // {
-   //   messageHandler(config, oldMessage, newMessage);
+   //   MessageHandler(config, oldMessage, newMessage);
    // });
-=======
-   //client.on("messageUpdate", (oldMessage, newMessage) =>
-   //{
-   //   messageHandler(config, oldMessage, newMessage);
-   //});
->>>>>>> Stashed changes
 
    // ---------------
    // Message delete
    // ---------------
 
-<<<<<<< Updated upstream
-   // client.on("messageDelete", (message) =>
+   // Client.on("messageDelete", (message) =>
    // {
-   //   messageHandler(config, message, null, true);
+   //   MessageHandler(config, message, null, true);
    // });
-=======
-   //client.on("messageDelete", (message) =>
-   //{
-   //   messageHandler(config, message, null, true);
-   //});
->>>>>>> Stashed changes
 
    // -----------
    // Raw events
