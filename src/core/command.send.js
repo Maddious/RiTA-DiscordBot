@@ -7,6 +7,7 @@ const colors = require("./colors");
 const discord = require("discord.js");
 const richEmbedMessage = new discord.RichEmbed();
 const logger = require("./logger");
+const error = require("./error");
 const time = {
    "long": 60000,
    "short": 5000
@@ -32,7 +33,7 @@ function sendMessage (data)
       catch((err) =>
       {
 
-         if (err.code && err.code === error[50013])
+         if (err.code && err.code === error.perm)
          {
 
             console.log("Error 50013");
@@ -41,7 +42,7 @@ function sendMessage (data)
                "custom",
                {
                   "color": "ok",
-                  "msg": `:exclamation: Write Permission Error \n
+                  "msg": `:exclamation: blah Permission Error \n
                   Server: **${data.channel.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n

@@ -11,7 +11,7 @@
 
 module.exports = {
    "error": {
-      "Read": "Number",
-      "write": "50013"
+      "Read": "You lack permissions to perform that action",
+      "perm": "50013"
    }
 };
