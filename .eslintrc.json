@@ -70,6 +70,7 @@
       "template-curly-spacing": "warn",
       "no-extra-semi": "warn",
       "no-prototype-builtins": "warn",
+      "padded-blocks": ["warn", "always"],
       // eslint Off
       "block-scoped-var": "off",
       "no-console": "off",
@@ -81,20 +82,9 @@
       "no-labels": "off",
       "no-lone-blocks": "off",
       "one-var": "off",
-      "no-magic-numbers": "off",
-      "prefer-arrow-callback": "off",
-      "padded-blocks": ["warn", "always"],
-      "capitalized-comments": "off",
-      "quote-props": "off",
       "id-length": "off",
-      "no-mixed-operators": "off",
-      "no-plusplus": "off",
       "max-lines": "off",
-      "require-unicode-regexp": "off",
-      "prefer-named-capture-group": "off",
-      "prefer-regex-literals": "off",
       "prefer-destructuring": ["error", {"object": false, "array": false}],
-      "no-negated-condition": "off",
       "no-undefined": "off",
       "func-style": "off",
       "no-shadow": "off",
@@ -110,6 +100,17 @@
       //DO NOT CHANGE
       "multiline-comment-style":["off", "separate-lines"],
       "handle-callback-err": "off",
-      "no-sync": "off"
+      "no-sync": "off",
+      // These could be fixed
+      "no-magic-numbers": "warn",
+      "prefer-arrow-callback": "warn",
+      "capitalized-comments": "warn",
+      "quote-props": "warn",
+      "no-mixed-operators": "warn",
+      "no-plusplus": "warn",
+      "require-unicode-regexp": "warn",
+      "prefer-named-capture-group": "warn",
+      "prefer-regex-literals": "warn",
+      "no-negated-condition": "warn"
     }
 }
