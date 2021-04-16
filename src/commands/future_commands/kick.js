@@ -3,7 +3,6 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-/* eslint-disable no-undef */
 
 
 // -------------
