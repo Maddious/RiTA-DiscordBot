@@ -3,8 +3,10 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING]
-const path = require("path");
-const env = __dirname.slice(0, -3) + ".env";
+const env = `${__dirname.slice(
+   0,
+   -3
+)}.env`;
 require("dotenv").config({
    path: env
 });
@@ -22,14 +24,24 @@ exports.client = client;
 // ---------------
 // Initialize Bot
 // ---------------
-login(auth.token);
 
-function login(token)
+
+// eslint-disable-next-line func-style
+function login (token)
 {
-   client.login(token).catch(err =>
+
+   client.login(token).catch((err) =>
    {
+
       console.log(err);
       console.log(`retrying login...`);
-      setTimeout(login, 5000);
+      setTimeout(
+         login,
+         5000
+      );
+
    });
+
 }
+
+login(auth.token);

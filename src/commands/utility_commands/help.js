@@ -7,112 +7,28 @@ const sendMessage = require("../../core/command.send");
 const colors = require("../../core/colors");
 const discord = require("discord.js");
 const richEmbedMessage = new discord.RichEmbed();
-// ------------------------
-// Bot Help / Command List
-// ------------------------
-
-module.exports = function(data)
-{
-   data.color = "info";
-
-   // ----------------------------------------------
-   // Detect if help is needed for specific command
-   // ----------------------------------------------
-
-   var getHelpWith = "basics";
-
-   if (data.cmd.params === "settings")
-   {
-      const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
-      getHelpWith = cleanParam;
-
-      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
-      {
-         getHelpWith = cleanParam;
-         data.text = helpMessage(data.config, data.bot.username, getHelpWith);
-
-         console.log("Insufficient Permission");
-         data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, help.js = ", err));
-         richEmbedMessage
-            .setColor(colors.get(data.color))
-            .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-            .setDescription("This command is available only to Developers. \n\n")
-            .setTimestamp()
-            .setFooter("This message will self-destruct in one minute");
-
-         // -------------
-         // Send message
-         // -------------
-
-         return data.message.channel.send(richEmbedMessage).then(msg =>
-         {
-            msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, help.js = ", err));
-         });
-      }
-      getHelpWith = cleanParam;
-      data.text = helpMessage(data.config, data.bot.username, getHelpWith);
-
-      // -------------
-      // Send message
-      // -------------
-
-      return sendMessage(data);
-   }
-   else if (data.cmd.params === null)
-   {
-      data.text = helpMessage(data.config, data.bot.username, getHelpWith);
-      return sendMessage(data);
-   }
-   else if (data.cmd.params !== "settings" || null)
-   {
-      const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
-      getHelpWith = cleanParam;
-      data.text = helpMessage(data.config, data.bot.username, getHelpWith);
-
-      // -------------
-      // Send message
-      // -------------
-
-      return sendMessage(data);
-   }
-
-   data.text = helpMessage(data.config, data.bot.username, getHelpWith);
-
-   // -------------
-   // Send message
-   // -------------
-
-   return sendMessage(data);
-};
 
 // -------------
 // Help Section
 // -------------
 
-const helpSection = function(data)
+const helpSection = function helpSection (data)
 {
-   var section =
-      `${data.icon}  **[${data.title}](${data.link})**\n\n`
-      //`\`${data.cmd} help ${data.help}\`\n\n`
-      //"\n```cpp\n" +
-      //`Command: "` +
-      //`${data.cmd} ${data.cmd} ${data.args}"\n\n` +
-      //`Example: "` +
-      //`${data.cmd} ${data.cmd} ${data.example}"\n` +
-      //`Help: "` +
-      //`${data.cmd} help ${data.help}"` +
-      //"\n```\n"
-   ;
+
+   const section =
+      `${data.icon}  **[${data.title}](${data.link})**\n\n`;
 
    return section;
+
 };
 
 // ----------
 // Help Text
 // ----------
 
-const helpMessage = function(config, botname, param)
+const helpMessage = function helpMessage (config, botname, param)
 {
+
    // ---------
    // Bot Info
    // ---------
@@ -135,122 +51,121 @@ const helpMessage = function(config, botname, param)
 
    const basics =
    helpSection({
-      config: config,
-      title: "Translate by Reacting",
-      link: "<https://ritabot.gg/trans-reac/>",
-      icon: ":flag_white:",
-      cmd: null,
-      help: "react",
       args: null,
-      example: "!t help react for examples"
+      cmd: null,
+      config,
+      example: "!t help react for examples",
+      help: "react",
+      icon: ":flag_white:",
+      link: "<https://ritabot.gg/trans-reac/>",
+      title: "Translate by Reacting"
    }) +
    helpSection({
-      config: config,
-      title: "Translate Custom Text",
-      link: "<https://ritabot.gg/trans-cust/>",
-      icon: ":abc:",
-      cmd: "this",
-      help: "custom",
       args: "to [lang] from [lang]: [msg]",
-      example: "to french from english: hello"
+      cmd: "this",
+      config,
+      example: "to french from english: hello",
+      help: "custom",
+      icon: ":abc:",
+      link: "<https://ritabot.gg/trans-cust/>",
+      title: "Translate Custom Text"
    }) +
    helpSection({
-      config: config,
-      title: "Translate Last Message",
-      link: "<https://ritabot.gg/trans-last/>",
-      icon: ":arrow_double_up:",
-      cmd: "last",
-      help: "last",
       args: "[count] from [lang] to [lang]",
-      example: "3 from german to spanish"
+      cmd: "last",
+      config,
+      example: "3 from german to spanish",
+      help: "last",
+      icon: ":arrow_double_up:",
+      link: "<https://ritabot.gg/trans-last/>",
+      title: "Translate Last Message"
    }) +
    helpSection({
-      config: config,
-      title: "Translate Channel (Automatic)",
-      link: "<https://ritabot.gg/trans-auto/>",
-      icon: ":hash:",
-      cmd: "channel",
-      help: "auto",
       args: "from [lang] to [lang] for [@/#]",
-      example: "from hebrew to arabic for me"
+      cmd: "channel",
+      config,
+      example: "from hebrew to arabic for me",
+      help: "auto",
+      icon: ":hash:",
+      link: "<https://ritabot.gg/trans-auto/>",
+      title: "Translate Channel (Automatic)"
    }) +
    helpSection({
-      config: config,
-      title: "Stats",
-      link: "<https://ritabot.gg/trans-misc/#statistics>",
-      icon: ":bar_chart:",
-      cmd: "stats",
-      help: "stats",
       args: "stats [server/global]",
-      example: ""
+      cmd: "stats",
+      config,
+      example: "",
+      help: "stats",
+      icon: ":bar_chart:",
+      link: "<https://ritabot.gg/trans-misc/#statistics>",
+      title: "Stats"
    }) +
    helpSection({
-      config: config,
-      title: "Settings",
-      link: "<https://ritabot.gg/trans-sett/>",
-      icon: ":gear:",
-      cmd: "settings",
-      help: "settings",
       args: "setLang to [lang]",
-      example: "setLang to italian"
+      cmd: "settings",
+      config,
+      example: "setLang to italian",
+      help: "settings",
+      icon: ":gear:",
+      link: "<https://ritabot.gg/trans-sett/>",
+      title: "Settings"
    }) +
    helpSection({
-      config: config,
-      title: "Misc. Settings",
-      link: "<https://ritabot.gg/trans-misc/>",
-      icon: ":robot:",
+      args: "",
       cmd: "misc",
+      config,
+      example: "",
       help: "misc",
-      args: "",
-      example: ""
+      icon: ":robot:",
+      link: "<https://ritabot.gg/trans-misc/>",
+      title: "Misc. Settings"
    }) +
    helpSection({
-      config: config,
-      title: "Tasks",
-      link: "<https://ritabot.gg/trans-misc/#translations>",
-      icon: ":clipboard:",
+      args: "",
       cmd: "Tasks",
+      config,
+      example: "",
       help: "Tasks",
-      args: "",
-      example: ""
+      icon: ":clipboard:",
+      link: "<https://ritabot.gg/trans-misc/#translations>",
+      title: "Tasks"
    }) +
    helpSection({
-      config: config,
-      title: "ReadMe",
-      link: "<https://ritabot.gg/secure/>",
-      icon: ":bookmark_tabs:",
+      args: "",
       cmd: "readme",
+      config,
+      example: "",
       help: "readme",
-      args: "",
-      example: ""
+      icon: ":bookmark_tabs:",
+      link: "<https://ritabot.gg/secure/>",
+      title: "ReadMe"
    }) +
    helpSection({
-      config: config,
-      title: "Report Bugs / Request Features",
+      config,
+      icon: "🙋🏽‍♀️",
       link: "<https://github.com/RitaBot-Project/RitaBot/issues>",
-      icon: "🙋🏽‍♀️"
+      title: "Report Bugs / Request Features"
    }) +
    helpSection({
-      config: config,
-      title: "Donate Via Open Collective",
-      link: "<https://opencollective.com/ritabot-project>",
-      icon: ":dollar: ",
-      cmd: "donate",
-      help: "donate",
       args: "oc",
-      example: ""
+      cmd: "donate",
+      config,
+      example: "",
+      help: "donate",
+      icon: ":dollar: ",
+      link: "<https://opencollective.com/ritabot-project>",
+      title: "Donate Via Open Collective"
    }) +
    helpSection({
-      config: config,
-      title: "Donate Via Github",
-      link: "<https://github.com/sponsors/RitaBot-Project>",
-      icon: ":dollar: ",
-      cmd: "donate",
-      help: "donate",
       args: "github",
-      example: ""
+      cmd: "donate",
+      config,
+      example: "",
+      help: "donate",
+      icon: ":dollar: ",
+      link: "<https://github.com/sponsors/RitaBot-Project>",
+      title: "Donate Via Github"
    });
-
 
    // ----------------
    // Module Commands
@@ -662,32 +577,157 @@ const helpMessage = function(config, botname, param)
 
    const paramMap =
    {
+      auto,
       "basics": info + basics,
-      "modules": modules,
-      "readme": readme,
-      "report": report,
-      "commands": commands,
-      "custom": custom,
-      "react": react,
-      "last": last,
-      "auto": auto,
-      "tasks": tasks,
-      "stop": stop,
-      "misc": misc,
-      "settings": settings,
-      "stats": stats,
-      "embed": embed,
-      "bot2bot": bot2bot,
-      "debug": debug,
-      "prefix": prefix,
-      "donate": donate
+      bot2bot,
+      commands,
+      custom,
+      debug,
+      donate,
+      embed,
+      last,
+      misc,
+      modules,
+      prefix,
+      react,
+      readme,
+      report,
+      settings,
+      stats,
+      stop,
+      tasks
    };
 
-   //if (paramMap.hasOwnProperty(param))
-   if (Object.prototype.hasOwnProperty.call(paramMap,param))
+   // if (paramMap.hasOwnProperty(param))
+   if (Object.prototype.hasOwnProperty.call(
+      paramMap,
+      param
+   ))
    {
+
       return paramMap[param];
+
    }
 
    return paramMap.basics;
+
+};
+
+// ------------------------
+// Bot Help / Command List
+// ------------------------
+
+module.exports = function run (data)
+{
+
+   data.color = "info";
+
+   // ----------------------------------------------
+   // Detect if help is needed for specific command
+   // ----------------------------------------------
+
+   let getHelpWith = "basics";
+
+   if (data.cmd.params === "settings")
+   {
+
+      const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
+      getHelpWith = cleanParam;
+
+      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+      {
+
+         getHelpWith = cleanParam;
+         data.text = helpMessage(
+            data.config,
+            data.bot.username,
+            getHelpWith
+         );
+
+         console.log("Insufficient Permission");
+         data.message.delete(5000).catch((err) => console.log(
+            "Command Message Deleted Error, help.js = ",
+            err
+         ));
+         richEmbedMessage.
+            setColor(colors.get(data.color)).
+            setAuthor(
+               data.bot.username,
+               data.bot.displayAvatarURL
+            ).
+            setDescription("This command is available only to Developers. \n\n").
+            setTimestamp().
+            setFooter("This message will self-destruct in one minute");
+
+         // -------------
+         // Send message
+         // -------------
+
+         return data.message.channel.send(richEmbedMessage).then((msg) =>
+         {
+
+            msg.delete(60000).catch((err) => console.log(
+               "Bot Message Deleted Error, help.js = ",
+               err
+            ));
+
+         });
+
+      }
+      getHelpWith = cleanParam;
+      data.text = helpMessage(
+         data.config,
+         data.bot.username,
+         getHelpWith
+      );
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   }
+   else if (data.cmd.params === null)
+   {
+
+      data.text = helpMessage(
+         data.config,
+         data.bot.username,
+         getHelpWith
+      );
+      return sendMessage(data);
+
+   }
+   else if (data.cmd.params !== "settings" || null)
+   {
+
+      const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
+      getHelpWith = cleanParam;
+      data.text = helpMessage(
+         data.config,
+         data.bot.username,
+         getHelpWith
+      );
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   }
+
+   data.text = helpMessage(
+      data.config,
+      data.bot.username,
+      getHelpWith
+   );
+
+   // -------------
+   // Send message
+   // -------------
+
+   return sendMessage(data);
+
 };
