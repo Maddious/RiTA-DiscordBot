@@ -10,9 +10,8 @@
 // -------------
 
 module.exports = {
-   "error": {
-      "Content": "50035",
-      "perm": "50013",
-      "sendDm": "50007"
-   }
+   "access": "50001",
+   "content": "50035",
+   "perm": "50013",
+   "sendDm": "50007"
 };
