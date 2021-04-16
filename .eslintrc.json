@@ -81,6 +81,7 @@
       "block-scoped-var": "off",
       "no-console": "off",
       "camelcase": "off",
+<<<<<<< Updated upstream
       "no-dupe-keys": "off",
       // -----------------------------
       // eslint all override defaults
@@ -124,5 +125,9 @@
       "no-ternary": "warn",
       "no-nested-ternary": "warn",
       "new-cap": "warn"
+=======
+      "no-dupe-keys": "off"
+      
+>>>>>>> Stashed changes
     }
 }

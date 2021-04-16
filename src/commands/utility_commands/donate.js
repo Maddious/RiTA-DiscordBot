@@ -3,7 +3,11 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+<<<<<<< Updated upstream
 
+=======
+/* eslint-disable no-undef */
+>>>>>>> Stashed changes
 const sendMessage = require("../../core/command.send");
 
 // ------------------------------

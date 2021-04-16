@@ -137,6 +137,7 @@ const getSettings = function getSettings (data)
       // Send message/file
       // ------------------
 
+<<<<<<< Updated upstream
       data.message.delete(5000).catch((err) => console.log(
          "Command Message Deleted Error, command.send.js = ",
          err
@@ -153,6 +154,11 @@ const getSettings = function getSettings (data)
          {files: ["./src/files/serverlist.txt"]}
       );
 
+=======
+      data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, command.send.js = ", err));
+      fs.writeFileSync(path.resolve(__dirname, "../../files/serverlist.txt"),data.text);
+      data.message.channel.send("Server List.", { files: ["./src/files/serverlist.txt"] });
+>>>>>>> Stashed changes
    };
 
 
@@ -162,11 +168,18 @@ const getSettings = function getSettings (data)
 
    const updateBot = function updateBot (data)
    {
+<<<<<<< Updated upstream
 
       // const activeGuilds = data.client.guilds.array();
       // data.color = "info";
       // data.text = `Updating bot for **${activeGuilds.length}** servers.`;
       // return sendMessage(data);
+=======
+      //const activeGuilds = data.client.guilds.array();
+      //data.color = "info";
+      //data.text = `Updating bot for **${activeGuilds.length}** servers.`;
+      //return sendMessage(data);
+>>>>>>> Stashed changes
       //
       // activeGuilds.forEach(guild =>
       // {

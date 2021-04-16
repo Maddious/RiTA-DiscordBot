@@ -3,11 +3,19 @@
 // -------
 
 const colors = {
+<<<<<<< Updated upstream
    err: 13107200,
    error: 13107200,
    info: 41215,
    ok: 5299300,
    warn: 16764928
+=======
+   info: 41215,
+   warn: 16764928,
+   err: 13107200,
+   error: 13107200,
+   ok: 5299300
+>>>>>>> Stashed changes
 };
 
 // ----------

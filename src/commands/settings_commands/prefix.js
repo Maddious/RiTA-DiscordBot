@@ -4,7 +4,12 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+<<<<<<< Updated upstream
 const logger = require("../../core/logger");
+=======
+/* eslint-disable no-undef */
+const colors = require("../../core/colors");
+>>>>>>> Stashed changes
 const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
 const message = require("../../message");

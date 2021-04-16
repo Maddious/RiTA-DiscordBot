@@ -3,7 +3,10 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+<<<<<<< Updated upstream
 /* eslint-disable consistent-return */
+=======
+>>>>>>> Stashed changes
 const langCheck = require("../../core/lang.check");
 const translate = require("../../core/translate");
 const fn = require("../../core/helpers");
@@ -87,10 +90,17 @@ module.exports = function run (data, client)
             // translate data
 
             data.translate = {
+<<<<<<< Updated upstream
                from: langCheck("auto"),
                multi: true,
                original: message.content,
                to: langCheck(countryLangs[emoji].langs)
+=======
+               original: message.content,
+               to: langCheck(countryLangs[emoji].langs),
+               from: langCheck("auto"),
+               multi: true
+>>>>>>> Stashed changes
             };
 
             // message data

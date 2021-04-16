@@ -3,6 +3,7 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+<<<<<<< Updated upstream
 const logger = require("../../core/logger");
 const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
@@ -68,6 +69,13 @@ const bot2bot = function bot2bot (data)
 
 };
 
+=======
+/* eslint-disable no-undef */
+const colors = require("../../core/colors");
+const db = require("../../core/db");
+const sendMessage = require("../../core/command.send");
+
+>>>>>>> Stashed changes
 // -------------
 // Command Code
 // -------------

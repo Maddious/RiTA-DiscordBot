@@ -3,6 +3,10 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+<<<<<<< Updated upstream
+=======
+/* eslint-disable no-undef */
+>>>>>>> Stashed changes
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
@@ -22,10 +26,15 @@ const debug = function debug (data)
       console.log(`DEBUG: debug variable ${commandVariable1}`);
       return db.updateWebhookVar(
          data.message.channel.guild.id,
+<<<<<<< Updated upstream
          // This would be the Webhook ID
          commandVariable1,
          // this would be the Webhook Token
          commandVariable1,
+=======
+         commandVariable1, //This would be the Webhook ID
+         commandVariable1, //this would be the Webhook Token
+>>>>>>> Stashed changes
          true,
          function error (err)
          {

@@ -3,10 +3,13 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+<<<<<<< Updated upstream
 /* eslint-disable no-use-before-define */
 /* eslint-disable vars-on-top */
 /* eslint-disable sort-keys */
 /* eslint-disable consistent-return */
+=======
+>>>>>>> Stashed changes
 const fn = require("../../core/helpers");
 const db = require("../../core/db");
 const logger = require("../../core/logger");
@@ -163,7 +166,10 @@ module.exports = function run (data)
 
       data.task.for.forEach((dest) => // eslint-disable-line complexity
       {
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
          // resolve `me` / original message author
 
          if (dest === "me")
@@ -275,9 +281,14 @@ module.exports = function run (data)
    var taskBuffer = {
       len: data.task.for.length,
       dest: [],
+<<<<<<< Updated upstream
       reduce ()
       {
 
+=======
+      reduce: function()
+      {
+>>>>>>> Stashed changes
          this.len--;
          this.check();
 

@@ -3,7 +3,10 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+<<<<<<< Updated upstream
 /* eslint-disable sort-keys */
+=======
+>>>>>>> Stashed changes
 const translate = require("google-translate-api");
 const ISO6391 = require("iso-639-1");
 const fn = require("./helpers");
@@ -102,11 +105,16 @@ module.exports = function run (lang, single = false)
 
    }
 
+<<<<<<< Updated upstream
    const langs = {
       unchecked: fn.arraySplit(
          lang,
          ","
       ),
+=======
+   var langs = {
+      unchecked: fn.arraySplit(lang, ","),
+>>>>>>> Stashed changes
       valid: [],
       unique: [],
       invalid: []
@@ -123,7 +131,12 @@ module.exports = function run (lang, single = false)
       {
 
          langs.unique.push(language);
+<<<<<<< Updated upstream
          langs.valid.push({iso: language,
+=======
+         langs.valid.push({
+            iso: language,
+>>>>>>> Stashed changes
             name: language,
             native: language});
 

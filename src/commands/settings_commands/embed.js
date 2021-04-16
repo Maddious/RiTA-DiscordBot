@@ -7,6 +7,7 @@ const logger = require("../../core/logger");
 const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
 
+<<<<<<< Updated upstream
 // ------------------------------
 // embed varible command handler
 // ------------------------------
@@ -67,6 +68,8 @@ const embed = function embed (data)
 
 };
 
+=======
+>>>>>>> Stashed changes
 // -------------
 // Command Code
 // -------------

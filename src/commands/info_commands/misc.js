@@ -3,7 +3,11 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+<<<<<<< Updated upstream
 /* eslint-disable no-irregular-whitespace*/
+=======
+/*eslint-disable no-irregular-whitespace*/
+>>>>>>> Stashed changes
 const auth = require("../../core/auth");
 const fn = require("../../core/helpers");
 const logger = require("../../core/logger");
@@ -111,6 +115,10 @@ exports.shards = function shards (data)
             {
 
                output.push({
+<<<<<<< Updated upstream
+=======
+                  name: `:pager: - Shard #${i}`,
+>>>>>>> Stashed changes
                   inline: true,
                   name: `:pager: - Shard #${i}`,
                   value: stripIndent`
@@ -145,7 +153,11 @@ exports.shards = function shards (data)
             data.fields = output;
 
             // -------------
+<<<<<<< Updated upstream
             // catch errors
+=======
+            // Send message
+>>>>>>> Stashed changes
             // -------------
 
          }).
@@ -190,9 +202,14 @@ exports.proc = function proc (data)
    {
 
       shard = {
+<<<<<<< Updated upstream
          count: 1,
          id: 0
 
+=======
+         id: 0,
+         count: 1
+>>>>>>> Stashed changes
       };
 
    }

@@ -3,7 +3,10 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+<<<<<<< Updated upstream
 /* eslint-disable consistent-return */
+=======
+>>>>>>> Stashed changes
 const logger = require("./logger");
 
 // --------------------------------------
@@ -119,11 +122,15 @@ exports.arraySplit = function arraySplit (input, sep)
 exports.chunkString = function chunkString (str, len)
 {
 
+<<<<<<< Updated upstream
    const _size = Math.ceil(str.length / len);
    const _ret = new Array(_size);
    let _offset = null;
 
    for (let _i = 0; _i < _size; _i++)
+=======
+   for (var _i=0; _i<_size; _i++)
+>>>>>>> Stashed changes
    {
 
       _offset = _i * len;
@@ -186,6 +193,7 @@ exports.getUser = function getUser (client, userID, cb)
    }
 
    // user not in cache, fetch 'em
+<<<<<<< Updated upstream
 
    client.fetchUser(userID).then(cb).
       catch((err) =>
@@ -198,6 +206,8 @@ exports.getUser = function getUser (client, userID, cb)
          );
 
       });
+=======
+>>>>>>> Stashed changes
 
 };
 
@@ -260,6 +270,7 @@ exports.getMessage = function getMessage (client, messageID, channelID, userID, 
       userID,
       (channel) =>
       {
+<<<<<<< Updated upstream
 
          const message = channel.messages.get(messageID);
 
@@ -278,6 +289,9 @@ exports.getMessage = function getMessage (client, messageID, channelID, userID, 
                err
             ));
 
+=======
+         return cb(message);
+>>>>>>> Stashed changes
       }
    );
 

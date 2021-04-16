@@ -3,6 +3,10 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+<<<<<<< Updated upstream
+=======
+/* eslint-disable no-undef */
+>>>>>>> Stashed changes
 const colors = require("./colors");
 const discord = require("discord.js");
 const richEmbedMessage = new discord.RichEmbed();
@@ -12,6 +16,7 @@ const logger = require("./logger");
 // Send Data to Channel
 // ---------------------
 
+<<<<<<< Updated upstream
 function sendMessage (data)
 {
 
@@ -72,6 +77,8 @@ function sendMessage (data)
 // Command Header
 // ---------------
 
+=======
+>>>>>>> Stashed changes
 // eslint-disable-next-line complexity
 module.exports = function run (data)
 {

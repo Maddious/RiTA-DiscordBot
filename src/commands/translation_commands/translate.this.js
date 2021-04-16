@@ -3,7 +3,10 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+<<<<<<< Updated upstream
 /* eslint-disable consistent-return */
+=======
+>>>>>>> Stashed changes
 const translate = require("../../core/translate");
 const sendMessage = require("../../core/command.send");
 
@@ -45,10 +48,17 @@ module.exports = function run (data)
    // ------------------
 
    data.translate = {
+<<<<<<< Updated upstream
       from: data.cmd.from,
       multi: true,
       original: data.cmd.content,
       to: data.cmd.to
+=======
+      original: data.cmd.content,
+      to: data.cmd.to,
+      from: data.cmd.from,
+      multi: true
+>>>>>>> Stashed changes
    };
 
    delete data.message.attachments;

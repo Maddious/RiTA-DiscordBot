@@ -19,15 +19,24 @@ module.exports = function run (config, message, edited, deleted)
    module.exports.message = message;
    const client = message.client;
    const bot = client.user;
+<<<<<<< Updated upstream
    // const bot2botstyle = db.server_obj[message.guild.id].bot2botstyle;
+=======
+   //const bot2botstyle = db.server_obj[message.guild.id].bot2botstyle;
+>>>>>>> Stashed changes
 
    // ------------------------
    // Ignore messages by bots
    // ------------------------
 
 
+<<<<<<< Updated upstream
    // if (bot2botstyle === "off")
    // {
+=======
+   //if (bot2botstyle === "off")
+   //{
+>>>>>>> Stashed changes
    if (message.author.bot)
    {
 
@@ -36,8 +45,13 @@ module.exports = function run (config, message, edited, deleted)
    }
    // }
 
+<<<<<<< Updated upstream
    // if (bot2botstyle === "on")
    // {
+=======
+   //if (bot2botstyle === "on")
+   //{
+>>>>>>> Stashed changes
    //   if (message.author.discriminator === "0000")
    //   {
    //      return;
@@ -71,6 +85,7 @@ module.exports = function run (config, message, edited, deleted)
    // ------------
 
    const data = {
+<<<<<<< Updated upstream
       bot,
       canWrite: true,
       channel: message.channel,
@@ -78,6 +93,15 @@ module.exports = function run (config, message, edited, deleted)
       config,
       member: message.member,
       message
+=======
+      client: client,
+      config: config,
+      bot: bot,
+      channel: message.channel,
+      message: message,
+      member: message.member,
+      canWrite: true
+>>>>>>> Stashed changes
    };
    if (data.message.channel.type !== "dm")
    {

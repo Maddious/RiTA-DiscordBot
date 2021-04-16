@@ -3,7 +3,10 @@
 // -----------------
 
 // codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+<<<<<<< Updated upstream
 /* eslint-disable consistent-return */
+=======
+>>>>>>> Stashed changes
 const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
 

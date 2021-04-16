@@ -30,8 +30,15 @@ module.exports = function run (bot, status, config, writable = true)
       {
 
          bot.setPresence({
+<<<<<<< Updated upstream
             status: "dnd"
          });
+=======
+            status: "online",
+            game: {
+               name: activevar[0]
+            } //run this on stratup
+>>>>>>> Stashed changes
 
       },
 
@@ -39,13 +46,18 @@ module.exports = function run (bot, status, config, writable = true)
       {
 
          bot.setPresence({
+<<<<<<< Updated upstream
             status: "online"
+=======
+            status: "dnd"
+>>>>>>> Stashed changes
          });
 
       },
 
       "online" ()
       {
+<<<<<<< Updated upstream
 
          // run this on stratup
          bot.setPresence({
@@ -74,6 +86,11 @@ module.exports = function run (bot, status, config, writable = true)
             20000
          );
 
+=======
+         bot.setPresence({
+            status: "online"
+         });
+>>>>>>> Stashed changes
       }
    };
 

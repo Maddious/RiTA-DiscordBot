@@ -51,7 +51,14 @@ const helpMessage = function helpMessage (config, botname, param)
 
    const basics =
    helpSection({
+<<<<<<< Updated upstream
       args: null,
+=======
+      config: config,
+      title: "Translate by Reacting",
+      link: "<https://ritabot.gg/trans-reac/>",
+      icon: ":flag_white:",
+>>>>>>> Stashed changes
       cmd: null,
       config,
       example: "!t help react for examples",
@@ -149,6 +156,7 @@ const helpMessage = function helpMessage (config, botname, param)
    helpSection({
       args: "oc",
       cmd: "donate",
+<<<<<<< Updated upstream
       config,
       example: "",
       help: "donate",
@@ -165,6 +173,11 @@ const helpMessage = function helpMessage (config, botname, param)
       icon: ":dollar: ",
       link: "<https://github.com/sponsors/RitaBot-Project>",
       title: "Donate Via Github"
+=======
+      help: "donate",
+      args: "github",
+      example: ""
+>>>>>>> Stashed changes
    });
 
    // ----------------
@@ -598,11 +611,16 @@ const helpMessage = function helpMessage (config, botname, param)
       tasks
    };
 
+<<<<<<< Updated upstream
    // if (paramMap.hasOwnProperty(param))
    if (Object.prototype.hasOwnProperty.call(
       paramMap,
       param
    ))
+=======
+   //if (paramMap.hasOwnProperty(param))
+   if (Object.prototype.hasOwnProperty.call(paramMap,param))
+>>>>>>> Stashed changes
    {
 
       return paramMap[param];
