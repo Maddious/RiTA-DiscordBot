@@ -37,7 +37,6 @@ function sendMessage (data)
          {
 
             console.log("Error 50013");
-            // Return logger("custom", err, "send", data.guild.name);
             logger(
                "custom",
                {

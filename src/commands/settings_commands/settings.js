@@ -84,7 +84,7 @@ const getSettings = function getSettings (data)
                   "error",
                   err,
                   "db",
-                  data.message.guild.name
+                  data.message.channel.guild.name
                );
 
             }

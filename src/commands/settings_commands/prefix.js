@@ -36,7 +36,7 @@ const prefix = function prefix (data)
                   "error",
                   err,
                   "command",
-                  data.message.guild.name
+                  data.message.channel.guild.name
                );
 
             }
@@ -74,7 +74,7 @@ const prefix = function prefix (data)
                   "error",
                   err,
                   "command",
-                  data.message.guild.name
+                  data.message.channel.guild.name
                );
 
             }

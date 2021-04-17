@@ -113,7 +113,7 @@ const startTranslation = function startTranslation (data, i, row)
                      "error",
                      err,
                      "dm",
-                     data.message.guild.name
+                     data.message.channel.guild.name
                   ));
 
             }
@@ -220,7 +220,7 @@ module.exports = function run (data)
          "error",
          data.err,
          "db",
-         data.message.guild.name
+         data.message.channel.guild.name
       );
 
    }

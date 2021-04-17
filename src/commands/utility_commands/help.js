@@ -181,27 +181,27 @@ const helpMessage = function helpMessage (config, botname, param)
    "```md\n" +
 
    `# Translation Help Modules\n` +
-   `> ${cmd} help auto\n` +
-   `> ${cmd} help react\n` +
-   `> ${cmd} help last\n` +
-   `> ${cmd} help this\n\n` +
+   `* ${cmd} help auto\n` +
+   `* ${cmd} help react\n` +
+   `* ${cmd} help last\n` +
+   `* ${cmd} help this\n\n` +
 
    `# Translation Style Modules\n` +
-   `> ${cmd} help embed\n` +
-   `> ${cmd} help bot2bot\n\n` +
+   `* ${cmd} help embed\n` +
+   `* ${cmd} help bot2bot\n\n` +
 
    `# Information Modules\n` +
-   `> ${cmd} help stats\n` +
-   `> ${cmd} help tasks\n` +
-   `> ${cmd} help settings (Dev Only)\n\n` +
+   `* ${cmd} help stats\n` +
+   `* ${cmd} help tasks\n` +
+   `* ${cmd} help settings (Dev Only)\n\n` +
 
    `# Other Modules\n` +
-   `> ${cmd} help misc\n` +
-   `> ${cmd} help report\n` +
-   `> ${cmd} help readme\n` +
-   `> ${cmd} help donate\n` +
-   `> ${cmd} help debug\n` +
-   `> ${cmd} help prefix\n` +
+   `* ${cmd} help misc\n` +
+   `* ${cmd} help report\n` +
+   `* ${cmd} help readme\n` +
+   `* ${cmd} help donate\n` +
+   `* ${cmd} help debug\n` +
+   `* ${cmd} help prefix\n` +
    "```";
 
    // -----------------
@@ -252,6 +252,7 @@ const helpMessage = function helpMessage (config, botname, param)
    `* ${cmd} version\n` +
    `* ${cmd} proc\n` +
    `* ${cmd} shards\n` +
+   `* ${cmd} id\n` +
    `* ${cmd} list\n\n` +
 
    `# Style Commands\n` +
@@ -281,13 +282,13 @@ const helpMessage = function helpMessage (config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} this: [msg] \n` +
-   `> ${cmd} this to [lang] from [lang]: [msg] \n\n` +
+   `* ${cmd} this: [msg] \n` +
+   `* ${cmd} this to [lang] from [lang]: [msg] \n\n` +
 
    `# Parameters\n` +
-   `> to [lang] - defaults to server default language\n` +
-   `> to [lang, lang, ...] - translates to multiple languages\n` +
-   `> from [lang] - defaults to automatic detection\n\n` +
+   `* to [lang] - defaults to server default language\n` +
+   `* to [lang, lang, ...] - translates to multiple languages\n` +
+   `* from [lang] - defaults to automatic detection\n\n` +
 
    `# Examples\n` +
    `* ${cmd} this: bonjour \n` +
@@ -320,15 +321,15 @@ const helpMessage = function helpMessage (config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} last \n` +
-   `> ${cmd} last [n] to [lang] from [lang] \n\n` +
+   `* ${cmd} last \n` +
+   `* ${cmd} last [n] to [lang] from [lang] \n\n` +
 
    `# Parameters\n` +
-   `> to [lang] - defaults to server default language\n` +
-   `> to [lang, lang, ...] - translates to multiple languages\n` +
-   `> from [lang] - defaults to automatic detection\n` +
-   `> [n] - number of chains to translate, default is 1\n` +
-   `> [-n] - negative number means only one chain is translated\n\n` +
+   `* to [lang] - defaults to server default language\n` +
+   `* to [lang, lang, ...] - translates to multiple languages\n` +
+   `* from [lang] - defaults to automatic detection\n` +
+   `* [n] - number of chains to translate, default is 1\n` +
+   `* [-n] - negative number means only one chain is translated\n\n` +
 
    `# Examples\n` +
    `* ${cmd} last 2 \n` +
@@ -349,14 +350,14 @@ const helpMessage = function helpMessage (config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} channel \n` +
-   `> ${cmd} channel to [lang] from [lang] for [me/@/#] \n` +
-   `> ${cmd} stop for [me/@/#] \n\n` +
+   `* ${cmd} channel \n` +
+   `* ${cmd} channel to [lang] from [lang] for [me/@/#] \n` +
+   `* ${cmd} stop for [me/@/#] \n\n` +
 
    `# Parameters\n` +
-   `> to [lang] - defaults to server default language\n` +
-   `> from [lang] -  language to translate from, now includes 'auto'\n` +
-   `> for [me/@/#] - defaults to "me", admins can use mentions \n\n` +
+   `* to [lang] - defaults to server default language\n` +
+   `* from [lang] -  language to translate from, now includes 'auto'\n` +
+   `* for [me/@/#] - defaults to "me", admins can use mentions \n\n` +
 
    `# Examples\n` +
    `* ${cmd} channel to english from chinese \n` +
@@ -375,11 +376,11 @@ const helpMessage = function helpMessage (config, botname, param)
    "```md\n" +
 
    `# Displays translation tasks of the current channel\n` +
-   `> ${cmd} tasks\n\n` +
+   `* ${cmd} tasks\n\n` +
 
    `# Displays translation tasks of specified channel\n` +
    `* COMING IN FUTURE UPDATE \n` +
-   `> ${cmd} tasks for [#channel]\n` +
+   `* ${cmd} tasks for [#channel]\n` +
    "```";
 
    // ----------------------
@@ -393,11 +394,11 @@ const helpMessage = function helpMessage (config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} stop \n` +
-   `> ${cmd} stop for [me/@/#/all] \n\n` +
+   `* ${cmd} stop \n` +
+   `* ${cmd} stop for [me/@/#/all] \n\n` +
 
    `# Parameters\n` +
-   `> for [me/@/#/all] - defaults to "me" \n\n` +
+   `* for [me/@/#/all] - defaults to "me" \n\n` +
 
    `# Examples\n` +
    `* ${cmd} stop \n` +
@@ -416,20 +417,23 @@ const helpMessage = function helpMessage (config, botname, param)
    "```md\n" +
 
    `# Help\n` +
-   `> ${cmd} help\n` +
-   `> ${cmd} help [command]\n\n` +
+   `* ${cmd} help\n` +
+   `* ${cmd} help [command]\n\n` +
 
    `# Links\n` +
-   `> ${cmd} invite\n\n` +
+   `* ${cmd} invite\n\n` +
 
    `# Supported Languages\n` +
-   `> ${cmd} list\n\n` +
+   `* ${cmd} list\n\n` +
 
    `# Donate\n` +
-   `> ${cmd} donate [oc/github]\n\n` +
+   `* ${cmd} donate [oc/github]\n\n` +
 
    `# Prefix\n` +
-   `> ${cmd} prefix\n\n` +
+   `* ${cmd} prefix\n\n` +
+
+   `# Prefix\n` +
+   `* ${cmd} id\n\n` +
    "```";
 
    // -----------------
@@ -440,16 +444,16 @@ const helpMessage = function helpMessage (config, botname, param)
    `__**Settings**__\n\n` +
    "```md\n" +
    `# Defunct Command\n` +
-   `> ${cmd} settings updatebot\n\n` +
+   `* ${cmd} settings updatebot\n\n` +
 
    `# Update bot Database with new columns\n` +
-   `> ${cmd} settings updatedb\n\n` +
+   `* ${cmd} settings updatedb\n\n` +
 
    `# Set default server language\n` +
-   `> ${cmd} settings setLang to [lang]\n\n` +
+   `* ${cmd} settings setLang to [lang]\n\n` +
 
    `# Displays list of servers the bot is in\n` +
-   `> ${cmd} settings listservers\n\n` +
+   `* ${cmd} settings listservers\n\n` +
    "```";
 
    // -------------------
@@ -461,13 +465,13 @@ const helpMessage = function helpMessage (config, botname, param)
    "```md\n" +
 
    `# Statistics\n` +
-   `> ${cmd} version \n` +
-   `> ${cmd} stats \n` +
-   `> ${cmd} stats global \n` +
-   `> ${cmd} stats server \n\n` +
+   `* ${cmd} version \n` +
+   `* ${cmd} stats \n` +
+   `* ${cmd} stats global \n` +
+   `* ${cmd} stats server \n\n` +
 
    `* Admin Only - Do not use in public channels\n` +
-   `> ${cmd} stats debug \n` +
+   `* ${cmd} stats debug \n` +
    "```";
 
    // -----------
@@ -479,11 +483,11 @@ const helpMessage = function helpMessage (config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} embed [on/off]\n\n` +
+   `* ${cmd} embed [on/off]\n\n` +
 
    `# Parameters\n` +
-   `> on - Turns on Embed Translation\n` +
-   `> off - Turns on Webhook Translation Sending\n\n` +
+   `* on - Turns on Embed Translation\n` +
+   `* off - Turns on Webhook Translation Sending\n\n` +
 
    `# Examples\n` +
    `* ${cmd} embed on \n` +
@@ -500,11 +504,11 @@ const helpMessage = function helpMessage (config, botname, param)
    `* Usually 90% of bots ignore other bot messages but this feature attemptes to translate them.\n\n` +
 
    `# Command\n` +
-   `> ${cmd} bot2bot [on/off]\n\n` +
+   `* ${cmd} bot2bot [on/off]\n\n` +
 
    `# Parameters\n` +
-   `> on - Turns on Bot2Bot Translations\n` +
-   `> off - Turns off Bot2Bot Translations\n\n` +
+   `* on - Turns on Bot2Bot Translations\n` +
+   `* off - Turns off Bot2Bot Translations\n\n` +
 
    `# Examples\n` +
    `* ${cmd} bot2bot on \n` +
@@ -520,11 +524,11 @@ const helpMessage = function helpMessage (config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} debug [on/off]\n\n` +
+   `* ${cmd} debug [on/off]\n\n` +
 
    `# Parameters\n` +
-   `> on - Turns debug webhook on\n` +
-   `> off - Turns debug webhook off\n\n` +
+   `* on - Turns debug webhook on\n` +
+   `* off - Turns debug webhook off\n\n` +
 
    `# Examples\n` +
    `* ${cmd} debug on \n` +
@@ -540,12 +544,12 @@ const helpMessage = function helpMessage (config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} prefix [prefix]\n\n` +
-   `> ${long} prefix [prefix]\n\n` +
+   `* ${cmd} prefix [prefix]\n` +
+   `* ${long} prefix [prefix]\n\n` +
 
    `# Parameters\n` +
-   `> [prefix] - Changes the prefix of your bot commands\n` +
-   `> reset - Reset your prefix back to default\n\n` +
+   `* [prefix] - Changes the prefix of your bot commands\n` +
+   `* reset - Reset your prefix back to default\n\n` +
 
    `# Examples\n` +
    `* ${cmd} prefix $tr - your prefix would now be $tr \n` +
@@ -568,11 +572,11 @@ const helpMessage = function helpMessage (config, botname, param)
    `* and constantly strive to add new features and functionality  \n` +
    `* to allow all users to break the language barrier and be  \n` +
    `* heard and understood regardless of the language spoken\n\n` +
-   `> You can Donate at Github Sponsors\n` +
+   `* You can Donate at Github Sponsors\n` +
    `* ${cmd} donate github\n\n` +
-   `> You can Donate at Open Collective\n` +
+   `* You can Donate at Open Collective\n` +
    `* ${cmd} donate oc\n\n` +
-   `> Thank you for your continued support - RITA Dev Team` +
+   `* Thank you for your continued support - RITA Dev Team` +
    "```";
 
    // ----------------
