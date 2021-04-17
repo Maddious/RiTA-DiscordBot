@@ -275,3 +275,38 @@ exports.proc = function proc (data)
    sendMessage(data);
 
 };
+
+// --------------
+// Ident Message
+// --------------
+
+exports.ident = function ident (data)
+{
+
+   // ------------------
+   // Gather ID Details
+   // ------------------
+
+   console.log("DEBUG: ID Message");
+
+   data.color = "info";
+   data.text = `*User Name:* \`${data.message.author.username}\`\n`;
+   data.text += `*User ID:* \`${data.message.author.id}\`\n\n`;
+   data.text += `*Server Name:* \`${data.message.channel.guild.name}\`\n`;
+   data.text += `*Server ID:* \`${data.message.channel.guild.id}\`\n\n`;
+   data.text += `*Bot Name:* \`${data.bot.username}\`\n`;
+   data.text += `*Bot ID:* \`${data.bot.id}\`\n\n`;
+   data.text += `*Chan Name:* \`${data.message.channel.name}\`\n`;
+   data.text += `*Chan ID:* \`${data.message.channel.id}\``;
+   data.footer = {
+      "text":
+         "Requires VIEW, SEND, REACT, EMBED, ATTACH and MENTION permissions.\n"
+   };
+
+   // -------------
+   // Send message
+   // -------------
+
+   return sendMessage(data);
+
+};

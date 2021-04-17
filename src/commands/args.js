@@ -336,6 +336,7 @@ module.exports = function run (data)
             "donate": cmdDonate,
             "embed": cmdEmbed,
             "help": cmdHelp,
+            "id": cmdMisc.ident,
             "info": cmdHelp,
             "invite": cmdMisc.invite,
             "last": cmdTranslateLast.run,
