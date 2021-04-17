@@ -2,85 +2,41 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
-/* eslint-disable no-undef */
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
 
-// -----------------------
-// Command code
-// -----------------------
-
-module.exports.run = function(data)
-{
-   // -------------------------------
-   // Command allowed by admins only
-   // -------------------------------
-
-   if (data.message.isAdmin === false)
-   {
-      data.color = "warn";
-      data.text = ":cop:  This command is reserved for server admins.";
-
-      // -------------
-      // Send message
-      // -------------
-
-      return sendMessage(data);
-   }
-
-   // --------------------------------
-   // Error if debug param is missing
-   // --------------------------------
-
-   if (!data.cmd.params)
-   {
-      data.color = "error";
-      data.text =
-         ":warning:  Missing `debug` parameter. Use `" +
-         `${data.config.translateCmdShort} help debug\` to learn more.`;
-
-      // -------------
-      // Send message
-      // -------------
-
-      return sendMessage(data);
-   }
-
-   // ----------------
-   // Execute setting
-   // ----------------
-
-   if (data.message.isAdmin)
-   {
-      debug(data);
-   }
-};
-
 // -------------------------------
-// debug varible command handler
+// Debug varible command handler
 // -------------------------------
 
-const debug = function(data)
+const debug = function debug (data)
 {
+
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
    if (commandVariable1 === "on")
    {
-      console.log(commandVariable1);
+
+      console.log(`DEBUG: debug variable ${commandVariable1}`);
       return db.updateWebhookVar(
          data.message.channel.guild.id,
-         commandVariable1, //This would be the Webhook ID
-         commandVariable1, //this would be the Webhook Token
+         // This would be the Webhook ID
+         commandVariable1,
+         // This would be the Webhook Token
+         commandVariable1,
          true,
-         function(err)
+         function error (err)
          {
+
             if (err)
             {
-               return logger("error", err, "command", data.message.guild.name);
+
+               return logger("error", err, "command", data.message.channel.guild.name);
+
             }
-            var outputgh =
+            const outputgh =
             "**```Start Debug mode```**\n" +
             `Debug mode has been Started. \n` +
             `Error Logs will be output to this channel \n\n`;
@@ -92,21 +48,27 @@ const debug = function(data)
             // -------------
 
             return sendMessage(data);
+
          }
       );
+
    }
    else if (commandVariable1 === "off")
    {
-      console.log(commandVariable1);
+
+      console.log(`DEBUG: debug variable ${commandVariable1}`);
       return db.removeWebhook(
          data.message.channel.guild.id,
-         function(err)
+         function error (err)
          {
+
             if (err)
             {
-               return logger("error", err, "command", data.message.guild.name);
+
+               return logger("error", err, "command", data.message.channel.guild.name);
+
             }
-            var outputoc =
+            const outputoc =
           "**```Stop Debug mode```**\n" +
           `Debug mode has been Stopped. \n` +
           `Error logs will not be shown.\n\n`;
@@ -118,18 +80,79 @@ const debug = function(data)
             // -------------
 
             return sendMessage(data);
+
          }
       );
+
    }
 
    data.color = "error";
    data.text =
-      ":warning:  **`" + commandVariable1 +
-      "`** is not a valid debug option.\n";
+      `:warning:  **\`${commandVariable1
+      }\`** is not a valid debug option.\n`;
 
    // -------------
    // Send message
    // -------------
 
    return sendMessage(data);
+
+};
+
+// -----------------------
+// Command code
+// -----------------------
+
+module.exports = function run (data)
+{
+
+   // -------------------------------
+   // Command allowed by admins only
+   // -------------------------------
+
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   {
+
+      if (data.message.isAdmin === false)
+      {
+
+         data.color = "warn";
+         data.text = ":cop:  This command is reserved for server admins.";
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+      break Override;
+
+   }
+   // --------------------------------
+   // Error if debug param is missing
+   // --------------------------------
+
+   if (!data.cmd.params)
+   {
+
+      data.color = "error";
+      data.text =
+         ":warning:  Missing `debug` parameter. Use `" +
+         `${data.config.translateCmdShort} help debug\` to learn more.`;
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   }
+
+   // ----------------
+   // Execute setting
+   // ----------------
+
+   return debug(data);
+
 };

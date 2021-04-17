@@ -2,126 +2,67 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+/* eslint-disable consistent-return */
 const langCheck = require("../../core/lang.check");
 const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
 
-// --------------------
-// Handle stop command
-// --------------------
+// -----------------------
+// Destination ID handler
+// -----------------------
 
-module.exports = function(data)
+const destID = function destID (dest, author)
 {
-   // -------------------------------------------------
-   // Disallow this command in Direct/Private messages
-   // -------------------------------------------------
 
-   if (data.message.channel.type === "dm")
+   if (dest.startsWith("<#"))
    {
-      data.color = "warn";
-      data.text =
-         ":no_entry:  This command can only be called in server channels.";
 
-      // -------------
-      // Send message
-      // -------------
+      return dest.slice(
+         2,
+         -1
+      );
 
-      return sendMessage(data);
    }
-
-   // -------------------------------
-   // Disallow multiple destinations
-   // -------------------------------
-
-   if (data.cmd.for.length > 1)
+   if (dest.startsWith("<@"))
    {
-      data.color = "error";
-      data.text = ":warning:  Please specify only one `for` value.";
 
-      // -------------
-      // Send message
-      // -------------
+      return dest.slice(
+         1,
+         -1
+      );
 
-      return sendMessage(data);
    }
-
-   // -----------------------------------------
-   // Disallow non-managers to stop for others
-   // -----------------------------------------
-
-   if (data.cmd.for[0] !== "me" && !data.message.isManager)
+   if (dest === "me")
    {
-      data.color = "error";
-      data.text =
-         ":cop:  You need to be a channel manager to stop auto translating " +
-         "this channel for others.";
 
-      // -------------
-      // Send message
-      // -------------
+      return `@${author}`;
 
-      return sendMessage(data);
    }
+   return dest;
 
-   // ------------------
-   // Prepare task data
-   // ------------------
+};
 
-   const origin = data.message.channel.id;
-   const dest = destID(data.cmd.for[0], data.message.author.id);
-   const destDisplay = destResolver(data.cmd.for[0], data.message.author.id);
+const destResolver = function destResolver (dest)
+{
 
-   // ------------------------------
-   // Check if task actually exists
-   // ------------------------------
-
-   db.getTasks(origin, dest, function(err, res)
+   if (!dest.startsWith("@"))
    {
-      if (err)
-      {
-         return dbError(err, data);
-      }
 
-      // -----------------------------
-      // Error if task does not exist
-      // -----------------------------
+      return `#${dest}`;
 
-      if (res.length < 1 || !res)
-      {
-         const orig = destResolver(origin);
-         data.color = "error";
-         data.text =
-            ":warning:  __**No tasks**__ for " +
-            `**<${orig}>**.`;
-         if (dest === "all")
-         {
-            data.text =
-               ":warning:  This channel is not being automatically " +
-               "translated for anyone.";
-         }
+   }
+   return dest;
 
-         // -------------
-         // Send message
-         // -------------
-
-         return sendMessage(data);
-      }
-
-      // ------------------------------------------------
-      // Otherwise, proceed to remove task from database
-      // ------------------------------------------------
-
-      shoutTasks(res, data, origin, dest, destDisplay);
-   });
 };
 
 // ---------------------
 // Remove from database
 // ---------------------
 
-const shoutTasks = function(res, data, origin, dest, destDisplay)
+const shoutTasks = function shoutTasks (res, data,)
 {
+
    data.color = "ok";
    data.text = ":negative_squared_cross_mark:  Translation tasks for this channel:";
 
@@ -131,8 +72,9 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
 
    sendMessage(data);
 
-   for (var i = 0, len = res.length; i < len; i++)
+   for (let i = 0, len = res.length; i < len; i += 1)
    {
+
       const task = res[i];
       const dest = destResolver(task.dest);
       const origin = destResolver(task.origin);
@@ -145,6 +87,7 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
       // -------------
 
       sendMessage(data);
+
    }
    data.text = ":negative_squared_cross_mark:  That's all I have!";
 
@@ -153,44 +96,16 @@ const shoutTasks = function(res, data, origin, dest, destDisplay)
    // -------------
 
    return sendMessage(data);
-};
 
-// -----------------------
-// Destination ID handler
-// -----------------------
-
-const destID = function(dest, author)
-{
-   if (dest.startsWith("<#"))
-   {
-      return dest.slice(2,-1);
-   }
-   if (dest.startsWith("<@"))
-   {
-      return dest.slice(1,-1);
-   }
-   if (dest === "me")
-   {
-      return "@" + author;
-   }
-   return dest;
-};
-
-const destResolver = function(dest)
-{
-   if (!dest.startsWith("@"))
-   {
-      return "#" + dest;
-   }
-   return dest;
 };
 
 // ---------------
 // Database error
 // ---------------
 
-const dbError = function(err, data)
+const dbError = function dbError (err, data)
 {
+
    data.color = "error";
    data.text =
       ":warning:  Could not retrieve information from database. Try again " +
@@ -202,5 +117,159 @@ const dbError = function(err, data)
    // -------------
 
    sendMessage(data);
-   return console.log("error", err);
+   return console.log(
+      "error",
+      err
+   );
+
+};
+
+// --------------------
+// Handle stop command
+// --------------------
+
+module.exports = function run (data)
+{
+
+   // -------------------------------------------------
+   // Disallow this command in Direct/Private messages
+   // -------------------------------------------------
+
+   if (data.message.channel.type === "dm")
+   {
+
+      data.color = "warn";
+      data.text =
+         ":no_entry:  This command can only be called in server channels.";
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   }
+
+   // -------------------------------
+   // Disallow multiple destinations
+   // -------------------------------
+
+   if (data.cmd.for.length > 1)
+   {
+
+      data.color = "error";
+      data.text = ":warning:  Please specify only one `for` value.";
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   }
+
+   // -----------------------------------------
+   // Disallow non-managers to stop for others
+   // -----------------------------------------
+
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   {
+
+      if (data.cmd.for[0] !== "me" && !data.message.isManager)
+      {
+
+         data.color = "error";
+         data.text =
+         ":cop:  You need to be a channel manager to stop auto translating " +
+         "this channel for others.";
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+      break Override;
+
+   }
+
+   // ------------------
+   // Prepare task data
+   // ------------------
+
+   const origin = data.message.channel.id;
+   const dest = destID(
+      data.cmd.for[0],
+      data.message.author.id
+   );
+   const destDisplay = destResolver(
+      data.cmd.for[0],
+      data.message.author.id
+   );
+
+   // ------------------------------
+   // Check if task actually exists
+   // ------------------------------
+
+   db.getTasks(
+      origin,
+      dest,
+      function error (err, res)
+      {
+
+         if (err)
+         {
+
+            return dbError(
+               err,
+               data
+            );
+
+         }
+
+         // -----------------------------
+         // Error if task does not exist
+         // -----------------------------
+
+         if (res.length < 1 || !res)
+         {
+
+            const orig = destResolver(origin);
+            data.color = "error";
+            data.text =
+            ":warning:  __**No tasks**__ for " +
+            `**<${orig}>**.`;
+            if (dest === "all")
+            {
+
+               data.text =
+               ":warning:  This channel is not being automatically " +
+               "translated for anyone.";
+
+            }
+
+            // -------------
+            // Send message
+            // -------------
+
+            return sendMessage(data);
+
+         }
+
+         // ------------------------------------------------
+         // Otherwise, proceed to remove task from database
+         // ------------------------------------------------
+
+         shoutTasks(
+            res,
+            data,
+            origin,
+            dest,
+            destDisplay
+         );
+
+      }
+   );
+
 };

@@ -2,104 +2,37 @@
 // Global variables
 // -----------------
 
-// codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const sendMessage = require("../../core/command.send");
 const colors = require("../../core/colors");
 const discord = require("discord.js");
 const richEmbedMessage = new discord.RichEmbed();
-// ------------------------
-// Bot Help / Command List
-// ------------------------
-
-module.exports = function(data)
-{
-   data.color = "info";
-
-   // ----------------------------------------------
-   // Detect if help is needed for specific command
-   // ----------------------------------------------
-
-   var getHelpWith = "basics";
-
-   if (data.cmd.params === "settings")
-   {
-      const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
-      getHelpWith = cleanParam;
-
-      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
-      {
-         getHelpWith = cleanParam;
-         data.text = helpMessage(data.config, data.bot.username, getHelpWith);
-
-         console.log("Insufficient Permission");
-         data.message.delete(5000).catch(err => console.log("Command Message Deleted Error, help.js = ", err));
-         richEmbedMessage
-            .setColor(colors.get(data.color))
-            .setAuthor(data.bot.username, data.bot.displayAvatarURL)
-            .setDescription("This command is available only to Developers. \n\n")
-            .setTimestamp()
-            .setFooter("This message will self-destruct in one minute");
-
-         // -------------
-         // Send message
-         // -------------
-
-         return data.message.channel.send(richEmbedMessage).then(msg =>
-         {
-            msg.delete(60000).catch(err => console.log("Bot Message Deleted Error, help.js = ", err));
-         });
-      }
-      getHelpWith = cleanParam;
-      data.text = helpMessage(data.config, data.bot.username, getHelpWith);
-
-      // -------------
-      // Send message
-      // -------------
-
-      return sendMessage(data);
-   }
-   else if (data.cmd.params !== "settings")
-   {
-      const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
-      getHelpWith = cleanParam;
-      data.text = helpMessage(data.config, data.bot.username, getHelpWith);
-
-      // -------------
-      // Send message
-      // -------------
-
-      return sendMessage(data);
-   }
+const time = {
+   "long": 60000,
+   "short": 5000
 };
 
 // -------------
 // Help Section
 // -------------
 
-const helpSection = function(data)
+const helpSection = function helpSection (data)
 {
-   var section =
-      `${data.icon}  **[${data.title}](${data.link})**\n\n`
-      //`\`${data.cmd} help ${data.help}\`\n\n`
-      //"\n```cpp\n" +
-      //`Command: "` +
-      //`${data.cmd} ${data.cmd} ${data.args}"\n\n` +
-      //`Example: "` +
-      //`${data.cmd} ${data.cmd} ${data.example}"\n` +
-      //`Help: "` +
-      //`${data.cmd} help ${data.help}"` +
-      //"\n```\n"
-   ;
+
+   const section =
+      `${data.icon}  **[${data.title}](${data.link})**\n\n`;
 
    return section;
+
 };
 
 // ----------
 // Help Text
 // ----------
 
-const helpMessage = function(config, botname, param)
+const helpMessage = function helpMessage (config, botname, param)
 {
+
    // ---------
    // Bot Info
    // ---------
@@ -122,122 +55,121 @@ const helpMessage = function(config, botname, param)
 
    const basics =
    helpSection({
-      config: config,
-      title: "Translate by Reacting",
-      link: "<https://ritabot.gg/trans-reac/>",
-      icon: ":flag_white:",
-      cmd: null,
-      help: "react",
-      args: null,
-      example: "!t help react for examples"
+      "args": null,
+      "cmd": null,
+      config,
+      "example": "!t help react for examples",
+      "help": "react",
+      "icon": ":flag_white:",
+      "link": "<https://ritabot.gg/trans-reac/>",
+      "title": "Translate by Reacting"
    }) +
    helpSection({
-      config: config,
-      title: "Translate Custom Text",
-      link: "<https://ritabot.gg/trans-cust/>",
-      icon: ":abc:",
-      cmd: "this",
-      help: "custom",
-      args: "to [lang] from [lang]: [msg]",
-      example: "to french from english: hello"
+      "args": "to [lang] from [lang]: [msg]",
+      "cmd": "this",
+      config,
+      "example": "to french from english: hello",
+      "help": "custom",
+      "icon": ":abc:",
+      "link": "<https://ritabot.gg/trans-cust/>",
+      "title": "Translate Custom Text"
    }) +
    helpSection({
-      config: config,
-      title: "Translate Last Message",
-      link: "<https://ritabot.gg/trans-last/>",
-      icon: ":arrow_double_up:",
-      cmd: "last",
-      help: "last",
-      args: "[count] from [lang] to [lang]",
-      example: "3 from german to spanish"
+      "args": "[count] from [lang] to [lang]",
+      "cmd": "last",
+      config,
+      "example": "3 from german to spanish",
+      "help": "last",
+      "icon": ":arrow_double_up:",
+      "link": "<https://ritabot.gg/trans-last/>",
+      "title": "Translate Last Message"
    }) +
    helpSection({
-      config: config,
-      title: "Translate Channel (Automatic)",
-      link: "<https://ritabot.gg/trans-auto/>",
-      icon: ":hash:",
-      cmd: "channel",
-      help: "auto",
-      args: "from [lang] to [lang] for [@/#]",
-      example: "from hebrew to arabic for me"
+      "args": "from [lang] to [lang] for [@/#]",
+      "cmd": "channel",
+      config,
+      "example": "from hebrew to arabic for me",
+      "help": "auto",
+      "icon": ":hash:",
+      "link": "<https://ritabot.gg/trans-auto/>",
+      "title": "Translate Channel (Automatic)"
    }) +
    helpSection({
-      config: config,
-      title: "Stats",
-      link: "<https://ritabot.gg/trans-misc/#statistics>",
-      icon: ":bar_chart:",
-      cmd: "stats",
-      help: "stats",
-      args: "stats [server/global]",
-      example: ""
+      "args": "stats [server/global]",
+      "cmd": "stats",
+      config,
+      "example": "",
+      "help": "stats",
+      "icon": ":bar_chart:",
+      "link": "<https://ritabot.gg/trans-misc/#statistics>",
+      "title": "Stats"
    }) +
    helpSection({
-      config: config,
-      title: "Settings",
-      link: "<https://ritabot.gg/trans-sett/>",
-      icon: ":gear:",
-      cmd: "settings",
-      help: "settings",
-      args: "setLang to [lang]",
-      example: "setLang to italian"
+      "args": "setLang to [lang]",
+      "cmd": "settings",
+      config,
+      "example": "setLang to italian",
+      "help": "settings",
+      "icon": ":gear:",
+      "link": "<https://ritabot.gg/trans-sett/>",
+      "title": "Settings"
    }) +
    helpSection({
-      config: config,
-      title: "Misc. Settings",
-      link: "<https://ritabot.gg/trans-misc/>",
-      icon: ":robot:",
-      cmd: "misc",
-      help: "misc",
-      args: "",
-      example: ""
+      "args": "",
+      "cmd": "misc",
+      config,
+      "example": "",
+      "help": "misc",
+      "icon": ":robot:",
+      "link": "<https://ritabot.gg/trans-misc/>",
+      "title": "Misc. Settings"
    }) +
    helpSection({
-      config: config,
-      title: "Tasks",
-      link: "<https://ritabot.gg/trans-misc/#translations>",
-      icon: ":clipboard:",
-      cmd: "Tasks",
-      help: "Tasks",
-      args: "",
-      example: ""
+      "args": "",
+      "cmd": "Tasks",
+      config,
+      "example": "",
+      "help": "Tasks",
+      "icon": ":clipboard:",
+      "link": "<https://ritabot.gg/trans-misc/#translations>",
+      "title": "Tasks"
    }) +
    helpSection({
-      config: config,
-      title: "ReadMe",
-      link: "<https://ritabot.gg/secure/>",
-      icon: ":bookmark_tabs:",
-      cmd: "readme",
-      help: "readme",
-      args: "",
-      example: ""
+      "args": "",
+      "cmd": "readme",
+      config,
+      "example": "",
+      "help": "readme",
+      "icon": ":bookmark_tabs:",
+      "link": "<https://ritabot.gg/secure/>",
+      "title": "ReadMe"
    }) +
    helpSection({
-      config: config,
-      title: "Report Bugs / Request Features",
-      link: "<https://github.com/RitaBot-Project/RitaBot/issues>",
-      icon: "🙋🏽‍♀️"
+      config,
+      "icon": "🙋🏽‍♀️",
+      "link": "<https://github.com/RitaBot-Project/RitaBot/issues>",
+      "title": "Report Bugs / Request Features"
    }) +
    helpSection({
-      config: config,
-      title: "Donate Via Open Collective",
-      link: "<https://opencollective.com/ritabot-project>",
-      icon: ":dollar: ",
-      cmd: "donate",
-      help: "donate",
-      args: "oc",
-      example: ""
+      "args": "oc",
+      "cmd": "donate",
+      config,
+      "example": "",
+      "help": "donate",
+      "icon": ":dollar: ",
+      "link": "<https://opencollective.com/ritabot-project>",
+      "title": "Donate Via Open Collective"
    }) +
    helpSection({
-      config: config,
-      title: "Donate Via Github",
-      link: "<https://github.com/sponsors/RitaBot-Project>",
-      icon: ":dollar: ",
-      cmd: "donate",
-      help: "donate",
-      args: "github",
-      example: ""
+      "args": "github",
+      "cmd": "donate",
+      config,
+      "example": "",
+      "help": "donate",
+      "icon": ":dollar: ",
+      "link": "<https://github.com/sponsors/RitaBot-Project>",
+      "title": "Donate Via Github"
    });
-
 
    // ----------------
    // Module Commands
@@ -249,27 +181,27 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Translation Help Modules\n` +
-   `> ${cmd} help auto\n` +
-   `> ${cmd} help react\n` +
-   `> ${cmd} help last\n` +
-   `> ${cmd} help this\n\n` +
+   `* ${cmd} help auto\n` +
+   `* ${cmd} help react\n` +
+   `* ${cmd} help last\n` +
+   `* ${cmd} help this\n\n` +
 
    `# Translation Style Modules\n` +
-   `> ${cmd} help embed\n` +
-   `> ${cmd} help bot2bot\n\n` +
+   `* ${cmd} help embed\n` +
+   `* ${cmd} help bot2bot\n\n` +
 
    `# Information Modules\n` +
-   `> ${cmd} help stats\n` +
-   `> ${cmd} help tasks\n` +
-   `> ${cmd} help settings (Dev Only)\n\n` +
+   `* ${cmd} help stats\n` +
+   `* ${cmd} help tasks\n` +
+   `* ${cmd} help settings (Dev Only)\n\n` +
 
    `# Other Modules\n` +
-   `> ${cmd} help misc\n` +
-   `> ${cmd} help report\n` +
-   `> ${cmd} help readme\n` +
-   `> ${cmd} help donate\n` +
-   `> ${cmd} help debug\n` +
-   `> ${cmd} help prefix\n` +
+   `* ${cmd} help misc\n` +
+   `* ${cmd} help report\n` +
+   `* ${cmd} help readme\n` +
+   `* ${cmd} help donate\n` +
+   `* ${cmd} help debug\n` +
+   `* ${cmd} help prefix\n` +
    "```";
 
    // -----------------
@@ -320,6 +252,7 @@ const helpMessage = function(config, botname, param)
    `* ${cmd} version\n` +
    `* ${cmd} proc\n` +
    `* ${cmd} shards\n` +
+   `* ${cmd} id\n` +
    `* ${cmd} list\n\n` +
 
    `# Style Commands\n` +
@@ -349,13 +282,13 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} this: [msg] \n` +
-   `> ${cmd} this to [lang] from [lang]: [msg] \n\n` +
+   `* ${cmd} this: [msg] \n` +
+   `* ${cmd} this to [lang] from [lang]: [msg] \n\n` +
 
    `# Parameters\n` +
-   `> to [lang] - defaults to server default language\n` +
-   `> to [lang, lang, ...] - translates to multiple languages\n` +
-   `> from [lang] - defaults to automatic detection\n\n` +
+   `* to [lang] - defaults to server default language\n` +
+   `* to [lang, lang, ...] - translates to multiple languages\n` +
+   `* from [lang] - defaults to automatic detection\n\n` +
 
    `# Examples\n` +
    `* ${cmd} this: bonjour \n` +
@@ -388,15 +321,15 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} last \n` +
-   `> ${cmd} last [n] to [lang] from [lang] \n\n` +
+   `* ${cmd} last \n` +
+   `* ${cmd} last [n] to [lang] from [lang] \n\n` +
 
    `# Parameters\n` +
-   `> to [lang] - defaults to server default language\n` +
-   `> to [lang, lang, ...] - translates to multiple languages\n` +
-   `> from [lang] - defaults to automatic detection\n` +
-   `> [n] - number of chains to translate, default is 1\n` +
-   `> [-n] - negative number means only one chain is translated\n\n` +
+   `* to [lang] - defaults to server default language\n` +
+   `* to [lang, lang, ...] - translates to multiple languages\n` +
+   `* from [lang] - defaults to automatic detection\n` +
+   `* [n] - number of chains to translate, default is 1\n` +
+   `* [-n] - negative number means only one chain is translated\n\n` +
 
    `# Examples\n` +
    `* ${cmd} last 2 \n` +
@@ -417,14 +350,14 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} channel \n` +
-   `> ${cmd} channel to [lang] from [lang] for [me/@/#] \n` +
-   `> ${cmd} stop for [me/@/#] \n\n` +
+   `* ${cmd} channel \n` +
+   `* ${cmd} channel to [lang] from [lang] for [me/@/#] \n` +
+   `* ${cmd} stop for [me/@/#] \n\n` +
 
    `# Parameters\n` +
-   `> to [lang] - defaults to server default language\n` +
-   `> from [lang] -  language to translate from, now includes 'auto'\n` +
-   `> for [me/@/#] - defaults to "me", admins can use mentions \n\n` +
+   `* to [lang] - defaults to server default language\n` +
+   `* from [lang] -  language to translate from, now includes 'auto'\n` +
+   `* for [me/@/#] - defaults to "me", admins can use mentions \n\n` +
 
    `# Examples\n` +
    `* ${cmd} channel to english from chinese \n` +
@@ -443,11 +376,11 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Displays translation tasks of the current channel\n` +
-   `> ${cmd} tasks\n\n` +
+   `* ${cmd} tasks\n\n` +
 
    `# Displays translation tasks of specified channel\n` +
    `* COMING IN FUTURE UPDATE \n` +
-   `> ${cmd} tasks for [#channel]\n` +
+   `* ${cmd} tasks for [#channel]\n` +
    "```";
 
    // ----------------------
@@ -461,11 +394,11 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} stop \n` +
-   `> ${cmd} stop for [me/@/#/all] \n\n` +
+   `* ${cmd} stop \n` +
+   `* ${cmd} stop for [me/@/#/all] \n\n` +
 
    `# Parameters\n` +
-   `> for [me/@/#/all] - defaults to "me" \n\n` +
+   `* for [me/@/#/all] - defaults to "me" \n\n` +
 
    `# Examples\n` +
    `* ${cmd} stop \n` +
@@ -484,20 +417,23 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Help\n` +
-   `> ${cmd} help\n` +
-   `> ${cmd} help [command]\n\n` +
+   `* ${cmd} help\n` +
+   `* ${cmd} help [command]\n\n` +
 
    `# Links\n` +
-   `> ${cmd} invite\n\n` +
+   `* ${cmd} invite\n\n` +
 
    `# Supported Languages\n` +
-   `> ${cmd} list\n\n` +
+   `* ${cmd} list\n\n` +
 
    `# Donate\n` +
-   `> ${cmd} donate [oc/github]\n\n` +
+   `* ${cmd} donate [oc/github]\n\n` +
 
    `# Prefix\n` +
-   `> ${cmd} prefix\n\n` +
+   `* ${cmd} prefix\n\n` +
+
+   `# Prefix\n` +
+   `* ${cmd} id\n\n` +
    "```";
 
    // -----------------
@@ -508,16 +444,16 @@ const helpMessage = function(config, botname, param)
    `__**Settings**__\n\n` +
    "```md\n" +
    `# Defunct Command\n` +
-   `> ${cmd} settings updatebot\n\n` +
+   `* ${cmd} settings updatebot\n\n` +
 
    `# Update bot Database with new columns\n` +
-   `> ${cmd} settings updatedb\n\n` +
+   `* ${cmd} settings updatedb\n\n` +
 
    `# Set default server language\n` +
-   `> ${cmd} settings setLang to [lang]\n\n` +
+   `* ${cmd} settings setLang to [lang]\n\n` +
 
    `# Displays list of servers the bot is in\n` +
-   `> ${cmd} settings listservers\n\n` +
+   `* ${cmd} settings listservers\n\n` +
    "```";
 
    // -------------------
@@ -529,13 +465,13 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Statistics\n` +
-   `> ${cmd} version \n` +
-   `> ${cmd} stats \n` +
-   `> ${cmd} stats global \n` +
-   `> ${cmd} stats server \n\n` +
+   `* ${cmd} version \n` +
+   `* ${cmd} stats \n` +
+   `* ${cmd} stats global \n` +
+   `* ${cmd} stats server \n\n` +
 
    `* Admin Only - Do not use in public channels\n` +
-   `> ${cmd} stats debug \n` +
+   `* ${cmd} stats debug \n` +
    "```";
 
    // -----------
@@ -547,11 +483,11 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} embed [on/off]\n\n` +
+   `* ${cmd} embed [on/off]\n\n` +
 
    `# Parameters\n` +
-   `> on - Turns on Embed Translation\n` +
-   `> off - Turns on Webhook Translation Sending\n\n` +
+   `* on - Turns on Embed Translation\n` +
+   `* off - Turns on Webhook Translation Sending\n\n` +
 
    `# Examples\n` +
    `* ${cmd} embed on \n` +
@@ -568,11 +504,11 @@ const helpMessage = function(config, botname, param)
    `* Usually 90% of bots ignore other bot messages but this feature attemptes to translate them.\n\n` +
 
    `# Command\n` +
-   `> ${cmd} bot2bot [on/off]\n\n` +
+   `* ${cmd} bot2bot [on/off]\n\n` +
 
    `# Parameters\n` +
-   `> on - Turns on Bot2Bot Translations\n` +
-   `> off - Turns off Bot2Bot Translations\n\n` +
+   `* on - Turns on Bot2Bot Translations\n` +
+   `* off - Turns off Bot2Bot Translations\n\n` +
 
    `# Examples\n` +
    `* ${cmd} bot2bot on \n` +
@@ -588,11 +524,11 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} debug [on/off]\n\n` +
+   `* ${cmd} debug [on/off]\n\n` +
 
    `# Parameters\n` +
-   `> on - Turns debug webhook on\n` +
-   `> off - Turns debug webhook off\n\n` +
+   `* on - Turns debug webhook on\n` +
+   `* off - Turns debug webhook off\n\n` +
 
    `# Examples\n` +
    `* ${cmd} debug on \n` +
@@ -608,12 +544,12 @@ const helpMessage = function(config, botname, param)
    "```md\n" +
 
    `# Command\n` +
-   `> ${cmd} prefix [prefix]\n\n` +
-   `> ${long} prefix [prefix]\n\n` +
+   `* ${cmd} prefix [prefix]\n` +
+   `* ${long} prefix [prefix]\n\n` +
 
    `# Parameters\n` +
-   `> [prefix] - Changes the prefix of your bot commands\n` +
-   `> reset - Reset your prefix back to default\n\n` +
+   `* [prefix] - Changes the prefix of your bot commands\n` +
+   `* reset - Reset your prefix back to default\n\n` +
 
    `# Examples\n` +
    `* ${cmd} prefix $tr - your prefix would now be $tr \n` +
@@ -636,11 +572,11 @@ const helpMessage = function(config, botname, param)
    `* and constantly strive to add new features and functionality  \n` +
    `* to allow all users to break the language barrier and be  \n` +
    `* heard and understood regardless of the language spoken\n\n` +
-   `> You can Donate at Github Sponsors\n` +
+   `* You can Donate at Github Sponsors\n` +
    `* ${cmd} donate github\n\n` +
-   `> You can Donate at Open Collective\n` +
+   `* You can Donate at Open Collective\n` +
    `* ${cmd} donate oc\n\n` +
-   `> Thank you for your continued support - RITA Dev Team` +
+   `* Thank you for your continued support - RITA Dev Team` +
    "```";
 
    // ----------------
@@ -649,32 +585,157 @@ const helpMessage = function(config, botname, param)
 
    const paramMap =
    {
+      auto,
       "basics": info + basics,
-      "modules": modules,
-      "readme": readme,
-      "report": report,
-      "commands": commands,
-      "custom": custom,
-      "react": react,
-      "last": last,
-      "auto": auto,
-      "tasks": tasks,
-      "stop": stop,
-      "misc": misc,
-      "settings": settings,
-      "stats": stats,
-      "embed": embed,
-      "bot2bot": bot2bot,
-      "debug": debug,
-      "prefix": prefix,
-      "donate": donate
+      bot2bot,
+      commands,
+      custom,
+      debug,
+      donate,
+      embed,
+      last,
+      misc,
+      modules,
+      prefix,
+      react,
+      readme,
+      report,
+      settings,
+      stats,
+      stop,
+      tasks
    };
 
-   //if (paramMap.hasOwnProperty(param))
-   if (Object.prototype.hasOwnProperty.call(paramMap,param))
+   // If (paramMap.hasOwnProperty(param))
+   if (Object.prototype.hasOwnProperty.call(
+      paramMap,
+      param
+   ))
    {
+
       return paramMap[param];
+
    }
 
    return paramMap.basics;
+
+};
+
+// ------------------------
+// Bot Help / Command List
+// ------------------------
+
+module.exports = function run (data)
+{
+
+   data.color = "info";
+
+   // ----------------------------------------------
+   // Detect if help is needed for specific command
+   // ----------------------------------------------
+
+   let getHelpWith = "basics";
+
+   if (data.cmd.params === "settings")
+   {
+
+      const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
+      getHelpWith = cleanParam;
+
+      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+      {
+
+         getHelpWith = cleanParam;
+         data.text = helpMessage(
+            data.config,
+            data.bot.username,
+            getHelpWith
+         );
+
+         console.log("Insufficient Permission");
+         data.message.delete(time.short).catch((err) => console.log(
+            "Command Message Deleted Error, help.js = ",
+            err
+         ));
+         richEmbedMessage.
+            setColor(colors.get(data.color)).
+            setAuthor(
+               data.bot.username,
+               data.bot.displayAvatarURL
+            ).
+            setDescription("This command is available only to Developers. \n\n").
+            setTimestamp().
+            setFooter("This message will self-destruct in one minute");
+
+         // -------------
+         // Send message
+         // -------------
+
+         return data.message.channel.send(richEmbedMessage).then((msg) =>
+         {
+
+            msg.delete(time.long).catch((err) => console.log(
+               "Bot Message Deleted Error, help.js = ",
+               err
+            ));
+
+         });
+
+      }
+      getHelpWith = cleanParam;
+      data.text = helpMessage(
+         data.config,
+         data.bot.username,
+         getHelpWith
+      );
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   }
+   else if (data.cmd.params === null)
+   {
+
+      data.text = helpMessage(
+         data.config,
+         data.bot.username,
+         getHelpWith
+      );
+      return sendMessage(data);
+
+   }
+   else if (data.cmd.params !== "settings" || null)
+   {
+
+      const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
+      getHelpWith = cleanParam;
+      data.text = helpMessage(
+         data.config,
+         data.bot.username,
+         getHelpWith
+      );
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   }
+
+   data.text = helpMessage(
+      data.config,
+      data.bot.username,
+      getHelpWith
+   );
+
+   // -------------
+   // Send message
+   // -------------
+
+   return sendMessage(data);
+
 };
