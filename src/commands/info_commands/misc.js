@@ -18,7 +18,7 @@ const sendMessage = require("../../core/command.send");
 // Invite Link
 // ------------
 
-exports.invite = function invite (data)
+module.exports.invite = function invite (data)
 {
 
    data.color = "info";
@@ -42,7 +42,7 @@ exports.invite = function invite (data)
 // Get info on all shards
 // -----------------------
 
-exports.shards = function shards (data)
+module.exports.shards = function shards (data)
 {
 
    // ---------------
@@ -171,7 +171,7 @@ exports.shards = function shards (data)
 // Current proccess info
 // ----------------------
 
-exports.proc = function proc (data)
+module.exports.proc = function proc (data)
 {
 
    // ------------------
@@ -280,7 +280,7 @@ exports.proc = function proc (data)
 // Ident Message
 // --------------
 
-exports.ident = function ident (data)
+module.exports.ident = function ident (data)
 {
 
    // ------------------
