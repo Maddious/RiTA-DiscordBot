@@ -20,27 +20,36 @@ const channelName = function channelName (data)
       "type": "text"
    });
 
+   data.color = "ok";
+   data.text =
+   "**```New channel has been created```**\n" +
+   `Your new channel is **\`${channelName}\`**. \n\n`;
+
+   // -------------
+   // Send message
+   // -------------
+
+   return sendMessage(data);
+
 };
 
 module.exports = function run (data)
 {
 
-   // -------------------------------
-   // Command allowed by admins only
-   // -------------------------------
+   // -----------------------------------------
+   // Command allowed by channel managers only
+   // -----------------------------------------
 
    Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
 
-      if (data.message.isAdmin === false)
+      if (data.cmd.for[0] !== "me" && !data.message.isManager)
       {
 
-         {
-
-            data.color = "warn";
-
-         }
-         data.text = ":cop:  This command is reserved for server admins.";
+         data.color = "error";
+         data.text =
+         ":cop:  You need to be a channel manager to " +
+         "create a new channel";
 
          // -------------
          // Send message
