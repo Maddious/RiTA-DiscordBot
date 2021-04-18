@@ -109,7 +109,7 @@ module.exports.shards = function shards (data)
             const output = [];
 
             // eslint-disable-next-line no-plusplus
-            for (let i = 0; i < shard.count; ++i)
+            for (let i = 0; i < shard.count; i += 1)
             {
 
                output.push({
