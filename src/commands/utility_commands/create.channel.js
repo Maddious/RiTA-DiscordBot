@@ -23,7 +23,7 @@ const channelName = function channelName (data)
    data.color = "ok";
    data.text =
    "**```New channel has been created```**\n" +
-   `Your new channel is **\`${channelName}\`**. \n\n`;
+   `Your new channel is **\`${channelName}\`**.`;
 
    // -------------
    // Send message
