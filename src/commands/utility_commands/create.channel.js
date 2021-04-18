@@ -36,19 +36,23 @@ const channelName = function channelName (data)
 module.exports = function run (data)
 {
 
-   // -----------------------------------------
-   // Command allowed by channel managers only
-   // -----------------------------------------
+   // -------------------------------
+   // Command allowed by admins only
+   // -------------------------------
 
    Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
 
-      if (data.cmd.for[0] !== "me" && !data.message.isManager)
+      if (data.message.isManager === false)
       {
 
-         data.color = "error";
+         {
+
+            data.color = "warn";
+
+         }
          data.text =
-         ":cop:  You need to be a channel manager to " +
+         ":police_officer:  You need to be a channel manager to " +
          "create a new channel";
 
          // -------------
@@ -62,6 +66,25 @@ module.exports = function run (data)
 
    }
 
+   // --------------------------------
+   // Error if create param is missing
+   // --------------------------------
+
+   if (!data.cmd.params)
+   {
+
+      data.color = "error";
+      data.text =
+         ":warning:  Missing `create` parameter. Use `" +
+         `${data.config.translateCmdShort} help create\` to learn more.`;
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   }
    // ----------------
    // Execute setting
    // ----------------
