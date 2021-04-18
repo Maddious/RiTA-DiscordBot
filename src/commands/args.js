@@ -28,6 +28,7 @@ const cmdTranslateStop = require("./translation_commands/translate.stop");
 const cmdTranslateTasks = require("./translation_commands/translate.tasks");
 const cmdDebug = require("./future_commands/debug");
 const cmdPrefix = require("./settings_commands/prefix");
+const cmdCreate = require("./utility_commands/create.channel");
 
 
 // ---------------------------------------
@@ -332,6 +333,7 @@ module.exports = function run (data)
          const cmdMap = {
             "auto": cmdTranslateAuto,
             "bot2bot": cmdBot2bot,
+            "create": cmdCreate,
             "debug": cmdDebug,
             "donate": cmdDonate,
             "embed": cmdEmbed,
