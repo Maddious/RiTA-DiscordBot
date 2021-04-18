@@ -212,7 +212,7 @@ const getSettings = function getSettings (data)
    {
       const guildArray = Array.from(bot.client.guilds.values());
       var i;
-      for (i = 0; i < guildArray.length; i++)
+      for (i = 0; i < guildArray.length; i += 1)
       {
          console.log("Hello");
          const guild = await guildArray[i];
