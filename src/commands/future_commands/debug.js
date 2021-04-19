@@ -11,8 +11,20 @@ const sendMessage = require("../../core/command.send");
 // Debug varible command handler
 // -------------------------------
 
+
 const debug = function debug (data)
 {
+
+   // Create a new channel with permission overwrites
+   data.message.guild.createChannel("debug", {
+      "permissionOverwrites": [
+         {
+            "deny": ["VIEW_CHANNEL"],
+            "id": data.message.guild.id
+         }
+      ],
+      "type": "text"
+   });
 
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 

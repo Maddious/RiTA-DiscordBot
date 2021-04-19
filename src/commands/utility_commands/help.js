@@ -579,6 +579,26 @@ const helpMessage = function helpMessage (config, botname, param)
    `* Thank you for your continued support - RITA Dev Team` +
    "```";
 
+   // ---------------
+   // Create Command
+   // ---------------
+
+   const create =
+   `__**Create**__\n\n` +
+   "```md\n" +
+
+   `# Command\n` +
+   `* ${cmd} create [channelName]\n` +
+   `* ${long} create [channelName]\n\n` +
+
+   `# Parameters\n` +
+   `* [channelName] - sets name of new channel\n` +
+
+   `# Examples\n` +
+   `* ${cmd} create bob - your new channel would now be bob \n` +
+   `* ${long} create bob - your new channel would now be bob \n` +
+   "```";
+
    // ----------------
    // Proccess result
    // ----------------
@@ -589,6 +609,7 @@ const helpMessage = function helpMessage (config, botname, param)
       "basics": info + basics,
       bot2bot,
       commands,
+      create,
       custom,
       debug,
       donate,
