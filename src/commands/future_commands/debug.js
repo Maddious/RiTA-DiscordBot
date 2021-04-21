@@ -15,21 +15,36 @@ const sendMessage = require("../../core/command.send");
 const debug = function debug (data)
 {
 
-   // Create a new channel with permission overwrites
-   data.message.guild.createChannel("debug", {
-      "permissionOverwrites": [
-         {
-            "deny": ["VIEW_CHANNEL"],
-            "id": data.message.guild.id
-         }
-      ],
-      "type": "text"
-   });
-
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
    if (commandVariable1 === "on")
    {
+
+      // Checks if there iS an item in the channels collection that corresponds with the supplied parameters, returns a boolean
+      const even = (element) => element.name === "debug";
+      if (data.message.guild.channels.some(even))
+      {
+
+         // ERROR MESSAGE DOESN'T WORK, NEEDS TO BE REWRITTEN TO FOLLOW THE RITABOT ERROR FORMAT
+         // Prevents the rest of the code from being executed
+         // Data.message.channel.send(`The ${debug} channel already exists in this guild.`).catch(console.error);
+
+      }
+      else
+      {
+
+         // Create a new channel with permission overwrites
+         data.message.guild.createChannel("debug", {
+            "permissionOverwrites": [
+               {
+                  "deny": ["VIEW_CHANNEL"],
+                  "id": data.message.guild.id
+               }
+            ],
+            "type": "text"
+         });
+
+      }
 
       console.log(`DEBUG: debug variable ${commandVariable1}`);
       return db.updateWebhookVar(
