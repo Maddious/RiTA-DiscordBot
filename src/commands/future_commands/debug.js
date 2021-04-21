@@ -46,6 +46,28 @@ const debug = function debug (data)
 
       }
 
+      let channelExists = false;
+      for (const i of data.message.guild.channels)
+      {
+
+         if (i.name === "debug")
+         {
+
+            channelExists = i;
+
+         }
+
+      }
+
+      if (channelExists)
+      {
+
+         channelExists.createWebhook("debug", "https://i.imgur.com/wSTFkRM.png").
+            then((webhook) => console.log(`Created webhook ${webhook}`)).
+            catch(console.error);
+
+      }
+
       console.log(`DEBUG: debug variable ${commandVariable1}`);
       return db.updateWebhookVar(
          data.message.channel.guild.id,
