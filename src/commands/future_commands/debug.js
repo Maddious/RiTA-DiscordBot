@@ -25,7 +25,7 @@ const debug = function debug (data)
       if (data.message.guild.channels.some(even))
       {
 
-         // ERROR MESSAGE DOESN'T WORK
+         // ERROR MESSAGE DOESN'T WORK, NEEDS TO BE REWRITTEN TO FOLLOW THE RITABOT ERROR FORMAT
          // Prevents the rest of the code from being executed
          // Data.message.channel.send(`The ${debug} channel already exists in this guild.`).catch(console.error);
 
