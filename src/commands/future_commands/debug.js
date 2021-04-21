@@ -125,20 +125,14 @@ module.exports = function run (data)
    Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
 
-      if (data.message.isAdmin === false)
-      {
-
          data.color = "warn";
-         data.text = ":cop:  This command is reserved for server admins.";
+         data.text = ":cop:  This command is reserved for bot owners.";
 
          // -------------
          // Send message
          // -------------
 
          return sendMessage(data);
-
-      }
-      break Override;
 
    }
    // --------------------------------
