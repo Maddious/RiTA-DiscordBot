@@ -16,11 +16,4 @@ module.exports = function run (data)
       then((webhook) => console.log(`Created webhook ${webhook}`)).
       catch(console.error);
 
-   // ----------------
-   // Execute setting
-   // ----------------
-
-   return run(data);
-
-
 };
