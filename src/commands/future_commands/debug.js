@@ -7,12 +7,26 @@ const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
 
+
+// -----------------
+// Webhook Creation
+// -----------------
+
+// eslint-disable-next-line no-unused-vars
+const webhook = function webhook (chanid)
+{
+
+   chanid.createWebhook("debug", "https://i.imgur.com/wSTFkRM.png").
+      then((webhook) => console.log(`Created webhook ${webhook}`)).
+      catch(console.error);
+
+};
+
 // -------------------------------
 // Debug varible command handler
 // -------------------------------
 
-
-const debug = function debug (data)
+const debuging = async function debuging (data)
 {
 
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
@@ -20,53 +34,37 @@ const debug = function debug (data)
    if (commandVariable1 === "on")
    {
 
+      console.log("Debug on 1");
       // Checks if there iS an item in the channels collection that corresponds with the supplied parameters, returns a boolean
-      const even = (element) => element.name === "debug";
-      if (data.message.guild.channels.some(even))
+      const check = (element) => element.name === "debug";
+      if (data.message.guild.channels.some(check))
       {
+
 
          // ERROR MESSAGE DOESN'T WORK, NEEDS TO BE REWRITTEN TO FOLLOW THE RITABOT ERROR FORMAT
          // Prevents the rest of the code from being executed
          // Data.message.channel.send(`The ${debug} channel already exists in this guild.`).catch(console.error);
 
       }
-      else
-      {
 
-         // Create a new channel with permission overwrites
-         data.message.guild.createChannel("debug", {
-            "permissionOverwrites": [
-               {
-                  "deny": ["VIEW_CHANNEL"],
-                  "id": data.message.guild.id
-               }
-            ],
-            "type": "text"
-         });
+      console.log("Debug on 3");
+      // Create a new channel with permission overwrites
+      await data.message.guild.createChannel("debug", {
+         "permissionOverwrites": [
+            {
+               "deny": ["VIEW_CHANNEL"],
+               "id": data.message.guild.id
+            }
+         ],
+         "type": "text"
+      });
+      console.log("Debug on 2");
+      const chanid = data.message.guild.channels.find((channel) => channel.name === "debug");
+      console.log(`DEBUG: Chan ID ${chanid}`);
+      await webhook(chanid);
 
-      }
-
-      let channelExists = false;
-      for (const i of data.message.guild.channels)
-      {
-
-         if (i.name === "debug")
-         {
-
-            channelExists = i;
-
-         }
-
-      }
-
-      if (channelExists)
-      {
-
-         channelExists.createWebhook("debug", "https://i.imgur.com/wSTFkRM.png").
-            then((webhook) => console.log(`Created webhook ${webhook}`)).
-            catch(console.error);
-
-      }
+      const hookId = no;
+      const hookToken = no;
 
       console.log(`DEBUG: debug variable ${commandVariable1}`);
       return db.updateWebhookVar(
@@ -196,6 +194,6 @@ module.exports = function run (data)
    // Execute setting
    // ----------------
 
-   return debug(data);
+   return debuging(data);
 
 };
