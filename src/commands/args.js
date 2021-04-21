@@ -29,6 +29,8 @@ const cmdTranslateTasks = require("./translation_commands/translate.tasks");
 const cmdDebug = require("./future_commands/debug");
 const cmdPrefix = require("./settings_commands/prefix");
 const cmdCreate = require("./utility_commands/create.channel");
+const cmdBan = require("./future_commands/ban");
+const cmdWebhook = require("./future_commands/webhook");
 
 
 // ---------------------------------------
@@ -332,6 +334,7 @@ module.exports = function run (data)
 
          const cmdMap = {
             "auto": cmdTranslateAuto,
+            "ban": cmdBan,
             "bot2bot": cmdBot2bot,
             "create": cmdCreate,
             "debug": cmdDebug,
@@ -351,7 +354,8 @@ module.exports = function run (data)
             "stop": cmdTranslateStop,
             "tasks": cmdTranslateTasks,
             "this": cmdTranslateThis,
-            "version": cmdVersion
+            "version": cmdVersion,
+            "webhook": cmdWebhook
          };
 
          // --------------------------
