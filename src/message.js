@@ -26,6 +26,10 @@ module.exports = function run (config, message, edited, deleted)
       return;
 
    }
+if (!db.server_obj[message.guild.id])
+{
+return;
+}
    const bot2botstyle = db.server_obj[message.guild.id].db.bot2botstyle;
 
    // ------------------------
