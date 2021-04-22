@@ -231,26 +231,38 @@ module.exports = function run (data)
       // ----------------------------------------------
       // Add !i to end of message to ignore it instead
       // ----------------------------------------------
-
-      if (data.message.content.endsWith("!i"))
+      if (data.message.content === undefined)
       {
 
-         return data.message.react("➖").catch((err) => logger(
-            "dev",
-            `${err}\n\n'# Cannot react`
-         ));
+         console.log(data.message.content);
+         data.message.content = `Error: 10001 - Auto Error, Please report to admins.`;
 
       }
 
-      data.proccess = true;
-
-      for (let i = 0; i < data.rows.length; i += 1)
+      if (data.message.content !== undefined)
       {
 
-         analyzeRows(
-            data,
-            i
-         );
+         if (data.message.content.endsWith("!i"))
+         {
+
+            return data.message.react("➖").catch((err) => logger(
+               "dev",
+               `${err}\n\n'# Cannot react`
+            ));
+
+         }
+
+         data.proccess = true;
+
+         for (let i = 0; i < data.rows.length; i += 1)
+         {
+
+            analyzeRows(
+               data,
+               i
+            );
+
+         }
 
       }
 
