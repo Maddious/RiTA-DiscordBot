@@ -5,7 +5,7 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const colors = require("./colors");
 const discord = require("discord.js");
-const richEmbedMessage = new discord.RichEmbed();
+const richEmbedMessage = new discord.MessageEmbed();
 const logger = require("./logger");
 const error = require("./error");
 const time = {

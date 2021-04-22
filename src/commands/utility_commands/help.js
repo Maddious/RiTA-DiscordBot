@@ -6,7 +6,7 @@
 const sendMessage = require("../../core/command.send");
 const colors = require("../../core/colors");
 const discord = require("discord.js");
-const richEmbedMessage = new discord.RichEmbed();
+const richEmbedMessage = new discord.MessageEmbed();
 const time = {
    "long": 60000,
    "short": 5000

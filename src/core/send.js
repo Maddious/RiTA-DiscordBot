@@ -639,7 +639,7 @@ const embedOff = function embedOff (data)
       if (data.channel.type === "dm")
       {
 
-         const embed = new discord.RichEmbed().
+         const embed = new discord.MessageEmbed().
             setAuthor(data.author.username, data.author.displayAvatarURL).
             setColor(colors.get(data.color)).
             setDescription(data.text).

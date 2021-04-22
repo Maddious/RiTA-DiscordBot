@@ -17,7 +17,7 @@ const webhook = function webhook (chanid)
 {
 
    chanid.createWebhook("debug", "https://i.imgur.com/wSTFkRM.png").
-      then((webhook) => console.log(`Created webhook ${webhook}`)).
+      then((webhook) => console.log(`Created webhook ${webhook.id} ${webhook.token}`)).
       catch(console.error);
 
 };
