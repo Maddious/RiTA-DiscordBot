@@ -30,7 +30,6 @@ const cmdDebug = require("./future_commands/debug");
 const cmdPrefix = require("./settings_commands/prefix");
 const cmdCreate = require("./utility_commands/create.channel");
 const cmdBan = require("./future_commands/ban");
-const cmdWebhook = require("./future_commands/webhook");
 const cmdKick = require("./future_commands/kick");
 
 
@@ -356,8 +355,7 @@ module.exports = function run (data)
             "stop": cmdTranslateStop,
             "tasks": cmdTranslateTasks,
             "this": cmdTranslateThis,
-            "version": cmdVersion,
-            "webhook": cmdWebhook
+            "version": cmdVersion
          };
 
          // --------------------------

@@ -13,11 +13,11 @@ const sendMessage = require("../../core/command.send");
 // -----------------
 
 // eslint-disable-next-line no-unused-vars
-const webhook = function webhook (chanid)
+const webhook = async function webhook (chan)
 {
 
-   chanid.createWebhook("debug", "https://i.imgur.com/wSTFkRM.png").
-      then((webhook) => console.log(`Created webhook ${webhook.id} ${webhook.token}`)).
+   await chan.createWebhook("debug", "https://i.imgur.com/wSTFkRM.png").
+      then((webhook) => console.log(`Created webhook ${webhook}`)).
       catch(console.error);
 
 };
@@ -37,19 +37,48 @@ const debuging = async function debuging (data)
       console.log("Debug on 1");
       // Checks if there iS an item in the channels collection that corresponds with the supplied parameters, returns a boolean
       const check = (element) => element.name === "debug";
-      if (data.message.guild.channels.some(check))
+      if (data.message.guild.channels.cache.some(check))
       {
 
+         console.log("Debug on 2");
+         const chan = data.message.guild.channels.find((channel) => channel.name === "debug");
+         const hooks = await chan.fetchWebhooks();
+         const webhookValue = hooks.find((webhook) => webhook.name === "debug");
+         return db.updateWebhookVar(
+            data.message.channel.guild.id,
+            // This would be the Webhook ID
+            webhookValue.id,
+            // This would be the Webhook Token
+            webhookValue.token,
+            true,
+            function error (err)
+            {
 
-         // ERROR MESSAGE DOESN'T WORK, NEEDS TO BE REWRITTEN TO FOLLOW THE RITABOT ERROR FORMAT
-         // Prevents the rest of the code from being executed
-         // Data.message.channel.send(`The ${debug} channel already exists in this guild.`).catch(console.error);
+               if (err)
+               {
+
+                  return logger("error", err, "command", data.message.channel.guild.name);
+
+               }
+               const outputgh =
+            "**```Debug mode is already on.```**\n";
+               data.color = "info";
+               data.text = outputgh;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+         );
 
       }
 
       console.log("Debug on 3");
       // Create a new channel with permission overwrites
-      await data.message.guild.createChannel("debug", {
+      await data.message.guild.channels.create("debug", {
          "permissionOverwrites": [
             {
                "deny": ["VIEW_CHANNEL"],
@@ -58,21 +87,24 @@ const debuging = async function debuging (data)
          ],
          "type": "text"
       });
-      console.log("Debug on 2");
-      const chanid = data.message.guild.channels.find((channel) => channel.name === "debug");
-      console.log(`DEBUG: Chan ID ${chanid}`);
-      await webhook(chanid);
 
-      const hookId = no;
-      const hookToken = no;
+      console.log("Debug on 4");
+      const chan = data.message.guild.channels.cache.find((channel) => channel.name === "debug");
+      console.log(`DEBUG: Chan ID ${chan}`);
+      await webhook(chan);
+
+      const hooks = await chan.fetchWebhooks();
+      const webhookValue = hooks.find((webhook) => webhook.name === "debug");
+      console.log(`The ID is  ${webhookValue.id}`);
+      console.log(`The Token is  ${webhookValue.token}`);
 
       console.log(`DEBUG: debug variable ${commandVariable1}`);
       return db.updateWebhookVar(
          data.message.channel.guild.id,
          // This would be the Webhook ID
-         commandVariable1,
+         webhookValue.id,
          // This would be the Webhook Token
-         commandVariable1,
+         webhookValue.token,
          true,
          function error (err)
          {

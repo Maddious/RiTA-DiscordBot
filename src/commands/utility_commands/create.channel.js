@@ -14,7 +14,7 @@ const channelName = function channelName (data)
    // Arguments to set the channel name
    const channelName = data.cmd.params.split(" ")[0].toLowerCase();
 
-   data.message.guild.createChannel(channelName, {
+   data.message.guild.channels.create(channelName, {
       // This create a text channel, you can make a voice one too, by changing "text" to "voice"
 
       "type": "text"

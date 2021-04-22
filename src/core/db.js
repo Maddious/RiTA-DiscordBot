@@ -172,8 +172,8 @@ exports.initializeDatabase = async function initializeDatabase (client)
          "tasks",
          "tasks_origin_dest"
       );
-      const guilds = client.guilds.array().length;
-      const guildsArray = client.guilds.array();
+      const guilds = client.guilds.cache.array().length;
+      const guildsArray = client.guilds.cache.array();
       let i = 0;
       for (i = 0; i < guilds; i += 1)
       {
@@ -212,7 +212,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
 
       }
       console.log("DEBUG: Stage Init/create tables - Pre guildClient");
-      const guildClient = Array.from(client.guilds.values());
+      const guildClient = Array.from(client.guilds.cache.values());
       for (let i = 0; i < guildClient.length; i += 1)
       {
 
