@@ -141,7 +141,7 @@ const getSettings = function getSettings (data)
       // Send message/file
       // ------------------
 
-      data.message.delete(time.short).catch((err) => console.log(
+      data.message.delete({"timeout": time.short}).catch((err) => console.log(
          "Command Message Deleted Error, command.send.js = ",
          err
       ));
