@@ -7,9 +7,6 @@
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
-const fs = require("fs");
-const path = require("path");
-
 
 // -----------------
 // Webhook Creation
@@ -43,39 +40,15 @@ const debuging = async function debuging (data)
       if (data.message.guild.channels.some(check))
       {
 
-         console.log("Debug on 2");
-         const chan = data.message.guild.channels.find((channel) => channel.name === "ritabot-debug");
-         const hooks = await chan.fetchWebhooks();
-         const webhookValue = hooks.find((webhook) => webhook.name === "Rita Diagnostic Tool");
-         return db.updateWebhookVar(
-            data.message.channel.guild.id,
-            // This would be the Webhook ID
-            webhookValue.id,
-            // This would be the Webhook Token
-            webhookValue.token,
-            true,
-            function error (err)
-            {
+         data.color = "info";
+         data.text = "```Debug is Already on```";
 
-               if (err)
-               {
+         // -------------
+         // Send message
+         // -------------
 
-                  return logger("error", err, "command", data.message.channel.guild.name);
+         return sendMessage(data);
 
-               }
-               const outputgh =
-            "**```Debug mode is already on.```**\n";
-               data.color = "info";
-               data.text = outputgh;
-
-               // -------------
-               // Send message
-               // -------------
-
-               return sendMessage(data);
-
-            }
-         );
 
       }
 
@@ -167,13 +140,6 @@ const debuging = async function debuging (data)
       );
 
    }
-
-   // eslint-disable-next-line no-var
-   var contents = fs.readFileSync(path.resolve(
-      __dirname,
-      "../../files/.env"
-   ), "utf8");
-   console.log(contents);
 
    data.color = "error";
    data.text =
