@@ -113,7 +113,7 @@ const getSettings = function getSettings (data)
 
       data.text = "Active Servers - ";
 
-      const activeGuilds = data.client.guilds.array();
+      const activeGuilds = data.client.guilds.cache.array();
 
       data.text += `${activeGuilds.length}\n\n`;
 
@@ -141,7 +141,7 @@ const getSettings = function getSettings (data)
       // Send message/file
       // ------------------
 
-      data.message.delete(time.short).catch((err) => console.log(
+      data.message.delete({"timeout": time.short}).catch((err) => console.log(
          "Command Message Deleted Error, command.send.js = ",
          err
       ));

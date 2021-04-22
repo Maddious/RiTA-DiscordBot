@@ -38,7 +38,7 @@ const devConsole = function devConsole (data)
 const hookSend = function hookSend (data)
 {
 
-   const embed = new discord.RichEmbed({
+   const embed = new discord.MessageEmbed({
       "color": colors(data.color),
       "description": data.msg,
       "footer": {

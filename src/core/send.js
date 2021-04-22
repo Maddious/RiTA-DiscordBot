@@ -72,7 +72,7 @@ const checkPerms = function checkPerms (data, sendBox)
    if (data.forward)
    {
 
-      const forwardChannel = data.client.channels.get(data.forward);
+      const forwardChannel = data.client.channels.cache.get(data.forward);
 
       if (forwardChannel)
       {
@@ -639,7 +639,7 @@ const embedOff = function embedOff (data)
       if (data.channel.type === "dm")
       {
 
-         const embed = new discord.RichEmbed().
+         const embed = new discord.MessageEmbed().
             setAuthor(data.author.username, data.author.displayAvatarURL).
             setColor(colors.get(data.color)).
             setDescription(data.text).

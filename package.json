@@ -40,7 +40,7 @@
   "bugs": "https://github.com/RitaBot-Project/RitaBot/issues",
   "dependencies": {
     "common-tags": "^1.8.0",
-    "discord.js": "^11.6.4",
+    "discord.js": "^12.5.3",
     "dotenv": "^8.2.0",
     "google-translate-api": "github:RitaBot-Project/google-translate-api",
     "iso-639-1": "^2.1.9",

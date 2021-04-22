@@ -73,7 +73,7 @@ module.exports = function run (data, client)
 
             }
 
-            const flagExists = message.reactions.get(emoji);
+            const flagExists = message.reactions.cache.get(emoji);
 
             // Prevent flag spam
 

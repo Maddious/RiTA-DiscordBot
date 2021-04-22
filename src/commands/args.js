@@ -31,6 +31,7 @@ const cmdPrefix = require("./settings_commands/prefix");
 const cmdCreate = require("./utility_commands/create.channel");
 const cmdMod = require("./future_commands/mod.js");
 
+
 // ---------------------------------------
 // Extract a parameter's value with regex
 // ---------------------------------------
@@ -342,6 +343,7 @@ module.exports = function run (data)
             "id": cmdMisc.ident,
             "info": cmdHelp,
             "invite": cmdMisc.invite,
+            "kick": cmdKick,
             "last": cmdTranslateLast.run,
             "list": cmdList,
             "mute": cmdMod.mute,
