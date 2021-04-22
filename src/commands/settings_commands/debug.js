@@ -16,7 +16,7 @@ const sendMessage = require("../../core/command.send");
 const webhook = async function webhook (chan)
 {
 
-   await chan.createWebhook("Rita Diagnostic Tool", "https://i.imgur.com/wSTFkRM.png").
+   await chan.createWebhook("Rita Diagnostic Tool", "https://ritabot.gg/assets/images/favicon.png").
       then((webhook) => console.log(`Created webhook ${webhook}`)).
       catch(console.error);
 
