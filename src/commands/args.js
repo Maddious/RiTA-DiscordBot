@@ -26,12 +26,10 @@ const cmdTranslateThis = require("./translation_commands/translate.this");
 const cmdTranslateAuto = require("./translation_commands/translate.auto");
 const cmdTranslateStop = require("./translation_commands/translate.stop");
 const cmdTranslateTasks = require("./translation_commands/translate.tasks");
-const cmdDebug = require("./future_commands/debug");
+const cmdDebug = require("./settings_commands/debug");
 const cmdPrefix = require("./settings_commands/prefix");
 const cmdCreate = require("./utility_commands/create.channel");
-const cmdBan = require("./future_commands/ban");
-const cmdWebhook = require("./future_commands/webhook");
-
+const cmdMod = require("./future_commands/mod.js");
 
 // ---------------------------------------
 // Extract a parameter's value with regex
@@ -334,7 +332,7 @@ module.exports = function run (data)
 
          const cmdMap = {
             "auto": cmdTranslateAuto,
-            "ban": cmdBan,
+            "ban": cmdMod.ban,
             "bot2bot": cmdBot2bot,
             "create": cmdCreate,
             "debug": cmdDebug,
@@ -346,6 +344,7 @@ module.exports = function run (data)
             "invite": cmdMisc.invite,
             "last": cmdTranslateLast.run,
             "list": cmdList,
+            "mute": cmdMod.mute,
             "prefix": cmdPrefix,
             "proc": cmdMisc.proc,
             "settings": cmdSettings,
@@ -354,8 +353,9 @@ module.exports = function run (data)
             "stop": cmdTranslateStop,
             "tasks": cmdTranslateTasks,
             "this": cmdTranslateThis,
-            "version": cmdVersion,
-            "webhook": cmdWebhook
+            "unban": cmdMod.unban,
+            "unmute": cmdMod.unmute,
+            "version": cmdVersion
          };
 
          // --------------------------
