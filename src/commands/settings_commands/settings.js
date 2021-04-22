@@ -113,7 +113,7 @@ const getSettings = function getSettings (data)
 
       data.text = "Active Servers - ";
 
-      const activeGuilds = data.client.guilds.array();
+      const activeGuilds = data.client.guilds.cache.array();
 
       data.text += `${activeGuilds.length}\n\n`;
 
