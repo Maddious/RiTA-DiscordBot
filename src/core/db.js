@@ -253,13 +253,21 @@ exports.addServer = async function addServer (id, lang)
          "prefix": "!tr"
       }
    };
-   await Servers.create({
-      id,
-      lang
-   }).catch((err) => console.log(
-      "Server already exists error suppressed = ",
-      err
-   ));
+   await Servers.findAll({"where": {id}}).then((server) =>
+   {
+
+      if (server.length === 0)
+      {
+
+         Servers.create({
+            id,
+            lang,
+            "prefix": "!tr"
+         });
+
+      }
+
+   });
 
 };
 

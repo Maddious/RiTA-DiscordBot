@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 // -----------------
 // Global variables
 // -----------------
@@ -122,15 +123,33 @@ const warnLog = function warnLog (warning)
 const logJoin = function logJoin (guild)
 {
 
-   hookSend({
-      "color": "ok",
-      "msg":
+   if (guild.owner)
+   {
+
+      hookSend({
+         "color": "ok",
+         "msg":
          `${`:white_check_mark:  **${guild.name}**\n` +
          "```md\n> "}${guild.id}\n@${guild.owner.user.username}#${
-            guild.owner.user.discriminator}\n\`\`\`${spacer}${spacer}`,
-      "title": "Joined Guild"
+            guild.owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
+         "title": "Joined Guild"
 
-   });
+      });
+
+   }
+   else
+   {
+
+      hookSend({
+         "color": "ok",
+         "msg":
+         `${`:white_check_mark:  **${guild.name}**\n` +
+         "```md\n> "}${guild.id}\n${guild.memberCount} members#\n\`\`\`${spacer}${spacer}`,
+         "title": "Joined Guild"
+
+      });
+
+   }
 
 };
 
@@ -141,14 +160,31 @@ const logJoin = function logJoin (guild)
 const logLeave = function logLeave (guild)
 {
 
-   hookSend({
-      "color": "warn",
-      "msg":
+   if (guild.owner)
+   {
+
+      hookSend({
+         "color": "warn",
+         "msg":
          `${`:regional_indicator_x:  **${guild.name}**\n` +
          "```md\n> "}${guild.id}\n@${guild.owner.user.username}#${
-            guild.owner.user.discriminator}\n\`\`\`${spacer}${spacer}`,
-      "title": "Left Guild"
-   });
+            guild.owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
+         "title": "Left Guild"
+      });
+
+   }
+   else
+   {
+
+      hookSend({
+         "color": "warn",
+         "msg":
+         `${`:regional_indicator_x:  **${guild.name}**\n` +
+         "```md\n> "}${guild.id}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
+         "title": "Left Guild"
+      });
+
+   }
 
 };
 

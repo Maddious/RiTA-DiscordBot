@@ -1,3 +1,4 @@
+/* eslint-disable vars-on-top */
 // -----------------
 // Global variables
 // -----------------
@@ -7,11 +8,25 @@ const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
 
+// -----------------
+// Webhook Creation
+// -----------------
+
+// eslint-disable-next-line no-unused-vars
+const webhook = async function webhook (chan)
+{
+
+   await chan.createWebhook("Rita Diagnostic Tool", "https://i.imgur.com/wSTFkRM.png").
+      then((webhook) => console.log(`Created webhook ${webhook}`)).
+      catch(console.error);
+
+};
+
 // -------------------------------
 // Debug varible command handler
 // -------------------------------
 
-const debug = function debug (data)
+const debuging = async function debuging (data)
 {
 
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
@@ -19,13 +34,53 @@ const debug = function debug (data)
    if (commandVariable1 === "on")
    {
 
+      console.log("Debug on 1");
+      // Checks if there iS an item in the channels collection that corresponds with the supplied parameters, returns a boolean
+      const check = (element) => element.name === "ritabot-debug";
+      if (data.message.guild.channels.some(check))
+      {
+
+         data.color = "info";
+         data.text = "```Debug is Already on```";
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+
+      }
+
+      console.log("Debug on 3");
+      // Create a new channel with permission overwrites
+      await data.message.guild.createChannel("ritabot-debug", {
+         "permissionOverwrites": [
+            {
+               "deny": ["VIEW_CHANNEL"],
+               "id": data.message.guild.id
+            }
+         ],
+         "type": "text"
+      });
+
+      console.log("Debug on 4");
+      const chan = data.message.guild.channels.find((channel) => channel.name === "ritabot-debug");
+      console.log(`DEBUG: Chan ID ${chan}`);
+      await webhook(chan);
+
+      const hooks = await chan.fetchWebhooks();
+      const webhookValue = hooks.find((webhook) => webhook.name === "Rita Diagnostic Tool");
+      console.log(`The ID is  ${webhookValue.id}`);
+      console.log(`The Token is  ${webhookValue.token}`);
+
       console.log(`DEBUG: debug variable ${commandVariable1}`);
       return db.updateWebhookVar(
          data.message.channel.guild.id,
          // This would be the Webhook ID
-         commandVariable1,
+         webhookValue.id,
          // This would be the Webhook Token
-         commandVariable1,
+         webhookValue.token,
          true,
          function error (err)
          {
@@ -110,23 +165,17 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
 
-      if (data.message.isAdmin === false)
-      {
+      data.color = "warn";
+      data.text = ":cop:  This command is reserved for bot owners.";
 
-         data.color = "warn";
-         data.text = ":cop:  This command is reserved for server admins.";
+      // -------------
+      // Send message
+      // -------------
 
-         // -------------
-         // Send message
-         // -------------
-
-         return sendMessage(data);
-
-      }
-      break Override;
+      return sendMessage(data);
 
    }
    // --------------------------------
@@ -153,6 +202,6 @@ module.exports = function run (data)
    // Execute setting
    // ----------------
 
-   return debug(data);
+   return debuging(data);
 
 };

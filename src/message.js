@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 // -----------------
 // Global variables
 // -----------------
@@ -19,30 +20,61 @@ module.exports = function run (config, message, edited, deleted)
    module.exports.message = message;
    const client = message.client;
    const bot = client.user;
-   // Const bot2botstyle = db.server_obj[message.guild.id].bot2botstyle;
+   if (message.channel.type === "dm" || message.type !== "DEFAULT")
+   {
+
+      return;
+
+   }
+   if (!db.server_obj[message.guild.id])
+   {
+
+      return;
+
+   }
+   const bot2botstyle = db.server_obj[message.guild.id].db.bot2botstyle;
 
    // ------------------------
    // Ignore messages by bots
    // ------------------------
 
 
-   // If (bot2botstyle === "off")
-   // {
-   if (message.author.bot)
+   if (bot2botstyle === "off")
    {
 
-      return;
+      if (message.author.bot)
+      {
+
+         return;
+
+      }
 
    }
-   // }
+   else if (bot2botstyle === "on")
+   {
 
-   // If (bot2botstyle === "on")
-   // {
-   //   If (message.author.discriminator === "0000")
-   //   {
-   //      Return;
-   //   }
-   // }
+      // eslint-disable-next-line no-bitwise
+      if (message.webhookID)
+      {
+
+         return;
+
+      }
+      if (message.author.id === message.client.user.id)
+      {
+
+         return;
+
+      }
+
+   }
+
+   if (message.embeds.length !== 0)
+   {
+
+      message.content = message.embeds[0].description;
+
+   }
 
    // -----------------------------------------
    // Embed member permissions in message data
@@ -71,22 +103,27 @@ module.exports = function run (config, message, edited, deleted)
    // ------------
 
    const data = {
-      bot,
       "canWrite": true,
       "channel": message.channel,
-      client,
       config,
+      client,
       "member": message.member,
+      bot,
       message
    };
    if (data.message.channel.type !== "dm")
    {
 
-      // Replace username with nickname if exists
-      if (data.member.displayName)
+      if (data.member)
       {
 
-         data.message.author.username = data.member.displayName;
+         // Replace username with nickname if exists
+         if (data.member.displayName)
+         {
+
+            data.message.author.username = data.member.displayName;
+
+         }
 
       }
 
