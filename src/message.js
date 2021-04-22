@@ -32,12 +32,11 @@ module.exports = function run (config, message, edited, deleted)
       return;
 
    }
-   const bot2botstyle = db.server_obj[message.guild.id].db.bot2botstyle;
 
    // ------------------------
    // Ignore messages by bots
    // ------------------------
-
+   const bot2botstyle = db.server_obj[message.guild.id].db.bot2botstyle;
 
    if (bot2botstyle === "off")
    {
@@ -69,12 +68,21 @@ module.exports = function run (config, message, edited, deleted)
 
    }
 
-   if (message.embeds.length !== 0)
+
+   GifOverride: if (message.embeds.length !== 0)
    {
 
+      if (message.content.startsWith("https://tenor.com"))
+      {
+
+         console.log("Has Web");
+         break GifOverride;
+
+      }
       message.content = message.embeds[0].description;
 
    }
+
 
    // -----------------------------------------
    // Embed member permissions in message data
@@ -133,11 +141,17 @@ module.exports = function run (config, message, edited, deleted)
    // Proccess Commands
    // ------------------
 
-   if (message.content.startsWith(config.translateCmd) || message.content.startsWith(config.translateCmdShort) || message.isMentioned(bot))
+   if (message.content !== undefined)
+
    {
 
-      // eslint-disable-next-line consistent-return
-      return cmdArgs(data);
+      if (message.content.startsWith(config.translateCmd) || message.content.startsWith(config.translateCmdShort) || message.isMentioned(bot))
+      {
+
+         // eslint-disable-next-line consistent-return
+         return cmdArgs(data);
+
+      }
 
    }
 
