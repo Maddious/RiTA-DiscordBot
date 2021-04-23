@@ -126,7 +126,7 @@ module.exports.old = function old (data)
 
    }
 
-   data.message.channel.fetchMessages({
+   data.message.channel.messages.fetch({
       limit
    }).then((messages) =>
    {

@@ -68,9 +68,9 @@ module.exports.shards = function shards (data)
 
       data.text = `​\n${oneLine`
          :bar_chart:  ​
-         **${data.message.client.guilds.size}**  guilds  ·  ​
-         **${data.message.client.channels.size}**  channels  ·  ​
-         **${data.message.client.users.size}**  users
+         **${data.message.client.guilds.cache.size}**  guilds  ·  ​
+         **${data.message.client.channels.cache.size}**  channels  ·  ​
+         **${data.message.client.users.cache.size}**  users
       `}\n​`;
 
       // -------------
