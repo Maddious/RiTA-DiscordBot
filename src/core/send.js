@@ -282,7 +282,7 @@ const embedOn = function embedOn (data)
                attachments[i].url,
                attachments[i].name
             );
-            data.channel.send(`**${messageData.author.username}** sent a file:`, {"file": attachmentObj});
+            data.channel.send(`**${messageData.author.username}** sent a file:`, attachmentObj);
 
          }
 
