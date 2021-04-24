@@ -800,7 +800,7 @@ module.exports = function run (data)
 
    }
    else
-   if (data.message.guild.me.Permissions.has("MANAGE_WEBHOOKS"))
+   if (data.message.guild.me.permissions.has("MANAGE_WEBHOOKS"))
    {
 
       console.log("DEBUG: Embed off");
