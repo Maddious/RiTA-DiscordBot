@@ -29,10 +29,10 @@ exports.listen = function listen (client)
 
    client.on(
       "ready",
-      () =>
+      async () =>
       {
 
-         db.initializeDatabase(client);
+         await db.initializeDatabase(client);
 
          // -----------------
          // Default Settings
@@ -189,7 +189,6 @@ exports.listen = function listen (client)
    // -----------
    // Raw events
    // -----------
-
    client.on(
       "raw",
       (raw) =>
@@ -350,7 +349,7 @@ exports.listen = function listen (client)
       "guildUnavailable",
       (guild) => logger(
          "warn",
-         `Guild unavailable:${guild.id}`
+         `Guild unavailable: ${guild.id}`
       )
    );
 

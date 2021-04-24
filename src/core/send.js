@@ -41,6 +41,7 @@ const checkPerms = function checkPerms (data, sendBox)
          "footer": data.footer,
          "forward": data.forward,
          "guild": data.message.guild,
+         "message": data.message,
          "origin": null,
          "text": data.text,
          "title": data.title
