@@ -277,7 +277,7 @@ const embedOn = function embedOn (data)
          for (let i = 0; i < attachments.length; i += 1)
          {
 
-            const attachmentObj = new discord.Attachment(
+            const attachmentObj = new discord.MessageAttachment(
                attachments[i].url,
                attachments[i].filename
             );
@@ -468,7 +468,7 @@ const embedOff = function embedOff (data)
          for (let i = 0; i < attachments.length; i += 1)
          {
 
-            const attachmentObj = new discord.Attachment(
+            const attachmentObj = new discord.MessageAttachment(
                attachments[i].url,
                attachments[i].filename
             );
@@ -588,7 +588,7 @@ const embedOff = function embedOff (data)
          for (let i = 0; i < attachments.length; i += 1)
          {
 
-            const attachmentObj = new discord.Attachment(
+            const attachmentObj = new discord.MessageAttachment(
                attachments[i].url,
                attachments[i].filename
             );
