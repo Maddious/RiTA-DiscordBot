@@ -279,7 +279,7 @@ const embedOn = function embedOn (data)
 
             const attachmentObj = new discord.MessageAttachment(
                attachments[i].url,
-               attachments[i].filename
+               attachments[i].name
             );
             data.channel.send(`**${messageData.author.username}** sent a file:`, {"file": attachmentObj});
 
@@ -470,7 +470,7 @@ const embedOff = function embedOff (data)
 
             const attachmentObj = new discord.MessageAttachment(
                attachments[i].url,
-               attachments[i].filename
+               attachments[i].name
             );
             files.push(attachmentObj);
 
@@ -590,7 +590,7 @@ const embedOff = function embedOff (data)
 
             const attachmentObj = new discord.MessageAttachment(
                attachments[i].url,
-               attachments[i].filename
+               attachments[i].name
             );
             data.channel.send(attachmentObj);
 
@@ -799,7 +799,7 @@ module.exports = function run (data)
 
    }
    else
-   if (data.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))
+   if (data.message.guild.me.Permissions.has("MANAGE_WEBHOOKS"))
    {
 
       console.log("DEBUG: Embed off");

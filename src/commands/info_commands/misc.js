@@ -97,13 +97,13 @@ module.exports.shards = function shards (data)
 
    };
 
-   shard.fetchClientValues("guilds.size").then((guildsSize) =>
+   shard.fetchClientValues("guilds.cache.size").then((guildsSize) =>
    {
 
-      shard.fetchClientValues("channels.size").then((channelsSize) =>
+      shard.fetchClientValues("channels.cache.size").then((channelsSize) =>
       {
 
-         shard.fetchClientValues("users.size").then((usersSize) =>
+         shard.fetchClientValues("users.cache.size").then((usersSize) =>
          {
 
             const output = [];
