@@ -184,7 +184,7 @@ const getSettings = function getSettings (data)
       ));
       return data.message.channel.send({"embed": {
          "author": {
-            "icon_url": data.client.user.displayAvatarURL,
+            "icon_url": data.client.user.displayAvatarURL(),
             "name": data.client.user.username
          },
          "color": 13107200,

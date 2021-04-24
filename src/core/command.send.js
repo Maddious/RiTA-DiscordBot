@@ -96,7 +96,7 @@ module.exports = function run (data)
          setColor(colors.get(data.color)).
          setAuthor(
             data.bot.username,
-            data.bot.displayAvatarURL
+            data.bot.displayAvatarURL()
          ).
          setDescription(`Developer Identity confirmed: \n\n${data.text}`).
          setTimestamp().
@@ -117,7 +117,7 @@ module.exports = function run (data)
       setColor(colors.get(data.color)).
       setAuthor(
          data.bot.username,
-         data.bot.displayAvatarURL
+         data.bot.displayAvatarURL()
       ).
       setDescription(data.text).
       setTimestamp().

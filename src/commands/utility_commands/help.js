@@ -682,7 +682,7 @@ module.exports = function run (data)
             setColor(colors.get(data.color)).
             setAuthor(
                data.bot.username,
-               data.bot.displayAvatarURL
+               data.bot.displayAvatarURL()
             ).
             setDescription("This command is available only to Developers. \n\n").
             setTimestamp().
