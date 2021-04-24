@@ -82,7 +82,7 @@ module.exports = function run (bot, status, config, writable = true)
                });
 
             },
-            {"timeout": time.short}
+            time.short
          );
 
       }
