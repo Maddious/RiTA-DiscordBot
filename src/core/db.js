@@ -194,7 +194,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
          });
 
       }
-      console.log("DEBUG: Stage Init/create tables - Pre serversFindAll");
+      console.log("DEBUG: Stage Init/create tables - Pre servers FindAll");
       const serversFindAll = await Servers.findAll();
       // {
       for (let i = 0; i < serversFindAll.length; i += 1)

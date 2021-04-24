@@ -1,10 +1,10 @@
 {
   "name": "ritabot",
-  "version": "1.2.1-29",
+  "version": "1.2.1-32",
   "engines": {
     "node": "14.0.0"
   },
-  "description": "Real-Time Intergalactic Translating Assistant bot built using discord.js and Google Translate API.",
+  "description": "Real-Time Interchangeable Translating Assistant bot built using discord.js and Google Translate API.",
   "main": "src/bot.js",
   "license": "MIT",
   "scripts": {
@@ -35,7 +35,7 @@
     "type": "git",
     "url": "https://github.com/RitaBot-Project/RitaBot.git"
   },
-  "funding": "https://ritabot.gg",
+  "funding": "https://opencollective.com/ritabot-project",
   "homepage": "https://ritabot.gg/",
   "bugs": "https://github.com/RitaBot-Project/RitaBot/issues",
   "dependencies": {
