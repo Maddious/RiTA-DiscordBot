@@ -144,7 +144,7 @@ module.exports = function run (config, message, edited, deleted)
 
    {
 
-      if (message.content.startsWith(config.translateCmd) || message.content.startsWith(config.translateCmdShort) || message.isMentioned(bot))
+      if (message.content.startsWith(config.translateCmd) || message.content.startsWith(config.translateCmdShort) || message.mentions.has(bot))
       {
 
          // eslint-disable-next-line consistent-return
