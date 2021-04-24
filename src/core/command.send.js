@@ -109,7 +109,7 @@ module.exports = function run (data)
 
    }
    console.log("Sufficient Permission");
-   data.message.delete(time.short).catch((err) => console.log(
+   data.message.delete({"timeout": time.short}).catch((err) => console.log(
       "Command Message Deleted Error, command.send.js = ",
       err
    ));

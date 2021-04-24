@@ -674,7 +674,7 @@ module.exports = function run (data)
          );
 
          console.log("Insufficient Permission");
-         data.message.delete(time.short).catch((err) => console.log(
+         data.message.delete({"timeout": time.short}).catch((err) => console.log(
             "Command Message Deleted Error, help.js = ",
             err
          ));
@@ -695,7 +695,7 @@ module.exports = function run (data)
          return data.message.channel.send(richEmbedMessage).then((msg) =>
          {
 
-            msg.delete(time.long).catch((err) => console.log(
+            msg.delete({"timeout": time.long}).catch((err) => console.log(
                "Bot Message Deleted Error, help.js = ",
                err
             ));

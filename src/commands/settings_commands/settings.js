@@ -178,7 +178,7 @@ const getSettings = function getSettings (data)
       //   "Hello, this bot has been updated to a new version.\n " +
       //   "More info: https://ritabot.gg/whats-new/#new-in-121\n");
       // });
-      data.message.delete(time.short).catch((err) => console.log(
+      data.message.delete({"timeout": time.short}).catch((err) => console.log(
          "UpdateBot Command Message Deleted Error, command.send.js = ",
          err
       ));
@@ -193,7 +193,7 @@ const getSettings = function getSettings (data)
       }}).then((msg) =>
       {
 
-         msg.delete(time.long).catch((err) => console.log(
+         msg.delete({"timeout": time.long}).catch((err) => console.log(
             "UpdateBot Bot Message Deleted Error, settings.js = ",
             err
          ));
