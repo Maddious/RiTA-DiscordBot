@@ -303,7 +303,7 @@ const embedOn = function embedOn (data)
          data.author = {
             name: data.author.username,
             //eslint-disable-next-line camelcase
-            icon_url: data.author.displayAvatarURL
+            icon_url: data.author.displayAvatarURL()
          };
       }*/
 
@@ -319,7 +319,7 @@ const embedOn = function embedOn (data)
                // eslint-disable-next-line no-redeclare
                var embed = {
                   "author": {
-                     "icon_url": data.bot.displayAvatarURL,
+                     "icon_url": data.bot.displayAvatarURL(),
                      "name": data.bot.username
                   },
                   "color": colors.get(data.color),
@@ -337,7 +337,7 @@ const embedOn = function embedOn (data)
                // eslint-disable-next-line no-redeclare
                var embed = {
                   "author": {
-                     "icon_url": data.author.displayAvatarURL,
+                     "icon_url": data.author.displayAvatarURL(),
                      "name": data.author.username
                   },
                   "color": colors.get(data.color),
@@ -511,7 +511,7 @@ const embedOff = function embedOff (data)
       {
 
          return webhook.send(null, {
-            "avatarURL": messageData.author.displayAvatarURL,
+            "avatarURL": messageData.author.displayAvatarURL(),
             files,
             "username": messageData.author.username
          });
@@ -527,7 +527,7 @@ const embedOff = function embedOff (data)
             webhook.send(data.text, {
                // If you get a error at the below line then the bot does not have write permissions.
 
-               "avatarURL": data.bot.displayAvatarURL,
+               "avatarURL": data.bot.displayAvatarURL(),
                files,
                "username": data.bot.username || data.message
             });
@@ -540,7 +540,7 @@ const embedOff = function embedOff (data)
             webhook.send(data.text, {
                // If you get a error at the below line then the bot does not have write permissions.
 
-               "avatarURL": data.author.displayAvatarURL,
+               "avatarURL": data.author.displayAvatarURL(),
                files,
                "username": data.author.username || data.message
             });
@@ -640,7 +640,7 @@ const embedOff = function embedOff (data)
       {
 
          const embed = new discord.MessageEmbed().
-            setAuthor(data.author.username, data.author.displayAvatarURL).
+            setAuthor(data.author.username, data.author.displayAvatarURL()).
             setColor(colors.get(data.color)).
             setDescription(data.text).
             setFooter(data.footer.text);
