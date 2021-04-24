@@ -69,9 +69,16 @@ module.exports = function run (config, message, edited, deleted)
 
    }
 
-   if (message.embeds.length !== 0)
+   GifOverride: if (message.embeds.length !== 0)
    {
 
+      if (message.content.startsWith("https://tenor.com/"))
+      {
+
+         console.log("Has Web");
+         break GifOverride;
+
+      }
       message.content = message.embeds[0].description;
 
    }

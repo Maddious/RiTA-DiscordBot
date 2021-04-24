@@ -217,6 +217,29 @@ module.exports = function run (type, data, subtype = null, id = "Unknown")
    ))
    {
 
+      if (data.message !== undefined)
+      {
+
+         if (data.message.guild !== undefined)
+
+         {
+
+            console.log("Has guild");
+            const id = data.message.guild.name;
+            return logTypes[type](
+               data,
+               subtype,
+               id
+            );
+
+         }
+
+         console.log("Has Message");
+
+      }
+
+      console.log("Has");
+
       return logTypes[type](
          data,
          subtype,
