@@ -11,7 +11,7 @@ const logger = require("../../core/logger");
 const process = require("process");
 const {stripIndent} = require("common-tags");
 const {oneLine} = require("common-tags");
-const secConverter = require("seconds-converter");
+const secConverter = require("rita-seconds-converter");
 const sendMessage = require("../../core/command.send");
 
 // ------------
