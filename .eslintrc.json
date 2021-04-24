@@ -32,7 +32,7 @@
       "no-self-compare": "error",
       "no-whitespace-before-property": "error",
       "no-useless-return": "error",
-      "complexity": ["error", 20],
+      "complexity": ["error", 25],
       "no-useless-concat": "error",
       "no-constant-condition": "error",
       "callback-return": "error",

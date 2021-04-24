@@ -69,13 +69,19 @@ module.exports = function run (config, message, edited, deleted)
 
    }
 
+   if (message.content === "" || message.content === " ")
+   {
+
+      console.log(`Empty Message from server ${message.channel.guild.name}`);
+
+   }
+
    GifOverride: if (message.embeds.length !== 0)
    {
 
       if (message.content.startsWith("https://tenor.com/"))
       {
 
-         console.log("Has Web");
          break GifOverride;
 
       }

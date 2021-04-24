@@ -232,10 +232,10 @@ module.exports = function run (data)
       // Add !i to end of message to ignore it instead
       // ----------------------------------------------
 
-      if (data.message.content === undefined)
+      if (data.message.content === undefined || data.message.content === "" || data.message.content === " ")
       {
 
-         console.log(data.message.content);
+         console.log(`Blank Message from server ${data.message.guild.name}`);
          data.message.content = `Error: 10001 - Auto Error, Please report to admins.`;
 
       }
