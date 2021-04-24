@@ -91,9 +91,10 @@ module.exports = function run (config, message, edited, deleted)
          message.content = message.embeds[0].description;
 
       }
-      else if (message.content === "")
+      else if (message.content === "" || message.content === " ")
       {
 
+         console.log(`Empty Message from server ${message.channel.guild.name}`);
          return;
 
       }
