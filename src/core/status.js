@@ -5,7 +5,7 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 
 const time = {
-   "long": 10000,
+   "long": 60000,
    "short": 20000
 };
 
