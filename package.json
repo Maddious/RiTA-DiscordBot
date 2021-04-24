@@ -49,7 +49,7 @@
     "path": "^0.12.7",
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.3",
-    "seconds-converter": "github:AlooAkbar/seconds-converter",
+    "rita-seconds-converter": "^1.3.0",
     "sequelize": "^6.6.2",
     "sqlite3": "^5.0.2",
     "webhook-discord": "^3.7.7"
@@ -63,6 +63,6 @@
     "gulp-eslint": "^6.0.0",
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-uglify-es": "^2.0.0",
-    "gulp-watch": "github:RitaBot-Project/gulp-watch"
+    "rita-gulp-watch": "^5.1.4"
   }
 }
