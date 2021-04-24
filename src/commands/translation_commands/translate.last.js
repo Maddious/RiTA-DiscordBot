@@ -20,7 +20,7 @@ module.exports.run = function run (data)
 {
 
 
-   data.message.delete({"timeout": time.short}).catch((err) => console.log(
+   data.message.delete(time.short).catch((err) => console.log(
       "Command Message Deleted Error, command.send.js = ",
       err
    ));
@@ -36,7 +36,7 @@ module.exports.run = function run (data)
    }}).then((msg) =>
    {
 
-      msg.delete({"timeout": time.long}).catch((err) => console.log(
+      msg.delete(time.long).catch((err) => console.log(
          "UpdateBot Bot Message Deleted Error, settings.js = ",
          err
       ));

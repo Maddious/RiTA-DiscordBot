@@ -60,7 +60,7 @@ module.exports = function run (bot, status, config, writable = true)
 
          // Run this on stratup
          bot.setPresence({
-            "activities": {
+            "game": {
                "name": activevar[0]
             },
             "status": "online"
@@ -74,7 +74,7 @@ module.exports = function run (bot, status, config, writable = true)
                const actID = Math.floor(Math.random() * 6);
                bot.setPresence({
 
-                  "activities": {
+                  "game": {
                      "name": activevar[actID],
                      "type": statusvar[actID]
                   },
@@ -82,7 +82,7 @@ module.exports = function run (bot, status, config, writable = true)
                });
 
             },
-            {"timeout": time.short}
+            time.short
          );
 
       }

@@ -140,7 +140,7 @@ module.exports = function run (config, message, edited, deleted)
    // Proccess Commands
    // ------------------
 
-   if (message.content === undefined)
+   if (message.content !== undefined)
 
    {
 

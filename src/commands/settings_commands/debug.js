@@ -37,7 +37,7 @@ const debuging = async function debuging (data)
       console.log("Debug on 1");
       // Checks if there iS an item in the channels collection that corresponds with the supplied parameters, returns a boolean
       const check = (element) => element.name === "ritabot-debug";
-      if (data.message.guild.channels.cache.some(check))
+      if (data.message.guild.channels.some(check))
       {
 
          data.color = "info";
@@ -54,7 +54,7 @@ const debuging = async function debuging (data)
 
       console.log("Debug on 3");
       // Create a new channel with permission overwrites
-      await data.message.guild.channels.create("ritabot-debug", {
+      await data.message.guild.createChannel("ritabot-debug", {
          "permissionOverwrites": [
             {
                "deny": ["VIEW_CHANNEL"],
@@ -65,7 +65,7 @@ const debuging = async function debuging (data)
       });
 
       console.log("Debug on 4");
-      const chan = data.message.guild.channels.cache.find((channel) => channel.name === "ritabot-debug");
+      const chan = data.message.guild.channels.find((channel) => channel.name === "ritabot-debug");
       console.log(`DEBUG: Chan ID ${chan}`);
       await webhook(chan);
 
