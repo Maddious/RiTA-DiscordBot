@@ -187,7 +187,7 @@ exports.getUser = function getUser (client, userID, cb)
 
    // User not in cache, fetch 'em
 
-   client.fetchUser(userID).then(cb).
+   client.users.fetch(userID).then(cb).
       catch((err) =>
       {
 

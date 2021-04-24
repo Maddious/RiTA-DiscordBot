@@ -99,7 +99,7 @@ exports.main = function main (client, id, output = null, guild)
       "@" ()
       {
 
-         resolved.obj = client.users.get(resolved.pure);
+         resolved.obj = client.users.cache.get(resolved.pure);
          resolved.name = resolved.obj.username;
 
       },
@@ -110,7 +110,7 @@ exports.main = function main (client, id, output = null, guild)
          if (guild)
          {
 
-            resolved.obj = guild.roles.get(resolved.pure);
+            resolved.obj = guild.roles.cache.get(resolved.pure);
             resolved.name = resolved.obj.name;
 
          }
