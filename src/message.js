@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable sort-keys */
 // -----------------
 // Global variables
@@ -78,7 +79,18 @@ module.exports = function run (config, message, edited, deleted)
          break GifOverride;
 
       }
-      message.content = message.embeds[0].description;
+      if (message.embeds[0].description)
+      {
+
+         message.content = message.embeds[0].description;
+
+      }
+      else if (message.content === "")
+      {
+
+         return;
+
+      }
 
    }
 
