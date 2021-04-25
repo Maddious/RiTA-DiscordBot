@@ -99,8 +99,8 @@ const Stats = db.define(
          "defaultValue": 0
       },
       "gif": {
-         "type": Sequelize.BOOLEAN,
-         "defaultValue": true
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
       }
    }
 );
