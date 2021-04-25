@@ -55,7 +55,7 @@ module.exports = function run (data)
          `:chart_with_upwards_trend:  RITA has translated **\`${stats[0].translation}\`**  of these messages\n\n` +
          `:frame_photo:  A total of **\`${stats[0].images}\`**  images have been sent and **\`${stats[0].gif}\`** Gif's have been shared\n\n` +
          `:flag_white:  **\`${stats[0].react}\`**  messages have been translated with flag reactions \n\n` +
-         `:notebook:  **\`${stats[0].embedon}\`**  messages has been sent in **\`Embed On\`** format.\n\n` +
+         `:notebook:  **\`${stats[0].embedon}\`**  messages has been sent in **\`Embed On\`** format\n\n` +
          `:speech_balloon:  **\`${stats[0].embedoff}\`**  messages has been sent in **\`Embed Off\`** format\n`;
 
       // Get current server information
