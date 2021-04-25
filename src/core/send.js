@@ -796,6 +796,20 @@ module.exports = function run (data)
    {
 
       console.log("DEBUG: Embed on");
+
+      const col = "embedon";
+      let id = "bot";
+      db.increaseStatsCount(col, id);
+
+      if (data.message.channel.type === "text")
+      {
+
+         id = data.message.channel.guild.id;
+
+      }
+
+      db.increaseStatsCount(col, id);
+
       return embedOn(data);
 
    }
@@ -804,6 +818,20 @@ module.exports = function run (data)
    {
 
       console.log("DEBUG: Embed off");
+
+      const col = "embedoff";
+      let id = "bot";
+      db.increaseStatsCount(col, id);
+
+      if (data.message.channel.type === "text")
+      {
+
+         id = data.message.channel.guild.id;
+
+      }
+
+      db.increaseStatsCount(col, id);
+
       return embedOff(data);
 
    }

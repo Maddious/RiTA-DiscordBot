@@ -192,7 +192,9 @@ const invalidLangChecker = function invalidLangChecker (obj, callback)
 const updateServerStats = function updateServerStats (message)
 {
 
+   const col = "translation";
    let id = "bot";
+   db.increaseStatsCount(col, id);
 
    if (message.channel.type === "text")
    {
@@ -200,8 +202,8 @@ const updateServerStats = function updateServerStats (message)
       id = message.channel.guild.id;
 
    }
-
-   db.increaseServers(id);
+   db.increaseServersCount(id);
+   db.increaseStatsCount(col, id);
 
 };
 

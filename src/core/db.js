@@ -65,6 +65,47 @@ db.
    });
 
 // ---------------------------------
+// Database stats table definition
+// ---------------------------------
+
+console.log("DEBUG: Pre Stage Database stats table definition");
+const Stats = db.define(
+   "stats",
+   {
+      "id": {
+         "type": Sequelize.STRING(32),
+         "primaryKey": true,
+         "unique": true,
+         "allowNull": false
+      },
+      "message": {
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
+      },
+      "translation": {
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
+      },
+      "embedon": {
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
+      },
+      "embedoff": {
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
+      },
+      "images": {
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
+      },
+      "gif": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": true
+      }
+   }
+);
+
+// ---------------------------------
 // Database server table definition
 // ---------------------------------
 
@@ -164,6 +205,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
    db.sync({"logging": console.log}).then(async () =>
    {
 
+      Stats.upsert({"id": "bot"});
       await this.updateColumns();
       Servers.upsert({"id": "bot",
          "lang": "en"});
@@ -180,14 +222,17 @@ exports.initializeDatabase = async function initializeDatabase (client)
 
          const guild = guildsArray[i];
          const guildID = guild.id;
+         Stats.upsert({"id": guildID});
          Servers.findAll({"where": {"id": guildID}}).then((projects) =>
          {
 
             if (projects.length === 0)
             {
 
+               console.log("DEBUG: Add Server");
                Servers.upsert({"id": guildID,
                   "lang": "en"});
+               Stats.upsert({"id": guildID});
 
             }
 
@@ -263,6 +308,9 @@ exports.addServer = async function addServer (id, lang)
             id,
             lang,
             "prefix": "!tr"
+         });
+         Stats.create({
+            id
          });
 
       }
@@ -748,16 +796,28 @@ exports.addTask = function addTask (task)
 
 };
 
-// ------------
-// Update stat
-// ------------
+// -------------
+// Update stats
+// -------------
 
-exports.increaseServers = function increaseServers (id)
+// Increase the count in Servers table
+exports.increaseServersCount = function increaseServersCount (id)
 {
 
-   console.log("DEBUG: Stage Update stat");
+   console.log("DEBUG: Stage Update count in Servers table");
    return Servers.increment(
       "count",
+      {"where": {id}}
+   );
+
+};
+
+exports.increaseStatsCount = function increaseStatsCount (col, id)
+{
+
+   console.log("DEBUG: Stage Update counts in stats table");
+   return Stats.increment(
+      col,
       {"where": {id}}
    );
 
@@ -779,7 +839,13 @@ exports.getStats = function getStats (callback)
   `(select count(distinct origin) as "activeTasks" ` +
   `from tasks where active = TRUE) as table4, ` +
   `(select count(distinct origin) as "activeUserTasks" ` +
-  `from tasks where active = TRUE and origin like '@%') as table5;`,
+  `from tasks where active = TRUE and origin like '@%') as table5,` +
+  `(select message as "message" from stats where id = 'bot') as table6,` +
+  `(select translation as "translation" from stats where id = 'bot') as table7,` +
+  `(select embedon as "embedon" from stats where id = 'bot') as table8,` +
+  `(select embedoff as "embedoff" from stats where id = 'bot') as table9, ` +
+  `(select images as "images" from stats where id = 'bot') as table10, ` +
+  `(select gif as "gif" from stats where id = 'bot') as table11;`,
       {"type": Sequelize.QueryTypes.SELECT}
    ).
       then(
@@ -812,7 +878,13 @@ exports.getServerInfo = function getServerInfo (id, callback)
    `(select webhookactive as "webhookactive" from servers where id = ?) as table6,` +
    `(select webhookid as "webhookid" from servers where id = ?) as table7,` +
    `(select webhooktoken as "webhooktoken" from servers where id = ?) as table8,` +
-   `(select prefix as "prefix" from servers where id = ?) as table9;`, {"replacements": [ id, id, id, id, id, id, id, id, id],
+   `(select prefix as "prefix" from servers where id = ?) as table9,` +
+   `(select message as "message" from stats where id = ?) as table10,` +
+   `(select translation as "translation" from stats where id = ?) as table11,` +
+   `(select embedon as "embedon" from stats where id = ?) as table12, ` +
+   `(select embedoff as "embedoff" from stats where id = ?) as table13, ` +
+   `(select images as "images" from stats where id = ?) as table14, ` +
+   `(select gif as "gif" from stats where id = ?) as table15;`, {"replacements": [ id, id, id, id, id, id, id, id, id, id, id, id, id, id, id],
       "type": db.QueryTypes.SELECT}).
       then(
          (result) => callback(result),

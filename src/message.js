@@ -69,8 +69,27 @@ module.exports = function run (config, message, edited, deleted)
 
    }
 
-   if (message.content === "" || message.content === " ")
+   FileOverride: if (message.content === "" || message.content === " ")
    {
+
+      if (message.attachments.size !== 0)
+      {
+
+         const col = "images";
+         let id = "bot";
+         db.increaseStatsCount(col, id);
+
+         if (message.channel.type === "text")
+         {
+
+            id = message.channel.guild.id;
+
+         }
+
+         db.increaseStatsCount(col, id);
+         break FileOverride;
+
+      }
 
       console.log(`--m.js--- Empty Message Error: ----1----\nServer: ${message.channel.guild.name},\nChannel: ${message.channel.id} - ${message.channel.name},\nMessage ID: ${message.id},\nContent: ${message.content},\nWas Image: ${message.attachments},\nwas Embed: ${message.embeds},\nSender: ${message.member.displayName} - ${message.member.id},\nTimestamp: ${message.createdAt}\n----------------------------------------`);
 
@@ -82,6 +101,18 @@ module.exports = function run (config, message, edited, deleted)
       if (message.content.startsWith("https://tenor.com/"))
       {
 
+         const col = "gif";
+         let id = "bot";
+         db.increaseStatsCount(col, id);
+
+         if (message.channel.type === "text")
+         {
+
+            id = message.channel.guild.id;
+
+         }
+
+         db.increaseStatsCount(col, id);
          break GifOverride;
 
       }

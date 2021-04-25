@@ -149,10 +149,22 @@ exports.listen = function listen (client)
                // SetStatus(client.user, "online", config);
 
             }
-            if (message.guild)
+            if (!message.author.bot)
             {
 
                console.log(`${message.guild.name} - ${message.guild.id} - ${message.createdAt}`);
+               const col = "message";
+               let id = "bot";
+               db.increaseStatsCount(col, id);
+
+               if (message.channel.type === "text")
+               {
+
+                  id = message.channel.guild.id;
+
+               }
+
+               db.increaseStatsCount(col, id);
                // Need to have another if statment here, if server length is greeater than 1 then run below, if not do nothing.
                // SetStatus(client.user, "online", config);
 
