@@ -3,10 +3,10 @@
 * With the introduction of Version 1.2.2, we are proud to introduce the Centralized Version of Rita with a One-Click Invite. This means you can still create your own personal RITA bot. Though now you have the option to forgo that personal setup and can instead use the Centralized version of RITA. Which has the added benefit of not requiring any of the setup steps required that you would have to do for your own personal RITA bot. Just invite the bot to your server and setup the bot to your liking.  
 * One-Click Invite Trial, We have decided to set up an extended trial of the Centralized Version of Rita. If you would like to take part and have access to the Centralized Version of RITA. Please join our discord for more info. https://discord.gg/AtJcjvnkg6
  
-# 1.2.2 Major Changes
+### 1.2.2 Major Changes
 * Rita now uses Discord.js V12.
 
-# 1.2.2 Bug Fixes
+### 1.2.2 Bug Fixes
 * Same channel translation is now working. You no longer need to have multiple channels set up, you can do it all in one channel.
     * Example `!tr channel from english to spanish for #SameChannelMention` Will translate any English messages to Spanish in your current channel
 * AUTO Translate is now working, you can define the "from" language as "AUTO" and it will detect the language for you.
@@ -20,7 +20,7 @@
 * `google-translate-api` has been changed to RCP to reduce and mitigate the load limiter.
 * We have found a way to speed up the translation process, so it should be a little snappier in future. 
  
-# 1.2.2 Command Changes 
+### 1.2.2 Command Changes 
 * New commands added (`debug`, `donate`, `prefix`, `help commands`, `create`)
   > `debug` Is for debug options. Examples below:
     >> - `!tr debug on` - turns on debugging, creates debugging channel and webhook
@@ -45,10 +45,10 @@
   > `settings dbfix` - This is no longer needed as DB is repaired (If needed) on each startup. 
   > `cpu` - It was broken and I have no idea how to fix it.
  
-# 1.2.2 Database Changes
+### 1.2.2 Database Changes
 * As the new variables above are stored in the DB, we have made a few changes to how these are handled and they are auto-created upon load. Meaning you no longer need to worry about them again. (If you get any error's please let us know) 
  
-# 1.2.2 Misc Changes
+### 1.2.2 Misc Changes
 * Various Security vulnerabilities fixed.
 * Fixed various issues.
 * Major code changes
