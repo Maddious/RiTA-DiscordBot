@@ -232,10 +232,10 @@ module.exports = function run (data)
       // Add !i to end of message to ignore it instead
       // ----------------------------------------------
 
-      if (data.message.content === undefined || data.message.content === "" || data.message.content === " ")
+      if (data.message.content === undefined || data.message.content === " ")
       {
 
-         console.log(`Blank Message from server ${data.message.guild.name}`);
+         console.log(`--a.js--- Empty Message Error: ----1----\nServer: ${data.message.channel.guild.name},\nChannel: ${data.message.channel.id} - ${data.message.channel.name},\nMessage ID: ${data.message.id},\nContent: ${data.message.content},\nWas Image: ${data.message.attachments},\nwas Embed: ${data.message.embeds},\nSender: ${data.message.member.displayName} - ${data.message.member.id},\nTimestamp: ${data.message.createdAt}\n----------------------------------------`);
          data.message.content = `Error: 10001 - Auto Error, Please report to admins.`;
 
       }

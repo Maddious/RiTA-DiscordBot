@@ -58,7 +58,7 @@
       "keyword-spacing": "warn",
       "linebreak-style": "warn",
       "max-depth": ["warn", 4],
-      "max-len": ["warn", 400],
+      "max-len": ["warn", 500],
       "max-nested-callbacks": ["warn", 5],
       "max-params": ["warn", 5],
       "max-statements-per-line": ["warn", {"max": 2}],

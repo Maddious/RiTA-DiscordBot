@@ -72,7 +72,7 @@ module.exports = function run (config, message, edited, deleted)
    if (message.content === "" || message.content === " ")
    {
 
-      console.log(`Empty Message from server ${message.channel.guild.name}`);
+      console.log(`--m.js--- Empty Message Error: ----1----\nServer: ${message.channel.guild.name},\nChannel: ${message.channel.id} - ${message.channel.name},\nMessage ID: ${message.id},\nContent: ${message.content},\nWas Image: ${message.attachments},\nwas Embed: ${message.embeds},\nSender: ${message.member.displayName} - ${message.member.id},\nTimestamp: ${message.createdAt}\n----------------------------------------`);
 
    }
 
@@ -94,7 +94,7 @@ module.exports = function run (config, message, edited, deleted)
       else if (message.content === "" || message.content === " ")
       {
 
-         console.log(`Empty Message from server ${message.channel.guild.name}`);
+         console.log(`--m.js--- Empty Message Error: ----2----\nServer: ${message.channel.guild.name},\nChannel: ${message.channel.id} - ${message.channel.name},\nMessage ID: ${message.id},\nContent: ${message.content},\nWas Image: ${message.attachments},\nwas Embed: ${message.embeds},\nSender: ${message.member.displayName} - ${message.member.id},\nTimestamp: ${message.createdAt}\n----------------------------------------`);
          return;
 
       }

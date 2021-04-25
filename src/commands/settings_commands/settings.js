@@ -131,7 +131,7 @@ const getSettings = function getSettings (data)
          else
          {
 
-            data.text += "End List";
+            data.text += "\n";
 
          }
 

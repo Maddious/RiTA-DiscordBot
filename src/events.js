@@ -152,7 +152,7 @@ exports.listen = function listen (client)
             if (message.guild)
             {
 
-               console.log(`${message.guild.name} - ${message.guild.id}`);
+               console.log(`${message.guild.name} - ${message.guild.id} - ${message.createdAt}`);
                // Need to have another if statment here, if server length is greeater than 1 then run below, if not do nothing.
                // SetStatus(client.user, "online", config);
 
