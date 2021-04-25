@@ -101,6 +101,10 @@ const Stats = db.define(
       "gif": {
          "type": Sequelize.INTEGER,
          "defaultValue": 0
+      },
+      "react": {
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
       }
    }
 );
@@ -845,7 +849,8 @@ exports.getStats = function getStats (callback)
   `(select embedon as "embedon" from stats where id = 'bot') as table8,` +
   `(select embedoff as "embedoff" from stats where id = 'bot') as table9, ` +
   `(select images as "images" from stats where id = 'bot') as table10, ` +
-  `(select gif as "gif" from stats where id = 'bot') as table11;`,
+  `(select react as "react" from stats where id = 'bot') as table11, ` +
+  `(select gif as "gif" from stats where id = 'bot') as table12;`,
       {"type": Sequelize.QueryTypes.SELECT}
    ).
       then(
@@ -884,7 +889,8 @@ exports.getServerInfo = function getServerInfo (id, callback)
    `(select embedon as "embedon" from stats where id = ?) as table12, ` +
    `(select embedoff as "embedoff" from stats where id = ?) as table13, ` +
    `(select images as "images" from stats where id = ?) as table14, ` +
-   `(select gif as "gif" from stats where id = ?) as table15;`, {"replacements": [ id, id, id, id, id, id, id, id, id, id, id, id, id, id, id],
+   `(select react as "react" from stats where id = ?) as table15, ` +
+   `(select gif as "gif" from stats where id = ?) as table16;`, {"replacements": [ id, id, id, id, id, id, id, id, id, id, id, id, id, id, id, id],
       "type": db.QueryTypes.SELECT}).
       then(
          (result) => callback(result),
