@@ -38,7 +38,7 @@ const devConsole = function devConsole (data)
 const hookSend = function hookSend (data)
 {
 
-   const embed = new discord.RichEmbed({
+   const embed = new discord.MessageEmbed({
       "color": colors(data.color),
       "description": data.msg,
       "footer": {
@@ -71,7 +71,7 @@ const errorLog = function errorLog (error, subtype, id)
       "discord": ":notepad_spiral: DiscordAPIError: Unknown Message",
       "dm": ":skull_crossbones:  Discord - user.createDM",
       "edit": ":crayon:  Discord - message.edit",
-      "fetch": ":no_pedestrians:  Discord - client.fetchUser",
+      "fetch": ":no_pedestrians:  Discord - client.users.fetch",
       "presence": ":loudspeaker:  Discord - client.setPresence",
       "react": ":anger:  Discord - message.react",
       "send": ":postbox:  Discord - send",

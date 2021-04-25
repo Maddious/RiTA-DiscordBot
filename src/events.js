@@ -29,10 +29,10 @@ exports.listen = function listen (client)
 
    client.on(
       "ready",
-      () =>
+      async () =>
       {
 
-         db.initializeDatabase(client);
+         await db.initializeDatabase(client);
 
          // -----------------
          // Default Settings
@@ -80,9 +80,9 @@ exports.listen = function listen (client)
 
          console.log(oneLine`
          Shard#${shard.id}:  ${shard.id + 1} / ${shard.count} online -
-         ${client.guilds.size.toLocaleString()} guilds,
-         ${client.channels.size.toLocaleString()} channels,
-         ${client.users.size.toLocaleString()} users
+         ${client.guilds.cache.size.toLocaleString()} guilds,
+         ${client.channels.cache.size.toLocaleString()} channels,
+         ${client.users.cache.size.toLocaleString()} users
       `);
 
          setStatus(
@@ -149,10 +149,22 @@ exports.listen = function listen (client)
                // SetStatus(client.user, "online", config);
 
             }
-            if (message.guild)
+            if (!message.author.bot)
             {
 
-               console.log(`${message.guild.name} - ${message.guild.id}`);
+               console.log(`${message.guild.name} - ${message.guild.id} - ${message.createdAt}`);
+               const col = "message";
+               let id = "bot";
+               db.increaseStatsCount(col, id);
+
+               if (message.channel.type === "text")
+               {
+
+                  id = message.channel.guild.id;
+
+               }
+
+               db.increaseStatsCount(col, id);
                // Need to have another if statment here, if server length is greeater than 1 then run below, if not do nothing.
                // SetStatus(client.user, "online", config);
 
@@ -189,7 +201,6 @@ exports.listen = function listen (client)
    // -----------
    // Raw events
    // -----------
-
    client.on(
       "raw",
       (raw) =>
@@ -350,7 +361,7 @@ exports.listen = function listen (client)
       "guildUnavailable",
       (guild) => logger(
          "warn",
-         `Guild unavailable:${guild.id}`
+         `Guild unavailable: ${guild.id}`
       )
    );
 

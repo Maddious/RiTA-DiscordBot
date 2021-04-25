@@ -11,7 +11,7 @@ const logger = require("../../core/logger");
 const process = require("process");
 const {stripIndent} = require("common-tags");
 const {oneLine} = require("common-tags");
-const secConverter = require("seconds-converter");
+const secConverter = require("rita-seconds-converter");
 const sendMessage = require("../../core/command.send");
 
 // ------------
@@ -68,9 +68,9 @@ module.exports.shards = function shards (data)
 
       data.text = `​\n${oneLine`
          :bar_chart:  ​
-         **${data.message.client.guilds.size}**  guilds  ·  ​
-         **${data.message.client.channels.size}**  channels  ·  ​
-         **${data.message.client.users.size}**  users
+         **${data.message.client.guilds.cache.size}**  guilds  ·  ​
+         **${data.message.client.channels.cache.size}**  channels  ·  ​
+         **${data.message.client.users.cache.size}**  users
       `}\n​`;
 
       // -------------
@@ -97,13 +97,13 @@ module.exports.shards = function shards (data)
 
    };
 
-   shard.fetchClientValues("guilds.size").then((guildsSize) =>
+   shard.fetchClientValues("guilds.cache.size").then((guildsSize) =>
    {
 
-      shard.fetchClientValues("channels.size").then((channelsSize) =>
+      shard.fetchClientValues("channels.cache.size").then((channelsSize) =>
       {
 
-         shard.fetchClientValues("users.size").then((usersSize) =>
+         shard.fetchClientValues("users.cache.size").then((usersSize) =>
          {
 
             const output = [];

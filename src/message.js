@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable sort-keys */
 // -----------------
 // Global variables
@@ -68,6 +69,31 @@ module.exports = function run (config, message, edited, deleted)
 
    }
 
+   FileOverride: if (message.content === "" || message.content === " ")
+   {
+
+      if (message.attachments.size !== 0)
+      {
+
+         const col = "images";
+         let id = "bot";
+         db.increaseStatsCount(col, id);
+
+         if (message.channel.type === "text")
+         {
+
+            id = message.channel.guild.id;
+
+         }
+
+         db.increaseStatsCount(col, id);
+         break FileOverride;
+
+      }
+
+      console.log(`--m.js--- Empty Message Error: ----1----\nServer: ${message.channel.guild.name},\nChannel: ${message.channel.id} - ${message.channel.name},\nMessage ID: ${message.id},\nContent: ${message.content},\nWas Image: ${message.attachments},\nwas Embed: ${message.embeds},\nSender: ${message.member.displayName} - ${message.member.id},\nTimestamp: ${message.createdAt}\n----------------------------------------`);
+
+   }
 
    GifOverride: if (message.embeds.length !== 0)
    {
@@ -75,11 +101,34 @@ module.exports = function run (config, message, edited, deleted)
       if (message.content.startsWith("https://tenor.com/"))
       {
 
-         console.log("Has Web");
+         const col = "gif";
+         let id = "bot";
+         db.increaseStatsCount(col, id);
+
+         if (message.channel.type === "text")
+         {
+
+            id = message.channel.guild.id;
+
+         }
+
+         db.increaseStatsCount(col, id);
          break GifOverride;
 
       }
-      message.content = message.embeds[0].description;
+      if (message.embeds[0].description)
+      {
+
+         message.content = message.embeds[0].description;
+
+      }
+      else if (message.content === "" || message.content === " ")
+      {
+
+         console.log(`--m.js--- Empty Message Error: ----2----\nServer: ${message.channel.guild.name},\nChannel: ${message.channel.id} - ${message.channel.name},\nMessage ID: ${message.id},\nContent: ${message.content},\nWas Image: ${message.attachments},\nwas Embed: ${message.embeds},\nSender: ${message.member.displayName} - ${message.member.id},\nTimestamp: ${message.createdAt}\n----------------------------------------`);
+         return;
+
+      }
 
    }
 
@@ -145,7 +194,7 @@ module.exports = function run (config, message, edited, deleted)
 
    {
 
-      if (message.content.startsWith(config.translateCmd) || message.content.startsWith(config.translateCmdShort) || message.isMentioned(bot))
+      if (message.content.startsWith(config.translateCmd) || message.content.startsWith(config.translateCmdShort) || message.mentions.has(bot.id))
       {
 
          // eslint-disable-next-line consistent-return

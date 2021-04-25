@@ -6,7 +6,7 @@
 const sendMessage = require("../../core/command.send");
 const colors = require("../../core/colors");
 const discord = require("discord.js");
-const richEmbedMessage = new discord.RichEmbed();
+const richEmbedMessage = new discord.MessageEmbed();
 const time = {
    "long": 60000,
    "short": 5000
@@ -674,7 +674,7 @@ module.exports = function run (data)
          );
 
          console.log("Insufficient Permission");
-         data.message.delete(time.short).catch((err) => console.log(
+         data.message.delete({"timeout": time.short}).catch((err) => console.log(
             "Command Message Deleted Error, help.js = ",
             err
          ));
@@ -682,7 +682,7 @@ module.exports = function run (data)
             setColor(colors.get(data.color)).
             setAuthor(
                data.bot.username,
-               data.bot.displayAvatarURL
+               data.bot.displayAvatarURL()
             ).
             setDescription("This command is available only to Developers. \n\n").
             setTimestamp().
@@ -695,7 +695,7 @@ module.exports = function run (data)
          return data.message.channel.send(richEmbedMessage).then((msg) =>
          {
 
-            msg.delete(time.long).catch((err) => console.log(
+            msg.delete({"timeout": time.long}).catch((err) => console.log(
                "Bot Message Deleted Error, help.js = ",
                err
             ));

@@ -20,13 +20,13 @@ module.exports.run = function run (data)
 {
 
 
-   data.message.delete(time.short).catch((err) => console.log(
+   data.message.delete({"timeout": time.short}).catch((err) => console.log(
       "Command Message Deleted Error, command.send.js = ",
       err
    ));
    return data.message.channel.send({"embed": {
       "author": {
-         "icon_url": data.client.user.displayAvatarURL,
+         "icon_url": data.client.user.displayAvatarURL(),
          "name": data.client.user.username
       },
       "color": 13107200,
@@ -36,7 +36,7 @@ module.exports.run = function run (data)
    }}).then((msg) =>
    {
 
-      msg.delete(time.long).catch((err) => console.log(
+      msg.delete({"timeout": time.long}).catch((err) => console.log(
          "UpdateBot Bot Message Deleted Error, settings.js = ",
          err
       ));
@@ -126,7 +126,7 @@ module.exports.old = function old (data)
 
    }
 
-   data.message.channel.fetchMessages({
+   data.message.channel.messages.fetch({
       limit
    }).then((messages) =>
    {

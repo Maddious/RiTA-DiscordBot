@@ -5,7 +5,7 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 
 const time = {
-   "long": 10000,
+   "long": 60000,
    "short": 20000
 };
 
@@ -60,7 +60,7 @@ module.exports = function run (bot, status, config, writable = true)
 
          // Run this on stratup
          bot.setPresence({
-            "game": {
+            "activities": {
                "name": activevar[0]
             },
             "status": "online"
@@ -74,7 +74,7 @@ module.exports = function run (bot, status, config, writable = true)
                const actID = Math.floor(Math.random() * 6);
                bot.setPresence({
 
-                  "game": {
+                  "activities": {
                      "name": activevar[actID],
                      "type": statusvar[actID]
                   },
