@@ -26,16 +26,20 @@
     >> - `!tr debug on` - turns on debugging, creates debugging channel and webhook
     >> - `!tr debug off` - turns off debugging
     >> - `!tr stats debug` - prints webhook "ID" and "Token" in channel
+
   > `donate` - If you would like to donate to RITA you can find the info with this command. Since RITA bot is 100% free donations are greatly appreciated to help with server costs. Examples below:
     >> - `!tr donate` - Will return donation options
     >> - `!tr donate github` - You can Donate at Github Sponsors
     >> - `!tr donate oc` - You can Donate at Open Collective
+
   > `prefix` - You can now change the prefix of your bot, you can make it whatever you want. Examples below:
     >> - `!tr prefix` - Will list your current prefix. Default prefix is `!tr`
     >> - `!tr prefix $tr` - your prefix would now be `$tr` instead of `!tr`
     >> - `!tr prefix reset` - resets your prefix back to `!tr` So if you changed the prefix to `$tr` you would run `$tr prefix reset`
+ 
   > `help commands` - Shows a list of all available commands. Example below:
     >> - `!tr help`
+
   > `create` - Allows you to use RITA to create a new channel. Example below:
     >> - `!tr create bob` - will create a new channel named bob
 * Command Changed (`stats global`, `stats server`)
