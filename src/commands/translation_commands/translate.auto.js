@@ -232,7 +232,7 @@ module.exports = function run (data)
          if (dest.startsWith("<#"))
          {
 
-            const channel = data.client.channels.get(dest.slice(2, -1));
+            const channel = data.client.channels.cache.get(dest.slice(2, -1));
 
             if (channel)
             {

@@ -176,7 +176,7 @@ exports.getRoleColor = function getRoleColor (member)
 exports.getUser = function getUser (client, userID, cb)
 {
 
-   const user = client.users.get(userID);
+   const user = client.users.cache.get(userID);
 
    if (user)
    {
@@ -187,7 +187,7 @@ exports.getUser = function getUser (client, userID, cb)
 
    // User not in cache, fetch 'em
 
-   client.fetchUser(userID).then(cb).
+   client.users.fetch(userID).then(cb).
       catch((err) =>
       {
 
@@ -208,7 +208,7 @@ exports.getUser = function getUser (client, userID, cb)
 exports.getChannel = function getChannel (client, channelID, userID, cb)
 {
 
-   const channel = client.channels.get(channelID);
+   const channel = client.channels.cache.get(channelID);
 
    if (channel)
    {
@@ -261,7 +261,7 @@ exports.getMessage = function getMessage (client, messageID, channelID, userID, 
       (channel) =>
       {
 
-         const message = channel.messages.get(messageID);
+         const message = channel.messages.cache.get(messageID);
 
          if (message)
          {
@@ -272,7 +272,7 @@ exports.getMessage = function getMessage (client, messageID, channelID, userID, 
 
          // Message not in channel cache
 
-         channel.fetchMessage(messageID).then(cb).
+         channel.messages.fetch(messageID).then(cb).
             catch((err) => cb(
                null,
                err

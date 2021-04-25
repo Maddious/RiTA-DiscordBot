@@ -41,6 +41,7 @@ const checkPerms = function checkPerms (data, sendBox)
          "footer": data.footer,
          "forward": data.forward,
          "guild": data.message.guild,
+         "message": data.message,
          "origin": null,
          "text": data.text,
          "title": data.title
@@ -72,7 +73,7 @@ const checkPerms = function checkPerms (data, sendBox)
    if (data.forward)
    {
 
-      const forwardChannel = data.client.channels.get(data.forward);
+      const forwardChannel = data.client.channels.cache.get(data.forward);
 
       if (forwardChannel)
       {
@@ -277,11 +278,11 @@ const embedOn = function embedOn (data)
          for (let i = 0; i < attachments.length; i += 1)
          {
 
-            const attachmentObj = new discord.Attachment(
+            const attachmentObj = new discord.MessageAttachment(
                attachments[i].url,
-               attachments[i].filename
+               attachments[i].name
             );
-            data.channel.send(`**${messageData.author.username}** sent a file:`, {"file": attachmentObj});
+            data.channel.send(`**${messageData.author.username}** sent a file:`, attachmentObj);
 
          }
 
@@ -303,7 +304,7 @@ const embedOn = function embedOn (data)
          data.author = {
             name: data.author.username,
             //eslint-disable-next-line camelcase
-            icon_url: data.author.displayAvatarURL
+            icon_url: data.author.displayAvatarURL()
          };
       }*/
 
@@ -319,7 +320,7 @@ const embedOn = function embedOn (data)
                // eslint-disable-next-line no-redeclare
                var embed = {
                   "author": {
-                     "icon_url": data.bot.displayAvatarURL,
+                     "icon_url": data.bot.displayAvatarURL(),
                      "name": data.bot.username
                   },
                   "color": colors.get(data.color),
@@ -337,7 +338,7 @@ const embedOn = function embedOn (data)
                // eslint-disable-next-line no-redeclare
                var embed = {
                   "author": {
-                     "icon_url": data.author.displayAvatarURL,
+                     "icon_url": data.author.displayAvatarURL(),
                      "name": data.author.username
                   },
                   "color": colors.get(data.color),
@@ -468,9 +469,9 @@ const embedOff = function embedOff (data)
          for (let i = 0; i < attachments.length; i += 1)
          {
 
-            const attachmentObj = new discord.Attachment(
+            const attachmentObj = new discord.MessageAttachment(
                attachments[i].url,
-               attachments[i].filename
+               attachments[i].name
             );
             files.push(attachmentObj);
 
@@ -511,7 +512,7 @@ const embedOff = function embedOff (data)
       {
 
          return webhook.send(null, {
-            "avatarURL": messageData.author.displayAvatarURL,
+            "avatarURL": messageData.author.displayAvatarURL(),
             files,
             "username": messageData.author.username
          });
@@ -527,7 +528,7 @@ const embedOff = function embedOff (data)
             webhook.send(data.text, {
                // If you get a error at the below line then the bot does not have write permissions.
 
-               "avatarURL": data.bot.displayAvatarURL,
+               "avatarURL": data.bot.displayAvatarURL(),
                files,
                "username": data.bot.username || data.message
             });
@@ -540,7 +541,7 @@ const embedOff = function embedOff (data)
             webhook.send(data.text, {
                // If you get a error at the below line then the bot does not have write permissions.
 
-               "avatarURL": data.author.displayAvatarURL,
+               "avatarURL": data.author.displayAvatarURL(),
                files,
                "username": data.author.username || data.message
             });
@@ -588,9 +589,9 @@ const embedOff = function embedOff (data)
          for (let i = 0; i < attachments.length; i += 1)
          {
 
-            const attachmentObj = new discord.Attachment(
+            const attachmentObj = new discord.MessageAttachment(
                attachments[i].url,
-               attachments[i].filename
+               attachments[i].name
             );
             data.channel.send(attachmentObj);
 
@@ -639,8 +640,8 @@ const embedOff = function embedOff (data)
       if (data.channel.type === "dm")
       {
 
-         const embed = new discord.RichEmbed().
-            setAuthor(data.author.username, data.author.displayAvatarURL).
+         const embed = new discord.MessageEmbed().
+            setAuthor(data.author.username, data.author.displayAvatarURL()).
             setColor(colors.get(data.color)).
             setDescription(data.text).
             setFooter(data.footer.text);
@@ -795,14 +796,42 @@ module.exports = function run (data)
    {
 
       console.log("DEBUG: Embed on");
+
+      const col = "embedon";
+      let id = "bot";
+      db.increaseStatsCount(col, id);
+
+      if (data.message.channel.type === "text")
+      {
+
+         id = data.message.channel.guild.id;
+
+      }
+
+      db.increaseStatsCount(col, id);
+
       return embedOn(data);
 
    }
    else
-   if (data.message.guild.me.hasPermission("MANAGE_WEBHOOKS"))
+   if (data.message.guild.me.permissions.has("MANAGE_WEBHOOKS"))
    {
 
       console.log("DEBUG: Embed off");
+
+      const col = "embedoff";
+      let id = "bot";
+      db.increaseStatsCount(col, id);
+
+      if (data.message.channel.type === "text")
+      {
+
+         id = data.message.channel.guild.id;
+
+      }
+
+      db.increaseStatsCount(col, id);
+
       return embedOff(data);
 
    }

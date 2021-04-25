@@ -5,7 +5,7 @@
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
-const translate = require("google-translate-api");
+const translate = require("rita-google-translate-api");
 const db = require("./db");
 const botSend = require("./send");
 const fn = require("./helpers");
@@ -192,7 +192,9 @@ const invalidLangChecker = function invalidLangChecker (obj, callback)
 const updateServerStats = function updateServerStats (message)
 {
 
+   const col = "translation";
    let id = "bot";
+   db.increaseStatsCount(col, id);
 
    if (message.channel.type === "text")
    {
@@ -200,8 +202,8 @@ const updateServerStats = function updateServerStats (message)
       id = message.channel.guild.id;
 
    }
-
-   db.increaseServers(id);
+   db.increaseServersCount(id);
+   db.increaseStatsCount(col, id);
 
 };
 

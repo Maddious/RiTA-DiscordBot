@@ -1,3 +1,5 @@
+/* eslint-disable complexity */
+/* eslint-disable sort-keys */
 // -----------------
 // Global variables
 // -----------------
@@ -19,30 +21,117 @@ module.exports = function run (config, message, edited, deleted)
    module.exports.message = message;
    const client = message.client;
    const bot = client.user;
-   // Const bot2botstyle = db.server_obj[message.guild.id].bot2botstyle;
-
-   // ------------------------
-   // Ignore messages by bots
-   // ------------------------
-
-
-   // If (bot2botstyle === "off")
-   // {
-   if (message.author.bot)
+   if (message.channel.type === "dm" || message.type !== "DEFAULT")
    {
 
       return;
 
    }
-   // }
+   if (!db.server_obj[message.guild.id])
+   {
 
-   // If (bot2botstyle === "on")
-   // {
-   //   If (message.author.discriminator === "0000")
-   //   {
-   //      Return;
-   //   }
-   // }
+      return;
+
+   }
+
+   // ------------------------
+   // Ignore messages by bots
+   // ------------------------
+   const bot2botstyle = db.server_obj[message.guild.id].db.bot2botstyle;
+
+   if (bot2botstyle === "off")
+   {
+
+      if (message.author.bot)
+      {
+
+         return;
+
+      }
+
+   }
+   else if (bot2botstyle === "on")
+   {
+
+      // eslint-disable-next-line no-bitwise
+      if (message.webhookID)
+      {
+
+         return;
+
+      }
+      if (message.author.id === message.client.user.id)
+      {
+
+         return;
+
+      }
+
+   }
+
+   FileOverride: if (message.content === "" || message.content === " ")
+   {
+
+      if (message.attachments.size !== 0)
+      {
+
+         const col = "images";
+         let id = "bot";
+         db.increaseStatsCount(col, id);
+
+         if (message.channel.type === "text")
+         {
+
+            id = message.channel.guild.id;
+
+         }
+
+         db.increaseStatsCount(col, id);
+         break FileOverride;
+
+      }
+
+      console.log(`--m.js--- Empty Message Error: ----1----\nServer: ${message.channel.guild.name},\nChannel: ${message.channel.id} - ${message.channel.name},\nMessage ID: ${message.id},\nContent: ${message.content},\nWas Image: ${message.attachments},\nwas Embed: ${message.embeds},\nSender: ${message.member.displayName} - ${message.member.id},\nTimestamp: ${message.createdAt}\n----------------------------------------`);
+
+   }
+
+   GifOverride: if (message.embeds.length !== 0)
+   {
+
+      if (message.content.startsWith("https://tenor.com/"))
+      {
+
+         const col = "gif";
+         let id = "bot";
+         db.increaseStatsCount(col, id);
+
+         if (message.channel.type === "text")
+         {
+
+            id = message.channel.guild.id;
+
+         }
+
+         db.increaseStatsCount(col, id);
+         break GifOverride;
+
+      }
+      if (message.embeds[0].description)
+      {
+
+         message.content = message.embeds[0].description;
+
+      }
+      else if (message.content === "" || message.content === " ")
+      {
+
+         console.log(`--m.js--- Empty Message Error: ----2----\nServer: ${message.channel.guild.name},\nChannel: ${message.channel.id} - ${message.channel.name},\nMessage ID: ${message.id},\nContent: ${message.content},\nWas Image: ${message.attachments},\nwas Embed: ${message.embeds},\nSender: ${message.member.displayName} - ${message.member.id},\nTimestamp: ${message.createdAt}\n----------------------------------------`);
+         return;
+
+      }
+
+   }
+
 
    // -----------------------------------------
    // Embed member permissions in message data
@@ -71,22 +160,27 @@ module.exports = function run (config, message, edited, deleted)
    // ------------
 
    const data = {
-      bot,
       "canWrite": true,
       "channel": message.channel,
-      client,
       config,
+      client,
       "member": message.member,
+      bot,
       message
    };
    if (data.message.channel.type !== "dm")
    {
 
-      // Replace username with nickname if exists
-      if (data.member.displayName)
+      if (data.member)
       {
 
-         data.message.author.username = data.member.displayName;
+         // Replace username with nickname if exists
+         if (data.member.displayName)
+         {
+
+            data.message.author.username = data.member.displayName;
+
+         }
 
       }
 
@@ -96,11 +190,17 @@ module.exports = function run (config, message, edited, deleted)
    // Proccess Commands
    // ------------------
 
-   if (message.content.startsWith(config.translateCmd) || message.content.startsWith(config.translateCmdShort) || message.isMentioned(bot))
+   if (message.content !== undefined)
+
    {
 
-      // eslint-disable-next-line consistent-return
-      return cmdArgs(data);
+      if (message.content.startsWith(config.translateCmd) || message.content.startsWith(config.translateCmdShort) || message.mentions.has(bot.id))
+      {
+
+         // eslint-disable-next-line consistent-return
+         return cmdArgs(data);
+
+      }
 
    }
 

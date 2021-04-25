@@ -113,7 +113,7 @@ const getSettings = function getSettings (data)
 
       data.text = "Active Servers - ";
 
-      const activeGuilds = data.client.guilds.array();
+      const activeGuilds = data.client.guilds.cache.array();
 
       data.text += `${activeGuilds.length}\n\n`;
 
@@ -131,7 +131,7 @@ const getSettings = function getSettings (data)
          else
          {
 
-            data.text += "End List";
+            data.text += "\n";
 
          }
 
@@ -141,7 +141,7 @@ const getSettings = function getSettings (data)
       // Send message/file
       // ------------------
 
-      data.message.delete(time.short).catch((err) => console.log(
+      data.message.delete({"timeout": time.short}).catch((err) => console.log(
          "Command Message Deleted Error, command.send.js = ",
          err
       ));
@@ -178,13 +178,13 @@ const getSettings = function getSettings (data)
       //   "Hello, this bot has been updated to a new version.\n " +
       //   "More info: https://ritabot.gg/whats-new/#new-in-121\n");
       // });
-      data.message.delete(time.short).catch((err) => console.log(
+      data.message.delete({"timeout": time.short}).catch((err) => console.log(
          "UpdateBot Command Message Deleted Error, command.send.js = ",
          err
       ));
       return data.message.channel.send({"embed": {
          "author": {
-            "icon_url": data.client.user.displayAvatarURL,
+            "icon_url": data.client.user.displayAvatarURL(),
             "name": data.client.user.username
          },
          "color": 13107200,
@@ -193,7 +193,7 @@ const getSettings = function getSettings (data)
       }}).then((msg) =>
       {
 
-         msg.delete(time.long).catch((err) => console.log(
+         msg.delete({"timeout": time.long}).catch((err) => console.log(
             "UpdateBot Bot Message Deleted Error, settings.js = ",
             err
          ));
@@ -212,7 +212,7 @@ const getSettings = function getSettings (data)
    {
       const guildArray = Array.from(bot.client.guilds.values());
       var i;
-      for (i = 0; i < guildArray.length; i++)
+      for (i = 0; i < guildArray.length; i += 1)
       {
          console.log("Hello");
          const guild = await guildArray[i];

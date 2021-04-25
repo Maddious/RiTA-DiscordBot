@@ -7,6 +7,7 @@
 const langCheck = require("../../core/lang.check");
 const translate = require("../../core/translate");
 const fn = require("../../core/helpers");
+const db = require("../../core/db");
 const logger = require("../../core/logger");
 const countryLangs = require("../../core/country.langs");
 
@@ -59,7 +60,7 @@ module.exports = function run (data, client)
                   "error",
                   err,
                   "command",
-                  data.message.channel.guild.name
+                  data.guild_id
                );
 
             }
@@ -73,7 +74,7 @@ module.exports = function run (data, client)
 
             }
 
-            const flagExists = message.reactions.get(emoji);
+            const flagExists = message.reactions.cache.get(emoji);
 
             // Prevent flag spam
 
@@ -103,7 +104,18 @@ module.exports = function run (data, client)
             // ------------------
             // Start translation
             // ------------------
+            const col = "react";
+            let id = "bot";
+            db.increaseStatsCount(col, id);
 
+            if (message.channel.type === "text")
+            {
+
+               id = data.message.guild.id;
+
+            }
+
+            db.increaseStatsCount(col, id);
             translate(data);
 
          }

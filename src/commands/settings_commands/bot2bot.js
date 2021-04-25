@@ -38,9 +38,9 @@ const bot2bot = function bot2bot (data)
 
             }
             const output =
-            `:warning: This is extremely experimental, use at your own risk! :warning:\n\n` +
             "**```Bot to Bot Translation```**\n" +
-            `Bot to Bot Message translation is now turned : ${commandVariable1}\n\n`;
+            `Bot to Bot Message translation is now turned : ${commandVariable1}\n\n` +
+            `:warning: This is extremely experimental, use at your own risk! :warning:\n\n`;
             data.color = "info";
             data.text = output;
 

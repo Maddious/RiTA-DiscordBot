@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 // -----------------
 // Global variables
 // -----------------
@@ -37,7 +38,7 @@ const devConsole = function devConsole (data)
 const hookSend = function hookSend (data)
 {
 
-   const embed = new discord.RichEmbed({
+   const embed = new discord.MessageEmbed({
       "color": colors(data.color),
       "description": data.msg,
       "footer": {
@@ -70,7 +71,7 @@ const errorLog = function errorLog (error, subtype, id)
       "discord": ":notepad_spiral: DiscordAPIError: Unknown Message",
       "dm": ":skull_crossbones:  Discord - user.createDM",
       "edit": ":crayon:  Discord - message.edit",
-      "fetch": ":no_pedestrians:  Discord - client.fetchUser",
+      "fetch": ":no_pedestrians:  Discord - client.users.fetch",
       "presence": ":loudspeaker:  Discord - client.setPresence",
       "react": ":anger:  Discord - message.react",
       "send": ":postbox:  Discord - send",
@@ -122,15 +123,33 @@ const warnLog = function warnLog (warning)
 const logJoin = function logJoin (guild)
 {
 
-   hookSend({
-      "color": "ok",
-      "msg":
+   if (guild.owner)
+   {
+
+      hookSend({
+         "color": "ok",
+         "msg":
          `${`:white_check_mark:  **${guild.name}**\n` +
          "```md\n> "}${guild.id}\n@${guild.owner.user.username}#${
-            guild.owner.user.discriminator}\n\`\`\`${spacer}${spacer}`,
-      "title": "Joined Guild"
+            guild.owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
+         "title": "Joined Guild"
 
-   });
+      });
+
+   }
+   else
+   {
+
+      hookSend({
+         "color": "ok",
+         "msg":
+         `${`:white_check_mark:  **${guild.name}**\n` +
+         "```md\n> "}${guild.id}\n${guild.memberCount} members#\n\`\`\`${spacer}${spacer}`,
+         "title": "Joined Guild"
+
+      });
+
+   }
 
 };
 
@@ -141,14 +160,31 @@ const logJoin = function logJoin (guild)
 const logLeave = function logLeave (guild)
 {
 
-   hookSend({
-      "color": "warn",
-      "msg":
+   if (guild.owner)
+   {
+
+      hookSend({
+         "color": "warn",
+         "msg":
          `${`:regional_indicator_x:  **${guild.name}**\n` +
          "```md\n> "}${guild.id}\n@${guild.owner.user.username}#${
-            guild.owner.user.discriminator}\n\`\`\`${spacer}${spacer}`,
-      "title": "Left Guild"
-   });
+            guild.owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
+         "title": "Left Guild"
+      });
+
+   }
+   else
+   {
+
+      hookSend({
+         "color": "warn",
+         "msg":
+         `${`:regional_indicator_x:  **${guild.name}**\n` +
+         "```md\n> "}${guild.id}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
+         "title": "Left Guild"
+      });
+
+   }
 
 };
 
@@ -180,6 +216,29 @@ module.exports = function run (type, data, subtype = null, id = "Unknown")
       type
    ))
    {
+
+      if (data.message !== undefined)
+      {
+
+         if (data.message.guild !== undefined)
+
+         {
+
+            console.log("Has guild");
+            const id = data.message.guild.name;
+            return logTypes[type](
+               data,
+               subtype,
+               id
+            );
+
+         }
+
+         console.log("Has Message");
+
+      }
+
+      console.log("Has");
 
       return logTypes[type](
          data,
