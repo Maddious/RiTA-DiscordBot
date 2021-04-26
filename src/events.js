@@ -9,7 +9,7 @@ const auth = require("./core/auth");
 const logger = require("./core/logger");
 const messageHandler = require("./message");
 const db = require("./core/db");
-const setStatus = require("./core/status");
+// Const setStatus = require("./core/status");
 const react = require("./commands/translation_commands/translate.react");
 const botVersion = require("../package.json").version;
 const botCreator = "Collaboration";
@@ -92,11 +92,13 @@ exports.listen = function listen (client)
          ${client.users.cache.size.toLocaleString()} users
       `);
 
-         setStatus(
-            client.user,
-            "online",
-            config
-         );
+         client.user.setPresence({
+            "activity": {
+               "name": "ritabot.gg | !tr help",
+               "type": "PLAYING"
+            },
+            "status": "online"
+         });
 
          // ----------------------
          // All shards are online
