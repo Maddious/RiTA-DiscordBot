@@ -52,7 +52,7 @@ module.exports = function run (data)
       const translationGlobalStats =
          `**\`\`\`@${data.bot.username} - Global Tranlation Stats\`\`\`**\n` +
          `:bar_chart:  In total **\`${stats[0].message}\`** messages across **\`${data.client.guilds.cache.size}\`** servers have been sent\n\n` +
-         `:chart_with_upwards_trend:  RITA has translated **\`${stats[0].translation}\`**  of these messages\n\n` +
+         `:chart_with_upwards_trend:  RITA has translated **\`${stats[0].translation}\`**  for these servers\n\n` +
          `:frame_photo:  A total of **\`${stats[0].images}\`**  images have been sent and **\`${stats[0].gif}\`** Gif's have been shared\n\n` +
          `:flag_white:  **\`${stats[0].react}\`**  messages have been translated with flag reactions \n\n` +
          `:notebook:  **\`${stats[0].embedon}\`**  messages has been sent in **\`Embed On\`** format\n\n` +
@@ -86,7 +86,7 @@ module.exports = function run (data)
          serverTranslationStats =
                `**\`\`\`${data.message.channel.guild.name} - Server Tranlation Stats\`\`\`**\n` +
                `:bar_chart:  In total **\`${data.cmd.server[0].message}\`** messages in this server have been sent\n\n` +
-               `:chart_with_upwards_trend:  RITA has translated **\`${data.cmd.server[0].translation}\`**  of these messages\n\n` +
+               `:chart_with_upwards_trend:  RITA has translated **\`${data.cmd.server[0].translation}\`**  for this server\n\n` +
                `:frame_photo:  A total of **\`${data.cmd.server[0].images}\`**  images have been sent and **\`${data.cmd.server[0].gif}\`** Gif's have been shared\n\n` +
                `:flag_white:  **\`${data.cmd.server[0].react}\`**  messages have been translated with flag reactions \n\n` +
                `:notebook:  **\`${data.cmd.server[0].embedon}\`**  messages have been sent in **\`Embed On\`** format\n\n` +
