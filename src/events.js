@@ -53,6 +53,13 @@ exports.listen = function listen (client)
             "version": botVersion
          };
 
+         if (!process.env.DISCORD_BOT_OWNER_ID)
+         {
+
+            process.env.DISCORD_BOT_OWNER_ID = [];
+
+         }
+
          let shard = client.shard;
 
          if (!shard)

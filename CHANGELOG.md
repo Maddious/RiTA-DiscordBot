@@ -2,7 +2,7 @@
  
 * With the introduction of Version 1.2.2, we are proud to introduce the Centralized Version of Rita with a One-Click Invite. This means you can still create your own personal RITA bot. Though now you have the option to forgo that personal setup and can instead use the Centralized version of RITA. Which has the added benefit of not requiring any of the setup steps required that you would have to do for your own personal RITA bot. Just invite the bot to your server and setup the bot to your liking.  
 * One-Click Invite Trial, We have decided to set up an extended trial of the Centralized Version of Rita. If you would like to take part and have access to the Centralized Version of RITA. Please join our discord for more info. https://discord.gg/AtJcjvnkg6
- 
+
 ### 1.2.2 Major Changes
 * Rita now uses Discord.js V12.
 
@@ -31,7 +31,7 @@
     >> - `!tr donate` - Will return donation options
     >> - `!tr donate github` - You can Donate at Github Sponsors
     >> - `!tr donate oc` - You can Donate at Open Collective
-
+    
   > `prefix` - You can now change the prefix of your bot, you can make it whatever you want. Examples below:
     >> - `!tr prefix` - Will list your current prefix. Default prefix is `!tr`
     >> - `!tr prefix $tr` - your prefix would now be `$tr` instead of `!tr`
@@ -53,6 +53,7 @@
 * As the new variables above are stored in the DB, we have made a few changes to how these are handled and they are auto-created upon load. Meaning you no longer need to worry about them again. (If you get any error's please let us know) 
  
 ### 1.2.2 Misc Changes
+
 * Various Security vulnerabilities fixed.
 * Fixed various issues.
 * Major code changes
