@@ -306,7 +306,10 @@ module.exports = function run (data)
    {
 
       data.color = "warn";
-      data.text = ":warning: Please set `DISCORD_BOT_OWNER_ID` as an array of User IDs allowed to use this command in configuration vars. \n\n **Ex.** ```js\nDISCORD_BOT_OWNER_ID = ['ALLOWED_USER_1_ID', 'ALLOWED_USER_2_ID', 'ALLOWED_USER_3_ID']```\n Place this with ID's in your .env file (local hosting) or environment variables (Heroku).";
+      data.text = `:warning: These command can cause issues with your bot, as a extra layer of security they have been restricted further than discord admins.\n\n ` +
+      ` If you are trying to run the \`settings dbfix\` or \`settings uppdatedb\` commands then you do not need to do this anymore when updating the bot. \n\n ` +
+      ` If however you want access to these commands then please set \`DISCORD_BOT_OWNER_ID\` as an array of User IDs, include any user that is allowed to use these command in configuration vars. \n\n **Ex.** \`\`\`js\nDISCORD_BOT_OWNER_ID=[ALLOWED_USER_1_ID, ALLOWED_USER_2_ID, ALLOWED_USER_3_ID]\`\`\`\n ` +
+      ` Copy the above in to your .env file (local hosting) or environment variables (Heroku) .`;
 
       // -------------
       // Send message
