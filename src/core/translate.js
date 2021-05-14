@@ -115,7 +115,7 @@ const bufferChains = function bufferChains (data, from)
       {
 
          // Language you set it to translate to when setting up !t channel command
-         const langTo = res.raw[1][4][2];
+         const langTo = res.raw[1];
          // Detected language from text
          const detectedLang = res.from.language.iso;
          // Language you set when setting up !t channel command
