@@ -7,6 +7,7 @@
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
+const auth = require("../../core/auth");
 
 // -----------------
 // Webhook Creation
@@ -197,8 +198,16 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   AreDev: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
+
+      if (auth.devID.includes(data.message.author.id))
+      {
+
+         console.log("DEBUG: Developer ID Confirmed");
+         break AreDev;
+
+      }
 
       data.color = "warn";
       data.text = ":cop:  This command is reserved for bot owners.";
