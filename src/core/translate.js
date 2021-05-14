@@ -391,7 +391,7 @@ module.exports = function run (data) // eslint-disable-line complexity
          {
 
             // Language you set it to translate to when setting up !t channel command
-            const langTo = res.raw[1][4][2];
+            const langTo = res.raw[1];
             // Detected language from text
             const detectedLang = res.from.language.iso;
             // Language you set when setting up !t channel command
@@ -454,7 +454,7 @@ module.exports = function run (data) // eslint-disable-line complexity
       {
 
          // Language you set it to translate to when setting up !t channel command
-         const langTo = res.raw[1][4][2];
+         const langTo = res.raw[1];
          // Detected language from text
          const detectedLang = res.from.language.iso;
          // Language you set when setting up !t channel command
