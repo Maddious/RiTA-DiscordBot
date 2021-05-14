@@ -367,9 +367,9 @@ const embedOn = function embedOn (data)
 
                let errMsg = err;
 
-               // ------------------------
-               // Error for long messages
-               // ------------------------
+               // -------
+               // Errors
+               // -------
 
                if (err.code && err.code === error.content)
                {
@@ -390,6 +390,36 @@ const embedOn = function embedOn (data)
                   Chan ID: **${data.channel.id}**\n
                   Owner: **${data.channel.guild.owner}**\n
                   The server owner has been notified. \n`
+                  });
+
+               }
+
+               if (err.code && err.code === error.fileTooLarge)
+               {
+
+                  console.log("DEBUG: Error 40005");
+                  return logger("custom", {
+                     "color": "ok",
+                     "msg": `:exclamation: File To Large \n
+                  Server: **${data.guild.name}** \n
+                  Channel: **${data.channel.name}**\n
+                  Chan ID: **${data.channel.id}**\n
+                  Owner: **${data.channel.guild.owner}**\n`
+                  });
+
+               }
+
+               if (err.code && err.code === error.unknownUser || errorunknownMember || error.invalidRecipient)
+               {
+
+                  console.log(`DEBUG: Error ${err.code}`);
+                  return logger("custom", {
+                     "color": "ok",
+                     "msg": `:exclamation: Unknonw User / Member / Recipient \n
+                  Server: **${data.guild.name}** \n
+                  Channel: **${data.channel.name}**\n
+                  Chan ID: **${data.channel.id}**\n
+                  Owner: **${data.channel.guild.owner}**\n`
                   });
 
                }
