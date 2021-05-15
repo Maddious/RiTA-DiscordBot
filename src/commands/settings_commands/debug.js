@@ -40,6 +40,7 @@ const debuging = async function debuging (data)
    {
 
       console.log("Debug on 1");
+      console.log(`Debug on 1 ${process.env.DISCORD_DEBUG_WEBHOOK_ID}`);
       // Checks if there iS an item in the channels collection that corresponds with the supplied parameters, returns a boolean
       const check = (element) => element.name === "ritabot-debug";
       Setup:if (webhookIDVar !== process.env.DISCORD_DEBUG_WEBHOOK_ID)
