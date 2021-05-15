@@ -46,7 +46,7 @@ const debuging = async function debuging (data)
       Setup:if (webhookIDVar !== process.env.DISCORD_DEBUG_WEBHOOK_ID)
       {
 
-         if (process.env.DISCORD_DEBUG_WEBHOOK_ID === "")
+         if (process.env.DISCORD_DEBUG_WEBHOOK_ID === undefined || null)
          {
 
             break Setup;
@@ -61,7 +61,7 @@ const debuging = async function debuging (data)
       {
 
          data.color = "info";
-         data.text = "```Debug status is already on.\nFor Heroku users this is only for 24 hours,\nor until the next automatic restart.```";
+         data.text = "```Debug status is already on.\nFor Heroku users this is only active for 24 hours,\nor until the next automatic restart.```";
 
          process.env.DISCORD_DEBUG_WEBHOOK_ID = webhookIDVar;
          process.env.DISCORD_DEBUG_WEBHOOK_TOKEN = webhookTokenVar;
