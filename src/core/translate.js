@@ -169,6 +169,7 @@ const bufferChains = function bufferChains (data, from)
 
          // Language you set it to translate to when setting up !t channel command
          const langTo = to;
+
          // Detected language from text
          const detectedLang = res.from.language.iso;
          // Language you set when setting up !t channel command
@@ -453,6 +454,7 @@ module.exports = function run (data) // eslint-disable-line complexity
 
             // Language you set it to translate to when setting up !t channel command
             const langTo = lang.iso;
+
             // Detected language from text
             const detectedLang = res.from.language.iso;
             // Language you set when setting up !t channel command
@@ -535,6 +537,7 @@ module.exports = function run (data) // eslint-disable-line complexity
          }
 
          const langTo = opts.to;
+
          // Detected language from text
          const detectedLang = res.from.language.iso;
          // Language you set when setting up !t channel command

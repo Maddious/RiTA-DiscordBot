@@ -7,6 +7,7 @@
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
+const auth = require("../../core/auth");
 
 // -----------------
 // Webhook Creation
@@ -39,12 +40,13 @@ const debuging = async function debuging (data)
    {
 
       console.log("Debug on 1");
+      console.log(`Debug on 1 ${process.env.DISCORD_DEBUG_WEBHOOK_ID}`);
       // Checks if there iS an item in the channels collection that corresponds with the supplied parameters, returns a boolean
       const check = (element) => element.name === "ritabot-debug";
       Setup:if (webhookIDVar !== process.env.DISCORD_DEBUG_WEBHOOK_ID)
       {
 
-         if (process.env.DISCORD_DEBUG_WEBHOOK_ID === "")
+         if (process.env.DISCORD_DEBUG_WEBHOOK_ID === undefined || null)
          {
 
             break Setup;
@@ -59,7 +61,7 @@ const debuging = async function debuging (data)
       {
 
          data.color = "info";
-         data.text = "```Debug status is already on.\nFor Heroku users this is only for 24 hours,\nor until the next automatic restart.```";
+         data.text = "```Debug status is already on.\nFor Heroku users this is only active for 24 hours,\nor until the next automatic restart.```";
 
          process.env.DISCORD_DEBUG_WEBHOOK_ID = webhookIDVar;
          process.env.DISCORD_DEBUG_WEBHOOK_TOKEN = webhookTokenVar;
@@ -197,8 +199,16 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   AreDev: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
+
+      if (auth.devID.includes(data.message.author.id))
+      {
+
+         console.log("DEBUG: Developer ID Confirmed");
+         break AreDev;
+
+      }
 
       data.color = "warn";
       data.text = ":cop:  This command is reserved for bot owners.";
