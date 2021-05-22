@@ -15,6 +15,51 @@ const fn = require("./helpers");
 // (Emojis, Mentions, Channels)
 // ------------------------------------------
 
+async function discordPatchEmojis (string)
+{
+
+   let match = await string.match(/<.*?>/gmiu);
+   // eslint-disable-next-line no-param-reassign
+   const regexFix = string.replace(/<.*?>/gmiu, "<>");
+   if (!match)
+   {
+
+      match = [];
+
+   }
+   else
+   if (!match.length)
+   {
+
+      match = [];
+
+   }
+   for (let i = 0; i < match.length; i += 1)
+   {
+
+      const str = match[i];
+      const text = str.slice(1, -1);
+      const textMatch = text.match(/[a-z\s.!,()0-9]/gi);
+      if (textMatch.length === text.length)
+      {
+
+         match[i] = text;
+
+      }
+
+
+   }
+   const result = {
+      match,
+      "text": regexFix,
+      // eslint-disable-next-line sort-keys
+      "original": string
+
+
+   };
+   return result;
+
+}
 
 const translateFix = function translateFix (string)
 {
@@ -99,14 +144,15 @@ const bufferChains = function bufferChains (data, from)
 
    const translatedChains = [];
 
-   data.bufferChains.forEach((chain) =>
+   data.bufferChains.forEach(async (chain) =>
    {
 
       const chainMsgs = chain.msgs.join("\n");
       const to = data.translate.to.valid[0].iso;
+      const matches = await discordPatchEmojis(chainMsgs);
 
       translate(
-         chainMsgs,
+         matches.text,
          {
             from,
             to
@@ -114,8 +160,16 @@ const bufferChains = function bufferChains (data, from)
       ).then((res) =>
       {
 
+         for (const str of matches.match)
+         {
+
+            res.text = res.text.replace(/<.*?>/, str);
+
+         }
+
          // Language you set it to translate to when setting up !t channel command
-         const langTo = res.raw[1][4][2];
+         const langTo = to;
+
          // Detected language from text
          const detectedLang = res.from.language.iso;
          // Language you set when setting up !t channel command
@@ -378,11 +432,12 @@ module.exports = function run (data) // eslint-disable-line complexity
          }
       };
 
-      data.translate.to.valid.forEach((lang) =>
+      data.translate.to.valid.forEach(async (lang) =>
       {
 
+         const matches = await discordPatchEmojis(data.translate.original);
          translate(
-            data.translate.original,
+            matches.text,
             {
                from,
                "to": lang.iso
@@ -390,8 +445,16 @@ module.exports = function run (data) // eslint-disable-line complexity
          ).then((res) =>
          {
 
+            for (const str of matches)
+            {
+
+               res.text = res.text.replace(/<.*?>/, str);
+
+            }
+
             // Language you set it to translate to when setting up !t channel command
-            const langTo = res.raw[1][4][2];
+            const langTo = lang.iso;
+
             // Detected language from text
             const detectedLang = res.from.language.iso;
             // Language you set when setting up !t channel command
@@ -444,17 +507,37 @@ module.exports = function run (data) // eslint-disable-line complexity
       1500
    );
 
-   textArray.forEach((chunk) =>
+   textArray.forEach(async (chunk) =>
    {
 
+      const matches = await discordPatchEmojis(chunk);
       translate(
-         chunk,
+         matches.text,
          opts
       ).then((res) =>
       {
 
-         // Language you set it to translate to when setting up !t channel command
-         const langTo = res.raw[1][4][2];
+         for (const str of matches.match)
+         {
+
+            res.text = res.text.replace(/<\s*?>/miu, str);
+
+         }
+         if (res.text.toLowerCase() === matches.original.toLowerCase())
+         {
+
+            const match = matches.text.match(/[<>]/g);
+            if (match.length !== matches.text.length)
+            {
+
+               return;
+
+            }
+
+         }
+
+         const langTo = opts.to;
+
          // Detected language from text
          const detectedLang = res.from.language.iso;
          // Language you set when setting up !t channel command

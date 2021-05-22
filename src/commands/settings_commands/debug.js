@@ -7,6 +7,7 @@
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
+const auth = require("../../core/auth");
 
 // -----------------
 // Webhook Creation
@@ -31,19 +32,39 @@ const webhook = async function webhook (chan)
 const debuging = async function debuging (data)
 {
 
+   const webhookIDVar = data.cmd.server[0].webhookid;
+   const webhookTokenVar = data.cmd.server[0].webhooktoken;
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
 
    if (commandVariable1 === "on")
    {
 
       console.log("Debug on 1");
+      console.log(`Debug on 1 ${process.env.DISCORD_DEBUG_WEBHOOK_ID}`);
       // Checks if there iS an item in the channels collection that corresponds with the supplied parameters, returns a boolean
       const check = (element) => element.name === "ritabot-debug";
+      Setup:if (webhookIDVar !== process.env.DISCORD_DEBUG_WEBHOOK_ID)
+      {
+
+         if (process.env.DISCORD_DEBUG_WEBHOOK_ID === undefined || null)
+         {
+
+            break Setup;
+
+         }
+         data.color = "info";
+         data.text = "```Webhook Debuging has already been set up.```";
+         return sendMessage(data);
+
+      }
       if (data.message.guild.channels.cache.some(check))
       {
 
          data.color = "info";
-         data.text = "```Debug is Already on```";
+         data.text = "```Debug status is already on.\nFor Heroku users this is only active for 24 hours,\nor until the next automatic restart.```";
+
+         process.env.DISCORD_DEBUG_WEBHOOK_ID = webhookIDVar;
+         process.env.DISCORD_DEBUG_WEBHOOK_TOKEN = webhookTokenVar;
 
          // -------------
          // Send message
@@ -96,13 +117,24 @@ const debuging = async function debuging (data)
             const outputgh =
             "**```Start Debug mode```**\n" +
             `Debug mode has been Started. \n` +
-            `Error Logs will be output to this channel \n\n`;
+            `Error Logs will be output to this channel.\n\n` +
+            `For Heroku users this is only for 24 hours, \n` +
+            `or until the next automatic restart. \n`;
             data.color = "info";
             data.text = outputgh;
 
             // -------------
             // Send message
             // -------------
+
+            if (!process.env.DISCORD_DEBUG_WEBHOOK_ID)
+            {
+
+               process.env.DISCORD_DEBUG_WEBHOOK_ID = webhookValue.id;
+               process.env.DISCORD_DEBUG_WEBHOOK_TOKEN = webhookValue.token;
+
+            }
+
 
             return sendMessage(data);
 
@@ -167,8 +199,16 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   AreDev: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
+
+      if (auth.devID.includes(data.message.author.id))
+      {
+
+         console.log("DEBUG: Developer ID Confirmed");
+         break AreDev;
+
+      }
 
       data.color = "warn";
       data.text = ":cop:  This command is reserved for bot owners.";
