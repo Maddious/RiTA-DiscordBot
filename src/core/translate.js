@@ -20,7 +20,7 @@ async function discordPatchEmojis (string)
 
    let match = await string.match(/<.*?>/gmiu);
    // eslint-disable-next-line no-param-reassign
-   string = string.replace(/<.*?>/gmiu, "<>");
+   const regexFix = string.replace(/<.*?>/gmiu, "<>");
    if (!match)
    {
 
@@ -34,9 +34,27 @@ async function discordPatchEmojis (string)
       match = [];
 
    }
+   for (let i = 0; i < match.length; i += 1)
+   {
+
+      const str = match[i];
+      const text = str.slice(1, -1);
+      const textMatch = text.match(/[a-z\s.!,()0-9]/gi);
+      if (textMatch.length === text.length)
+      {
+
+         match[i] = text;
+
+      }
+
+
+   }
    const result = {
       match,
-      "text": string
+      "text": regexFix,
+      // eslint-disable-next-line sort-keys
+      "original": string
+
 
    };
    return result;
@@ -503,10 +521,16 @@ module.exports = function run (data) // eslint-disable-line complexity
             res.text = res.text.replace(/<\s*?>/miu, str);
 
          }
-         if (res.text.toLowerCase() === matches.text.toLowerCase())
+         if (res.text.toLowerCase() === matches.original.toLowerCase())
          {
 
-            return;
+            const match = matches.text.match(/[<>]/g);
+            if (match.length !== matches.text.length)
+            {
+
+               return;
+
+            }
 
          }
 
