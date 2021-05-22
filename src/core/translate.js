@@ -527,6 +527,12 @@ module.exports = function run (data) // eslint-disable-line complexity
          {
 
             const match = matches.text.match(/[<>]/g);
+            if (!match)
+            {
+
+               return;
+
+            }
             if (match.length !== matches.text.length)
             {
 
