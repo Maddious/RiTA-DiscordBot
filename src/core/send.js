@@ -282,7 +282,7 @@ const embedOn = function embedOn (data)
                attachments[i].url,
                attachments[i].name
             );
-            data.channel.send(`**${messageData.author.username}** sent a file:`, attachmentObj);
+            data.channel.send(`**${data.message.author.username}** sent a file:`, attachmentObj);
 
          }
 
@@ -338,7 +338,7 @@ const embedOn = function embedOn (data)
                // eslint-disable-next-line no-redeclare
                var embed = {
                   "author": {
-                     "icon_url": data.author.displayAvatarURL(),
+                     "icon_url": data.message.author.displayAvatarURL(),
                      "name": data.author.username
                   },
                   "color": colors.get(data.color),
@@ -542,9 +542,9 @@ const embedOff = function embedOff (data)
       {
 
          return webhook.send(null, {
-            "avatarURL": messageData.author.displayAvatarURL(),
+            "avatarURL": data.message.author.displayAvatarURL(),
             files,
-            "username": messageData.author.username
+            "username": data.message.author.username
          });
 
       }
@@ -730,89 +730,8 @@ const embedOff = function embedOff (data)
 module.exports = function run (data)
 {
 
-   const before = Date.now();
+   // Const before = Date.now();
 
-   global.messageData = data.message;
-   // ----------------------------
-   // Regex Statments for Emoji's
-   // ----------------------------
-
-   function languageRegex (data)
-
-   {
-
-      // Remove Whitespaces
-      data.text = data.text.replace(/<.+?>/g, (tag) => tag.replace(/\s+/g, ""));
-      //  Remove translated numeral keywords
-      data.text = data.text.replace(/millions/gmi, ``);
-      data.text = data.text.replace(/milioni/gmi, ``);
-      // Commas Replacement
-      const regex10 = /(?<=<[^<>]*?),+(?=[^<>]*>)/gm;
-      data.text = data.text.replace(regex10, ``);
-      // Period Replacement
-      const regex11 = /(?<=<[^<>]*?)\.+(?=[^<>]*>)/gm;
-      data.text = data.text.replace(regex11, ``);
-      //  Remove Exclamation marks
-      data.text = data.text.replace(/<@!/gmi, `<@`);
-      data.text = data.text.replace(/<!@/gmi, `<@`);
-      //  Change formatted special characters to normal
-      data.text = data.text.replace(/：/gmi, ":");
-      data.text = data.text.replace(/，/gmi, ", ");
-      data.text = data.text.replace(/、/gmi, ", ");
-      data.text = data.text.replace(/！/gmi, "");
-      data.text = data.text.replace(/<A/gmi, "<a");
-      data.text = data.text.replace(/>/gmi, ">");
-      data.text = data.text.replace(/</gm, "<");
-      data.text = data.text.replace(/<А/gmi, "<a");
-      data.text = data.text.replace(/＆/gmi, ``);
-      data.text = data.text.replace(/></gm, `> <`);
-      data.text = data.text.replace(/＃/gmi, "#");
-      data.text = data.text.replace(/＃/gmi, "#");
-      data.text = data.text.replace(/((\s?)(\*)(\s?))/gmis, "*");
-      data.text = data.text.replace(/(?<=<[^<>]*?)([0-9]*)\s*@+(?=[^<>]*>)/gmi, "@$1");
-
-   }
-
-   if (data.author)
-   {
-
-      if (data.text)
-      {
-
-         languageRegex(data);
-         data.text = data.text.replace(/<А/gmi, "<a");
-         if (data.text.includes("<А" || "<a"))
-         {
-
-            const regex1 = /<(a)([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*:\s*)([0-9\s]+)>/gmi;
-            const str1 = data.text;
-            const subst1 = `<a:customemoji:$3>`;
-            data.text = str1.replace(regex1, subst1);
-
-         }
-         //   If a combination of animated emojis and normal custom emojis
-         if (!data.text.includes("<a") && data.text.includes("<:"))
-         {
-
-            const subst5 = "<:customemoji:$3>";
-            const str5 = data.text;
-            const regx5 = /<:([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*(:)\s*)([0-9\s]+)>/gmi;
-            data.text = str5.replace(regx5, subst5);
-
-         }
-         if (data.text.includes("<a") && data.text.includes("<:"))
-         {
-
-            const regex20 = /<(a)([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*:\s*)([0-9\s]+)>/gmi;
-            const regex30 = /<:([:?\s:\s[a-z0-9ЁёА-я_A-Z\s\u00C0-\u017F]+\S*(:)\s*)([0-9\s]+)>/gmi;
-            data.text.replace(regex20, "<a:customemoji:$3>");
-            data.text.replace(regex30, "<:customemoji:$3>");
-
-         }
-
-      }
-
-   }
 
    // Const guildValue = data.message.guild.id;
    data.channel = data.message.channel;
@@ -866,8 +785,8 @@ module.exports = function run (data)
 
    }
 
-   const after = Date.now();
-   console.log(after - before);
+   // Const after = Date.now();
+   // Console.log(after - before);
 
    console.log("DEBUG: Perms Error");
    data.text = `:warning: ${data.bot.username} does not have sufficient permissions to send Webhook Messages. Please give ${data.bot.username} the \`MANAGE_WEBHOOKS\` permission.`;
