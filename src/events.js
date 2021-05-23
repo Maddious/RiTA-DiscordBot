@@ -170,7 +170,7 @@ exports.listen = function listen (client)
                if (auth.messagedebug === "1")
                {
 
-                  console.log(`${message.guild.name} - ${message.guild.id} - ${message.createdAt} \nDEBUG: Messsage Content - ${message.content}`);
+                  console.log(`${message.guild.name} - ${message.guild.id} - ${message.createdAt} \n----------------------------------------\nDEBUG: Messsage User - ${message.author.tag} \nDEBUG: Messsage Content - ${message.content}\n----------------------------------------`);
 
                }
                else if (auth.messagedebug === "0")
