@@ -309,7 +309,7 @@ module.exports = function run (data)
       if (auth.devID.includes(data.message.author.id))
       {
 
-         console.log("DEBUG: Developer ID Confirmed");
+         // console.log("DEBUG: Developer ID Confirmed");
          break AreDev;
 
       }
@@ -334,7 +334,7 @@ module.exports = function run (data)
       if (auth.devID.includes(data.message.author.id))
       {
 
-         console.log("DEBUG: Developer ID Confirmed");
+         // console.log("DEBUG: Developer ID Confirmed");
          break AreDev;
 
       }
