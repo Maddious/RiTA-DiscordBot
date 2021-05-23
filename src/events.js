@@ -161,7 +161,7 @@ exports.listen = function listen (client)
             if (!message.author.bot)
             {
 
-               console.log(`${message.guild.name} - ${message.guild.id} - ${message.createdAt}`);
+               console.log(`${message.guild.name} - ${message.guild.id} - ${message.createdAt} \nDEBUG: Messsage Content - ${message.content}`);
                const col = "message";
                let id = "bot";
                db.increaseStatsCount(col, id);

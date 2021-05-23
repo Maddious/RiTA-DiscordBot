@@ -39,7 +39,7 @@ const debuging = async function debuging (data)
    if (commandVariable1 === "on")
    {
 
-      console.log("Debug on 1");
+      // console.log("DEBUG on 1");
       console.log(`Debug on 1 ${process.env.DISCORD_DEBUG_WEBHOOK_ID}`);
       // Checks if there iS an item in the channels collection that corresponds with the supplied parameters, returns a boolean
       const check = (element) => element.name === "ritabot-debug";
@@ -75,7 +75,7 @@ const debuging = async function debuging (data)
 
       }
 
-      console.log("Debug on 3");
+      // console.log("DEBUG on 3");
       // Create a new channel with permission overwrites
       await data.message.guild.channels.create("ritabot-debug", {
          "permissionOverwrites": [
@@ -87,9 +87,9 @@ const debuging = async function debuging (data)
          "type": "text"
       });
 
-      console.log("Debug on 4");
+      // console.log("DEBUG on 4");
       const chan = data.message.guild.channels.cache.find((channel) => channel.name === "ritabot-debug");
-      console.log(`DEBUG: Chan ID ${chan}`);
+      // console.log(`DEBUG: Chan ID ${chan}`);
       await webhook(chan);
 
       const hooks = await chan.fetchWebhooks();
@@ -97,7 +97,7 @@ const debuging = async function debuging (data)
       console.log(`The ID is  ${webhookValue.id}`);
       console.log(`The Token is  ${webhookValue.token}`);
 
-      console.log(`DEBUG: debug variable ${commandVariable1}`);
+      // console.log(`DEBUG: debug variable ${commandVariable1}`);
       return db.updateWebhookVar(
          data.message.channel.guild.id,
          // This would be the Webhook ID
@@ -145,7 +145,7 @@ const debuging = async function debuging (data)
    else if (commandVariable1 === "off")
    {
 
-      console.log(`DEBUG: debug variable ${commandVariable1}`);
+      // console.log(`DEBUG: debug variable ${commandVariable1}`);
       return db.removeWebhook(
          data.message.channel.guild.id,
          function error (err)
@@ -205,7 +205,7 @@ module.exports = function run (data)
       if (auth.devID.includes(data.message.author.id))
       {
 
-         console.log("DEBUG: Developer ID Confirmed");
+         // console.log("DEBUG: Developer ID Confirmed");
          break AreDev;
 
       }
