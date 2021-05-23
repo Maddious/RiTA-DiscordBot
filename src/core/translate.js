@@ -21,30 +21,29 @@ function discordPatch (string)
 
    // eslint-disable-next-line no-useless-escape
    const urlRegex = /(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?/giu;
-   let match = string.match(/<.*?>/gmiu);
 
+   let match = string.match(/<.*?>/gmiu);
+   let everyonePing = string.match(/@everyone|@here/giu);
    let urlMatch = string.match(urlRegex);
-   const regexFix = string.replace(/<.*?>/gmiu, "<>").replace(urlRegex, "{}");
+
+   const regexFix = string.replace(/<.*?>/gmiu, "<>").
+      replace(urlRegex, "{}").
+      replace(/@everyone/g, "[]").
+      replace(/@here/g, "[]");
    if (!urlMatch)
    {
 
       urlMatch = [];
 
    }
-   else if (!urlMatch.length)
+
+   if (!everyonePing)
    {
 
-      urlMatch = [];
+      everyonePing = [];
 
    }
    if (!match)
-   {
-
-      match = [];
-
-   }
-   else
-   if (!match.length)
    {
 
       match = [];
@@ -70,7 +69,9 @@ function discordPatch (string)
       "text": regexFix,
       // eslint-disable-next-line sort-keys
       "original": string,
-      "url": urlMatch
+      "url": urlMatch,
+      // eslint-disable-next-line sort-keys
+      "memberPing": everyonePing
 
 
    };
@@ -86,13 +87,19 @@ const translateFix = function translateFix (string, matches)
    for (const obj of matches.match)
    {
 
-      text = text.replace(/<\s*?>/, obj);
+      text = text.replace(/<\s*?>/i, obj);
 
    }
    for (const obj of matches.url)
    {
 
-      text = text.replace(/{\s*?}/, obj);
+      text = text.replace(/{\s*?}/i, obj);
+
+   }
+   for (const obj of matches.memberPing)
+   {
+
+      text = text.replace(/\[\s*?\]/i, obj);
 
    }
    return text;
