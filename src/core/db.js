@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 // -----------------
 // Global variables
 // -----------------
@@ -20,6 +21,7 @@ exports.server_obj = server_obj;
 // console.log("DEBUG: Pre Stage Database Auth Process");
 const db = process.env.DATABASE_URL.endsWith(".db") ?
    new Sequelize({
+      logging: false,
       "dialect": "sqlite",
       "dialectOptions": {
          "ssl": {
@@ -27,19 +29,20 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
             "rejectUnauthorized": false
          }
       },
+      logging: false,
       "storage": process.env.DATABASE_URL
    }) :
    new Sequelize(
       process.env.DATABASE_URL,
       {
-         // "Logging": false,
+         logging: false,
          "dialectOptions": {
             "ssl": {
                "require": true,
                "rejectUnauthorized": false
             }
-         }
-         // "Logging": false
+         },
+         logging: false
       }
    );
 
@@ -206,19 +209,20 @@ exports.initializeDatabase = async function initializeDatabase (client)
 {
 
    // console.log("DEBUG: Stage Init/create tables - Pre Sync");
-   db.sync({"logging": false}).then(async () =>
+   db.sync({logging: false}).then(async () =>
    {
 
-      Stats.upsert({"logging": false,
+      await Stats.upsert({logging: false,
          "id": "bot"});
       await this.updateColumns();
-      Servers.upsert({"logging": false,
+      // console.log("DEBUG: New columns should be added Before this point.");
+      await Servers.upsert({logging: false,
          "id": "bot",
          "lang": "en"});
-      // console.log("DEBUG: New columns should be added Before this point.");
       db.getQueryInterface().removeIndex(
          "tasks",
-         "tasks_origin_dest"
+         "tasks_origin_dest",
+         {logging: false}
       );
       const guilds = client.guilds.cache.array().length;
       const guildsArray = client.guilds.cache.array();
@@ -228,9 +232,10 @@ exports.initializeDatabase = async function initializeDatabase (client)
 
          const guild = guildsArray[i];
          const guildID = guild.id;
-         Stats.upsert({"logging": false,
-            "id": guildID});
-         Servers.findAll({"logging": false,
+         // eslint-disable-next-line no-await-in-loop
+         await Stats.upsert({"id": guildID,
+            logging: false});
+         Servers.findAll({logging: false,
             "where": {"id": guildID}}).then((projects) =>
          {
 
@@ -238,10 +243,10 @@ exports.initializeDatabase = async function initializeDatabase (client)
             {
 
                // console.log("DEBUG: Add Server");
-               Servers.upsert({"logging": false,
+               Servers.upsert({logging: false,
                   "id": guildID,
                   "lang": "en"});
-               Stats.upsert({"logging": false,
+               Stats.upsert({logging: false,
                   "id": guildID});
 
             }
@@ -250,7 +255,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
 
       }
       // console.log("DEBUG: Stage Init/create tables - Pre servers FindAll");
-      const serversFindAll = await Servers.findAll({"logging": false});
+      const serversFindAll = await Servers.findAll({logging: false});
       // {
       for (let i = 0; i < serversFindAll.length; i += 1)
       {
@@ -308,7 +313,8 @@ exports.addServer = async function addServer (id, lang)
          "prefix": "!tr"
       }
    };
-   await Servers.findAll({"where": {id}}).then((server) =>
+   await Servers.findAll({logging: false,
+      "where": {id}}).then((server) =>
    {
 
       if (server.length === 0)
@@ -319,9 +325,8 @@ exports.addServer = async function addServer (id, lang)
             lang,
             "prefix": "!tr"
          });
-         Stats.create({
-            id
-         });
+         Stats.create({logging: false,
+            id});
 
       }
 
@@ -581,7 +586,7 @@ exports.channelTasks = function channelTasks (data)
    {
 
       // eslint-disable-next-line no-unused-vars
-      const taskList = Tasks.findAll({"logging": false,
+      const taskList = Tasks.findAll({logging: false,
          "where": {"origin": id,
             "active": true}}).then(function res (result)
       {
@@ -818,7 +823,7 @@ exports.increaseServersCount = function increaseServersCount (id)
    // console.log("DEBUG: Stage Update count in Servers table");
    return Servers.increment(
       "count",
-      {"logging": false,
+      {logging: false,
          "where": {id}}
    );
 
@@ -830,7 +835,7 @@ exports.increaseStatsCount = function increaseStatsCount (col, id)
    // console.log("DEBUG: Stage Update counts in stats table");
    return Stats.increment(
       col,
-      {"logging": false,
+      {logging: false,
          "where": {id}},
    );
 
@@ -860,7 +865,7 @@ exports.getStats = function getStats (callback)
   `(select images as "images" from stats where id = 'bot') as table10, ` +
   `(select react as "react" from stats where id = 'bot') as table11, ` +
   `(select gif as "gif" from stats where id = 'bot') as table12;`,
-      {"type": Sequelize.QueryTypes.SELECT}
+      {"type": Sequelize.QueryTypes.SELECT},
    ).
       then(
          (result) => callback(result),
