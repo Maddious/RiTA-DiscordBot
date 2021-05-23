@@ -161,6 +161,8 @@ exports.listen = function listen (client)
             if (!message.author.bot)
             {
 
+               console.log(`${auth.messagedebug}`);
+               console.log(`${process.env.MESSAGE_DEBUG}`);
                if (auth.messagedebug === undefined || null)
                {
 
