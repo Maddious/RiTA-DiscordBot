@@ -12,15 +12,31 @@ const fn = require("./helpers");
 
 // ------------------------------------------
 // Fix broken Discord tags after translation
-// (Emojis, Mentions, Channels)
+// (Emojis, Mentions, Channels, Urls)
 // ------------------------------------------
 
-async function discordPatchEmojis (string)
+
+function discordPatch (string)
 {
 
-   let match = await string.match(/<.*?>/gmiu);
-   // eslint-disable-next-line no-param-reassign
-   const regexFix = string.replace(/<.*?>/gmiu, "<>");
+   // eslint-disable-next-line no-useless-escape
+   const urlRegex = /(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?/giu;
+   let match = string.match(/<.*?>/gmiu);
+
+   let urlMatch = string.match(urlRegex);
+   const regexFix = string.replace(/<.*?>/gmiu, "<>").replace(urlRegex, "{}");
+   if (!urlMatch)
+   {
+
+      urlMatch = [];
+
+   }
+   else if (!urlMatch.length)
+   {
+
+      urlMatch = [];
+
+   }
    if (!match)
    {
 
@@ -53,7 +69,8 @@ async function discordPatchEmojis (string)
       match,
       "text": regexFix,
       // eslint-disable-next-line sort-keys
-      "original": string
+      "original": string,
+      "url": urlMatch
 
 
    };
@@ -61,25 +78,25 @@ async function discordPatchEmojis (string)
 
 }
 
-const translateFix = function translateFix (string)
+const translateFix = function translateFix (string, matches)
 {
 
-   const normal = /(<[@#!$%&*])\s*/gim;
-   const nick = /(<[@#!$%&*]!)\s*/gim;
-   const role = /(<[@#!$%&*]&)\s*/gim;
+   let text = string;
 
-   return string.replace(
-      normal,
-      "$1"
-   ).
-      replace(
-         nick,
-         "$1"
-      ).
-      replace(
-         role,
-         "$1"
-      );
+   for (const obj of matches.match)
+   {
+
+      text = text.replace(/<\s*?>/, obj);
+
+   }
+   for (const obj of matches.url)
+   {
+
+      text = text.replace(/{\s*?}/, obj);
+
+   }
+   return text;
+
 
 };
 
@@ -149,7 +166,7 @@ const bufferChains = function bufferChains (data, from)
 
       const chainMsgs = chain.msgs.join("\n");
       const to = data.translate.to.valid[0].iso;
-      const matches = await discordPatchEmojis(chainMsgs);
+      const matches = await discordPatch(chainMsgs);
 
       translate(
          matches.text,
@@ -160,12 +177,6 @@ const bufferChains = function bufferChains (data, from)
       ).then((res) =>
       {
 
-         for (const str of matches.match)
-         {
-
-            res.text = res.text.replace(/<.*?>/, str);
-
-         }
 
          // Language you set it to translate to when setting up !t channel command
          const langTo = to;
@@ -187,7 +198,7 @@ const bufferChains = function bufferChains (data, from)
 
          }
 
-         const output = translateFix(res.text);
+         const output = translateFix(res.text, matches);
 
          getUserColor(
             chain,
@@ -435,7 +446,7 @@ module.exports = function run (data) // eslint-disable-line complexity
       data.translate.to.valid.forEach(async (lang) =>
       {
 
-         const matches = await discordPatchEmojis(data.translate.original);
+         const matches = await discordPatch(data.translate.original);
          translate(
             matches.text,
             {
@@ -444,13 +455,6 @@ module.exports = function run (data) // eslint-disable-line complexity
             }
          ).then((res) =>
          {
-
-            for (const str of matches)
-            {
-
-               res.text = res.text.replace(/<.*?>/, str);
-
-            }
 
             // Language you set it to translate to when setting up !t channel command
             const langTo = lang.iso;
@@ -473,7 +477,7 @@ module.exports = function run (data) // eslint-disable-line complexity
             }
 
             const title = `\`\`\`LESS\n ${lang.name} (${lang.native}) \`\`\`\n`;
-            const output = `\n${title}${translateFix(res.text)}\n`;
+            const output = `\n${title}${translateFix(res.text, matches)}\n`;
             return translateBuffer[bufferID].update(
                output,
                data
@@ -510,33 +514,38 @@ module.exports = function run (data) // eslint-disable-line complexity
    textArray.forEach(async (chunk) =>
    {
 
-      const matches = await discordPatchEmojis(chunk);
+      const matches = await discordPatch(chunk);
       translate(
          matches.text,
          opts
       ).then((res) =>
       {
 
-         for (const str of matches.match)
-         {
-
-            res.text = res.text.replace(/<\s*?>/miu, str);
-
-         }
+         res.text = translateFix(res.text, matches);
          if (res.text.toLowerCase() === matches.original.toLowerCase())
          {
 
-            const match = matches.text.match(/[<>]/g);
-            if (!match)
+            const match = matches.text.replace(/\s*?/g, "").match(/[<>]/g);
+            if (!matches.text.startsWith("http"))
             {
 
-               return;
+               if (match)
+               {
 
-            }
-            if (match.length !== matches.text.length)
-            {
+                  if (match.length !== matches.text.length)
+                  {
 
-               return;
+                     return;
+
+                  }
+
+               }
+               else
+               {
+
+                  return;
+
+               }
 
             }
 
@@ -565,7 +574,7 @@ module.exports = function run (data) // eslint-disable-line complexity
          data.forward = fw;
          data.footer = ft;
          data.color = data.message.roleColor;
-         data.text = translateFix(res.text);
+         data.text = res.text;
          data.showAuthor = true;
          return getUserColor(
             data,
