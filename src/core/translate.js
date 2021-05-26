@@ -22,6 +22,8 @@ function discordPatch (string)
    // eslint-disable-next-line no-useless-escape
    const urlRegex = /(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?/giu;
 
+   // let regexFix = string.replace(/:[^\s]*?:/gmi);
+
    let match = string.match(/<.*?>/gmiu);
    let everyonePing = string.match(/@everyone|@here/giu);
    let urlMatch = string.match(urlRegex);
@@ -53,12 +55,17 @@ function discordPatch (string)
    {
 
       const str = match[i];
-      const text = str.slice(1, -1);
-      const textMatch = text.match(/[a-z\s.!,()0-9]/gi);
-      if (textMatch.length === text.length)
+      if (!str.match(/<:.*?:([0-9])>/))
       {
 
-         match[i] = text;
+         const text = str.slice(1, -1);
+         const textMatch = text.match(/[a-z\s.!,()0-9]/gi);
+         if (textMatch.length === text.length)
+         {
+
+            match[i] = text;
+
+         }
 
       }
 
@@ -78,6 +85,7 @@ function discordPatch (string)
    return result;
 
 }
+
 
 const translateFix = function translateFix (string, matches)
 {
@@ -106,6 +114,22 @@ const translateFix = function translateFix (string, matches)
 
 
 };
+// ------------
+// Retranslation function using auto if it thinks it is in the wrong language
+// ------------
+async function reTranslate (matches, opts)
+{
+
+   const OPTIONS = {
+      "from": "auto",
+      "to": opts.to
+
+
+   };
+   const res = await translate(matches.text, OPTIONS);
+   return translateFix(res.text, matches);
+
+}
 
 // ---------------------------------------
 // Get user color for translated response
@@ -525,38 +549,11 @@ module.exports = function run (data) // eslint-disable-line complexity
       translate(
          matches.text,
          opts
-      ).then((res) =>
+      ).then(async (res) =>
       {
 
          res.text = translateFix(res.text, matches);
-         if (res.text.toLowerCase() === matches.original.toLowerCase())
-         {
 
-            const match = matches.text.replace(/\s*?/g, "").match(/[<>]/g);
-            if (!matches.text.startsWith("http"))
-            {
-
-               if (match)
-               {
-
-                  if (match.length !== matches.text.length)
-                  {
-
-                     return;
-
-                  }
-
-               }
-               else
-               {
-
-                  return;
-
-               }
-
-            }
-
-         }
 
          const langTo = opts.to;
 
@@ -564,18 +561,16 @@ module.exports = function run (data) // eslint-disable-line complexity
          const detectedLang = res.from.language.iso;
          // Language you set when setting up !t channel command
          const channelFrom = from;
-         if (detectedLang === langTo)
+
+         if (detectedLang === langTo || detectedLang !== channelFrom && channelFrom !== "auto")
          {
 
-            return;
+            // eslint-disable-next-line require-atomic-updates
+            res.text = await reTranslate(matches, opts);
+
 
          }
-         else if (detectedLang !== channelFrom && channelFrom !== "auto")
-         {
 
-            return;
-
-         }
 
          updateServerStats(data.message);
          data.forward = fw;
