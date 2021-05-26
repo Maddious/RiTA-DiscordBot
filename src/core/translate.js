@@ -22,7 +22,7 @@ function discordPatch (string)
    // eslint-disable-next-line no-useless-escape
    const urlRegex = /(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?/giu;
 
-   //let regexFix = string.replace(/:[^\s]*?:/gmi);
+   // let regexFix = string.replace(/:[^\s]*?:/gmi);
 
    let match = string.match(/<.*?>/gmiu);
    let everyonePing = string.match(/@everyone|@here/giu);
