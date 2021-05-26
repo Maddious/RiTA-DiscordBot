@@ -81,7 +81,7 @@ module.exports = function run (data, client)
 
             // Prevent flag spam
 
-            if (!flagExists.count === 1)
+            if (!flagExists.count > 1)
             {
 
                return;
