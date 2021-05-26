@@ -178,11 +178,11 @@ const stripPrefix = function stripPrefix (message, config, bot)
       ""
    );
 
-   if (cmd.startsWith(bot))
+   if (cmd.startsWith(`<@${bot.id}>`) || cmd.startsWith(`<@!${bot.id}>`))
    {
 
       cmd = cmd.replace(
-         bot,
+         /<@.*?>/,
          ""
       );
 
@@ -203,7 +203,7 @@ module.exports = function run (data)
       "main": stripPrefix(
          data.message,
          data.config,
-         `${data.bot}`
+         data.bot
       ).trim(),
       "params": null
    };

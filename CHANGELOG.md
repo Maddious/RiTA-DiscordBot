@@ -1,5 +1,5 @@
 ## 1.2.3 Change Log
-* With the introduction of Version 1.2.3, we have update the translate API. This is still the same as before but its now providing a much better accuracy rate than before.
+* With the introduction of Version 1.2.3, we have updated the translate API. This is still the same as before but its now providing a much better accuracy rate than before.
 * We are still waiting for Discord to Verify RITA, so for now we are limited to 100 servers, We are at that limit at the moment so keep and eye out for the little blue tick, Once you see it you can invite RITA to your server. Please join our discord for more info. https://discord.gg/AtJcjvnkg6
 
 ### 1.2.3 Major Changes
