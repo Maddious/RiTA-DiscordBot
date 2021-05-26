@@ -15,7 +15,7 @@ const cmdArgs = require("./commands/args");
 // --------------------
 
 // eslint-disable-next-line no-unused-vars
-module.exports = function run (config, message, edited, deleted)
+module.exports = function run (config, message)
 {
 
    module.exports.message = message;
@@ -119,7 +119,7 @@ module.exports = function run (config, message, edited, deleted)
       if (message.embeds[0].description)
       {
 
-         message.content = message.embeds[0].description;
+         message.content = `${message.content}\n${message.embeds[0].description}`;
 
       }
       else if (message.content === "" || message.content === " ")
@@ -194,7 +194,7 @@ module.exports = function run (config, message, edited, deleted)
 
    {
 
-      if (message.content.startsWith(config.translateCmd) || message.content.startsWith(config.translateCmdShort) || message.mentions.has(bot.id))
+      if (message.content.startsWith(config.translateCmd) || message.content.startsWith(config.translateCmdShort) || message.content.startsWith(`<@${message.client.user.id}>`) || message.content.startsWith(`<@!${message.client.user.id}>`))
       {
 
          // eslint-disable-next-line consistent-return
