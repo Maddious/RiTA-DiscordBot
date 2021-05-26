@@ -28,7 +28,7 @@ function discordPatch (string)
    let everyonePing = string.match(/@everyone|@here/giu);
    let urlMatch = string.match(urlRegex);
 
-   var regexFix = string.replace(/<.*?>/gmiu, "<>").
+   let regexFix = string.replace(/<.*?>/gmiu, "<>").
       replace(urlRegex, "{}").
       replace(/@everyone/g, "[]").
       replace(/@here/g, "[]");
