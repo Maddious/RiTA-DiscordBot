@@ -74,7 +74,10 @@ module.exports = function run (data, client)
 
             }
 
-            message.content = message.content.replace(/<@.*?>/g, "").replace(/@everyone/gi).replace(/@here/gi);
+            message.content = message.content.
+               replace(/<@.*?>/g, "").
+               replace(/@everyone/gi).
+               replace(/@here/gi);
 
 
             const flagExists = message.reactions.cache.get(emoji);
