@@ -335,6 +335,17 @@ exports.addServer = async function addServer (id, lang)
 };
 
 // ------------------
+// Add server member count
+// ------------------
+
+exports.servercount = function servercount (guild)
+{
+
+   server_obj.size += guild.memberCount;
+
+};
+
+// ------------------
 // Deactivate Server
 // ------------------
 

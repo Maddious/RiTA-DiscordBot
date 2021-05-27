@@ -401,6 +401,7 @@ exports.listen = function listen (client)
             "guildJoin",
             guild
          );
+         db.servercount(guild);
          db.addServer(
             guild.id,
             config.defaultLanguage,
