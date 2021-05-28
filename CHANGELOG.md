@@ -1,4 +1,6 @@
 ## 1.2.3 Change Log
+* BIG ANNOUNCEMENT - RITA IS NOW VERIFIED
+
 * With the introduction of Version 1.2.3, we have updated the translate API. This is still the same as before but its now providing a much better accuracy rate than before.
 * We are still waiting for Discord to Verify RITA, so for now we are limited to 100 servers, We are at that limit at the moment so keep and eye out for the little blue tick, Once you see it you can invite RITA to your server. Please join our discord for more info. https://discord.gg/AtJcjvnkg6
 
@@ -9,9 +11,11 @@
 * With the changes to the `google-translate-api` it dug up a load of new bugs, Lazarus & EDW have been hard at work fixing them, (DM Lazarus to say thank you, he will love it.)
 * @everyone & @here will now also be conveyed across channels correctly.
 * Emojis, roles and user pings will now function as intended. With a new system used to manage and correct them
+* Fixed a bug that caused messages to not translate when messages are sent in the wrong langFrom language
  
 ### 1.2.3 Command Changes 
 * `!tr stats global` / `!tr stats server` now show message based stats, take a look. 
+* `!tr history` New command added, shows Development History of the bot.
  
 ### 1.2.3 Database Changes
 * It working so were not going to touch it. (Well Zycore wont)
@@ -19,6 +23,7 @@
 ### 1.2.3 Misc Changes
 * Zycore broke something (alot of times) Zycore fixed it again. 
 * All debug messages have been commented out in all files, This make the console log look so much cleaner. 
+* Reaction Translation now works for any message, wether it was sent before the bot came online or after
 
 ## 1.2.2 Change Log
 * With the introduction of Version 1.2.2, we are proud to introduce the Centralized Version of Rita with a One-Click Invite. This means you can still create your own personal RITA bot. Though now you have the option to forgo that personal setup and can instead use the Centralized version of RITA. Which has the added benefit of not requiring any of the setup steps required that you would have to do for your own personal RITA bot. Just invite the bot to your server and setup the bot to your liking.  
@@ -36,8 +41,7 @@
     * You can enable this by running the following command `!tr channel to de from en for @user` That will translate English messages to German for the user. Which they will receive in a DM. 
 * Duplicate language translation bug is now fixed, meaning you can not translate English to English or French to French etc.
 * Various fixes to Nickname Bugs, this should now be working. 
-* Desktop Client Gif keyboard caused error due to exclusive embed style.
- 
+* Desktop Client Gif keyboard caused error due to exclusive embed style. 
 * `google-translate-api` has been changed to RCP to reduce and mitigate the load limiter.
 * We have found a way to speed up the translation process, so it should be a little snappier in future. 
  

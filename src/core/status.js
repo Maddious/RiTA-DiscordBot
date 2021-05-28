@@ -1,5 +1,6 @@
 // -----------------
 // Global variables
+// Currently Broken
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
