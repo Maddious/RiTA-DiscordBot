@@ -30,6 +30,7 @@ const cmdDebug = require("./settings_commands/debug");
 const cmdPrefix = require("./settings_commands/prefix");
 const cmdCreate = require("./utility_commands/create.channel");
 const cmdMod = require("./future_commands/mod.js");
+const cmdHistory = require("./info_commands/history.js");
 
 
 // ---------------------------------------
@@ -340,6 +341,7 @@ module.exports = function run (data)
             "donate": cmdDonate,
             "embed": cmdEmbed,
             "help": cmdHelp,
+            "history": cmdHistory,
             "id": cmdMisc.ident,
             "info": cmdHelp,
             "invite": cmdMisc.invite,
@@ -356,6 +358,7 @@ module.exports = function run (data)
             "this": cmdTranslateThis,
             "unban": cmdMod.unban,
             "unmute": cmdMod.unmute,
+            "update": cmdMisc.update,
             "version": cmdVersion
          };
 

@@ -160,49 +160,6 @@ const getSettings = function getSettings (data)
 
    };
 
-
-   // -----------
-   // Update bot
-   // -----------
-
-   const updateBot = function updateBot (data)
-   {
-
-      // Const activeGuilds = data.client.guilds.array();
-      // Data.color = "info";
-      // Data.text = `Updating bot for **${activeGuilds.length}** servers.`;
-      // Return sendMessage(data);
-      //
-      // ActiveGuilds.forEach(guild =>
-      // {
-      //   Guild.owner.send(
-      //   "Hello, this bot has been updated to a new version.\n " +
-      //   "More info: https://ritabot.gg/whats-new/#new-in-121\n");
-      // });
-      data.message.delete({"timeout": time.short}).catch((err) => console.log(
-         "UpdateBot Command Message Deleted Error, command.send.js = ",
-         err
-      ));
-      return data.message.channel.send({"embed": {
-         "author": {
-            "icon_url": data.client.user.displayAvatarURL(),
-            "name": data.client.user.username
-         },
-         "color": 13107200,
-         "description": ":no_entry_sign: This command has been disabled"
-
-      }}).then((msg) =>
-      {
-
-         msg.delete({"timeout": time.long}).catch((err) => console.log(
-            "UpdateBot Bot Message Deleted Error, settings.js = ",
-            err
-         ));
-
-      });
-
-   };
-
    // -----------------
    // DM server owners
    // -----------------
@@ -260,7 +217,6 @@ const getSettings = function getSettings (data)
    // "announcement": announcement,
       "listservers": listServers,
       "setlang": setLang,
-      "updatebot": updateBot,
       "updatedb": updateDB
    };
 
