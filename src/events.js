@@ -310,7 +310,7 @@ exports.listen = function listen (client)
          return logger(
             "error",
             err,
-            "unhandled"
+            "unhandled",
          );
 
       }

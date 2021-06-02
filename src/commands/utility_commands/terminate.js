@@ -4,12 +4,10 @@
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const sendMessage = require("../../core/command.send");
-const client = require("../../bot");
-const bot2bot = require("../settings_commands/bot2bot");
 
-// ----
-// Ban
-// ----
+// ------
+// Eject
+// ------
 
 module.exports.eject = async function eject (data)
 {
@@ -36,6 +34,10 @@ module.exports.eject = async function eject (data)
    return sendMessage(data);
 
 };
+
+// ----------
+// Blacklist
+// ----------
 
 module.exports.blacklist = function blacklist (data)
 {

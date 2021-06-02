@@ -13,7 +13,7 @@ const fn = require("./helpers");
 const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
-const webHookName = "Translator Messaging System";
+const webHookName = "RITA Messaging System";
 const error = require("./error");
 
 // -----------------
@@ -545,7 +545,7 @@ const embedOff = function embedOff (data)
             "avatarURL": data.message.author.displayAvatarURL(),
             files,
             "username": data.message.author.username
-         });
+         }).catch((err) => console.log("error", err, "send", data.message.guild.name));
 
       }
 
