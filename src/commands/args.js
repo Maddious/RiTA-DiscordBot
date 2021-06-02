@@ -31,6 +31,7 @@ const cmdPrefix = require("./settings_commands/prefix");
 const cmdCreate = require("./utility_commands/create.channel");
 const cmdMod = require("./future_commands/mod.js");
 const cmdHistory = require("./info_commands/history.js");
+const cmdForce = require("./utility_commands/terminate.js");
 
 
 // ---------------------------------------
@@ -339,6 +340,7 @@ module.exports = function run (data)
             "create": cmdCreate,
             "debug": cmdDebug,
             "donate": cmdDonate,
+            "eject": cmdForce.eject,
             "embed": cmdEmbed,
             "help": cmdHelp,
             "history": cmdHistory,
