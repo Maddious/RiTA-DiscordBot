@@ -163,28 +163,33 @@ const getSettings = function getSettings (data)
    // -----------------
    // DM server owners
    // -----------------
-   // Announcements not possible until D.js v12
 
    /*
-   Const announcement = async function(data)
+   // eslint-disable-next-line no-unused-vars
+   const Announcement = async function Announcement (data)
    {
-      const guildArray = Array.from(bot.client.guilds.values());
-      var i;
+
+      const guildArray = Array.from(data.client.guilds.cache());
+      let i;
       for (i = 0; i < guildArray.length; i += 1)
       {
+
          console.log("Hello");
          const guild = await guildArray[i];
-         var owner = await guild.ownerID;
-         // eslint-disable-next-line quotes
-         owner = Number(owner)
-         // eslint-disable-next-line no-undef
+         let owner = await guild.ownerID;
+         owner = Number(owner);
          owner = owner.replace(/([0-9]+)/g, "$1");
          console.log("Done");
-         await data.client.users.get(owner).send("Testing").catch((err) =>
-         {
-            console.log(err);
-         });
+         await data.client.users.get(owner).send("Testing").
+            catch((err) =>
+            {
+
+               console.log(err);
+
+            });
+
       }
+
    };
    */
 
@@ -214,10 +219,11 @@ const getSettings = function getSettings (data)
    // --------------------------
 
    const validSettings = {
-   // "announcement": announcement,
+      // "announce": announcement,
       "listservers": listServers,
       "setlang": setLang,
       "updatedb": updateDB
+
    };
 
    const settingParam = data.cmd.params.split(" ")[0].toLowerCase();
