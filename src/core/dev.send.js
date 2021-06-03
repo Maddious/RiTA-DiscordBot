@@ -51,6 +51,12 @@ function sendMessage (data)
             // Send message
             // -------------
 
+            if (!data.channel.guild.owner)
+            {
+
+               return console.log(writeErr);
+
+            }
             return data.channel.guild.owner.
                send(writeErr).
                catch((err) => console.log(
