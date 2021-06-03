@@ -433,8 +433,11 @@ const helpMessage = function helpMessage (config, botname, param)
    `# Prefix\n` +
    `* ${cmd} prefix\n\n` +
 
-   `# Prefix\n` +
+   `# ID Info\n` +
    `* ${cmd} id\n\n` +
+
+   `# Blacklist Check\n` +
+   `* ${cmd} check [ServerID]\n\n` +
    "```";
 
    // -----------------
@@ -609,8 +612,7 @@ const helpMessage = function helpMessage (config, botname, param)
    `# Commands\n` +
    `* ${cmd} eject [ServerID]\n` +
    `* ${cmd} blacklist [ServerID]\n` +
-   `* ${cmd} unblacklist [ServerID]\n` +
-   `* ${cmd} check [ServerID]\n\n` +
+   `* ${cmd} unblacklist [ServerID]\n\n` +
 
    `# Parameters\n` +
    `* [ServerID] - Raw Server ID\n\n` +
@@ -618,7 +620,6 @@ const helpMessage = function helpMessage (config, botname, param)
    `# Examples\n` +
    `* ${cmd} eject [ServerID] - Eject Rita from [ServerID] \n` +
    `* ${cmd} blacklist [ServerID] - [ServerID] Will be blacklisted \n` +
-   `* ${cmd} check [ServerID] - Checks blacklist status\n` +
    "```";
 
    // ----------------
