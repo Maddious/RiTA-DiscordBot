@@ -201,6 +201,7 @@ const helpMessage = function helpMessage (config, botname, param)
    `* ${cmd} help readme\n` +
    `* ${cmd} help donate\n` +
    `* ${cmd} help debug\n` +
+   `* ${cmd} help dev\n` +
    `* ${cmd} help prefix\n` +
    "```";
 
@@ -598,6 +599,27 @@ const helpMessage = function helpMessage (config, botname, param)
    `* ${cmd} create bob - your new channel would now be bob \n` +
    `* ${long} create bob - your new channel would now be bob \n` +
    "```";
+   // ---------------
+   // Create Command
+   // ---------------
+
+   const dev =
+   `__**Developers Only**__\n\n` +
+   "```md\n" +
+   `# Commands\n` +
+   `* ${cmd} eject [ServerID]\n` +
+   `* ${cmd} blacklist [ServerID]\n` +
+   `* ${cmd} unblacklist [ServerID]\n` +
+   `* ${cmd} check [ServerID]\n\n` +
+
+   `# Parameters\n` +
+   `* [ServerID] - Raw Server ID\n\n` +
+
+   `# Examples\n` +
+   `* ${cmd} eject [ServerID] - Eject Rita from [ServerID] \n` +
+   `* ${cmd} blacklist [ServerID] - [ServerID] Will be blacklisted \n` +
+   `* ${cmd} check [ServerID] - Checks blacklist status\n` +
+   "```";
 
    // ----------------
    // Proccess result
@@ -612,6 +634,7 @@ const helpMessage = function helpMessage (config, botname, param)
       create,
       custom,
       debug,
+      dev,
       donate,
       embed,
       last,

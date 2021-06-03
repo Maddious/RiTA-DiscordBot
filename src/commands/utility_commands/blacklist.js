@@ -93,6 +93,47 @@ module.exports.blacklist = function blacklist (data)
 
 };
 
+module.exports.unblacklist = function unblacklist (data)
+{
+
+   // -------------
+   // Command Code
+   // -------------
+
+   // console.log("DEBUG: Blacklist");
+
+   const serverID = data.cmd.params.split(" ")[0].toLowerCase();
+
+   return db.unblacklist(
+      serverID,
+      function error (err)
+      {
+
+         if (err)
+         {
+
+            return logger("error", err, "command", data.message.channel.guild.name);
+
+         }
+
+         // -------------
+         // Send message
+         // -------------
+
+         data.color = "warn";
+         data.text = `${`:white_check_mark:  **${serverID} Un-Blacklisted**\n`}`;
+         return devSendMessage(data);
+
+      }
+   ).catch((err) => console.log(
+      "error",
+      err,
+      "warning",
+      serverID
+   ));
+
+};
+
 module.exports.check = function check (data)
 {
 
@@ -121,6 +162,20 @@ module.exports.check = function check (data)
          return sendMessage(data);
 
       }
-   );
+   ).catch((err) =>
+   {
+
+      console.log(
+         "error",
+         err,
+         "warning",
+         serverID
+      );
+
+      data.text = `\`\`\`${serverID} is not in our Database\n\n\`\`\``;
+      return sendMessage(data);
+
+   });
+
 
 };

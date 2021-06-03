@@ -371,6 +371,7 @@ module.exports = function run (data)
             "tasks": cmdTranslateTasks,
             "this": cmdTranslateThis,
             "unban": cmdMod.unban,
+            "unblacklist": cmdBlacklist.unblacklist,
             "unmute": cmdMod.unmute,
             "update": cmdMisc.update,
             "version": cmdVersion
