@@ -9,7 +9,6 @@ const db = require("../../core/db");
 const auth = require("../../core/auth");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
-const devSendMessage = require("../../core/dev.send");
 
 // -------------
 // Command Code
