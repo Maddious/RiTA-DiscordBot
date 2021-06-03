@@ -617,7 +617,7 @@ exports.updateColumns = async function updateColumns ()
          if (!tableDefinition.blacklisted)
          {
 
-            console.log("DEBUG:-------------> Adding blacklisted column");
+            // console.log("DEBUG:-------------> Adding blacklisted column");
             db.getQueryInterface().addColumn(
                "servers",
                "blacklisted",

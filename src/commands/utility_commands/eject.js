@@ -52,7 +52,7 @@ module.exports.eject = async function eject (data)
             "warning",
             target.name
          ));
-      console.log(`${serverID}`);
+      // console.log(`DEBUG: ${serverID}`);
       await target.leave();
 
    }

@@ -88,7 +88,7 @@ module.exports = function run (data)
    if (auth.devID.includes(data.message.author.id))
    {
 
-      console.log("Developer Override");
+      // console.log("DEBUG: Developer Override");
       data.message.delete({"timeout": time.short}).catch((err) => console.log(
          "Command Message Deleted Error, command.send.js = ",
          err
@@ -109,7 +109,7 @@ module.exports = function run (data)
       return sendMessage(data);
 
    }
-   console.log("Sufficient Permission");
+   // console.log("DEBUG: Sufficient Permission");
    data.message.delete({"timeout": time.short}).catch((err) => console.log(
       "Command Message Deleted Error, command.send.js = ",
       err

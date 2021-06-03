@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 // -----------------
 // Global variables
 // -----------------
@@ -8,6 +9,7 @@ const db = require("../../core/db");
 const auth = require("../../core/auth");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
+const devSendMessage = require("../../core/dev.send");
 
 // -------------
 // Command Code
@@ -170,13 +172,79 @@ module.exports = function run (data)
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("server"))
       {
 
-         data.text = `${serverStats}\n\n${serverTranslationStats}`;
+         if (!data.cmd.num)
+         {
 
-         // -------------
-         // Send message
-         // -------------
+            data.text = `${serverStats}\n\n${serverTranslationStats}`;
 
-         return sendMessage(data);
+            // -------------
+            // Send message
+            // -------------
+
+            return sendMessage(data);
+
+         }
+         // eslint-disable-next-line no-unused-vars
+         const serverID = data.cmd.params.split(" ")[1].toLowerCase();
+         const target = data.client.guilds.cache.get(serverID);
+
+         db.getServerInfo(
+            serverID,
+            function getServerInfo (server)
+            {
+
+               if (!target)
+               {
+
+                  const targetServer = `**\`\`\`${serverID} - Server Tranlation Stats\`\`\`**\n` +
+                     `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
+                     `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
+                     `:frame_photo:  A total of **\`${server[0].images}\`**  images have been sent and **\`${server[0].gif}\`** Gif's have been shared\n\n` +
+                     `:flag_white:  **\`${server[0].react}\`**  messages have been translated with flag reactions \n\n` +
+                     `:notebook:  **\`${server[0].embedon}\`**  messages have been sent in **\`Embed On\`** format\n\n` +
+                     `:speech_balloon:  **\`${server[0].embedoff}\`**  messages have been sent in **\`Embed Off\`** format\n`;
+
+                  data.text = `${targetServer}\n\n`;
+
+                  // -------------
+                  // Send message
+                  // -------------
+
+                  return devSendMessage(data);
+
+               }
+
+               const targetServer = `**\`\`\`${target.name} - Server Tranlation Stats\`\`\`**\n` +
+                  `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
+                  `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
+                  `:frame_photo:  A total of **\`${server[0].images}\`**  images have been sent and **\`${server[0].gif}\`** Gif's have been shared\n\n` +
+                  `:flag_white:  **\`${server[0].react}\`**  messages have been translated with flag reactions \n\n` +
+                  `:notebook:  **\`${server[0].embedon}\`**  messages have been sent in **\`Embed On\`** format\n\n` +
+                  `:speech_balloon:  **\`${server[0].embedoff}\`**  messages have been sent in **\`Embed Off\`** format\n`;
+
+               data.text = `${targetServer}\n\n`;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return devSendMessage(data);
+
+            }
+         ).catch((err) =>
+         {
+
+            console.log(
+               "error",
+               err,
+               "warning",
+               serverID
+            );
+
+            data.text = `\`\`\`${serverID} is not registered in the database.\n\n\`\`\``;
+            return devSendMessage(data);
+
+         });
 
       }
 
@@ -215,13 +283,18 @@ module.exports = function run (data)
 
       }
 
-      data.text = `${globalStats}\n\n${serverStats}`;
+      if (!data.cmd.params)
+      {
 
-      // -------------
-      // Send message
-      // -------------
+         data.text = `${globalStats}\n\n${serverStats}`;
 
-      return sendMessage(data);
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
 
    });
 

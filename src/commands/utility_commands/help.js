@@ -612,7 +612,8 @@ const helpMessage = function helpMessage (config, botname, param)
    `# Commands\n` +
    `* ${cmd} eject [ServerID]\n` +
    `* ${cmd} blacklist [ServerID]\n` +
-   `* ${cmd} unblacklist [ServerID]\n\n` +
+   `* ${cmd} unblacklist [ServerID]\n` +
+   `* ${cmd} server [ServerID]\n\n` +
 
    `# Parameters\n` +
    `* [ServerID] - Raw Server ID\n\n` +

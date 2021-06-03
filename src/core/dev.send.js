@@ -9,7 +9,8 @@ const richEmbedMessage = new discord.MessageEmbed();
 const logger = require("./logger");
 const error = require("./error");
 const time = {
-   "long": 60000
+   "long": 60000,
+   "short": 5000
 };
 const auth = require("./auth");
 
@@ -20,15 +21,7 @@ const auth = require("./auth");
 function sendMessage (data)
 {
 
-   return data.message.channel.send(richEmbedMessage).then((msg) =>
-   {
-
-      msg.delete({"timeout": time.long}).catch((err) => console.log(
-         "Bot Message Deleted Error, command.send.js = ",
-         err
-      ));
-
-   }).
+   return data.message.channel.send(richEmbedMessage).
       // eslint-disable-next-line consistent-return
       catch((err) =>
       {
@@ -87,7 +80,11 @@ module.exports = function run (data)
    if (auth.devID.includes(data.message.author.id))
    {
 
-      console.log("Developer Override");
+      // console.log("DEBUG: Developer Override");
+      data.message.delete({"timeout": time.short}).catch((err) => console.log(
+         "Command Message Deleted Error, command.send.js = ",
+         err
+      ));
       richEmbedMessage.
          setColor(colors.get(data.color)).
          setAuthor(
@@ -103,7 +100,7 @@ module.exports = function run (data)
       return sendMessage(data);
 
    }
-   console.log("insufficient Permission");
+   // console.log("DEBUG: Insufficient Permission");
    data.message.delete({"timeout": time.short}).catch((err) => console.log(
       "Command Message Deleted Error, command.send.js = ",
       err
