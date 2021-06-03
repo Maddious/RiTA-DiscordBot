@@ -210,7 +210,7 @@ module.exports = function run (data)
                   // Send message
                   // -------------
 
-                  return devSendMessage(data);
+                  return sendMessage(data);
 
                }
 
@@ -228,7 +228,7 @@ module.exports = function run (data)
                // Send message
                // -------------
 
-               return devSendMessage(data);
+               return sendMessage(data);
 
             }
          ).catch((err) =>
@@ -242,7 +242,7 @@ module.exports = function run (data)
             );
 
             data.text = `\`\`\`${serverID} is not registered in the database.\n\n\`\`\``;
-            return devSendMessage(data);
+            return sendMessage(data);
 
          });
 

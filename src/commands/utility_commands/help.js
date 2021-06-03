@@ -475,7 +475,11 @@ const helpMessage = function helpMessage (config, botname, param)
    `* ${cmd} stats server \n\n` +
 
    `* Admin Only - Do not use in public channels\n` +
-   `* ${cmd} stats debug \n` +
+   `* ${cmd} stats server [ServerID]\n` +
+   `* ${cmd} stats debug \n\n` +
+
+   `# Parameters\n` +
+   `* [ServerID] - Raw Server ID\n\n` +
    "```";
 
    // -----------
