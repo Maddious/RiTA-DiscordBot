@@ -31,7 +31,8 @@ const cmdPrefix = require("./settings_commands/prefix");
 const cmdCreate = require("./utility_commands/create.channel");
 const cmdMod = require("./future_commands/mod.js");
 const cmdHistory = require("./info_commands/history.js");
-const cmdForce = require("./utility_commands/terminate.js");
+const cmdEject = require("./utility_commands/eject.js");
+const cmdBlacklist = require("./utility_commands/blacklist.js");
 
 
 // ---------------------------------------
@@ -279,6 +280,15 @@ module.exports = function run (data)
          // Get default language of server/bot
          // -----------------------------------
 
+         if (output.server[0].blacklisted === true)
+         {
+
+            console.log(`${output.server[0].blacklisted}`);
+            data.client.guilds.cache.get(id).leave();
+            console.log(`Self Kicked on command use due to blacklisted`);
+
+         }
+
          if (output.to === "default")
          {
 
@@ -336,11 +346,13 @@ module.exports = function run (data)
          const cmdMap = {
             "auto": cmdTranslateAuto,
             "ban": cmdMod.ban,
+            "blacklist": cmdBlacklist.blacklist,
             "bot2bot": cmdBot2bot,
+            "check": cmdBlacklist.check,
             "create": cmdCreate,
             "debug": cmdDebug,
             "donate": cmdDonate,
-            "eject": cmdForce.eject,
+            "eject": cmdEject.eject,
             "embed": cmdEmbed,
             "help": cmdHelp,
             "history": cmdHistory,

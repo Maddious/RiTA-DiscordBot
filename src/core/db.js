@@ -155,6 +155,10 @@ const Servers = db.define(
       "webhookactive": {
          "type": Sequelize.BOOLEAN,
          "defaultValue": false
+      },
+      "blacklisted": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": false
       }
    }
 );
@@ -465,6 +469,46 @@ exports.removeWebhook = function removeWebhook (id, _cb)
 
 };
 
+// -----------------
+// Blacklist Server
+// -----------------
+
+exports.blacklist = function blacklist (id, _cb)
+{
+
+   // console.log("DEBUG: Stage Deactivate debug Webhook");
+   return Servers.update(
+      {"blacklisted": true},
+      {"where": {id}}
+   ).then(function update ()
+   {
+
+      _cb();
+
+   });
+
+};
+
+// -----------------
+// Blacklist Server
+// -----------------
+
+exports.unblacklist = function unblacklist (id, _cb)
+{
+
+   // console.log("DEBUG: Stage Deactivate debug Webhook");
+   return Servers.update(
+      {"blacklisted": false},
+      {"where": {id}}
+   ).then(function update ()
+   {
+
+      _cb();
+
+   });
+
+};
+
 // --------------
 // Update prefix
 // --------------
@@ -565,6 +609,18 @@ exports.updateColumns = async function updateColumns ()
             db.getQueryInterface().addColumn(
                "servers",
                "webhookactive",
+               {"type": Sequelize.BOOLEAN,
+                  "defaultValue": false}
+            );
+
+         }
+         if (!tableDefinition.blacklisted)
+         {
+
+            console.log("DEBUG:-------------> Adding blacklisted column");
+            db.getQueryInterface().addColumn(
+               "servers",
+               "blacklisted",
                {"type": Sequelize.BOOLEAN,
                   "defaultValue": false}
             );
@@ -915,7 +971,8 @@ exports.getServerInfo = function getServerInfo (id, callback)
    `(select embedoff as "embedoff" from stats where id = ?) as table13, ` +
    `(select images as "images" from stats where id = ?) as table14, ` +
    `(select react as "react" from stats where id = ?) as table15, ` +
-   `(select gif as "gif" from stats where id = ?) as table16;`, {"replacements": [ id, id, id, id, id, id, id, id, id, id, id, id, id, id, id, id],
+   `(select gif as "gif" from stats where id = ?) as table16, ` +
+   `(select blacklisted as "blacklisted" from servers where id = ?) as table17;`, {"replacements": [ id, id, id, id, id, id, id, id, id, id, id, id, id, id, id, id, id],
       "type": db.QueryTypes.SELECT}).
       then(
          (result) => callback(result),

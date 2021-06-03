@@ -407,6 +407,45 @@ exports.listen = function listen (client)
             config.defaultLanguage,
             db.Servers
          );
+         db.getServerInfo(
+            guild.id,
+            function getServerInfo (server)
+            {
+
+               console.log(`Server: ${guild.id} has a blacklisted status of: ${server[0].blacklisted}`);
+
+               if (server[0].blacklisted === true)
+               {
+
+                  console.log(`GTFO - Server Kicked`);
+                  const writeErr = `${guild.name} Has been blacklised for Abuse, RITA will not join your server.`;
+
+                  // -------------
+                  // Send message
+                  // -------------
+
+                  guild.owner.
+                     send(writeErr).
+                     catch((err) => console.log(
+                        "error",
+                        err,
+                        "warning",
+                        guild.name
+                     ));
+
+                  guild.leave();
+
+               }
+
+            }
+
+         ).catch((err) => console.log(
+            "error",
+            err,
+            "warning",
+            guild.name
+         ));
+         console.log(`Blacklist Check Complete`);
 
       }
    );
