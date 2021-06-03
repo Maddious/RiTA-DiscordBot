@@ -20,7 +20,15 @@ const auth = require("./auth");
 function sendMessage (data)
 {
 
-   return data.message.channel.send(richEmbedMessage).
+   return data.message.channel.send(richEmbedMessage).then((msg) =>
+   {
+
+      msg.delete({"timeout": time.long}).catch((err) => console.log(
+         "Bot Message Deleted Error, command.send.js = ",
+         err
+      ));
+
+   }).
       // eslint-disable-next-line consistent-return
       catch((err) =>
       {

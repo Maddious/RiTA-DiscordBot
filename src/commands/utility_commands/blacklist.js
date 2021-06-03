@@ -5,8 +5,8 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const db = require("../../core/db");
 const logger = require("../../core/logger");
-const sendMessage = require("../../core/dev.send");
-
+const devSendMessage = require("../../core/dev.send");
+const sendMessage = require("../../core/command.send");
 // ----------
 // Blacklist
 // ----------
@@ -86,7 +86,7 @@ module.exports.blacklist = function blacklist (data)
          // Send message
          // -------------
 
-         return sendMessage(data);
+         return devSendMessage(data);
 
       }
    );
