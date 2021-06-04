@@ -409,7 +409,7 @@ exports.listen = function listen (client)
          );
          db.getServerInfo(
             guild.id,
-            function getServerInfo (server)
+            async function getServerInfo (server)
             {
 
                console.log(`Server: ${guild.id} has a blacklisted status of: ${server[0].blacklisted}`);
@@ -431,22 +431,8 @@ exports.listen = function listen (client)
                         "msg": oneLine`**Server:** ${guild.id} has been kicked as it is blacklisted`
                      }
                   );
-                  const writeErr = `${guild.name} Has been blacklised for Abuse, RITA will not join your server.`;
 
-                  // -------------
-                  // Send message
-                  // -------------
-
-                  guild.owner.
-                     send(writeErr).
-                     catch((err) => console.log(
-                        "error",
-                        err,
-                        "warning",
-                        guild.name
-                     ));
-
-                  guild.leave();
+                  await guild.leave();
 
                }
 
