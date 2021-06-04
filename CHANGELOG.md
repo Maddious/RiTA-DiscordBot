@@ -1,6 +1,31 @@
-## 1.2.3 Change Log
+## 1.2.4 Change Log
 * BIG ANNOUNCEMENT - RITA IS NOW VERIFIED
 
+* With the introduction of Version 1.2.4, we have added in a bunch of new commands. 
+* We have now been Verified, so you can invite RITA by going to https://ritabot.gg/invite
+
+### 1.2.4 Major Changes
+* Dev only Command handler has been added in to enable fast changes to command restrictions. 
+
+### 1.2.4 Bug Fixes
+* Lots of little things, nothing of consequence. 
+ 
+### 1.2.4 Command Changes
+* `!tr history` shows Development History of the bot.
+* `!tr stats server [ServerID]` shows stats for the targets server.
+* `!tr blacklist [ServerID]` Blacklists a server (Developers Only).
+* `!tr unblacklist [ServerID]` un-Blacklists a server (Developers Only).
+* `!tr eject [ServerID]` Removes RITA from the target server (Developers Only).
+* `!tr check [ServerID]` Checks Blacklist status of the given server.
+* `!tr checkperms [bot/user]` checks permissions of the bot and the user for RITA compatibility.
+ 
+### 1.2.4 Database Changes
+* A new column has been added to manage blacklisting, backwards compatible to all previous versions.
+ 
+### 1.2.4 Misc. Changes
+* Once again Zycore broke something (a lot of times) Zycore fixed it again.
+
+## 1.2.3 Change Log
 * With the introduction of Version 1.2.3, we have updated the translate API. This is still the same as before but its now providing a much better accuracy rate than before.
 * We are still waiting for Discord to Verify RITA, so for now we are limited to 100 servers, We are at that limit at the moment so keep and eye out for the little blue tick, Once you see it you can invite RITA to your server. Please join our discord for more info. https://discord.gg/AtJcjvnkg6
 
@@ -21,7 +46,7 @@
 * It working so were not going to touch it. (Well Zycore wont)
  
 ### 1.2.3 Misc Changes
-* Zycore broke something (alot of times) Zycore fixed it again. 
+* Zycore broke something (a lot of times) Zycore fixed it again. 
 * All debug messages have been commented out in all files, This make the console log look so much cleaner. 
 * Reaction Translation now works for any message, wether it was sent before the bot came online or after
 
