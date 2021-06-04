@@ -188,7 +188,11 @@ const getHistory = function getHistory (data)
       `# Version 1.2.3 - Release Date: 24/05/2021. \n` +
       `# Version 1.2.3-1 - Release Date: 27/05/2021. \n` +
       `# Version 1.2.3-2 - Release Date: 27/05/2021. \n` +
-      `# Version 1.2.3-3 - Release Date: 28/05/2021. \n\n` +
+      `# Version 1.2.3-3 - Release Date: 28/05/2021. \n` +
+      `# Version 1.2.3-4 - Release Date: 02/06/2021. \n` +
+      `# Version 1.2.3-5 - Release Date: 03/06/2021. \n` +
+      `# Version 1.2.3-6 - Release Date: 03/06/2021. \n` +
+      `# Version 1.2.3-7 - Release Date: 05/06/2021. \n\n` +
       "```\n";
 
       // -------------
