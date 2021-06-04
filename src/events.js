@@ -46,7 +46,7 @@ exports.listen = function listen (client)
             "maxChains": 10,
             "maxEmbeds": 5,
             "maxMulti": 6,
-            "maxTasksPerChannel": 10,
+            "maxTasksPerChannel": 15,
             "owner": auth.botOwner,
             "translateCmd": "!translate",
             "translateCmdShort": "!tr",

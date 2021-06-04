@@ -24,6 +24,8 @@
  
 ### 1.2.4 Misc. Changes
 * Once again Zycore broke something (a lot of times) Zycore fixed it again.
+* Help muenus update with new commands.
+* Help menus has been reworked, Still a work in progress but they look much better now. 
 
 ## 1.2.3 Change Log
 * With the introduction of Version 1.2.3, we have updated the translate API. This is still the same as before but its now providing a much better accuracy rate than before.

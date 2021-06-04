@@ -102,10 +102,6 @@ module.exports = function run (data)
       ));
       richEmbedMessage.
          setColor(colors.get(data.color)).
-         setAuthor(
-            data.bot.username,
-            data.bot.displayAvatarURL()
-         ).
          setDescription(`Developer Identity confirmed: \n\n${data.text}`).
          setTimestamp().
          setFooter("This message will self-destruct in one minute");
@@ -123,10 +119,6 @@ module.exports = function run (data)
    ));
    richEmbedMessage.
       setColor(colors.get(data.color)).
-      setAuthor(
-         data.bot.username,
-         data.bot.displayAvatarURL()
-      ).
       setDescription(data.text).
       setTimestamp().
       setFooter("This message will self-destruct in one minute");
