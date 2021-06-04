@@ -214,7 +214,7 @@ module.exports = function run (data)
                }
 
                const targetServer = `**\`\`\`${target.name} - Server Tranlation Stats\`\`\`**\n` +
-                  `Server Owner: ${data.message.channel.guild.owner.user} aka ${data.message.channel.guild.owner.user.username}#${data.message.channel.guild.owner.user.discriminator}\n\n` +
+                  `Server Owner: ${target.owner.user} aka ${target.owner.user.username}#${target.owner.user.discriminator}\n\n` +
                   `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
                   `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
                   `:person_facepalming: Users in Server: **\`${target.memberCount}\`**\n\n` +
