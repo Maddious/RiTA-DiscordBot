@@ -92,12 +92,12 @@ const errorLog = function errorLog (error, subtype, id)
 
    }
 
-   // if (errorTitle === "unhandled")
-   // {
+   if (errorTitle === "unhandled")
+   {
 
-   // return console.log(`DEBUG: Error ${errorTitle}`);
+      return console.log(`DEBUG: Error ${errorTitle} Suppressed`);
 
-   // }
+   }
 
    hookSend({
       "color": "err",
