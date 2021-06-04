@@ -212,8 +212,10 @@ module.exports = function run (data)
                   return sendMessage(data);
 
                }
+               if (!target.owner === null)
+               {
 
-               const targetServer = `**\`\`\`${target.name} - Server Tranlation Stats\`\`\`**\n` +
+                  const targetServer = `**\`\`\`${target.name} - Server Tranlation Stats\`\`\`**\n` +
                   `Server Owner: ${target.owner.user} aka ${target.owner.user.username}#${target.owner.user.discriminator}\n\n` +
                   `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
                   `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
@@ -223,7 +225,25 @@ module.exports = function run (data)
                   `:notebook:  **\`${server[0].embedon}\`**  messages have been sent in **\`Embed On\`** format\n\n` +
                   `:speech_balloon:  **\`${server[0].embedoff}\`**  messages have been sent in **\`Embed Off\`** format\n`;
 
-               data.text = `${targetServer}\n\n`;
+                  data.text = `${targetServer}\n\n`;
+
+               }
+               else
+               {
+
+                  const targetServer = `**\`\`\`${target.name} - Server Tranlation Stats\`\`\`**\n` +
+                  `Server Owner: Unable to get this information.\n\n` +
+                  `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
+                  `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
+                  `:person_facepalming: Users in Server: **\`${target.memberCount}\`**\n\n` +
+                  `:frame_photo:  A total of **\`${server[0].images}\`**  images have been sent and **\`${server[0].gif}\`** Gif's have been shared\n\n` +
+                  `:flag_white:  **\`${server[0].react}\`**  messages have been translated with flag reactions \n\n` +
+                  `:notebook:  **\`${server[0].embedon}\`**  messages have been sent in **\`Embed On\`** format\n\n` +
+                  `:speech_balloon:  **\`${server[0].embedoff}\`**  messages have been sent in **\`Embed Off\`** format\n`;
+
+                  data.text = `${targetServer}\n\n`;
+
+               }
 
                // -------------
                // Send message
