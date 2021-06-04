@@ -186,6 +186,27 @@ module.exports = function run (config, message)
 
    }
 
+   // ---------------------
+   // Blacklist Redundancy
+   // ---------------------
+   const serverID = data.message.guild.id;
+
+   db.getServerInfo(
+      serverID,
+      function getServerInfo (server)
+      {
+
+         if (server[0].blacklisted === true)
+         {
+
+            data.message.guild.leave();
+            console.log(`Blacklist Redundancy, Server ${serverID} ejected`);
+
+         }
+
+      }
+   );
+
    // ------------------
    // Proccess Commands
    // ------------------

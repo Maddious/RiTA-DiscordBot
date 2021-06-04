@@ -4,6 +4,7 @@
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const sendMessage = require("../../core/dev.send");
+const oneLine = require("common-tags").oneLine;
 
 // ------
 // Eject
@@ -22,7 +23,7 @@ module.exports.eject = async function eject (data)
    const target = data.client.guilds.cache.get(serverID);
 
    data.color = "warn";
-   data.text = `\`\`\`Server owner has been warned, Server connection terminated\`\`\``;
+   data.text = `\`\`\`${serverID} - Server connection terminated\`\`\``;
    if (!target)
    {
 
@@ -31,7 +32,7 @@ module.exports.eject = async function eject (data)
       // ----------------
 
       data.color = "info";
-      data.text = `\`\`\`Server has already been ejected.\n\`\`\``;
+      data.text = oneLine`\`\`\`${serverID} Server has already been ejected.\n\`\`\``;
       return sendMessage(data);
 
    }
@@ -64,7 +65,7 @@ module.exports.eject = async function eject (data)
       // --------------------------------
 
       data.color = "warn";
-      data.text = `\`\`\`Unable to warn Owner, Server connection terminated\`\`\``;
+      data.text = oneLine`\`\`\`${serverID} - ${target.name}\nUnable to warn Owner, Server connection terminated\`\`\``;
       await target.leave();
       return sendMessage(data);
 

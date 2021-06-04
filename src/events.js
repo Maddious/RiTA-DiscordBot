@@ -413,11 +413,24 @@ exports.listen = function listen (client)
             {
 
                console.log(`Server: ${guild.id} has a blacklisted status of: ${server[0].blacklisted}`);
+               logger(
+                  "custom",
+                  {
+                     "color": "ok",
+                     "msg": oneLine`**Server:** ${guild.id} has a blacklisted status of: **${server[0].blacklisted}**`
+                  }
+               );
 
                if (server[0].blacklisted === true)
                {
 
-                  console.log(`GTFO - Server Kicked`);
+                  logger(
+                     "custom",
+                     {
+                        "color": "warn",
+                        "msg": oneLine`**Server:** ${guild.id} has been kicked as it is blacklisted`
+                     }
+                  );
                   const writeErr = `${guild.name} Has been blacklised for Abuse, RITA will not join your server.`;
 
                   // -------------
@@ -445,7 +458,7 @@ exports.listen = function listen (client)
             "warning",
             guild.name
          ));
-         console.log(`Blacklist Check Complete`);
+         // console.log(`DEBUG: Blacklist Check Complete`);
 
       }
    );

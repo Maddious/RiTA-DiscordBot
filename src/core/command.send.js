@@ -37,7 +37,7 @@ function sendMessage (data)
          if (err.code && err.code === error.perm || error.access)
          {
 
-            console.log("Error 50013");
+            // console.log("Error 50013");
             logger(
                "custom",
                {

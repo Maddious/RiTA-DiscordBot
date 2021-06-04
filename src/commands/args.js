@@ -67,7 +67,7 @@ const extractParam = function extractParam (key, str, def = null, allowArray = f
             if (matching)
             {
 
-               console.log(matching[1].replace("to ", ""));
+               // console.log(matching[1].replace("to ", ""));
                return matching[1].replace("to ", "");
 
             }
@@ -284,7 +284,7 @@ module.exports = function run (data)
          if (output.server[0].blacklisted === true)
          {
 
-            console.log(`${output.server[0].blacklisted}`);
+            // console.log(`${output.server[0].blacklisted}`);
             data.client.guilds.cache.get(id).leave();
             console.log(`Self Kicked on command use due to blacklisted`);
 
