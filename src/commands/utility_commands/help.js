@@ -361,10 +361,10 @@ const helpMessage = function helpMessage (config, botname, param)
    `* for [me/@/#] - defaults to "me", admins can use mentions \n\n` +
 
    `# Examples\n` +
-   `* ${cmd} channel to english from chinese \n` +
-   `* ${cmd} channel to en from de for #englishChannel \n` +
-   `* ${cmd} channel to de from en for @steve \n` +
-   `* ${cmd} channel to en from ru for #ch1, #ch2, #usr1 \n` +
+   `* ${cmd} channel from english to chinese \n` +
+   `* ${cmd} channel from en to de for #englishChannel \n` +
+   `* ${cmd} channel from de to fr for @steve \n` +
+   `* ${cmd} channel from en to es for #ch1, #ch2, #usr1 \n` +
    "```";
 
    // --------------
@@ -426,6 +426,9 @@ const helpMessage = function helpMessage (config, botname, param)
 
    `# Supported Languages\n` +
    `* ${cmd} list\n\n` +
+
+   `# Permission Check\n` +
+   `* ${cmd} perm [user/bot]\n\n` +
 
    `# Donate\n` +
    `* ${cmd} donate [oc/github]\n\n` +
@@ -600,7 +603,7 @@ const helpMessage = function helpMessage (config, botname, param)
    `* ${long} create [channelName]\n\n` +
 
    `# Parameters\n` +
-   `* [channelName] - sets name of new channel\n` +
+   `* [channelName] - sets name of new channel\n\n` +
 
    `# Examples\n` +
    `* ${cmd} create bob - your new channel would now be bob \n` +

@@ -33,6 +33,7 @@ const cmdMod = require("./future_commands/mod.js");
 const cmdHistory = require("./info_commands/history.js");
 const cmdEject = require("./utility_commands/eject.js");
 const cmdBlacklist = require("./utility_commands/blacklist.js");
+const cmdPerms = require("./utility_commands/perm.js");
 
 
 // ---------------------------------------
@@ -349,6 +350,7 @@ module.exports = function run (data)
             "blacklist": cmdBlacklist.blacklist,
             "bot2bot": cmdBot2bot,
             "check": cmdBlacklist.check,
+            "checkperms": cmdPerms,
             "create": cmdCreate,
             "debug": cmdDebug,
             "donate": cmdDonate,
@@ -359,7 +361,7 @@ module.exports = function run (data)
             "id": cmdMisc.ident,
             "info": cmdHelp,
             "invite": cmdMisc.invite,
-            "last": cmdTranslateLast.run,
+            "last": cmdTranslateLast,
             "list": cmdList,
             "mute": cmdMod.mute,
             "prefix": cmdPrefix,
