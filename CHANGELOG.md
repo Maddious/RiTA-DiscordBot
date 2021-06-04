@@ -40,7 +40,6 @@
  
 ### 1.2.3 Command Changes 
 * `!tr stats global` / `!tr stats server` now show message based stats, take a look. 
-* `!tr history` New command added, shows Development History of the bot.
  
 ### 1.2.3 Database Changes
 * It working so were not going to touch it. (Well Zycore wont)
