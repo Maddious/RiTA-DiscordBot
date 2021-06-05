@@ -392,7 +392,11 @@ const embedOn = function embedOn (data)
                   Server ID: **${data.channel.guild.id}**\n
                   Owner: **${data.channel.guild.owner}**\n
                   The server owner has been notified. \n`
-                  });
+                  }).catch((err) => console.log(
+                     "error",
+                     err,
+                     "warning"
+                  ));
 
                }
 
@@ -407,7 +411,11 @@ const embedOn = function embedOn (data)
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
                   Owner: **${data.channel.guild.owner}**\n`
-                  });
+                  }).catch((err) => console.log(
+                     "error",
+                     err,
+                     "warning"
+                  ));
 
                }
 
@@ -422,7 +430,11 @@ const embedOn = function embedOn (data)
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
                   Owner: **${data.channel.guild.owner}**\n`
-                  });
+                  }).catch((err) => console.log(
+                     "error",
+                     err,
+                     "warning"
+                  ));
 
                }
 
@@ -452,13 +464,22 @@ const embedOn = function embedOn (data)
                            "```prolog\nServer > Privacy Settings > " +
                            "'Allow direct messages from server members'\n```");
 
-                  });
+                  }).catch((err) => console.log(
+                     "error",
+                     err,
+                     "warning"
+                  ));
 
                }
 
                logger("error", errMsg, "warning", data.message.channel.guild.name);
 
-            });
+            }).
+            catch((err) => console.log(
+               "error",
+               err,
+               "warning"
+            ));
 
       }
       else if (data.attachments.array().length > 0)
