@@ -122,6 +122,13 @@ module.exports = function run (config, message)
          message.content = `${message.content}\n${message.embeds[0].description}`;
 
       }
+      else if (message.content === "" || message.content === " ")
+      {
+
+         // console.log(`--m.js--- Empty Message Error: ----2----\nServer: ${message.channel.guild.name},\nChannel: ${message.channel.id} - ${message.channel.name},\nMessage ID: ${message.id},\nContent: ${message.content},\nWas Image: ${message.attachments},\nwas Embed: ${message.embeds},\nSender: ${message.member.displayName} - ${message.member.id},\nTimestamp: ${message.createdAt}\n----------------------------------------`);
+         return;
+
+      }
 
    }
 
