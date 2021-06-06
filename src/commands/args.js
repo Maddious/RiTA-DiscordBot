@@ -30,6 +30,10 @@ const cmdDebug = require("./settings_commands/debug");
 const cmdPrefix = require("./settings_commands/prefix");
 const cmdCreate = require("./utility_commands/create.channel");
 const cmdMod = require("./future_commands/mod.js");
+const cmdHistory = require("./info_commands/history.js");
+const cmdEject = require("./utility_commands/eject.js");
+const cmdBlacklist = require("./utility_commands/blacklist.js");
+const cmdPerms = require("./utility_commands/perm.js");
 
 
 // ---------------------------------------
@@ -63,7 +67,7 @@ const extractParam = function extractParam (key, str, def = null, allowArray = f
             if (matching)
             {
 
-               console.log(matching[1].replace("to ", ""));
+               // console.log(matching[1].replace("to ", ""));
                return matching[1].replace("to ", "");
 
             }
@@ -277,6 +281,15 @@ module.exports = function run (data)
          // Get default language of server/bot
          // -----------------------------------
 
+         if (output.server[0].blacklisted === true)
+         {
+
+            // console.log(`${output.server[0].blacklisted}`);
+            data.client.guilds.cache.get(id).leave();
+            console.log(`Self Kicked on command use due to blacklisted`);
+
+         }
+
          if (output.to === "default")
          {
 
@@ -334,12 +347,17 @@ module.exports = function run (data)
          const cmdMap = {
             "auto": cmdTranslateAuto,
             "ban": cmdMod.ban,
+            "blacklist": cmdBlacklist.blacklist,
             "bot2bot": cmdBot2bot,
+            "check": cmdBlacklist.check,
+            "checkperms": cmdPerms,
             "create": cmdCreate,
             "debug": cmdDebug,
             "donate": cmdDonate,
+            "eject": cmdEject.eject,
             "embed": cmdEmbed,
             "help": cmdHelp,
+            "history": cmdHistory,
             "id": cmdMisc.ident,
             "info": cmdHelp,
             "invite": cmdMisc.invite,
@@ -355,7 +373,9 @@ module.exports = function run (data)
             "tasks": cmdTranslateTasks,
             "this": cmdTranslateThis,
             "unban": cmdMod.unban,
+            "unblacklist": cmdBlacklist.unblacklist,
             "unmute": cmdMod.unmute,
+            "update": cmdMisc.update,
             "version": cmdVersion
          };
 

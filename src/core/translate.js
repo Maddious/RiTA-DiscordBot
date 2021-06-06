@@ -60,10 +60,15 @@ function discordPatch (string)
 
          const text = str.slice(1, -1);
          const textMatch = text.match(/[a-z\s.!,()0-9]/gi);
-         if (textMatch.length === text.length)
+         if (textMatch)
          {
 
-            match[i] = text;
+            if (textMatch.length === text.length)
+            {
+
+               match[i] = text;
+
+            }
 
          }
 

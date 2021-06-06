@@ -13,6 +13,11 @@ const {stripIndent} = require("common-tags");
 const {oneLine} = require("common-tags");
 const secConverter = require("rita-seconds-converter");
 const sendMessage = require("../../core/command.send");
+const botSend = require("../../core/send");
+const time = {
+   "long": 60000,
+   "short": 5000
+};
 
 // ------------
 // Invite Link
@@ -25,10 +30,6 @@ module.exports.invite = function invite (data)
    data.text = `Invite ${data.bot} `;
    data.text += `\`v${data.config.version}\` to your server\n\n`;
    data.text += `${auth.invite}`;
-   data.footer = {
-      "text":
-         "Requires VIEW, SEND, REACT, EMBED, ATTACH and MENTION permissions.\n"
-   };
 
    // -------------
    // Send message
@@ -290,23 +291,52 @@ module.exports.ident = function ident (data)
    // console.log("DEBUG: ID Message");
 
    data.color = "info";
-   data.text = `*User Name:* \`${data.message.author.username}\`\n`;
-   data.text += `*User ID:* \`${data.message.author.id}\`\n\n`;
-   data.text += `*Server Name:* \`${data.message.channel.guild.name}\`\n`;
-   data.text += `*Server ID:* \`${data.message.channel.guild.id}\`\n\n`;
-   data.text += `*Bot Name:* \`${data.bot.username}\`\n`;
-   data.text += `*Bot ID:* \`${data.bot.id}\`\n\n`;
-   data.text += `*Chan Name:* \`${data.message.channel.name}\`\n`;
-   data.text += `*Chan ID:* \`${data.message.channel.id}\``;
-   data.footer = {
-      "text":
-         "Requires VIEW, SEND, REACT, EMBED, ATTACH and MENTION permissions.\n"
-   };
+   data.text = `**User Name:** \`${data.message.author.username}\`\n` +
+   `**User ID:** \`${data.message.author.id}\`\n\n` +
+   `**Server Name:** \`${data.message.channel.guild.name}\`\n` +
+   `**Server ID:** \`${data.message.channel.guild.id}\`\n\n` +
+   `**Bot Name:** \`${data.bot.username}\`\n` +
+   `**Bot ID:** \`${data.bot.id}\`\n\n` +
+   `**Chan Name:** \`${data.message.channel.name}\`\n` +
+   `**Chan ID:** \`${data.message.channel.id}\``;
 
    // -------------
    // Send message
    // -------------
 
    return sendMessage(data);
+
+};
+
+module.exports.update = function update (data)
+{
+
+   // ------------------
+   // Gather ID Details
+   // ------------------
+
+   // console.log("DEBUG: ID Message");
+
+   data.color = "info";
+   data.text = `*How to Update your bot:* \n\n` +
+   `*Heroku Users* \n\n` +
+   `**Step 1:** Retrieve your github.com account username \n\n` +
+   `**Step 2:** Copy it and replace YOUR_GITHUB_USERNAME_HERE in the URL below: \n\n` +
+   "```" +
+   `https://github.com/YOUR_GITHUB_USERNAME_HERE/RitaBot/compare/master...RitaBot-Project:master \n\n` +
+   "```\n" +
+   `**Step 3:** Go to the URL & create the Pull Request. Give the PR a name & accept all changes. \n\n` +
+   `**Step 4:** Finally, merge it and re-deploy your bot in Heroku. \n\n` +
+   `If you need any help please join our discord server: https://discord.gg/mgNR64R \n\n`;
+
+   // -------------
+   // Send message
+   // -------------
+
+   data.message.delete({"timeout": time.short}).catch((err) => console.log(
+      "Command Message Deleted Error, misc.js = ",
+      err
+   ));
+   return botSend(data);
 
 };
