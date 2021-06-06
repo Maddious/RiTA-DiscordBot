@@ -159,6 +159,10 @@ const Servers = db.define(
       "blacklisted": {
          "type": Sequelize.BOOLEAN,
          "defaultValue": false
+      },
+      "warn": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": false
       }
    }
 );
@@ -473,12 +477,12 @@ exports.removeWebhook = function removeWebhook (id, _cb)
 // Blacklist Server
 // -----------------
 
-exports.blacklist = function blacklist (id, _cb)
+exports.blacklist = function blacklist (id, type, _cb)
 {
 
-   // console.log("DEBUG: Stage Deactivate debug Webhook");
+   // console.log("DEBUG: Stage Blacklist");
    return Servers.update(
-      {"blacklisted": true},
+      {"blacklisted": type},
       {"where": {id}}
    ).then(function update ()
    {
@@ -489,16 +493,16 @@ exports.blacklist = function blacklist (id, _cb)
 
 };
 
-// -----------------
-// Blacklist Server
-// -----------------
+// ------------
+// Warn Server
+// ------------
 
-exports.unblacklist = function unblacklist (id, _cb)
+exports.warn = function warn (id, type, _cb)
 {
 
-   // console.log("DEBUG: Stage Deactivate debug Webhook");
+   console.log("DEBUG: Stage Warn");
    return Servers.update(
-      {"blacklisted": false},
+      {"warn": type},
       {"where": {id}}
    ).then(function update ()
    {
@@ -508,6 +512,7 @@ exports.unblacklist = function unblacklist (id, _cb)
    });
 
 };
+
 
 // --------------
 // Update prefix
@@ -621,6 +626,18 @@ exports.updateColumns = async function updateColumns ()
             db.getQueryInterface().addColumn(
                "servers",
                "blacklisted",
+               {"type": Sequelize.BOOLEAN,
+                  "defaultValue": false}
+            );
+
+         }
+         if (!tableDefinition.warn)
+         {
+
+            // console.log("DEBUG:-------------> Adding warn column");
+            db.getQueryInterface().addColumn(
+               "servers",
+               "warn",
                {"type": Sequelize.BOOLEAN,
                   "defaultValue": false}
             );
