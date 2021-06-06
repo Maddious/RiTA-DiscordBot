@@ -925,7 +925,13 @@ exports.getStats = function getStats (callback)
   `from tasks where active = TRUE) as table4, ` +
   `(select count(distinct origin) as "activeUserTasks" ` +
   `from tasks where active = TRUE and origin like '@%') as table5,` +
-  `(select * from stats where id = 'bot') as table6;`,
+  `(select message as "message" from stats where id = 'bot') as table6,` +
+  `(select translation as "translation" from stats where id = 'bot') as table7,` +
+  `(select embedon as "embedon" from stats where id = 'bot') as table8,` +
+  `(select embedoff as "embedoff" from stats where id = 'bot') as table9, ` +
+  `(select images as "images" from stats where id = 'bot') as table10, ` +
+  `(select react as "react" from stats where id = 'bot') as table11, ` +
+  `(select gif as "gif" from stats where id = 'bot') as table12;`,
       {"type": Sequelize.QueryTypes.SELECT},
    ).
       then(
@@ -953,8 +959,21 @@ exports.getServerInfo = function getServerInfo (id, callback)
    `from tasks where server = ?) as table2,` +
    `(select count(distinct origin) as "activeUserTasks"` +
    `from tasks where origin like '@%' and server = ?) as table3, ` +
-   `(select * from servers where id = ?) as table4, ` +
-   `(select * from stats where id = ?) as table5,`, {"replacements": [ id, id, id, id, id],
+   `(select embedstyle as "embedstyle" from servers where id = ?) as table4, ` +
+   `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5, ` +
+   `(select webhookactive as "webhookactive" from servers where id = ?) as table6,` +
+   `(select webhookid as "webhookid" from servers where id = ?) as table7,` +
+   `(select webhooktoken as "webhooktoken" from servers where id = ?) as table8,` +
+   `(select prefix as "prefix" from servers where id = ?) as table9,` +
+   `(select message as "message" from stats where id = ?) as table10,` +
+   `(select translation as "translation" from stats where id = ?) as table11,` +
+   `(select embedon as "embedon" from stats where id = ?) as table12, ` +
+   `(select embedoff as "embedoff" from stats where id = ?) as table13, ` +
+   `(select images as "images" from stats where id = ?) as table14, ` +
+   `(select react as "react" from stats where id = ?) as table15, ` +
+   `(select gif as "gif" from stats where id = ?) as table16, ` +
+   `(select blacklisted as "blacklisted" from servers where id = ?) as table17,` +
+   `(select * from servers where id = ?) as table18; `, {"replacements": [ id, id, id, id, id, id, id, id, id, id, id, id, id, id, id, id, id, id],
       "type": db.QueryTypes.SELECT}).
       then(
          (result) => callback(result),
