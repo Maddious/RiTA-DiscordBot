@@ -197,7 +197,7 @@ const getSettings = function getSettings (data)
    // Update db
    // ----------
 
-   function updateDB (data)
+   async function updateDB (data)
    {
 
       data.color = "info";
@@ -208,7 +208,7 @@ const getSettings = function getSettings (data)
       // Send message
       // -------------
 
-      db.updateColumns();
+      await db.updateColumns();
 
       return sendMessage(data);
 
