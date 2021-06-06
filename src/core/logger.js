@@ -92,7 +92,7 @@ const errorLog = function errorLog (error, subtype, id)
 
    }
 
-   if (errorTitle === "unhandled")
+   if (errorTypes === "unhandled")
    {
 
       return console.log(`DEBUG: Error ${errorTitle} Suppressed`);
