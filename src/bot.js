@@ -3,6 +3,11 @@
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING]
+const time = {
+   "long": 60000,
+   "mid": 30000,
+   "short": 5000
+};
 const env = `${__dirname.slice(
    0,
    -3
@@ -11,7 +16,9 @@ require("dotenv").config({
    "path": env
 });
 const discord = require("discord.js");
-const client = new discord.Client();
+const client = new discord.Client({
+   "restRequestTimeout": time.mid
+});
 const auth = require("./core/auth");
 
 // ---------------
