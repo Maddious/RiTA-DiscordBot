@@ -196,6 +196,7 @@ module.exports = function run (data)
                {
 
                   const targetServer = `**\`\`\`${serverID} - Server Tranlation Stats\`\`\`**\n` +
+                     `Server Joined Rita Network: \`\`\`${server[0].createdAt}\`\`\`\n` +
                      `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
                      `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
                      `:frame_photo:  A total of **\`${server[0].images}\`**  images have been sent and **\`${server[0].gif}\`** Gif's have been shared\n\n` +
@@ -212,11 +213,12 @@ module.exports = function run (data)
                   return sendMessage(data);
 
                }
-               if (!target.owner === null)
+               if (target.owner)
                {
 
                   const targetServer = `**\`\`\`${target.name} - Server Tranlation Stats\`\`\`**\n` +
-                  `Server Owner: ${target.owner.user} aka ${target.owner.user.username}#${target.owner.user.discriminator}\n\n` +
+                  `Server Owner: ${target.owner}\n\n` +
+                  `Server Joined Rita Network: \`\`\`${server[0].createdAt}\`\`\`\n` +
                   `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
                   `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
                   `:person_facepalming: Users in Server: **\`${target.memberCount}\`**\n\n` +
@@ -228,11 +230,12 @@ module.exports = function run (data)
                   data.text = `${targetServer}\n\n`;
 
                }
-               else
+               else if (!target.owner)
                {
 
                   const targetServer = `**\`\`\`${target.name} - Server Tranlation Stats\`\`\`**\n` +
                   `Server Owner: Unable to get this information.\n\n` +
+                  `Server Joined Rita Network: \`\`\`${server[0].createdAt}\`\`\`\n` +
                   `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
                   `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
                   `:person_facepalming: Users in Server: **\`${target.memberCount}\`**\n\n` +
