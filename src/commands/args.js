@@ -34,6 +34,7 @@ const cmdHistory = require("./info_commands/history.js");
 const cmdEject = require("./utility_commands/eject.js");
 const cmdBlacklist = require("./utility_commands/blacklist.js");
 const cmdPerms = require("./utility_commands/perm.js");
+const cmdCheck = require("./utility_commands/check.js");
 
 
 // ---------------------------------------
@@ -349,7 +350,7 @@ module.exports = function run (data)
             "ban": cmdMod.ban,
             "blacklist": cmdBlacklist.blacklist,
             "bot2bot": cmdBot2bot,
-            "check": cmdBlacklist.check,
+            "check": cmdCheck,
             "checkperms": cmdPerms,
             "create": cmdCreate,
             "debug": cmdDebug,
@@ -375,8 +376,10 @@ module.exports = function run (data)
             "unban": cmdMod.unban,
             "unblacklist": cmdBlacklist.unblacklist,
             "unmute": cmdMod.unmute,
+            "unwarn": cmdEject.unwarn,
             "update": cmdMisc.update,
-            "version": cmdVersion
+            "version": cmdVersion,
+            "warn": cmdEject.warn
          };
 
          // --------------------------
@@ -396,6 +399,16 @@ module.exports = function run (data)
          }
 
       }
-   );
+   ).catch((err) =>
+   {
+
+      console.log(
+         "error",
+         err,
+         "warning",
+         id
+      );
+
+   });
 
 };
