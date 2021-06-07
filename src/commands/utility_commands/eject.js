@@ -38,7 +38,7 @@ module.exports.eject = async function eject (data)
       return sendMessage(data);
 
    }
-   else if (target.name)
+   else if (target.owner)
    {
 
       const writeErr = `Rita has been removed from ${target.name} for Abuse. Continued abuse will result in Blacklisting`;
