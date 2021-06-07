@@ -136,7 +136,7 @@ module.exports.warn = async function warn (data)
          ));
 
    }
-   else
+   else if (!target.owner)
    {
 
       // --------------------------------
