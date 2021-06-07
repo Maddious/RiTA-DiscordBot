@@ -145,7 +145,7 @@ module.exports.warn = async function warn (data)
 
       data.color = "warn";
       data.text = oneLine`\`\`\`Server:${target.name} \nServer ID:${serverID}\nUnable to warn Owner.\`\`\``;
-      await db.warn(serverID).catch((err) => console.log(
+      await db.warn(serverID, true).catch((err) => console.log(
          "error",
          err,
          "warning",
