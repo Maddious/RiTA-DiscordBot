@@ -109,7 +109,7 @@ module.exports.warn = async function warn (data)
       return sendMessage(data);
 
    }
-   else if (target.name)
+   else if (target.owner)
    {
 
       const writeErr = `Hi ${target.owner}, And thank you for deciding to give RITA a try.\n\n` +
