@@ -41,7 +41,7 @@ const cmdCheck = require("./utility_commands/check.js");
 // Extract a parameter's value with regex
 // ---------------------------------------
 
-const extractParam = function extractParam (key, str, def = null, allowArray = false)
+function extractParam (key, str, def = null, allowArray = false)
 {
 
    const rgx = new RegExp(`${key}\\s*((?:(?:\\S*\\s*,\\s*)+\\S*)|\\S*)`, "m");
@@ -91,14 +91,14 @@ const extractParam = function extractParam (key, str, def = null, allowArray = f
 
    return def;
 
-};
+}
 
 
 // ---------------------
 // Extract number param
 // ---------------------
 
-const extractNum = function extractNum (str)
+function extractNum (str)
 {
 
    const rgx = new RegExp(
@@ -122,13 +122,13 @@ const extractNum = function extractNum (str)
    }
    return null;
 
-};
+}
 
 // ------------------
 // Check for content
 // ------------------
 
-const checkContent = function checkContent (msg, output)
+function checkContent (msg, output)
 {
 
    const hasContent = (/([^:]*):(.*)/).exec(msg);
@@ -141,13 +141,13 @@ const checkContent = function checkContent (msg, output)
 
    }
 
-};
+}
 
 // -------------
 // Get main arg
 // -------------
 
-const getMainArg = function getMainArg (output)
+function getMainArg (output)
 {
 
    const sepIndex = output.main.indexOf(" ");
@@ -163,13 +163,13 @@ const getMainArg = function getMainArg (output)
 
    }
 
-};
+}
 
 // -------------
 // Strip prefix
 // -------------
 
-const stripPrefix = function stripPrefix (message, config, bot)
+function stripPrefix (message, config, bot)
 {
 
    let cmd = message.content;
@@ -195,7 +195,7 @@ const stripPrefix = function stripPrefix (message, config, bot)
 
    return cmd;
 
-};
+}
 
 // --------------------------------------
 // Analyze arguments from command string

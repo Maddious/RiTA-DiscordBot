@@ -9,7 +9,7 @@ const sendMessage = require("../../core/command.send");
 // Available Settings
 // -------------------
 
-const getHistory = function getHistory (data)
+function getHistory (data)
 {
 
    // ---------------
@@ -291,7 +291,7 @@ const getHistory = function getHistory (data)
 
    return sendMessage(data);
 
-};
+}
 
 // --------------------------
 // Proccess settings params

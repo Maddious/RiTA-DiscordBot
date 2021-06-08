@@ -46,7 +46,7 @@ module.exports.run = function run (data)
 };
 
 
-const getCount = function getCount (count)
+function getCount (count)
 {
 
    if (count)
@@ -57,7 +57,7 @@ const getCount = function getCount (count)
    }
    return "-1";
 
-};
+}
 
 // ---------------
 // Translate last

@@ -18,14 +18,14 @@ const auth = require("../../core/auth");
 // Available Settings
 // -------------------
 
-const getSettings = function getSettings (data)
+function getSettings (data)
 {
 
    // ----------------------------
    // Set default server language
    // ----------------------------
 
-   const setLang = function setLang (data)
+   function setLang (data)
    {
 
       // ---------------------------
@@ -103,13 +103,13 @@ const getSettings = function getSettings (data)
          }
       );
 
-   };
+   }
 
    // -------------
    // List Servers
    // -------------
 
-   const listServers = function listServers (data)
+   function listServers (data)
    {
 
       data.text = "Active Servers - ";
@@ -158,7 +158,7 @@ const getSettings = function getSettings (data)
          {"files": ["./src/files/serverlist.txt"]}
       );
 
-   };
+   }
 
    // -----------------
    // DM server owners
@@ -252,7 +252,7 @@ const getSettings = function getSettings (data)
 
    return sendMessage(data);
 
-};
+}
 
 // --------------------------
 // Proccess settings params

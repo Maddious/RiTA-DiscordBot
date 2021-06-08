@@ -11,7 +11,7 @@ const sendMessage = require("../../core/command.send");
 // Database error
 // ---------------
 
-const dbError = function dbError (err, data)
+function dbError (err, data)
 {
 
    data.color = "error";
@@ -29,13 +29,13 @@ const dbError = function dbError (err, data)
       err
    );
 
-};
+}
 
 // ----------------------
 // Remove from database
 // ----------------------
 
-const removeTask = function removeTask (res, data, origin, dest, destDisplay)
+function removeTask (res, data, origin, dest, destDisplay)
 {
 
    db.removeTask(
@@ -84,13 +84,13 @@ const removeTask = function removeTask (res, data, origin, dest, destDisplay)
       }
    );
 
-};
+}
 
 // ------------------------
 // Destination ID handler
 // ------------------------
 
-const destID = function destID (dest, author)
+function destID (dest, author)
 {
 
    if (dest.startsWith("<#"))
@@ -135,9 +135,9 @@ const destID = function destID (dest, author)
 
    return dest;
 
-};
+}
 
-const destResolver = function destResolver (dest, author)
+function destResolver (dest, author)
 {
 
    if (dest === "me")
@@ -148,7 +148,7 @@ const destResolver = function destResolver (dest, author)
    }
    return dest;
 
-};
+}
 
 // ---------------------
 // Handle stop command

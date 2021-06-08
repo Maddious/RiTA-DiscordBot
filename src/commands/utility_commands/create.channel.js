@@ -8,7 +8,7 @@ const sendMessage = require("../../core/command.send");
 // -------------
 // Command Code
 // -------------
-const channelName = function channelName (data)
+function channelName (data)
 {
 
    // Arguments to set the channel name
@@ -31,7 +31,7 @@ const channelName = function channelName (data)
 
    return sendMessage(data);
 
-};
+}
 
 module.exports = function run (data)
 {

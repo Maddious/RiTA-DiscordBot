@@ -17,7 +17,7 @@ const helpFooter = `**For more help join our official [support server](<https://
 // Help Section
 // -------------
 
-const helpSection = function helpSection (data)
+function helpSection (data)
 {
 
    const section =
@@ -25,13 +25,13 @@ const helpSection = function helpSection (data)
 
    return section;
 
-};
+}
 
 // ----------
 // Help Text
 // ----------
 
-const helpMessage = function helpMessage (config, param)
+function helpMessage (config, param)
 {
 
    // ---------
@@ -639,7 +639,7 @@ const helpMessage = function helpMessage (config, param)
 
    return paramMap.basics;
 
-};
+}
 
 // ------------------------
 // Bot Help / Command List
