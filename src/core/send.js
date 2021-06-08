@@ -485,13 +485,7 @@ const embedOn = function embedOn (data)
       else if (data.attachments.array().length > 0)
       {
 
-         sendAttachments(data).
-            catch((err) => console.log(
-               "error",
-               err,
-               "warning",
-               data.message.channel.guild.name
-            ));
+         sendAttachments(data);
 
       }
 
