@@ -241,7 +241,7 @@ function getHistory (data)
       data.color = "info";
       data.text = `**V1.2.4**\n` +
       "```md\n" +
-      `# Version 1.2.4 - Release Date: 06/06/2021. \n\n` +
+      `# Version 1.2.4 - Release Date: 09/06/2021. \n\n` +
       "```\n";
 
       // -------------
@@ -329,7 +329,7 @@ module.exports = function run (data)
       `# Version 1.2.1 - Release Date: 13/09/2020. \n` +
       `# Version 1.2.2 - Release Date: 25/04/2021. \n` +
       `# Version 1.2.3 - Release Date: 24/05/2021. \n` +
-      `# Version 1.2.4 - Release Date: 06/06/2021. \n` +
+      `# Version 1.2.4 - Release Date: 09/06/2021. \n` +
       `* There are 46 iterations of this Version\n\n` +
       "```\n";
 
