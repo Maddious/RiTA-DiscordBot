@@ -25,7 +25,7 @@ const langExceptions =
    // "chinese": "zh-CN"
 };
 
-const langInvertException = function langInvertException (code)
+function langInvertException (code)
 {
 
    const output = fn.getKeyByValue(
@@ -42,13 +42,13 @@ const langInvertException = function langInvertException (code)
 
    return code;
 
-};
+}
 
 // -----------------------------
 // Convert language name to ISO
 // -----------------------------
 
-const getLangISO = function getLangISO (lang)
+function getLangISO (lang)
 {
 
    let code = null;
@@ -79,7 +79,7 @@ const getLangISO = function getLangISO (lang)
 
    return code;
 
-};
+}
 
 // --------------------------------------
 // Language Code Converter and Validator

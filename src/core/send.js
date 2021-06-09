@@ -20,7 +20,7 @@ const error = require("./error");
 // Permission Check
 // -----------------
 
-const checkPerms = function checkPerms (data, sendBox)
+function checkPerms (data, sendBox)
 {
 
    // ------------------------------------------------------------------------
@@ -195,13 +195,13 @@ const checkPerms = function checkPerms (data, sendBox)
 
    return sendBox(sendData);
 
-};
+}
 
 // ----------------------------
 // Embedded Variable "On" Code
 // ----------------------------
 
-const embedOn = function embedOn (data)
+function embedOn (data)
 {
 
    // -----------------------------------------------
@@ -209,7 +209,7 @@ const embedOn = function embedOn (data)
    // Only if content is forwared to another channel
    // -----------------------------------------------
 
-   const sendEmbeds = function sendEmbeds (data)
+   function sendEmbeds (data)
    {
 
       if (data.forward && data.embeds && data.embeds.length > 0)
@@ -240,13 +240,13 @@ const embedOn = function embedOn (data)
 
       }
 
-   };
+   }
 
    // -------------------
    // Resend attachments
    // -------------------
 
-   const sendAttachments = function sendAttachments (data)
+   function sendAttachments (data)
    {
 
       if (!data.attachments)
@@ -289,13 +289,13 @@ const embedOn = function embedOn (data)
 
       }
 
-   };
+   }
 
    // ----------
    // Send data
    // ----------
 
-   const sendBox = function sendBox (data)
+   function sendBox (data)
    {
 
 
@@ -489,17 +489,17 @@ const embedOn = function embedOn (data)
 
       }
 
-   };
+   }
 
    return checkPerms(data, sendBox);
 
-};
+}
 
 // -----------------------------
 // Embedded Variable "Off" Code
 // -----------------------------
 
-const embedOff = function embedOff (data)
+function embedOff (data)
 {
 
    // -------------
@@ -609,7 +609,7 @@ const embedOff = function embedOff (data)
    // Resend attachments
    // -------------------
 
-   const sendAttachments = function sendAttachments (data)
+   function sendAttachments (data)
    {
 
       if (!data.attachments && !data.attachments.array().length > 0)
@@ -652,13 +652,13 @@ const embedOff = function embedOff (data)
 
       }
 
-   };
+   }
 
    // ---------------------
    // Send Data to Channel
    // ---------------------
 
-   const sendBox = function sendBox (data)
+   function sendBox (data)
    {
 
       const channel = data.channel;
@@ -738,12 +738,12 @@ const embedOff = function embedOff (data)
 
       }
 
-   };
+   }
 
 
    checkPerms(data, sendBox);
 
-};
+}
 
 // ---------------------
 // Send Data to Channel

@@ -13,7 +13,7 @@ const fn = require("./helpers");
 // Proccess task
 // --------------
 
-const sendTranslation = function sendTranslation (data)
+function sendTranslation (data)
 {
 
    if (data.proccess)
@@ -41,13 +41,13 @@ const sendTranslation = function sendTranslation (data)
 
    }
 
-};
+}
 
 // ------------------
 // Start translation
 // ------------------
 
-const startTranslation = function startTranslation (data, i, row)
+function startTranslation (data, i, row)
 {
 
    const replyID = row.reply;
@@ -135,12 +135,12 @@ const startTranslation = function startTranslation (data, i, row)
 
    }
 
-};
+}
 // ---------------------
 // Analyze rows in loop
 // ---------------------
 
-const analyzeRows = function analyzeRows (data, i)
+function analyzeRows (data, i)
 {
 
    const row = data.rows[i];
@@ -204,7 +204,7 @@ const analyzeRows = function analyzeRows (data, i)
       row
    );
 
-};
+}
 
 // -----------------
 // Get data from db

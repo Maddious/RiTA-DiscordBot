@@ -86,7 +86,7 @@ module.exports.shards = function shards (data)
    // Get proccess/shard uptime
    // --------------------------
 
-   const shardErr = function shardErr (err)
+   function shardErr (err)
    {
 
       return logger(
@@ -96,7 +96,7 @@ module.exports.shards = function shards (data)
          data.message.guild.name
       );
 
-   };
+   }
 
    shard.fetchClientValues("guilds.cache.size").then((guildsSize) =>
    {
@@ -204,7 +204,7 @@ module.exports.proc = function proc (data)
    // Byte formatter (mb/gb)
    // -----------------------
 
-   const byteFormat = function byteFormat (bytes)
+   function byteFormat (bytes)
    {
 
       if (bytes > 750000000)
@@ -218,7 +218,7 @@ module.exports.proc = function proc (data)
       const mb = bytes / 1000 / 1000;
       return `${mb.toFixed(2)} mb`;
 
-   };
+   }
 
    // -----------------
    // Get memory usage
@@ -243,7 +243,7 @@ module.exports.proc = function proc (data)
 
    const shardUptime = secConverter(data.message.client.uptime);
 
-   const uptimeFormat = function uptimeFormat (uptime)
+   function uptimeFormat (uptime)
    {
 
       return oneLine`
@@ -251,7 +251,7 @@ module.exports.proc = function proc (data)
          **\`${uptime.hours}:${uptime.minutes}:${uptime.seconds}\`**
       `;
 
-   };
+   }
 
    // ---------------
    // Render message

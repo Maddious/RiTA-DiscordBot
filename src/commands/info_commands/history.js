@@ -9,7 +9,7 @@ const sendMessage = require("../../core/command.send");
 // Available Settings
 // -------------------
 
-const getHistory = function getHistory (data)
+function getHistory (data)
 {
 
    // ---------------
@@ -184,15 +184,7 @@ const getHistory = function getHistory (data)
       `# Version 1.2.2-5 - Release Date: 15/05/2021. \n` +
       `> Version 1.2.2-6 - Was not published. \n` +
       `# Version 1.2.2-7 - Release Date: 24/05/2021. \n` +
-      `# Version 1.2.2-8 - Release Date: 24/05/2021. \n` +
-      `# Version 1.2.3 - Release Date: 24/05/2021. \n` +
-      `# Version 1.2.3-1 - Release Date: 27/05/2021. \n` +
-      `# Version 1.2.3-2 - Release Date: 27/05/2021. \n` +
-      `# Version 1.2.3-3 - Release Date: 28/05/2021. \n` +
-      `# Version 1.2.3-4 - Release Date: 02/06/2021. \n` +
-      `# Version 1.2.3-5 - Release Date: 03/06/2021. \n` +
-      `# Version 1.2.3-6 - Release Date: 03/06/2021. \n` +
-      `# Version 1.2.3-7 - Release Date: 05/06/2021. \n\n` +
+      `# Version 1.2.2-8 - Release Date: 24/05/2021. \n\n` +
       "```\n";
 
       // -------------
@@ -220,7 +212,36 @@ const getHistory = function getHistory (data)
       `# Version 1.2.3 - Release Date: 24/05/2021. \n` +
       `# Version 1.2.3-1 - Release Date: 27/05/2021. \n` +
       `# Version 1.2.3-2 - Release Date: 27/05/2021. \n` +
-      `# Version 1.2.3-3 - Release Date: 28/05/2021. \n\n` +
+      `# Version 1.2.3-3 - Release Date: 28/05/2021. \n` +
+      `# Version 1.2.3-4 - Release Date: 02/06/2021. \n` +
+      `# Version 1.2.3-5 - Release Date: 03/06/2021. \n` +
+      `# Version 1.2.3-6 - Release Date: 03/06/2021. \n` +
+      `# Version 1.2.3-7 - Release Date: 05/06/2021. \n\n` +
+      "```\n";
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   };
+
+   // ---------------
+   // V1.2.3 History
+   // ---------------
+
+   const v124History = function v124History (data)
+   {
+
+      // -------------
+      // Command Code
+      // -------------
+
+      data.color = "info";
+      data.text = `**V1.2.4**\n` +
+      "```md\n" +
+      `# Version 1.2.4 - Release Date: 09/06/2021. \n\n` +
       "```\n";
 
       // -------------
@@ -241,7 +262,8 @@ const getHistory = function getHistory (data)
       "1.2.0": v120History,
       "1.2.1": v121History,
       "1.2.2": v122History,
-      "1.2.3": v123History
+      "1.2.3": v123History,
+      "1.2.4": v124History
    };
 
    const historyParam = data.cmd.params.split(" ")[0].toLowerCase();
@@ -261,7 +283,7 @@ const getHistory = function getHistory (data)
 
    data.color = "error";
    data.text =
-      `:warning:  **\`${data.cmd.params}\`** is not a valid history option. \nPlease use 1.0 / 1.1 / 1.2.0 / 1.2.1 / 1.2.2 / 1.2.3`;
+      `:warning:  **\`${data.cmd.params}\`** is not a valid history option. \nPlease use 1.0 / 1.1 / 1.2.0 / 1.2.1 / 1.2.2 / 1.2.3 / 1.2.4`;
 
    // -------------
    // Send message
@@ -269,7 +291,7 @@ const getHistory = function getHistory (data)
 
    return sendMessage(data);
 
-};
+}
 
 // --------------------------
 // Proccess settings params
@@ -307,6 +329,7 @@ module.exports = function run (data)
       `# Version 1.2.1 - Release Date: 13/09/2020. \n` +
       `# Version 1.2.2 - Release Date: 25/04/2021. \n` +
       `# Version 1.2.3 - Release Date: 24/05/2021. \n` +
+      `# Version 1.2.4 - Release Date: 09/06/2021. \n` +
       `* There are 46 iterations of this Version\n\n` +
       "```\n";
 

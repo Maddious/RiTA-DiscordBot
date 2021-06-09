@@ -34,13 +34,14 @@ const cmdHistory = require("./info_commands/history.js");
 const cmdEject = require("./utility_commands/eject.js");
 const cmdBlacklist = require("./utility_commands/blacklist.js");
 const cmdPerms = require("./utility_commands/perm.js");
+const cmdCheck = require("./utility_commands/check.js");
 
 
 // ---------------------------------------
 // Extract a parameter's value with regex
 // ---------------------------------------
 
-const extractParam = function extractParam (key, str, def = null, allowArray = false)
+function extractParam (key, str, def = null, allowArray = false)
 {
 
    const rgx = new RegExp(`${key}\\s*((?:(?:\\S*\\s*,\\s*)+\\S*)|\\S*)`, "m");
@@ -90,14 +91,14 @@ const extractParam = function extractParam (key, str, def = null, allowArray = f
 
    return def;
 
-};
+}
 
 
 // ---------------------
 // Extract number param
 // ---------------------
 
-const extractNum = function extractNum (str)
+function extractNum (str)
 {
 
    const rgx = new RegExp(
@@ -121,13 +122,13 @@ const extractNum = function extractNum (str)
    }
    return null;
 
-};
+}
 
 // ------------------
 // Check for content
 // ------------------
 
-const checkContent = function checkContent (msg, output)
+function checkContent (msg, output)
 {
 
    const hasContent = (/([^:]*):(.*)/).exec(msg);
@@ -140,13 +141,13 @@ const checkContent = function checkContent (msg, output)
 
    }
 
-};
+}
 
 // -------------
 // Get main arg
 // -------------
 
-const getMainArg = function getMainArg (output)
+function getMainArg (output)
 {
 
    const sepIndex = output.main.indexOf(" ");
@@ -162,13 +163,13 @@ const getMainArg = function getMainArg (output)
 
    }
 
-};
+}
 
 // -------------
 // Strip prefix
 // -------------
 
-const stripPrefix = function stripPrefix (message, config, bot)
+function stripPrefix (message, config, bot)
 {
 
    let cmd = message.content;
@@ -194,7 +195,7 @@ const stripPrefix = function stripPrefix (message, config, bot)
 
    return cmd;
 
-};
+}
 
 // --------------------------------------
 // Analyze arguments from command string
@@ -349,7 +350,7 @@ module.exports = function run (data)
             "ban": cmdMod.ban,
             "blacklist": cmdBlacklist.blacklist,
             "bot2bot": cmdBot2bot,
-            "check": cmdBlacklist.check,
+            "check": cmdCheck,
             "checkperms": cmdPerms,
             "create": cmdCreate,
             "debug": cmdDebug,
@@ -375,8 +376,10 @@ module.exports = function run (data)
             "unban": cmdMod.unban,
             "unblacklist": cmdBlacklist.unblacklist,
             "unmute": cmdMod.unmute,
+            "unwarn": cmdEject.unwarn,
             "update": cmdMisc.update,
-            "version": cmdVersion
+            "version": cmdVersion,
+            "warn": cmdEject.warn
          };
 
          // --------------------------
@@ -396,6 +399,16 @@ module.exports = function run (data)
          }
 
       }
-   );
+   ).catch((err) =>
+   {
+
+      console.log(
+         "error",
+         err,
+         "warning",
+         id
+      );
+
+   });
 
 };

@@ -5,8 +5,9 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const db = require("../../core/db");
 const logger = require("../../core/logger");
-const devSendMessage = require("../../core/dev.send");
-const sendMessage = require("../../core/command.send");
+const sendMessage = require("../../core/dev.send");
+const oneLine = require("common-tags").oneLine;
+
 // ----------
 // Blacklist
 // ----------
@@ -20,10 +21,11 @@ module.exports.blacklist = function blacklist (data)
 
    // console.log("DEBUG: Blacklist");
 
-   const serverID = data.cmd.params.split(" ")[0].toLowerCase();
+   const serverID = data.cmd.num;
 
    return db.blacklist(
       serverID,
+      true,
       async function error (err)
       {
 
@@ -40,7 +42,7 @@ module.exports.blacklist = function blacklist (data)
          {
 
             data.color = "warn";
-            data.text = `${`:regional_indicator_x:  **${serverID} Blacklisted**\n`}`;
+            data.text = oneLine`${`:regional_indicator_x:  **${serverID} Blacklisted**\n`}`;
 
          }
          else if (target.owner)
@@ -86,12 +88,16 @@ module.exports.blacklist = function blacklist (data)
          // Send message
          // -------------
 
-         return devSendMessage(data);
+         return sendMessage(data);
 
       }
    );
 
 };
+
+// -------------
+// Un-Blacklist
+// -------------
 
 module.exports.unblacklist = function unblacklist (data)
 {
@@ -100,12 +106,13 @@ module.exports.unblacklist = function unblacklist (data)
    // Command Code
    // -------------
 
-   // console.log("DEBUG: Blacklist");
+   // console.log("DEBUG: unblacklist");
 
-   const serverID = data.cmd.params.split(" ")[0].toLowerCase();
+   const serverID = data.cmd.num;
 
-   return db.unblacklist(
+   return db.blacklist(
       serverID,
+      false,
       function error (err)
       {
 
@@ -121,8 +128,8 @@ module.exports.unblacklist = function unblacklist (data)
          // -------------
 
          data.color = "warn";
-         data.text = `${`:white_check_mark:  **${serverID} Un-Blacklisted**\n`}`;
-         return devSendMessage(data);
+         data.text = oneLine`${`:white_check_mark:  **${serverID} Un-Blacklisted**\n`}`;
+         return sendMessage(data);
 
       }
    ).catch((err) => console.log(
@@ -131,51 +138,5 @@ module.exports.unblacklist = function unblacklist (data)
       "warning",
       serverID
    ));
-
-};
-
-module.exports.check = function check (data)
-{
-
-   // -------------
-   // Command Code
-   // -------------
-
-   // console.log("DEBUG: Check Blacklist");
-
-   // eslint-disable-next-line no-unused-vars
-   const serverID = data.cmd.params.split(" ")[0].toLowerCase();
-
-   db.getServerInfo(
-      serverID,
-      function getServerInfo (server)
-      {
-
-         const blacklistedResult = `\`\`\`Server: ${serverID}\nBlacklist Status: ${server[0].blacklisted}\n\n\`\`\``;
-
-         data.text = `${blacklistedResult}\n\n`;
-
-         // -------------
-         // Send message
-         // -------------
-
-         return sendMessage(data);
-
-      }
-   ).catch((err) =>
-   {
-
-      console.log(
-         "error",
-         err,
-         "warning",
-         serverID
-      );
-
-      data.text = `\`\`\`${serverID} is not in our Database\n\n\`\`\``;
-      return sendMessage(data);
-
-   });
-
 
 };
