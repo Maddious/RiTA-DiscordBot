@@ -11,7 +11,7 @@ const sendMessage = require("../../core/command.send");
 // Embed varible command handler
 // ------------------------------
 
-const embed = function embed (data)
+function embed (data)
 {
 
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
@@ -65,7 +65,7 @@ const embed = function embed (data)
 
    return sendMessage(data);
 
-};
+}
 
 // -------------
 // Command Code

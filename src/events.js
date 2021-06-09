@@ -46,7 +46,7 @@ exports.listen = function listen (client)
             "maxChains": 10,
             "maxEmbeds": 5,
             "maxMulti": 6,
-            "maxTasksPerChannel": 10,
+            "maxTasksPerChannel": 15,
             "owner": auth.botOwner,
             "translateCmd": "!translate",
             "translateCmdShort": "!tr",
@@ -167,7 +167,7 @@ exports.listen = function listen (client)
                if (auth.messagedebug === "1")
                {
 
-                  console.log(`${message.guild.name} - ${message.guild.id} - ${message.createdAt} \n----------------------------------------\nDEBUG: Messsage User - ${message.author.tag} \nDEBUG: Messsage Content - ${message.content}\n----------------------------------------`);
+                  console.log(`${message.guild.name} - ${message.guild.id} - ${message.createdAt} \nDEBUG: Messsage User - ${message.author.tag} \nDEBUG: Messsage Content - ${message.content}\n----------------------------------------`);
 
                }
                if (auth.messagedebug !== "1")
@@ -310,7 +310,7 @@ exports.listen = function listen (client)
          return logger(
             "error",
             err,
-            "unhandled"
+            "unhandled",
          );
 
       }
@@ -407,6 +407,44 @@ exports.listen = function listen (client)
             config.defaultLanguage,
             db.Servers
          );
+         db.getServerInfo(
+            guild.id,
+            async function getServerInfo (server)
+            {
+
+               console.log(`Server: ${guild.id} has a blacklisted status of: ${server[0].blacklisted}`);
+               logger(
+                  "custom",
+                  {
+                     "color": "ok",
+                     "msg": oneLine`**Server:** ${guild.id} has a blacklisted status of: **${server[0].blacklisted}**`
+                  }
+               );
+
+               if (server[0].blacklisted === true)
+               {
+
+                  logger(
+                     "custom",
+                     {
+                        "color": "warn",
+                        "msg": oneLine`**Server:** ${guild.id} has been kicked as it is blacklisted`
+                     }
+                  );
+
+                  await guild.leave();
+
+               }
+
+            }
+
+         ).catch((err) => console.log(
+            "error",
+            err,
+            "warning",
+            guild.name
+         ));
+         // console.log(`DEBUG: Blacklist Check Complete`);
 
       }
    );

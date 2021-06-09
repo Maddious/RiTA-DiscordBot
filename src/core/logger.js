@@ -14,7 +14,7 @@ const spacer = "​                                                          ​
 // Log data to console
 // --------------------
 
-const devConsole = function devConsole (data)
+function devConsole (data)
 {
 
    if (auth.dev)
@@ -24,13 +24,13 @@ const devConsole = function devConsole (data)
 
    }
 
-};
+}
 
 // ------------
 // Hook Sender
 // ------------
 
-const hookSend = function hookSend (data)
+function hookSend (data)
 {
 
    const hook = new discord.WebhookClient(
@@ -52,13 +52,13 @@ const hookSend = function hookSend (data)
 
    });
 
-};
+}
 
 // -------------
 // Error Logger
 // -------------
 
-const errorLog = function errorLog (error, subtype, id)
+function errorLog (error, subtype, id)
 {
 
    let errorTitle = null;
@@ -92,6 +92,13 @@ const errorLog = function errorLog (error, subtype, id)
 
    }
 
+   if (errorTypes === "unhandled")
+   {
+
+      return console.log(`DEBUG: Error ${errorTitle} Suppressed`);
+
+   }
+
    hookSend({
       "color": "err",
       // eslint-disable-next-line no-useless-concat
@@ -99,13 +106,13 @@ const errorLog = function errorLog (error, subtype, id)
       "title": errorTitle
    });
 
-};
+}
 
 // ----------------
 // Warnings Logger
 // ----------------
 
-const warnLog = function warnLog (warning)
+function warnLog (warning)
 {
 
    hookSend({
@@ -113,13 +120,13 @@ const warnLog = function warnLog (warning)
       "msg": warning
    });
 
-};
+}
 
 // ---------------
 // Guild Join Log
 // ---------------
 
-const logJoin = function logJoin (guild)
+function logJoin (guild)
 {
 
    if (guild.owner)
@@ -150,13 +157,13 @@ const logJoin = function logJoin (guild)
 
    }
 
-};
+}
 
 // ----------------
 // Guild Leave Log
 // ----------------
 
-const logLeave = function logLeave (guild)
+function logLeave (guild)
 {
 
    if (guild.owner)
@@ -185,7 +192,7 @@ const logLeave = function logLeave (guild)
 
    }
 
-};
+}
 
 // ------------
 // Logger code

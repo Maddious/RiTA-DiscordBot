@@ -13,14 +13,14 @@ const fn = require("./helpers");
 const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
-const webHookName = "Translator Messaging System";
+const webHookName = "RITA Messaging System";
 const error = require("./error");
 
 // -----------------
 // Permission Check
 // -----------------
 
-const checkPerms = function checkPerms (data, sendBox)
+function checkPerms (data, sendBox)
 {
 
    // ------------------------------------------------------------------------
@@ -134,6 +134,7 @@ const checkPerms = function checkPerms (data, sendBox)
                   Server: **${data.channel.guild.name}** \n
                   Channel: **${forwardChannel.name}**\n
                   Chan ID: **${forwardChannel.id}**\n
+                  Server ID: **${data.channel.guild.id}**\n
                   Owner: **${data.channel.guild.owner}**\n
                   The server owner has been notified . \n`
             });
@@ -194,13 +195,13 @@ const checkPerms = function checkPerms (data, sendBox)
 
    return sendBox(sendData);
 
-};
+}
 
 // ----------------------------
 // Embedded Variable "On" Code
 // ----------------------------
 
-const embedOn = function embedOn (data)
+function embedOn (data)
 {
 
    // -----------------------------------------------
@@ -208,7 +209,7 @@ const embedOn = function embedOn (data)
    // Only if content is forwared to another channel
    // -----------------------------------------------
 
-   const sendEmbeds = function sendEmbeds (data)
+   function sendEmbeds (data)
    {
 
       if (data.forward && data.embeds && data.embeds.length > 0)
@@ -239,13 +240,13 @@ const embedOn = function embedOn (data)
 
       }
 
-   };
+   }
 
    // -------------------
    // Resend attachments
    // -------------------
 
-   const sendAttachments = function sendAttachments (data)
+   function sendAttachments (data)
    {
 
       if (!data.attachments)
@@ -288,13 +289,13 @@ const embedOn = function embedOn (data)
 
       }
 
-   };
+   }
 
    // ----------
    // Send data
    // ----------
 
-   const sendBox = function sendBox (data)
+   function sendBox (data)
    {
 
 
@@ -388,9 +389,14 @@ const embedOn = function embedOn (data)
                   Server: **${data.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
+                  Server ID: **${data.channel.guild.id}**\n
                   Owner: **${data.channel.guild.owner}**\n
                   The server owner has been notified. \n`
-                  });
+                  }).catch((err) => console.log(
+                     "error",
+                     err,
+                     "warning"
+                  ));
 
                }
 
@@ -405,7 +411,11 @@ const embedOn = function embedOn (data)
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
                   Owner: **${data.channel.guild.owner}**\n`
-                  });
+                  }).catch((err) => console.log(
+                     "error",
+                     err,
+                     "warning"
+                  ));
 
                }
 
@@ -420,7 +430,11 @@ const embedOn = function embedOn (data)
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
                   Owner: **${data.channel.guild.owner}**\n`
-                  });
+                  }).catch((err) => console.log(
+                     "error",
+                     err,
+                     "warning"
+                  ));
 
                }
 
@@ -450,13 +464,22 @@ const embedOn = function embedOn (data)
                            "```prolog\nServer > Privacy Settings > " +
                            "'Allow direct messages from server members'\n```");
 
-                  });
+                  }).catch((err) => console.log(
+                     "error",
+                     err,
+                     "warning"
+                  ));
 
                }
 
                logger("error", errMsg, "warning", data.message.channel.guild.name);
 
-            });
+            }).
+            catch((err) => console.log(
+               "error",
+               err,
+               "warning"
+            ));
 
       }
       else if (data.attachments.array().length > 0)
@@ -466,17 +489,17 @@ const embedOn = function embedOn (data)
 
       }
 
-   };
+   }
 
    return checkPerms(data, sendBox);
 
-};
+}
 
 // -----------------------------
 // Embedded Variable "Off" Code
 // -----------------------------
 
-const embedOff = function embedOff (data)
+function embedOff (data)
 {
 
    // -------------
@@ -545,7 +568,7 @@ const embedOff = function embedOff (data)
             "avatarURL": data.message.author.displayAvatarURL(),
             files,
             "username": data.message.author.username
-         });
+         }).catch((err) => console.log("error", err, "send", data.message.guild.name));
 
       }
 
@@ -586,7 +609,7 @@ const embedOff = function embedOff (data)
    // Resend attachments
    // -------------------
 
-   const sendAttachments = function sendAttachments (data)
+   function sendAttachments (data)
    {
 
       if (!data.attachments && !data.attachments.array().length > 0)
@@ -629,13 +652,13 @@ const embedOff = function embedOff (data)
 
       }
 
-   };
+   }
 
    // ---------------------
    // Send Data to Channel
    // ---------------------
 
-   const sendBox = function sendBox (data)
+   function sendBox (data)
    {
 
       const channel = data.channel;
@@ -715,12 +738,12 @@ const embedOff = function embedOff (data)
 
       }
 
-   };
+   }
 
 
    checkPerms(data, sendBox);
 
-};
+}
 
 // ---------------------
 // Send Data to Channel

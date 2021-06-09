@@ -155,6 +155,14 @@ const Servers = db.define(
       "webhookactive": {
          "type": Sequelize.BOOLEAN,
          "defaultValue": false
+      },
+      "blacklisted": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": false
+      },
+      "warn": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": false
       }
    }
 );
@@ -465,6 +473,47 @@ exports.removeWebhook = function removeWebhook (id, _cb)
 
 };
 
+// -----------------
+// Blacklist Server
+// -----------------
+
+exports.blacklist = function blacklist (id, type, _cb)
+{
+
+   // console.log("DEBUG: Stage Blacklist");
+   return Servers.update(
+      {"blacklisted": type},
+      {"where": {id}}
+   ).then(function update ()
+   {
+
+      _cb();
+
+   });
+
+};
+
+// ------------
+// Warn Server
+// ------------
+
+exports.warn = function warn (id, type, _cb)
+{
+
+   console.log("DEBUG: Stage Warn");
+   return Servers.update(
+      {"warn": type},
+      {"where": {id}}
+   ).then(function update ()
+   {
+
+      _cb();
+
+   });
+
+};
+
+
 // --------------
 // Update prefix
 // --------------
@@ -565,6 +614,30 @@ exports.updateColumns = async function updateColumns ()
             db.getQueryInterface().addColumn(
                "servers",
                "webhookactive",
+               {"type": Sequelize.BOOLEAN,
+                  "defaultValue": false}
+            );
+
+         }
+         if (!tableDefinition.blacklisted)
+         {
+
+            // console.log("DEBUG:-------------> Adding blacklisted column");
+            db.getQueryInterface().addColumn(
+               "servers",
+               "blacklisted",
+               {"type": Sequelize.BOOLEAN,
+                  "defaultValue": false}
+            );
+
+         }
+         if (!tableDefinition.warn)
+         {
+
+            // console.log("DEBUG:-------------> Adding warn column");
+            db.getQueryInterface().addColumn(
+               "servers",
+               "warn",
                {"type": Sequelize.BOOLEAN,
                   "defaultValue": false}
             );
@@ -869,13 +942,7 @@ exports.getStats = function getStats (callback)
   `from tasks where active = TRUE) as table4, ` +
   `(select count(distinct origin) as "activeUserTasks" ` +
   `from tasks where active = TRUE and origin like '@%') as table5,` +
-  `(select message as "message" from stats where id = 'bot') as table6,` +
-  `(select translation as "translation" from stats where id = 'bot') as table7,` +
-  `(select embedon as "embedon" from stats where id = 'bot') as table8,` +
-  `(select embedoff as "embedoff" from stats where id = 'bot') as table9, ` +
-  `(select images as "images" from stats where id = 'bot') as table10, ` +
-  `(select react as "react" from stats where id = 'bot') as table11, ` +
-  `(select gif as "gif" from stats where id = 'bot') as table12;`,
+  `(select * from stats where id = 'bot') as table6;`,
       {"type": Sequelize.QueryTypes.SELECT},
    ).
       then(
@@ -903,19 +970,8 @@ exports.getServerInfo = function getServerInfo (id, callback)
    `from tasks where server = ?) as table2,` +
    `(select count(distinct origin) as "activeUserTasks"` +
    `from tasks where origin like '@%' and server = ?) as table3, ` +
-   `(select embedstyle as "embedstyle" from servers where id = ?) as table4, ` +
-   `(select bot2botstyle as "bot2botstyle" from servers where id = ?) as table5, ` +
-   `(select webhookactive as "webhookactive" from servers where id = ?) as table6,` +
-   `(select webhookid as "webhookid" from servers where id = ?) as table7,` +
-   `(select webhooktoken as "webhooktoken" from servers where id = ?) as table8,` +
-   `(select prefix as "prefix" from servers where id = ?) as table9,` +
-   `(select message as "message" from stats where id = ?) as table10,` +
-   `(select translation as "translation" from stats where id = ?) as table11,` +
-   `(select embedon as "embedon" from stats where id = ?) as table12, ` +
-   `(select embedoff as "embedoff" from stats where id = ?) as table13, ` +
-   `(select images as "images" from stats where id = ?) as table14, ` +
-   `(select react as "react" from stats where id = ?) as table15, ` +
-   `(select gif as "gif" from stats where id = ?) as table16;`, {"replacements": [ id, id, id, id, id, id, id, id, id, id, id, id, id, id, id, id],
+   `(select * from stats where id = ?) as table4, ` +
+   `(select * from servers where id = ?) as table5; `, {"replacements": [ id, id, id, id, id],
       "type": db.QueryTypes.SELECT}).
       then(
          (result) => callback(result),

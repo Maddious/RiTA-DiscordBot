@@ -30,13 +30,18 @@ const cmdDebug = require("./settings_commands/debug");
 const cmdPrefix = require("./settings_commands/prefix");
 const cmdCreate = require("./utility_commands/create.channel");
 const cmdMod = require("./future_commands/mod.js");
+const cmdHistory = require("./info_commands/history.js");
+const cmdEject = require("./utility_commands/eject.js");
+const cmdBlacklist = require("./utility_commands/blacklist.js");
+const cmdPerms = require("./utility_commands/perm.js");
+const cmdCheck = require("./utility_commands/check.js");
 
 
 // ---------------------------------------
 // Extract a parameter's value with regex
 // ---------------------------------------
 
-const extractParam = function extractParam (key, str, def = null, allowArray = false)
+function extractParam (key, str, def = null, allowArray = false)
 {
 
    const rgx = new RegExp(`${key}\\s*((?:(?:\\S*\\s*,\\s*)+\\S*)|\\S*)`, "m");
@@ -63,7 +68,7 @@ const extractParam = function extractParam (key, str, def = null, allowArray = f
             if (matching)
             {
 
-               console.log(matching[1].replace("to ", ""));
+               // console.log(matching[1].replace("to ", ""));
                return matching[1].replace("to ", "");
 
             }
@@ -86,14 +91,14 @@ const extractParam = function extractParam (key, str, def = null, allowArray = f
 
    return def;
 
-};
+}
 
 
 // ---------------------
 // Extract number param
 // ---------------------
 
-const extractNum = function extractNum (str)
+function extractNum (str)
 {
 
    const rgx = new RegExp(
@@ -117,13 +122,13 @@ const extractNum = function extractNum (str)
    }
    return null;
 
-};
+}
 
 // ------------------
 // Check for content
 // ------------------
 
-const checkContent = function checkContent (msg, output)
+function checkContent (msg, output)
 {
 
    const hasContent = (/([^:]*):(.*)/).exec(msg);
@@ -136,13 +141,13 @@ const checkContent = function checkContent (msg, output)
 
    }
 
-};
+}
 
 // -------------
 // Get main arg
 // -------------
 
-const getMainArg = function getMainArg (output)
+function getMainArg (output)
 {
 
    const sepIndex = output.main.indexOf(" ");
@@ -158,13 +163,13 @@ const getMainArg = function getMainArg (output)
 
    }
 
-};
+}
 
 // -------------
 // Strip prefix
 // -------------
 
-const stripPrefix = function stripPrefix (message, config, bot)
+function stripPrefix (message, config, bot)
 {
 
    let cmd = message.content;
@@ -190,7 +195,7 @@ const stripPrefix = function stripPrefix (message, config, bot)
 
    return cmd;
 
-};
+}
 
 // --------------------------------------
 // Analyze arguments from command string
@@ -277,6 +282,15 @@ module.exports = function run (data)
          // Get default language of server/bot
          // -----------------------------------
 
+         if (output.server[0].blacklisted === true)
+         {
+
+            // console.log(`${output.server[0].blacklisted}`);
+            data.client.guilds.cache.get(id).leave();
+            console.log(`Self Kicked on command use due to blacklisted`);
+
+         }
+
          if (output.to === "default")
          {
 
@@ -334,12 +348,17 @@ module.exports = function run (data)
          const cmdMap = {
             "auto": cmdTranslateAuto,
             "ban": cmdMod.ban,
+            "blacklist": cmdBlacklist.blacklist,
             "bot2bot": cmdBot2bot,
+            "check": cmdCheck,
+            "checkperms": cmdPerms,
             "create": cmdCreate,
             "debug": cmdDebug,
             "donate": cmdDonate,
+            "eject": cmdEject.eject,
             "embed": cmdEmbed,
             "help": cmdHelp,
+            "history": cmdHistory,
             "id": cmdMisc.ident,
             "info": cmdHelp,
             "invite": cmdMisc.invite,
@@ -355,8 +374,12 @@ module.exports = function run (data)
             "tasks": cmdTranslateTasks,
             "this": cmdTranslateThis,
             "unban": cmdMod.unban,
+            "unblacklist": cmdBlacklist.unblacklist,
             "unmute": cmdMod.unmute,
-            "version": cmdVersion
+            "unwarn": cmdEject.unwarn,
+            "update": cmdMisc.update,
+            "version": cmdVersion,
+            "warn": cmdEject.warn
          };
 
          // --------------------------
@@ -376,6 +399,16 @@ module.exports = function run (data)
          }
 
       }
-   );
+   ).catch((err) =>
+   {
+
+      console.log(
+         "error",
+         err,
+         "warning",
+         id
+      );
+
+   });
 
 };

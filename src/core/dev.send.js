@@ -12,7 +12,7 @@ const time = {
    "long": 60000,
    "short": 5000
 };
-const auth = require("../core/auth");
+const auth = require("./auth");
 
 // ---------------------
 // Send Data to Channel
@@ -21,15 +21,7 @@ const auth = require("../core/auth");
 function sendMessage (data)
 {
 
-   return data.message.channel.send(richEmbedMessage).then((msg) =>
-   {
-
-      msg.delete({"timeout": time.long}).catch((err) => console.log(
-         "Bot Message Deleted Error, command.send.js = ",
-         err
-      ));
-
-   }).
+   return data.message.channel.send(richEmbedMessage).
       // eslint-disable-next-line consistent-return
       catch((err) =>
       {
@@ -103,8 +95,7 @@ module.exports = function run (data)
       richEmbedMessage.
          setColor(colors.get(data.color)).
          setDescription(`Developer Identity confirmed:\n${data.text}`).
-         setTimestamp().
-         setFooter("This message will self-destruct in one minute");
+         setTimestamp();
       // -------------
       // Send message
       // -------------
@@ -112,11 +103,12 @@ module.exports = function run (data)
       return sendMessage(data);
 
    }
-   // console.log("DEBUG: Sufficient Permission");
+   // console.log("DEBUG: Insufficient Permission");
    data.message.delete({"timeout": time.short}).catch((err) => console.log(
       "Command Message Deleted Error, command.send.js = ",
       err
    ));
+   data.text = ":cop:  This Command is for bot developers only.";
    richEmbedMessage.
       setColor(colors.get(data.color)).
       setDescription(data.text).
@@ -130,5 +122,3 @@ module.exports = function run (data)
    return sendMessage(data);
 
 };
-
-

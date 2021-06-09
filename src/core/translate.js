@@ -60,10 +60,15 @@ function discordPatch (string)
 
          const text = str.slice(1, -1);
          const textMatch = text.match(/[a-z\s.!,()0-9]/gi);
-         if (textMatch.length === text.length)
+         if (textMatch)
          {
 
-            match[i] = text;
+            if (textMatch.length === text.length)
+            {
+
+               match[i] = text;
+
+            }
 
          }
 
@@ -87,7 +92,7 @@ function discordPatch (string)
 }
 
 
-const translateFix = function translateFix (string, matches)
+function translateFix (string, matches)
 {
 
    let text = string;
@@ -113,7 +118,7 @@ const translateFix = function translateFix (string, matches)
    return text;
 
 
-};
+}
 // ------------
 // Retranslation function using auto if it thinks it is in the wrong language
 // ------------
@@ -161,7 +166,7 @@ function getUserColor (data, callback)
 // Translate buffered chains
 // --------------------------
 
-const bufferSend = function bufferSend (arr, data)
+function bufferSend (arr, data)
 {
 
    const sorted = fn.sortByKey(
@@ -185,9 +190,9 @@ const bufferSend = function bufferSend (arr, data)
 
    });
 
-};
+}
 
-const bufferChains = function bufferChains (data, from)
+function bufferChains (data, from)
 {
 
    const translatedChains = [];
@@ -263,13 +268,13 @@ const bufferChains = function bufferChains (data, from)
 
    });
 
-};
+}
 
 // ---------------------
 // Invalid lang checker
 // ---------------------
 
-const invalidLangChecker = function invalidLangChecker (obj, callback)
+function invalidLangChecker (obj, callback)
 {
 
    if (obj && obj.invalid && obj.invalid.length > 0)
@@ -279,13 +284,13 @@ const invalidLangChecker = function invalidLangChecker (obj, callback)
 
    }
 
-};
+}
 
 // --------------------
 // Update server stats
 // --------------------
 
-const updateServerStats = function updateServerStats (message)
+function updateServerStats (message)
 {
 
    const col = "translation";
@@ -301,7 +306,7 @@ const updateServerStats = function updateServerStats (message)
    db.increaseServersCount(id);
    db.increaseStatsCount(col, id);
 
-};
+}
 
 // ----------------
 // Run translation
