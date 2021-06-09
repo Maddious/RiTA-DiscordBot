@@ -17,7 +17,7 @@ const helpFooter = `**For more help join our official [support server](<https://
 // Help Section
 // -------------
 
-const helpSection = function helpSection (data)
+function helpSection (data)
 {
 
    const section =
@@ -25,13 +25,13 @@ const helpSection = function helpSection (data)
 
    return section;
 
-};
+}
 
 // ----------
 // Help Text
 // ----------
 
-const helpMessage = function helpMessage (config, param)
+function helpMessage (config, param)
 {
 
    // ---------
@@ -65,14 +65,14 @@ const helpMessage = function helpMessage (config, param)
       "icon": ":abc:",
       "link": `<https://ritabot.gg>`,
       "title": "Translate Custom Text",
-      "value": `${cmd} help react`
+      "value": `${cmd} help this`
    }) +
    helpSection({
       config,
       "icon": ":arrow_double_up:",
       "link": `<https://ritabot.gg>`,
       "title": "Translate Last Message",
-      "value": `${cmd} help react`
+      "value": `${cmd} help last`
    }) +
    helpSection({
       config,
@@ -201,7 +201,6 @@ const helpMessage = function helpMessage (config, param)
    `# Misc Commands\n` +
    `* ${cmd} invite\n` +
    `* ${cmd} help modules\n` +
-   `* ${cmd} check [ServerID]\n` +
    `* ${cmd} perm [user/bot]\n` +
    `* ${cmd} create [channelName]\n` +
    `* ${cmd} history \n\n` +
@@ -397,10 +396,6 @@ const helpMessage = function helpMessage (config, param)
    "```md\n" +
    `# ID Info\n` +
    `* ${cmd} id\n\n` +
-   "```" +
-   "```md\n" +
-   `# Blacklist Check\n` +
-   `* ${cmd} check [ServerID]\n\n` +
    "```\n";
 
    // -----------------
@@ -584,6 +579,9 @@ const helpMessage = function helpMessage (config, param)
    `* ${cmd} eject [ServerID]\n` +
    `* ${cmd} blacklist [ServerID]\n` +
    `* ${cmd} unblacklist [ServerID]\n` +
+   `* ${cmd} warn [ServerID]\n` +
+   `* ${cmd} unwarn [ServerID]\n` +
+   `* ${cmd} check [ServerID]\n` +
    `* ${cmd} server [ServerID]\n` +
    `* ${cmd} settings updatedb\n` +
    `* ${cmd} settings listservers\n\n` +
@@ -610,7 +608,6 @@ const helpMessage = function helpMessage (config, param)
       bot2bot,
       commands,
       create,
-      custom,
       debug,
       dev,
       donate,
@@ -625,7 +622,8 @@ const helpMessage = function helpMessage (config, param)
       settings,
       stats,
       stop,
-      tasks
+      tasks,
+      "this": custom
    };
 
    // If (paramMap.hasOwnProperty(param))
@@ -641,7 +639,7 @@ const helpMessage = function helpMessage (config, param)
 
    return paramMap.basics;
 
-};
+}
 
 // ------------------------
 // Bot Help / Command List

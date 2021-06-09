@@ -158,7 +158,7 @@ module.exports = function run (data)
    // Resolve ID of each destiantion (user dm/channel)
    // -------------------------------------------------
 
-   const taskLoop = function taskLoop ()
+   function taskLoop ()
    {
 
       data.task.for.forEach((dest) => // eslint-disable-line complexity
@@ -265,7 +265,7 @@ module.exports = function run (data)
 
       });
 
-   };
+   }
 
    // ------------
    // Task buffer
@@ -309,7 +309,7 @@ module.exports = function run (data)
    // Validate Task(s) before sending to database
    // --------------------------------------------
 
-   const validateTask = function validateTask ()
+   function validateTask ()
    {
 
       // --------------
@@ -381,6 +381,6 @@ module.exports = function run (data)
 
       return sendMessage(data);
 
-   };
+   }
 
 };

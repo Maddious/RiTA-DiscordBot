@@ -10,7 +10,7 @@ const sendMessage = require("../../core/command.send");
 // Available Settings
 // -------------------
 
-const getPerms = function getPerms (data)
+function getPerms (data)
 {
 
    // -----------
@@ -18,7 +18,7 @@ const getPerms = function getPerms (data)
    // -----------
 
    // console.log(`DEBUG: Pre User Check`);
-   const userCheck = function userCheck (data)
+   function userCheck (data)
    {
 
       // console.log(`DEBUG: In User Check`);
@@ -55,14 +55,14 @@ const getPerms = function getPerms (data)
       data.color = "info";
       return sendMessage(data);
 
-   };
+   }
 
    // ----------
    // Bot Check
    // ----------
 
    // console.log(`DEBUG: Pre Bot Check`);
-   const botCheck = function botCheck (data)
+   function botCheck (data)
    {
 
       // console.log(`DEBUG: In Bot Check`);
@@ -107,14 +107,14 @@ const getPerms = function getPerms (data)
       data.color = "info";
       return sendMessage(data);
 
-   };
+   }
 
    // ----------
    // Bot Check
    // ----------
 
    // console.log(`DEBUG: Pre Bot Check`);
-   const chanCheck = function chanCheck (data)
+   function chanCheck (data)
    {
 
       // console.log(`DEBUG: In Bot Check`);
@@ -132,7 +132,7 @@ const getPerms = function getPerms (data)
       data.text = chanResult1;
       return sendMessage(data);
 
-   };
+   }
 
    // console.log(`DEBUG: Valid Perms`);
    const validPerms = {
@@ -170,7 +170,7 @@ const getPerms = function getPerms (data)
    // console.log(`DEBUG: Send Data`);
    return sendMessage(data);
 
-};
+}
 
 // --------------------------
 // Proccess settings params

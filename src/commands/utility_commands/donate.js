@@ -10,7 +10,7 @@ const sendMessage = require("../../core/command.send");
 // Donate varible command handalr
 // ------------------------------
 
-const donate = function donate (data)
+function donate (data)
 {
 
    const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
@@ -71,7 +71,7 @@ const donate = function donate (data)
 
    return sendMessage(data);
 
-};
+}
 
 // -------------
 // Command Code
