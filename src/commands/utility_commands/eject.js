@@ -105,7 +105,7 @@ module.exports.warn = async function warn (data)
       // ----------------
 
       data.color = "info";
-      data.text = oneLine`\`\`\`Server ID:${serverID}\nServer has already been ejected.\n\`\`\``;
+      data.text = oneLine`\`\`\`Server ID: ${serverID}\nServer has already been Warned, Please now Eject.\n\`\`\``;
       return sendMessage(data);
 
    }
@@ -144,13 +144,23 @@ module.exports.warn = async function warn (data)
       // --------------------------------
 
       data.color = "warn";
-      data.text = oneLine`\`\`\`Server:${target.name} \nServer ID:${serverID}\nUnable to warn Owner.\`\`\``;
-      await db.warn(serverID, true).catch((err) => console.log(
-         "error",
-         err,
-         "warning",
-         serverID
-      ));
+      data.text = oneLine`\`\`\`Server: ${target.name} \nServer ID:${serverID}\nUnable to warn Owner.\`\`\``;
+      await db.warn(
+         serverID,
+         true,
+         // eslint-disable-next-line consistent-return
+         function error (err)
+         {
+
+            if (err)
+            {
+
+               return console.log("error", err, "warning", serverID);
+
+            }
+
+         }
+      );
       return sendMessage(data);
 
    }
@@ -160,12 +170,22 @@ module.exports.warn = async function warn (data)
    // -------------
    data.color = "warn";
    data.text = `\`\`\`Owner: ${target.owner.user.tag}\nServer: ${target.name} \nServer ID: ${serverID}\nServer Owner Has Been Warned\`\`\``;
-   await db.warn(serverID, true).catch((err) => console.log(
-      "error",
-      err,
-      "warning",
-      serverID
-   ));
+   await db.warn(
+      serverID,
+      true,
+      // eslint-disable-next-line consistent-return
+      function error (err)
+      {
+
+         if (err)
+         {
+
+            return console.log("error", err, "warning", serverID);
+
+         }
+
+      }
+   );
    return sendMessage(data);
 
 };

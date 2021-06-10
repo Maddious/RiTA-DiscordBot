@@ -161,19 +161,16 @@ exports.listen = function listen (client)
             if (!message.author.bot)
             {
 
-               // console.log(`${auth.messagedebug}`);
-               // console.log(`${process.env.MESSAGE_DEBUG}`);
+               if (auth.messagedebug === "3")
+               {
 
+                  console.log(`MD3: ${message.guild.name} - ${message.guild.id} - ${message.createdAt} \nMesssage User - ${message.author.tag} \nMesssage Content - ${message.content}\n----------------------------------------`);
+
+               }
                if (auth.messagedebug === "1")
                {
 
-                  console.log(`${message.guild.name} - ${message.guild.id} - ${message.createdAt} \nDEBUG: Messsage User - ${message.author.tag} \nDEBUG: Messsage Content - ${message.content}\n----------------------------------------`);
-
-               }
-               if (auth.messagedebug !== "1")
-               {
-
-                  console.log(`${message.guild.name} - ${message.guild.id} - ${message.createdAt}`);
+                  console.log(`MD1: ${message.guild.name} - ${message.guild.id} - ${message.createdAt}`);
 
                }
                const col = "message";

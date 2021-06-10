@@ -11,7 +11,7 @@ const time = {
    "long": 60000,
    "short": 5000
 };
-const helpFooter = `**For more help join our official [support server](<https://ritabot.gg>)**\n\n`;
+const helpFooter = `**For more help join our official [support server](<https://discord.gg/hXaedzCQ8d>)**\n\n`;
 
 // -------------
 // Help Section
@@ -151,7 +151,7 @@ function helpMessage (config, param)
    `If you need to update your bot's version you can do so here:\n` +
    `- https://ritabot.gg/update/ \n\n` +
    `You can join Rita's Discord Support Server here: \n` +
-   `- https://discord.gg/mgNR64R` +
+   `- https://discord.gg/hXaedzCQ8d` +
    "\n\n";
 
    // --------------------------------

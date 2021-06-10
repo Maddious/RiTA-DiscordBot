@@ -42,12 +42,12 @@ function sendMessage (data)
                "custom",
                {
                   "color": "ok",
-                  "msg": `:exclamation: Write Permission Error \n
+                  "msg": `:exclamation: Write Permission Error - CS.js\n
                   Server: **${data.channel.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
-                  Server ID: **${data.channel.guild.id}**\n
-                  Owner: **${data.channel.guild.owner}**\n
+                  Server ID: **${data.message.sourceID}**\n
+                  Owner: **${data.message.guild.owner} - ${data.message.guild.owner.user.tag}**\n
                   The server owner has been notified. \n`
                }
             );

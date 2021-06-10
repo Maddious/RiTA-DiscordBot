@@ -134,8 +134,8 @@ function checkPerms (data, sendBox)
                   Server: **${data.channel.guild.name}** \n
                   Channel: **${forwardChannel.name}**\n
                   Chan ID: **${forwardChannel.id}**\n
-                  Server ID: **${data.channel.guild.id}**\n
-                  Owner: **${data.channel.guild.owner}**\n
+                  Server ID: **${data.message.sourceID}**\n
+                  Owner: **${data.message.guild.owner} - ${data.message.guild.owner.user.tag}**\n
                   The server owner has been notified . \n`
             });
 
@@ -389,14 +389,10 @@ function embedOn (data)
                   Server: **${data.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
-                  Server ID: **${data.channel.guild.id}**\n
-                  Owner: **${data.channel.guild.owner}**\n
+                  Server ID: **${data.message.sourceID}**\n
+                  Owner: **${data.message.guild.owner} - ${data.message.guild.owner.user.tag}**\n
                   The server owner has been notified. \n`
-                  }).catch((err) => console.log(
-                     "error",
-                     err,
-                     "warning"
-                  ));
+                  });
 
                }
 
@@ -763,7 +759,6 @@ module.exports = function run (data)
    // Primary If Statment
    // --------------------
    const embedstyle = db.server_obj[data.message.guild.id].db.embedstyle;
-
    if (embedstyle === "on")
    {
 
@@ -785,8 +780,7 @@ module.exports = function run (data)
       return embedOn(data);
 
    }
-   else
-   if (data.message.guild.me.permissions.has("MANAGE_WEBHOOKS"))
+   else if (data.message.guild.me.permissions.has("MANAGE_WEBHOOKS"))
    {
 
       // console.log("DEBUG: Embed off");
