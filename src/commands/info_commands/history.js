@@ -241,7 +241,8 @@ function getHistory (data)
       data.color = "info";
       data.text = `**V1.2.4**\n` +
       "```md\n" +
-      `# Version 1.2.4 - Release Date: 09/06/2021. \n\n` +
+      `# Version 1.2.4 - Release Date: 09/06/2021. \n` +
+      `# Version 1.2.4-1 - Release Date: 10/06/2021. \n\n` +
       "```\n";
 
       // -------------

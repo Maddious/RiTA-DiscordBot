@@ -763,7 +763,6 @@ module.exports = function run (data)
    // Primary If Statment
    // --------------------
    const embedstyle = db.server_obj[data.message.guild.id].db.embedstyle;
-
    if (embedstyle === "on")
    {
 
@@ -785,8 +784,7 @@ module.exports = function run (data)
       return embedOn(data);
 
    }
-   else
-   if (data.message.guild.me.permissions.has("MANAGE_WEBHOOKS"))
+   else if (data.message.guild.me.permissions.has("MANAGE_WEBHOOKS"))
    {
 
       // console.log("DEBUG: Embed off");
