@@ -92,13 +92,14 @@ function errorLog (error, subtype, id)
 
    }
 
-   if (errorTypes === "unhandled")
+   if (errorTypes[subtype] === ":japanese_ogre:  Unhandled promise rejection")
    {
 
-      return console.log(`DEBUG: Error ${errorTitle} Suppressed`);
+      return console.log(`------------  ERROR  START  ------------\nError ${errorTitle} Suppressed\n${error.stack}\n-------------  ERROR  END  -------------\n`);
 
    }
 
+   console.log(`------------  ERROR  START  ------------\nError ${errorTitle} Suppressed\n${error.stack}\n-------------  ERROR  END  -------------\n`);
    hookSend({
       "color": "err",
       // eslint-disable-next-line no-useless-concat
@@ -140,7 +141,9 @@ function logJoin (guild)
             guild.owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Joined Guild"
 
+
       });
+      console.log(`Guild Join: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${guild.owner.user.username}#${guild.owner.user.discriminator}\nSize: ${guild.memberCount}`);
 
    }
    else
@@ -150,10 +153,11 @@ function logJoin (guild)
          "color": "ok",
          "msg":
          `${`:white_check_mark:  **${guild.name}**\n` +
-         "```md\n> "}${guild.id}\n${guild.memberCount} members#\n\`\`\`${spacer}${spacer}`,
+         "```md\n> "}${guild.id}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Joined Guild"
 
       });
+      console.log(`Guild Join: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}`);
 
    }
 
@@ -177,6 +181,7 @@ function logLeave (guild)
             guild.owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Left Guild"
       });
+      console.log(`Guild Left: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${guild.owner.user.username}#${guild.owner.user.discriminator}\nSize: ${guild.memberCount}`);
 
    }
    else
@@ -189,6 +194,7 @@ function logLeave (guild)
          "```md\n> "}${guild.id}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Left Guild"
       });
+      console.log(`Guild Left: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}`);
 
    }
 
