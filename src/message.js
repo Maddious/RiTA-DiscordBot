@@ -151,6 +151,8 @@ module.exports = function run (config, message)
             "MANAGE_CHANNELS"
          );
       message.sourceID = message.guild.id;
+      // eslint-disable-next-line no-self-assign
+      message.guild.owner = message.guild.owner;
 
       // Add role color
       message.roleColor = fn.getRoleColor(message.member);
