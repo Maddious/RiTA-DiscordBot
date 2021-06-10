@@ -389,7 +389,7 @@ function embedOn (data)
                   Server: **${data.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
-                  Server ID: **${data.channel.guild.id}**\n
+                  Server ID: **${data.message.sourceID}**\n
                   Owner: **${data.channel.guild.owner}**\n
                   The server owner has been notified. \n`
                   }).catch((err) => console.log(

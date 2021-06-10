@@ -150,6 +150,7 @@ module.exports = function run (config, message)
             message.channel,
             "MANAGE_CHANNELS"
          );
+      message.sourceID = message.guild.id;
 
       // Add role color
       message.roleColor = fn.getRoleColor(message.member);
