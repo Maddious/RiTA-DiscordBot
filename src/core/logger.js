@@ -143,7 +143,7 @@ function logJoin (guild)
 
 
       });
-      console.log(`Guild Join: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${guild.owner.user.username}#${guild.owner.user.discriminator}\nSize: ${guild.memberCount}`);
+      console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${guild.owner.user.username}#${guild.owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
    else
@@ -157,7 +157,7 @@ function logJoin (guild)
          "title": "Joined Guild"
 
       });
-      console.log(`Guild Join: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}`);
+      console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
 
@@ -181,7 +181,7 @@ function logLeave (guild)
             guild.owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Left Guild"
       });
-      console.log(`Guild Left: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${guild.owner.user.username}#${guild.owner.user.discriminator}\nSize: ${guild.memberCount}`);
+      console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${guild.owner.user.username}#${guild.owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
    else
@@ -194,7 +194,7 @@ function logLeave (guild)
          "```md\n> "}${guild.id}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Left Guild"
       });
-      console.log(`Guild Left: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}`);
+      console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
 
