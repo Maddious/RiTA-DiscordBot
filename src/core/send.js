@@ -686,8 +686,8 @@ function embedOff (data)
       // Webhook Creation and Sending
       // -----------------------------
 
-      console.log("DEBUG: Line 689 - Send.js");
       if (data.channel.type === "dm")
+      console.log("DEBUG: Line 690 - Send.js");
       {
 
          const embed = new discord.MessageEmbed().

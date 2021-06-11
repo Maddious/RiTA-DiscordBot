@@ -660,10 +660,10 @@ exports.channelTasks = function channelTasks (data)
 
    // console.log("DEBUG: Stage Get Channel Tasks");
    let id = data.message.channel.id;
-   console.log("DEBUG: Line 663 - DB.js");
    if (data.message.channel.type === "dm")
    {
 
+      console.log("DEBUG: Line 666 - DB.js");
       id = `@${data.message.author.id}`;
 
    }
