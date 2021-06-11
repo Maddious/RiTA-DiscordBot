@@ -81,9 +81,9 @@ function startTranslation (data, i, row)
    // -------------------
 
    if (row.dest.startsWith("@"))
-   console.log("DEBUG: Line 84 - Auto.js");
    {
 
+      console.log("DEBUG: Line 84 - Auto.js");
       const footerExtra = {
          "icon_url": data.message.guild.iconURL(),
          "text": `${data.footer.text
