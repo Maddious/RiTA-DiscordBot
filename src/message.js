@@ -175,7 +175,6 @@ module.exports = function run (config, message)
    if (data.message.channel.type !== "dm")
    {
 
-      console.log("DEBUG: Line 6178 - Message.js");
       if (data.member)
       {
 
