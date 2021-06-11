@@ -62,7 +62,7 @@ function checkPerms (data, sendBox)
          `:no_entry:  **${data.bot.username}** does not have permission to write in ` +
          `the ${sendData.channel.id} channel on your server **` +
          `${sendData.channel.guild.name}**. Please fix.`;
-
+      console.log("DEBUG: Line 65 - Send.js");
       return sendData.channel.guild.owner.
          send(writeErr).
          catch((err) => console.log("error", err, "warning", data.message.guild.name));
@@ -144,7 +144,7 @@ function checkPerms (data, sendBox)
             `:no_entry:  **${data.bot.username}** does not have permission to write in ` +
             `the ${forwardChannel.name} channel on your server **` +
             `${sendData.channel.guild.name}**. Please fix.`;
-
+            console.log("DEBUG: Line 147 - Send.js");
             return sendData.channel.guild.owner.
                send(writeErr).
                catch((err) => console.log("error", err, "warning", sendData.channel.guild.name));
@@ -686,6 +686,7 @@ function embedOff (data)
       // Webhook Creation and Sending
       // -----------------------------
 
+      console.log("DEBUG: Line 689 - Send.js");
       if (data.channel.type === "dm")
       {
 

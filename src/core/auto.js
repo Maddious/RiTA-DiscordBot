@@ -80,6 +80,7 @@ function startTranslation (data, i, row)
    // Sending to user/DM
    // -------------------
 
+   console.log("DEBUG: Line 83 - Auto.js");
    if (row.dest.startsWith("@"))
    {
 

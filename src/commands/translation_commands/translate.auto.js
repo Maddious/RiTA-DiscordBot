@@ -187,7 +187,7 @@ module.exports = function run (data)
          }
 
          // Resolve mentioned user(s)
-
+         console.log("DEBUG: Line 190 - Translate.Auto.js");
          if (dest.startsWith("<@"))
          {
 
@@ -201,6 +201,7 @@ module.exports = function run (data)
             fn.getUser(data.client, userID, (user) =>
             {
 
+               console.log("DEBUG: Line 204 - Translate.Auto.js");
                if (user && !user.bot && user.createDM)
                {
 
