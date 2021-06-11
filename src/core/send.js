@@ -687,9 +687,9 @@ function embedOff (data)
       // -----------------------------
 
       if (data.channel.type === "dm")
-      console.log("DEBUG: Line 690 - Send.js");
       {
 
+         console.log("DEBUG: Line 690 - Send.js");
          const embed = new discord.MessageEmbed().
             setAuthor(data.author.username, data.author.displayAvatarURL()).
             setColor(colors.get(data.color)).
