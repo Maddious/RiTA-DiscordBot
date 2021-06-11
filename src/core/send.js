@@ -390,7 +390,7 @@ function embedOn (data)
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
                   Server ID: **${data.message.sourceID}**\n
-                  Owner: **${data.message.guild.owner} - ${data.message.guild.owner.user.tag}**\n
+                  Owner: **${data.message.guild.owner}**\n
                   The server owner has been notified. \n`
                   });
 
