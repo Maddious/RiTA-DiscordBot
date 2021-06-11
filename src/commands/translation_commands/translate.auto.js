@@ -187,10 +187,10 @@ module.exports = function run (data)
          }
 
          // Resolve mentioned user(s)
-         console.log("DEBUG: Line 190 - Translate.Auto.js");
          if (dest.startsWith("<@"))
          {
 
+            console.log("DEBUG: Line 193 - Translate.Auto.js");
             // ---------------
             // Old Code Below
             // ---------------
