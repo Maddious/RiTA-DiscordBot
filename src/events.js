@@ -13,6 +13,7 @@ const db = require("./core/db");
 const react = require("./commands/translation_commands/translate.react");
 const botVersion = require("../package.json").version;
 const botCreator = "Collaboration";
+const joinMessage = require("./commands/info_commands/join");
 
 // ----------
 // Core Code
@@ -435,13 +436,15 @@ exports.listen = function listen (client)
 
             }
 
-         ).catch((err) => console.log(
-            "error",
-            err,
-            "warning",
-            guild.name
-         ));
+         // eslint-disable-next-line no-unused-vars
+         ).catch((err) => console.log("VALIDATION: New Server, No Blacklist History"));
          // console.log(`DEBUG: Blacklist Check Complete`);
+
+         // ---------------------
+         // Send Welcome Message
+         // ---------------------
+
+         joinMessage(guild, config);
 
       }
    );

@@ -332,9 +332,9 @@ exports.addServer = async function addServer (id, lang)
             id,
             lang,
             "prefix": "!tr"
-         });
+         }).catch((err) => console.log("VALIDATION: Server Already Exists in Servers Table"));
          Stats.create({logging: false,
-            id});
+            id}).catch((err) => console.log("VALIDATION: Server Already Exists in Stats Table"));
 
       }
 

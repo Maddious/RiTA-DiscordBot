@@ -103,7 +103,7 @@ module.exports = function run (data)
       ));
       richEmbedMessage.
          setColor(colors.get(data.color)).
-         setDescription(`Developer Identity confirmed:\n${data.text}`).
+         setDescription(`Developer Identity confirmed:\n\n${data.text}`).
          setTimestamp().
          setFooter("This message will self-destruct in one minute");
       // -------------

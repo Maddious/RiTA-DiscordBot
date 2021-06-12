@@ -29,12 +29,13 @@ const cmdTranslateTasks = require("./translation_commands/translate.tasks");
 const cmdDebug = require("./settings_commands/debug");
 const cmdPrefix = require("./settings_commands/prefix");
 const cmdCreate = require("./utility_commands/create.channel");
-const cmdMod = require("./future_commands/mod.js");
-const cmdHistory = require("./info_commands/history.js");
-const cmdEject = require("./utility_commands/eject.js");
-const cmdBlacklist = require("./utility_commands/blacklist.js");
-const cmdPerms = require("./utility_commands/perm.js");
-const cmdCheck = require("./utility_commands/check.js");
+const cmdMod = require("./future_commands/mod");
+const cmdHistory = require("./info_commands/history");
+const cmdEject = require("./utility_commands/eject");
+const cmdBlacklist = require("./utility_commands/blacklist");
+const cmdPerms = require("./utility_commands/perm");
+const cmdCheck = require("./utility_commands/check");
+const cmdJoin = require("./info_commands/join.js");
 
 
 // ---------------------------------------
@@ -365,6 +366,7 @@ module.exports = function run (data)
             "last": cmdTranslateLast.run,
             "list": cmdList,
             "mute": cmdMod.mute,
+            "newbot": cmdJoin.newBot,
             "prefix": cmdPrefix,
             "proc": cmdMisc.proc,
             "settings": cmdSettings,
