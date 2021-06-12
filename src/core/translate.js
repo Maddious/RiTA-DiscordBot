@@ -148,13 +148,13 @@ function getUserColor (data, callback)
    const fw = data.forward;
    const txt = data.text;
    const ft = data.footer;
-   const usr = data.author;
+   const usr = data.message.author;
    const msg = data.message;
 
    data.forward = fw;
    data.text = txt;
    data.footer = ft;
-   data.author = usr;
+   data.message.author = usr;
    data.message = msg;
 
 
@@ -179,7 +179,7 @@ function bufferSend (arr, data)
 
       data.text = msg.text;
       data.color = msg.color;
-      data.author = msg.author;
+      data.message.author = msg.author;
       data.showAuthor = true;
       data.message = msg;
 
@@ -243,7 +243,7 @@ function bufferChains (data, from)
             {
 
                translatedChains.push({
-                  "author": gotData.author,
+                  "author": gotData.message.author,
                   "color": gotData.color,
                   "text": output,
                   "time": chain.time
@@ -315,12 +315,6 @@ function updateServerStats (message)
 
 module.exports = function run (data) // eslint-disable-line complexity
 {
-
-   // -------------------
-   // Get message author
-   // -------------------
-
-   data.author = data.message.author;
 
    // -------------------------
    // Report invalid languages

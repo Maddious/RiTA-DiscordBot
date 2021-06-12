@@ -94,7 +94,7 @@ function startTranslation (data, i, row)
       const userID = row.dest.slice(1);
 
       fn.getUser(
-         data.client,
+         data.message.client,
          userID,
          (user) =>
          {

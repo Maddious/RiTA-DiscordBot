@@ -209,7 +209,7 @@ module.exports = function run (data)
       "main": stripPrefix(
          data.message,
          data.config,
-         data.bot
+         data.message.client.user
       ).trim(),
       "params": null
    };
@@ -229,7 +229,7 @@ module.exports = function run (data)
 
    }
 
-   if (output.main === `${data.bot}`)
+   if (output.main === `${data.message.client.user}`)
    {
 
       output.main = "help";
@@ -287,7 +287,7 @@ module.exports = function run (data)
          {
 
             // console.log(`${output.server[0].blacklisted}`);
-            data.client.guilds.cache.get(id).leave();
+            data.message.client.guilds.cache.get(id).leave();
             console.log(`Self Kicked on command use due to blacklisted`);
 
          }

@@ -114,7 +114,7 @@ function getSettings (data)
 
       data.text = "Active Servers - ";
 
-      const activeGuilds = data.client.guilds.cache.array();
+      const activeGuilds = data.message.client.guilds.cache.array();
 
       data.text += `${activeGuilds.length}\n\n`;
 
@@ -169,7 +169,7 @@ function getSettings (data)
    const Announcement = async function Announcement (data)
    {
 
-      const guildArray = Array.from(data.client.guilds.cache());
+      const guildArray = Array.from(data.message.client.guilds.cache());
       let i;
       for (i = 0; i < guildArray.length; i += 1)
       {
@@ -180,7 +180,7 @@ function getSettings (data)
          owner = Number(owner);
          owner = owner.replace(/([0-9]+)/g, "$1");
          console.log("Done");
-         await data.client.users.get(owner).send("Testing").
+         await data.message.client.users.get(owner).send("Testing").
             catch((err) =>
             {
 

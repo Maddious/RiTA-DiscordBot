@@ -44,7 +44,7 @@ function sendMessage (data)
                }
             );
             const writeErr =
-                  `:no_entry:  **${data.bot.username}** does not have permission to write in your server **` +
+                  `:no_entry:  **${data.message.client.user.username}** does not have permission to write in your server **` +
                   `${data.channel.guild.name}**. Please fix.`;
 
             // -------------

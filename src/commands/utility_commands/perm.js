@@ -66,7 +66,7 @@ function getPerms (data)
    {
 
       // console.log(`DEBUG: In Bot Check`);
-      const botPermissions = data.message.guild.members.cache.get(data.bot.id).permissions.serialize();
+      const botPermissions = data.message.guild.members.cache.get(data.message.client.user.id).permissions.serialize();
       const botResult1 =
       `__**Permission Checker - Bot**__\n\n` +
       `RITA requires the following permssions.\n` +

@@ -22,7 +22,7 @@ module.exports.eject = async function eject (data)
    // console.log("DEBUG: Eject");
 
    const serverID = data.cmd.num;
-   const target = data.client.guilds.cache.get(serverID);
+   const target = data.message.client.guilds.cache.get(serverID);
 
    data.color = "warn";
    data.text = `\`\`\`${serverID} - Server connection terminated\`\`\``;
@@ -95,7 +95,7 @@ module.exports.warn = async function warn (data)
    // console.log("DEBUG: Warn");
 
    const serverID = data.cmd.num;
-   const target = data.client.guilds.cache.get(serverID);
+   const target = data.message.client.guilds.cache.get(serverID);
 
    if (!target)
    {

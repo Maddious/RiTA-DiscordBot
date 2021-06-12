@@ -37,7 +37,7 @@ module.exports.blacklist = function blacklist (data)
          }
 
 
-         const target = data.client.guilds.cache.get(serverID);
+         const target = data.message.client.guilds.cache.get(serverID);
          if (!target)
          {
 

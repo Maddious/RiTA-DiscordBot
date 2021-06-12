@@ -198,7 +198,7 @@ module.exports = function run (data)
 
             const userID = dest.slice(3, -1);
 
-            fn.getUser(data.client, userID, (user) =>
+            fn.getUser(data.message.client, userID, (user) =>
             {
 
                console.log("DEBUG: Line 204 - Translate.Auto.js");
@@ -233,7 +233,7 @@ module.exports = function run (data)
          if (dest.startsWith("<#"))
          {
 
-            const channel = data.client.channels.cache.get(dest.slice(2, -1));
+            const channel = data.message.client.channels.cache.get(dest.slice(2, -1));
 
             if (channel)
             {
