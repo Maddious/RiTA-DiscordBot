@@ -61,7 +61,7 @@ function remoteInvite (data)
                Override: if (target.systemChannel)
                {
 
-                  if (target.systemChannel.permissionsFor(target.me).has("SEND_MESSAGES"))
+                  if (target.systemChannel.permissionsFor(target.me).has("CREATE_INSTANT_INVITE"))
                   {
 
                      defaultChannel = target.systemChannel;
@@ -74,7 +74,7 @@ function remoteInvite (data)
                else if (channel.type === "text" && defaultChannel === "")
                {
 
-                  if (channel.permissionsFor(target.me).has("SEND_MESSAGES"))
+                  if (channel.permissionsFor(target.me).has("CREATE_INSTANT_INVITE"))
                   {
 
                      defaultChannel = channel;
