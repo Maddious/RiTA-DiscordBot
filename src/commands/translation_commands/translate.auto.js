@@ -211,7 +211,7 @@ module.exports = function run (data)
                      taskBuffer.update(dm.id);
 
                   }).
-                     catch((err) => logger("error", err));
+                     catch((err) => logger("error", err, "dm", data.message.channel.guild.name));
 
                   taskBuffer.update(`@${user.id}`);
 
