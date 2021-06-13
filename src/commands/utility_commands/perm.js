@@ -99,6 +99,7 @@ function getPerms (data)
          `* Use External Emoji: ${botPermissions.USE_EXTERNAL_EMOJIS} \n` +
          `* Mention Everyone: ${botPermissions.MENTION_EVERYONE} \n` +
          `* Manage Messages: ${botPermissions.MANAGE_MESSAGES} \n` +
+         `* Create Invites: ${botPermissions.CREATE_INSTANT_INVITE} \n` +      
          `* Read Message History: ${botPermissions.READ_MESSAGE_HISTORY} \n\n` +
          "```";
          data.text = botResult1 + botResult2;
