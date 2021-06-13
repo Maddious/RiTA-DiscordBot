@@ -584,7 +584,8 @@ function helpMessage (config, param)
    `* ${cmd} check [ServerID]\n` +
    `* ${cmd} server [ServerID]\n` +
    `* ${cmd} settings updatedb\n` +
-   `* ${cmd} settings listservers\n\n` +
+   `* ${cmd} settings listservers\n` +
+   `* ${cmd} invite server [ServerID]\n\n` +
    "```" +
    "```md\n" +
    `# Parameters\n` +

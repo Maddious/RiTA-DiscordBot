@@ -35,7 +35,8 @@ const cmdEject = require("./utility_commands/eject");
 const cmdBlacklist = require("./utility_commands/blacklist");
 const cmdPerms = require("./utility_commands/perm");
 const cmdCheck = require("./utility_commands/check");
-const cmdJoin = require("./info_commands/join.js");
+const cmdJoin = require("./info_commands/join");
+const cmdInvite = require("./settings_commands/invite");
 
 
 // ---------------------------------------
@@ -362,7 +363,7 @@ module.exports = function run (data)
             "history": cmdHistory,
             "id": cmdMisc.ident,
             "info": cmdHelp,
-            "invite": cmdMisc.invite,
+            "invite": cmdInvite,
             "last": cmdTranslateLast.run,
             "list": cmdList,
             "mute": cmdMod.mute,

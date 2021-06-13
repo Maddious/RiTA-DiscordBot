@@ -163,6 +163,10 @@ const Servers = db.define(
       "warn": {
          "type": Sequelize.BOOLEAN,
          "defaultValue": false
+      },
+      "invite": {
+         "type": Sequelize.STRING(255),
+         "defaultValue": "Not yet Created"
       }
    }
 );
@@ -438,7 +442,6 @@ exports.updateWebhookVar = function updateWebhookVar (id, webhookid, webhooktoke
 {
 
    // console.log("DEBUG: Stage Update webhookID & webhookToken Variable In DB");
-
    return Servers.update(
       {webhookid,
          webhooktoken,
@@ -500,7 +503,7 @@ exports.blacklist = function blacklist (id, type, _cb)
 exports.warn = function warn (id, type, _cb)
 {
 
-   console.log("DEBUG: Stage Warn");
+   // console.log("DEBUG: Stage Warn");
    return Servers.update(
       {"warn": type},
       {"where": {id}}
@@ -526,6 +529,26 @@ exports.updatePrefix = function updatePrefix (id, prefix, _cb)
    server_obj[id].db.prefix = dbNewPrefix;
    return Servers.update(
       {prefix},
+      {"where": {id}}
+   ).then(function update ()
+   {
+
+      _cb();
+
+   });
+
+};
+
+// -----------------
+// Save invite Link
+// -----------------
+
+exports.saveInvite = function saveInvite (id, invite, _cb)
+{
+
+   // console.log("DEBUG: Save Invite Link");
+   return Servers.update(
+      {invite},
       {"where": {id}}
    ).then(function update ()
    {
@@ -640,6 +663,18 @@ exports.updateColumns = async function updateColumns ()
                "warn",
                {"type": Sequelize.BOOLEAN,
                   "defaultValue": false}
+            );
+
+         }
+         if (!tableDefinition.invite)
+         {
+
+            // console.log("DEBUG:-------------> Adding invite column");
+            db.getQueryInterface().addColumn(
+               "servers",
+               "invite",
+               {"type": Sequelize.STRING(255),
+                  "defaultValue": "Not yet Created"}
             );
 
          }

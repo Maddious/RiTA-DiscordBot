@@ -1,16 +1,17 @@
-
 // -----------------
 // Global variables
 // -----------------
 
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-escape */
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+const db = require("../../core/db");
 
 // -------------
 // Command Code
 // -------------
 
-module.exports = function run (guild, config)
+module.exports = async function run (guild, config)
 {
 
    let defaultChannel = "";
@@ -36,7 +37,31 @@ module.exports = function run (guild, config)
       }
 
    });
-   // defaultChannel will be the channel object that it first finds the bot has permissions for
+   const invite = await defaultChannel.createInvite({
+      "maxAge": 0,
+      "reason": "Remote Support",
+      "temporary": true,
+      "unique": false
+   },).
+      catch(console.log);
+
+   db.saveInvite(
+      guild.id,
+      invite.url,
+      // eslint-disable-next-line consistent-return
+      function error (err)
+      {
+
+         if (err)
+         {
+
+            return console.log(`DEBUG: Unable to save link to DB on Server Join`);
+
+         }
+
+      }
+   );
+
    return defaultChannel.send(`Hello, I'm RITA. Thanks for inviting me.`, {"embed": {
       "color": 9514728,
       "description": "We developed RITA to be the best free Translator Bot on Discord (& soon Guilded).\nSpeaking to other people should not have to cost you an arm and a leg, Our aim is to break that language barrier without you having to pay out for the privilege.",

@@ -78,7 +78,7 @@ exports.listen = function listen (client)
 
             console.log(stripIndent`
             ----------------------------------------
-            @${client.user.username} Bot is now online
+            ${client.user.username} Bot is now online
             V.${config.version} | ID: ${client.user.id}
             Made by: ${botCreator}
             ----------------------------------------
@@ -87,10 +87,8 @@ exports.listen = function listen (client)
          }
 
          console.log(oneLine`
-         Shard#${shard.id}:  ${shard.id + 1} / ${shard.count} online -
-         ${client.guilds.cache.size.toLocaleString()} guilds,
-         ${client.channels.cache.size.toLocaleString()} channels,
-         ${client.users.cache.size.toLocaleString()} users
+         Shard #${shard.id}:  ${shard.id + 1} / ${shard.count} online -
+         ${client.guilds.cache.size.toLocaleString()} guilds.
       `);
 
          client.user.setPresence({
