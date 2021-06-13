@@ -582,6 +582,7 @@ function helpMessage (config, param)
    `* ${cmd} warn [ServerID]\n` +
    `* ${cmd} unwarn [ServerID]\n` +
    `* ${cmd} check [ServerID]\n` +
+   `* ${cmd} checkperms [ServerID]\n` +
    `* ${cmd} server [ServerID]\n` +
    `* ${cmd} settings updatedb\n` +
    `* ${cmd} settings listservers\n` +

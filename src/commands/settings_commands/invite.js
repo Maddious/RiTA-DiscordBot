@@ -165,7 +165,7 @@ function remoteInvite (data)
    data.text =
       `:warning:  **\`${data.cmd.params
       }\`** is not a valid \`invite\` option. Use ` +
-      `${data.config.translateCmdShort} help invite\` to learn more.`;
+      `${data.config.translateCmdShort} help dev\` to learn more.`;
 
    // -------------
    // Send message
