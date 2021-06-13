@@ -941,8 +941,8 @@ exports.getStats = function getStats (callback)
   `(select lang as "botLang" from servers where id = 'bot') as table3, ` +
   `(select count(distinct origin) as "activeTasks" ` +
   `from tasks where active = TRUE) as table4, ` +
-  `(select count(distinct origin) as "activeUserTasks" ` +
-  `from tasks where active = TRUE and origin like '@%') as table5,` +
+  `(select count(distinct dest) as "activeUserTasks" ` +
+  `from tasks where active = TRUE and dest like '@%') as table5,` +
   `(select * from stats where id = 'bot') as table6;`,
       {"type": Sequelize.QueryTypes.SELECT},
    ).
@@ -969,8 +969,8 @@ exports.getServerInfo = function getServerInfo (id, callback)
    `lang as "lang" from servers where id = ?) as table1,` +
    `(select count(distinct origin) as "activeTasks"` +
    `from tasks where server = ?) as table2,` +
-   `(select count(distinct origin) as "activeUserTasks"` +
-   `from tasks where origin like '@%' and server = ?) as table3, ` +
+   `(select count(distinct dest) as "activeUserTasks"` +
+   `from tasks where dest like '@%' and server = ?) as table3, ` +
    `(select * from stats where id = ?) as table4, ` +
    `(select * from servers where id = ?) as table5; `, {"replacements": [ id, id, id, id, id],
       "type": db.QueryTypes.SELECT}).
