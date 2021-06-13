@@ -18,10 +18,16 @@ module.exports = async function run (guild, config)
    guild.channels.cache.forEach((channel) =>
    {
 
-      if (guild.systemChannel.permissionsFor(guild.me).has("SEND_MESSAGES"))
+      Override: if (guild.systemChannel)
       {
 
-         defaultChannel = guild.systemChannel;
+         if (guild.systemChannel.permissionsFor(guild.me).has("SEND_MESSAGES"))
+         {
+
+            defaultChannel = guild.systemChannel;
+            break Override;
+
+         }
 
       }
       else if (channel.type === "text" && defaultChannel === "")

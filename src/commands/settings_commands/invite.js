@@ -58,10 +58,17 @@ function remoteInvite (data)
             target.channels.cache.forEach((channel) =>
             {
 
-               if (target.systemChannel.permissionsFor(target.me).has("SEND_MESSAGES"))
+               Override: if (target.systemChannel)
                {
 
-                  defaultChannel = target.systemChannel;
+                  if (target.systemChannel.permissionsFor(target.me).has("SEND_MESSAGES"))
+                  {
+
+                     defaultChannel = target.systemChannel;
+                     break Override;
+
+                  }
+
 
                }
                else if (channel.type === "text" && defaultChannel === "")
