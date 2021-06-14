@@ -69,7 +69,7 @@ module.exports = async function run (guild, config)
       "fields": [
          {
             "name": ":tada: Getting Started",
-            "value": `To get started try running the help command, **${config.translateCmdShort} help** or take a look at our Quick Setup guide **${config.translateCmdShort} newbot**`
+            "value": `To get started try running the help command, **!tr help** or take a look at our Quick Setup guide **!tr newbot**`
          },
          {
             "name": ":tools: Support ",
@@ -103,25 +103,25 @@ module.exports.newBot = function newBot (data)
          {
             "name": ":abc: Translate Custom Text",
             "value": `You can also translates a single custom message.
-            *${data.config.translateCmdShort} this to [lang]:* message here\n**‏‏‎ ‎‎‎‎‎‎**`
+            *!tr this to [lang]:* message here\n**‏‏‎ ‎‎‎‎‎‎**`
          },
          {
             "name": ":hash: Translate Channel (Automatic)",
             "value": `Automatically translates any new messages in channel and forwards them to you.
             Admins/mods can set forwarding to other channels or users in server. 
             Messages in forwarded channels will also be sent back to origin.
-            *${data.config.translateCmdShort} channel from [lang] to [lang] for [me/@/#]*\n**‏‏‎ ‎‎‎‎‎‎**`
+            *!tr channel from [lang] to [lang] for [me/@/#]*\n**‏‏‎ ‎‎‎‎‎‎**`
          },
          {
             "name": ":wrench: Customize your Bot, Change your prefix",
             "value": `We know you like to customize thing, so you can change the prefix of your bot.
-            *${data.config.translateCmdShort} prefix [prefix]*\n**‏‏‎ ‎‎‎‎‎‎**`
+            *!tr prefix [prefix]*\n**‏‏‎ ‎‎‎‎‎‎**`
          },
          {
             "name": ":grey_question: Help Commands",
             "value": `The following command will help you learn everything you need to know. 
-            *${data.config.translateCmdShort} help commands*
-            *${data.config.translateCmdShort} help modules*\n**‏‏‎ ‎‎‎‎‎‎**`
+            *!tr help commands*
+            *!tr help modules*\n**‏‏‎ ‎‎‎‎‎‎**`
          },
          {
             "name": ":bell: Need Support",
