@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // -----------------
 // Global variables
 // -----------------
@@ -346,7 +347,7 @@ exports.addServer = async function addServer (id, lang)
 
 };
 
-// ------------------
+// ------------------------
 // Add server member count
 // ------------------
 
@@ -566,122 +567,55 @@ exports.saveInvite = function saveInvite (id, invite, _cb)
 exports.updateColumns = async function updateColumns ()
 {
 
-   // console.log("DEBUG: Stage Add Missing Variable Columns");
-   // Very sloppy code, neew to find a better fix.
-   await db.getQueryInterface().describeTable("servers").
-      then((tableDefinition) =>
+   console.log("DEBUG: Checking Missing Variable Columns for old RITA release");
+   // For older version of RITA, they need to upgrade DB with adding new columns if needed
+   serversDefinition = await db.getQueryInterface().describeTable("servers");
+   await this.addTableColumn("servers", serversDefinition, "prefix", Sequelize.STRING(32), "!tr");
+   await this.addTableColumn("servers", serversDefinition, "embedstyle", Sequelize.STRING(8), "on");
+   await this.addTableColumn("servers", serversDefinition, "bot2botstyle", Sequelize.STRING(8), "off");
+   await this.addTableColumn("servers", serversDefinition, "webhookid", Sequelize.STRING(32));
+   await this.addTableColumn("servers", serversDefinition, "webhooktoken", Sequelize.STRING(255));
+   await this.addTableColumn("servers", serversDefinition, "webhookactive", Sequelize.BOOLEAN, false);
+   await this.addTableColumn("servers", serversDefinition, "blacklisted", Sequelize.BOOLEAN, false);
+   await this.addTableColumn("servers", serversDefinition, "warn", Sequelize.BOOLEAN, false);
+   await this.addTableColumn("servers", serversDefinition, "invite", Sequelize.STRING(255), "Not yet Created");
+   console.log("DEBUG: All Columns Checked or Added");
+
+   // For older version of RITA, must remove old unique index
+   console.log("DEBUG: Stage Remove old RITA Unique index");
+   await db.getQueryInterface().removeIndex("tasks", "tasks_origin_dest");
+   console.log("DEBUG : All old index removed");
+
+};
+
+// ------------------------------------
+// Adding a column in DB if not exists
+// ------------------------------------
+exports.addTableColumn = async function addTableColumn (tableName, tableDefinition, columnName, columnType, columnDefault)
+{
+
+   // Adding column only when it's not in table definition
+   if (!tableDefinition[`${columnName}`])
+   {
+
+      console.log(`--> Adding ${columnName} column`);
+      if (columnDefault === null)
       {
 
-         if (!tableDefinition.prefix)
-         {
+         // Adding column whithout a default value
+         await db.getQueryInterface().addColumn(tableName, columnName, {"type": columnType});
 
-            // console.log("DEBUG:-------------> Adding prefix column");
-            db.getQueryInterface().addColumn(
-               "servers",
-               "prefix",
-               {"type": Sequelize.STRING(32),
-                  "defaultValue": "!tr"}
-            );
+      }
+      else
+      {
 
-         }
-         if (!tableDefinition.embedstyle)
-         {
+         // Adding column with a default value
+         await db.getQueryInterface().addColumn(tableName, columnName, {"type": columnType,
+            "defaultValue": columnDefault});
 
-            // console.log("DEBUG:-------------> Adding embedstyle column");
-            db.getQueryInterface().addColumn(
-               "servers",
-               "embedstyle",
-               {"type": Sequelize.STRING(8),
-                  "defaultValue": "on"}
-            );
+      }
 
-         }
-         if (!tableDefinition.bot2botstyle)
-         {
-
-            // console.log("DEBUG:-------------> Adding bot2botstyle column");
-            db.getQueryInterface().addColumn(
-               "servers",
-               "bot2botstyle",
-               {"type": Sequelize.STRING(8),
-                  "defaultValue": "off"}
-            );
-
-         }
-         if (!tableDefinition.webhookid)
-         {
-
-            // console.log("DEBUG:-------------> Adding webhookid column");
-            db.getQueryInterface().addColumn(
-               "servers",
-               "webhookid",
-               {"type": Sequelize.STRING(32)}
-            );
-
-         }
-         if (!tableDefinition.webhooktoken)
-         {
-
-            // console.log("DEBUG:-------------> Adding webhooktoken column");
-            db.getQueryInterface().addColumn(
-               "servers",
-               "webhooktoken",
-               {"type": Sequelize.STRING(255)}
-            );
-
-         }
-         if (!tableDefinition.webhookactive)
-         {
-
-            // console.log("DEBUG:-------------> Adding webhookactive column");
-            db.getQueryInterface().addColumn(
-               "servers",
-               "webhookactive",
-               {"type": Sequelize.BOOLEAN,
-                  "defaultValue": false}
-            );
-
-         }
-         if (!tableDefinition.blacklisted)
-         {
-
-            // console.log("DEBUG:-------------> Adding blacklisted column");
-            db.getQueryInterface().addColumn(
-               "servers",
-               "blacklisted",
-               {"type": Sequelize.BOOLEAN,
-                  "defaultValue": false}
-            );
-
-         }
-         if (!tableDefinition.warn)
-         {
-
-            // console.log("DEBUG:-------------> Adding warn column");
-            db.getQueryInterface().addColumn(
-               "servers",
-               "warn",
-               {"type": Sequelize.BOOLEAN,
-                  "defaultValue": false}
-            );
-
-         }
-         if (!tableDefinition.invite)
-         {
-
-            // console.log("DEBUG:-------------> Adding invite column");
-            db.getQueryInterface().addColumn(
-               "servers",
-               "invite",
-               {"type": Sequelize.STRING(255),
-                  "defaultValue": "Not yet Created"}
-            );
-
-         }
-
-      });
-
-   return console.log("DEBUG: All New Columns Added");
+   }
 
 };
 
