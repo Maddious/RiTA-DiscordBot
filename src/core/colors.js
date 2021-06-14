@@ -2,6 +2,7 @@
 // Colors
 // -------
 
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const colors = {
    "default": 41215,
    "err": 13107200,

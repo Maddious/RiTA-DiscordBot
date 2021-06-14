@@ -2,9 +2,10 @@
 // Global variables
 // -----------------
 
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-escape */
-// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+/* eslint-disable consistent-return */
 const db = require("../../core/db");
 
 // -------------
@@ -14,35 +15,29 @@ const db = require("../../core/db");
 module.exports = async function run (guild, config)
 {
 
+   // Try system channel
    let defaultChannel = "";
-   guild.channels.cache.forEach((channel) =>
+   Override: if (guild.systemChannel)
    {
 
-      Override: if (guild.systemChannel)
+      if (guild.systemChannel.permissionsFor(guild.me).has("SEND_MESSAGES"))
       {
 
-         if (guild.systemChannel.permissionsFor(guild.me).has("SEND_MESSAGES"))
-         {
-
-            defaultChannel = guild.systemChannel;
-            break Override;
-
-         }
-
-      }
-      else if (channel.type === "text" && defaultChannel === "")
-      {
-
-         if (channel.permissionsFor(guild.me).has("SEND_MESSAGES"))
-         {
-
-            defaultChannel = channel;
-
-         }
+         defaultChannel = guild.systemChannel;
+         break Override;
 
       }
 
-   });
+   }
+   // If not able to use system channel find another
+   if (defaultChannel === "")
+   {
+
+      defaultChannel = guild.channels.cache.find((channel) => channel.type === "text" && channel.permissionsFor(guild.me).has("SEND_MESSAGES"));
+
+   }
+
+   // Invite settings
    const invite = await defaultChannel.createInvite({
       "maxAge": 0,
       "reason": "Remote Support",
@@ -51,10 +46,10 @@ module.exports = async function run (guild, config)
    },).
       catch(console.log);
 
+   // Save invite to DB
    db.saveInvite(
       guild.id,
       invite.url,
-      // eslint-disable-next-line consistent-return
       function error (err)
       {
 

@@ -1,4 +1,3 @@
-/* eslint-disable quote-props */
 // -----------------
 // Global variables
 // -----------------
@@ -6,6 +5,7 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable sort-keys */
 /* eslint-disable no-unused-vars */
+/* eslint-disable quote-props */
 const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");

@@ -2,9 +2,10 @@
 // Global variables
 // -----------------
 
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable require-atomic-updates */
 /* eslint-disable no-unused-vars */
-// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+/* eslint-disable consistent-return */
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
 const auth = require("../../core/auth");
@@ -35,10 +36,10 @@ function remoteInvite (data)
          {
 
             data.text =
-         `__**Invite - Target Server Invite**__\n\n` +
-         `Targeted server: \`Unknown\`\n` +
-         `Targeted ID: \`${data.cmd.num}\`\n\n` +
-         `Invalid Server ID or RITA is no longer in this server.\n\n`;
+            `__**Invite - Target Server Invite**__\n\n` +
+            `Targeted server: \`Unknown\`\n` +
+            `Targeted ID: \`${data.cmd.num}\`\n\n` +
+            `Invalid Server ID or RITA is no longer in this server.\n\n`;
             data.color = "warn";
             return sendMessage(data);
 
@@ -51,40 +52,34 @@ function remoteInvite (data)
          `Targeted server: \`${target.name}\`\n` +
          `Targeted ID: \`${target.id}\`\n\n`;
 
+         // Try system channel
          if (perms.CREATE_INSTANT_INVITE === true)
          {
 
+            console.log(`${perms.CREATE_INSTANT_INVITE}`);
             let defaultChannel = "";
-            target.channels.cache.forEach((channel) =>
+            Override: if (target.systemChannel)
             {
 
-               Override: if (target.systemChannel)
+               if (target.systemChannel.permissionsFor(target.me).has("CREATE_INSTANT_INVITE"))
                {
 
-                  if (target.systemChannel.permissionsFor(target.me).has("CREATE_INSTANT_INVITE"))
-                  {
-
-                     defaultChannel = target.systemChannel;
-                     break Override;
-
-                  }
-
-
-               }
-               else if (channel.type === "text" && defaultChannel === "")
-               {
-
-                  if (channel.permissionsFor(target.me).has("CREATE_INSTANT_INVITE"))
-                  {
-
-                     defaultChannel = channel;
-
-                  }
+                  defaultChannel = target.systemChannel;
+                  break Override;
 
                }
 
-            });
+            }
 
+            // If not able to use system channel find another
+            if (defaultChannel === "")
+            {
+
+               defaultChannel = target.channels.cache.find((channel) => channel.type === "text" && defaultChannel === "" && channel.permissionsFor(target.me).has("CREATE_INSTANT_INVITE"));
+
+            }
+
+            // Invite settings
             const invite = await defaultChannel.createInvite({
                "maxAge": 0,
                "reason": "Remote Support",
@@ -98,10 +93,10 @@ function remoteInvite (data)
                "There has been an error during the creation of the invite.";
             data.text = msg + inviteLink;
 
+            // Save invite to DB
             db.saveInvite(
                targetID,
                invite.url,
-               // eslint-disable-next-line consistent-return
                function error (err)
                {
 

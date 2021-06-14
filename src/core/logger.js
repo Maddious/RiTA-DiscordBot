@@ -1,10 +1,10 @@
-/* eslint-disable no-bitwise */
 // -----------------
 // Global variables
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
+/* eslint-disable no-bitwise */
 const discord = require("discord.js");
 const auth = require("./auth");
 const colors = require("./colors").get;

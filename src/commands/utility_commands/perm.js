@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars */
 // -----------------
 // Global variables
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+/* eslint-disable no-unused-vars */
 const sendMessage = require("../../core/command.send");
 
 // -------------------
