@@ -48,7 +48,8 @@ async function announcement (data)
          catch((collected) =>
          {
 
-            data.message.channel.send(`No Title Provided - Command Timed out - Title`);
+            data.message.channel.send(`No Title Provided - Command Timed out - Title
+            ${collected}`);
 
          });
 
@@ -75,7 +76,8 @@ async function announcement (data)
             catch((collected) =>
             {
 
-               data.message.channel.send(`No Message Provided - Command Timed out - Message`);
+               data.message.channel.send(`No Message Provided - Command Timed out - Message
+               ${collected}`);
 
             });
 
@@ -101,7 +103,6 @@ async function announcement (data)
                let responceLower = null;
                responce = message.first();
                responceLower = responce.content.toLowerCase();
-               console.log(`${responce} & ${responceLower}`);
                if (responceLower === "embed" || responceLower === "e")
                {
 
@@ -126,7 +127,7 @@ async function announcement (data)
             {
 
                data.message.channel.send(`No Responce Provided - Command Timed out - Embed Option
-                     ${collected}`);
+               ${collected}`);
 
             });
 
@@ -140,7 +141,7 @@ async function announcement (data)
       await data.message.channel.send(`Please Review the message, Do you want to send.? \`YES\` / \`NO\``).then(() =>
       {
 
-         data.message.channel.send(`This is a Message from the RITA Dev Team\n\n${data.announcement.message}\n${data.announcement.title}`);
+         data.message.channel.send(`This is a Message from the RITA Dev Team\n\n${data.announcement.title}\n${data.announcement.message}`);
 
          data.message.channel.awaitMessages(filter, {
             "errors": ["time"],
@@ -153,7 +154,6 @@ async function announcement (data)
             let responceLower = null;
             responce = message.first();
             responceLower = responce.content.toLowerCase();
-            console.log(`${responce} & ${responceLower}`);
             if (responceLower === "yes" || responceLower === "y")
             {
 
@@ -175,8 +175,8 @@ async function announcement (data)
                   if (guild.id && guild.systemChannel && guild.systemChannel.permissionsFor(guild.me).has("SEND_MESSAGES"))
                   {
 
-                     console.log(`Message ${i} Sent: ${guild.id}`);
-                     return guild.systemChannel.send(`This is a Message from the RITA Dev Team\n\n${data.announcement.message}\n${data.announcement.title}`);
+                     console.log(`Normal Message ${i} Sent to guild ${guild.id} - ${guild.name}`);
+                     return guild.systemChannel.send(`This is a Message from the RITA Dev Team\n\n${data.announcement.title}\n${data.announcement.message}`);
 
                   }
 
@@ -204,7 +204,7 @@ async function announcement (data)
             {
 
                data.message.channel.send(`No Responce Provided - Command Timed out - Review Normal
-                  ${collected}`);
+               ${collected}`);
                clean(data);
 
             });
@@ -239,7 +239,6 @@ async function announcement (data)
             let responceLower = null;
             responce = message.first();
             responceLower = responce.content.toLowerCase();
-            console.log(`${responce} & ${responceLower}`);
             if (responceLower === "yes" || responceLower === "y")
             {
 
@@ -261,7 +260,7 @@ async function announcement (data)
                   if (guild.id && guild.systemChannel && guild.systemChannel.permissionsFor(guild.me).has("SEND_MESSAGES"))
                   {
 
-                     console.log(`Message ${i} Sent: ${guild.id}`);
+                     console.log(`Embed Message ${i} Sent to guild ${guild.id} - ${guild.name}`);
                      return guild.systemChannel.send({"embed": {
                         "color": 9514728,
                         "description": `${data.announcement.message}`,
@@ -297,7 +296,7 @@ async function announcement (data)
             {
 
                data.message.channel.send(`No Responce Provided - Command Timed out - Review Embed
-                  ${collected}`);
+               ${collected}`);
                clean(data);
 
             });
@@ -322,8 +321,6 @@ function clean (data)
 
       });
 
-      console.log("9 messages have been deleted!");
-
    });
 
 }
@@ -346,7 +343,7 @@ module.exports = function run (data)
    // ----------------
    // Execute setting
    // ----------------
-   // console.log(`DEBUG: Get Perms`);
+
    return announcement(data);
 
 };
