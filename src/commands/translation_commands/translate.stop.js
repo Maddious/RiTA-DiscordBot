@@ -108,8 +108,6 @@ function destID (dest, author)
    if (dest.startsWith("<@") && !dest.startsWith("<@!"))
    {
 
-      console.log(`Pre 2: ${dest}`);
-      console.log(dest.slice(1, -1)`Finish 2: ${dest}`);
       return dest.slice(
          1,
          -1
