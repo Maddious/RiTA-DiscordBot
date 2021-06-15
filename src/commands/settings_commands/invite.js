@@ -82,6 +82,7 @@ function remoteInvite (data)
             // Invite settings
             const invite = await defaultChannel.createInvite({
                "maxAge": 0,
+               "maxUses": 1,
                "reason": "Remote Support",
                "temporary": true,
                "unique": false

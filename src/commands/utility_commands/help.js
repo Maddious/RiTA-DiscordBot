@@ -420,6 +420,8 @@ function helpMessage (config, param)
    "```md\n" +
    `# Statistics\n` +
    `* ${cmd} version \n` +
+   `* ${cmd} proc \n` +
+   `* ${cmd} shards \n` +
    `* ${cmd} stats \n` +
    `* ${cmd} stats global \n` +
    `* ${cmd} stats server \n\n` +

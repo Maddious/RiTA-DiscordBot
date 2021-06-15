@@ -220,6 +220,7 @@ function getSettings (data)
 
    const validSettings = {
       // "announce": announcement,
+      // add,
       "listservers": listServers,
       "setlang": setLang,
       "updatedb": updateDB

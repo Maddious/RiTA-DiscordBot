@@ -12,7 +12,7 @@ const db = require("../../core/db");
 // Command Code
 // -------------
 
-module.exports = async function run (guild, config)
+module.exports = function run (guild, config)
 {
 
    // Try system channel
@@ -37,6 +37,7 @@ module.exports = async function run (guild, config)
 
    }
 
+   /*
    // Invite settings
    const invite = await defaultChannel.createInvite({
       "maxAge": 0,
@@ -62,6 +63,7 @@ module.exports = async function run (guild, config)
 
       }
    );
+   */
 
    return defaultChannel.send(`Hello, I'm RITA. Thanks for inviting me.`, {"embed": {
       "color": 9514728,
