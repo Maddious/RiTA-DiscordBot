@@ -371,7 +371,7 @@ exports.listen = function listen (client)
             "guildLeave",
             guild
          );
-         db.removeServer(guild.id);
+         db.updateServerTable(guild.id, "active", false);
 
       }
    );
