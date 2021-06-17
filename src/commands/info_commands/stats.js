@@ -1,9 +1,9 @@
-/* eslint-disable consistent-return */
 // -----------------
 // Global variables
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+/* eslint-disable consistent-return */
 const langCheck = require("../../core/lang.check");
 const db = require("../../core/db");
 const auth = require("../../core/auth");
@@ -44,15 +44,15 @@ module.exports = function run (data)
       const activeTasks = stats[0].activeTasks - stats[0].activeUserTasks;
 
       const globalStats =
-         `**\`\`\`@${data.bot.username} - Global Stats\`\`\`**\n` +
+         `**\`\`\`@${data.message.client.user.username} - Global Stats\`\`\`**\n` +
          `:earth_africa:  Default bot language:  **\`${botLang.name} (${botLang.native})\`**\n\n` +
-         `:bar_chart:  Translated **\`${stats[0].totalCount}\`** messages across  **\`${data.client.guilds.cache.size}\`**  servers for  **\`${db.server_obj.size}\`**  users\n\n` +
+         `:bar_chart:  Translated **\`${stats[0].totalCount}\`** messages across  **\`${data.message.client.guilds.cache.size}\`**  servers for  **\`${db.server_obj.size}\`**  users\n\n` +
          `:regional_indicator_v:  Version:  ${version}\n\n` +
          `:repeat:  Automatic translation:  **\`${activeTasks}\`**  channels and **\`${stats[0].activeUserTasks}\`**  users\n`;
 
       const translationGlobalStats =
-         `**\`\`\`@${data.bot.username} - Global Tranlation Stats\`\`\`**\n` +
-         `:bar_chart:  In total **\`${stats[0].message}\`** messages across **\`${data.client.guilds.cache.size}\`** servers have been sent\n\n` +
+         `**\`\`\`@${data.message.client.user.username} - Global Tranlation Stats\`\`\`**\n` +
+         `:bar_chart:  In total **\`${stats[0].message}\`** messages across **\`${data.message.client.guilds.cache.size}\`** servers have been sent\n\n` +
          `:chart_with_upwards_trend:  RITA has translated **\`${stats[0].translation}\`**  for these servers\n\n` +
          `:frame_photo:  A total of **\`${stats[0].images}\`**  images have been sent and **\`${stats[0].gif}\`** Gif's have been shared\n\n` +
          `:flag_white:  **\`${stats[0].react}\`**  messages have been translated with flag reactions \n\n` +
@@ -185,7 +185,7 @@ module.exports = function run (data)
          }
          // eslint-disable-next-line no-unused-vars
          const serverID = data.cmd.params.split(" ")[1].toLowerCase();
-         const target = data.client.guilds.cache.get(serverID);
+         const target = data.message.client.guilds.cache.get(serverID);
 
          db.getServerInfo(
             serverID,
