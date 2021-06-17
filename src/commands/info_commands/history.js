@@ -246,8 +246,7 @@ function getHistory (data)
       `# Version 1.2.4-2 - Release Date: 11/06/2021 \n` +
       `# Version 1.2.4-3 - Release Date: 12/06/2021 \n` +
       `# Version 1.2.4-4 - Release Date: 13/06/2021 \n` +
-      `# Version 1.2.4-5 - Release Date: 14/06/2021 \n` +
-      `# Version 1.2.4-6 - Release Date: 16/06/2021 \n\n` +
+      `# Version 1.2.4-5 - Release Date: 14/06/2021 \n\n` +
       "```\n";
 
       // -------------
