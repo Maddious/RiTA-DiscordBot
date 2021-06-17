@@ -396,6 +396,12 @@ function helpMessage (config, param)
    "```md\n" +
    `# ID Info\n` +
    `* ${cmd} id\n\n` +
+   "```" +
+   "```md\n" +
+   `# Other Commands\n` +
+   `* ${cmd} announce [on/off]\n` +
+   `* ${cmd} persist [on/off]\n` +
+   `* ${cmd} history\n\n` +
    "```\n";
 
    // -----------------
@@ -578,6 +584,7 @@ function helpMessage (config, param)
    `__**Developers Only**__\n\n` +
    "```md\n" +
    `# Commands\n` +
+   `* ${cmd} announce\n` +
    `* ${cmd} eject [ServerID]\n` +
    `* ${cmd} blacklist [ServerID]\n` +
    `* ${cmd} unblacklist [ServerID]\n` +
