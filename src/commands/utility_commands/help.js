@@ -394,13 +394,14 @@ function helpMessage (config, param)
    `* ${cmd} prefix\n\n` +
    "```" +
    "```md\n" +
-   `# Announcements\n` +
-   `* ${cmd} announce on\n ` +
-   `* ${cmd} announce off\n\n` +
-   "```" +
-   "```md\n" +
    `# ID Info\n` +
    `* ${cmd} id\n\n` +
+   "```" +
+   "```md\n" +
+   `# Other Commands\n` +
+   `* ${cmd} announce [on/off]\n` +
+   `* ${cmd} persist [on/off]\n` +
+   `* ${cmd} history\n\n` +
    "```\n";
 
    // -----------------

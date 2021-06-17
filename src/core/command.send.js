@@ -8,11 +8,12 @@ const discord = require("discord.js");
 const richEmbedMessage = new discord.MessageEmbed();
 const logger = require("./logger");
 const error = require("./error");
+const db = require("./db");
 const time = {
    "long": 60000,
    "short": 5000
 };
-const auth = require("../core/auth");
+const auth = require("./auth");
 
 // ---------------------
 // Send Data to Channel
@@ -24,9 +25,27 @@ function sendMessage (data)
    return data.message.channel.send(richEmbedMessage).then((msg) =>
    {
 
-      msg.delete({"timeout": time.long}).catch((err) => console.log(
-         "Bot Message Deleted Error, command.send.js = ",
-         err
+      db.getServerInfo(
+         data.message.guild.id,
+         function getServerInfo (server)
+         {
+
+            if (server[0].persist === false)
+            {
+
+               msg.delete({"timeout": time.long}).catch((err) => console.log(
+                  "Bot Message Deleted Error, command.send.js = ",
+                  err
+               ));
+
+            }
+
+         }
+      ).catch((err) => console.log(
+         "error",
+         err,
+         "warning",
+         data.message.guild.id
       ));
 
    }).
@@ -92,42 +111,85 @@ module.exports = function run (data)
    // ---------------------
    // Send Data to Channel
    // ---------------------
+   db.getServerInfo(
+      data.message.guild.id,
+      function getServerInfo (server)
+      {
 
-   if (auth.devID.includes(data.message.author.id))
-   {
+         if (auth.devID.includes(data.message.author.id))
+         {
 
-      // console.log("DEBUG: Developer Override");
-      data.message.delete({"timeout": time.short}).catch((err) => console.log(
-         "Command Message Deleted Error, command.send.js = ",
-         err
-      ));
-      richEmbedMessage.
-         setColor(colors.get(data.color)).
-         setDescription(`Developer Identity confirmed:\n\n${data.text}`).
-         setTimestamp().
-         setFooter("This message will self-destruct in one minute");
-      // -------------
-      // Send message
-      // -------------
+            // console.log("DEBUG: Developer Override");
+            data.message.delete({"timeout": time.short}).catch((err) => console.log(
+               "Command Message Deleted Error, command.send.js = ",
+               err
+            ));
+            if (server[0].persist === true)
+            {
 
-      return sendMessage(data);
+               richEmbedMessage.
+                  setColor(colors.get(data.color)).
+                  setDescription(`Developer Identity confirmed:\n\n${data.text}`).
+                  setTimestamp().
+                  setFooter(`
+                  Persistent Commands are turned on, to auto delete command\nmessages please use ${server[0].prefix} settings persist off`);
 
-   }
-   // console.log("DEBUG: Sufficient Permission");
-   data.message.delete({"timeout": time.short}).catch((err) => console.log(
-      "Command Message Deleted Error, command.send.js = ",
-      err
+            }
+            else
+            {
+
+               richEmbedMessage.
+                  setColor(colors.get(data.color)).
+                  setDescription(`Developer Identity confirmed:\n\n${data.text}`).
+                  setTimestamp().
+                  setFooter(`Persistent Commands are turned off\nTo prevent auto delete please use ${server[0].prefix} settings persist on\nThis message will self-destruct in one minute`);
+
+            }
+            // -------------
+            // Send message
+            // -------------
+
+            return sendMessage(data);
+
+         }
+         // console.log("DEBUG: Sufficient Permission");
+         data.message.delete({"timeout": time.short}).catch((err) => console.log(
+            "Command Message Deleted Error, command.send.js = ",
+            err
+         ));
+         if (server[0].persist === true)
+         {
+
+            richEmbedMessage.
+               setColor(colors.get(data.color)).
+               setDescription(`${data.text}`).
+               setTimestamp().
+               setFooter(`Persistent Commands are turned on\nTo auto delete message please use ${server[0].prefix} settings persist off`);
+
+         }
+         else
+         {
+
+            richEmbedMessage.
+               setColor(colors.get(data.color)).
+               setDescription(`${data.text}`).
+               setTimestamp().
+               setFooter(`Persistent Commands are turned off\nTo prevent auto delete please use ${server[0].prefix} settings persist on\nThis message will self-destruct in one minute`);
+
+         }
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+   ).catch((err) => console.log(
+      "error",
+      err,
+      "warning",
+      data.message.guild.id
    ));
-   richEmbedMessage.
-      setColor(colors.get(data.color)).
-      setDescription(data.text).
-      setTimestamp().
-      setFooter("This message will self-destruct in one minute");
-
-   // -------------
-   // Send message
-   // -------------
-
-   return sendMessage(data);
 
 };

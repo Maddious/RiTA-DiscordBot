@@ -259,7 +259,7 @@ module.exports = function run (data)
    else if (data.message.author.id === data.message.guild.owner.id && data.cmd.params && data.cmd.params.toLowerCase().includes("off"))
    {
 
-      db.announce(data.message.guild.id, false, function error (err)
+      db.updateServerTable(data.message.guild.id, "announce", false, function error (err)
       {
 
          if (err)
@@ -278,7 +278,7 @@ module.exports = function run (data)
    else if (data.message.author.id === data.message.guild.owner.id && data.cmd.params && data.cmd.params.toLowerCase().includes("on"))
    {
 
-      db.announce(data.message.guild.id, true, function error (err)
+      db.updateServerTable(data.message.guild.id, "announce", true, function error (err)
       {
 
          if (err)

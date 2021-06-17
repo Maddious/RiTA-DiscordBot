@@ -172,6 +172,10 @@ const Servers = db.define(
       "announce": {
          "type": Sequelize.BOOLEAN,
          "defaultValue": true
+      },
+      "persist": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": false
       }
    }
 );
@@ -362,41 +366,6 @@ exports.servercount = function servercount (guild)
 
 };
 
-// ------------------
-// Deactivate Server
-// ------------------
-
-exports.removeServer = function removeServer (id)
-{
-
-   // console.log("DEBUG: Stage Deactivate Server");
-   return Servers.update(
-      {"active": false},
-      {"where": {id}}
-   );
-
-};
-
-// -------------------
-// Update Server Lang
-// -------------------
-
-exports.updateServerLang = function updateServerLang (id, lang, _cb)
-{
-
-   // console.log("DEBUG: Stage Update Server Lang");
-   return Servers.update(
-      {lang},
-      {"where": {id}}
-   ).then(function update ()
-   {
-
-      _cb();
-
-   });
-
-};
-
 // -------------------------------
 // Update Embedded Variable in DB
 // -------------------------------
@@ -461,67 +430,6 @@ exports.updateWebhookVar = function updateWebhookVar (id, webhookid, webhooktoke
 
 };
 
-// -------------------------
-// Deactivate debug Webhook
-// -------------------------
-
-exports.removeWebhook = function removeWebhook (id, _cb)
-{
-
-   // console.log("DEBUG: Stage Deactivate debug Webhook");
-   return Servers.update(
-      {"webhookactive": false},
-      {"where": {id}}
-   ).then(function update ()
-   {
-
-      _cb();
-
-   });
-
-};
-
-// -----------------
-// Blacklist Server
-// -----------------
-
-exports.blacklist = function blacklist (id, type, _cb)
-{
-
-   // console.log("DEBUG: Stage Blacklist");
-   return Servers.update(
-      {"blacklisted": type},
-      {"where": {id}}
-   ).then(function update ()
-   {
-
-      _cb();
-
-   });
-
-};
-
-// ------------
-// Warn Server
-// ------------
-
-exports.warn = function warn (id, type, _cb)
-{
-
-   // console.log("DEBUG: Stage Warn");
-   return Servers.update(
-      {"warn": type},
-      {"where": {id}}
-   ).then(function update ()
-   {
-
-      _cb();
-
-   });
-
-};
-
-
 // --------------
 // Update prefix
 // --------------
@@ -544,36 +452,15 @@ exports.updatePrefix = function updatePrefix (id, prefix, _cb)
 
 };
 
-// -----------------
-// Save invite Link
-// -----------------
+// -----------------------
+// Update Server Variable
+// -----------------------
 
-exports.saveInvite = function saveInvite (id, invite, _cb)
+exports.updateServerTable = function updateServerTable (id, columnName, value, _cb)
 {
 
-   // console.log("DEBUG: Save Invite Link");
    return Servers.update(
-      {invite},
-      {"where": {id}}
-   ).then(function update ()
-   {
-
-      _cb();
-
-   });
-
-};
-
-// -----------------
-// announce opt out
-// -----------------
-
-exports.announce = function announce (id, type, _cb)
-{
-
-   // console.log("DEBUG: Stage Blacklist");
-   return Servers.update(
-      {"announce": type},
+      {[`${columnName}`]: value},
       {"where": {id}}
    ).then(function update ()
    {
@@ -604,6 +491,7 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "warn", Sequelize.BOOLEAN, false);
    await this.addTableColumn("servers", serversDefinition, "invite", Sequelize.STRING(255), "Not yet Created");
    await this.addTableColumn("servers", serversDefinition, "announce", Sequelize.BOOLEAN, true);
+   await this.addTableColumn("servers", serversDefinition, "persist", Sequelize.BOOLEAN, false);
    console.log("DEBUG: All Columns Checked or Added");
 
    // For older version of RITA, must remove old unique index
