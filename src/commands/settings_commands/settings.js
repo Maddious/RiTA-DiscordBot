@@ -207,7 +207,7 @@ function getSettings (data)
                }
                const output =
             "**```Updated Persist Settings```**\n" +
-            `Command Messages will no longer be deleted\n\n`;
+            `Persist Command Messages = ${commandVariable1}\n\n`;
                data.color = "info";
                data.text = output;
 
