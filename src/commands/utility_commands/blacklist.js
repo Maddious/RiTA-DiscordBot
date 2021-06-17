@@ -23,9 +23,8 @@ module.exports.blacklist = function blacklist (data)
 
    const serverID = data.cmd.num;
 
-   return db.updateServerTable(
+   return db.blacklist(
       serverID,
-      "blacklist",
       true,
       async function error (err)
       {
@@ -38,7 +37,7 @@ module.exports.blacklist = function blacklist (data)
          }
 
 
-         const target = data.message.client.guilds.cache.get(serverID);
+         const target = data.client.guilds.cache.get(serverID);
          if (!target)
          {
 
@@ -60,7 +59,7 @@ module.exports.blacklist = function blacklist (data)
             // ----------------------
             // Send message to owner
             // ----------------------
-            console.log("DEBUG: Line 62 - Blacklist.js");
+
             target.owner.
                send(writeErr).
                catch((err) => console.log(
@@ -111,9 +110,8 @@ module.exports.unblacklist = function unblacklist (data)
 
    const serverID = data.cmd.num;
 
-   return db.updateServerTable(
+   return db.blacklist(
       serverID,
-      "blacklist",
       false,
       function error (err)
       {

@@ -72,9 +72,8 @@ function getSettings (data)
       // Update database
       // ----------------
 
-      return db.updateServerTable(
+      return db.updateServerLang(
          data.message.channel.guild.id,
-         "lang",
          data.cmd.to.valid[0].iso,
          function error (err)
          {
@@ -115,7 +114,7 @@ function getSettings (data)
 
       data.text = "Active Servers - ";
 
-      const activeGuilds = data.message.client.guilds.cache.array();
+      const activeGuilds = data.client.guilds.cache.array();
 
       data.text += `${activeGuilds.length}\n\n`;
 
@@ -161,69 +160,6 @@ function getSettings (data)
 
    }
 
-   // --------------------
-   // Command Persistence
-   // --------------------
-
-   let commandVariable1 = data.cmd.params.toLowerCase();
-   // eslint-disable-next-line no-unused-vars
-   commandVariable1 = commandVariable1.slice(8);
-   const setPersistence = async function setPersistence (data)
-   {
-
-      if (commandVariable1 === "on" || commandVariable1 === "off")
-      {
-
-         if (commandVariable1 === "on")
-         {
-
-            commandVariable1 = true;
-
-         }
-         else
-         {
-
-            commandVariable1 = false;
-
-         }
-         // console.log(`DEBUG: embed variable ${commandVariable1}`);
-         await db.updateServerTable(
-            data.message.channel.guild.id,
-            "persist",
-            commandVariable1,
-            function error (err)
-            {
-
-               if (err)
-               {
-
-                  return logger(
-                     "error",
-                     err,
-                     "command",
-                     data.message.channel.guild.name
-                  );
-
-               }
-               const output =
-            "**```Updated Persist Settings```**\n" +
-            `Persist Command Messages = ${commandVariable1}\n\n`;
-               data.color = "info";
-               data.text = output;
-
-               // -------------
-               // Send message
-               // -------------
-
-               return sendMessage(data);
-
-            }
-         );
-
-      }
-
-   };
-
    // -----------------
    // DM server owners
    // -----------------
@@ -233,7 +169,7 @@ function getSettings (data)
    const Announcement = async function Announcement (data)
    {
 
-      const guildArray = Array.from(data.message.client.guilds.cache());
+      const guildArray = Array.from(data.client.guilds.cache());
       let i;
       for (i = 0; i < guildArray.length; i += 1)
       {
@@ -244,7 +180,7 @@ function getSettings (data)
          owner = Number(owner);
          owner = owner.replace(/([0-9]+)/g, "$1");
          console.log("Done");
-         await data.message.client.users.get(owner).send("Testing").
+         await data.client.users.get(owner).send("Testing").
             catch((err) =>
             {
 
@@ -284,9 +220,7 @@ function getSettings (data)
 
    const validSettings = {
       // "announce": announcement,
-      // add,
       "listservers": listServers,
-      "persist": setPersistence,
       "setlang": setLang,
       "updatedb": updateDB
 
