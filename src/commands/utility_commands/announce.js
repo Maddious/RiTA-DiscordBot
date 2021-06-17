@@ -8,6 +8,7 @@
 /* eslint-disable no-unused-vars */
 const sendMessage = require("../../core/command.send");
 const auth = require("../../core/auth");
+const db = require("../../core/db");
 const time = {
    "long": 30000,
    "short": 5000
@@ -36,7 +37,7 @@ async function announcement (data)
       data.message.channel.awaitMessages(filter, {
          "errors": ["time"],
          "max": 1,
-         "time": 30000
+         "time": time.long
       }).
          then((message) =>
          {
@@ -48,8 +49,8 @@ async function announcement (data)
          catch((collected) =>
          {
 
-            data.message.channel.send(`No Title Provided - Command Timed out - Title
-            ${collected}`);
+            data.message.channel.send(`No Responce Provided Or Error: - Title`);
+            clean(data, 1);
 
          });
 
@@ -58,26 +59,27 @@ async function announcement (data)
    async function body (data)
    {
 
+      clean(data, 2);
       await data.message.channel.send(`Please Enter message you wish to send.`).then(() =>
       {
 
          data.message.channel.awaitMessages(filter, {
             "errors": ["time"],
             "max": 1,
-            "time": 30000
+            "time": time.long
          }).
             then((message) =>
             {
 
                data.announcement.message = message.first();
-               embedOption(data);
+               review(data);
 
             }).
             catch((collected) =>
             {
 
-               data.message.channel.send(`No Message Provided - Command Timed out - Message
-               ${collected}`);
+               data.message.channel.send(`No Responce Provided Or Error: Message`);
+               clean(data, 1);
 
             });
 
@@ -85,137 +87,11 @@ async function announcement (data)
 
    }
 
-   async function embedOption (data)
+
+   async function review (data)
    {
 
-      await data.message.channel.send(`Would you like to send as a Embed or Normal Message`).then(() =>
-      {
-
-         data.message.channel.awaitMessages(filter, {
-            "errors": ["time"],
-            "max": 1,
-            "time": 30000
-         }).
-            then((message) =>
-            {
-
-               let responce = null;
-               let responceLower = null;
-               responce = message.first();
-               responceLower = responce.content.toLowerCase();
-               if (responceLower === "embed" || responceLower === "e")
-               {
-
-                  reviewEmbed(data);
-
-               }
-               else if (responceLower === "normal" || responceLower === "n")
-               {
-
-                  reviewNormal(data);
-
-               }
-               else
-               {
-
-                  data.message.channel.send(`Command Terminated: Invalid Response`);
-
-               }
-
-            }).
-            catch((collected) =>
-            {
-
-               data.message.channel.send(`No Responce Provided - Command Timed out - Embed Option
-               ${collected}`);
-
-            });
-
-      });
-
-   }
-
-   async function reviewNormal (data)
-   {
-
-      await data.message.channel.send(`Please Review the message, Do you want to send.? \`YES\` / \`NO\``).then(() =>
-      {
-
-         data.message.channel.send(`This is a Message from the RITA Dev Team\n\n${data.announcement.title}\n${data.announcement.message}`);
-
-         data.message.channel.awaitMessages(filter, {
-            "errors": ["time"],
-            "max": 1,
-            "time": 30000
-         }).then((message) =>
-         {
-
-            let responce = null;
-            let responceLower = null;
-            responce = message.first();
-            responceLower = responce.content.toLowerCase();
-            if (responceLower === "yes" || responceLower === "y")
-            {
-
-               data.message.channel.send(`Announcment has been sent!`).then((msg) =>
-               {
-
-                  msg.delete({"timeout": time.long}).catch((err) => console.log(
-                     "Bot Message Deleted Error, command.send.js = ",
-                     err
-                  ));
-
-               });
-
-               let i = 0;
-               data.message.client.guilds.cache.forEach((guild) =>
-               {
-
-                  i += 1;
-                  if (guild.id && guild.systemChannel && guild.systemChannel.permissionsFor(guild.me).has("SEND_MESSAGES"))
-                  {
-
-                     console.log(`Normal Message ${i} Sent to guild ${guild.id} - ${guild.name}`);
-                     return guild.systemChannel.send(`This is a Message from the RITA Dev Team\n\n${data.announcement.title}\n${data.announcement.message}`);
-
-                  }
-
-               });
-               clean(data);
-
-            }
-            else if (responceLower === "no" || responceLower === "n")
-            {
-
-               data.message.channel.send(`Command Terminated`);
-               clean(data);
-
-            }
-            else
-            {
-
-               data.message.channel.send(`Command Terminated: Invalid Response`);
-               clean(data);
-
-            }
-
-         }).
-            catch((collected) =>
-            {
-
-               data.message.channel.send(`No Responce Provided - Command Timed out - Review Normal
-               ${collected}`);
-               clean(data);
-
-            });
-
-      });
-
-   }
-
-   async function reviewEmbed (data)
-   {
-
+      clean(data, 2);
       await data.message.channel.send(`Please Review the message, Do you want to send.? \`YES\` / \`NO\``).then(() =>
       {
 
@@ -223,7 +99,7 @@ async function announcement (data)
             "color": 9514728,
             "description": `${data.announcement.message}`,
             "footer": {
-               "text": "This is a Message from the RITA Dev Team\nRITA is developed by the RITA Bot Project"
+               "text": `This is a Message from the RITA Dev Team\nRITA is developed by the RITA Bot Project\n\nTo opt out of annoucments please use the command {cmd} announce off`
             },
             "title": `${data.announcement.title}`
          }});
@@ -231,7 +107,7 @@ async function announcement (data)
          data.message.channel.awaitMessages(filter, {
             "errors": ["time"],
             "max": 1,
-            "time": 30000
+            "time": time.long
          }).then((message) =>
          {
 
@@ -253,41 +129,83 @@ async function announcement (data)
                });
 
                let i = 0;
-               data.message.client.guilds.cache.forEach((guild) =>
+               const guilds = [];
+               for (const guild of data.message.client.guilds.cache)
                {
 
+                  guilds.push(guild);
+
+               }
+
+               const wait = setInterval(function delay ()
+               {
+
+                  const guild = guilds.shift();
+
                   i += 1;
-                  if (guild.id && guild.systemChannel && guild.systemChannel.permissionsFor(guild.me).has("SEND_MESSAGES"))
+                  if (guild === undefined)
                   {
 
-                     console.log(`Embed Message ${i} Sent to guild ${guild.id} - ${guild.name}`);
-                     return guild.systemChannel.send({"embed": {
-                        "color": 9514728,
-                        "description": `${data.announcement.message}`,
-                        "footer": {
-                           "text": "This is a Message from the RITA Dev Team\nRITA is developed by the RITA Bot Project"
-                        },
-                        "title": `${data.announcement.title}`
-                     }});
+                     console.log(`Done all servers`);
+                     clearInterval(wait);
+
+                  }
+                  else if (guild[1].id && guild[1].systemChannel && guild[1].systemChannel.permissionsFor(guild[1].me).has("SEND_MESSAGES"))
+                  {
+
+                     const target = guild[1].id;
+
+                     db.getServerInfo(
+                        target,
+                        function getServerInfo (server)
+                        {
+
+                           if (!target)
+                           {
+
+                              return;
+
+                           }
+                           else if (server[0].announce === true)
+                           {
+
+                              console.log(`Message ${i} Sent to guild ${guild[1].id} - ${guild[1].name}`);
+                              return guild[1].systemChannel.send({"embed": {
+                                 "color": 9514728,
+                                 "description": `${data.announcement.message}`,
+                                 "footer": {
+                                    "text": `
+                                    This is a Message from the RITA Dev Team\nRITA is developed by the RITA Bot Project\n\nTo opt out of annoucments please use the command ${server[0].prefix} announce off`
+                                 },
+                                 "title": `${data.announcement.title}`
+                              }});
+
+                           }
+                           console.log(`Message ${i} Unable to Sent to guild ${guild[1].id} - ${guild[1].name} as they have opted out of announcement messages.`);
+
+                        }
+                     );
 
                   }
 
-               });
-               clean(data);
+               }, 1000);
+
+               clean(data, 3);
 
             }
+
             else if (responceLower === "no" || responceLower === "n")
             {
 
                data.message.channel.send(`Command Terminated`);
-               clean(data);
+               clean(data, 3);
 
             }
             else
             {
 
                data.message.channel.send(`Command Terminated: Invalid Response`);
-               clean(data);
+               clean(data, 3);
 
             }
 
@@ -295,9 +213,8 @@ async function announcement (data)
             catch((collected) =>
             {
 
-               data.message.channel.send(`No Responce Provided - Command Timed out - Review Embed
-               ${collected}`);
-               clean(data);
+               console.log(`No Responce Provided Or Error: - Review`);
+               clean(data, 1);
 
             });
 
@@ -306,11 +223,11 @@ async function announcement (data)
    }
 
 }
-function clean (data)
+function clean (data, value)
 {
 
    const messageManager = data.channel.messages;
-   messageManager.fetch({"limit": 9}).then((messages) =>
+   messageManager.fetch({"limit": value}).then((messages) =>
    {
 
       // `messages` is a Collection of Message objects
@@ -336,6 +253,51 @@ module.exports = function run (data)
    {
 
       data.text = ":cop:  This Command is for bot developers only.\n";
+      return sendMessage(data);
+
+   }
+   else if (data.message.author.id === data.message.guild.owner.id && data.cmd.params && data.cmd.params.toLowerCase().includes("off"))
+   {
+
+      db.announce(data.message.guild.id, false, function error (err)
+      {
+
+         if (err)
+         {
+
+            return console.log("error", err, "command", data.message.channel.guild.name);
+
+         }
+
+      });
+
+      data.text = "You have successfully opted out of receiving announcements messages.\n";
+      return sendMessage(data);
+
+   }
+   else if (data.message.author.id === data.message.guild.owner.id && data.cmd.params && data.cmd.params.toLowerCase().includes("on"))
+   {
+
+      db.announce(data.message.guild.id, true, function error (err)
+      {
+
+         if (err)
+         {
+
+            return console.log("error", err, "command", data.message.channel.guild.name);
+
+         }
+
+      });
+
+      data.text = "You have successfully opted in to receiving announcements messages.\n";
+      return sendMessage(data);
+
+   }
+   else if (data.message.author.id !== data.message.guild.owner.id)
+   {
+
+      data.text = ":cop:  This Command is for server owners only.\n";
       return sendMessage(data);
 
    }
