@@ -23,8 +23,9 @@ module.exports.blacklist = function blacklist (data)
 
    const serverID = data.cmd.num;
 
-   return db.blacklist(
+   return db.updateServerTable(
       serverID,
+      "blacklist",
       true,
       async function error (err)
       {
@@ -110,8 +111,9 @@ module.exports.unblacklist = function unblacklist (data)
 
    const serverID = data.cmd.num;
 
-   return db.blacklist(
+   return db.updateServerTable(
       serverID,
+      "blacklist",
       false,
       function error (err)
       {
