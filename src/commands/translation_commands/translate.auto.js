@@ -251,29 +251,6 @@ module.exports = function run (data)
 
          }
 
-         // Resolve mentioned channel(s) cross server
-         if (dest.startsWith("cs#"))
-         {
-
-            const channel = data.message.client.channels.cache.get(dest.slice(3));
-            console.log(`${dest.slice(3, -1)}`);
-
-            if (channel)
-            {
-
-               taskBuffer.update(channel.id);
-
-            }
-            else
-            {
-
-               data.task.invalid.push(dest);
-               taskBuffer.reduce();
-
-            }
-
-         }
-
          // Invalid dests
 
          if (

@@ -37,7 +37,6 @@ const cmdPerms = require("./utility_commands/perm");
 const cmdCheck = require("./utility_commands/check");
 const cmdJoin = require("./info_commands/join");
 const cmdInvite = require("./settings_commands/invite");
-const cmdAnnounce = require("./utility_commands/announce");
 
 
 // ---------------------------------------
@@ -349,7 +348,6 @@ module.exports = function run (data)
          // ---------------
 
          const cmdMap = {
-            "announce": cmdAnnounce,
             "auto": cmdTranslateAuto,
             "ban": cmdMod.ban,
             "blacklist": cmdBlacklist.blacklist,

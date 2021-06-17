@@ -48,9 +48,8 @@ module.exports = function run (guild, config)
       catch(console.log);
 
    // Save invite to DB
-   db.updateServerTable(
+   db.saveInvite(
       guild.id,
-      "invite",
       invite.url,
       function error (err)
       {
@@ -76,15 +75,11 @@ module.exports = function run (guild, config)
          },
          {
             "name": ":tools: Support ",
-            "value": "If you need some support why not drop by our [Support Server](https://discord.gg/hXaedzCQ8d) and we will be more than willing to lend a hand."
-         },
-         {
-            "name": ":lock: Permissions",
-            "value": `Rita has many functions, These all need different permissions to work. To check that RITA has ll the permissions she needs to functions correctly please use the **!tr checkperms bot** command.`
+            "value": "If you need some support why not drop by our [Support Server](https://discord.gg/hXaedzCQ8d) and we will be more than willing to leand a hand."
          },
          {
             "name": ":moneybag: On a side note.",
-            "value": `While rita is free, and we always aim to keep it this way, She does have costs.\nCurrently the Dev Team pays these cost. If you would like to support us and enable us to continue to provide RITA for free then please visit our [GitHub Sponsors](https://github.com/sponsors/RitaBot-Project) page, or type **${config.translateCmdShort} donate** for more info`
+            "value": `While rita is free, and we always aim to keep it this way, She does have costs.\nCurrently the Dev Team pays these cost. If you would like to support us and enable us to coninue to provide RITA for free then please vist our [GitHub Sponsors](https://github.com/sponsors/RitaBot-Project) page, or type **${config.translateCmdShort} donate** for more info`
          }
       ],
 

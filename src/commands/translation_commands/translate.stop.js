@@ -105,13 +105,6 @@ function destID (dest, author)
       );
 
    }
-   if (dest.startsWith("cs#"))
-   {
-
-      console.log(`Pre 1: ${dest}`);
-      return dest.slice(3);
-
-   }
    if (dest.startsWith("<@") && !dest.startsWith("<@!"))
    {
 
