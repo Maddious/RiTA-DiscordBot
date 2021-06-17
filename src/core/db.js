@@ -168,6 +168,10 @@ const Servers = db.define(
       "invite": {
          "type": Sequelize.STRING(255),
          "defaultValue": "Not yet Created"
+      },
+      "announce": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": true
       }
    }
 );
@@ -560,6 +564,26 @@ exports.saveInvite = function saveInvite (id, invite, _cb)
 
 };
 
+// -----------------
+// announce opt out
+// -----------------
+
+exports.announce = function announce (id, type, _cb)
+{
+
+   // console.log("DEBUG: Stage Blacklist");
+   return Servers.update(
+      {"announce": type},
+      {"where": {id}}
+   ).then(function update ()
+   {
+
+      _cb();
+
+   });
+
+};
+
 // -----------------------------
 // Add Missing Variable Columns
 // -----------------------------
@@ -579,6 +603,7 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "blacklisted", Sequelize.BOOLEAN, false);
    await this.addTableColumn("servers", serversDefinition, "warn", Sequelize.BOOLEAN, false);
    await this.addTableColumn("servers", serversDefinition, "invite", Sequelize.STRING(255), "Not yet Created");
+   await this.addTableColumn("servers", serversDefinition, "announce", Sequelize.BOOLEAN, true);
    console.log("DEBUG: All Columns Checked or Added");
 
    // For older version of RITA, must remove old unique index
