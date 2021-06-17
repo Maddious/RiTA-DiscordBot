@@ -8,11 +8,12 @@ const discord = require("discord.js");
 const richEmbedMessage = new discord.MessageEmbed();
 const logger = require("./logger");
 const error = require("./error");
+const db = require("./db");
 const time = {
    "long": 60000,
    "short": 5000
 };
-const auth = require("../core/auth");
+const auth = require("./auth");
 
 // ---------------------
 // Send Data to Channel
@@ -24,9 +25,27 @@ function sendMessage (data)
    return data.message.channel.send(richEmbedMessage).then((msg) =>
    {
 
-      msg.delete({"timeout": time.long}).catch((err) => console.log(
-         "Bot Message Deleted Error, command.send.js = ",
-         err
+      db.getServerInfo(
+         data.message.guild.id,
+         function getServerInfo (server)
+         {
+
+            if (server[0].persist === false)
+            {
+
+               msg.delete({"timeout": time.long}).catch((err) => console.log(
+                  "Bot Message Deleted Error 1, command.send.js = ",
+                  err
+               ));
+
+            }
+
+         }
+      ).catch((err) => console.log(
+         "error",
+         err,
+         "warning",
+         data.message.guild.id
       ));
 
    }).
@@ -98,14 +117,14 @@ module.exports = function run (data)
 
       // console.log("DEBUG: Developer Override");
       data.message.delete({"timeout": time.short}).catch((err) => console.log(
-         "Command Message Deleted Error, command.send.js = ",
+         "Command Message Deleted Error 2, command.send.js = ",
          err
       ));
       richEmbedMessage.
          setColor(colors.get(data.color)).
          setDescription(`Developer Identity confirmed:\n\n${data.text}`).
          setTimestamp().
-         setFooter("This message will self-destruct in one minute");
+         setFooter("This message may self-destruct in one minute");
       // -------------
       // Send message
       // -------------
@@ -122,7 +141,7 @@ module.exports = function run (data)
       setColor(colors.get(data.color)).
       setDescription(data.text).
       setTimestamp().
-      setFooter("This message will self-destruct in one minute");
+      setFooter("This message may self-destruct in one minute");
 
    // -------------
    // Send message
