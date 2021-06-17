@@ -95,9 +95,8 @@ function remoteInvite (data)
             data.text = msg + inviteLink;
 
             // Save invite to DB
-            db.updateServerTable(
+            db.saveInvite(
                targetID,
-               "invite",
                invite.url,
                function error (err)
                {

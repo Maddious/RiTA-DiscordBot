@@ -145,9 +145,8 @@ module.exports.warn = async function warn (data)
 
       data.color = "warn";
       data.text = oneLine`\`\`\`Server: ${target.name} \nServer ID:${serverID}\nUnable to warn Owner.\`\`\``;
-      await db.updateServerTable(
+      await db.warn(
          serverID,
-         "warn",
          true,
          // eslint-disable-next-line consistent-return
          function error (err)
@@ -171,9 +170,8 @@ module.exports.warn = async function warn (data)
    // -------------
    data.color = "warn";
    data.text = `\`\`\`Owner: ${target.owner.user.tag}\nServer: ${target.name} \nServer ID: ${serverID}\nServer Owner Has Been Warned\`\`\``;
-   await db.updateServerTable(
+   await db.warn(
       serverID,
-      "warn",
       true,
       // eslint-disable-next-line consistent-return
       function error (err)
@@ -207,9 +205,8 @@ module.exports.unwarn = function unwarn (data)
 
    const serverID = data.cmd.num;
 
-   return db.updateServerTable(
+   return db.warn(
       serverID,
-      "warn",
       false,
       function error (err)
       {
