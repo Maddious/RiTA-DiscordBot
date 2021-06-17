@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 // -----------------
 // Global variables
 // -----------------
@@ -94,22 +93,13 @@ function removeTask (res, data, origin, dest, destDisplay)
 function destID (dest, author)
 {
 
-   console.log(`Dest Raw: ${dest}`);
    if (dest.startsWith("<#"))
    {
 
-      console.log(`Pre 1: ${dest}`);
       return dest.slice(
          2,
          -1
       );
-
-   }
-   if (dest.startsWith("cs#"))
-   {
-
-      console.log(`Pre 1: ${dest}`);
-      return dest.slice(3);
 
    }
    if (dest.startsWith("<@") && !dest.startsWith("<@!"))
@@ -124,27 +114,25 @@ function destID (dest, author)
    if (dest.startsWith("<@!"))
    {
 
-      dest = dest.slice(
+      return dest.slice(
          3,
          -1
       );
-      return `@${dest}`;
 
    }
    if (dest === "me")
    {
 
-      console.log(`Pre 4: ${dest}`);
       return `@${author}`;
 
    }
    if (!isNaN(dest))
    {
 
-      console.log(`Pre 5: ${dest}`);
       return `@${dest}`;
 
    }
+
    return dest;
 
 }

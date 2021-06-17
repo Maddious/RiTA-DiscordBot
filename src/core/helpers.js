@@ -159,10 +159,10 @@ exports.arraySum = function arraySum (array)
 exports.getRoleColor = function getRoleColor (member)
 {
 
-   if (member)
+   if (member && member.highestRole && member.highestRole.color)
    {
 
-      return member.displayColor;
+      return member.highestRole.color;
 
    }
    return null;

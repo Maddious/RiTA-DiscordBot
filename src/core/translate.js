@@ -9,7 +9,6 @@ const translate = require("rita-google-translate-api");
 const db = require("./db");
 const botSend = require("./send");
 const fn = require("./helpers");
-const auth = require("../core/auth");
 
 // ------------------------------------------
 // Fix broken Discord tags after translation
@@ -148,13 +147,13 @@ function getUserColor (data, callback)
    const fw = data.forward;
    const txt = data.text;
    const ft = data.footer;
-   const usr = data.message.author;
+   const usr = data.author;
    const msg = data.message;
 
    data.forward = fw;
    data.text = txt;
    data.footer = ft;
-   data.message.author = usr;
+   data.author = usr;
    data.message = msg;
 
 
@@ -179,14 +178,14 @@ function bufferSend (arr, data)
 
       data.text = msg.text;
       data.color = msg.color;
-      data.message.author = msg.author;
+      data.author = msg.author;
       data.showAuthor = true;
       data.message = msg;
 
       // -------------
       // Send message
       // -------------
-      console.log(`Transalte 1`);
+
       botSend(data);
 
    });
@@ -243,7 +242,7 @@ function bufferChains (data, from)
             {
 
                translatedChains.push({
-                  "author": gotData.message.author,
+                  "author": gotData.author,
                   "color": gotData.color,
                   "text": output,
                   "time": chain.time
@@ -315,6 +314,12 @@ function updateServerStats (message)
 
 module.exports = function run (data) // eslint-disable-line complexity
 {
+
+   // -------------------
+   // Get message author
+   // -------------------
+
+   data.author = data.message.author;
 
    // -------------------------
    // Report invalid languages
@@ -462,7 +467,7 @@ module.exports = function run (data) // eslint-disable-line complexity
             {
 
                data.text = this.text;
-               data.color = data.member.displayColor;
+               data.color = data.message.roleColor;
                data.showAuthor = true;
                getUserColor(
                   data,
@@ -575,21 +580,9 @@ module.exports = function run (data) // eslint-disable-line complexity
          updateServerStats(data.message);
          data.forward = fw;
          data.footer = ft;
-         data.color = data.member.displayColor;
+         data.color = data.message.roleColor;
          data.text = res.text;
          data.showAuthor = true;
-         if (auth.messagedebug === "4")
-         {
-
-            console.log(`MD4: ${data.message.guild.name} - ${data.message.guild.id} - ${data.message.createdAt}\nMesssage User - ${data.message.author.tag}\nMesssage Content - ${data.message.content}\nTranslated from: ${detectedLang} to: ${langTo}\n----------------------------------------`);
-
-         }
-         if (auth.messagedebug === "2")
-         {
-
-            console.log(`MD2: ${data.message.guild.name} - ${data.message.guild.id} - ${data.message.createdAt}`);
-
-         }
          return getUserColor(
             data,
             botSend

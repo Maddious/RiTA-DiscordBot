@@ -1,10 +1,10 @@
+/* eslint-disable no-bitwise */
 // -----------------
 // Global variables
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
-/* eslint-disable no-bitwise */
 const discord = require("discord.js");
 const auth = require("./auth");
 const colors = require("./colors").get;
@@ -92,14 +92,13 @@ function errorLog (error, subtype, id)
 
    }
 
-   if (errorTypes[subtype] === ":japanese_ogre:  Unhandled promise rejection")
+   if (errorTypes === "unhandled")
    {
 
-      return console.log(`----------------------------------------\nError ${errorTitle} Suppressed\n${error.stack}\n----------------------------------------\n`);
+      return console.log(`DEBUG: Error ${errorTitle} Suppressed`);
 
    }
 
-   console.log(`----------------------------------------\nError ${errorTitle} Suppressed\n${error.stack}\n----------------------------------------\n`);
    hookSend({
       "color": "err",
       // eslint-disable-next-line no-useless-concat
@@ -141,9 +140,7 @@ function logJoin (guild)
             guild.owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Joined Guild"
 
-
       });
-      console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${guild.owner.user.username}#${guild.owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
    else
@@ -153,11 +150,10 @@ function logJoin (guild)
          "color": "ok",
          "msg":
          `${`:white_check_mark:  **${guild.name}**\n` +
-         "```md\n> "}${guild.id}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
+         "```md\n> "}${guild.id}\n${guild.memberCount} members#\n\`\`\`${spacer}${spacer}`,
          "title": "Joined Guild"
 
       });
-      console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
 
@@ -181,7 +177,6 @@ function logLeave (guild)
             guild.owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Left Guild"
       });
-      console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${guild.owner.user.username}#${guild.owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
    else
@@ -194,7 +189,6 @@ function logLeave (guild)
          "```md\n> "}${guild.id}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Left Guild"
       });
-      console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
 

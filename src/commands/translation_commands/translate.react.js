@@ -104,7 +104,7 @@ module.exports = function run (data, client)
 
             data.message = message;
             delete data.message.attachments;
-            data.member.displayColor = fn.getRoleColor(data.message.member);
+            data.message.roleColor = fn.getRoleColor(data.message.member);
             data.canWrite = true;
 
             // ------------------
