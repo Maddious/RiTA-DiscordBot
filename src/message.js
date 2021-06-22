@@ -20,8 +20,6 @@ module.exports = function run (config, message)
 {
 
    module.exports.message = message;
-   const client = message.client;
-   const bot = client.user;
    if (message.channel.type === "dm" || message.type !== "DEFAULT")
    {
 
@@ -167,9 +165,7 @@ module.exports = function run (config, message)
       "canWrite": true,
       "channel": message.channel,
       config,
-      client,
       "member": message.member,
-      bot,
       message
    };
    if (data.message.channel.type !== "dm")

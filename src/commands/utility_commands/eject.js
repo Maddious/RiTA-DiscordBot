@@ -22,7 +22,7 @@ module.exports.eject = async function eject (data)
    // console.log("DEBUG: Eject");
 
    const serverID = data.cmd.num;
-   const target = data.client.guilds.cache.get(serverID);
+   const target = data.message.client.guilds.cache.get(serverID);
 
    data.color = "warn";
    data.text = `\`\`\`${serverID} - Server connection terminated\`\`\``;
@@ -46,7 +46,7 @@ module.exports.eject = async function eject (data)
       // ----------------------
       // Send message to owner
       // ----------------------
-
+      console.log("DEBUG: Line 49 - Eject.js");
       target.owner.
          send(writeErr).
          catch((err) => console.log(
@@ -95,7 +95,7 @@ module.exports.warn = async function warn (data)
    // console.log("DEBUG: Warn");
 
    const serverID = data.cmd.num;
-   const target = data.client.guilds.cache.get(serverID);
+   const target = data.message.client.guilds.cache.get(serverID);
 
    if (!target)
    {
@@ -125,7 +125,7 @@ module.exports.warn = async function warn (data)
       // ----------------------
       // Send message to owner
       // ----------------------
-
+      console.log("DEBUG: Line 128 - Eject.js");
       target.owner.
          send(writeErr).
          catch((err) => console.log(
@@ -145,8 +145,9 @@ module.exports.warn = async function warn (data)
 
       data.color = "warn";
       data.text = oneLine`\`\`\`Server: ${target.name} \nServer ID:${serverID}\nUnable to warn Owner.\`\`\``;
-      await db.warn(
+      await db.updateServerTable(
          serverID,
+         "warn",
          true,
          // eslint-disable-next-line consistent-return
          function error (err)
@@ -170,8 +171,9 @@ module.exports.warn = async function warn (data)
    // -------------
    data.color = "warn";
    data.text = `\`\`\`Owner: ${target.owner.user.tag}\nServer: ${target.name} \nServer ID: ${serverID}\nServer Owner Has Been Warned\`\`\``;
-   await db.warn(
+   await db.updateServerTable(
       serverID,
+      "warn",
       true,
       // eslint-disable-next-line consistent-return
       function error (err)
@@ -205,8 +207,9 @@ module.exports.unwarn = function unwarn (data)
 
    const serverID = data.cmd.num;
 
-   return db.warn(
+   return db.updateServerTable(
       serverID,
+      "warn",
       false,
       function error (err)
       {

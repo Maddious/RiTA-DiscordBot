@@ -13,6 +13,7 @@ const db = require("./core/db");
 const react = require("./commands/translation_commands/translate.react");
 const botVersion = require("../package.json").version;
 const botCreator = "Collaboration";
+const joinMessage = require("./commands/info_commands/join");
 
 // ----------
 // Core Code
@@ -77,7 +78,7 @@ exports.listen = function listen (client)
 
             console.log(stripIndent`
             ----------------------------------------
-            @${client.user.username} Bot is now online
+            ${client.user.username} Bot is now online
             V.${config.version} | ID: ${client.user.id}
             Made by: ${botCreator}
             ----------------------------------------
@@ -86,10 +87,8 @@ exports.listen = function listen (client)
          }
 
          console.log(oneLine`
-         Shard#${shard.id}:  ${shard.id + 1} / ${shard.count} online -
-         ${client.guilds.cache.size.toLocaleString()} guilds,
-         ${client.channels.cache.size.toLocaleString()} channels,
-         ${client.users.cache.size.toLocaleString()} users
+         Shard #${shard.id}:  ${shard.id + 1} / ${shard.count} online -
+         ${client.guilds.cache.size.toLocaleString()} guilds.
       `);
 
          client.user.setPresence({
@@ -372,7 +371,7 @@ exports.listen = function listen (client)
             "guildLeave",
             guild
          );
-         db.removeServer(guild.id);
+         db.updateServerTable(guild.id, "active", false);
 
       }
    );
@@ -435,13 +434,15 @@ exports.listen = function listen (client)
 
             }
 
-         ).catch((err) => console.log(
-            "error",
-            err,
-            "warning",
-            guild.name
-         ));
+         // eslint-disable-next-line no-unused-vars
+         ).catch((err) => console.log("VALIDATION: New Server, No Blacklist History"));
          // console.log(`DEBUG: Blacklist Check Complete`);
+
+         // ---------------------
+         // Send Welcome Message
+         // ---------------------
+
+         joinMessage(guild, config);
 
       }
    );

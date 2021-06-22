@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars */
 // -----------------
 // Global variables
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+/* eslint-disable no-unused-vars */
 const sendMessage = require("../../core/command.send");
 
 // -------------------
@@ -66,7 +66,7 @@ function getPerms (data)
    {
 
       // console.log(`DEBUG: In Bot Check`);
-      const botPermissions = data.message.guild.members.cache.get(data.bot.id).permissions.serialize();
+      const botPermissions = data.message.guild.members.cache.get(data.message.client.user.id).permissions.serialize();
       const botResult1 =
       `__**Permission Checker - Bot**__\n\n` +
       `RITA requires the following permssions.\n` +
@@ -96,10 +96,12 @@ function getPerms (data)
          `* Embed Links: ${botPermissions.EMBED_LINKS} \n` +
          `* Attach Files: ${botPermissions.ATTACH_FILES} \n` +
          `* Add Reactions: ${botPermissions.ADD_REACTIONS} \n` +
-         `* Use External Emoji: ${botPermissions.USE_EXTERNAL_EMOJIS} \n` +
          `* Mention Everyone: ${botPermissions.MENTION_EVERYONE} \n` +
          `* Manage Messages: ${botPermissions.MANAGE_MESSAGES} \n` +
          `* Read Message History: ${botPermissions.READ_MESSAGE_HISTORY} \n\n` +
+         `# --- Optional Permissions ---\n` +
+         `* Use External Emoji: ${botPermissions.USE_EXTERNAL_EMOJIS} \n` +
+         `* Create Invites: ${botPermissions.CREATE_INSTANT_INVITE} \n\n` +
          "```";
          data.text = botResult1 + botResult2;
 
@@ -134,12 +136,85 @@ function getPerms (data)
 
    }
 
+   // --------------
+   // Target Server
+   // --------------
+
+   function targetServerCheck (data)
+   {
+
+      // console.log(`DEBUG: In Bot Check`);
+      const target = data.message.client.guilds.cache.get(data.cmd.num);
+
+      if (target === undefined)
+      {
+
+         data.text =
+         `__**Permission Checker - Target Server Bot**__\n\n` +
+         `Targeted server: \`Unknown\`\n` +
+         `Targeted ID: \`${data.cmd.num}\`\n\n` +
+         `Invalid Server ID or RITA is no longer in this server.\n\n`;
+         data.color = "warn";
+         return sendMessage(data);
+
+      }
+
+      const bot = target.members.cache.get(data.message.client.user.id);
+      const perms = bot.permissions.serialize();
+      const botResult1 =
+      `__**Permission Checker - Target Server Bot**__\n\n` +
+      `Targeted server: \`${target.name}\`\n` +
+      `Targeted ID: \`${target.id}\`\n\n` +
+      `RITA requires the following permssions.\n` +
+      "```md\n" +
+
+      `# Permissions to Function Correctly:\n`;
+
+
+      if (perms.ADMINISTRATOR === true)
+      {
+
+         const botResult2 =
+         `* Admin: ${perms.ADMINISTRATOR}  \n` +
+         "```";
+         data.text = botResult1 + botResult2;
+
+      }
+      else if (perms.ADMINISTRATOR === false)
+      {
+
+         const botResult2 =
+         `* View Channel: ${perms.VIEW_CHANNEL} \n` +
+         `* Manage Channels: ${perms.MANAGE_CHANNELS} \n` +
+         `* Manage Webhooks: ${perms.MANAGE_WEBHOOKS} \n` +
+         `* Manage Server: ${perms.MANAGE_GUILD} \n` +
+         `* Send Messages: ${perms.SEND_MESSAGES} \n` +
+         `* Embed Links: ${perms.EMBED_LINKS} \n` +
+         `* Attach Files: ${perms.ATTACH_FILES} \n` +
+         `* Add Reactions: ${perms.ADD_REACTIONS} \n` +
+         `* Mention Everyone: ${perms.MENTION_EVERYONE} \n` +
+         `* Manage Messages: ${perms.MANAGE_MESSAGES} \n` +
+         `* Read Message History: ${perms.READ_MESSAGE_HISTORY} \n\n` +
+         `# --- Optional Permissions ---\n` +
+         `* Use External Emoji: ${perms.USE_EXTERNAL_EMOJIS} \n` +
+         `* Create Invites: ${perms.CREATE_INSTANT_INVITE} \n\n` +
+         "```";
+         data.text = botResult1 + botResult2;
+
+      }
+      data.color = "info";
+      return sendMessage(data);
+
+   }
+
    // console.log(`DEBUG: Valid Perms`);
    const validPerms = {
       "bot": botCheck,
       "channel": chanCheck,
+      "server": targetServerCheck,
       "user": userCheck
    };
+
 
    // console.log(`DEBUG: Has Perms`);
    const permParam = data.cmd.params.split(" ")[0].toLowerCase();

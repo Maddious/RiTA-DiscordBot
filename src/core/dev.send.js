@@ -44,7 +44,7 @@ function sendMessage (data)
                }
             );
             const writeErr =
-                  `:no_entry:  **${data.bot.username}** does not have permission to write in your server **` +
+                  `:no_entry:  **${data.message.client.user.username}** does not have permission to write in your server **` +
                   `${data.channel.guild.name}**. Please fix.`;
 
             // -------------
@@ -57,6 +57,7 @@ function sendMessage (data)
                return console.log(writeErr);
 
             }
+            console.log("DEBUG: Line 60 - Dev.Send.js");
             return data.channel.guild.owner.
                send(writeErr).
                catch((err) => console.log(
@@ -94,7 +95,7 @@ module.exports = function run (data)
       ));
       richEmbedMessage.
          setColor(colors.get(data.color)).
-         setDescription(`Developer Identity confirmed:\n${data.text}`).
+         setDescription(`Developer Identity confirmed:\n\n${data.text}`).
          setTimestamp();
       // -------------
       // Send message

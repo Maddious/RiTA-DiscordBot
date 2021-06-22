@@ -27,7 +27,7 @@ module.exports.invite = function invite (data)
 {
 
    data.color = "info";
-   data.text = `Invite ${data.bot} `;
+   data.text = `Invite ${data.message.client.user} `;
    data.text += `\`v${data.config.version}\` to your server\n\n`;
    data.text += `${auth.invite}`;
 
@@ -295,8 +295,8 @@ module.exports.ident = function ident (data)
    `**User ID:** \`${data.message.author.id}\`\n\n` +
    `**Server Name:** \`${data.message.channel.guild.name}\`\n` +
    `**Server ID:** \`${data.message.channel.guild.id}\`\n\n` +
-   `**Bot Name:** \`${data.bot.username}\`\n` +
-   `**Bot ID:** \`${data.bot.id}\`\n\n` +
+   `**Bot Name:** \`${data.message.client.user.username}\`\n` +
+   `**Bot ID:** \`${data.message.client.user.id}\`\n\n` +
    `**Chan Name:** \`${data.message.channel.name}\`\n` +
    `**Chan ID:** \`${data.message.channel.id}\``;
 
