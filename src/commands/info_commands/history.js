@@ -247,7 +247,39 @@ function getHistory (data)
       `# Version 1.2.4-3 - Release Date: 12/06/2021 \n` +
       `# Version 1.2.4-4 - Release Date: 13/06/2021 \n` +
       `# Version 1.2.4-5 - Release Date: 14/06/2021 \n` +
-      `# Version 1.2.4-6 - Release Date: 16/06/2021 \n\n` +
+      `# Version 1.2.4-6 - Release Date: 16/06/2021 \n` +
+      `# Version 1.2.4-7 - Release Date: 17/06/2021 \n` +
+      `# Version 1.2.4-8 - Release Date: 22/06/2021 \n\n` +
+      "```\n";
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   };
+
+   const guilds = function guilds (data)
+   {
+
+      // -------------
+      // Command Code
+      // -------------
+
+      data.color = "info";
+      data.text = `**Guilds Stats**\n` +
+      "```md\n" +
+      `# RITA Was Born - 12/07/19 \n` +
+      `# Unified RITA Launched - 01/04/2021 \n` +
+      `# 100 Guilds - 25/04/2021 \n` +
+      `# Discord Verified - 27/05/2021 \n` +
+      `# 200 Guilds - 04/06/2021 \n` +
+      `# 300 Guilds - 08/06/2021 \n` +
+      `# 400 Guilds - 11/06/2021 \n` +
+      `# 500 Guilds - 14/06/2021 \n` +
+      `# 600 Guilds - 19/06/2021 \n` +
+      `# 700 Guilds - 21/06/2021 \n\n` +
       "```\n";
 
       // -------------
@@ -269,7 +301,8 @@ function getHistory (data)
       "1.2.1": v121History,
       "1.2.2": v122History,
       "1.2.3": v123History,
-      "1.2.4": v124History
+      "1.2.4": v124History,
+      "guild": guilds
    };
 
    const historyParam = data.cmd.params.split(" ")[0].toLowerCase();

@@ -56,49 +56,49 @@ function helpMessage (config, param)
    helpSection({
       config,
       "icon": ":flag_white:",
-      "link": `<https://ritabot.gg>`,
+      "link": `<https://docs.ritabot.gg/rita-docs/usage-commands-and-settings/react>`,
       "title": "Translate by Reacting",
       "value": `${cmd} help react`
    }) +
    helpSection({
       config,
       "icon": ":abc:",
-      "link": `<https://ritabot.gg>`,
+      "link": `<https://docs.ritabot.gg/rita-docs/usage-commands-and-settings/custom>`,
       "title": "Translate Custom Text",
       "value": `${cmd} help this`
    }) +
    helpSection({
       config,
       "icon": ":arrow_double_up:",
-      "link": `<https://ritabot.gg>`,
+      "link": `<https://docs.ritabot.gg/rita-docs/usage-commands-and-settings/last>`,
       "title": "Translate Last Message",
       "value": `${cmd} help last`
    }) +
    helpSection({
       config,
       "icon": ":hash:",
-      "link": `<https://ritabot.gg>`,
+      "link": `<https://docs.ritabot.gg/rita-docs/usage-commands-and-settings/chan>`,
       "title": "Translate Channel (Automatic)",
       "value": `${cmd} help auto`
    }) +
    helpSection({
       config,
       "icon": ":bar_chart:",
-      "link": `<https://ritabot.gg>`,
+      "link": `<https://docs.ritabot.gg/rita-docs/usage-commands-and-settings/statistics>`,
       "title": "Stats",
       "value": `${cmd} help stats`
    }) +
    helpSection({
       config,
       "icon": ":gear:",
-      "link": `<https://ritabot.gg>`,
+      "link": `<https://docs.ritabot.gg/rita-docs/usage-commands-and-settings/settings>`,
       "title": "Settings",
       "value": `${cmd} help settings`
    }) +
    helpSection({
       config,
       "icon": ":robot:",
-      "link": `<https://ritabot.gg>`,
+      "link": `<https://docs.ritabot.gg/rita-docs/usage-commands-and-settings/misc>`,
       "title": "Misc. Settings",
       "value": `${cmd} help misc`
    });

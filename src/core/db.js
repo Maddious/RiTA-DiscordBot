@@ -266,11 +266,16 @@ exports.initializeDatabase = async function initializeDatabase (client)
                // console.log("DEBUG: Add Server");
                Servers.upsert({logging: false,
                   "id": guildID,
-                  "lang": "en"});
+                  "lang": "en",
+                  "active": true});
                Stats.upsert({logging: false,
                   "id": guildID});
 
             }
+            // console.log("DEBUG: Active Check all Active Guilds");
+            Servers.upsert({logging: false,
+               "id": guildID,
+               "active": true});
 
          });
 
