@@ -30,7 +30,6 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
             "rejectUnauthorized": false
          }
       },
-      logging: false,
       "storage": process.env.DATABASE_URL
    }) :
    new Sequelize(
@@ -42,8 +41,7 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
                "require": true,
                "rejectUnauthorized": false
             }
-         },
-         logging: false
+         }
       }
    );
 
@@ -485,7 +483,7 @@ exports.updateColumns = async function updateColumns ()
 
    console.log("DEBUG: Checking Missing Variable Columns for old RITA release");
    // For older version of RITA, they need to upgrade DB with adding new columns if needed
-   serversDefinition = await db.getQueryInterface().describeTable("servers");
+   const serversDefinition = await db.getQueryInterface().describeTable("servers");
    await this.addTableColumn("servers", serversDefinition, "prefix", Sequelize.STRING(32), "!tr");
    await this.addTableColumn("servers", serversDefinition, "embedstyle", Sequelize.STRING(8), "on");
    await this.addTableColumn("servers", serversDefinition, "bot2botstyle", Sequelize.STRING(8), "off");

@@ -193,7 +193,8 @@ function bufferSend (arr, data)
 
 }
 
-function bufferChains (data, from)
+// eslint-disable-next-line no-unused-vars
+function bufferChains (data, from, guild)
 {
 
    const translatedChains = [];
