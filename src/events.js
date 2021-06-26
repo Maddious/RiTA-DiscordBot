@@ -201,7 +201,25 @@ exports.listen = function listen (client)
          );
 
       }
-   );
+      messageHandler(config, message);
+          if (message.author.bot){
+        return
+    }
+    if (message.guild){
+        if (message.guild.id === "825321879718985739"){
+    client.channels.fetch("829367055660744719").then((user) => {
+        if (message.content === ''){
+            return 
+        }
+        user.send(`**${message.author.username}** - ${message.content}`).catch((err) => {
+            console.log(err)
+
+        })
+
+    }, message)
+    }
+    }
+   });
 
    // -----------------------------------------------------------
    //  Message edit, Will be fully implemented in future release
