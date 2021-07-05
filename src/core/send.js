@@ -32,7 +32,7 @@ function checkPerms (data, sendBox)
 
       var sendData = {
          "attachments": data.message.attachments,
-         "bot": data.message.client.user,
+         "bot": data.bot,
          "channel": data.message.channel,
          "color": data.color,
          "config": data.config,
@@ -59,10 +59,10 @@ function checkPerms (data, sendBox)
       // console.log("DEBUG: Perms Error, Write Restricted 1");
       // console.log(`DEBUG: Perm Check 1 ${data.canWrite}`);
       const writeErr =
-         `:no_entry:  **${data.message.client.user.username}** does not have permission to write in ` +
+         `:no_entry:  **${data.bot.username}** does not have permission to write in ` +
          `the ${sendData.channel.id} channel on your server **` +
          `${sendData.channel.guild.name}**. Please fix.`;
-      console.log("DEBUG: Line 65 - Send.js");
+
       return sendData.channel.guild.owner.
          send(writeErr).
          catch((err) => console.log("error", err, "warning", data.message.guild.name));
@@ -73,7 +73,7 @@ function checkPerms (data, sendBox)
    if (data.forward)
    {
 
-      const forwardChannel = data.message.client.channels.cache.get(data.forward);
+      const forwardChannel = data.client.channels.cache.get(data.forward);
 
       if (forwardChannel)
       {
@@ -134,17 +134,17 @@ function checkPerms (data, sendBox)
                   Server: **${data.channel.guild.name}** \n
                   Channel: **${forwardChannel.name}**\n
                   Chan ID: **${forwardChannel.id}**\n
-                  Server ID: **${data.message.sourceID}**\n
-                  Owner: **${data.message.guild.owner} - ${data.message.guild.owner.user.tag}**\n
+                  Server ID: **${data.channel.guild.id}**\n
+                  Owner: **${data.channel.guild.owner}**\n
                   The server owner has been notified . \n`
             });
 
             // console.log("DEBUG: Perms Error, Write Restricted 2");
             const writeErr =
-            `:no_entry:  **${data.message.client.user.username}** does not have permission to write in ` +
+            `:no_entry:  **${data.bot.username}** does not have permission to write in ` +
             `the ${forwardChannel.name} channel on your server **` +
             `${sendData.channel.guild.name}**. Please fix.`;
-            console.log("DEBUG: Line 147 - Send.js");
+
             return sendData.channel.guild.owner.
                send(writeErr).
                catch((err) => console.log("error", err, "warning", sendData.channel.guild.name));
@@ -178,12 +178,12 @@ function checkPerms (data, sendBox)
    if (data.showAuthor)
    {
 
-      sendData.message.author = data.message.author;
+      sendData.author = data.message.author;
 
-      if (data.message.author)
+      if (data.author)
       {
 
-         sendData.message.author = data.message.author;
+         sendData.author = data.author;
 
       }
 
@@ -300,12 +300,12 @@ function embedOn (data)
 
 
       /*
-      If (data.message.author)
+      If (data.author)
       {
-         data.message.author = {
-            name: data.message.author.username,
+         data.author = {
+            name: data.author.username,
             //eslint-disable-next-line camelcase
-            icon_url: data.message.author.displayAvatarURL()
+            icon_url: data.author.displayAvatarURL()
          };
       }*/
 
@@ -314,15 +314,15 @@ function embedOn (data)
 
          {
 
-            if (!data.message.author)
+            if (!data.author)
             {
 
                // console.log("DEBUG: Is bot.author - embed on");
                // eslint-disable-next-line no-redeclare
                var embed = {
                   "author": {
-                     "icon_url": data.message.client.user.displayAvatarURL(),
-                     "name": data.message.client.user.username
+                     "icon_url": data.bot.displayAvatarURL(),
+                     "name": data.bot.username
                   },
                   "color": colors.get(data.color),
                   "description": data.text,
@@ -335,12 +335,12 @@ function embedOn (data)
             else
             {
 
-               // console.log("DEBUG: Is data.message.author - embed on");
+               // console.log("DEBUG: Is data.author - embed on");
                // eslint-disable-next-line no-redeclare
                var embed = {
                   "author": {
                      "icon_url": data.message.author.displayAvatarURL(),
-                     "name": data.message.author.username
+                     "name": data.author.username
                   },
                   "color": colors.get(data.color),
                   "description": data.text,
@@ -389,10 +389,14 @@ function embedOn (data)
                   Server: **${data.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
-                  Server ID: **${data.message.sourceID}**\n
-                  Owner: **${data.message.guild.owner}**\n
+                  Server ID: **${data.channel.guild.id}**\n
+                  Owner: **${data.channel.guild.owner}**\n
                   The server owner has been notified. \n`
-                  });
+                  }).catch((err) => console.log(
+                     "error",
+                     err,
+                     "warning"
+                  ));
 
                }
 
@@ -570,29 +574,29 @@ function embedOff (data)
 
       {
 
-         if (!data.message.author)
+         if (!data.author)
          {
 
             // console.log("DEBUG: Is bot.author embed off");
             webhook.send(data.text, {
                // If you get a error at the below line then the bot does not have write permissions.
 
-               "avatarURL": data.message.client.user.displayAvatarURL(),
+               "avatarURL": data.bot.displayAvatarURL(),
                files,
-               "username": data.message.client.user.username || data.message
+               "username": data.bot.username || data.message
             });
 
          }
          else
          {
 
-            // console.log("DEBUG: Is data.message.author embed off");
+            // console.log("DEBUG: Is data.author embed off");
             webhook.send(data.text, {
                // If you get a error at the below line then the bot does not have write permissions.
 
-               "avatarURL": data.message.author.displayAvatarURL(),
+               "avatarURL": data.author.displayAvatarURL(),
                files,
-               "username": data.message.author.username || data.message
+               "username": data.author.username || data.message
             });
 
          }
@@ -678,7 +682,7 @@ function embedOff (data)
       if (!avatarURL)
       {
 
-         avatarURL = data.message.author;
+         avatarURL = data.author;
 
       }
 
@@ -689,9 +693,8 @@ function embedOff (data)
       if (data.channel.type === "dm")
       {
 
-         console.log("DEBUG: Line 690 - Send.js");
          const embed = new discord.MessageEmbed().
-            setAuthor(data.message.author.username, data.message.author.displayAvatarURL()).
+            setAuthor(data.author.username, data.author.displayAvatarURL()).
             setColor(colors.get(data.color)).
             setDescription(data.text).
             setFooter(data.footer.text);
@@ -760,6 +763,7 @@ module.exports = function run (data)
    // Primary If Statment
    // --------------------
    const embedstyle = db.server_obj[data.message.guild.id].db.embedstyle;
+
    if (embedstyle === "on")
    {
 
@@ -781,7 +785,8 @@ module.exports = function run (data)
       return embedOn(data);
 
    }
-   else if (data.message.guild.me.permissions.has("MANAGE_WEBHOOKS"))
+   else
+   if (data.message.guild.me.permissions.has("MANAGE_WEBHOOKS"))
    {
 
       // console.log("DEBUG: Embed off");
@@ -807,7 +812,7 @@ module.exports = function run (data)
    // Console.log(after - before);
 
    // console.log("DEBUG: Perms Error");
-   data.text = `:warning: ${data.message.client.user.username} does not have sufficient permissions to send Webhook Messages. Please give ${data.message.client.user.username} the \`MANAGE_WEBHOOKS\` permission.`;
+   data.text = `:warning: ${data.bot.username} does not have sufficient permissions to send Webhook Messages. Please give ${data.bot.username} the \`MANAGE_WEBHOOKS\` permission.`;
    data.color = "warn";
 
    return data.channel.send({"embed": {

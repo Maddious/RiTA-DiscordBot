@@ -8,12 +8,11 @@ const discord = require("discord.js");
 const richEmbedMessage = new discord.MessageEmbed();
 const logger = require("./logger");
 const error = require("./error");
-const db = require("./db");
 const time = {
    "long": 60000,
    "short": 5000
 };
-const auth = require("./auth");
+const auth = require("../core/auth");
 
 // ---------------------
 // Send Data to Channel
@@ -25,27 +24,9 @@ function sendMessage (data)
    return data.message.channel.send(richEmbedMessage).then((msg) =>
    {
 
-      db.getServerInfo(
-         data.message.guild.id,
-         function getServerInfo (server)
-         {
-
-            if (server[0].persist === false)
-            {
-
-               msg.delete({"timeout": time.long}).catch((err) => console.log(
-                  "Bot Message Deleted Error 1, command.send.js = ",
-                  err
-               ));
-
-            }
-
-         }
-      ).catch((err) => console.log(
-         "error",
-         err,
-         "warning",
-         data.message.guild.id
+      msg.delete({"timeout": time.long}).catch((err) => console.log(
+         "Bot Message Deleted Error, command.send.js = ",
+         err
       ));
 
    }).
@@ -61,17 +42,17 @@ function sendMessage (data)
                "custom",
                {
                   "color": "ok",
-                  "msg": `:exclamation: Write Permission Error - CS.js\n
+                  "msg": `:exclamation: Write Permission Error \n
                   Server: **${data.channel.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
-                  Server ID: **${data.message.sourceID}**\n
-                  Owner: **${data.message.guild.owner} - ${data.message.guild.owner.user.tag}**\n
+                  Server ID: **${data.channel.guild.id}**\n
+                  Owner: **${data.channel.guild.owner}**\n
                   The server owner has been notified. \n`
                }
             );
             const writeErr =
-                  `:no_entry:  **${data.message.client.user.username}** does not have permission to write in your server **` +
+                  `:no_entry:  **${data.bot.username}** does not have permission to write in your server **` +
                   `${data.channel.guild.name}**. Please fix.`;
 
             // -------------
@@ -84,7 +65,6 @@ function sendMessage (data)
                return console.log(writeErr);
 
             }
-            console.log("DEBUG: Line 68 - Command.Send.js");
             return data.channel.guild.owner.
                send(writeErr).
                catch((err) => console.log(
@@ -117,14 +97,14 @@ module.exports = function run (data)
 
       // console.log("DEBUG: Developer Override");
       data.message.delete({"timeout": time.short}).catch((err) => console.log(
-         "Command Message Deleted Error 2, command.send.js = ",
+         "Command Message Deleted Error, command.send.js = ",
          err
       ));
       richEmbedMessage.
          setColor(colors.get(data.color)).
-         setDescription(`Developer Identity confirmed:\n\n${data.text}`).
+         setDescription(`Developer Identity confirmed:\n${data.text}`).
          setTimestamp().
-         setFooter("This message may self-destruct in one minute");
+         setFooter("This message will self-destruct in one minute");
       // -------------
       // Send message
       // -------------
@@ -141,7 +121,7 @@ module.exports = function run (data)
       setColor(colors.get(data.color)).
       setDescription(data.text).
       setTimestamp().
-      setFooter("This message may self-destruct in one minute");
+      setFooter("This message will self-destruct in one minute");
 
    // -------------
    // Send message
@@ -150,3 +130,5 @@ module.exports = function run (data)
    return sendMessage(data);
 
 };
+
+

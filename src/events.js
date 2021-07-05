@@ -13,7 +13,6 @@ const db = require("./core/db");
 const react = require("./commands/translation_commands/translate.react");
 const botVersion = require("../package.json").version;
 const botCreator = "Collaboration";
-const joinMessage = require("./commands/info_commands/join");
 
 // ----------
 // Core Code
@@ -78,7 +77,7 @@ exports.listen = function listen (client)
 
             console.log(stripIndent`
             ----------------------------------------
-            ${client.user.username} Bot is now online
+            @${client.user.username} Bot is now online
             V.${config.version} | ID: ${client.user.id}
             Made by: ${botCreator}
             ----------------------------------------
@@ -87,8 +86,10 @@ exports.listen = function listen (client)
          }
 
          console.log(oneLine`
-         Shard #${shard.id}:  ${shard.id + 1} / ${shard.count} online -
-         ${client.guilds.cache.size.toLocaleString()} guilds.
+         Shard#${shard.id}:  ${shard.id + 1} / ${shard.count} online -
+         ${client.guilds.cache.size.toLocaleString()} guilds,
+         ${client.channels.cache.size.toLocaleString()} channels,
+         ${client.users.cache.size.toLocaleString()} users
       `);
 
          client.user.setPresence({
@@ -160,16 +161,19 @@ exports.listen = function listen (client)
             if (!message.author.bot)
             {
 
-               if (auth.messagedebug === "3")
-               {
+               // console.log(`${auth.messagedebug}`);
+               // console.log(`${process.env.MESSAGE_DEBUG}`);
 
-                  console.log(`MD3: ${message.guild.name} - ${message.guild.id} - ${message.createdAt} \nMesssage User - ${message.author.tag} \nMesssage Content - ${message.content}\n----------------------------------------`);
-
-               }
                if (auth.messagedebug === "1")
                {
 
-                  console.log(`MD1: ${message.guild.name} - ${message.guild.id} - ${message.createdAt}`);
+                  console.log(`${message.guild.name} - ${message.guild.id} - ${message.createdAt} \nDEBUG: Messsage User - ${message.author.tag} \nDEBUG: Messsage Content - ${message.content}\n----------------------------------------`);
+
+               }
+               if (auth.messagedebug !== "1")
+               {
+
+                  console.log(`${message.guild.name} - ${message.guild.id} - ${message.createdAt}`);
 
                }
                const col = "message";
@@ -371,7 +375,7 @@ exports.listen = function listen (client)
             "guildLeave",
             guild
          );
-         db.updateServerTable(guild.id, "active", false);
+         db.removeServer(guild.id);
 
       }
    );
@@ -434,15 +438,13 @@ exports.listen = function listen (client)
 
             }
 
-         // eslint-disable-next-line no-unused-vars
-         ).catch((err) => console.log("VALIDATION: New Server, No Blacklist History"));
+         ).catch((err) => console.log(
+            "error",
+            err,
+            "warning",
+            guild.name
+         ));
          // console.log(`DEBUG: Blacklist Check Complete`);
-
-         // ---------------------
-         // Send Welcome Message
-         // ---------------------
-
-         joinMessage(guild, config);
 
       }
    );
