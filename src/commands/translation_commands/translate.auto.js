@@ -225,10 +225,10 @@ module.exports = function run (data)
          }
 
          // Resolve mentioned user(s)
-
          if (dest.startsWith("<@"))
          {
 
+            console.log("DEBUG: Line 193 - Translate.Auto.js");
             // ---------------
             // Old Code Below
             // ---------------
@@ -236,9 +236,10 @@ module.exports = function run (data)
 
             const userID = dest.slice(3, -1);
 
-            fn.getUser(data.client, userID, (user) =>
+            fn.getUser(data.message.client, userID, (user) =>
             {
 
+               console.log("DEBUG: Line 204 - Translate.Auto.js");
                if (user && !user.bot && user.createDM)
                {
 
@@ -248,7 +249,7 @@ module.exports = function run (data)
                      taskBuffer.update(dm.id);
 
                   }).
-                     catch((err) => logger("error", err));
+                     catch((err) => logger("error", err, "dm", data.message.channel.guild.name));
 
                   taskBuffer.update(`@${user.id}`);
 
@@ -270,7 +271,30 @@ module.exports = function run (data)
          if (dest.startsWith("<#"))
          {
 
-            const channel = data.client.channels.cache.get(dest.slice(2, -1));
+            const channel = data.message.client.channels.cache.get(dest.slice(2, -1));
+
+            if (channel)
+            {
+
+               taskBuffer.update(channel.id);
+
+            }
+            else
+            {
+
+               data.task.invalid.push(dest);
+               taskBuffer.reduce();
+
+            }
+
+         }
+
+         // Resolve mentioned channel(s) cross server
+         if (dest.startsWith("cs#"))
+         {
+
+            const channel = data.message.client.channels.cache.get(dest.slice(3));
+            console.log(`${dest.slice(3, -1)}`);
 
             if (channel)
             {

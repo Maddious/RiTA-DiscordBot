@@ -5,8 +5,6 @@
 // https://discordapp.com/developers/applications/me
 // ------------------------------------------------------------
 
-
-
 exports.token = process.env.DISCORD_TOKEN;
 
 // ----------------------------------------------------------------------
@@ -60,5 +58,7 @@ exports.changelog = null;
 // ---------------
 
 exports.dev = process.env.DEBUG;
+
 exports.messagedebug = process.env.MESSAGE_DEBUG;
+
 exports.devID = ['211938703591997451','469824032351584278','536012252831285258','488871621424054284','735457815514185788','827301550249476117'];

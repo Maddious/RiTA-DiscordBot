@@ -29,12 +29,15 @@ const cmdTranslateTasks = require("./translation_commands/translate.tasks");
 const cmdDebug = require("./settings_commands/debug");
 const cmdPrefix = require("./settings_commands/prefix");
 const cmdCreate = require("./utility_commands/create.channel");
-const cmdMod = require("./future_commands/mod.js");
-const cmdHistory = require("./info_commands/history.js");
-const cmdEject = require("./utility_commands/eject.js");
-const cmdBlacklist = require("./utility_commands/blacklist.js");
-const cmdPerms = require("./utility_commands/perm.js");
-const cmdCheck = require("./utility_commands/check.js");
+const cmdMod = require("./future_commands/mod");
+const cmdHistory = require("./info_commands/history");
+const cmdEject = require("./utility_commands/eject");
+const cmdBlacklist = require("./utility_commands/blacklist");
+const cmdPerms = require("./utility_commands/perm");
+const cmdCheck = require("./utility_commands/check");
+const cmdJoin = require("./info_commands/join");
+const cmdInvite = require("./settings_commands/invite");
+const cmdAnnounce = require("./utility_commands/announce");
 
 
 // ---------------------------------------
@@ -208,7 +211,7 @@ module.exports = function run (data)
       "main": stripPrefix(
          data.message,
          data.config,
-         data.bot
+         data.message.client.user
       ).trim(),
       "params": null
    };
@@ -228,7 +231,7 @@ module.exports = function run (data)
 
    }
 
-   if (output.main === `${data.bot}`)
+   if (output.main === `${data.message.client.user}`)
    {
 
       output.main = "help";
@@ -286,7 +289,7 @@ module.exports = function run (data)
          {
 
             // console.log(`${output.server[0].blacklisted}`);
-            data.client.guilds.cache.get(id).leave();
+            data.message.client.guilds.cache.get(id).leave();
             console.log(`Self Kicked on command use due to blacklisted`);
 
          }
@@ -346,6 +349,7 @@ module.exports = function run (data)
          // ---------------
 
          const cmdMap = {
+            "announce": cmdAnnounce,
             "auto": cmdTranslateAuto,
             "ban": cmdMod.ban,
             "blacklist": cmdBlacklist.blacklist,
@@ -361,10 +365,11 @@ module.exports = function run (data)
             "history": cmdHistory,
             "id": cmdMisc.ident,
             "info": cmdHelp,
-            "invite": cmdMisc.invite,
+            "invite": cmdInvite,
             "last": cmdTranslateLast.run,
             "list": cmdList,
             "mute": cmdMod.mute,
+            "newbot": cmdJoin.newBot,
             "prefix": cmdPrefix,
             "proc": cmdMisc.proc,
             "settings": cmdSettings,

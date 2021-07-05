@@ -175,9 +175,9 @@ function helpMessage (config, param)
    `This is a list of all available commands\n` +
    "```md\n" +
    `# Translation Commands\n` +
-   `* ${cmd} this to [lang] from [lang]: [msg]\n` +
+   `* ${cmd} this from [lang] to [lang]: [msg]\n` +
    `* ${cmd} last (Command Disabled)\n` +
-   `* ${cmd} channel to [lang] from [lang] for [me/@/#]\n` +
+   `* ${cmd} channel from [lang] to [lang] for [me/@/#]\n` +
    `* ${cmd} auto to [lang] for [me/@/#]\n` +
    `* ${cmd} stop for [me/@/#]\n\n` +
    "```" +
@@ -226,7 +226,7 @@ function helpMessage (config, param)
    "```md\n" +
    `# Command\n` +
    `* ${cmd} this: [msg] \n` +
-   `* ${cmd} this to [lang] from [lang]: [msg] \n\n` +
+   `* ${cmd} this from [lang] to [lang]: [msg] \n\n` +
    "```" +
    "```md\n" +
    `# Parameters\n` +
@@ -239,7 +239,7 @@ function helpMessage (config, param)
    `* ${cmd} this: bonjour \n` +
    `* ${cmd} this to spanish: hello world \n` +
    `* ${cmd} this to arabic, hebrew: I love you \n` +
-   `* ${cmd} this to de from en: how are you? \n` +
+   `* ${cmd} this from de to en: how are you? \n` +
    "```\n";
 
    // --------------------
@@ -268,7 +268,7 @@ function helpMessage (config, param)
    "```md\n" +
    `# Command\n` +
    `* ${cmd} last \n` +
-   `* ${cmd} last [n] to [lang] from [lang] \n\n` +
+   `* ${cmd} last [n] from [lang] to [lang] \n\n` +
    "```" +
    "```md\n" +
    `# Parameters\n` +
@@ -283,7 +283,7 @@ function helpMessage (config, param)
    `* ${cmd} last 2 \n` +
    `* ${cmd} last to english \n` +
    `* ${cmd} last to english, german, french \n` +
-   `* ${cmd} last -6 to english from german` +
+   `* ${cmd} last -6 from english to german` +
    "```\n";
 
    // -------------------------
@@ -294,12 +294,12 @@ function helpMessage (config, param)
    `__**Auto Translate Channels/Users**__\n\n` +
    `Automatically translates any new messages in channel and forwards them ` +
    `to you. Admins/mods can set forwarding to other channels or users in ` +
-   `server. Messages in forwarded channels will also be sent back to origin*.` +
+   `server. Messages in forwarded channels will also be sent back to origin.` +
 
    "```md\n" +
    `# Command\n` +
    `* ${cmd} channel \n` +
-   `* ${cmd} channel to [lang] from [lang] for [me/@/#] \n` +
+   `* ${cmd} channel from [lang] to [lang] for [me/@/#] \n` +
    `* ${cmd} stop for [me/@/#] \n\n` +
    "```" +
    "```md\n" +
@@ -429,6 +429,8 @@ function helpMessage (config, param)
    "```md\n" +
    `# Statistics\n` +
    `* ${cmd} version \n` +
+   `* ${cmd} proc \n` +
+   `* ${cmd} shards \n` +
    `* ${cmd} stats \n` +
    `* ${cmd} stats global \n` +
    `* ${cmd} stats server \n\n` +
@@ -585,15 +587,18 @@ function helpMessage (config, param)
    `__**Developers Only**__\n\n` +
    "```md\n" +
    `# Commands\n` +
+   `* ${cmd} announce\n` +
    `* ${cmd} eject [ServerID]\n` +
    `* ${cmd} blacklist [ServerID]\n` +
    `* ${cmd} unblacklist [ServerID]\n` +
    `* ${cmd} warn [ServerID]\n` +
    `* ${cmd} unwarn [ServerID]\n` +
    `* ${cmd} check [ServerID]\n` +
+   `* ${cmd} checkperms [ServerID]\n` +
    `* ${cmd} server [ServerID]\n` +
    `* ${cmd} settings updatedb\n` +
-   `* ${cmd} settings listservers\n\n` +
+   `* ${cmd} settings listservers\n` +
+   `* ${cmd} invite server [ServerID]\n\n` +
    "```" +
    "```md\n" +
    `# Parameters\n` +
