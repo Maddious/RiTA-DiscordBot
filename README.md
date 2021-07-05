@@ -2,6 +2,7 @@
 <h1 align="center">Rita</h1>
 <p align="center">Breaking the language barrier for free.</p>
 <p align="center">RITA is now used on over 1200 Servers, by more than 192k Users.</p>
+<p align="center">Join the Language Revolution, Invite RITA today.</p>
 <p align="center">
 <a href="https://ritabot.gg/invite"><img src="https://img.shields.io/badge/Invite_RITA-7289DA.svg?"></a>
 </p>
