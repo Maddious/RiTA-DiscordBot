@@ -154,6 +154,44 @@ module.exports = function run (data)
 
    });
 
+   // ------------
+   // Task buffer
+   // ------------
+
+   // eslint-disable-next-line no-var
+   var taskBuffer = {
+      "len": data.task.for.length,
+      "dest": [],
+      reduce ()
+      {
+
+         // eslint-disable-next-line no-plusplus
+         this.len--;
+         this.check();
+
+      },
+      update (dest)
+      {
+
+         this.dest.push(dest);
+         this.check();
+
+      },
+      check ()
+      {
+
+         if (this.dest.length === this.len)
+         {
+
+            data.task.dest = fn.removeDupes(this.dest);
+            data.task.invalid = fn.removeDupes(data.task.invalid);
+            validateTask();
+
+         }
+
+      }
+   };
+
    // -------------------------------------------------
    // Resolve ID of each destiantion (user dm/channel)
    // -------------------------------------------------
@@ -290,44 +328,6 @@ module.exports = function run (data)
       });
 
    }
-
-   // ------------
-   // Task buffer
-   // ------------
-
-   // eslint-disable-next-line no-var
-   var taskBuffer = {
-      "len": data.task.for.length,
-      "dest": [],
-      reduce ()
-      {
-
-         // eslint-disable-next-line no-plusplus
-         this.len--;
-         this.check();
-
-      },
-      update (dest)
-      {
-
-         this.dest.push(dest);
-         this.check();
-
-      },
-      check ()
-      {
-
-         if (this.dest.length === this.len)
-         {
-
-            data.task.dest = fn.removeDupes(this.dest);
-            data.task.invalid = fn.removeDupes(data.task.invalid);
-            validateTask();
-
-         }
-
-      }
-   };
 
    // --------------------------------------------
    // Validate Task(s) before sending to database

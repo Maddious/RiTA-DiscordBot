@@ -285,7 +285,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
       {
 
          // eslint-disable-next-line prefer-const
-         let guild_id = serversFindAll[i].id;
+         const guild_id = serversFindAll[i].id;
          // eslint-disable-next-line eqeqeq
          if (guild_id != "bot")
          {
