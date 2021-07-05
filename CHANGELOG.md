@@ -22,10 +22,15 @@
 * New Debug Settings for console.
 * MESSAGE_DEBUG
   > 0 - Error's Only
+  
   > 1 - Console for all Messages
+  
   > 2 - Console for Translate Messages only
+  
   > 3 - Content of all Messages
+  
   > 4 - Content of Translate Messages only
+  
   > 5 - Commands Only
 
 ## 1.2.4 Change Log
