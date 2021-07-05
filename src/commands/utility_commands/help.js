@@ -400,7 +400,6 @@ function helpMessage (config, param)
    "```md\n" +
    `# Other Commands\n` +
    `* ${cmd} announce [on/off]\n` +
-   `* ${cmd} persist [on/off]\n` +
    `* ${cmd} history\n\n` +
    "```\n";
 
@@ -414,6 +413,10 @@ function helpMessage (config, param)
    "```md\n" +
    `# Set default server language\n` +
    `* ${cmd} settings setLang to [lang]\n\n` +
+   "```" +
+   "```md\n" +
+   `# Help menu auto deletion\n` +
+   `* ${cmd} settings persist [on/off]\n` +
    "```\n";
 
    // -------------------
