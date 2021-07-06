@@ -416,7 +416,7 @@ function helpMessage (config, param)
    "```" +
    "```md\n" +
    `# Style settings\n` +
-   `* ${cmd} embed [on/off]\n` +
+   `* ${cmd} embed [on/off]\n\n` +
 
    `# Parameters\n` +
    `* on - Turns on Embed Translation\n` +
