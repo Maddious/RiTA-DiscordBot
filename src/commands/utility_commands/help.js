@@ -417,14 +417,12 @@ function helpMessage (config, param)
    "```md\n" +
    `# Style settings\n` +
    `* ${cmd} embed [on/off]\n` +
-   "```" + 
-   "```md\n" +
-   `# Parameters\n` +
+
+   `## Parameters\n` +
    `* on - Turns on Embed Translation\n` +
    `* off - Turns on Webhook Translation Sending\n\n` +
-   "```" +
-   "```md\n" +
-   `# Examples\n` +
+
+   `## Examples\n` +
    `* ${cmd} embed on \n` +
    `* ${cmd} embed off \n` +
    "```" +
