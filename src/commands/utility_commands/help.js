@@ -418,11 +418,11 @@ function helpMessage (config, param)
    `# Style settings\n` +
    `* ${cmd} embed [on/off]\n` +
 
-   `## Parameters\n` +
+   `# Parameters\n` +
    `* on - Turns on Embed Translation\n` +
    `* off - Turns on Webhook Translation Sending\n\n` +
 
-   `## Examples\n` +
+   `# Examples\n` +
    `* ${cmd} embed on \n` +
    `* ${cmd} embed off \n` +
    "```" +
