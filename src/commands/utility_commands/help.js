@@ -415,6 +415,20 @@ function helpMessage (config, param)
    `* ${cmd} settings setLang to [lang]\n\n` +
    "```" +
    "```md\n" +
+   `# Style settings\n` +
+   `* ${cmd} embed [on/off]\n` +
+   "```" + 
+   "```md\n" +
+   `# Parameters\n` +
+   `* on - Turns on Embed Translation\n` +
+   `* off - Turns on Webhook Translation Sending\n\n` +
+   "```" +
+   "```md\n" +
+   `# Examples\n` +
+   `* ${cmd} embed on \n` +
+   `* ${cmd} embed off \n` +
+   "```" +
+   "```md\n" +
    `# Help menu auto deletion\n` +
    `* ${cmd} settings persist [on/off]\n` +
    "```\n";
