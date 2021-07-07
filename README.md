@@ -1,11 +1,16 @@
 <p align="center"><a href="https://ritabot.gg/"><img src="https://media3.giphy.com/media/YO4a0qsdVX3Gq3darL/giphy.gif" data-canonical-src="https://media3.giphy.com/media/YO4a0qsdVX3Gq3darL/giphy.gif" width="175" height="175" href="https://ritabot.gg/"></a></p>
 <h1 align="center">Rita</h1>
 <p align="center">Breaking the language barrier for free.</p>
+<p align="center">RITA is now used on over 1200 Servers, by more than 192k Users.</p>
+<p align="center">Join the Language Revolution, Invite RITA today.</p>
+<p align="center">
+<a href="https://ritabot.gg/invite"><img src="https://img.shields.io/badge/Invite_RITA-7289DA.svg?"></a>
+</p>
 
 ------
 
 <p align="center">
-<img src="https://img.shields.io/github/package-json/v/RitaBot-Project/RitaBot?label=Stable%20Version"> <a href="https://discordapp.com/invite/mgNR64R"><img src="https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?"></a><a href="https://opensource.org/licenses/MIT"> <img src="https://img.shields.io/github/license/RitaBot-Project/RitaBot.svg"> </a> <a href="https://github.com/RitaBot-Project/RitaBot/tree/test-branch-1.3.0/"><img src="https://img.shields.io/github/package-json/v/RitaBot-Project/RitaBot/test-branch?label=Test%20Version"></a> <a href="https://github.com/RitaBot-Project/RitaBOt/stargazers/"> <img src="https://img.shields.io/github/stars/RitaBot-Project/RitaBot" href="https://github.com/RitaBot-Project/RitaBot/stargazers"> </a>
+<img src="https://img.shields.io/github/package-json/v/RitaBot-Project/RitaBot?label=Stable%20Version"> <a href="https://discordapp.com/invite/mgNR64R"><img src="https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?"></a><a href="https://opensource.org/licenses/MIT"> <img src="https://img.shields.io/github/license/RitaBot-Project/RitaBot.svg"> </a> <a href="https://github.com/RitaBot-Project/RitaBot/tree/test-branch/"><img src="https://img.shields.io/github/package-json/v/RitaBot-Project/RitaBot/test-branch?label=Test%20Version"></a> <a href="https://github.com/RitaBot-Project/RitaBOt/stargazers/"> <img src="https://img.shields.io/github/stars/RitaBot-Project/RitaBot" href="https://github.com/RitaBot-Project/RitaBot/stargazers"> </a>
  <img src="https://img.shields.io/github/checks-status/RitaBot-Project/RitaBot/ed616d5df0c63cfde954b4ea36fbab13c1ad86a6?label=build"> <a href="https://github.com/RitaBot-Project/RitaBot/fork"> <img src="https://img.shields.io/badge/dynamic/json?color=success&label=forks&query=forks&url=https%3A%2F%2Fapi.github.com%2Frepos%2FRitaBot-Project%2FRitaBot"> </a>
 </p><br/><br/>
 <p align="center"> 

@@ -34,17 +34,17 @@ function sendMessage (data)
                "custom",
                {
                   "color": "ok",
-                  "msg": `:exclamation: Write Permission Error \n
+                  "msg": `:exclamation: Write Permission Error - DS.js\n
                   Server: **${data.channel.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
-                  Server ID: **${data.channel.guild.id}**\n
-                  Owner: **${data.channel.guild.owner}**\n
+                  Server ID: **${data.message.sourceID}**\n
+                  Owner: **${data.message.guild.owner} - ${data.message.guild.owner.user.tag}**\n
                   The server owner has been notified. \n`
                }
             );
             const writeErr =
-                  `:no_entry:  **${data.bot.username}** does not have permission to write in your server **` +
+                  `:no_entry:  **${data.message.client.user.username}** does not have permission to write in your server **` +
                   `${data.channel.guild.name}**. Please fix.`;
 
             // -------------
@@ -57,6 +57,7 @@ function sendMessage (data)
                return console.log(writeErr);
 
             }
+            console.log("DEBUG: Line 60 - Dev.Send.js");
             return data.channel.guild.owner.
                send(writeErr).
                catch((err) => console.log(
@@ -94,7 +95,7 @@ module.exports = function run (data)
       ));
       richEmbedMessage.
          setColor(colors.get(data.color)).
-         setDescription(`Developer Identity confirmed:\n${data.text}`).
+         setDescription(`Developer Identity confirmed:\n\n${data.text}`).
          setTimestamp();
       // -------------
       // Send message

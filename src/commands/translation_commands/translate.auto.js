@@ -154,119 +154,6 @@ module.exports = function run (data)
 
    });
 
-   // -------------------------------------------------
-   // Resolve ID of each destiantion (user dm/channel)
-   // -------------------------------------------------
-
-   function taskLoop ()
-   {
-
-      data.task.for.forEach((dest) => // eslint-disable-line complexity
-      {
-
-         // Resolve `me` / original message author
-
-         if (dest === "me")
-         {
-
-            // ---------------
-            // Old Code Below
-            // ---------------
-
-            taskBuffer.update(`@${data.message.author.id}`);
-
-         }
-
-         // Resolve @everyone/@here
-
-         if (dest === "@everyone" || dest === "@here")
-         {
-
-            taskBuffer.update(data.message.channel.id);
-
-         }
-
-         // Resolve mentioned user(s)
-
-         if (dest.startsWith("<@"))
-         {
-
-            // ---------------
-            // Old Code Below
-            // ---------------
-
-
-            const userID = dest.slice(3, -1);
-
-            fn.getUser(data.client, userID, (user) =>
-            {
-
-               if (user && !user.bot && user.createDM)
-               {
-
-                  user.createDM().then((dm) =>
-                  {
-
-                     taskBuffer.update(dm.id);
-
-                  }).
-                     catch((err) => logger("error", err));
-
-                  taskBuffer.update(`@${user.id}`);
-
-               }
-               else
-               {
-
-                  data.task.invalid.push(dest);
-                  taskBuffer.reduce();
-
-               }
-
-            });
-
-         }
-
-         // Resolve mentioned channel(s)
-
-         if (dest.startsWith("<#"))
-         {
-
-            const channel = data.client.channels.cache.get(dest.slice(2, -1));
-
-            if (channel)
-            {
-
-               taskBuffer.update(channel.id);
-
-            }
-            else
-            {
-
-               data.task.invalid.push(dest);
-               taskBuffer.reduce();
-
-            }
-
-         }
-
-         // Invalid dests
-
-         if (
-            dest.startsWith("@") ||
-            !dest.startsWith("<") && dest !== "me"
-         )
-         {
-
-            data.task.invalid.push(dest);
-            taskBuffer.reduce();
-
-         }
-
-      });
-
-   }
-
    // ------------
    // Task buffer
    // ------------
@@ -304,6 +191,143 @@ module.exports = function run (data)
 
       }
    };
+
+   // -------------------------------------------------
+   // Resolve ID of each destiantion (user dm/channel)
+   // -------------------------------------------------
+
+   function taskLoop ()
+   {
+
+      data.task.for.forEach((dest) => // eslint-disable-line complexity
+      {
+
+         // Resolve `me` / original message author
+
+         if (dest === "me")
+         {
+
+            // ---------------
+            // Old Code Below
+            // ---------------
+
+            taskBuffer.update(`@${data.message.author.id}`);
+
+         }
+
+         // Resolve @everyone/@here
+
+         if (dest === "@everyone" || dest === "@here")
+         {
+
+            taskBuffer.update(data.message.channel.id);
+
+         }
+
+         // Resolve mentioned user(s)
+         if (dest.startsWith("<@"))
+         {
+
+            console.log("DEBUG: Line 193 - Translate.Auto.js");
+            // ---------------
+            // Old Code Below
+            // ---------------
+
+
+            const userID = dest.slice(3, -1);
+
+            fn.getUser(data.message.client, userID, (user) =>
+            {
+
+               console.log("DEBUG: Line 204 - Translate.Auto.js");
+               if (user && !user.bot && user.createDM)
+               {
+
+                  user.createDM().then((dm) =>
+                  {
+
+                     taskBuffer.update(dm.id);
+
+                  }).
+                     catch((err) => logger("error", err, "dm", data.message.channel.guild.name));
+
+                  taskBuffer.update(`@${user.id}`);
+
+               }
+               else
+               {
+
+                  data.task.invalid.push(dest);
+                  taskBuffer.reduce();
+
+               }
+
+            });
+
+         }
+
+         // Resolve mentioned channel(s)
+
+         if (dest.startsWith("<#"))
+         {
+
+            const channel = data.message.client.channels.cache.get(dest.slice(2, -1));
+
+            if (channel)
+            {
+
+               taskBuffer.update(channel.id);
+
+            }
+            else
+            {
+
+               data.task.invalid.push(dest);
+               taskBuffer.reduce();
+
+            }
+
+         }
+
+         // Resolve mentioned channel(s) cross server
+         if (dest.startsWith("cs#"))
+         {
+
+            const channel = data.message.client.channels.cache.get(dest.slice(3));
+            console.log(`${dest.slice(3, -1)}`);
+
+            if (channel)
+            {
+
+               taskBuffer.update(channel.id);
+
+            }
+            else
+            {
+
+               data.task.invalid.push(dest);
+               taskBuffer.reduce();
+
+            }
+
+         }
+
+         // Invalid dests
+
+         if (
+            dest.startsWith("@") ||
+            !dest.startsWith("<") && dest !== "me"
+         )
+         {
+
+            data.task.invalid.push(dest);
+            taskBuffer.reduce();
+
+         }
+
+      });
+
+   }
 
    // --------------------------------------------
    // Validate Task(s) before sending to database

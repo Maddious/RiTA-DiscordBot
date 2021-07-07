@@ -8,6 +8,7 @@
 const db = require("./core/db");
 const fn = require("./core/helpers");
 const cmdArgs = require("./commands/args");
+const auth = require("./core/auth");
 
 
 // --------------------
@@ -19,8 +20,6 @@ module.exports = function run (config, message)
 {
 
    module.exports.message = message;
-   const client = message.client;
-   const bot = client.user;
    if (message.channel.type === "dm" || message.type !== "DEFAULT")
    {
 
@@ -149,6 +148,9 @@ module.exports = function run (config, message)
             message.channel,
             "MANAGE_CHANNELS"
          );
+      message.sourceID = message.guild.id;
+      // eslint-disable-next-line no-self-assign
+      message.guild.owner = message.guild.owner;
 
       // Add role color
       message.roleColor = fn.getRoleColor(message.member);
@@ -163,9 +165,7 @@ module.exports = function run (config, message)
       "canWrite": true,
       "channel": message.channel,
       config,
-      client,
       "member": message.member,
-      bot,
       message
    };
    if (data.message.channel.type !== "dm")
@@ -228,6 +228,12 @@ module.exports = function run (config, message)
       if (message.content.startsWith(config.translateCmd) || message.content.startsWith(config.translateCmdShort) || message.content.startsWith(`<@${message.client.user.id}>`) || message.content.startsWith(`<@!${message.client.user.id}>`))
       {
 
+         if (auth.messagedebug === "5")
+         {
+
+            console.log(`MD5: ${message.guild.name} - ${message.guild.id} - ${message.createdAt}\nMesssage User - ${message.author.tag} \nMesssage Content - ${message.content}\n----------------------------------------`);
+
+         }
          // eslint-disable-next-line consistent-return
          return cmdArgs(data);
 
