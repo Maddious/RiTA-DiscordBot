@@ -228,7 +228,7 @@ function getHistory (data)
    };
 
    // ---------------
-   // V1.2.3 History
+   // V1.2.4 History
    // ---------------
 
    const v124History = function v124History (data)
@@ -260,6 +260,31 @@ function getHistory (data)
 
    };
 
+   // ---------------
+   // V1.2.5 History
+   // ---------------
+
+   const v125History = function v125History (data)
+   {
+
+      // -------------
+      // Command Code
+      // -------------
+
+      data.color = "info";
+      data.text = `**V1.2.5**\n` +
+      "```md\n" +
+      `# Version 1.2.5 - Release Date: 05/07/2021 \n\n` +
+      "```\n";
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   };
+
    const guilds = function guilds (data)
    {
 
@@ -279,7 +304,12 @@ function getHistory (data)
       `# 400 Guilds - 11/06/2021 \n` +
       `# 500 Guilds - 14/06/2021 \n` +
       `# 600 Guilds - 19/06/2021 \n` +
-      `# 700 Guilds - 21/06/2021 \n\n` +
+      `# 700 Guilds - 21/06/2021 \n` +
+      `# 800 Guilds - 24/06/2021 \n` +
+      `# 900 Guilds - 27/06/2021 \n` +
+      `# 1000 Guilds - 29/06/2021 \n` +
+      `# 1100 Guilds - 01/07/2021 \n` +
+      `# 1200 Guilds - 04/07/2021 \n\n` +
       "```\n";
 
       // -------------
@@ -302,6 +332,7 @@ function getHistory (data)
       "1.2.2": v122History,
       "1.2.3": v123History,
       "1.2.4": v124History,
+      "1.2.5": v125History,
       "guild": guilds
    };
 
@@ -369,7 +400,8 @@ module.exports = function run (data)
       `# Version 1.2.2 - Release Date: 25/04/2021 \n` +
       `# Version 1.2.3 - Release Date: 24/05/2021 \n` +
       `# Version 1.2.4 - Release Date: 09/06/2021 \n` +
-      `* There are 46 iterations of this Version\n\n` +
+      `# Version 1.2.5 - Release Date: 09/06/2021 \n` +
+      `* There are ?? iterations of this Version\n\n` +
       "```\n";
 
       // -------------

@@ -1,3 +1,38 @@
+## 1.2.5 Change Log
+* Since the launch of 1.2.4 Rita has grown by 800 servers, This is Amazing. From all the RITA Dev Team, We cant thank you enough. 
+
+### 1.2.5 Major Changes
+* db.js has had a overhaul
+* Database has been migrated to a larger DB, We wont be needing to do that again for a good 5 years. 
+
+### 1.2.5 Bug Fixes
+* Color now working in `Embed on` and takes user role color.
+* Stop command for @user has now been fixed
+ 
+### 1.2.5 Command Changes
+* Welcome message added for all new servers. System Channel is default, if not available it will pick first channel that has Write permissions. 
+* Announcement command added, This is Restreicted to DEV ONLY.
+* Opt in and out commands added for announcements. 
+* `!tr settings persist [on/off]` command has been added, this will prevent bot responses from being deleted.
+ 
+### 1.2.5 Database Changes
+* Validation Checks added at startup to avoid Blacklist and Stats SQL Errors
+ 
+### 1.2.5 Misc. Changes
+* New Debug Settings for console.
+* MESSAGE_DEBUG
+  > 0 - Error's Only
+  
+  > 1 - Console for all Messages
+  
+  > 2 - Console for Translate Messages only
+  
+  > 3 - Content of all Messages
+  
+  > 4 - Content of Translate Messages only
+  
+  > 5 - Commands Only
+
 ## 1.2.4 Change Log
 * BIG ANNOUNCEMENT - RITA IS NOW VERIFIED
 
