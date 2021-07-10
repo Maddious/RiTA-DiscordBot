@@ -5,7 +5,7 @@
 // https://discordapp.com/developers/applications/me
 // ------------------------------------------------------------
 
-exports.token = process.env.TOKEN;
+exports.token = process.env.DISCORD_TOKEN;
 
 // ----------------------------------------------------------------------
 // Add your Discord Main User ID here

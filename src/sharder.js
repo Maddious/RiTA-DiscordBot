@@ -8,6 +8,13 @@
 // const {ShardingManager} = require("discord.js");
 const discord = require("discord.js");
 const auth = require("./core/auth");
+const env = `${__dirname.slice(
+   0,
+   -3
+)}.env`;
+require("dotenv").config({
+   "path": env
+});
 
 // ------------------------
 // Discord Main Bot Script
@@ -31,6 +38,7 @@ if (auth.shards)
    shards = auth.shards;
 
 }
+
 
 const manager = new discord.ShardingManager(bot);
 
