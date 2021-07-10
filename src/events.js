@@ -125,6 +125,15 @@ exports.listen = function listen (client)
             Made by: ${botCreator}
             ----------------------------------------
          `);
+            logger(
+               "custom",
+               {"color": "ok",
+                  "msg": oneLine`
+               :wave:  **${client.user.username}**
+               is now online - \`v.${botVersion}\` -
+               **${shard.count}** shards
+               `}
+            );
 
          }
          else if (shard.count === 1)
@@ -139,6 +148,16 @@ exports.listen = function listen (client)
             All shards are online, running intervals
             ----------------------------------------
          `);
+
+            logger(
+               "custom",
+               {"color": "ok",
+                  "msg": oneLine`
+                  :wave:  **${client.user.username}**
+                  is now online - \`v.${botVersion}\` -
+                  **${shard.count}** shards
+               `}
+            );
 
          }
 
