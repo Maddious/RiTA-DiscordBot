@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 // -----------------
 // Global variables
 // -----------------
@@ -69,7 +70,7 @@ module.exports.shards = function shards (data)
 
       data.text = `​\n${oneLine`
          :bar_chart:  ​
-         **${data.message.client.guilds.cache.size}**  guilds  ·  ​
+         **${data.message.client.guilds.cache.size}**  guilds!  ·  ​
          **${data.message.client.channels.cache.size}**  channels  ·  ​
          **${data.message.client.users.cache.size}**  users
       `}\n​`;
@@ -146,6 +147,7 @@ module.exports.shards = function shards (data)
             data.color = "info";
 
             data.fields = output;
+            return sendMessage(data);
 
             // -------------
             // Catch errors
@@ -164,7 +166,7 @@ module.exports.shards = function shards (data)
    // Send message
    // -------------
 
-   return sendMessage(data);
+   // return sendMessage(data);
 
 };
 

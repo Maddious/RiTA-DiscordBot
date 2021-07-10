@@ -32,7 +32,6 @@ exports.client = client;
 // Initialize Bot
 // ---------------
 
-
 // eslint-disable-next-line func-style
 function login (token)
 {

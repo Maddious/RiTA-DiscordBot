@@ -82,14 +82,20 @@ exports.listen = function listen (client)
             V.${config.version} | ID: ${client.user.id}
             Made by: ${botCreator}
             ----------------------------------------
+            Shard #${shard.id}:  ${shard.id + 1} / ${shard.count} online - ${client.guilds.cache.size.toLocaleString()} guilds.
          `);
 
          }
 
-         console.log(oneLine`
-         Shard #${shard.id}:  ${shard.id + 1} / ${shard.count} online -
+         if (shard.count >= 2)
+         {
+
+            console.log(oneLine`
+         Shard #${shard.ids}:  ${shard.ids[0] + 1} / ${shard.count} online -
          ${client.guilds.cache.size.toLocaleString()} guilds.
       `);
+
+         }
 
          client.user.setPresence({
             "activity": {
@@ -103,7 +109,25 @@ exports.listen = function listen (client)
          // All shards are online
          // ----------------------
 
-         if (shard.id === shard.count - 1)
+         if (shard.count >= 2 && shard.ids[0] === shard.count - 1)
+         {
+
+            // ---------------------
+            // Log connection event
+            // ---------------------
+
+            console.log(stripIndent`
+            ----------------------------------------
+            All shards are online, running intervals
+            ----------------------------------------
+            ${client.user.username} Bot is now online
+            V.${config.version} | ID: ${client.user.id}
+            Made by: ${botCreator}
+            ----------------------------------------
+         `);
+
+         }
+         else if (shard.count === 1)
          {
 
             // ---------------------
@@ -115,18 +139,6 @@ exports.listen = function listen (client)
             All shards are online, running intervals
             ----------------------------------------
          `);
-
-            logger(
-               "custom",
-               {
-                  "color": "ok",
-                  "msg": oneLine`
-               :wave:  **${client.user.username}**
-               is now online - \`v.${botVersion}\` -
-               **${shard.count}** shards
-            `
-               }
-            );
 
          }
 

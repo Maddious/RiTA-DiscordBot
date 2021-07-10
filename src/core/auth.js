@@ -5,7 +5,7 @@
 // https://discordapp.com/developers/applications/me
 // ------------------------------------------------------------
 
-exports.token = process.env.DISCORD_TOKEN;
+exports.token = process.env.TOKEN;
 
 // ----------------------------------------------------------------------
 // Add your Discord Main User ID here
@@ -19,7 +19,7 @@ exports.botOwner = process.env.DISCORD_BOT_OWNER_ID;
 // Number of shards to spawn in sharding manager (large bots only)
 // ----------------------------------------------------------------
 
-exports.shards = 2;
+ exports.shards = 2;
 
 // --------------------
 // Invite URL (OAuth2)

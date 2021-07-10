@@ -481,7 +481,7 @@ exports.updateServerTable = function updateServerTable (id, columnName, value, _
 exports.updateColumns = async function updateColumns ()
 {
 
-   console.log("DEBUG: Checking Missing Variable Columns for old RITA release");
+   // console.log("DEBUG: Checking Missing Variable Columns for old RITA release");
    // For older version of RITA, they need to upgrade DB with adding new columns if needed
    const serversDefinition = await db.getQueryInterface().describeTable("servers");
    await this.addTableColumn("servers", serversDefinition, "prefix", Sequelize.STRING(32), "!tr");
@@ -495,12 +495,12 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "invite", Sequelize.STRING(255), "Not yet Created");
    await this.addTableColumn("servers", serversDefinition, "announce", Sequelize.BOOLEAN, true);
    await this.addTableColumn("servers", serversDefinition, "persist", Sequelize.BOOLEAN, false);
-   console.log("DEBUG: All Columns Checked or Added");
+   // console.log("DEBUG: All Columns Checked or Added");
 
    // For older version of RITA, must remove old unique index
-   console.log("DEBUG: Stage Remove old RITA Unique index");
+   // console.log("DEBUG: Stage Remove old RITA Unique index");
    await db.getQueryInterface().removeIndex("tasks", "tasks_origin_dest");
-   console.log("DEBUG : All old index removed");
+   // console.log("DEBUG : All old index removed");
 
 };
 
