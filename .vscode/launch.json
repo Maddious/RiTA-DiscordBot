@@ -6,7 +6,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/src/sharder.js"
+      "program": "${workspaceFolder}/src/bot.js"
     }
   ]
 }
