@@ -137,10 +137,10 @@ module.exports.shards = function shards (data)
 
             data.text = `​\n${oneLine`
                :bar_chart:   Total:  ​
-               **${shard.count}**  shards  ·  ​
-               **${fn.arraySum(guildsSize)}**  guilds  ·  ​
-               **${fn.arraySum(channelsSize)}**  channels  ·  ​
-               **${fn.arraySum(usersSize)}**  users
+               **\`${shard.count}\`**  shards  ·  ​
+               **\`${fn.arraySum(guildsSize)}\`**  guilds  ·  ​
+               **\`${fn.arraySum(channelsSize)}\`**  channels  ·  ​
+               **\`${fn.arraySum(usersSize)}\`**  users
             `}\n​`;
 
             data.color = "info";
