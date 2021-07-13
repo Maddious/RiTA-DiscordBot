@@ -257,7 +257,7 @@ module.exports.proc = function proc (data)
    // Get ping
    // ---------
    // eslint-disable-next-line prefer-template
-   const botPing = Date.now() - data.message.createdTimestamp + "ms";
+   const botPing = Date.now() - data.message.createdTimestamp + " ms";
    // const yourPing = new Date().getTime() - data.message.createdTimestamp;
 
    // ---------------
