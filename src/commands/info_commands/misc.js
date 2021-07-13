@@ -269,7 +269,7 @@ module.exports.proc = function proc (data)
 
       :control_knobs:  RAM:  ${memoryFormat}
 
-      Rita's Ping: ${botPing}
+      :ping_pong:  Rita's Latency: ${botPing}
 
       :stopwatch:  Proc Uptime:  ${uptimeFormat(procUptime)}
 
