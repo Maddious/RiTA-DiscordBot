@@ -265,8 +265,10 @@ module.exports.proc = function proc (data)
    // ---------------
    // Render message
    // ---------------
+   if (shard.id === 0)
+   {
 
-   data.text = stripIndent`
+      data.text = stripIndent`
       :robot:  Process:  ${title + pid + platform}
 
       :control_knobs:  RAM:  ${memoryFormat}
@@ -279,6 +281,27 @@ module.exports.proc = function proc (data)
 
       :pager:  Current Shard:  **\`${shard.id + 1} / ${shard.count}\`**
    `;
+
+   }
+
+   if (shard.count >= 2)
+   {
+
+      data.text = stripIndent`
+      :robot:  Process:  ${title + pid + platform}
+
+      :control_knobs:  RAM:  ${memoryFormat}
+
+      :ping_pong:  Rita's Latency: **\`${botPing}\`** ms
+
+      :stopwatch:  Proc Uptime:  ${uptimeFormat(procUptime)}
+
+      :stopwatch:  Shard Uptime:  ${uptimeFormat(shardUptime)}
+
+      :pager:  Current Shard:  **\`${shard.ids[0] + 1} / ${shard.count}\`**
+   `;
+
+   }
 
    // -------------
    // Send message
