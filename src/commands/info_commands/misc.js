@@ -70,9 +70,9 @@ module.exports.shards = function shards (data)
 
       data.text = `​\n${oneLine`
          :bar_chart:  ​
-         **${data.message.client.guilds.cache.size}**  guilds!  ·  ​
-         **${data.message.client.channels.cache.size}**  channels  ·  ​
-         **${data.message.client.users.cache.size}**  users
+         **\`${data.message.client.guilds.cache.size}\`**  guilds!  ·  ​
+         **\`${data.message.client.channels.cache.size}\`**  channels  ·  ​
+         **\`${data.message.client.users.cache.size}\`**  users
       `}\n​`;
 
       // -------------
@@ -105,7 +105,7 @@ module.exports.shards = function shards (data)
       shard.fetchClientValues("channels.cache.size").then((channelsSize) =>
       {
 
-         shard.fetchClientValues("users.cache.size").then((usersSize) =>
+         shard.broadcastEval("this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)").then((usersSize) =>
          {
 
             const output = [];
@@ -138,10 +138,10 @@ module.exports.shards = function shards (data)
 
             data.text = `​\n${oneLine`
                :bar_chart:   Total:  ​
-               **${shard.count}**  shards  ·  ​
-               **${fn.arraySum(guildsSize)}**  guilds  ·  ​
-               **${fn.arraySum(channelsSize)}**  channels  ·  ​
-               **${fn.arraySum(usersSize)}**  users
+               **\`${shard.count}\`**  shards  ·  ​
+               **\`${fn.arraySum(guildsSize)}\`**  guilds  ·  ​
+               **\`${fn.arraySum(channelsSize)}\`**  channels  ·  ​
+               **\`${fn.arraySum(usersSize)}\`**  users
             `}\n​`;
 
             data.color = "info";
