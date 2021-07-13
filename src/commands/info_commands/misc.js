@@ -255,6 +255,13 @@ module.exports.proc = function proc (data)
 
    }
 
+   // ---------
+   // Get ping
+   // ---------
+   // eslint-disable-next-line prefer-template
+   const botPing = Date.now() - data.message.createdTimestamp;
+   // const yourPing = new Date().getTime() - data.message.createdTimestamp;
+
    // ---------------
    // Render message
    // ---------------
@@ -263,6 +270,8 @@ module.exports.proc = function proc (data)
       :robot:  Process:  ${title + pid + platform}
 
       :control_knobs:  RAM:  ${memoryFormat}
+
+      :ping_pong:  Rita's Latency: **\`${botPing}\`** ms
 
       :stopwatch:  Proc Uptime:  ${uptimeFormat(procUptime)}
 
