@@ -7,6 +7,7 @@
 /* eslint-disable no-irregular-whitespace*/
 /* eslint-disable no-magic-numbers */
 const auth = require("../../core/auth");
+const db = require("../../core/db");
 const fn = require("../../core/helpers");
 const logger = require("../../core/logger");
 const process = require("process");
@@ -72,7 +73,7 @@ module.exports.shards = function shards (data)
          :bar_chart:  ​
          **\`${data.message.client.guilds.cache.size}\`**  guilds!  ·  ​
          **\`${data.message.client.channels.cache.size}\`**  channels  ·  ​
-         **\`${data.message.client.users.cache.size}\`**  users
+         **\`${db.server_obj.size}\`**  users
       `}\n​`;
 
       // -------------
