@@ -3,6 +3,9 @@
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+/* eslint-disable consistent-return */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-unused-vars */
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
@@ -113,51 +116,63 @@ function getSettings (data)
    function listServers (data)
    {
 
-      data.text = "Active Servers - ";
-
-      const activeGuilds = data.message.client.guilds.cache.array();
-
-      data.text += `${activeGuilds.length}\n\n`;
-
-      activeGuilds.forEach((guild) =>
+      if (auth.devID.includes(data.message.author.id))
       {
 
-         data.text += `${guild.name}\n${guild.id}\n${guild.memberCount} members\n`;
-         if (guild.owner)
+         data.text = "Active Servers - ";
+
+         const activeGuilds = data.message.client.guilds.cache.array();
+
+         data.text += `${activeGuilds.length}\n\n`;
+
+         activeGuilds.forEach((guild) =>
          {
 
-            data.text += `${guild.owner.user.username}#`;
-            data.text += `${guild.owner.user.discriminator}\n\n`;
+            data.text += `${guild.name}\n${guild.id}\n${guild.memberCount} members\n`;
+            if (guild.owner)
+            {
 
-         }
-         else
-         {
+               data.text += `${guild.owner.user.username}#`;
+               data.text += `${guild.owner.user.discriminator}\n\n`;
 
-            data.text += "\n";
+            }
+            else
+            {
 
-         }
+               data.text += "\n";
 
-      });
+            }
 
-      // ------------------
-      // Send message/file
-      // ------------------
+         });
 
-      data.message.delete({"timeout": time.short}).catch((err) => console.log(
-         "Command Message Deleted Error, command.send.js = ",
-         err
-      ));
-      fs.writeFileSync(
-         path.resolve(
-            __dirname,
-            "../../files/serverlist.txt"
-         ),
-         data.text
-      );
-      data.message.channel.send(
-         "Server List.",
-         {"files": ["./src/files/serverlist.txt"]}
-      );
+         // ------------------
+         // Send message/file
+         // ------------------
+
+         data.message.delete({"timeout": time.short}).catch((err) => console.log(
+            "Command Message Deleted Error, command.send.js = ",
+            err
+         ));
+         fs.writeFileSync(
+            path.resolve(
+               __dirname,
+               "../../files/serverlist.txt"
+            ),
+            data.text
+         );
+         data.message.channel.send(
+            "Server List.",
+            {"files": ["./src/files/serverlist.txt"]}
+         );
+
+      }
+      else
+      {
+
+         data.text = ":cop:  This Command is for bot developers only.";
+         return sendMessage(data);
+
+      }
 
    }
 
@@ -224,38 +239,84 @@ function getSettings (data)
 
    };
 
-   // -----------------
-   // DM server owners
-   // -----------------
-
-   /*
-   // eslint-disable-next-line no-unused-vars
-   const Announcement = async function Announcement (data)
+   // -------
+   // Owners
+   // -------
+   function ownerUpdate (data)
    {
 
-      const guildArray = Array.from(data.message.client.guilds.cache());
-      let i;
-      for (i = 0; i < guildArray.length; i += 1)
+      if (auth.devID.includes(data.message.author.id))
       {
 
-         console.log("Hello");
-         const guild = await guildArray[i];
-         let owner = await guild.ownerID;
-         owner = Number(owner);
-         owner = owner.replace(/([0-9]+)/g, "$1");
-         console.log("Done");
-         await data.message.client.users.get(owner).send("Testing").
-            catch((err) =>
+         let i = 0;
+         const guilds = [];
+         for (const guild of data.message.client.guilds.cache)
+         {
+
+            guilds.push(guild);
+
+         }
+
+         const wait = setInterval(function delay ()
+         {
+
+            const guild = guilds.shift();
+
+            i += 1;
+            if (guild === undefined)
             {
 
-               console.log(err);
+               console.log(`Done all servers`);
+               clearInterval(wait);
 
-            });
+            }
+            else if (guild[1].owner)
+            {
+
+               const target = guild[1].id;
+
+               if (!target)
+               {
+
+                  // eslint-disable-next-line no-useless-return
+                  return;
+
+               }
+
+               db.updateServerTable(
+                  target,
+                  "owner",
+                  `${guild[1].owner.user.username}#${guild[1].owner.user.discriminator}`,
+                  function error (err)
+                  {
+
+                     if (err)
+                     {
+
+                        return console.log(`DEBUG: Unable to save owner details to DB on Server Join`);
+
+                     }
+
+                  },
+                  console.log(`Server Owner Added for guild: ${target}`)
+               );
+
+
+            }
+
+         }, 100);
+
+      }
+      else
+      {
+
+         data.text = ":cop:  This Command is for bot developers only.";
+         return sendMessage(data);
 
       }
 
-   };
-   */
+   }
+
 
    // ----------
    // Update db
@@ -286,6 +347,7 @@ function getSettings (data)
       // "announce": announcement,
       // add,
       "listservers": listServers,
+      "owner": ownerUpdate,
       "persist": setPersistence,
       "setlang": setLang,
       "updatedb": updateDB
@@ -330,31 +392,6 @@ module.exports = function run (data)
    // -------------------------------
    // Command allowed by admins only
    // -------------------------------
-
-   AreDev:if (!process.env.DISCORD_BOT_OWNER_ID)
-   {
-
-      if (auth.devID.includes(data.message.author.id))
-      {
-
-         // console.log("DEBUG: Developer ID Confirmed");
-         break AreDev;
-
-      }
-
-      data.color = "warn";
-      data.text = `:warning: These commands can cause issues with your bot, as an extra layer of security they have been restricted further than discord admins.\n\n ` +
-      ` If you are trying to run the \`settings dbfix\` or \`settings uppdatedb\` commands then you do not need to do this anymore when updating the bot. \n\n ` +
-      ` If however you want access to these commands then please set \`DISCORD_BOT_OWNER_ID\` as an array of User IDs, include any user that is allowed to use these commands in configuration vars. \n\n **Example.** \`\`\`js\nDISCORD_BOT_OWNER_ID=[ALLOWED_USER_1_ID, ALLOWED_USER_2_ID, ALLOWED_USER_3_ID]\`\`\`\n ` +
-      ` Copy the above into your .env file (local hosting) or Settings > Config Vars for Heroku.`;
-
-      // -------------
-      // Send message
-      // -------------
-
-      return sendMessage(data);
-
-   }
 
    AreDev:if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {

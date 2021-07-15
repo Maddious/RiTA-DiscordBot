@@ -16,8 +16,10 @@ require("dotenv").config({
    "path": env
 });
 const discord = require("discord.js");
+
 const client = new discord.Client({
-   "restRequestTimeout": time.mid
+   "restRequestTimeout": time.mid,
+   "shards": [0, 1]
 });
 const auth = require("./core/auth");
 
@@ -31,7 +33,6 @@ exports.client = client;
 // ---------------
 // Initialize Bot
 // ---------------
-
 
 // eslint-disable-next-line func-style
 function login (token)

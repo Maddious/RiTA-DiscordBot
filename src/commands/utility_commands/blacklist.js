@@ -60,7 +60,7 @@ module.exports.blacklist = function blacklist (data)
             // ----------------------
             // Send message to owner
             // ----------------------
-            console.log("DEBUG: Line 62 - Blacklist.js");
+            // console.log("DEBUG: Line 62 - Blacklist.js");
             target.owner.
                send(writeErr).
                catch((err) => console.log(

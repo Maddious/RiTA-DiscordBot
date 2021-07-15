@@ -563,7 +563,13 @@ module.exports = function run (data) // eslint-disable-line complexity
          // Language you set when setting up !t channel command
          const channelFrom = from;
 
-         if (detectedLang === langTo || detectedLang !== channelFrom && channelFrom !== "auto")
+         if (detectedLang === langTo || res.text === data.message.content)
+         {
+
+            return;
+
+         }
+         else if (detectedLang !== channelFrom && channelFrom !== "auto")
          {
 
             // eslint-disable-next-line require-atomic-updates
@@ -571,7 +577,6 @@ module.exports = function run (data) // eslint-disable-line complexity
 
 
          }
-
 
          updateServerStats(data.message);
          data.forward = fw;

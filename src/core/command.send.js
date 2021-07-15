@@ -84,7 +84,7 @@ function sendMessage (data)
                return console.log(writeErr);
 
             }
-            console.log("DEBUG: Line 68 - Command.Send.js");
+            // console.log("DEBUG: Line 68 - Command.Send.js");
             return data.channel.guild.owner.
                send(writeErr).
                catch((err) => console.log(

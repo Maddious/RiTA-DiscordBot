@@ -274,7 +274,10 @@ function getHistory (data)
       data.color = "info";
       data.text = `**V1.2.5**\n` +
       "```md\n" +
-      `# Version 1.2.5 - Release Date: 05/07/2021 \n\n` +
+      `# Version 1.2.5 - Release Date: 05/07/2021 \n` +
+      `# Version 1.2.5-1 - Was not published. \n` +
+      `# Version 1.2.5-2 - Release Date: 13/07/2021 \n` +
+      `# Version 1.2.5-3 - Release Date: 15/07/2021 \n\n` +
       "```\n";
 
       // -------------
@@ -309,7 +312,11 @@ function getHistory (data)
       `# 900 Guilds - 27/06/2021 \n` +
       `# 1000 Guilds - 29/06/2021 \n` +
       `# 1100 Guilds - 01/07/2021 \n` +
-      `# 1200 Guilds - 04/07/2021 \n\n` +
+      `# 1200 Guilds - 04/07/2021 \n` +
+      `# 1300 Guilds - 07/07/2021 \n` +
+      `# 1400 Guilds - 09/07/2021 \n` +
+      `# 1500 Guilds - 11/07/2021 \n` +
+      `# 1600 Guilds - 14/07/2021 \n\n` +
       "```\n";
 
       // -------------

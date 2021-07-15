@@ -228,7 +228,7 @@ module.exports = function run (data)
          if (dest.startsWith("<@"))
          {
 
-            console.log("DEBUG: Line 193 - Translate.Auto.js");
+            // console.log("DEBUG: Line 193 - Translate.Auto.js");
             // ---------------
             // Old Code Below
             // ---------------
@@ -239,7 +239,7 @@ module.exports = function run (data)
             fn.getUser(data.message.client, userID, (user) =>
             {
 
-               console.log("DEBUG: Line 204 - Translate.Auto.js");
+               // console.log("DEBUG: Line 204 - Translate.Auto.js");
                if (user && !user.bot && user.createDM)
                {
 

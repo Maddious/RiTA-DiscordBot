@@ -12,7 +12,7 @@ const db = require("./core/db");
 // Const setStatus = require("./core/status");
 const react = require("./commands/translation_commands/translate.react");
 const botVersion = require("../package.json").version;
-const botCreator = "Collaboration";
+const botCreator = "Rita Bot Project";
 const joinMessage = require("./commands/info_commands/join");
 
 // ----------
@@ -61,35 +61,18 @@ exports.listen = function listen (client)
 
          }
 
-         let shard = client.shard;
+         const singleShard = client.options.shardCount;
 
-         if (!shard)
-         {
-
-            shard = {
-               "count": 1,
-               "id": 0
-            };
-
-         }
-
-         if (shard.id === 0)
-         {
-
-            console.log(stripIndent`
-            ----------------------------------------
-            ${client.user.username} Bot is now online
-            V.${config.version} | ID: ${client.user.id}
-            Made by: ${botCreator}
-            ----------------------------------------
-         `);
-
-         }
+         console.log(stripIndent`
+         ----------------------------------------
+         ${client.user.username} Bot is now online
+         V.${config.version} | ID: ${client.user.id}
+         Made by: ${botCreator}
+         ----------------------------------------`);
 
          console.log(oneLine`
-         Shard #${shard.id}:  ${shard.id + 1} / ${shard.count} online -
-         ${client.guilds.cache.size.toLocaleString()} guilds.
-      `);
+         Shard: #${singleShard} Shards online -
+         ${client.guilds.cache.size.toLocaleString()} guilds.`);
 
          client.user.setPresence({
             "activity": {
@@ -99,36 +82,27 @@ exports.listen = function listen (client)
             "status": "online"
          });
 
-         // ----------------------
-         // All shards are online
-         // ----------------------
+         // ---------------------
+         // Log connection event
+         // ---------------------
 
-         if (shard.id === shard.count - 1)
-         {
-
-            // ---------------------
-            // Log connection event
-            // ---------------------
-
-            console.log(stripIndent`
+         console.log(stripIndent`
             ----------------------------------------
-            All shards are online, running intervals
-            ----------------------------------------
+            All shards online, running DB connection
          `);
 
-            logger(
-               "custom",
-               {
-                  "color": "ok",
-                  "msg": oneLine`
+         logger(
+            "custom",
+            {
+               "color": "ok",
+               "msg": oneLine`
                :wave:  **${client.user.username}**
                is now online - \`v.${botVersion}\` -
-               **${shard.count}** shards
+               **${singleShard}** shards
             `
-               }
-            );
+            }
+         );
 
-         }
 
       }
    );

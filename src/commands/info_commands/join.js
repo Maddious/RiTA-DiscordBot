@@ -37,6 +37,29 @@ module.exports = function run (guild, config)
 
    }
 
+   if (guild.owner)
+   {
+
+      db.updateServerTable(
+         guild.id,
+         "owner",
+         `${guild.owner.user.username}#${guild.owner.user.discriminator}`,
+         function error (err)
+         {
+
+            if (err)
+            {
+
+               return console.log(`DEBUG: Unable to save owner details to DB on Server Join`);
+
+            }
+
+         }
+      );
+
+   }
+
+
    /*
    // Invite settings
    const invite = await defaultChannel.createInvite({
