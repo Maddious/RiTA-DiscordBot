@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/bot.js",
-    "ShardStart": "node src/sharder.js",
+    "shard": "node src/sharder.js",
     "build": "gulp build",
     "coveralls": "gulp coveralls",
     "dev": "gulp watch",
