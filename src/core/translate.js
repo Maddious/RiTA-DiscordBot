@@ -563,7 +563,7 @@ module.exports = function run (data) // eslint-disable-line complexity
          // Language you set when setting up !t channel command
          const channelFrom = from;
 
-         if (detectedLang === langTo || res.text === data.message.content)
+         if (detectedLang === langTo && res.text === data.message.content)
          {
 
             return;
