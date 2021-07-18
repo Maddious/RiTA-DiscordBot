@@ -421,7 +421,7 @@ function embedOn (data)
                   // console.log(`DEBUG: Error ${err.code}`);
                   return logger("custom", {
                      "color": "ok",
-                     "msg": `:exclamation: Unknonw User / Member / Recipient \n
+                     "msg": `:exclamation: Unknown User / Member / Recipient \n
                   Server: **${data.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
