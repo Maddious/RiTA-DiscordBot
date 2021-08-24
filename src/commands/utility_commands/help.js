@@ -592,7 +592,7 @@ function helpMessage (config, param)
    `* ${long} create bob - your new channel would now be bob \n` +
    "```\n";
    // ---------------
-   // Create Command
+   // Dev Commands
    // ---------------
 
    const dev =
