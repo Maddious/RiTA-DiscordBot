@@ -1236,5 +1236,10 @@ module.exports = {
       "code": "zw",
       "name": "Zimbabwe",
       "langs": ["ny", "en", "xh", "st", "sn"]
+   },
+   "EA": {
+      "code": "ea",
+      "name": "Ceuta & Melilla",
+      "langs": ["es"]
    }
 };
