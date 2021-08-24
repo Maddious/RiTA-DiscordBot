@@ -14,7 +14,6 @@ const fn = require("./helpers");
 
 const langExceptions =
 {
-   "ea": "es",
    "he": "iw",
    "zh": "zh-CN",
    "ch": "zh-CN",
