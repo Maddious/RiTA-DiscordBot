@@ -19,7 +19,7 @@ const discord = require("discord.js");
 
 const client = new discord.Client({
    "restRequestTimeout": time.mid,
-   "shards": [0, 1, 2]
+   "shards": [0, 1, 2, 3, 4]
 });
 const auth = require("./core/auth");
 

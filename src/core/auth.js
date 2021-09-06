@@ -19,7 +19,7 @@ exports.botOwner = process.env.DISCORD_BOT_OWNER_ID;
 // Number of shards to spawn in sharding manager (large bots only)
 // ----------------------------------------------------------------
 
-exports.shards = 3;
+exports.shards = 5;
 
 // --------------------
 // Invite URL (OAuth2)
