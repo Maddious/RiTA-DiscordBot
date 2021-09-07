@@ -12,7 +12,7 @@ const fn = require("../core/helpers");
 // Commands
 // ---------
 
-const cmdAnnounce = require("./utility_commands/announce");
+const cmdAnnounce = require("./settings_commands/announce");
 const cmdBlacklist = require("./utility_commands/blacklist");
 const cmdBot2bot = require("./settings_commands/bot2bot");
 const cmdCheck = require("./utility_commands/check");

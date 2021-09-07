@@ -421,10 +421,15 @@ module.exports = function run (data)
    if (!data.cmd.params)
    {
 
-      data.color = "error";
+      data.color = "info";
       data.text =
-         ":warning:  Missing `settings` parameter. Use `" +
-         `${data.config.translateCmdShort} help settings\` to learn more.`;
+      `**\`\`\`${data.message.channel.guild.name} - Server Settings` +
+      `\`\`\`**\n:information_source: Your current prefix is: **\`${db.server_obj[data.message.guild.id].db.prefix}\`**\n\n` +
+      `:tada: Annocement Messages: **\`${data.cmd.server[0].announce}\`**\n\n` +
+      `:inbox_tray: Embedded Message Style: **\`${data.cmd.server[0].embedstyle}\`**\n\n` +
+      `:robot: Bot to Bot Translation Status: **\`${data.cmd.server[0].bot2botstyle}\`**\n\n` +
+      `:pause_button: Help Menu Persistance: **\`${data.cmd.server[0].persist}\`**\n\n` +
+      `:wrench: Webhook Debug Active State: **\`${data.cmd.server[0].webhookactive}\`**`;
 
       // -------------
       // Send message
