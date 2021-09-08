@@ -277,7 +277,11 @@ function getHistory (data)
       `# Version 1.2.5 - Release Date: 05/07/2021 \n` +
       `# Version 1.2.5-1 - Was not published. \n` +
       `# Version 1.2.5-2 - Release Date: 13/07/2021 \n` +
-      `# Version 1.2.5-3 - Release Date: 15/07/2021 \n\n` +
+      `# Version 1.2.5-3 - Release Date: 15/07/2021 \n` +
+      `# Version 1.2.5-4 - Release Date: 01/09/2021 \n` +
+      `# Version 1.2.5-5 - Release Date: 05/09/2021 \n` +
+      `# Version 1.2.5-6 - Release Date: 07/09/2021 \n` +
+      `# Version 1.2.5-7 - Release Date: 08/09/2021 \n` +
       "```\n";
 
       // -------------
@@ -317,6 +321,37 @@ function getHistory (data)
       `# 1400 Guilds - 09/07/2021 \n` +
       `# 1500 Guilds - 11/07/2021 \n` +
       `# 1600 Guilds - 14/07/2021 \n\n` +
+      `# 1700 Guilds - 17/07/2021 \n\n` +
+      `# 1800 Guilds - 19/07/2021 \n\n` +
+      `# 1900 Guilds - 21/07/2021 \n\n` +
+      `# 2000 Guilds - 24/07/2021 \n\n` +
+      `# 2100 Guilds - 26/07/2021 \n\n` +
+      `# 2200 Guilds - 28/07/2021 \n\n` +
+      `# 2300 Guilds - 30/07/2021 \n\n` +
+      `# 2400 Guilds - 02/08/2021 \n\n` +
+      `# 2500 Guilds - 03/08/2021 \n\n` +
+      `# 2600 Guilds - 05/08/2021 \n\n` +
+      `# 2700 Guilds - 08/08/2021 \n\n` +
+      `# 2800 Guilds - 09/08/2021 \n\n` +
+      `# 2900 Guilds - 11/08/2021 \n\n` +
+      `# 3000 Guilds - 13/08/2021 \n\n` +
+      `# 3100 Guilds - 15/08/2021 \n\n` +
+      `# 3200 Guilds - 17/08/2021 \n\n` +
+      `# 3300 Guilds - 18/08/2021 \n\n` +
+      `# 3400 Guilds - 19/08/2021 \n\n` +
+      `# 3500 Guilds - 22/08/2021 \n\n` +
+      `# 3600 Guilds - 23/08/2021 \n\n` +
+      `# 3700 Guilds - 25/08/2021 \n\n` +
+      `# 3800 Guilds - 26/08/2021 \n\n` +
+      `# 3900 Guilds - 27/08/2021 \n\n` +
+      `# 4000 Guilds - 28/08/2021 \n\n` +
+      `# 4100 Guilds - 30/08/2021 \n\n` +
+      `# 4200 Guilds - 31/08/2021 \n\n` +
+      `# 4300 Guilds - 01/09/2021 \n\n` +
+      `# 4400 Guilds - 03/09/2021 \n\n` +
+      `# 4500 Guilds - 05/09/2021 \n\n` +
+      `# 4600 Guilds - 06/09/2021 \n\n` +
+      `# 4700 Guilds - 07/09/2021 \n\n` +
       "```\n";
 
       // -------------
