@@ -28,11 +28,15 @@ function discordPatch (string)
    let match = string.match(/<.*?>/gmiu);
    let everyonePing = string.match(/@everyone|@here/giu);
    let urlMatch = string.match(urlRegex);
+   let codeMatch = string.match(/`[^`]+`/g);
+   let bigBlock = string.match(/```[^`]+```/g);
 
-   const regexFix = string.replace(/<.*?>/gmiu, "<>").
+   let regexFix = string.replace(/<.*?>/gmiu, "<>").
       replace(urlRegex, "{}").
       replace(/@everyone/g, "[]").
-      replace(/@here/g, "[]");
+      replace(/@here/g, "[]").
+      replace(/（/g, "(").
+      replace(/）/g, ")");
    if (!urlMatch)
    {
 
@@ -77,6 +81,40 @@ function discordPatch (string)
 
 
    }
+
+   if (!codeMatch)
+   {
+
+      codeMatch = [];
+
+   }
+   if (!bigBlock)
+   {
+
+      bigBlock = [];
+
+   }
+
+   for (let i = 0; bigBlock.length > i; i += 1)
+   {
+
+      let string = bigBlock[i];
+      string = string.replace(/`/g, "");
+      const searchString = codeMatch[i];
+
+      if (string === searchString.replace(/`/g, ""))
+      {
+
+         codeMatch.splice(i, 1);
+         // removes the false match from array cause im too annoyed to find a correct regexp solution
+         regexFix = regexFix.replace(bigBlock[i], ")(");
+
+      }
+
+
+   }
+   regexFix = regexFix.replace(/`[^`]+`/g, "()");
+
    const result = {
       match,
       "text": regexFix,
@@ -84,7 +122,12 @@ function discordPatch (string)
       "original": string,
       "url": urlMatch,
       // eslint-disable-next-line sort-keys
-      "memberPing": everyonePing
+      "memberPing": everyonePing,
+      // eslint-disable-next-line sort-keys
+      "code": {
+         "one": codeMatch,
+         "three": bigBlock
+      }
 
 
    };
@@ -114,6 +157,18 @@ function translateFix (string, matches)
    {
 
       text = text.replace(/\[\s*?\]/i, obj);
+
+   }
+   for (const obj of matches.code.one)
+   {
+
+      text = text.replace(/\(\s*?\)/, obj);
+
+   }
+   for (const obj of matches.code.three)
+   {
+
+      text = text.replace(/\)\s*?\(/, obj);
 
    }
    return text;
