@@ -18,12 +18,13 @@ const cmdBot2bot = require("./settings_commands/bot2bot");
 const cmdCheck = require("./utility_commands/check");
 const cmdCreate = require("./utility_commands/create.channel");
 const cmdDebug = require("./settings_commands/debug");
+const cmdDocs = require("./info_commands/docs");
 const cmdDonate = require("./utility_commands/donate");
 const cmdEject = require("./utility_commands/eject");
 const cmdEmbed = require("./settings_commands/embed");
 const cmdHelp = require("./utility_commands/help");
 const cmdHistory = require("./info_commands/history");
-const cmdInvite = require("./settings_commands/invite");
+const cmdInvite = require("./utility_commands/invite");
 const cmdJoin = require("./info_commands/join");
 const cmdList = require("./info_commands/list");
 const cmdMod = require("./future_commands/mod");
@@ -358,6 +359,7 @@ module.exports = function run (data)
             "checkperms": cmdPerms,
             "create": cmdCreate,
             "debug": cmdDebug,
+            "docs": cmdDocs,
             "donate": cmdDonate,
             "eject": cmdEject.eject,
             "embed": cmdEmbed,
