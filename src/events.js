@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 // -----------------
 // Global variables
 // -----------------
@@ -345,7 +346,17 @@ exports.listen = function listen (client)
             "guildLeave",
             guild
          );
-         db.updateServerTable(guild.id, "active", false);
+         db.updateServerTable(guild.id, "active", false, function error (err)
+         {
+
+            if (err)
+            {
+
+               return console.log("error", err, "command", guild.id);
+
+            }
+
+         });
 
       }
    );
@@ -410,6 +421,17 @@ exports.listen = function listen (client)
 
          // eslint-disable-next-line no-unused-vars
          ).catch((err) => console.log("VALIDATION: New Server, No Blacklist History"));
+         db.updateServerTable(guild.id, "active", true, function error (err)
+         {
+
+            if (err)
+            {
+
+               return console.log("error", err, "command", guild.id);
+
+            }
+
+         });
          // console.log(`DEBUG: Blacklist Check Complete`);
 
          // ---------------------

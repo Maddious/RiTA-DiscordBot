@@ -105,7 +105,7 @@ module.exports.warn = async function warn (data)
       // ----------------
 
       data.color = "info";
-      data.text = oneLine`\`\`\`Server ID: ${serverID}\nServer has already been Warned, Please now Eject.\n\`\`\``;
+      data.text = oneLine`\`\`\`Server ID: ${serverID}\nRita is not in this server, Please Blacklist.\n\`\`\``;
       return sendMessage(data);
 
    }
@@ -162,6 +162,10 @@ module.exports.warn = async function warn (data)
 
          }
       );
+
+      // -------------
+      // Send message
+      // -------------
       return sendMessage(data);
 
    }
@@ -188,6 +192,10 @@ module.exports.warn = async function warn (data)
 
       }
    );
+
+   // -------------
+   // Send message
+   // -------------
    return sendMessage(data);
 
 };
