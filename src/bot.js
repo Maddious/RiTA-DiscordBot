@@ -22,8 +22,8 @@ const client = new discord.Client({
    "restRequestTimeout": time.mid,
    "shards": "auto",
    "messageEditHistoryMaxSize": 0,
-   "messageCacheLifetime": 9000,
-   "messageSweepInterval": 1800,
+   "messageCacheLifetime": 6000,
+   "messageSweepInterval": 18000,
    "messageCacheMaxSize": 5
 });
 const auth = require("./core/auth");
