@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 // -----------------
 // Global variables
 // -----------------
@@ -19,7 +20,10 @@ const discord = require("discord.js");
 
 const client = new discord.Client({
    "restRequestTimeout": time.mid,
-   "shards": "auto"
+   "shards": "auto",
+   "messageEditHistoryMaxSize": 0,
+   "messageCacheLifetime": 7300,
+   "messageSweepInterval": 14600
 });
 const auth = require("./core/auth");
 
