@@ -203,7 +203,7 @@ function helpMessage (config, param)
    `# Misc Commands\n` +
    `* ${cmd} invite\n` +
    `* ${cmd} help modules\n` +
-   `* ${cmd} perm [user/bot]\n` +
+   `* ${cmd} checkperms [user/bot]\n` +
    `* ${cmd} create [channelName]\n` +
    `* ${cmd} history \n\n` +
    "```" +
@@ -385,7 +385,7 @@ function helpMessage (config, param)
    "```" +
    "```md\n" +
    `# Permission Check\n` +
-   `* ${cmd} perm [user/bot]\n\n` +
+   `* ${cmd} checkperms [user/bot]\n\n` +
    "```" +
    "```md\n" +
    `# Donate\n` +
