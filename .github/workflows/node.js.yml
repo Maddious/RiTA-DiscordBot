@@ -6,9 +6,9 @@ name: Node.js CI
 on:
   workflow_dispatch:
   push:
-    branches: [ master, test-branch ]
+    branches: [ master, test-branch, RitaBot ]
   pull_request:
-    branches: [ master, test-branch ]
+    branches: [ master, test-branch, RitaBot ]
 
 jobs:
   test:
@@ -16,7 +16,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node_version: ['10.18.0', '11.15.0', '12.10.0', '13.14.0', '14.x']
+        node_version: ['14.x', '15.x', '16.x']
         os: [ubuntu-latest, windows-latest]
 
     steps:

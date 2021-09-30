@@ -2,36 +2,50 @@
 // Colors
 // -------
 
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const colors = {
-   info: 41215,
-   warn: 16764928,
-   err: 13107200,
-   error: 13107200,
-   ok: 5299300
+   "default": 41215,
+   "err": 13107200,
+   "error": 13107200,
+   "info": 9514728,
+   "ok": 1551647,
+   "warn": 16764928
 };
 
 // ----------
 // Get color
 // ----------
 
-exports.get = function(color)
+exports.get = function get (color)
 {
-   if (Object.prototype.hasOwnProperty.call(colors,color))
+
+   if (Object.prototype.hasOwnProperty.call(
+      colors,
+      color
+   ))
    {
+
       return colors[color];
+
    }
    if (isNaN(color))
    {
+
       return colors.warn;
+
    }
    return color;
+
 };
 
 // ------------------------------------
 // Convert RGB color to decimal number
 // ------------------------------------
 
-exports.rgb2dec = function(rgb)
+exports.rgb2dec = function rgb2dec (rgb)
 {
+
+   // eslint-disable-next-line no-bitwise
    return (rgb[0] << 16) + (rgb[1] << 8) + rgb[2];
+
 };
