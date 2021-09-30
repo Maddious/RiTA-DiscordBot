@@ -256,7 +256,7 @@ module.exports = function run (data)
    output.for = extractParam(
       "for",
       output.params,
-      ["me"],
+      ["invalid"],
       true
    );
 

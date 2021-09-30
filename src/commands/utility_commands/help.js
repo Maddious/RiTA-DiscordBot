@@ -296,7 +296,7 @@ function helpMessage (config, param)
    `__**Auto Translate Channels/Users**__\n\n` +
    `Automatically translates any new messages in channel and forwards them ` +
    `to you. Admins/mods can set forwarding to other channels or users in ` +
-   `server. Messages in forwarded channels will also be sent back to origin.` +
+   `server. Messages in forwarded channels can also be sent back to origin.` +
 
    "```md\n" +
    `# Command\n` +
@@ -307,12 +307,12 @@ function helpMessage (config, param)
    "```md\n" +
    `# Parameters\n` +
    `* to [lang] - defaults to server default language\n` +
-   `* from [lang] -  language to translate from, now includes 'auto'\n` +
-   `* for [me/@/#] - defaults to "me", admins can use mentions \n\n` +
+   `* from [lang] - language to translate from, includes 'auto'\n` +
+   `* for [me/@/#] - admins can set for other users \n\n` +
    "```" +
    "```md\n" +
    `# Examples\n` +
-   `* ${cmd} channel from english to chinese \n` +
+   `* ${cmd} channel from english to chinese for me\n` +
    `* ${cmd} channel from en to de for #englishChannel \n` +
    `* ${cmd} channel from de to fr for @steve \n` +
    `* ${cmd} channel from en to es for #ch1, #ch2, #usr1 \n` +
