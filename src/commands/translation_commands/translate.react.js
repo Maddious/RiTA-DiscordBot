@@ -41,7 +41,7 @@ module.exports = function run (data, client)
          function getServerInfo (server)
          {
 
-            if (server[0].react === true)
+            if (server[0].react === true || server[0].react === 1)
             {
 
                if (!countryLangs[emoji].langs)
