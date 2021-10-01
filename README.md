@@ -9,8 +9,9 @@
 
 ------
 
+
 <p align="center">
-<img src="https://img.shields.io/github/package-json/v/RitaBot-Project/RitaBot?label=Stable%20Version"> <a href="https://discordapp.com/invite/mgNR64R"><img src="https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?"></a><a href="https://opensource.org/licenses/MIT"> <img src="https://img.shields.io/github/license/RitaBot-Project/RitaBot.svg"> </a> <a href="https://github.com/RitaBot-Project/RitaBot/tree/test-branch/"><img src="https://img.shields.io/github/package-json/v/RitaBot-Project/RitaBot/test-branch?label=Test%20Version"></a> <a href="https://github.com/RitaBot-Project/RitaBOt/stargazers/"> <img src="https://img.shields.io/github/stars/RitaBot-Project/RitaBot" href="https://github.com/RitaBot-Project/RitaBot/stargazers"> </a>
+<a href="https://github.com/RitaBot-Project/RitaBot/tree/master/"><img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/RitaBot-Project/Ritabot?label=Stable%20Version"> </a> <a href="https://discordapp.com/invite/mgNR64R"><img src="https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?"></a><a href="https://opensource.org/licenses/MIT"> <img src="https://img.shields.io/github/license/RitaBot-Project/RitaBot.svg"> </a> <a href="https://github.com/RitaBot-Project/RitaBot/tree/test-branch/"><img alt="GitHub package.json version (branch)" src="https://img.shields.io/github/package-json/v/RitaBot-Project/RitaBot/RitaBot?label=Test%20Version"></a> <a href="https://github.com/RitaBot-Project/RitaBOt/stargazers/"> <img src="https://img.shields.io/github/stars/RitaBot-Project/RitaBot" href="https://github.com/RitaBot-Project/RitaBot/stargazers"> </a>
  <img src="https://img.shields.io/github/checks-status/RitaBot-Project/RitaBot/ed616d5df0c63cfde954b4ea36fbab13c1ad86a6?label=build"> <a href="https://github.com/RitaBot-Project/RitaBot/fork"> <img src="https://img.shields.io/badge/dynamic/json?color=success&label=forks&query=forks&url=https%3A%2F%2Fapi.github.com%2Frepos%2FRitaBot-Project%2FRitaBot"> </a>
 </p><br/><br/>
 <p align="center"> 
