@@ -32,7 +32,7 @@ module.exports = function run (data)
 
 
          // console.log(`DEBUG: Warn - ${serverID}`);
-         const Result = `\`\`\`Server: ${serverID}\nWarn Status: ${server[0].warn}\nBlacklist Status: ${server[0].blacklisted}\n\n\`\`\``;
+         const Result = `\`\`\`Server: ${serverID}\nError Count: ${server[0].errorcount}\nWarn Count: ${server[0].warncount}\nEject Count: ${server[0].ejectcount}\nWarn Status: ${server[0].warn}\nBlacklist Status: ${server[0].blacklisted}\n\n\`\`\``;
          data.text = `${Result}\n\n`;
 
 

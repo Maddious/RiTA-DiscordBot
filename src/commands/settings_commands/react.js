@@ -28,7 +28,7 @@ function react (data)
       }
 
       // console.log(`DEBUG: React variable ${commandVariable}`);
-      return db.updateServerTable(data.message.guild.id, "react", value, function error (err)
+      return db.updateServerTable(data.message.guild.id, "flag", value, function error (err)
       {
 
          if (err)
@@ -84,29 +84,24 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   if (data.message.isAdmin === false)
    {
 
-      if (data.message.isAdmin === false)
       {
 
-         {
-
-            data.color = "warn";
-
-         }
-         data.text = ":cop:  This command is reserved for server admins.";
-
-         // -------------
-         // Send message
-         // -------------
-
-         return sendMessage(data);
+         data.color = "warn";
 
       }
-      break Override;
+      data.text = ":cop:  This command is reserved for server admins.";
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
 
    }
+
 
    // --------------------------------
    // Error if react param is missing
