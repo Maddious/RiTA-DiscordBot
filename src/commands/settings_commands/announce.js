@@ -256,10 +256,10 @@ module.exports = function run (data)
    // Error if settings param is missing
    // -----------------------------------
 
-   if (data.message.author.id !== data.message.guild.owner.id)
+   if (data.message.isAdmin === false)
    {
 
-      data.text = ":cop:  This Command is for server owners only.\n";
+      data.text = ":cop:  This command is reserved for server admins and owners only.\n";
       return sendMessage(data);
 
    }
