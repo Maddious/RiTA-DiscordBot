@@ -11,7 +11,7 @@
 * `!tr blacklist {ServerID}` has been fixed.
 * `!tr channel from {lang} to {lang}` no longer defaults to a DM task.
 
-### 1.2.5 Command Changes
+### 1.2.6 Command Changes
 * `!tr react on/off` now turns on and off flag reactions.
 
 ### 1.2.6 Database Changes
