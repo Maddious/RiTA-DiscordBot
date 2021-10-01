@@ -369,6 +369,7 @@ module.exports = function run (data)
             "id": cmdMisc.ident,
             "info": cmdHelp,
             "invite": cmdInvite,
+            "kick": cmdMod.kick,
             "last": cmdTranslateLast.run,
             "list": cmdList,
             "mute": cmdMod.mute,

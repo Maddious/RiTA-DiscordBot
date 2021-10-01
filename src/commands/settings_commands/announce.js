@@ -256,48 +256,53 @@ module.exports = function run (data)
    // Error if settings param is missing
    // -----------------------------------
 
-   if (data.message.author.id !== data.message.guild.owner.id)
+   if (data.message.isAdmin === true)
    {
 
-      data.text = ":cop:  This Command is for server owners only.\n";
-      return sendMessage(data);
-
-   }
-   else if (data.message.author.id === data.message.guild.owner.id && data.cmd.params && data.cmd.params.toLowerCase().includes("off"))
-   {
-
-      db.updateServerTable(data.message.guild.id, "announce", false, function error (err)
+      if (data.cmd.params && data.cmd.params.toLowerCase().includes("off"))
       {
 
-         if (err)
+         db.updateServerTable(data.message.guild.id, "announce", false, function error (err)
          {
 
-            return console.log("error", err, "command", data.message.channel.guild.name);
+            if (err)
+            {
 
-         }
+               return console.log("error", err, "command", data.message.channel.guild.name);
 
-      });
+            }
 
-      data.text = "You have successfully opted out of receiving announcements messages.\n";
-      return sendMessage(data);
+         });
 
-   }
-   else if (data.message.author.id === data.message.guild.owner.id && data.cmd.params && data.cmd.params.toLowerCase().includes("on"))
-   {
+         data.text = "You have successfully opted out of receiving announcements messages.\n";
+         return sendMessage(data);
 
-      db.updateServerTable(data.message.guild.id, "announce", true, function error (err)
+      }
+      else if (data.cmd.params && data.cmd.params.toLowerCase().includes("on"))
       {
 
-         if (err)
+         db.updateServerTable(data.message.guild.id, "announce", true, function error (err)
          {
 
-            return console.log("error", err, "command", data.message.channel.guild.name);
+            if (err)
+            {
 
-         }
+               return console.log("error", err, "command", data.message.channel.guild.name);
 
-      });
+            }
 
-      data.text = "You have successfully opted in to receiving announcements messages.\n";
+         });
+
+         data.text = "You have successfully opted in to receiving announcements messages.\n";
+         return sendMessage(data);
+
+      }
+
+   }
+   else
+   {
+
+      data.text = ":cop:  This command is reserved for server admins and owners only.\n";
       return sendMessage(data);
 
    }
