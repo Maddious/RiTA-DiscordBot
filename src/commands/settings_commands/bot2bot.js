@@ -91,7 +91,7 @@ module.exports = function run (data)
             data.color = "warn";
 
          }
-         data.text = ":cop:  This command is reserved for server adminis.";
+         data.text = ":cop:  This command is reserved for server admins.";
 
          // -------------
          // Send message
