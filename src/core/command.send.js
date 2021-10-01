@@ -56,6 +56,10 @@ function sendMessage (data)
          if (err.code && err.code === error.perm || error.access)
          {
 
+            const col = "errorcount";
+            const id = data.message.sourceID;
+            db.increaseServersCount(col, id);
+
             // console.log("Error 50013");
             logger(
                "custom",

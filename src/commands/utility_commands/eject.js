@@ -26,6 +26,10 @@ module.exports.eject = async function eject (data)
 
    data.color = "warn";
    data.text = `\`\`\`${serverID} - Server connection terminated\`\`\``;
+
+   const col = "ejectcount";
+   db.increaseServersCount(col, serverID);
+
    if (!target)
    {
 
@@ -175,6 +179,10 @@ module.exports.warn = async function warn (data)
    // -------------
    data.color = "warn";
    data.text = `\`\`\`Owner: ${target.owner.user.tag}\nServer: ${target.name} \nServer ID: ${serverID}\nServer Owner Has Been Warned\`\`\``;
+
+   const col = "warncount";
+   db.increaseServersCount(col, serverID);
+
    await db.updateServerTable(
       serverID,
       "warn",

@@ -360,7 +360,7 @@ function updateServerStats (message)
       id = message.channel.guild.id;
 
    }
-   db.increaseServersCount(id);
+   db.increaseServersCount("count", id);
    db.increaseStatsCount(col, id);
 
 }

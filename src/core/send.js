@@ -128,6 +128,11 @@ function checkPerms (data, sendBox)
             // --------------------------------------------------------------
 
             // console.log("DEBUG: Error 50013 - Destination");
+
+            const col = "errorcount";
+            const id = data.message.sourceID;
+            db.increaseServersCount(col, id);
+
             logger("custom", {
                "color": "ok",
                "msg": `:exclamation: Write Permission Error - Destination\n
@@ -381,6 +386,10 @@ function embedOn (data)
 
                if (err.code && err.code === error.perm || error.access)
                {
+
+                  const col = "errorcount";
+                  const id = data.message.sourceID;
+                  db.increaseServersCount(col, id);
 
                   // console.log("DEBUG: Error 50013 - Origin");
                   return logger("custom", {

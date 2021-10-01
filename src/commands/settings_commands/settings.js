@@ -425,9 +425,10 @@ module.exports = function run (data)
       data.text =
       `**\`\`\`${data.message.channel.guild.name} - Server Settings` +
       `\`\`\`**\n:information_source: Your current prefix is: **\`${db.server_obj[data.message.guild.id].db.prefix}\`**\n\n` +
-      `:tada: Annocement Messages: **\`${data.cmd.server[0].announce}\`**\n\n` +
+      `:tada: Allow Annocement Messages: **\`${data.cmd.server[0].announce}\`**\n\n` +
       `:inbox_tray: Embedded Message Style: **\`${data.cmd.server[0].embedstyle}\`**\n\n` +
       `:robot: Bot to Bot Translation Status: **\`${data.cmd.server[0].bot2botstyle}\`**\n\n` +
+      `:flags: Translation by Flag Reactions: **\`${data.cmd.server[0].react}\`**\n\n` +
       `:pause_button: Help Menu Persistance: **\`${data.cmd.server[0].persist}\`**\n\n` +
       `:wrench: Webhook Debug Active State: **\`${data.cmd.server[0].webhookactive}\`**`;
 

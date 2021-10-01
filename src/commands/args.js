@@ -32,6 +32,7 @@ const cmdMisc = require("./info_commands/misc");
 const cmdPerms = require("./utility_commands/perm");
 const cmdPrefix = require("./settings_commands/prefix");
 const cmdSettings = require("./settings_commands/settings");
+const cmdReact = require("./settings_commands/react");
 const cmdStats = require("./info_commands/stats");
 const cmdTranslateLast = require("./translation_commands/translate.last");
 const cmdTranslateThis = require("./translation_commands/translate.this");
@@ -374,6 +375,7 @@ module.exports = function run (data)
             "newbot": cmdJoin.newBot,
             "prefix": cmdPrefix,
             "proc": cmdMisc.proc,
+            "react": cmdReact,
             "settings": cmdSettings,
             "shards": cmdMisc.shards,
             "stats": cmdStats,

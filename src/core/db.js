@@ -175,11 +175,26 @@ const Servers = db.define(
          "type": Sequelize.BOOLEAN,
          "defaultValue": false
       },
+      "react": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": true
+      },
       "owner": {
          "type": Sequelize.STRING(255),
          "defaultValue": "Unknown"
+      },
+      "errorcount": {
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
+      },
+      "warncount": {
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
+      },
+      "ejectcount": {
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
       }
-
    }
 );
 
@@ -504,6 +519,10 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "announce", Sequelize.BOOLEAN, true);
    await this.addTableColumn("servers", serversDefinition, "persist", Sequelize.BOOLEAN, false);
    await this.addTableColumn("servers", serversDefinition, "owner", Sequelize.STRING(255), "Unknown");
+   await this.addTableColumn("servers", serversDefinition, "errorcount", Sequelize.INTEGER, 0);
+   await this.addTableColumn("servers", serversDefinition, "warncount", Sequelize.INTEGER, 0);
+   await this.addTableColumn("servers", serversDefinition, "ejectcount", Sequelize.INTEGER, 0);
+   await this.addTableColumn("servers", serversDefinition, "react", Sequelize.BOOLEAN, true);
    // console.log("DEBUG: All Columns Checked or Added");
 
    // For older version of RITA, must remove old unique index
@@ -796,12 +815,12 @@ exports.addTask = function addTask (task)
 // -------------
 
 // Increase the count in Servers table
-exports.increaseServersCount = function increaseServersCount (id)
+exports.increaseServersCount = function increaseServersCount (col, id)
 {
 
    // console.log("DEBUG: Stage Update count in Servers table");
    return Servers.increment(
-      "count",
+      col,
       {logging: false,
          "where": {id}}
    );
