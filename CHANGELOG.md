@@ -1,3 +1,31 @@
+## 1.2.6 Change Log
+* RITA is now at 6400 servers, This is just Amazing.
+
+### 1.2.6 Major Changes
+* Sharding is now automatic, this should auto scale to the needed amount. 
+* A Major memory leak causing rita to restart every few hours has now been fixed.
+
+### 1.2.6 Bug Fixes
+* `!tr announce on/off` has been fixed.
+* `!tr settings` has been unrestricted.
+* `!tr blacklist {ServerID}` has been fixed.
+* `!tr channel from {lang} to {lang}` no longer defaults to a DM task.
+
+### 1.2.6 Command Changes
+* `!tr react on/off` now turns on and off flag reactions.
+
+### 1.2.6 Database Changes
+* Added in 3 new columns ready for auto-warn and eject management 
+  > Servers will be allowed 10 Permission Errors Before a Warning
+
+  > Server will be given a Maximum of 3 Warning before they are Ejected
+
+  > If your server should be Ejected a second time it will be blacklisted
+ 
+### 1.2.6 Misc. Changes
+* Sooooooo Many spelling mistakes corrected that it would be too many to list here. 
+* Help Menu updated with new commands.
+
 ## 1.2.5 Change Log
 * Since the launch of 1.2.4 Rita has grown by 800 servers, This is Amazing. From all the RITA Dev Team, We cant thank you enough. 
 

@@ -8,57 +8,61 @@ const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
 
 // ------------------------------
-// Embed varible command handler
+// React varible command handler
 // ------------------------------
 
-function embed (data)
+function react (data)
 {
 
-   const commandVariable1 = data.cmd.params.split(" ")[0].toLowerCase();
+   const commandVariable = data.cmd.params.split(" ")[0].toLowerCase();
 
-   if (commandVariable1 === "on" || commandVariable1 === "off")
+   if (commandVariable === "on" || commandVariable === "off")
    {
 
-      // console.log(`DEBUG: embed variable ${commandVariable1}`);
-      return db.updateEmbedVar(
-         data.message.channel.guild.id,
-         commandVariable1,
-         function error (err)
+      let value = false;
+      if (commandVariable === "on")
+      {
+
+         value = true;
+
+      }
+
+      // console.log(`DEBUG: React variable ${commandVariable}`);
+      return db.updateServerTable(data.message.guild.id, "react", value, function error (err)
+      {
+
+         if (err)
          {
 
-            if (err)
-            {
-
-               return logger(
-                  "error",
-                  err,
-                  "command",
-                  data.message.channel.guild.name
-               );
-
-            }
-            const output =
-            "**```Embedded Translation```**\n" +
-            `Embedded Message translation is now turned : \`${commandVariable1}\`\n\n` +
-            `\n`;
-            data.color = "info";
-            data.text = output;
-
-            // -------------
-            // Send message
-            // -------------
-
-            return sendMessage(data);
+            return logger(
+               "error",
+               err,
+               "command",
+               data.message.channel.guild.name
+            );
 
          }
-      );
+         const output =
+            "**```Flag Reactions```**\n" +
+      `Translations by Flag Reactions is now turned : \`${commandVariable}\`\n\n` +
+      `\n`;
+         data.color = "info";
+         data.text = output;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      });
 
    }
 
    data.color = "error";
    data.text =
-      `:warning:  **\`${commandVariable1
-      }\`** is not a valid embed option.\n`;
+      `:warning:  **\`${commandVariable
+      }\`** is not a valid react option.\n`;
 
    // -------------
    // Send message
@@ -105,7 +109,7 @@ module.exports = function run (data)
    }
 
    // --------------------------------
-   // Error if embed param is missing
+   // Error if react param is missing
    // --------------------------------
 
    if (!data.cmd.params)
@@ -113,8 +117,8 @@ module.exports = function run (data)
 
       data.color = "error";
       data.text =
-         ":warning:  Missing `embed` parameter. Use `" +
-         `${data.config.translateCmdShort} help embed\` to learn more.`;
+         ":warning:  Missing `react` parameter. Use `" +
+         `${data.config.translateCmdShort} help react\` to learn more.`;
 
       // -------------
       // Send message
@@ -128,7 +132,7 @@ module.exports = function run (data)
    // Execute setting
    // ----------------
 
-   return embed(data);
+   return react(data);
 
 };
 

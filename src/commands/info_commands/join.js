@@ -37,6 +37,29 @@ module.exports = function run (guild, config)
 
    }
 
+   if (guild.owner)
+   {
+
+      db.updateServerTable(
+         guild.id,
+         "owner",
+         `${guild.owner.user.username}#${guild.owner.user.discriminator}`,
+         function error (err)
+         {
+
+            if (err)
+            {
+
+               return console.log(`DEBUG: Unable to save owner details to DB on Server Join`);
+
+            }
+
+         }
+      );
+
+   }
+
+
    /*
    // Invite settings
    const invite = await defaultChannel.createInvite({
@@ -85,6 +108,10 @@ module.exports = function run (guild, config)
          {
             "name": ":moneybag: On a side note.",
             "value": `While rita is free, and we always aim to keep it this way, She does have costs.\nCurrently the Dev Team pays these cost. If you would like to support us and enable us to continue to provide RITA for free then please visit our [GitHub Sponsors](https://github.com/sponsors/RitaBot-Project) page, or type **${config.translateCmdShort} donate** for more info`
+         },
+         {
+            "name": ":notebook: Please Leave a review.",
+            "value": `One last thing before you go, Please Vote for and leave a Review for Rita [Here](https://top.gg/bot/827301865539764284), It helps us reach more people.`
          }
       ],
 

@@ -31,6 +31,13 @@ async function announcement (data)
       "Command Message Deleted Error, command.send.js = ",
       err
    ));
+   if (!auth.devID.includes(data.message.author.id))
+   {
+
+      data.text = ":cop:  This Command is for bot developers only.\n";
+      return sendMessage(data);
+
+   }
    await data.message.channel.send(`Please enter Anouncment Title.`).then(() =>
    {
 
@@ -249,10 +256,10 @@ module.exports = function run (data)
    // Error if settings param is missing
    // -----------------------------------
 
-   if (!auth.devID.includes(data.message.author.id))
+   if (data.message.author.id !== data.message.guild.owner.id)
    {
 
-      data.text = ":cop:  This Command is for bot developers only.\n";
+      data.text = ":cop:  This Command is for server owners only.\n";
       return sendMessage(data);
 
    }
@@ -291,13 +298,6 @@ module.exports = function run (data)
       });
 
       data.text = "You have successfully opted in to receiving announcements messages.\n";
-      return sendMessage(data);
-
-   }
-   else if (data.message.author.id !== data.message.guild.owner.id)
-   {
-
-      data.text = ":cop:  This Command is for server owners only.\n";
       return sendMessage(data);
 
    }
