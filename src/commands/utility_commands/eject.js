@@ -26,6 +26,10 @@ module.exports.eject = async function eject (data)
 
    data.color = "warn";
    data.text = `\`\`\`${serverID} - Server connection terminated\`\`\``;
+
+   const col = "ejectcount";
+   db.increaseServersCount(col, serverID);
+
    if (!target)
    {
 
@@ -46,7 +50,7 @@ module.exports.eject = async function eject (data)
       // ----------------------
       // Send message to owner
       // ----------------------
-      console.log("DEBUG: Line 49 - Eject.js");
+      // console.log("DEBUG: Line 49 - Eject.js");
       target.owner.
          send(writeErr).
          catch((err) => console.log(
@@ -105,7 +109,7 @@ module.exports.warn = async function warn (data)
       // ----------------
 
       data.color = "info";
-      data.text = oneLine`\`\`\`Server ID: ${serverID}\nServer has already been Warned, Please now Eject.\n\`\`\``;
+      data.text = oneLine`\`\`\`Server ID: ${serverID}\nRita is not in this server, Please Blacklist.\n\`\`\``;
       return sendMessage(data);
 
    }
@@ -125,7 +129,7 @@ module.exports.warn = async function warn (data)
       // ----------------------
       // Send message to owner
       // ----------------------
-      console.log("DEBUG: Line 128 - Eject.js");
+      // console.log("DEBUG: Line 128 - Eject.js");
       target.owner.
          send(writeErr).
          catch((err) => console.log(
@@ -162,6 +166,10 @@ module.exports.warn = async function warn (data)
 
          }
       );
+
+      // -------------
+      // Send message
+      // -------------
       return sendMessage(data);
 
    }
@@ -171,6 +179,10 @@ module.exports.warn = async function warn (data)
    // -------------
    data.color = "warn";
    data.text = `\`\`\`Owner: ${target.owner.user.tag}\nServer: ${target.name} \nServer ID: ${serverID}\nServer Owner Has Been Warned\`\`\``;
+
+   const col = "warncount";
+   db.increaseServersCount(col, serverID);
+
    await db.updateServerTable(
       serverID,
       "warn",
@@ -188,6 +200,10 @@ module.exports.warn = async function warn (data)
 
       }
    );
+
+   // -------------
+   // Send message
+   // -------------
    return sendMessage(data);
 
 };

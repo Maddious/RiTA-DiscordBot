@@ -34,98 +34,124 @@ module.exports = function run (data, client)
       // Stop proccessing if country has no langs / null
       // ------------------------------------------------
 
-      if (!countryLangs[emoji].langs)
-      {
+      const serverID = data.guild_id;
 
-         return;
-
-      }
-
-      // -----------------
-      // Get message data
-      // -----------------
-
-      fn.getMessage(
-         client,
-         data.message_id,
-         data.channel_id,
-         data.user_id,
-         (message, err) =>
+      db.getServerInfo(
+         serverID,
+         function getServerInfo (server)
          {
 
-            if (err)
+            if (server[0].flag === true || server[0].flag === 1)
             {
 
-               return logger(
-                  "error",
-                  err,
-                  "command",
-                  data.guild_id
+               if (!countryLangs[emoji].langs)
+               {
+
+                  return;
+
+               }
+
+               // -----------------
+               // Get message data
+               // -----------------
+
+               fn.getMessage(
+                  client,
+                  data.message_id,
+                  data.channel_id,
+                  data.user_id,
+                  (message, err) =>
+                  {
+
+                     if (err)
+                     {
+
+                        return logger(
+                           "error",
+                           err,
+                           "command",
+                           data.guild_id
+                        );
+
+                     }
+
+                     // Ignore bots
+
+                     if (message.author.bot)
+                     {
+
+                        return;
+
+                     }
+
+                     message.content = message.content.
+                        replace(/<@.*?>/g, "").
+                        replace(/@everyone/gi, "").
+                        replace(/@here/gi, "");
+
+
+                     const flagExists = message.reactions.cache.get(emoji);
+
+                     // Prevent flag spam
+
+                     if (flagExists.count > 1)
+                     {
+
+                        return;
+
+                     }
+
+                     // Translate data
+
+                     data.translate = {
+                        "from": langCheck("auto"),
+                        "multi": true,
+                        "original": message.content,
+                        "to": langCheck(countryLangs[emoji].langs)
+                     };
+
+                     // Message data
+
+                     data.message = message;
+                     delete data.message.attachments;
+                     data.member.displayColor = fn.getRoleColor(data.message.member);
+                     data.canWrite = true;
+
+                     // ------------------
+                     // Start translation
+                     // ------------------
+                     const col = "react";
+                     let id = "bot";
+                     db.increaseStatsCount(col, id);
+
+                     if (message.channel.type === "text")
+                     {
+
+                        id = data.message.guild.id;
+
+                     }
+
+                     db.increaseStatsCount(col, id);
+                     translate(data);
+
+                  }
                );
 
             }
 
-            // Ignore bots
-
-            if (message.author.bot)
-            {
-
-               return;
-
-            }
-
-            message.content = message.content.
-               replace(/<@.*?>/g, "").
-               replace(/@everyone/gi, "").
-               replace(/@here/gi, "");
-
-
-            const flagExists = message.reactions.cache.get(emoji);
-
-            // Prevent flag spam
-
-            if (flagExists.count > 1)
-            {
-
-               return;
-
-            }
-
-            // Translate data
-
-            data.translate = {
-               "from": langCheck("auto"),
-               "multi": true,
-               "original": message.content,
-               "to": langCheck(countryLangs[emoji].langs)
-            };
-
-            // Message data
-
-            data.message = message;
-            delete data.message.attachments;
-            data.member.displayColor = fn.getRoleColor(data.message.member);
-            data.canWrite = true;
-
-            // ------------------
-            // Start translation
-            // ------------------
-            const col = "react";
-            let id = "bot";
-            db.increaseStatsCount(col, id);
-
-            if (message.channel.type === "text")
-            {
-
-               id = data.message.guild.id;
-
-            }
-
-            db.increaseStatsCount(col, id);
-            translate(data);
-
          }
-      );
+      ).catch((err) =>
+      {
+
+         console.log(
+            "error",
+            err,
+            "warning",
+            serverID
+         );
+
+      });
+
 
    }
 

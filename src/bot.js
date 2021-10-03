@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 // -----------------
 // Global variables
 // -----------------
@@ -16,8 +17,14 @@ require("dotenv").config({
    "path": env
 });
 const discord = require("discord.js");
+
 const client = new discord.Client({
-   "restRequestTimeout": time.mid
+   "restRequestTimeout": time.mid,
+   "shards": "auto",
+   "messageEditHistoryMaxSize": 0,
+   "messageCacheLifetime": 30,
+   "messageSweepInterval": 90,
+   "messageCacheMaxSize": 0
 });
 const auth = require("./core/auth");
 
@@ -31,7 +38,6 @@ exports.client = client;
 // ---------------
 // Initialize Bot
 // ---------------
-
 
 // eslint-disable-next-line func-style
 function login (token)

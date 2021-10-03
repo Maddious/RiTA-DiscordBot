@@ -39,7 +39,8 @@ function embed (data)
             }
             const output =
             "**```Embedded Translation```**\n" +
-            `Embedded Message translation is now turned : ${commandVariable1}\n\n`;
+            `Embedded Message translation is now turned : \`${commandVariable1}\`\n\n` +
+            `\n`;
             data.color = "info";
             data.text = output;
 
@@ -90,7 +91,7 @@ module.exports = function run (data)
             data.color = "warn";
 
          }
-         data.text = ":cop:  This command is reserved for server adminis.";
+         data.text = ":cop:  This command is reserved for server admins.";
 
          // -------------
          // Send message

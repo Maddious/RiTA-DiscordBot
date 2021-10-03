@@ -99,7 +99,7 @@ module.exports = function run (data)
    Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
 
-      if (data.cmd.for[0] !== "me" && !data.message.isManager)
+      if (data.cmd.for[0] !== "yes" && !data.message.isManager)
       {
 
          data.color = "error";
@@ -228,18 +228,29 @@ module.exports = function run (data)
          if (dest.startsWith("<@"))
          {
 
-            console.log("DEBUG: Line 193 - Translate.Auto.js");
+            /*
+            return data.message.channel.send({"embed": {
+               "author": {
+                  "icon_url": data.message.client.user.displayAvatarURL(),
+                  "name": data.message.client.user.username
+               },
+               "color": 13107200,
+               "description": `:no_entry_sign: This command has been disabled Pending a fix \n
+              We apologise for any inconvenience this may cause.`
+
+            }});
+
             // ---------------
             // Old Code Below
             // ---------------
 
-
+            */
             const userID = dest.slice(3, -1);
 
             fn.getUser(data.message.client, userID, (user) =>
             {
 
-               console.log("DEBUG: Line 204 - Translate.Auto.js");
+               // console.log("DEBUG: Line 204 - Translate.Auto.js");
                if (user && !user.bot && user.createDM)
                {
 
@@ -315,6 +326,23 @@ module.exports = function run (data)
          // Invalid dests
 
          if (
+            dest === "invalid"
+         )
+         {
+
+            data.color = "error";
+            data.text =
+            ":warning:  Invalid auto translation request," +
+            " Missing destination parameter";
+
+            // -------------
+            // Send message
+            // -------------
+
+            return sendMessage(data);
+
+         }
+         else if (
             dest.startsWith("@") ||
             !dest.startsWith("<") && dest !== "me"
          )

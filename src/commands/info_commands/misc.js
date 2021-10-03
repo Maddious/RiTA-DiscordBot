@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 // -----------------
 // Global variables
 // -----------------
@@ -6,8 +7,7 @@
 /* eslint-disable no-irregular-whitespace*/
 /* eslint-disable no-magic-numbers */
 const auth = require("../../core/auth");
-const fn = require("../../core/helpers");
-const logger = require("../../core/logger");
+const db = require("../../core/db");
 const process = require("process");
 const {stripIndent} = require("common-tags");
 const {oneLine} = require("common-tags");
@@ -50,121 +50,22 @@ module.exports.shards = function shards (data)
    // Get shard info
    // ---------------
 
-   const {shard} = data.message.client;
+   data.color = "info";
 
-   if (!shard)
-   {
-
-      // ---------------
-      // Render message
-      // ---------------
-
-      data.title = "Shards Info";
-
-      data.footer = {
-         "text": "Single Process - No Sharding Manager"
-      };
-
-      data.color = "info";
-
-      data.text = `​\n${oneLine`
+   data.text = `​\n${oneLine`
          :bar_chart:  ​
-         **${data.message.client.guilds.cache.size}**  guilds  ·  ​
-         **${data.message.client.channels.cache.size}**  channels  ·  ​
-         **${data.message.client.users.cache.size}**  users
+         **\`${data.message.client.options.shardCount}\`**  shards  ·  ​
+         **\`${data.message.client.guilds.cache.size}\`**  guilds  ·  ​
+         **\`${data.message.client.channels.cache.size}\`**  channels  ·  ​
+         **\`${db.server_obj.size}\`**  users
       `}\n​`;
-
-      // -------------
-      // Send message
-      // -------------
-
-      return sendMessage(data);
-
-   }
-
-   // --------------------------
-   // Get proccess/shard uptime
-   // --------------------------
-
-   function shardErr (err)
-   {
-
-      return logger(
-         "error",
-         err,
-         "shardFetch",
-         data.message.guild.name
-      );
-
-   }
-
-   shard.fetchClientValues("guilds.cache.size").then((guildsSize) =>
-   {
-
-      shard.fetchClientValues("channels.cache.size").then((channelsSize) =>
-      {
-
-         shard.fetchClientValues("users.cache.size").then((usersSize) =>
-         {
-
-            const output = [];
-
-            // eslint-disable-next-line no-plusplus
-            for (let i = 0; i < shard.count; i += 1)
-            {
-
-               output.push({
-                  "inline": true,
-                  "name": `:pager: - Shard #${i}`,
-                  "value": stripIndent`
-                     ​
-                     **\`${guildsSize[i]}\`** guilds
-
-                     **\`${channelsSize[i]}\`** channels
-
-                     **\`${usersSize[i]}\`** users
-                     ​
-                  `
-               });
-
-            }
-
-            // ---------------
-            // Render message
-            // ---------------
-
-            data.title = "Shards Info";
-
-            data.text = `​\n${oneLine`
-               :bar_chart:   Total:  ​
-               **${shard.count}**  shards  ·  ​
-               **${fn.arraySum(guildsSize)}**  guilds  ·  ​
-               **${fn.arraySum(channelsSize)}**  channels  ·  ​
-               **${fn.arraySum(usersSize)}**  users
-            `}\n​`;
-
-            data.color = "info";
-
-            data.fields = output;
-
-            // -------------
-            // Catch errors
-            // -------------
-
-         }).
-            catch(shardErr);
-
-      }).
-         catch(shardErr);
-
-   }).
-      catch(shardErr);
 
    // -------------
    // Send message
    // -------------
 
    return sendMessage(data);
+
 
 };
 
@@ -182,23 +83,6 @@ module.exports.proc = function proc (data)
    const title = `**\`${process.title}\`** `;
    const pid = `**\`#${process.pid}\`** `;
    const platform = `**\`${process.platform}\`** `;
-
-   // ---------------
-   // Get shard info
-   // ---------------
-
-   let {shard} = data.message.client;
-
-   if (!shard)
-   {
-
-      shard = {
-         "count": 1,
-         "id": 0
-
-      };
-
-   }
 
    // -----------------------
    // Byte formatter (mb/gb)
@@ -253,20 +137,29 @@ module.exports.proc = function proc (data)
 
    }
 
+   // ---------
+   // Get ping
+   // ---------
+   // eslint-disable-next-line prefer-template
+   const botPing = Date.now() - data.message.createdTimestamp;
+   // const yourPing = new Date().getTime() - data.message.createdTimestamp;
+
    // ---------------
    // Render message
    // ---------------
 
    data.text = stripIndent`
-      :robot:  Process:  ${title + pid + platform}
+   :robot:  Process:  ${title + pid + platform}
 
-      :control_knobs:  RAM:  ${memoryFormat}
+   :control_knobs:  RAM:  ${memoryFormat}
 
-      :stopwatch:  Proc Uptime:  ${uptimeFormat(procUptime)}
+   :ping_pong:  Rita's Latency: **\`${botPing}\`** ms
 
-      :stopwatch:  Shard Uptime:  ${uptimeFormat(shardUptime)}
+   :stopwatch:  Proc Uptime:  ${uptimeFormat(procUptime)}
 
-      :pager:  Current Shard:  **\`${shard.id + 1} / ${shard.count}\`**
+   :stopwatch:  Shard Uptime:  ${uptimeFormat(shardUptime)}
+
+   :pager:  Current Shard:  **\`${data.message.guild.shardID + 1} / ${data.message.client.options.shardCount}\`**
    `;
 
    // -------------

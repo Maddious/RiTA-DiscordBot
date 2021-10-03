@@ -42,6 +42,9 @@ function helpMessage (config, param)
    const long = config.translateCmd;
 
    const info =
+   `**For a full command list and usage examples,**\n` +
+   `**please review our [documentation](<https://docs.ritabot.gg/rita-docs>)**\n\n` +
+
    "```md\n" +
    `# For a full list of commands, enter the following:\n` +
    `* ${cmd} help commands\n` +
@@ -117,17 +120,20 @@ function helpMessage (config, param)
    `* ${cmd} help last\n` +
    `* ${cmd} help this\n\n` +
    "```" +
+
    "```md\n" +
    `# Translation Style Modules\n` +
    `* ${cmd} help embed\n` +
    `* ${cmd} help bot2bot\n\n` +
    "```" +
+
    "```md\n" +
    `# Information Modules\n` +
    `* ${cmd} help stats\n` +
    `* ${cmd} help tasks\n` +
    `* ${cmd} help settings (Dev Only)\n\n` +
    "```" +
+
    "```md\n" +
    `# Other Modules\n` +
    `* ${cmd} help misc\n` +
@@ -173,6 +179,7 @@ function helpMessage (config, param)
    const commands =
    `__**All Available Commands**__\n\n` +
    `This is a list of all available commands\n` +
+
    "```md\n" +
    `# Translation Commands\n` +
    `* ${cmd} this from [lang] to [lang]: [msg]\n` +
@@ -181,6 +188,7 @@ function helpMessage (config, param)
    `* ${cmd} auto to [lang] for [me/@/#]\n` +
    `* ${cmd} stop for [me/@/#]\n\n` +
    "```" +
+
    "```md\n" +
    `# Information Commands\n` +
    `* ${cmd} tasks\n` +
@@ -191,25 +199,30 @@ function helpMessage (config, param)
    `* ${cmd} id\n` +
    `* ${cmd} list\n` +
    "```" +
+
    "```md\n" +
    `# Style Commands\n` +
    `* ${cmd} embed [on/off]\n` +
    `* ${cmd} bot2bot [on/off]\n` +
+   `* ${cmd} react [on/off]\n` +
    `* ${cmd} prefix [prefix]\n\n` +
    "```" +
+
    "```md\n" +
    `# Misc Commands\n` +
    `* ${cmd} invite\n` +
    `* ${cmd} help modules\n` +
-   `* ${cmd} perm [user/bot]\n` +
+   `* ${cmd} checkperms [user/bot]\n` +
    `* ${cmd} create [channelName]\n` +
    `* ${cmd} history \n\n` +
    "```" +
+
    "```md\n" +
    `# Debug Commands\n` +
    `* ${cmd} debug [on/off]\n` +
    `* ${cmd} stats debug (Admin Only)\n\n` +
    "```" +
+
    "```md\n" +
    `# Want to Support RITA\n` +
    `* ${cmd} donate [oc/github]\n\n` +
@@ -228,12 +241,14 @@ function helpMessage (config, param)
    `* ${cmd} this: [msg] \n` +
    `* ${cmd} this from [lang] to [lang]: [msg] \n\n` +
    "```" +
+
    "```md\n" +
    `# Parameters\n` +
    `* to [lang] - defaults to server default language\n` +
    `* to [lang, lang, ...] - translates to multiple languages\n` +
    `* from [lang] - defaults to automatic detection\n\n` +
    "```" +
+
    "```md\n" +
    `# Examples\n` +
    `* ${cmd} this: bonjour \n` +
@@ -247,11 +262,26 @@ function helpMessage (config, param)
    // --------------------
 
    const react =
+
    `__**Translate by reaction**__\n\n` +
+   `Add a message reaction with the flag of the language you wish to translate to.\n\n` +
+   `Please note that only official country flags are registered.\n` +
 
    "```md\n" +
-   `# Add a message reaction with the flag of the language you wish to translate to\n\n` +
-   ` Please note that only official country flags are registered\n` +
+   `# Command\n` +
+   `* ${cmd} react [on/off] \n\n` +
+   "```" +
+
+   "```md\n" +
+   `# Parameters\n` +
+   `* on - Turns on Translations by Flag Reactions\n` +
+   `* off - Turns off Translations by Flag Reactions\n\n` +
+   "```" +
+
+   "```md\n" +
+   `# Examples\n` +
+   `* ${cmd} react on \n` +
+   `* ${cmd} react off \n\n` +
    "```\n";
    // --------------------
    // Last Message (last)
@@ -265,11 +295,13 @@ function helpMessage (config, param)
    "```md\n" +
    `# Due to a technical fault, this command is disabled until further notice. Sorry for any inconvenience this may cause.` +
    "```\n" +
+
    "```md\n" +
    `# Command\n` +
    `* ${cmd} last \n` +
    `* ${cmd} last [n] from [lang] to [lang] \n\n` +
    "```" +
+
    "```md\n" +
    `# Parameters\n` +
    `* to [lang] - defaults to server default language\n` +
@@ -278,6 +310,7 @@ function helpMessage (config, param)
    `* [n] - number of chains to translate, default is 1\n` +
    `* [-n] - negative number means only one chain is translated\n\n` +
    "```" +
+
    "```md\n" +
    `# Examples\n` +
    `* ${cmd} last 2 \n` +
@@ -294,7 +327,7 @@ function helpMessage (config, param)
    `__**Auto Translate Channels/Users**__\n\n` +
    `Automatically translates any new messages in channel and forwards them ` +
    `to you. Admins/mods can set forwarding to other channels or users in ` +
-   `server. Messages in forwarded channels will also be sent back to origin.` +
+   `server. Messages in forwarded channels can also be sent back to origin.` +
 
    "```md\n" +
    `# Command\n` +
@@ -302,15 +335,17 @@ function helpMessage (config, param)
    `* ${cmd} channel from [lang] to [lang] for [me/@/#] \n` +
    `* ${cmd} stop for [me/@/#] \n\n` +
    "```" +
+
    "```md\n" +
    `# Parameters\n` +
    `* to [lang] - defaults to server default language\n` +
-   `* from [lang] -  language to translate from, now includes 'auto'\n` +
-   `* for [me/@/#] - defaults to "me", admins can use mentions \n\n` +
+   `* from [lang] - language to translate from, includes 'auto'\n` +
+   `* for [me/@/#] - admins can set for other users \n\n` +
    "```" +
+
    "```md\n" +
    `# Examples\n` +
-   `* ${cmd} channel from english to chinese \n` +
+   `* ${cmd} channel from english to chinese for me\n` +
    `* ${cmd} channel from en to de for #englishChannel \n` +
    `* ${cmd} channel from de to fr for @steve \n` +
    `* ${cmd} channel from en to es for #ch1, #ch2, #usr1 \n` +
@@ -328,6 +363,7 @@ function helpMessage (config, param)
    `# Displays translation tasks of the current channel\n` +
    `* ${cmd} tasks\n\n` +
    "```" +
+
    "```md\n" +
    `# Displays translation tasks of specified channel\n` +
    `* COMING IN FUTURE UPDATE \n` +
@@ -348,10 +384,12 @@ function helpMessage (config, param)
    `* ${cmd} stop \n` +
    `* ${cmd} stop for [me/@/#/all] \n\n` +
    "```" +
+
    "```md\n" +
    `# Parameters\n` +
    `* for [me/@/#/all] - defaults to "me" \n\n` +
    "```" +
+
    "```md\n" +
    `# Examples\n` +
    `* ${cmd} stop \n` +
@@ -373,30 +411,37 @@ function helpMessage (config, param)
    `* ${cmd} help\n` +
    `* ${cmd} help [command]\n\n` +
    "```" +
+
    "```md\n" +
    `# Links\n` +
    `* ${cmd} invite\n\n` +
    "```" +
+
    "```md\n" +
    `# Supported Languages\n` +
    `* ${cmd} list\n\n` +
    "```" +
+
    "```md\n" +
    `# Permission Check\n` +
-   `* ${cmd} perm [user/bot]\n\n` +
+   `* ${cmd} checkperms [user/bot]\n\n` +
    "```" +
+
    "```md\n" +
    `# Donate\n` +
    `* ${cmd} donate [oc/github]\n\n` +
    "```" +
+
    "```md\n" +
    `# Prefix\n` +
    `* ${cmd} prefix\n\n` +
    "```" +
+
    "```md\n" +
    `# ID Info\n` +
    `* ${cmd} id\n\n` +
    "```" +
+
    "```md\n" +
    `# Other Commands\n` +
    `* ${cmd} announce [on/off]\n` +
@@ -414,6 +459,7 @@ function helpMessage (config, param)
    `# Set default server language\n` +
    `* ${cmd} settings setLang to [lang]\n\n` +
    "```" +
+
    "```md\n" +
    `# Style settings\n` +
    `* ${cmd} embed [on/off]\n\n` +
@@ -426,6 +472,7 @@ function helpMessage (config, param)
    `* ${cmd} embed on \n` +
    `* ${cmd} embed off \n` +
    "```" +
+
    "```md\n" +
    `# Help menu auto deletion\n` +
    `* ${cmd} settings persist [on/off]\n` +
@@ -447,11 +494,13 @@ function helpMessage (config, param)
    `* ${cmd} stats global \n` +
    `* ${cmd} stats server \n\n` +
    "```" +
+
    "```md\n" +
    `* Admin Only - Do not use in public channels\n` +
    `* ${cmd} stats server [ServerID]\n` +
    `* ${cmd} stats debug \n\n` +
    "```" +
+
    "```md\n" +
    `# Parameters\n` +
    `* [ServerID] - Raw Server ID\n\n` +
@@ -468,11 +517,13 @@ function helpMessage (config, param)
    `# Command\n` +
    `* ${cmd} embed [on/off]\n\n` +
    "```" +
+
    "```md\n" +
    `# Parameters\n` +
    `* on - Turns on Embed Translation\n` +
    `* off - Turns on Webhook Translation Sending\n\n` +
    "```" +
+
    "```md\n" +
    `# Examples\n` +
    `* ${cmd} embed on \n` +
@@ -491,11 +542,13 @@ function helpMessage (config, param)
    `# Command\n` +
    `* ${cmd} bot2bot [on/off]\n\n` +
    "```" +
+
    "```md\n" +
    `# Parameters\n` +
    `* on - Turns on Bot2Bot Translations\n` +
    `* off - Turns off Bot2Bot Translations\n\n` +
    "```" +
+
    "```md\n" +
    `# Examples\n` +
    `* ${cmd} bot2bot on \n` +
@@ -513,11 +566,13 @@ function helpMessage (config, param)
    `# Command\n` +
    `* ${cmd} debug [on/off]\n\n` +
    "```" +
+
    "```md\n" +
    `# Parameters\n` +
    `* on - Turns debug webhook on\n` +
    `* off - Turns debug webhook off\n\n` +
    "```" +
+
    "```md\n" +
    `# Examples\n` +
    `* ${cmd} debug on \n` +
@@ -536,11 +591,13 @@ function helpMessage (config, param)
    `* ${cmd} prefix [prefix]\n` +
    `* ${long} prefix [prefix]\n\n` +
    "```" +
+
    "```md\n" +
    `# Parameters\n` +
    `* [prefix] - Changes the prefix of your bot commands\n` +
    `* reset - Reset your prefix back to default\n\n` +
    "```" +
+
    "```md\n" +
    `# Examples\n` +
    `* ${cmd} prefix $tr - your prefix would now be $tr \n` +
@@ -582,17 +639,19 @@ function helpMessage (config, param)
    `* ${cmd} create [channelName]\n` +
    `* ${long} create [channelName]\n\n` +
    "```" +
+
    "```md\n" +
    `# Parameters\n` +
    `* [channelName] - sets name of new channel\n\n` +
    "```" +
+
    "```md\n" +
    `# Examples\n` +
    `* ${cmd} create bob - your new channel would now be bob \n` +
    `* ${long} create bob - your new channel would now be bob \n` +
    "```\n";
    // ---------------
-   // Create Command
+   // Dev Commands
    // ---------------
 
    const dev =
@@ -612,10 +671,12 @@ function helpMessage (config, param)
    `* ${cmd} settings listservers\n` +
    `* ${cmd} invite server [ServerID]\n\n` +
    "```" +
+
    "```md\n" +
    `# Parameters\n` +
    `* [ServerID] - Raw Server ID\n\n` +
    "```" +
+
    "```md\n" +
    `# Examples\n` +
    `* ${cmd} eject [ServerID] - Eject Rita from [ServerID]\n` +
