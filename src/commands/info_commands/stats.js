@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable require-atomic-updates */
 // -----------------
 // Global variables
 // -----------------
@@ -11,7 +9,6 @@ const db = require("../../core/db");
 const auth = require("../../core/auth");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
-const fn = require("../../core/helpers");
 
 // -------------
 // Command Code
@@ -37,42 +34,8 @@ module.exports = function run (data)
    // Get Stats from Database
    // ------------------------
 
-   let {shard} = data.message.client;
-
-   if (!shard)
-   {
-
-      shard = {
-         "count": 1,
-         "id": 0,
-         "size": db.server_obj.size,
-         "totalGuilds": data.message.client.guilds.cache.size
-
-      };
-
-   }
-   else if (shard.count >= 2)
-   {
-
-      shard.totalGuilds = shard.fetchClientValues("guilds.cache.size").then((total) =>
-      {
-
-         shard.totalGuilds = fn.arraySum(total);
-         console.log(`Total Count = ${shard.totalGuilds}`);
-
-      });
-      shard.size = shard.broadcastEval("this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)").then((total) =>
-      {
-
-         shard.size = fn.arraySum(total);
-         console.log(`Total Count = ${shard.size}`);
-
-      });
-
-   }
-
    // eslint-disable-next-line complexity
-   db.getStats(async function getStats (stats)
+   db.getStats(function getStats (stats)
    {
 
       // Get global server information
@@ -83,7 +46,7 @@ module.exports = function run (data)
       const globalStats =
          `**\`\`\`@${data.message.client.user.username} - Global Stats\`\`\`**\n` +
          `:earth_africa:  Default bot language:  **\`${botLang.name} (${botLang.native})\`**\n\n` +
-         `:bar_chart:  Translated **\`${stats[0].totalCount}\`** messages across  **\`${shard.totalGuilds}\`**  servers for  **\`${shard.size}\`**  users\n\n` +
+         `:bar_chart:  Translated **\`${stats[0].totalCount}\`** messages across  **\`${data.message.client.guilds.cache.size}\`**  servers for  **\`${db.server_obj.size}\`**  users\n\n` +
          `:regional_indicator_v:  Version:  ${version}\n\n` +
          `:repeat:  Automatic translation:  **\`${activeTasks}\`**  channels and **\`${stats[0].activeUserTasks}\`**  users\n`;
 
@@ -222,34 +185,14 @@ module.exports = function run (data)
          }
          // eslint-disable-next-line no-unused-vars
          const serverID = data.cmd.params.split(" ")[1].toLowerCase();
-
-         let target = null;
-
-         if (shard.count < 2)
-         {
-
-            shard.target = data.message.client.guilds.cache.get(serverID);
-
-         }
-         else if (shard.count >= 2)
-         {
-
-            target = await shard.broadcastEval(`this.guilds.cache.get("${serverID}")`).then((total) =>
-            {
-
-               const temp = total.filter(Boolean);
-               shard.target = temp[0];
-
-            });
-
-         }
+         const target = data.message.client.guilds.cache.get(serverID);
 
          db.getServerInfo(
             serverID,
             function getServerInfo (server)
             {
 
-               if (!shard.target)
+               if (!target)
                {
 
                   const targetServer = `**\`\`\`${serverID} - Server Tranlation Stats\`\`\`**\n` +
@@ -270,15 +213,15 @@ module.exports = function run (data)
                   return sendMessage(data);
 
                }
-               if (shard.target.owner)
+               if (target.owner)
                {
 
-                  const targetServer = `**\`\`\`${shard.target.name} - Server Tranlation Stats\`\`\`**\n` +
-                  `Server Owner: ${shard.target.owner}\n\n` +
+                  const targetServer = `**\`\`\`${target.name} - Server Tranlation Stats\`\`\`**\n` +
+                  `Server Owner: ${target.owner}\n\n` +
                   `Server Joined Rita Network: \`\`\`${server[0].createdAt}\`\`\`\n` +
                   `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
                   `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
-                  `:person_facepalming: Users in Server: **\`${shard.target.memberCount}\`**\n\n` +
+                  `:person_facepalming: Users in Server: **\`${target.memberCount}\`**\n\n` +
                   `:frame_photo:  A total of **\`${server[0].images}\`**  images have been sent and **\`${server[0].gif}\`** Gif's have been shared\n\n` +
                   `:flag_white:  **\`${server[0].react}\`**  messages have been translated with flag reactions \n\n` +
                   `:notebook:  **\`${server[0].embedon}\`**  messages have been sent in **\`Embed On\`** format\n\n` +
@@ -287,15 +230,15 @@ module.exports = function run (data)
                   data.text = `${targetServer}\n\n`;
 
                }
-               else if (!shard.target.owner)
+               else if (!target.owner)
                {
 
-                  const targetServer = `**\`\`\`${shard.target.name} - Server Tranlation Stats\`\`\`**\n` +
+                  const targetServer = `**\`\`\`${target.name} - Server Tranlation Stats\`\`\`**\n` +
                   `Server Owner: Unable to get this information.\n\n` +
                   `Server Joined Rita Network: \`\`\`${server[0].createdAt}\`\`\`\n` +
                   `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
                   `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
-                  `:person_facepalming: Users in Server: **\`${shard.target.memberCount}\`**\n\n` +
+                  `:person_facepalming: Users in Server: **\`${target.memberCount}\`**\n\n` +
                   `:frame_photo:  A total of **\`${server[0].images}\`**  images have been sent and **\`${server[0].gif}\`** Gif's have been shared\n\n` +
                   `:flag_white:  **\`${server[0].react}\`**  messages have been translated with flag reactions \n\n` +
                   `:notebook:  **\`${server[0].embedon}\`**  messages have been sent in **\`Embed On\`** format\n\n` +

@@ -9,4 +9,3 @@ serverlist.txt
 .env
 package-lock.json.old
 src/files/serverlist.txt
-.vscode/launch.json

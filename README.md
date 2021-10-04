@@ -151,6 +151,7 @@
 
 #### Alternative Database Settings
 Any Database that runs with [SQL Sequelize](https://sequelize.org/master/) can be used. If you want to use an alternative DB Location other than in the default directory then you can manually set this. Example: The connection to a sqlite database with the name *`database.db`* stored at the same level of this README file would be *`./database.db`*.
+
 Within the **.env** file from the above step, set the **DATABASE_URL** to be the path to the database file, if there is no DB file in the selected path then RITA will create the DB file upon startup.
 * Example -  `DATABASE_URL` = `C:\Admin\Rita_Development\test.db`
 

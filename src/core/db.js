@@ -195,7 +195,6 @@ const Servers = db.define(
          "type": Sequelize.INTEGER,
          "defaultValue": 0
       }
-
    }
 );
 
