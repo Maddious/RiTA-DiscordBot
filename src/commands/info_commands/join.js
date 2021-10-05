@@ -103,7 +103,7 @@ module.exports = function run (guild, config)
          },
          {
             "name": ":lock: Permissions",
-            "value": `Rita has many functions, These all need different permissions to work. To check that RITA has ll the permissions she needs to functions correctly please use the **!tr checkperms bot** command.`
+            "value": `Rita has many functions, These all need different permissions to work. To check that RITA has all the permissions she needs to functions correctly please use the **!tr checkperms bot** command.`
          },
          {
             "name": ":moneybag: On a side note.",
