@@ -211,6 +211,8 @@ module.exports.ident = function ident (data)
 module.exports.update = function update (data)
 {
 
+   const cmd = data.config.translateCmdShort;
+
    // --------------------
    // Update Instructions
    // --------------------
@@ -221,7 +223,8 @@ module.exports.update = function update (data)
    data.text = `*How to Update your bot:* \n\n` +
    `*Heroku Users* \n\n` +
    `**Step 1:** Retrieve your github.com account username \n\n` +
-   `**Step 2:** Copy it and replace YOUR_GITHUB_USERNAME_HERE in the URL below: \n\n` +
+   `**Step 2:** Copy it and replace YOUR_GITHUB_USERNAME_HERE in the URL below: \n` +
+   `**NOTE:** You can now run the command \`${cmd} updatelink\` to get a pre generate link.\n\n` +
    "```" +
    `https://github.com/YOUR_GITHUB_USERNAME_HERE/RitaBot/compare/master...RitaBot-Project:master \n\n` +
    "```\n" +
