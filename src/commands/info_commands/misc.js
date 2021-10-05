@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 // -----------------
 // Global variables
 // -----------------
@@ -6,6 +5,9 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-irregular-whitespace*/
 /* eslint-disable no-magic-numbers */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
+/* eslint-disable consistent-return */
 const auth = require("../../core/auth");
 const db = require("../../core/db");
 const process = require("process");
@@ -140,6 +142,7 @@ module.exports.proc = function proc (data)
    // ---------
    // Get ping
    // ---------
+
    // eslint-disable-next-line prefer-template
    const botPing = Date.now() - data.message.createdTimestamp;
    // const yourPing = new Date().getTime() - data.message.createdTimestamp;
@@ -201,12 +204,16 @@ module.exports.ident = function ident (data)
 
 };
 
+// --------------
+// Github Update
+// --------------
+
 module.exports.update = function update (data)
 {
 
-   // ------------------
-   // Gather ID Details
-   // ------------------
+   // --------------------
+   // Update Instructions
+   // --------------------
 
    // console.log("DEBUG: ID Message");
 
@@ -231,5 +238,81 @@ module.exports.update = function update (data)
       err
    ));
    return botSend(data);
+
+};
+
+// -------------------
+// Github Update Link
+// -------------------
+
+module.exports.updatelink = async function updatelink (data)
+{
+
+   // -----------------
+   // Define Namespace
+   // -----------------
+
+   data.gitusername = null;
+
+   // Announcment started - Collect Title.
+   const filter = (m) => m.author.id === data.message.author.id;
+   data.message.delete({"timeout": time.short}).catch((err) => console.log(
+      "Command Message Deleted Error, github.js",
+      err
+   ));
+
+   // ---------------------------
+   // Request USername from User
+   // ---------------------------
+
+   await data.message.channel.send(`Please enter your github username.`).then(() =>
+   {
+
+      data.message.channel.awaitMessages(filter, {
+         "errors": ["time"],
+         "max": 1,
+         "time": time.long
+      }).
+         then((message) =>
+         {
+
+            data.gitusername = message.first();
+            clean(data, 2);
+            data.text = `Your github Update link is: https://github.com/${data.gitusername}/RitaBot/compare/master...RitaBot-Project:master`;
+            return sendMessage(data);
+
+         }).
+         catch((collected) =>
+         {
+
+            data.message.channel.send(`No Responce Provided Or Error: - Username`);
+            clean(data, 1);
+
+         });
+
+   });
+
+   // --------------------
+   // Clean up after send
+   // --------------------
+
+   function clean (data, value)
+   {
+
+      const messageManager = data.channel.messages;
+      messageManager.fetch({"limit": value}).then((messages) =>
+      {
+
+         // `messages` is a Collection of Message objects
+         messages.forEach((message) =>
+         {
+
+            message.delete();
+
+         });
+
+      });
+
+   }
 
 };

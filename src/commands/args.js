@@ -388,6 +388,7 @@ module.exports = function run (data)
             "unmute": cmdMod.unmute,
             "unwarn": cmdEject.unwarn,
             "update": cmdMisc.update,
+            "updatelink": cmdMisc.updatelink,
             "version": cmdVersion,
             "warn": cmdEject.warn
          };
