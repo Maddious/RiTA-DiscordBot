@@ -360,6 +360,7 @@ module.exports = function run (data)
             "checkperms": cmdPerms,
             "create": cmdCreate,
             "debug": cmdDebug,
+            "delmsg": cmdMod.deleteid,
             "docs": cmdDocs,
             "donate": cmdDonate,
             "eject": cmdEject.eject,

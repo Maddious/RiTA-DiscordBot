@@ -5,6 +5,7 @@
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const sendMessage = require("../../core/command.send");
+const auth = require("../../core/auth");
 
 // ----
 // Ban
@@ -155,6 +156,33 @@ module.exports.unmute = function unmute (data)
    // -------------
 
    return sendMessage(data);
+
+};
+
+// -------------
+// Delete by ID
+// -------------
+
+module.exports.deleteid = function deleteid (data)
+{
+
+   // -------------
+   // Command Code
+   // -------------
+
+   // console.log("DEBUG: Unmute");
+
+   const msgID = data.cmd.num;
+   data.message.delete().catch((err) => console.log(
+      "Command Message Deleted By ID Error 1, Mod.js = ",
+      err
+   ));
+   if (auth.devID.includes(data.message.author.id))
+   {
+
+      return data.message.guild.channels.cache.get(data.message.channel.id).messages.fetch(msgID).then((message) => message.delete());
+
+   }
 
 };
 
