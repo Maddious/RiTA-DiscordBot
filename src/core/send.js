@@ -130,7 +130,7 @@ function checkPerms (data, sendBox)
             // console.log("DEBUG: Error 50013 - Destination");
 
             const col = "errorcount";
-            const id = data.message.sourceID;
+            const id = data.message.guild.id || data.message.sourceID;
             db.increaseServersCount(col, id);
 
             logger("custom", {
@@ -389,7 +389,7 @@ function embedOn (data)
                {
 
                   const col = "errorcount";
-                  const id = data.message.sourceID;
+                  const id = data.message.guild.id || data.message.sourceID;
                   db.increaseServersCount(col, id);
 
                   // console.log("DEBUG: Error 50013 - Origin");
