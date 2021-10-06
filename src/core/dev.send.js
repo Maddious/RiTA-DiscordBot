@@ -35,11 +35,12 @@ function sendMessage (data)
                {
                   "color": "ok",
                   "msg": `:exclamation: Write Permission Error - DS.js\n
-                  Server: **${data.channel.guild.name}** \n
-                  Channel: **${data.channel.name}**\n
-                  Chan ID: **${data.channel.id}**\n
-                  Server ID: **${data.message.sourceID}**\n
-                  Owner: **${data.message.guild.owner} - ${data.message.guild.owner.user.tag}**\n
+                  Server: **${data.channel.guild.name || "Unknown"}** \n
+                  Channel: **${data.channel.name || "Unknown"}**\n
+                  Chan ID: **${data.channel.id || "Unknown"}**\n
+                  Server ID: **${data.message.guild.id || data.message.sourceID || "Zycore Broke It Again"}**\n
+                  Owner: **${data.message.guild.owner || "Unknown"}**\n
+                  Dscord Tag: **${data.message.guild.owner.user.tag || "Unknown"}**\n
                   The server owner has been notified. \n`
                }
             );
