@@ -237,7 +237,7 @@ This project was originally released by Aziz under the MIT license. He chose to 
 
 #### :star2: Why Rita and what does it stand for?
 
-*I and a group of fellow C-3P0 users decided that collectively we could do better, plagued with crashes, API changes, relentless bugs and issues, the drive to make something better was born. Vast changes were made, many hours were spent and now the Rita you now was brought to life.*
+*I and a group of fellow C-3P0 users decided that collectively we could do better, plagued with crashes, API changes, relentless bugs and issues, the drive to make something better was born. Vast changes were made, many hours were spent and now the Rita you know was brought to life.*
 
 *Rita's history and various iterations each added something extra, it just needed to be brought together and molded, molded into something amazing, moulded into Rita. The Real-Time Interchangeable Translating Assistant.*
 
