@@ -76,6 +76,7 @@ function checkPerms (data, sendBox)
       const forwardChannel = data.message.client.channels.cache.get(data.forward);
 
       if (forwardChannel)
+      // if (forwardChannel || data.forward.includes("@"))
       {
 
          // ----------------------------------------------

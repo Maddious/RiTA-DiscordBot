@@ -159,6 +159,10 @@ const Servers = db.define(
          "type": Sequelize.BOOLEAN,
          "defaultValue": false
       },
+      "whitelisted": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": false
+      },
       "warn": {
          "type": Sequelize.BOOLEAN,
          "defaultValue": false
@@ -514,6 +518,7 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "webhooktoken", Sequelize.STRING(255));
    await this.addTableColumn("servers", serversDefinition, "webhookactive", Sequelize.BOOLEAN, false);
    await this.addTableColumn("servers", serversDefinition, "blacklisted", Sequelize.BOOLEAN, false);
+   await this.addTableColumn("servers", serversDefinition, "whitelisted", Sequelize.BOOLEAN, false);
    await this.addTableColumn("servers", serversDefinition, "warn", Sequelize.BOOLEAN, false);
    await this.addTableColumn("servers", serversDefinition, "invite", Sequelize.STRING(255), "Not yet Created");
    await this.addTableColumn("servers", serversDefinition, "announce", Sequelize.BOOLEAN, true);

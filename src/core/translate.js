@@ -621,7 +621,15 @@ module.exports = function run (data) // eslint-disable-line complexity
          if (detectedLang === langTo && res.text === data.message.content)
          {
 
-            return;
+            if (data.message.client.channels.cache.get(data.forward).guild.id === data.message.client.channels.cache.get(data.message.channel.id).guild.id)
+            {
+
+               // console.log("DEBUG: Cross Server Checker - Same Server, Same language");
+               return;
+
+            }
+
+            // console.log("DEBUG: Cross Server Checker - Diffrent Server, Same language");
 
          }
          else if (detectedLang !== channelFrom && channelFrom !== "auto")
