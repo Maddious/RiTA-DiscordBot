@@ -270,8 +270,6 @@ function helpMessage (config, param)
    "```md\n" +
    `# Command\n` +
    `* ${cmd} react [on/off] \n\n` +
-   `## Reaction Translation auto delete\n` +
-   `* ${cmd} settings flagpersist [on/off]\n` +
    "```" +
 
    "```md\n" +
@@ -458,53 +456,27 @@ function helpMessage (config, param)
    `__**Settings**__\n\n` +
 
    "```md\n" +
-   `# Current Server settings\n` +
-   `* ${cmd} settings\n\n` +
+   `# Set default server language\n` +
+   `* ${cmd} settings setLang to [lang]\n\n` +
    "```" +
 
    "```md\n" +
-   `# Set Custon Bot Prefix\n` +
-   `* ${cmd} prefix [prefix]\n` +
-   `* ${long} prefix [prefix]\n\n` +
-   "```" +
+   `# Style settings\n` +
+   `* ${cmd} embed [on/off]\n\n` +
 
+   `# Parameters\n` +
+   `* on - Turns on Embed Translation\n` +
+   `* off - Turns on Webhook Translation Sending\n\n` +
 
-   "```md\n" +
-   `# Developer Announcment Messages\n` +
-   `* ${cmd} announce [on/off]\n` +
-   "```" +
-
-   "```md\n" +
-   `# Embedded Message Style\n` +
-   `* ${cmd} embed [on/off]\n` +
-   `* ${cmd} help embed\n` +
+   `# Examples\n` +
+   `* ${cmd} embed on \n` +
+   `* ${cmd} embed off \n` +
    "```" +
 
    "```md\n" +
-   `# Bot to Bot Translation Status\n` +
-   `* Usually 90% of bots ignore other bot messages but this feature attemptes to translate them.\n` +
-   `* ${cmd} bot2bot [on/off]\n` +
-   `* ${cmd} help bot2bot\n` +
-   "```" +
-
-   "```md\n" +
-   `# Reaction Translations\n` +
-   `* ${cmd} react [on/off]\n` +
-   "```" +
-
-   "```md\n" +
-   `# Auto Deletion settings\n` +
-   `## Help Menu auto delete\n` +
-   `* ${cmd} settings persist [on/off]\n\n` +
-   `## Reaction Translation auto delete\n` +
-   `* ${cmd} settings flagpersist [on/off]\n` +
-   "```" +
-
-   "```md\n" +
-   `# Webhook Debug Active State\n` +
-   `* ${cmd} debug [on/off]\n\n` +
-   "```";
-
+   `# Help menu auto deletion\n` +
+   `* ${cmd} settings persist [on/off]\n` +
+   "```\n";
 
    // -------------------
    // Statistics Command
