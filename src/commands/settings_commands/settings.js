@@ -186,25 +186,26 @@ function getSettings (data)
    // Command Persistence
    // --------------------
 
-   const persistVariable = data.cmd.params.split(" ")[1].toLowerCase();
-   async function setPersistence (data)
+
+   async function setMenuPersistence (data)
    {
 
+      const menuPersistVariable = data.cmd.params.split(" ")[1].toLowerCase();
       let value = false;
-      if (persistVariable === "on" || persistVariable === "off")
+      if (menuPersistVariable === "on" || menuPersistVariable === "off")
       {
 
-         if (persistVariable === "on")
+         if (menuPersistVariable === "on")
          {
 
             value = true;
 
          }
 
-         // console.log(`DEBUG: embed variable ${persistVariable}`);
+         // console.log(`DEBUG: embed variable ${menuPersistVariable}`);
          await db.updateServerTable(
             data.message.channel.guild.id,
-            "persist",
+            "menupersist",
             value,
             function error (err)
             {
@@ -221,8 +222,8 @@ function getSettings (data)
 
                }
                const output =
-            "**```Updated Persist Settings```**\n" +
-            `Persist Command Messages = ${persistVariable}\n\n`;
+            "**```Updated Help Menu Persist Settings```**\n" +
+            `Persist Command Messages = ${menuPersistVariable}\n\n`;
                data.color = "info";
                data.text = output;
 
@@ -241,8 +242,8 @@ function getSettings (data)
 
          data.color = "error";
          data.text =
-      `:warning:  **\`${persistVariable
-      }\`** is not a valid persist option.\n`;
+      `:warning:  **\`${menuPersistVariable
+      }\`** is not a valid menupersist option.\n`;
 
          // -------------
          // Send message
@@ -258,10 +259,10 @@ function getSettings (data)
    // React Persistence
    // ------------------
 
-   const reactPersistVariable = data.cmd.params.split(" ")[1].toLowerCase();
    async function setReactPersistence (data)
    {
 
+      const reactPersistVariable = data.cmd.params.split(" ")[1].toLowerCase();
       let value = false;
       if (reactPersistVariable === "on" || reactPersistVariable === "off")
       {
@@ -314,7 +315,7 @@ function getSettings (data)
          data.color = "error";
          data.text =
       `:warning:  **\`${reactPersistVariable
-      }\`** is not a valid react persist option.\n`;
+      }\`** is not a valid reactpersist option.\n`;
 
          // -------------
          // Send message
@@ -330,10 +331,10 @@ function getSettings (data)
    // Flag Persistence
    // -----------------
 
-   const flagPersistVariable = data.cmd.params.split(" ")[1].toLowerCase();
    async function setFlagPersistence (data)
    {
 
+      const flagPersistVariable = data.cmd.params.split(" ")[1].toLowerCase();
       let value = false;
       if (flagPersistVariable === "on" || flagPersistVariable === "off")
       {
@@ -386,7 +387,7 @@ function getSettings (data)
          data.color = "error";
          data.text =
       `:warning:  **\`${flagPersistVariable
-      }\`** is not a valid flag persist option.\n`;
+      }\`** is not a valid flagpersist option.\n`;
 
          // -------------
          // Send message
@@ -446,14 +447,14 @@ function getSettings (data)
                db.updateServerTable(
                   target,
                   "owner",
-                  `${guild[1].owner.user.username}#${guild[1].owner.user.discriminator}`,
+                  `${guild[1].owner.user.tag}`,
                   function error (err)
                   {
 
                      if (err)
                      {
 
-                        return console.log(`DEBUG: Unable to save owner details to DB on Server Join`);
+                        return console.log(`DEBUG: Unable to save owner details to DB on Owner Command`);
 
                      }
 
@@ -507,8 +508,8 @@ function getSettings (data)
       // add,
       "flagpersist": setFlagPersistence,
       "listservers": listServers,
+      "menupersist": setMenuPersistence,
       "owner": ownerUpdate,
-      "persist": setPersistence,
       "reactpersist": setReactPersistence,
       "setlang": setLang,
       "updatedb": updateDB
@@ -554,7 +555,7 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   AreDev:if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   AreDev:if (!data.message.guild.owner.id === data.message.author.id)
    {
 
       if (auth.devID.includes(data.message.author.id))
@@ -590,8 +591,9 @@ module.exports = function run (data)
       `:inbox_tray: Embedded Message Style: **\`${data.cmd.server[0].embedstyle}\`**\n\n` +
       `:robot: Bot to Bot Translation Status: **\`${data.cmd.server[0].bot2botstyle}\`**\n\n` +
       `:flags: Translation by Flag Reactions: **\`${data.cmd.server[0].flag}\`**\n\n` +
-      `:pause_button: Help Menu Persistance: **\`${data.cmd.server[0].persist}\`**\n\n` +
-      `:pause_button: Flag translation Persistance: **\`${data.cmd.server[0].reactpersist}\`**\n\n` +
+      `:pause_button: Help Menu Persistance: **\`${data.cmd.server[0].menupersist}\`**\n\n` +
+      `:pause_button: Flag Translation Persistance: **\`${data.cmd.server[0].reactpersist}\`**\n\n` +
+      `:pause_button: Flag Emoji Persistance: **\`${data.cmd.server[0].flagpersist}\`**\n\n` +
       `:wrench: Webhook Debug Active State: **\`${data.cmd.server[0].webhookactive}\`**`;
 
       // -------------

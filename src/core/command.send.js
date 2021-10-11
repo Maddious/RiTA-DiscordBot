@@ -26,7 +26,7 @@ function sendMessage (data)
          function getServerInfo (server)
          {
 
-            if (server[0].persist === false || server[0].persist === 0)
+            if (server[0].menupersist === false || server[0].menupersist === 0)
             {
 
                try

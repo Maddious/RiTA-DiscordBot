@@ -70,13 +70,14 @@ function getCheck (data)
          `* Embedded Message Style: ${server[0].embedstyle}\n` +
          `* Bot to Bot Translation Status: ${server[0].bot2botstyle}\n` +
          `* Translation by Flag Reactions: ${server[0].flag}\n` +
-         `* Help Menu Persistance: ${server[0].persist}\n` +
-         `* Flag translation Persistance: ${server[0].reactpersist}\n` +
+         `* Help Menu Persistance: ${server[0].menupersist}\n` +
+         `* Flag Translation Persistance: ${server[0].reactpersist}\n` +
+         `* Flag Emoji Persistance: ${data.cmd.server[0].flagpersist}\n` +
          `* Webhook Debug Active State: ${server[0].webhookactive}\n\n` +
          "```" +
 
          "```md\n" +
-         `# Permissions Check:\n`;
+         `# RITA Permissions Check:\n`;
 
 
             if (perms.ADMINISTRATOR === true)

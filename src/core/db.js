@@ -175,7 +175,7 @@ const Servers = db.define(
          "type": Sequelize.BOOLEAN,
          "defaultValue": true
       },
-      "persist": {
+      "menupersist": {
          "type": Sequelize.BOOLEAN,
          "defaultValue": false
       },
@@ -497,6 +497,7 @@ exports.updatePrefix = function updatePrefix (id, prefix, _cb)
 exports.updateServerTable = function updateServerTable (id, columnName, value, _cb)
 {
 
+   console.log(`DEBUG: ID: ${id} - Name: ${columnName} - Value: ${value}`);
    return Servers.update(
       {[`${columnName}`]: value},
       {"where": {id}}
@@ -530,7 +531,7 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "warn", Sequelize.BOOLEAN, false);
    await this.addTableColumn("servers", serversDefinition, "invite", Sequelize.STRING(255), "Not yet Created");
    await this.addTableColumn("servers", serversDefinition, "announce", Sequelize.BOOLEAN, true);
-   await this.addTableColumn("servers", serversDefinition, "persist", Sequelize.BOOLEAN, false);
+   await this.addTableColumn("servers", serversDefinition, "menupersist", Sequelize.BOOLEAN, false);
    await this.addTableColumn("servers", serversDefinition, "owner", Sequelize.STRING(255), "Unknown");
    await this.addTableColumn("servers", serversDefinition, "errorcount", Sequelize.INTEGER, 0);
    await this.addTableColumn("servers", serversDefinition, "warncount", Sequelize.INTEGER, 0);
