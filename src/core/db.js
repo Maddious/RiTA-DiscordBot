@@ -719,8 +719,7 @@ exports.removeTask = function removeTask (origin, dest, cb)
 
       // console.log("DEBUG: removeTask() - all");
       return Tasks.destroy({"where": {[Op.or]: [
-         {origin},
-         {"dest": origin}
+         {origin}
       ]}}).then(function error (err, result)
       {
 
@@ -734,9 +733,7 @@ exports.removeTask = function removeTask (origin, dest, cb)
    }
    return Tasks.destroy({"where": {[Op.or]: [
       {origin,
-         dest},
-      {"origin": dest,
-         "dest": origin}
+         dest}
    ]}}).then(function error (err, result)
    {
 
