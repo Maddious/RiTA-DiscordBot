@@ -5,6 +5,7 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable no-param-reassign */
 /* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars */
 const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
 
@@ -134,14 +135,14 @@ function destID (dest, author)
    if (dest === "me")
    {
 
-      console.log(`Pre 4: ${dest}`);
+      // console.log(`Pre 4: ${dest}`);
       return `@${author}`;
 
    }
    if (!isNaN(dest))
    {
 
-      console.log(`Pre 5: ${dest}`);
+      // console.log(`Pre 5: ${dest}`);
       return `@${dest}`;
 
    }
@@ -237,6 +238,8 @@ module.exports = function run (data)
 
    const origin = data.message.channel.id;
    data.channel = data.message.channel;
+   const from = data.cmd.from.unique[0];
+   const to = data.cmd.to.unique[0];
    const dest = destID(
       data.cmd.for[0],
       data.message.author.id

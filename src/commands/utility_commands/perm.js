@@ -111,9 +111,9 @@ function getPerms (data)
 
    }
 
-   // ----------
-   // Bot Check
-   // ----------
+   // -----------
+   // chan Check
+   // -----------
 
    // console.log(`DEBUG: Pre Bot Check`);
    function chanCheck (data)

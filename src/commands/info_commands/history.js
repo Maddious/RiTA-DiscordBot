@@ -432,16 +432,16 @@ function getHistory (data)
 
 }
 
-// --------------------------
-// Proccess settings params
-// --------------------------
+// ------------------------
+// Proccess history params
+// ------------------------
 
 module.exports = function run (data)
 {
 
-   // -----------------------------------
-   // Error if settings param is missing
-   // -----------------------------------
+   // ----------------------------------
+   // Error if history param is missing
+   // ----------------------------------
 
    if (!data.cmd.params)
    {
