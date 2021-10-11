@@ -268,7 +268,7 @@ function helpMessage (config, param)
    `# Command\n` +
    `* ${cmd} react [on/off] \n\n` +
    `## Reaction Translation auto delete\n` +
-   `* ${cmd} settings flagpersist [on/off]\n` +
+   `* ${cmd} settings reactpersist [on/off]\n` +
    "```" +
 
    "```md\n" +
@@ -491,7 +491,7 @@ function helpMessage (config, param)
    `## Help Menu auto delete\n` +
    `* ${cmd} settings persist [on/off]\n\n` +
    `## Reaction Translation auto delete\n` +
-   `* ${cmd} settings flagpersist [on/off]\n` +
+   `* ${cmd} settings reactpersist [on/off]\n` +
    "```" +
 
    "```md\n" +
