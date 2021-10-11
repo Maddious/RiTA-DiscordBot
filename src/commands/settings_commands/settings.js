@@ -11,10 +11,6 @@ const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
 const fs = require("fs");
 const path = require("path");
-const time = {
-   "long": 10000,
-   "short": 5000
-};
 const auth = require("../../core/auth");
 
 // -------------------
@@ -148,11 +144,21 @@ function getSettings (data)
          // ------------------
          // Send message/file
          // ------------------
+         try
+         {
 
-         data.message.delete({"timeout": time.short}).catch((err) => console.log(
-            "Command Message Deleted Error, command.send.js = ",
-            err
-         ));
+            setTimeout(() => data.message.delete(), auth.time.short);
+
+         }
+         catch (err)
+         {
+
+            console.log(
+               "Command Message Deleted Error, settings.js = Line 157",
+               err
+            );
+
+         }
          fs.writeFileSync(
             path.resolve(
                __dirname,
@@ -180,32 +186,26 @@ function getSettings (data)
    // Command Persistence
    // --------------------
 
-   let commandVariable1 = data.cmd.params.toLowerCase();
-   // eslint-disable-next-line no-unused-vars
-   commandVariable1 = commandVariable1.slice(8);
-   const setPersistence = async function setPersistence (data)
+   const persistVariable = data.cmd.params.split(" ")[1].toLowerCase();
+   async function setPersistence (data)
    {
 
-      if (commandVariable1 === "on" || commandVariable1 === "off")
+      let value = false;
+      if (persistVariable === "on" || persistVariable === "off")
       {
 
-         if (commandVariable1 === "on")
+         if (persistVariable === "on")
          {
 
-            commandVariable1 = true;
+            value = true;
 
          }
-         else
-         {
 
-            commandVariable1 = false;
-
-         }
-         // console.log(`DEBUG: embed variable ${commandVariable1}`);
+         // console.log(`DEBUG: embed variable ${persistVariable}`);
          await db.updateServerTable(
             data.message.channel.guild.id,
             "persist",
-            commandVariable1,
+            value,
             function error (err)
             {
 
@@ -222,7 +222,7 @@ function getSettings (data)
                }
                const output =
             "**```Updated Persist Settings```**\n" +
-            `Persist Command Messages = ${commandVariable1}\n\n`;
+            `Persist Command Messages = ${persistVariable}\n\n`;
                data.color = "info";
                data.text = output;
 
@@ -236,12 +236,172 @@ function getSettings (data)
          );
 
       }
+      else
+      {
 
-   };
+         data.color = "error";
+         data.text =
+      `:warning:  **\`${persistVariable
+      }\`** is not a valid persist option.\n`;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+
+   }
+
+   // ------------------
+   // React Persistence
+   // ------------------
+
+   const reactPersistVariable = data.cmd.params.split(" ")[1].toLowerCase();
+   async function setReactPersistence (data)
+   {
+
+      let value = false;
+      if (reactPersistVariable === "on" || reactPersistVariable === "off")
+      {
+
+         if (reactPersistVariable === "on")
+         {
+
+            value = true;
+
+         }
+
+         // console.log(`DEBUG: embed variable ${reactPersistVariable}`);
+         await db.updateServerTable(
+            data.message.channel.guild.id,
+            "reactpersist",
+            value,
+            function error (err)
+            {
+
+               if (err)
+               {
+
+                  return logger(
+                     "error",
+                     err,
+                     "command",
+                     data.message.channel.guild.name
+                  );
+
+               }
+               const output =
+            "**```Updated Reaction Translation Persist Settings```**\n" +
+            `React Persist = ${reactPersistVariable}\n\n`;
+               data.color = "info";
+               data.text = output;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+         );
+
+      }
+      else
+      {
+
+         data.color = "error";
+         data.text =
+      `:warning:  **\`${reactPersistVariable
+      }\`** is not a valid react persist option.\n`;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+
+   }
+
+   // -----------------
+   // Flag Persistence
+   // -----------------
+
+   const flagPersistVariable = data.cmd.params.split(" ")[1].toLowerCase();
+   async function setFlagPersistence (data)
+   {
+
+      let value = false;
+      if (flagPersistVariable === "on" || flagPersistVariable === "off")
+      {
+
+         if (flagPersistVariable === "on")
+         {
+
+            value = true;
+
+         }
+
+         // console.log(`DEBUG: embed variable ${flagPersistVariable}`);
+         await db.updateServerTable(
+            data.message.channel.guild.id,
+            "flagpersist",
+            value,
+            function error (err)
+            {
+
+               if (err)
+               {
+
+                  return logger(
+                     "error",
+                     err,
+                     "command",
+                     data.message.channel.guild.name
+                  );
+
+               }
+               const output =
+            "**```Updated Flag Emoji Persist Settings```**\n" +
+            `Flag Persist = ${flagPersistVariable}\n\n`;
+               data.color = "info";
+               data.text = output;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+         );
+
+      }
+      else
+      {
+
+         data.color = "error";
+         data.text =
+      `:warning:  **\`${flagPersistVariable
+      }\`** is not a valid flag persist option.\n`;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+
+   }
 
    // -------
    // Owners
    // -------
+
    function ownerUpdate (data)
    {
 
@@ -317,7 +477,6 @@ function getSettings (data)
 
    }
 
-
    // ----------
    // Update db
    // ----------
@@ -346,9 +505,11 @@ function getSettings (data)
    const validSettings = {
       // "announce": announcement,
       // add,
+      "flagpersist": setFlagPersistence,
       "listservers": listServers,
       "owner": ownerUpdate,
       "persist": setPersistence,
+      "reactpersist": setReactPersistence,
       "setlang": setLang,
       "updatedb": updateDB
 
@@ -430,6 +591,7 @@ module.exports = function run (data)
       `:robot: Bot to Bot Translation Status: **\`${data.cmd.server[0].bot2botstyle}\`**\n\n` +
       `:flags: Translation by Flag Reactions: **\`${data.cmd.server[0].flag}\`**\n\n` +
       `:pause_button: Help Menu Persistance: **\`${data.cmd.server[0].persist}\`**\n\n` +
+      `:pause_button: Flag translation Persistance: **\`${data.cmd.server[0].reactpersist}\`**\n\n` +
       `:wrench: Webhook Debug Active State: **\`${data.cmd.server[0].webhookactive}\`**`;
 
       // -------------

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 // -----------------
 // Global variables
 // -----------------
@@ -6,6 +5,7 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
 /* eslint-disable no-bitwise */
+/* eslint-disable no-unused-vars */
 const discord = require("discord.js");
 const auth = require("./auth");
 const colors = require("./colors").get;

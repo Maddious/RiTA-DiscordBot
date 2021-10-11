@@ -1,9 +1,9 @@
-/* eslint-disable consistent-return */
 // -----------------
 // Global variables
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+/* eslint-disable consistent-return */
 const sendMessage = require("../../core/command.send");
 const auth = require("../../core/auth");
 

@@ -16,10 +16,6 @@ const {oneLine} = require("common-tags");
 const secConverter = require("rita-seconds-converter");
 const sendMessage = require("../../core/command.send");
 const botSend = require("../../core/send");
-const time = {
-   "long": 60000,
-   "short": 5000
-};
 
 // ------------
 // Invite Link
@@ -236,10 +232,21 @@ module.exports.update = function update (data)
    // Send message
    // -------------
 
-   data.message.delete({"timeout": time.short}).catch((err) => console.log(
-      "Command Message Deleted Error, misc.js = ",
-      err
-   ));
+   try
+   {
+
+      setTimeout(() => data.message.delete(), auth.time.short);
+
+   }
+   catch (err)
+   {
+
+      console.log(
+         "Command Message Deleted Error, misc.js = Line 249",
+         err
+      );
+
+   }
    return botSend(data);
 
 };
@@ -259,10 +266,21 @@ module.exports.updatelink = async function updatelink (data)
 
    // Announcment started - Collect Title.
    const filter = (m) => m.author.id === data.message.author.id;
-   data.message.delete({"timeout": time.short}).catch((err) => console.log(
-      "Command Message Deleted Error, github.js",
-      err
-   ));
+   try
+   {
+
+      setTimeout(() => data.message.delete(), auth.time.short);
+
+   }
+   catch (err)
+   {
+
+      console.log(
+         "Command Message Deleted Error, github.js = Line 283",
+         err
+      );
+
+   }
 
    // ---------------------------
    // Request USername from User
@@ -274,7 +292,7 @@ module.exports.updatelink = async function updatelink (data)
       data.message.channel.awaitMessages(filter, {
          "errors": ["time"],
          "max": 1,
-         "time": time.long
+         "time": auth.time.long
       }).
          then((message) =>
          {

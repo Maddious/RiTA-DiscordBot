@@ -8,6 +8,7 @@
 /* eslint-disable vars-on-top */
 /* eslint-disable function-call-argument-newline */
 /* eslint-disable consistent-return */
+/* eslint-disable no-use-before-define */
 const colors = require("./colors");
 const fn = require("./helpers");
 const db = require("./db");
@@ -15,6 +16,7 @@ const logger = require("./logger");
 const discord = require("discord.js");
 const webHookName = "RITA Messaging System";
 const error = require("./error");
+const auth = require("../core/auth");
 
 // -----------------
 // Permission Check
@@ -204,6 +206,49 @@ function checkPerms (data, sendBox)
 
 }
 
+// ----------------------
+// Flag Persist Function
+// ----------------------
+
+async function reactpersist (data, msg)
+{
+
+   await db.getServerInfo(
+      data.message.guild.id,
+      function getServerInfo (server)
+      {
+
+         if (server[0].reactpersist === false || server[0].reactpersist === 0)
+         {
+
+            try
+            {
+
+               setTimeout(() => msg.delete(), auth.time.long);
+
+            }
+            catch (err)
+            {
+
+               console.log(
+                  "Command Message Deleted Error, send.js = Line 234",
+                  err
+               );
+
+            }
+
+         }
+
+      }
+   ).catch((err) => console.log(
+      "error",
+      err,
+      "warning",
+      data.message.guild.id
+   ));
+
+}
+
 // ----------------------------
 // Embedded Variable "On" Code
 // ----------------------------
@@ -363,11 +408,12 @@ function embedOn (data)
          data.channel.send({
 
             embed
-         }).then(() =>
+         }).then((msg) =>
          {
 
             sendEmbeds(data);
             sendAttachments(data);
+            reactpersist(data, msg);
 
          }).
             catch((err) =>
@@ -592,6 +638,11 @@ function embedOff (data)
                "avatarURL": data.message.client.user.displayAvatarURL(),
                files,
                "username": data.message.client.user.username || data.message
+            }).then((msg) =>
+            {
+
+               reactpersist(data, msg);
+
             });
 
          }
@@ -605,6 +656,11 @@ function embedOff (data)
                "avatarURL": data.message.author.displayAvatarURL(),
                files,
                "username": data.message.author.username || data.message
+            }).then((msg) =>
+            {
+
+               reactpersist(data, msg);
+
             });
 
          }
@@ -754,9 +810,9 @@ function embedOff (data)
 
 }
 
-// ---------------------
-// Send Data to Channel
-// ---------------------
+// -----------------
+// Primary Fucntion
+// -----------------
 
 // eslint-disable-next-line complexity
 module.exports = function run (data)
