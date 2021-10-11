@@ -267,8 +267,9 @@ function helpMessage (config, param)
    "```md\n" +
    `# Command\n` +
    `* ${cmd} react [on/off] \n\n` +
-   `## Reaction Translation auto delete\n` +
+   `# Reaction Translation auto delete\n` +
    `* ${cmd} settings reactpersist [on/off]\n` +
+   `* ${cmd} settings flagpersist [on/off]\n` +
    "```" +
 
    "```md\n" +
@@ -459,6 +460,7 @@ function helpMessage (config, param)
    `* ${cmd} settings\n\n` +
    "```" +
 
+   "```md\n" +
    `# Set Custom Bot Prefix\n` +
    `* ${cmd} prefix [prefix]\n` +
    `* ${long} prefix [prefix]\n\n` +
@@ -469,6 +471,7 @@ function helpMessage (config, param)
    `* ${cmd} announce [on/off]\n` +
    "```" +
 
+   "```md\n" +
    `# Embedded Message Style\n` +
    `* ${cmd} embed [on/off]\n` +
    `* ${cmd} help embed\n` +
@@ -487,11 +490,12 @@ function helpMessage (config, param)
    "```" +
 
    "```md\n" +
-   `# Auto Deletion settings\n` +
-   `## Help Menu auto delete\n` +
+   `# Help Menu auto delete\n` +
    `* ${cmd} settings persist [on/off]\n\n` +
-   `## Reaction Translation auto delete\n` +
-   `* ${cmd} settings reactpersist [on/off]\n` +
+   `# Reaction Translation auto delete\n` +
+   `* ${cmd} settings reactpersist [on/off]\n\n` +
+   `# Flag Emojoi auto delete\n` +
+   `* ${cmd} settings flagpersist [on/off]\n\n` +
    "```" +
 
    "```md\n" +

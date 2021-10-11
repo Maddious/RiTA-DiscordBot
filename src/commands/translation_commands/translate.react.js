@@ -136,13 +136,13 @@ module.exports = function run (data, client)
 
                      db.increaseStatsCount(col, id);
                      translate(data);
-                     if (server[0].reactpersist === false || server[0].reactpersist === 0)
+                     if (server[0].flagpersist === false || server[0].flagpersist === 0)
                      {
 
                         try
                         {
 
-                           setTimeout(() => data.message.reactions.resolve(emoji).users.remove(data.reactuser), auth.time.long);
+                           setTimeout(() => data.message.reactions.resolve(emoji).users.remove(data.reactuser), auth.time.short);
 
                         }
                         catch (err)

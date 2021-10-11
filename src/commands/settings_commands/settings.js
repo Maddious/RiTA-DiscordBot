@@ -254,9 +254,9 @@ function getSettings (data)
 
    }
 
-   // --------------------
-   // Command Persistence
-   // --------------------
+   // ------------------
+   // React Persistence
+   // ------------------
 
    const reactPersistVariable = data.cmd.params.split(" ")[1].toLowerCase();
    async function setReactPersistence (data)
@@ -293,8 +293,8 @@ function getSettings (data)
 
                }
                const output =
-            "**```Updated Reaction Persist Settings```**\n" +
-            `React Persist Command Messages = ${reactPersistVariable}\n\n`;
+            "**```Updated Reaction Translation Persist Settings```**\n" +
+            `React Persist = ${reactPersistVariable}\n\n`;
                data.color = "info";
                data.text = output;
 
@@ -315,6 +315,78 @@ function getSettings (data)
          data.text =
       `:warning:  **\`${reactPersistVariable
       }\`** is not a valid react persist option.\n`;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+
+   }
+
+   // -----------------
+   // Flag Persistence
+   // -----------------
+
+   const flagPersistVariable = data.cmd.params.split(" ")[1].toLowerCase();
+   async function setFlagPersistence (data)
+   {
+
+      let value = false;
+      if (flagPersistVariable === "on" || flagPersistVariable === "off")
+      {
+
+         if (flagPersistVariable === "on")
+         {
+
+            value = true;
+
+         }
+
+         // console.log(`DEBUG: embed variable ${flagPersistVariable}`);
+         await db.updateServerTable(
+            data.message.channel.guild.id,
+            "flagpersist",
+            value,
+            function error (err)
+            {
+
+               if (err)
+               {
+
+                  return logger(
+                     "error",
+                     err,
+                     "command",
+                     data.message.channel.guild.name
+                  );
+
+               }
+               const output =
+            "**```Updated Flag Emoji Persist Settings```**\n" +
+            `Flag Persist = ${flagPersistVariable}\n\n`;
+               data.color = "info";
+               data.text = output;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+         );
+
+      }
+      else
+      {
+
+         data.color = "error";
+         data.text =
+      `:warning:  **\`${flagPersistVariable
+      }\`** is not a valid flag persist option.\n`;
 
          // -------------
          // Send message
@@ -433,6 +505,7 @@ function getSettings (data)
    const validSettings = {
       // "announce": announcement,
       // add,
+      "flagpersist": setFlagPersistence,
       "listservers": listServers,
       "owner": ownerUpdate,
       "persist": setPersistence,

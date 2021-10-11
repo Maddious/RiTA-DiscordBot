@@ -59,6 +59,7 @@ exports.changelog = null;
 
 exports.time = {
     "long": 60000,
+    "mid," : 30000,
     "short": 15000
  };
 
