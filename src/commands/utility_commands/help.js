@@ -6,11 +6,8 @@
 const sendMessage = require("../../core/command.send");
 const colors = require("../../core/colors");
 const discord = require("discord.js");
-const richEmbedMessage = new discord.MessageEmbed();
-const time = {
-   "long": 60000,
-   "short": 5000
-};
+const embed = new discord.MessageEmbed();
+const auth = require("../../core/auth");
 const helpFooter = `**For more help join our official [support server](<https://discord.gg/hXaedzCQ8d>)**\n\n`;
 
 // -------------
@@ -456,26 +453,32 @@ function helpMessage (config, param)
    `__**Settings**__\n\n` +
 
    "```md\n" +
+   `# Current Server Settings\n` +
+   `* ${cmd} settings\n\n` +
+   "```" +
+
+   "```md\n" +
    `# Set default server language\n` +
    `* ${cmd} settings setLang to [lang]\n\n` +
    "```" +
 
    "```md\n" +
-   `# Style settings\n` +
-   `* ${cmd} embed [on/off]\n\n` +
-
-   `# Parameters\n` +
-   `* on - Turns on Embed Translation\n` +
-   `* off - Turns on Webhook Translation Sending\n\n` +
-
-   `# Examples\n` +
-   `* ${cmd} embed on \n` +
-   `* ${cmd} embed off \n` +
+   `# Auto deletion settings\n` +
+   `* ${cmd} settings persist [on/off]\n` +
+   `* ${cmd} settings flagpersist [on/off]\n` +
    "```" +
 
    "```md\n" +
-   `# Help menu auto deletion\n` +
-   `* ${cmd} settings persist [on/off]\n` +
+   `# Embed Style settings\n` +
+   `* ${cmd} embed [on/off]\n` +
+   `* ${cmd} help embed\n\n` +
+   "```" +
+
+   "```md\n" +
+   `# Bot2Bot\n` +
+   `* Usually 90% of bots ignore other bot messages but this feature attemptes to translate them.\n` +
+   `* ${cmd} bot2bot [on/off] \n` +
+   `* ${cmd} help bot2bot\n\n` +
    "```\n";
 
    // -------------------
@@ -754,11 +757,22 @@ module.exports = function run (data)
       {
 
          console.log("Insufficient Permission");
-         data.message.delete({"timeout": time.short}).catch((err) => console.log(
-            "Command Message Deleted Error, help.js = ",
-            err
-         ));
-         richEmbedMessage.
+         try
+         {
+
+            setTimeout(() => data.message.delete(), auth.time.short);
+
+         }
+         catch (err)
+         {
+
+            console.log(
+               "Command Message Deleted Error, help.js = Line 770",
+               err
+            );
+
+         }
+         embed.
             setColor(colors.get(data.color)).
             setDescription("This command is available only to Developers. \n\n").
             setTimestamp().
@@ -768,13 +782,24 @@ module.exports = function run (data)
          // Send message
          // -------------
 
-         return data.message.channel.send(richEmbedMessage).then((msg) =>
+         return data.message.channel.send(embed).then((msg) =>
          {
 
-            msg.delete({"timeout": time.long}).catch((err) => console.log(
-               "Bot Message Deleted Error, help.js = ",
-               err
-            ));
+            try
+            {
+
+               setTimeout(() => msg.delete(), auth.time.short);
+
+            }
+            catch (err)
+            {
+
+               console.log(
+                  "Command Message Deleted Error, help.js = Line 798",
+                  err
+               );
+
+            }
 
          });
 

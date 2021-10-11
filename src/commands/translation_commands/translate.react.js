@@ -10,10 +10,8 @@ const fn = require("../../core/helpers");
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const countryLangs = require("../../core/country.langs");
-const time = {
-   "long": 300000,
-   "short": 15000
-};
+const auth = require("../../core/auth");
+
 
 // ----------------------------------------------------
 // Translate a message through discord reaction (flag)
@@ -120,6 +118,7 @@ module.exports = function run (data, client)
                      delete data.message.attachments;
                      data.member.displayColor = fn.getRoleColor(data.message.member);
                      data.canWrite = true;
+                     data.reactuser = data.user_id;
 
                      // ------------------
                      // Start translation
@@ -135,31 +134,28 @@ module.exports = function run (data, client)
 
                      }
 
-                     const msg = data.message;
                      db.increaseStatsCount(col, id);
-                     db.getServerInfo(
-                        data.message.guild.id,
-                        function getServerInfo (server)
+                     translate(data);
+                     if (server[0].reactpersist === false || server[0].reactpersist === 0)
+                     {
+
+                        try
                         {
 
-                           if (server[0].flagpersist === false || server[0].flagpersist === 0)
-                           {
-
-                              msg.delete({"timeout": time.short}).catch((err) => console.log(
-                                 "Bot Message Deleted Error 1, command.send.js = ",
-                                 err
-                              ));
-
-                           }
+                           setTimeout(() => data.message.reactions.resolve(emoji).users.remove(data.reactuser), auth.time.long);
 
                         }
-                     ).catch((err) => console.log(
-                        "error",
-                        err,
-                        "warning",
-                        data.message.guild.id
-                     ));
-                     translate(data);
+                        catch (err)
+                        {
+
+                           console.log(
+                              "Command Message Deleted Error, translate.react.js = Line 152",
+                              err
+                           );
+
+                        }
+
+                     }
 
                   }
                );

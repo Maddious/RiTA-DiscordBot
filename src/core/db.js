@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 // -----------------
 // Global variables
 // -----------------
@@ -7,6 +6,7 @@
 /* eslint-disable sort-keys */
 /* eslint-disable no-unused-vars */
 /* eslint-disable quote-props */
+/* eslint-disable no-undef */
 const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
@@ -183,7 +183,7 @@ const Servers = db.define(
          "type": Sequelize.BOOLEAN,
          "defaultValue": true
       },
-      "flagpersist": {
+      "reactpersist": {
          "type": Sequelize.BOOLEAN,
          "defaultValue": true
       },
@@ -532,7 +532,7 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "warncount", Sequelize.INTEGER, 0);
    await this.addTableColumn("servers", serversDefinition, "ejectcount", Sequelize.INTEGER, 0);
    await this.addTableColumn("servers", serversDefinition, "flag", Sequelize.BOOLEAN, true);
-   await this.addTableColumn("servers", serversDefinition, "flagpersist", Sequelize.BOOLEAN, true);
+   await this.addTableColumn("servers", serversDefinition, "reactpersist", Sequelize.BOOLEAN, true);
    // console.log("DEBUG: All Columns Checked or Added");
 
    // For older version of RITA, must remove old unique index

@@ -22,7 +22,6 @@ const cmdDocs = require("./info_commands/docs");
 const cmdDonate = require("./utility_commands/donate");
 const cmdEject = require("./utility_commands/eject");
 const cmdEmbed = require("./settings_commands/embed");
-const cmdFlagPersist = require("./settings_commands/react.persist");
 const cmdHelp = require("./utility_commands/help");
 const cmdHistory = require("./info_commands/history");
 const cmdInvite = require("./utility_commands/invite");
@@ -366,7 +365,6 @@ module.exports = function run (data)
             "donate": cmdDonate,
             "eject": cmdEject.eject,
             "embed": cmdEmbed,
-            "flagpersist": cmdFlagPersist,
             "help": cmdHelp,
             "history": cmdHistory,
             "id": cmdMisc.ident,

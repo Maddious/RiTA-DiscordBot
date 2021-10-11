@@ -53,6 +53,15 @@ exports.donation = "https://opencollective.com/ritabot-project";
 
 exports.changelog = null;
 
+// -------
+// Timing
+// -------
+
+exports.time = {
+    "long": 60000,
+    "short": 15000
+ };
+
 // ---------------
 // Developer Mode
 // ---------------
@@ -62,3 +71,4 @@ exports.dev = process.env.DEBUG;
 exports.messagedebug = process.env.MESSAGE_DEBUG;
 
 exports.devID = ['211938703591997451','469824032351584278','536012252831285258','488871621424054284','735457815514185788','827301550249476117','446500198433161216'];
+

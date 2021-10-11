@@ -5,14 +5,10 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const colors = require("./colors");
 const discord = require("discord.js");
-const richEmbedMessage = new discord.MessageEmbed();
+const embed = new discord.MessageEmbed();
 const logger = require("./logger");
 const error = require("./error");
 const db = require("./db");
-const time = {
-   "long": 60000,
-   "short": 5000
-};
 const auth = require("./auth");
 
 // ---------------------
@@ -22,7 +18,7 @@ const auth = require("./auth");
 function sendMessage (data)
 {
 
-   return data.message.channel.send(richEmbedMessage).then((msg) =>
+   return data.message.channel.send(embed).then((msg) =>
    {
 
       db.getServerInfo(
@@ -33,10 +29,21 @@ function sendMessage (data)
             if (server[0].persist === false || server[0].persist === 0)
             {
 
-               msg.delete({"timeout": time.long}).catch((err) => console.log(
-                  "Bot Message Deleted Error 1, command.send.js = ",
-                  err
-               ));
+               try
+               {
+
+                  setTimeout(() => msg.delete(), auth.time.long);
+
+               }
+               catch (err)
+               {
+
+                  console.log(
+                     "Bot Message Deleted Error 1, command.send.js",
+                     err
+                  );
+
+               }
 
             }
 
@@ -121,11 +128,22 @@ module.exports = function run (data)
    {
 
       // console.log("DEBUG: Developer Override");
-      data.message.delete({"timeout": time.short}).catch((err) => console.log(
-         "Command Message Deleted Error 2, command.send.js = ",
-         err
-      ));
-      richEmbedMessage.
+      try
+      {
+
+         setTimeout(() => data.message.delete(), auth.time.short);
+
+      }
+      catch (err)
+      {
+
+         console.log(
+            "Bot Message Deleted Error 2, command.send.js",
+            err
+         );
+
+      }
+      embed.
          setColor(colors.get(data.color)).
          setDescription(`Developer Identity confirmed:\n\n${data.text}`).
          setTimestamp().
@@ -138,11 +156,22 @@ module.exports = function run (data)
 
    }
    // console.log("DEBUG: Sufficient Permission");
-   data.message.delete({"timeout": time.short}).catch((err) => console.log(
-      "Command Message Deleted Error, command.send.js = ",
-      err
-   ));
-   richEmbedMessage.
+   try
+   {
+
+      setTimeout(() => data.message.delete(), auth.time.short);
+
+   }
+   catch (err)
+   {
+
+      console.log(
+         "Bot Message Deleted Error 3, command.send.js",
+         err
+      );
+
+   }
+   embed.
       setColor(colors.get(data.color)).
       setDescription(data.text).
       setTimestamp().

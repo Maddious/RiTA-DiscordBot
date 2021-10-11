@@ -5,13 +5,9 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const colors = require("./colors");
 const discord = require("discord.js");
-const richEmbedMessage = new discord.MessageEmbed();
+const embed = new discord.MessageEmbed();
 const logger = require("./logger");
 const error = require("./error");
-const time = {
-   "long": 60000,
-   "short": 5000
-};
 const auth = require("./auth");
 
 // ---------------------
@@ -21,7 +17,7 @@ const auth = require("./auth");
 function sendMessage (data)
 {
 
-   return data.message.channel.send(richEmbedMessage).
+   return data.message.channel.send(embed).
       // eslint-disable-next-line consistent-return
       catch((err) =>
       {
@@ -90,11 +86,22 @@ module.exports = function run (data)
    {
 
       // console.log("DEBUG: Developer Override");
-      data.message.delete({"timeout": time.short}).catch((err) => console.log(
-         "Command Message Deleted Error, command.send.js = ",
-         err
-      ));
-      richEmbedMessage.
+      try
+      {
+
+         setTimeout(() => data.message.delete(), auth.time.short);
+
+      }
+      catch (err)
+      {
+
+         console.log(
+            "Bot Message Deleted Error 1, dev.send.js",
+            err
+         );
+
+      }
+      embed.
          setColor(colors.get(data.color)).
          setDescription(`Developer Identity confirmed:\n\n${data.text}`).
          setTimestamp();
@@ -106,12 +113,24 @@ module.exports = function run (data)
 
    }
    // console.log("DEBUG: Insufficient Permission");
-   data.message.delete({"timeout": time.short}).catch((err) => console.log(
-      "Command Message Deleted Error, command.send.js = ",
-      err
-   ));
+   // console.log("DEBUG: Insufficient Permission");
+   try
+   {
+
+      setTimeout(() => data.message.delete(), auth.time.short);
+
+   }
+   catch (err)
+   {
+
+      console.log(
+         "Bot Message Deleted Error 2 dev.send.js",
+         err
+      );
+
+   }
    data.text = ":cop:  This Command is for bot developers only.";
-   richEmbedMessage.
+   embed.
       setColor(colors.get(data.color)).
       setDescription(data.text).
       setTimestamp().

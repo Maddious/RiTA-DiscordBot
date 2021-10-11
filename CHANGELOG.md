@@ -3,6 +3,7 @@
 * Local hosted users persist and react command fixed.
 * CS same language now works.
 * Fixed invalid channel message.
+* `!tr reactpersist` has been added.
 
 ## 1.2.6 Change Log
 * RITA is now at 6400 servers, This is just Amazing.

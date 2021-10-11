@@ -1,9 +1,9 @@
-/* eslint-disable no-param-reassign */
 // -----------------
 // Global variables
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+/* eslint-disable no-param-reassign */
 /* eslint-disable consistent-return */
 const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");

@@ -27,10 +27,21 @@ async function announcement (data)
    };
    // Announcment started - Collect Title.
    const filter = (m) => m.author.id === data.message.author.id;
-   data.message.delete({"timeout": time.short}).catch((err) => console.log(
-      "Command Message Deleted Error, command.send.js = ",
-      err
-   ));
+   try
+   {
+
+      setTimeout(() => data.message.delete(), auth.time.short);
+
+   }
+   catch (err)
+   {
+
+      console.log(
+         "Command Message Deleted Error, announce.js = Line 40",
+         err
+      );
+
+   }
    if (!auth.devID.includes(data.message.author.id))
    {
 
@@ -128,10 +139,21 @@ async function announcement (data)
                data.message.channel.send(`Announcment has been sent!`).then((msg) =>
                {
 
-                  msg.delete({"timeout": time.long}).catch((err) => console.log(
-                     "Bot Message Deleted Error, command.send.js = ",
-                     err
-                  ));
+                  try
+                  {
+
+                     setTimeout(() => msg.delete(), auth.time.short);
+
+                  }
+                  catch (err)
+                  {
+
+                     console.log(
+                        "Command Message Deleted Error, announce.js = Line 152",
+                        err
+                     );
+
+                  }
 
                });
 

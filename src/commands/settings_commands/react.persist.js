@@ -10,17 +10,17 @@ const sendMessage = require("../../core/command.send");
 // --------------------
 // Flag Persistence
 // --------------------
-function flagpersist (data)
+function reactpersist (data)
 {
 
-   const commandVariable2 = data.cmd.params.split(" ")[0].toLowerCase();
+   const commandVariable = data.cmd.params.split(" ")[0].toLowerCase();
    // eslint-disable-next-line no-unused-vars
 
-   if (commandVariable2 === "on" || commandVariable2 === "off")
+   if (commandVariable === "two" || commandVariable === "thr")
    {
 
       let value = false;
-      if (commandVariable2 === "on")
+      if (commandVariable === "two")
       {
 
          value = true;
@@ -28,7 +28,7 @@ function flagpersist (data)
       }
 
       // console.log(`DEBUG: embed variable ${commandVariable1}`);
-      return db.updateServerTable(data.message.channel.guild.id, "flagpersist", value, function error (err)
+      return db.updateServerTable(data.message.channel.guild.id, "reactpersist", value, function error (err)
       {
 
          if (err)
@@ -44,7 +44,7 @@ function flagpersist (data)
          }
          const output =
             "**```Updated Persist Settings```**\n" +
-            `Reaction Persist Message Tranlastions = ${commandVariable2}\n\n`;
+            `Reaction Persist Message Tranlastions = ${commandVariable}\n\n`;
          data.color = "info";
          data.text = output;
 
@@ -60,8 +60,8 @@ function flagpersist (data)
 
    data.color = "error";
    data.text =
-      `:warning:  **\`${commandVariable2
-      }\`** is not a valid react option.\n`;
+      `:warning:  **\`${commandVariable
+      }\`** is not a valid persist option.\n`;
 
    // -------------
    // Send message
@@ -107,8 +107,8 @@ module.exports = function run (data)
 
       data.color = "error";
       data.text =
-         ":warning:  Missing `flagpersist` parameter. Use `" +
-         `${data.config.translateCmdShort} help react\` to learn more.`;
+         ":warning:  Missing `reactpersist` parameter. Use " +
+         `\`${data.config.translateCmdShort} help react\` to learn more.`;
 
       // -------------
       // Send message
@@ -122,7 +122,7 @@ module.exports = function run (data)
    // Execute setting
    // ----------------
 
-   return flagpersist(data);
+   return reactpersist(data);
 
 };
 

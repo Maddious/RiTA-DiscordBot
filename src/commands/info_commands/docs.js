@@ -1,3 +1,8 @@
+// -----------------
+// Global variables
+// -----------------
+
+// Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const sendMessage = require("../../core/command.send");
 
 module.exports = function docs (data)
