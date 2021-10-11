@@ -267,6 +267,8 @@ function helpMessage (config, param)
    "```md\n" +
    `# Command\n` +
    `* ${cmd} react [on/off] \n\n` +
+   `## Reaction Translation auto delete\n` +
+   `* ${cmd} settings flagpersist [on/off]\n` +
    "```" +
 
    "```md\n" +
@@ -457,29 +459,45 @@ function helpMessage (config, param)
    `* ${cmd} settings\n\n` +
    "```" +
 
-   "```md\n" +
-   `# Set default server language\n` +
-   `* ${cmd} settings setLang to [lang]\n\n` +
+   `# Set Custom Bot Prefix\n` +
+   `* ${cmd} prefix [prefix]\n` +
+   `* ${long} prefix [prefix]\n\n` +
    "```" +
 
    "```md\n" +
-   `# Auto deletion settings\n` +
-   `* ${cmd} settings persist [on/off]\n` +
+   `# Developer Announcment Messages\n` +
+   `* ${cmd} announce [on/off]\n` +
+   "```" +
+
+   `# Embedded Message Style\n` +
+   `* ${cmd} embed [on/off]\n` +
+   `* ${cmd} help embed\n` +
+   "```" +
+
+   "```md\n" +
+   `# Bot to Bot Translation Status\n` +
+   `* Usually 90% of bots ignore other bot messages but this feature attemptes to translate them.\n` +
+   `* ${cmd} bot2bot [on/off]\n` +
+   `* ${cmd} help bot2bot\n` +
+   "```" +
+
+   "```md\n" +
+   `# Reaction Translations\n` +
+   `* ${cmd} react [on/off]\n` +
+   "```" +
+
+   "```md\n" +
+   `# Auto Deletion settings\n` +
+   `## Help Menu auto delete\n` +
+   `* ${cmd} settings persist [on/off]\n\n` +
+   `## Reaction Translation auto delete\n` +
    `* ${cmd} settings flagpersist [on/off]\n` +
    "```" +
 
    "```md\n" +
-   `# Embed Style settings\n` +
-   `* ${cmd} embed [on/off]\n` +
-   `* ${cmd} help embed\n\n` +
-   "```" +
-
-   "```md\n" +
-   `# Bot2Bot\n` +
-   `* Usually 90% of bots ignore other bot messages but this feature attemptes to translate them.\n` +
-   `* ${cmd} bot2bot [on/off] \n` +
-   `* ${cmd} help bot2bot\n\n` +
-   "```\n";
+   `# Webhook Debug Active State\n` +
+   `* ${cmd} debug [on/off]\n\n` +
+   "```";
 
    // -------------------
    // Statistics Command
