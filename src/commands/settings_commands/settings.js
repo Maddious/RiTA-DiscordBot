@@ -430,6 +430,7 @@ module.exports = function run (data)
       `:robot: Bot to Bot Translation Status: **\`${data.cmd.server[0].bot2botstyle}\`**\n\n` +
       `:flags: Translation by Flag Reactions: **\`${data.cmd.server[0].flag}\`**\n\n` +
       `:pause_button: Help Menu Persistance: **\`${data.cmd.server[0].persist}\`**\n\n` +
+      `:pause_button: Flag translation Persistance: **\`${data.cmd.server[0].flagpersist}\`**\n\n` +
       `:wrench: Webhook Debug Active State: **\`${data.cmd.server[0].webhookactive}\`**`;
 
       // -------------

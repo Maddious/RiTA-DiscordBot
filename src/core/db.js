@@ -183,6 +183,10 @@ const Servers = db.define(
          "type": Sequelize.BOOLEAN,
          "defaultValue": true
       },
+      "flagpersist": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": true
+      },
       "owner": {
          "type": Sequelize.STRING(255),
          "defaultValue": "Unknown"
@@ -528,6 +532,7 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "warncount", Sequelize.INTEGER, 0);
    await this.addTableColumn("servers", serversDefinition, "ejectcount", Sequelize.INTEGER, 0);
    await this.addTableColumn("servers", serversDefinition, "flag", Sequelize.BOOLEAN, true);
+   await this.addTableColumn("servers", serversDefinition, "flagpersist", Sequelize.BOOLEAN, true);
    // console.log("DEBUG: All Columns Checked or Added");
 
    // For older version of RITA, must remove old unique index

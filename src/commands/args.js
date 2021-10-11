@@ -22,6 +22,7 @@ const cmdDocs = require("./info_commands/docs");
 const cmdDonate = require("./utility_commands/donate");
 const cmdEject = require("./utility_commands/eject");
 const cmdEmbed = require("./settings_commands/embed");
+const cmdFlagPersist = require("./settings_commands/react.persist");
 const cmdHelp = require("./utility_commands/help");
 const cmdHistory = require("./info_commands/history");
 const cmdInvite = require("./utility_commands/invite");
@@ -31,8 +32,8 @@ const cmdMod = require("./future_commands/mod");
 const cmdMisc = require("./info_commands/misc");
 const cmdPerms = require("./utility_commands/perm");
 const cmdPrefix = require("./settings_commands/prefix");
-const cmdSettings = require("./settings_commands/settings");
 const cmdReact = require("./settings_commands/react");
+const cmdSettings = require("./settings_commands/settings");
 const cmdStats = require("./info_commands/stats");
 const cmdTranslateLast = require("./translation_commands/translate.last");
 const cmdTranslateThis = require("./translation_commands/translate.this");
@@ -365,6 +366,7 @@ module.exports = function run (data)
             "donate": cmdDonate,
             "eject": cmdEject.eject,
             "embed": cmdEmbed,
+            "flagpersist": cmdFlagPersist,
             "help": cmdHelp,
             "history": cmdHistory,
             "id": cmdMisc.ident,

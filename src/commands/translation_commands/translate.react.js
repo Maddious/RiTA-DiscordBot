@@ -10,6 +10,10 @@ const fn = require("../../core/helpers");
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const countryLangs = require("../../core/country.langs");
+const time = {
+   "long": 300000,
+   "short": 15000
+};
 
 // ----------------------------------------------------
 // Translate a message through discord reaction (flag)
@@ -131,7 +135,30 @@ module.exports = function run (data, client)
 
                      }
 
+                     const msg = data.message;
                      db.increaseStatsCount(col, id);
+                     db.getServerInfo(
+                        data.message.guild.id,
+                        function getServerInfo (server)
+                        {
+
+                           if (server[0].flagpersist === false || server[0].flagpersist === 0)
+                           {
+
+                              msg.delete({"timeout": time.short}).catch((err) => console.log(
+                                 "Bot Message Deleted Error 1, command.send.js = ",
+                                 err
+                              ));
+
+                           }
+
+                        }
+                     ).catch((err) => console.log(
+                        "error",
+                        err,
+                        "warning",
+                        data.message.guild.id
+                     ));
                      translate(data);
 
                   }
