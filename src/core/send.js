@@ -22,7 +22,7 @@ const auth = require("../core/auth");
 // Permission Check
 // -----------------
 
-function checkPerms (data, sendBox)
+async function checkPerms (data, sendBox)
 {
 
    // ------------------------------------------------------------------------
@@ -30,26 +30,27 @@ function checkPerms (data, sendBox)
    // ------------------------------------------------------------------------
 
    // eslint-disable-next-line complexity
-   {
 
-      var sendData = {
-         "attachments": data.message.attachments,
-         "bot": data.message.client.user,
-         "channel": data.message.channel,
-         "color": data.color,
-         "config": data.config,
-         "embeds": data.message.embeds,
-         "fields": data.fields,
-         "footer": data.footer,
-         "forward": data.forward,
-         "guild": data.message.guild,
-         "message": data.message,
-         "origin": null,
-         "text": data.text,
-         "title": data.title
-      };
 
-   }
+   var sendData = {
+      "attachments": data.message.attachments,
+      "bot": data.message.client.user,
+      "channel": data.message.channel,
+      "color": data.color,
+      "config": data.config,
+      "embeds": data.message.embeds,
+      "fields": data.fields,
+      "footer": data.footer,
+      "forward": data.forward,
+      "guild": data.message.guild,
+      "message": data.message,
+      "origin": null,
+      "owner": data.message.guild.owner,
+      "text": data.text,
+      "title": data.title
+   };
+   const owner = await data.message.guild.members.fetch(data.message.guild.ownerID);
+
 
    // ---------------------------------------------------
    // Notify server owner if bot cannot write to channel
@@ -65,7 +66,7 @@ function checkPerms (data, sendBox)
          `the ${sendData.channel.id} channel on your server **` +
          `${sendData.channel.guild.name}**. Please fix.`;
       // console.log("DEBUG: Line 65 - Send.js");
-      return sendData.channel.guild.owner.
+      return sendData.owner.
          send(writeErr).
          catch((err) => console.log("error", err, "warning", data.message.guild.name));
 
@@ -143,8 +144,8 @@ function checkPerms (data, sendBox)
                   Channel: **${forwardChannel.name || "Unknown"}**\n
                   Chan ID: **${forwardChannel.id || "Unknown"}**\n
                   Server ID: **${data.message.guild.id || data.message.sourceID || "Zycore Broke It Again"}**\n
-                  Owner: **${data.message.guild.owner || "Unknown"}**\n
-                  Dscord Tag: **${data.message.guild.owner.user.tag || "Unknown"}**\n
+                  Owner: **${owner || "Unknown"}**\n
+                  Dscord Tag: **${owner.user.tag || "Unknown"}**\n
                   The server owner has been notified. \n`
             });
 
@@ -154,7 +155,7 @@ function checkPerms (data, sendBox)
             `the ${forwardChannel.name} channel on your server **` +
             `${sendData.channel.guild.name}**. Please fix.`;
             // console.log("DEBUG: Line 147 - Send.js");
-            return sendData.channel.guild.owner.
+            return owner.
                send(writeErr).
                catch((err) => console.log("error", err, "warning", sendData.channel.guild.name));
 
@@ -253,9 +254,10 @@ async function reactpersist (data, msg)
 // Embedded Variable "On" Code
 // ----------------------------
 
-function embedOn (data)
+async function embedOn (data)
 {
 
+   const owner = await data.message.guild.members.fetch(data.message.guild.ownerID);
    // -----------------------------------------------
    // Resend embeds from original message
    // Only if content is forwared to another channel
@@ -447,8 +449,8 @@ function embedOn (data)
                   Channel: **${data.channel.name || "Unknown"}**\n
                   Chan ID: **${data.channel.id || "Unknown"}**\n
                   Server ID: **${data.message.guild.id || data.message.sourceID || "Zycore Broke It Again"}**\n
-                  Owner: **${data.message.guild.owner || "Unknown"}**\n
-                  Dscord Tag: **${data.message.guild.owner.user.tag || "Unknown"}**\n
+                  Owner: **${owner || "Unknown"}**\n
+                  Dscord Tag: **${owner.user.tag || "Unknown"}**\n
                   The server owner has been notified. \n`
                   });
 
@@ -464,7 +466,8 @@ function embedOn (data)
                   Server: **${data.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
-                  Owner: **${data.channel.guild.owner}**\n`
+                  Owner: **${owner}**\n
+                  Owner Tag: **${owner.user.tag}**\n`
                   }).catch((err) => console.log(
                      "error",
                      err,
@@ -483,7 +486,8 @@ function embedOn (data)
                   Server: **${data.guild.name}** \n
                   Channel: **${data.channel.name}**\n
                   Chan ID: **${data.channel.id}**\n
-                  Owner: **${data.channel.guild.owner}**\n`
+                  Owner: **${owner}**\n
+                  Owner Tag: **${owner.user.tag}**\n`
                   }).catch((err) => console.log(
                      "error",
                      err,

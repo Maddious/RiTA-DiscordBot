@@ -12,7 +12,7 @@ const db = require("../../core/db");
 // Command Code
 // -------------
 
-module.exports = function run (guild, config)
+module.exports = async function run (guild, config)
 {
 
    // Try system channel
@@ -36,14 +36,15 @@ module.exports = function run (guild, config)
       defaultChannel = guild.channels.cache.find((channel) => channel.type === "text" && channel.permissionsFor(guild.me).has("SEND_MESSAGES"));
 
    }
+   const owner = await guild.members.fetch(guild.ownerID);
 
-   if (guild.owner)
+   if (owner)
    {
 
       db.updateServerTable(
          guild.id,
          "owner",
-         `${guild.owner.user.username}#${guild.owner.user.discriminator}`,
+         `${owner.user.tag}`,
          function error (err)
          {
 

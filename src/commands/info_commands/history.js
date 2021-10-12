@@ -316,7 +316,8 @@ function getHistory (data)
       `# Version 1.2.6-3 - Release Date: 05/10/2021 \n` +
       `# Version 1.2.6-4 - Release Date: 06/10/2021 \n` +
       `# Version 1.2.6-5 - Release Date: 07/10/2021 \n` +
-      `# Version 1.2.6-6 - Release Date: 11/10/2021 \n\n` +
+      `# Version 1.2.6-6 - Release Date: 11/10/2021 \n` +
+      `# Version 1.2.6-7 - Release Date: 12/10/2021 \n\n` +
       "```\n";
 
       // -------------
@@ -377,7 +378,7 @@ function getHistory (data)
       `# 6600 Guilds - 03/10/2021 / 6700 Guilds - 04/10/2021\n` +
       `# 6800 Guilds - 05/10/2021 / 6900 Guilds - 07/10/2021\n` +
       `# 7000 Guilds - 08/10/2021 / 7100 Guilds - 09/10/2021\n` +
-      `# 7200 Guilds - 10/10/2021 \n` +
+      `# 7200 Guilds - 10/10/2021 / 7200 Guilds - 11/10/2021\n` +
       "```\n";
 
       // -------------
