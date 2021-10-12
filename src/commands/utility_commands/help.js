@@ -494,7 +494,7 @@ function helpMessage (config, param)
    `* ${cmd} settings menupersist [on/off]\n\n` +
    `# Reaction Translation auto delete\n` +
    `* ${cmd} settings reactpersist [on/off]\n\n` +
-   `# Flag Emojoi auto delete\n` +
+   `# Flag Emoji auto delete\n` +
    `* ${cmd} settings flagpersist [on/off]\n\n` +
    "```" +
 
