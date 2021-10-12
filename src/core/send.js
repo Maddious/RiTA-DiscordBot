@@ -788,7 +788,7 @@ function embedOff (data)
                {
 
                   oldWebhook.delete(`Requested by RITA`);
-                  console.log("Successfully deleted Old RITA Webhook from that channel.");
+                  // console.log("DEBUG: Successfully deleted Old RITA Webhook from channel.");
 
                }
                if (!existingWebhook)
