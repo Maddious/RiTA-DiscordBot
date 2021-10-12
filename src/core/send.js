@@ -14,7 +14,7 @@ const fn = require("./helpers");
 const db = require("./db");
 const logger = require("./logger");
 const discord = require("discord.js");
-const webHookName = "RITA Messaging System";
+const webHookName = "RITA Messaging-System ";
 const error = require("./error");
 const auth = require("../core/auth");
 
@@ -781,12 +781,20 @@ function embedOff (data)
 
                // You can rename 'Webhook' to the name of your bot if you like, people will see if under the webhooks tab of the channel.
                const existingWebhook = webhooks.find((x) => x.name === webHookName);
-               const webHookURL = "https://ritabot.gg/index/images/favicon.png";
+               const oldWebhook = webhooks.find((x) => x.name === "RITA Messaging System");
+               const avatar = "https://ritabot.gg/index/images/favicon.png";
 
+               if (oldWebhook)
+               {
+
+                  oldWebhook.delete(`Requested by RITA`);
+                  console.log("Successfully deleted Old RITA Webhook from that channel.");
+
+               }
                if (!existingWebhook)
                {
 
-                  channel.createWebhook(webHookName, webHookURL).
+                  channel.createWebhook(webHookName, {avatar}).
                      then((newWebhook) =>
                      {
 
