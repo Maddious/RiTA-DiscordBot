@@ -62,7 +62,7 @@ function destResolver (dest)
 // ---------------------
 
 // eslint-disable-next-line no-unused-vars
-function shoutTasks (res, data, origin, dest, destDisplay)
+async function shoutTasks (res, data, origin, dest, destDisplay)
 {
 
    data.color = "ok";
@@ -72,7 +72,7 @@ function shoutTasks (res, data, origin, dest, destDisplay)
    // Send message
    // -------------
 
-   sendMessage(data);
+   await sendMessage(data);
 
    for (let i = 0, len = res.length; i < len; i += 1)
    {
@@ -88,7 +88,8 @@ function shoutTasks (res, data, origin, dest, destDisplay)
       // Send message
       // -------------
 
-      sendMessage(data);
+      // eslint-disable-next-line no-await-in-loop
+      await sendMessage(data);
 
    }
    data.text = ":negative_squared_cross_mark:  That's all I have!";
@@ -215,7 +216,7 @@ module.exports = function run (data)
    db.getTasks(
       origin,
       dest,
-      function error (err, res)
+      async function error (err, res)
       {
 
          if (err)
@@ -261,7 +262,7 @@ module.exports = function run (data)
          // Otherwise, proceed to remove task from database
          // ------------------------------------------------
 
-         shoutTasks(
+         await shoutTasks(
             res,
             data,
             origin,
