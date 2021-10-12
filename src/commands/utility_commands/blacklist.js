@@ -23,7 +23,6 @@ module.exports.blacklist = async function blacklist (data)
 
    const serverID = data.cmd.num;
    const target = data.message.client.guilds.cache.get(serverID);
-   const owner = await target.members.fetch(target.ownerID);
    if (!target)
    {
 
@@ -31,12 +30,13 @@ module.exports.blacklist = async function blacklist (data)
       data.text = oneLine`${`:regional_indicator_x:  **${serverID} Blacklisted**\n`}`;
 
    }
-   else if (owner)
+   else if (target.owner)
    {
 
       data.color = "warn";
       data.text = `${`:regional_indicator_x:  **${target.name} Blacklisted**\nThe server owner has been notified\n` +
-      "```md\n> "}${target.id}\n@${owner.user.tag}\n${target.memberCount} members\n\`\`\``;
+      "```md\n> "}${target.id}\n@${target.owner.user.username}#${
+         target.owner.user.discriminator}\n${target.memberCount} members\n\`\`\``;
       data.title = "Server Blacklisted";
 
       const writeErr = `One of your server's - ${target.name} has been Blacklisted. If you wish to appeal then please join our discord server and speak to an admin: https://discord.gg/mgNR64R`;
@@ -45,7 +45,7 @@ module.exports.blacklist = async function blacklist (data)
       // Send message to owner
       // ----------------------
       // console.log("DEBUG: Line 62 - Blacklist.js");
-      owner.
+      target.owner.
          send(writeErr).
          catch((err) => console.log(
             "error",

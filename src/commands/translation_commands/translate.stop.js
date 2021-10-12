@@ -7,7 +7,6 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
 const db = require("../../core/db");
-const auth = require("../../core/auth");
 const sendMessage = require("../../core/command.send");
 
 // ---------------
@@ -211,7 +210,7 @@ module.exports = function run (data)
    // -----------------------------------------
    // Disallow non-managers to stop for others
    // -----------------------------------------
-   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id) && !auth.devID.includes(data.message.author.id))
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
 
       if (data.cmd.for[0] !== "me" && !data.message.isManager)
@@ -219,7 +218,7 @@ module.exports = function run (data)
 
          data.color = "error";
          data.text =
-         ":police_officer:  You need to be a channel manager to stop translating " +
+         ":cop:  You need to be a channel manager to stop auto translating " +
          "this channel for others.";
 
          // -------------

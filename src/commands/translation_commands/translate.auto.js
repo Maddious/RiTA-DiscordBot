@@ -10,7 +10,6 @@
 const fn = require("../../core/helpers");
 const db = require("../../core/db");
 const logger = require("../../core/logger");
-const auth = require("../../core/auth");
 const sendMessage = require("../../core/command.send");
 
 // -------------------------------
@@ -97,18 +96,20 @@ module.exports = function run (data)
    // ------------------------------------------
    // Error if non-manager sets channel as dest
    // ------------------------------------------
-   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id) && !auth.devID.includes(data.message.author.id))
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
 
-      if (data.message.isAdmin === false && !data.message.isManager)
+      if (data.cmd.for[0] !== "yes" && !data.message.isManager)
       {
 
          data.color = "error";
-         data.text = ":police_officer:  This command is reserved for server admins & channel managers";
+         data.text =
+         ":cop:  You need to be a channel manager to " +
+         "auto translate for others.";
 
          // -------------
          // Send message
-         // -------------s
+         // -------------
 
          return sendMessage(data);
 
@@ -384,18 +385,20 @@ module.exports = function run (data)
       // ----------------------------------
       // Multiple dests set by non-manager
       // ----------------------------------
-      Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id) && !auth.devID.includes(data.message.author.id))
+      Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
       {
 
-         if (data.message.isAdmin === false && !data.message.isManager)
+         if (data.task.dest.length > 1 && !data.message.isManager)
          {
 
             data.color = "error";
-            data.text = ":police_officer:  This command is reserved for server admins & channel managers";
+            data.text =
+            ":cop::skin-tone-3:  You need to be a channel manager " +
+            "to auto translate this channel for others.";
 
             // -------------
             // Send message
-            // -------------s
+            // -------------
 
             return sendMessage(data);
 

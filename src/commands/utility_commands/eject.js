@@ -23,7 +23,6 @@ module.exports.eject = async function eject (data)
 
    const serverID = data.cmd.num;
    const target = data.message.client.guilds.cache.get(serverID);
-   const owner = await target.members.fetch(target.ownerID);
 
    data.color = "warn";
    data.text = `\`\`\`${serverID} - Server connection terminated\`\`\``;
@@ -43,7 +42,7 @@ module.exports.eject = async function eject (data)
       return sendMessage(data);
 
    }
-   else if (owner)
+   else if (target.owner)
    {
 
       const writeErr = `Rita has been removed from ${target.name} for Abuse. Continued abuse will result in Blacklisting`;
@@ -52,7 +51,7 @@ module.exports.eject = async function eject (data)
       // Send message to owner
       // ----------------------
       // console.log("DEBUG: Line 49 - Eject.js");
-      owner.
+      target.owner.
          send(writeErr).
          catch((err) => console.log(
             "error",
@@ -101,7 +100,6 @@ module.exports.warn = async function warn (data)
 
    const serverID = data.cmd.num;
    const target = data.message.client.guilds.cache.get(serverID);
-   const owner = await target.members.fetch(target.ownerID);
 
    if (!target)
    {
@@ -115,10 +113,10 @@ module.exports.warn = async function warn (data)
       return sendMessage(data);
 
    }
-   else if (owner)
+   else if (target.owner)
    {
 
-      const writeErr = `Hi ${owner}, And thank you for deciding to give RITA a try.\n\n` +
+      const writeErr = `Hi ${target.owner}, And thank you for deciding to give RITA a try.\n\n` +
       `Unfortunately the recent usage of RITA in **${target.name}** server looks a bit suspicious.\n\n` +
       `If you are having technical issues with RITA and you need some help please come and join us\n` +
       `in our support server. If however the current volume of usage continues, we may be forced to\n` +
@@ -132,7 +130,7 @@ module.exports.warn = async function warn (data)
       // Send message to owner
       // ----------------------
       // console.log("DEBUG: Line 128 - Eject.js");
-      owner.
+      target.owner.
          send(writeErr).
          catch((err) => console.log(
             "error",
@@ -142,7 +140,7 @@ module.exports.warn = async function warn (data)
          ));
 
    }
-   else if (!owner)
+   else if (!target.owner)
    {
 
       // --------------------------------
@@ -180,7 +178,7 @@ module.exports.warn = async function warn (data)
    // Send message
    // -------------
    data.color = "warn";
-   data.text = `\`\`\`Owner: ${owner.user.tag}\nServer: ${target.name} \nServer ID: ${serverID}\nServer Owner Has Been Warned\`\`\``;
+   data.text = `\`\`\`Owner: ${target.owner.user.tag}\nServer: ${target.name} \nServer ID: ${serverID}\nServer Owner Has Been Warned\`\`\``;
 
    const col = "warncount";
    db.increaseServersCount(col, serverID);

@@ -5,7 +5,6 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const logger = require("../../core/logger");
 const db = require("../../core/db");
-const auth = require("../../core/auth");
 const sendMessage = require("../../core/command.send");
 
 // --------------------------------
@@ -81,14 +80,18 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id) && !auth.devID.includes(data.message.author.id))
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
 
       if (data.message.isAdmin === false)
       {
 
-         data.color = "warn";
-         data.text = ":police_officer:  This command is reserved for server admins.";
+         {
+
+            data.color = "warn";
+
+         }
+         data.text = ":cop:  This command is reserved for server admins.";
 
          // -------------
          // Send message

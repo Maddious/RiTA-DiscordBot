@@ -43,18 +43,17 @@ function getCheck (data)
 
       db.getServerInfo(
          serverID,
-         async function getServerInfo (server)
+         function getServerInfo (server)
          {
 
             const bot = target.members.cache.get(data.message.client.user.id);
-            const owner = await target.members.fetch(target.ownerID);
             const perms = bot.permissions.serialize();
             const botResult1 =
          "```md\n" +
          `# Server Checker - Targeted Server\n` +
          `* Targeted Server: ${target.name}\n` +
          `* Targeted ID: ${target.id}\n` +
-         `* Owner: ${owner.user.tag || "Unknown"}\n` +
+         `* Owner: ${target.owner.user.tag || "Unknown"}\n` +
          `* Command prefix is: ${db.server_obj[serverID].db.prefix}\n\n` +
          "```" +
 

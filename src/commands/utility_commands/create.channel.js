@@ -4,7 +4,6 @@
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const sendMessage = require("../../core/command.send");
-const auth = require("../../core/auth");
 
 // -------------
 // Command Code
@@ -41,10 +40,10 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id) && !auth.devID.includes(data.message.author.id))
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
 
-      if (!data.message.isManager)
+      if (data.message.isManager === false)
       {
 
          {

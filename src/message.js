@@ -16,7 +16,7 @@ const auth = require("./core/auth");
 // --------------------
 
 // eslint-disable-next-line no-unused-vars
-module.exports = async function run (config, message)
+module.exports = function run (config, message)
 {
 
    module.exports.message = message;
@@ -150,7 +150,7 @@ module.exports = async function run (config, message)
          );
       message.sourceID = message.guild.id;
       // eslint-disable-next-line no-self-assign
-      message.guild.owner = await message.guild.members.fetch(message.guild.ownerID);
+      message.guild.owner = message.guild.owner;
 
       // Add role color
       message.roleColor = fn.getRoleColor(message.member);

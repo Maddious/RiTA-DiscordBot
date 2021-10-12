@@ -35,7 +35,7 @@ module.exports = function run (data)
    // ------------------------
 
    // eslint-disable-next-line complexity
-   db.getStats(async function getStats (stats)
+   db.getStats(function getStats (stats)
    {
 
       // Get global server information
@@ -186,7 +186,6 @@ module.exports = function run (data)
          // eslint-disable-next-line no-unused-vars
          const serverID = data.cmd.params.split(" ")[1].toLowerCase();
          const target = data.message.client.guilds.cache.get(serverID);
-         const owner = await target.members.fetch(target.ownerID);
 
          db.getServerInfo(
             serverID,
@@ -214,12 +213,11 @@ module.exports = function run (data)
                   return sendMessage(data);
 
                }
-               if (owner)
+               if (target.owner)
                {
 
                   const targetServer = `**\`\`\`${target.name} - Server Tranlation Stats\`\`\`**\n` +
-                  `Server Owner: ${owner}\n` +
-                  `Owner Tag: ${owner.user.tag}\n\n` +
+                  `Server Owner: ${target.owner}\n\n` +
                   `Server Joined Rita Network: \`\`\`${server[0].createdAt}\`\`\`\n` +
                   `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
                   `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
@@ -232,7 +230,7 @@ module.exports = function run (data)
                   data.text = `${targetServer}\n\n`;
 
                }
-               else if (!owner)
+               else if (!target.owner)
                {
 
                   const targetServer = `**\`\`\`${target.name} - Server Tranlation Stats\`\`\`**\n` +

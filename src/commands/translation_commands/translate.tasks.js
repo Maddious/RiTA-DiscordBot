@@ -6,7 +6,6 @@
 /* eslint-disable consistent-return */
 const langCheck = require("../../core/lang.check");
 const db = require("../../core/db");
-const auth = require("../../core/auth");
 const sendMessage = require("../../core/command.send");
 
 // -----------------------
@@ -62,7 +61,7 @@ function destResolver (dest)
 // ---------------------
 
 // eslint-disable-next-line no-unused-vars
-async function shoutTasks (res, data, origin, dest, destDisplay)
+function shoutTasks (res, data, origin, dest, destDisplay)
 {
 
    data.color = "ok";
@@ -72,7 +71,7 @@ async function shoutTasks (res, data, origin, dest, destDisplay)
    // Send message
    // -------------
 
-   await sendMessage(data);
+   sendMessage(data);
 
    for (let i = 0, len = res.length; i < len; i += 1)
    {
@@ -88,8 +87,7 @@ async function shoutTasks (res, data, origin, dest, destDisplay)
       // Send message
       // -------------
 
-      // eslint-disable-next-line no-await-in-loop
-      await sendMessage(data);
+      sendMessage(data);
 
    }
    data.text = ":negative_squared_cross_mark:  That's all I have!";
@@ -175,18 +173,20 @@ module.exports = function run (data)
    // Disallow non-managers to stop for others
    // -----------------------------------------
 
-   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id) && !auth.devID.includes(data.message.author.id))
+   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
    {
 
-      if (data.message.isAdmin === false && !data.message.isManager)
+      if (data.cmd.for[0] !== "me" && !data.message.isManager)
       {
 
          data.color = "error";
-         data.text = ":police_officer:  This command is reserved for server admins & channel managers";
+         data.text =
+         ":cop:  You need to be a channel manager to stop auto translating " +
+         "this channel for others.";
 
          // -------------
          // Send message
-         // -------------s
+         // -------------
 
          return sendMessage(data);
 
@@ -216,7 +216,7 @@ module.exports = function run (data)
    db.getTasks(
       origin,
       dest,
-      async function error (err, res)
+      function error (err, res)
       {
 
          if (err)
@@ -262,7 +262,7 @@ module.exports = function run (data)
          // Otherwise, proceed to remove task from database
          // ------------------------------------------------
 
-         await shoutTasks(
+         shoutTasks(
             res,
             data,
             origin,
