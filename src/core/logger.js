@@ -130,23 +130,23 @@ function warnLog (warning)
 // Guild Join Log
 // ---------------
 
-function logJoin (guild)
+async function logJoin (guild)
 {
 
-   if (guild.owner)
+   const owner = await guild.members.fetch(guild.ownerID);
+   if (owner)
    {
 
       hookSend({
          "color": "ok",
          "msg":
          `${`:white_check_mark:  **${guild.name}**\n` +
-         "```md\n> "}${guild.id}\n@${guild.owner.user.username}#${
-            guild.owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
+         "```md\n> "}${guild.id}\n@${owner.user.tag}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Joined Guild"
 
 
       });
-      console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${guild.owner.user.username}#${guild.owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
+      console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.tag}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
    else
@@ -170,21 +170,21 @@ function logJoin (guild)
 // Guild Leave Log
 // ----------------
 
-function logLeave (guild)
+async function logLeave (guild)
 {
 
-   if (guild.owner)
+   const owner = await guild.members.fetch(guild.ownerID);
+   if (owner)
    {
 
       hookSend({
          "color": "warn",
          "msg":
          `${`:regional_indicator_x:  **${guild.name}**\n` +
-         "```md\n> "}${guild.id}\n@${guild.owner.user.username}#${
-            guild.owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
+         "```md\n> "}${guild.id}\n@${owner.user.tag}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Left Guild"
       });
-      console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${guild.owner.user.username}#${guild.owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
+      console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.tag}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
    else

@@ -15,9 +15,10 @@ const auth = require("./auth");
 // Send Data to Channel
 // ---------------------
 
-function sendMessage (data)
+async function sendMessage (data)
 {
 
+   const owner = await data.message.guild.members.fetch(data.message.guild.ownerID);
    return data.message.channel.send(embed).then((msg) =>
    {
 
@@ -77,8 +78,8 @@ function sendMessage (data)
                   Channel: **${data.channel.name || "Unknown"}**\n
                   Chan ID: **${data.channel.id || "Unknown"}**\n
                   Server ID: **${data.message.guild.id || data.message.sourceID || "Zycore Broke It Again"}**\n
-                  Owner: **${data.message.guild.owner || "Unknown"}**\n
-                  Dscord Tag: **${data.message.guild.owner.user.tag || "Unknown"}**\n
+                  Owner: **${owner || "Unknown"}**\n
+                  Dscord Tag: **${owner.user.tag || "Unknown"}**\n
                   The server owner has been notified. \n`
                }
             );
@@ -90,14 +91,14 @@ function sendMessage (data)
             // Send message
             // -------------
 
-            if (!data.channel.guild.owner)
+            if (!owner)
             {
 
                return console.log(writeErr);
 
             }
             // console.log("DEBUG: Line 68 - Command.Send.js");
-            return data.channel.guild.owner.
+            return owner.
                send(writeErr).
                catch((err) => console.log(
                   "error",

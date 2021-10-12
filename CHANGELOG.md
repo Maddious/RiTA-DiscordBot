@@ -6,6 +6,7 @@
 * `!tr reactpersist` has been added. - Reaction will auto delete after 60 seconds.
 * `!tr flagpersist` has been added. - Flag emoji will be removed after 15 seconds.
 * Help menu updated.
+* Owner variable is now more reliable on messages. 
 
 ## 1.2.6 Change Log
 * RITA is now at 6400 servers, This is just Amazing.

@@ -497,7 +497,7 @@ exports.updatePrefix = function updatePrefix (id, prefix, _cb)
 exports.updateServerTable = function updateServerTable (id, columnName, value, _cb)
 {
 
-   console.log(`DEBUG: ID: ${id} - Name: ${columnName} - Value: ${value}`);
+   // console.log(`DEBUG: ID: ${id} - Name: ${columnName} - Value: ${value}`);
    return Servers.update(
       {[`${columnName}`]: value},
       {"where": {id}}

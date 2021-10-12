@@ -418,7 +418,8 @@ function getSettings (data)
 
          }
 
-         const wait = setInterval(function delay ()
+         const wait = setInterval(async function delay ()
+
          {
 
             const guild = guilds.shift();
@@ -431,9 +432,10 @@ function getSettings (data)
                clearInterval(wait);
 
             }
-            else if (guild[1].owner)
+            else if (guild[1].ownerID)
             {
 
+               const owner = await guild[1].members.fetch(guild[1].ownerID);
                const target = guild[1].id;
 
                if (!target)
@@ -447,7 +449,7 @@ function getSettings (data)
                db.updateServerTable(
                   target,
                   "owner",
-                  `${guild[1].owner.user.tag}`,
+                  `${owner.user.tag}`,
                   function error (err)
                   {
 
@@ -459,7 +461,7 @@ function getSettings (data)
                      }
 
                   },
-                  console.log(`Server Owner Added for guild: ${target}`)
+                  console.log(`Message ${i} - Server Owner Added for guild: ${target}`)
                );
 
 
@@ -555,7 +557,7 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   AreDev:if (!data.message.guild.owner.id === data.message.author.id)
+   AreDev:if (!data.message.guild.ownerID === data.message.author.id)
    {
 
       if (auth.devID.includes(data.message.author.id))
