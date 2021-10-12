@@ -254,9 +254,10 @@ async function reactpersist (data, msg)
 // Embedded Variable "On" Code
 // ----------------------------
 
-function embedOn (data)
+async function embedOn (data)
 {
 
+   const owner = await data.message.guild.members.fetch(data.message.guild.ownerID);
    // -----------------------------------------------
    // Resend embeds from original message
    // Only if content is forwared to another channel
