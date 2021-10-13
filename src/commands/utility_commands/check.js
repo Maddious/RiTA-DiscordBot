@@ -48,14 +48,14 @@ function getCheck (data)
 
             const bot = target.members.cache.get(data.message.client.user.id);
             const owner = await target.members.fetch(target.ownerID);
-            const tag = "${owner.user.username}#${owner.user.discriminator}";
+            const tag = `${owner.user.username}#${owner.user.discriminator}`;
             const perms = bot.permissions.serialize();
             const botResult1 =
          "```md\n" +
          `# Server Checker - Targeted Server\n` +
          `* Targeted Server: ${target.name}\n` +
          `* Targeted ID: ${target.id}\n` +
-         `* Owner: ${tag} || "Unknown"}\n` +
+         `* Owner: ${tag || "Unknown"}\n` +
          `* Command prefix is: ${db.server_obj[serverID].db.prefix}\n\n` +
          "```" +
 
