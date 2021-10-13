@@ -141,12 +141,12 @@ async function logJoin (guild)
          "color": "ok",
          "msg":
          `${`:white_check_mark:  **${guild.name}**\n` +
-         "```md\n> "}${guild.id}\n@${owner.user.tag}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
+         "```md\n> "}${guild.id}\n@${owner.user.username}#${owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Joined Guild"
 
 
       });
-      console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.tag}\nSize: ${guild.memberCount}\n----------------------------------------`);
+      console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.username}#${owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
    else
@@ -181,10 +181,10 @@ async function logLeave (guild)
          "color": "warn",
          "msg":
          `${`:regional_indicator_x:  **${guild.name}**\n` +
-         "```md\n> "}${guild.id}\n@${owner.user.tag}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
+         "```md\n> "}${guild.id}\n@${owner.user.username}#${owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Left Guild"
       });
-      console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.tag}\nSize: ${guild.memberCount}\n----------------------------------------`);
+      console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.username}#${owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
    else
