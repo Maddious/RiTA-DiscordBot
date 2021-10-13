@@ -134,6 +134,7 @@ function checkPerms (data, sendBox)
 
             const col = "errorcount";
             const id = data.message.guild.id || data.message.sourceID;
+            const tag = `${data.message.guild.owner.user.username}#${data.message.guild.owner.user.discriminator}`;
             db.increaseServersCount(col, id);
 
             logger("custom", {
@@ -144,7 +145,7 @@ function checkPerms (data, sendBox)
                   Chan ID: **${forwardChannel.id || "Unknown"}**\n
                   Server ID: **${data.message.guild.id || data.message.sourceID || "Zycore Broke It Again"}**\n
                   Owner: **${data.message.guild.owner || "Unknown"}**\n
-                  Dscord Tag: **${data.message.guild.owner.user.tag || "Unknown"}**\n
+                  Dscord Tag: **${tag || "Unknown"}**\n
                   The server owner has been notified. \n`
             });
 
@@ -437,6 +438,7 @@ function embedOn (data)
 
                   const col = "errorcount";
                   const id = data.message.guild.id || data.message.sourceID;
+                  const tag = `${data.message.guild.owner.user.username}#${data.message.guild.owner.user.discriminator}`;
                   db.increaseServersCount(col, id);
 
                   // console.log("DEBUG: Error 50013 - Origin");
@@ -448,7 +450,7 @@ function embedOn (data)
                   Chan ID: **${data.channel.id || "Unknown"}**\n
                   Server ID: **${data.message.guild.id || data.message.sourceID || "Zycore Broke It Again"}**\n
                   Owner: **${data.message.guild.owner || "Unknown"}**\n
-                  Dscord Tag: **${data.message.guild.owner.user.tag || "Unknown"}**\n
+                  Dscord Tag: **${tag || "Unknown"}**\n
                   The server owner has been notified. \n`
                   });
 

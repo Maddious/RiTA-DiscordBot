@@ -180,7 +180,7 @@ module.exports.warn = async function warn (data)
    // Send message
    // -------------
    data.color = "warn";
-   data.text = `\`\`\`Owner: ${owner.user.tag}\nServer: ${target.name} \nServer ID: ${serverID}\nServer Owner Has Been Warned\`\`\``;
+   data.text = `\`\`\`Owner: ${owner.user.username}#${owner.user.discriminator}\nServer: ${target.name} \nServer ID: ${serverID}\nServer Owner Has Been Warned\`\`\``;
 
    const col = "warncount";
    db.increaseServersCount(col, serverID);

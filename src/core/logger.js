@@ -46,7 +46,7 @@ function hookSend (data)
       },
       "title": data.title
    });
-   hook.send(embed).catch((err) =>
+   return hook.send(embed).catch((err) =>
    {
 
       console.error(`hook.send error:\n${err}`);

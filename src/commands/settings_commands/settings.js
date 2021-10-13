@@ -449,7 +449,7 @@ function getSettings (data)
                db.updateServerTable(
                   target,
                   "owner",
-                  `${owner.user.tag}`,
+                  `${owner.user.username}#${owner.user.discriminator}`,
                   function error (err)
                   {
 

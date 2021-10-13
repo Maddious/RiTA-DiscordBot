@@ -44,7 +44,7 @@ module.exports = async function run (guild, config)
       db.updateServerTable(
          guild.id,
          "owner",
-         `${owner.user.tag}`,
+         `${owner.user.username}#${owner.user.discriminator}`,
          function error (err)
          {
 

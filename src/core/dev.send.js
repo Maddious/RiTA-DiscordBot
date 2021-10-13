@@ -18,6 +18,7 @@ async function sendMessage (data)
 {
 
    const owner = await data.message.guild.members.fetch(data.message.guild.ownerID);
+   const tag = `${owner.user.username}#${owner.user.discriminator}`;
    return data.message.channel.send(embed).
       // eslint-disable-next-line consistent-return
       catch((err) =>
@@ -37,7 +38,7 @@ async function sendMessage (data)
                   Chan ID: **${data.channel.id || "Unknown"}**\n
                   Server ID: **${data.message.guild.id || data.message.sourceID || "Zycore Broke It Again"}**\n
                   Owner: **${owner || "Unknown"}**\n
-                  Dscord Tag: **${owner.user.tag || "Unknown"}**\n
+                  Dscord Tag: **${tag || "Unknown"}**\n
                   The server owner has been notified. \n`
                }
             );
