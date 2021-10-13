@@ -54,7 +54,7 @@ function getCheck (data)
          `# Server Checker - Targeted Server\n` +
          `* Targeted Server: ${target.name}\n` +
          `* Targeted ID: ${target.id}\n` +
-         `* Owner: ${owner.user.tag || "Unknown"}\n` +
+         `* Owner: ${owner.user.username}#${owner.user.discriminator} || "Unknown"}\n` +
          `* Command prefix is: ${db.server_obj[serverID].db.prefix}\n\n` +
          "```" +
 
