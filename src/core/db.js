@@ -721,6 +721,7 @@ exports.removeTask = function removeTask (origin, dest, cb)
       // console.log("DEBUG: removeTask() - all");
       return Tasks.destroy({"where": {[Op.or]: [
          {origin},
+         // !!!DO NOT REMOVE!!! The next line is what deletes tasks for channels that get deleted! !!!DO NOT REMOVE!!!
          {"dest": origin}
       ]}}).then(function error (err, result)
       {
