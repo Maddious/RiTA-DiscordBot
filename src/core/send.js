@@ -223,6 +223,7 @@ async function reactpersist (data, msg)
          if (data.reaction === true && server[0].reactpersist === false || server[0].reactpersist === 0)
          {
 
+            // console.log("DEBUG: Delete reacted Message");
             try
             {
 
@@ -421,20 +422,22 @@ function embedOn (data)
             catch((err) =>
             {
 
-               let errMsg = err;
+               let errMsg = null;
 
                // -------
                // Errors
                // -------
 
+               // console.log(`DEBUG: Error Code ${err.code}`);
                if (err.code && err.code === error.content)
                {
 
                   data.channel.send(":warning:  Message is too long.");
 
                }
+               // console.log("DEBUG: Not 50035");
 
-               if (err.code && err.code === error.perm || error.access)
+               if (err.code && err.code === error.perm || err.code === error.access)
                {
 
                   const col = "errorcount";
@@ -456,6 +459,7 @@ function embedOn (data)
                   });
 
                }
+               // console.log("DEBUG: Not 50013 or 50001");
 
                if (err.code && err.code === error.fileTooLarge)
                {
@@ -475,8 +479,9 @@ function embedOn (data)
                   ));
 
                }
+               // console.log("DEBUG: Not 40035");
 
-               if (err.code && err.code === error.unknownUser || errorunknownMember || error.invalidRecipient)
+               if (err.code && err.code === error.unknownUser || err.code === error.unknownMember || err.code === error.invalidRecipient)
                {
 
                   // console.log(`DEBUG: Error ${err.code}`);
@@ -494,6 +499,7 @@ function embedOn (data)
                   ));
 
                }
+               // console.log("DEBUG: Not 10013 or 10007 or 50033");
 
                // -----------------------------------------------------------
                // Handle error for users who cannot recieve private messages
@@ -504,6 +510,7 @@ function embedOn (data)
 
                   const badUser = data.channel.recipient;
                   errMsg = `@${badUser.username}#${badUser.discriminator}\n${err}`;
+                  const user = data.message.guild.members.cache.get(badUser.id);
 
                   db.removeTask(data.origin.id, `@${badUser.id}`, function error (err)
                   {
@@ -515,11 +522,22 @@ function embedOn (data)
 
                      }
 
-                     return data.origin.send(`:no_entry: User ${badUser} cannot recieve direct messages ` +
-                           `by bot because of **privacy settings**.\n\n__Auto ` +
+                     if (!user)
+                     {
+
+                        return data.origin.send(`:no_entry: User ${badUser} cannot recieve direct messages as they have left the server`);
+
+                     }
+                     else if (user)
+                     {
+
+                        return data.origin.send(`:no_entry: User ${badUser} cannot recieve direct messages ` +
+                           `from RITA because of **privacy settings**.\n\n__Auto ` +
                            `translation has been stopped. To fix this:__` +
                            "```prolog\nServer > Privacy Settings > " +
                            "'Allow direct messages from server members'\n```");
+
+                     }
 
                   }).catch((err) => console.log(
                      "error",
@@ -528,6 +546,8 @@ function embedOn (data)
                   ));
 
                }
+               // console.log("DEBUG: Not 50007");
+               console.log(`DEBUG: No catch for this erorr - Code:${err.code}`);
 
                logger("error", errMsg, "warning", data.message.channel.guild.name);
 

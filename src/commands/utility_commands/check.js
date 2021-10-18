@@ -6,7 +6,8 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const db = require("../../core/db");
 
-const sendMessage = require("../../core/dev.send");
+const devSendMessage = require("../../core/dev.send");
+const sendMessage = require("../../core/command.send");
 const oneLine = require("common-tags").oneLine;
 
 
@@ -31,12 +32,12 @@ function getCheck (data)
       {
 
          data.text =
-            `__**Permission Checker - Target Server Bot**__\n\n` +
+            `__**Permission Checker - Target Server**__\n\n` +
             `Targeted server: \`Unknown\`\n` +
             `Targeted ID: \`${serverID}\`\n\n` +
             `Invalid Server ID or RITA is no longer in this server.\n\n`;
          data.color = "warn";
-         return sendMessage(data);
+         return devSendMessage(data);
 
       }
 
@@ -51,36 +52,36 @@ function getCheck (data)
             const tag = `${owner.user.username}#${owner.user.discriminator}`;
             const perms = bot.permissions.serialize();
             const botResult1 =
-         "```md\n" +
-         `# Server Checker - Targeted Server\n` +
-         `* Targeted Server: ${target.name}\n` +
-         `* Targeted ID: ${target.id}\n` +
-         `* Owner: ${tag || "Unknown"}\n` +
-         `* Command prefix is: ${db.server_obj[serverID].db.prefix}\n\n` +
-         "```" +
+               `__**Permission Checker - Target Server**__\n\n` +
+               "```md\n" +
+               `# Server Checker - Targeted Server\n` +
+               `* Targeted Server: ${target.name}\n` +
+               `* Targeted ID: ${target.id}\n` +
+               `* Owner: ${tag || "Unknown"}\n` +
+               `* Command prefix is: ${db.server_obj[serverID].db.prefix}\n\n` +
+               "```" +
 
-         "```md\n" +
-         `* Error Count: ${server[0].errorcount}\n` +
-         `* Warn Count: ${server[0].warncount}\n` +
-         `* Eject Count: ${server[0].ejectcount}\n` +
-         `* Warn Status: ${server[0].warn}\n` +
-         `* Blacklist Status: ${server[0].blacklisted}\n\n` +
-         "```" +
+               "```md\n" +
+               `* Error Count: ${server[0].errorcount}\n` +
+               `* Warn Count: ${server[0].warncount}\n` +
+               `* Eject Count: ${server[0].ejectcount}\n` +
+               `* Warn Status: ${server[0].warn}\n` +
+               `* Blacklist Status: ${server[0].blacklisted}\n\n` +
+               "```" +
 
-         "```md\n" +
-         `* Allow Annocement Messages: ${server[0].announce}\n` +
-         `* Embedded Message Style: ${server[0].embedstyle}\n` +
-         `* Bot to Bot Translation Status: ${server[0].bot2botstyle}\n` +
-         `* Translation by Flag Reactions: ${server[0].flag}\n` +
-         `* Help Menu Persistance: ${server[0].menupersist}\n` +
-         `* Flag Translation Persistance: ${server[0].reactpersist}\n` +
-         `* Flag Emoji Persistance: ${data.cmd.server[0].flagpersist}\n` +
-         `* Webhook Debug Active State: ${server[0].webhookactive}\n\n` +
-         "```" +
+               "```md\n" +
+               `* Allow Annocement Messages: ${server[0].announce}\n` +
+               `* Embedded Message Style: ${server[0].embedstyle}\n` +
+               `* Bot to Bot Translation Status: ${server[0].bot2botstyle}\n` +
+               `* Translation by Flag Reactions: ${server[0].flag}\n` +
+               `* Help Menu Persistance: ${server[0].menupersist}\n` +
+               `* React Translation Persistance: ${server[0].reactpersist}\n` +
+               `* React Emoji Persistance: ${data.cmd.server[0].flagpersist}\n` +
+               `* Webhook Debug Active State: ${server[0].webhookactive}\n\n` +
+               "```" +
 
-         "```md\n" +
-         `# RITA Permissions Check:\n`;
-
+               "```md\n" +
+               `# RITA Permissions Check:\n`;
 
             if (perms.ADMINISTRATOR === true)
             {
@@ -95,21 +96,22 @@ function getCheck (data)
             {
 
                const botResult2 =
-            `* View Channel: ${perms.VIEW_CHANNEL} \n` +
-            `* Manage Channels: ${perms.MANAGE_CHANNELS} \n` +
-            `* Manage Webhooks: ${perms.MANAGE_WEBHOOKS} \n` +
-            `* Manage Server: ${perms.MANAGE_GUILD} \n` +
-            `* Send Messages: ${perms.SEND_MESSAGES} \n` +
-            `* Embed Links: ${perms.EMBED_LINKS} \n` +
-            `* Attach Files: ${perms.ATTACH_FILES} \n` +
-            `* Add Reactions: ${perms.ADD_REACTIONS} \n` +
-            `* Mention Everyone: ${perms.MENTION_EVERYONE} \n` +
-            `* Manage Messages: ${perms.MANAGE_MESSAGES} \n` +
-            `* Read Message History: ${perms.READ_MESSAGE_HISTORY} \n\n` +
-            `# --- Optional Permissions ---\n` +
-            `* Use External Emoji: ${perms.USE_EXTERNAL_EMOJIS} \n` +
-            `* Create Invites: ${perms.CREATE_INSTANT_INVITE} \n\n` +
-            "```";
+                  `* View Channel: ${perms.VIEW_CHANNEL} \n` +
+                  `* Manage Channels: ${perms.MANAGE_CHANNELS} \n` +
+                  `* Manage Webhooks: ${perms.MANAGE_WEBHOOKS} \n` +
+                  `* Manage Server: ${perms.MANAGE_GUILD} \n` +
+                  `* Send Messages: ${perms.SEND_MESSAGES} \n` +
+                  `* Embed Links: ${perms.EMBED_LINKS} \n` +
+                  `* Attach Files: ${perms.ATTACH_FILES} \n` +
+                  `* Add Reactions: ${perms.ADD_REACTIONS} \n` +
+                  `* Mention Everyone: ${perms.MENTION_EVERYONE} \n` +
+                  `* Manage Messages: ${perms.MANAGE_MESSAGES} \n` +
+                  `* Read Message History: ${perms.READ_MESSAGE_HISTORY} \n\n` +
+                  `# --- Optional Permissions ---\n` +
+                  `* Use External Emoji: ${perms.USE_EXTERNAL_EMOJIS} \n` +
+                  `* Create Invites: ${perms.CREATE_INSTANT_INVITE} \n\n` +
+                  "```";
+
                data.text = botResult1 + botResult2;
 
             }
@@ -117,7 +119,7 @@ function getCheck (data)
             // Send message
             // -------------
             data.color = "info";
-            return sendMessage(data);
+            return devSendMessage(data);
 
          }
       ).catch((err) =>
@@ -131,9 +133,69 @@ function getCheck (data)
          );
 
          data.text = oneLine`\`\`\`${serverID} is not in our Database\n\n\`\`\``;
-         return sendMessage(data);
+         return devSendMessage(data);
 
       });
+
+   }
+
+   function userCheck (data)
+   {
+
+      // console.log(`DEBUG: In User Check`);
+      const memberPermissions = data.message.member.permissions.serialize();
+      const userResult1 =
+        `__**Permission Checker - User**__\n\n` +
+        `As a user you need the following permssions.\n` +
+        "```md\n" +
+
+        `# Permissions to set up:\n`;
+
+      if (memberPermissions.ADMINISTRATOR === true)
+      {
+
+         const userResult2 =
+           `* Admin: ${memberPermissions.ADMINISTRATOR}  \n` +
+           "```";
+         data.text = userResult1 + userResult2;
+
+      }
+      else if (memberPermissions.ADMINISTRATOR === false)
+      {
+
+         const userResult2 =
+           `* View Channel: ${memberPermissions.VIEW_CHANNEL} \n` +
+           `* Manage Channels: ${memberPermissions.MANAGE_CHANNELS} \n` +
+           `* Send Messages: ${memberPermissions.SEND_MESSAGES} \n` +
+           `* Add Reactions: ${memberPermissions.ADD_REACTIONS} \n` +
+           `* Read Message History: ${memberPermissions.READ_MESSAGE_HISTORY} \n\n` +
+           "```";
+
+         data.text = userResult1 + userResult2;
+
+      }
+      data.color = "info";
+      return sendMessage(data);
+
+   }
+
+   function chanCheck (data)
+   {
+
+      // console.log(`DEBUG: In Bot Check`);
+      // const botPermissions = data.message.guild.channels.cache.get(data.message.channel.id);
+      // console.log(`${botPermissions}`);
+      const chanResult1 =
+      `__**Permission Checker - This channel**__\n\n` +
+      `RITA requires the following permssions in this channel.\n` +
+      "```md\n" +
+
+      `# This Command has not been set up yet. Check back later\n` +
+      "```";
+
+      data.color = "info";
+      data.text = chanResult1;
+      return sendMessage(data);
 
    }
 
@@ -142,6 +204,8 @@ function getCheck (data)
    // --------------------------
 
    const validCheck = {
+      "channel": chanCheck,
+      "me": userCheck,
       "server": fullServer
    };
 
@@ -187,21 +251,89 @@ module.exports = function run (data)
    if (!data.cmd.params)
    {
 
-      // -------------
-      // Command Code
-      // -------------
+      const target = data.message.client.guilds.cache.get(data.message.guild.id);
+      db.getServerInfo(
+         data.message.guild.id,
+         async function getServerInfo (server)
+         {
 
-      data.color = "info";
-      data.text = `Check Command` +
-      "```md\n" +
-      `* check server [serverID] \n\n` +
-      "```\n";
+            // const user = data.message.guild.members.cache.get(data.message.author.id);
+            const bot = target.members.cache.get(data.message.client.user.id);
+            const owner = await target.members.fetch(target.ownerID);
+            const tag = `${owner.user.username}#${owner.user.discriminator}`;
+            const perms = bot.permissions.serialize();
+            const botResult1 =
+               `__**Permission Checker - This Server**__\n\n` +
+               "```md\n" +
+               `# Server Checker - Targeted Server\n` +
+               `* Targeted Server: ${target.name}\n` +
+               `* Targeted ID: ${target.id}\n` +
+               `* Owner: ${tag || "Unknown"}\n` +
+               `* Command prefix is: ${db.server_obj[data.message.guild.id].db.prefix}\n\n` +
+               "```" +
 
-      // -------------
-      // Send message
-      // -------------
+               "```md\n" +
+               `* Error Count: ${server[0].errorcount}\n` +
+               `* Warn Count: ${server[0].warncount}\n` +
+               `* Eject Count: ${server[0].ejectcount}\n` +
+               `* Warn Status: ${server[0].warn}\n` +
+               `* Blacklist Status: ${server[0].blacklisted}\n\n` +
+               "```" +
 
-      return sendMessage(data);
+               "```md\n" +
+               `* Allow Annocement Messages: ${server[0].announce}\n` +
+               `* Embedded Message Style: ${server[0].embedstyle}\n` +
+               `* Bot to Bot Translation Status: ${server[0].bot2botstyle}\n` +
+               `* Translation by Flag Reactions: ${server[0].flag}\n` +
+               `* Help Menu Persistance: ${server[0].menupersist}\n` +
+               `* React Translation Persistance: ${server[0].reactpersist}\n` +
+               `* React Emoji Persistance: ${data.cmd.server[0].flagpersist}\n` +
+               `* Webhook Debug Active State: ${server[0].webhookactive}\n\n` +
+               "```" +
+
+               "```md\n" +
+               `# RITA Permissions Check:\n`;
+
+            if (perms.ADMINISTRATOR === true)
+            {
+
+               const botResult2 =
+            `* Admin: ${perms.ADMINISTRATOR}  \n` +
+            "```";
+               data.text = botResult1 + botResult2;
+
+            }
+            else if (perms.ADMINISTRATOR === false)
+            {
+
+               const botResult2 =
+                  `* View Channel: ${perms.VIEW_CHANNEL} \n` +
+                  `* Manage Channels: ${perms.MANAGE_CHANNELS} \n` +
+                  `* Manage Webhooks: ${perms.MANAGE_WEBHOOKS} \n` +
+                  `* Manage Server: ${perms.MANAGE_GUILD} \n` +
+                  `* Send Messages: ${perms.SEND_MESSAGES} \n` +
+                  `* Embed Links: ${perms.EMBED_LINKS} \n` +
+                  `* Attach Files: ${perms.ATTACH_FILES} \n` +
+                  `* Add Reactions: ${perms.ADD_REACTIONS} \n` +
+                  `* Mention Everyone: ${perms.MENTION_EVERYONE} \n` +
+                  `* Manage Messages: ${perms.MANAGE_MESSAGES} \n` +
+                  `* Read Message History: ${perms.READ_MESSAGE_HISTORY} \n\n` +
+                  `# --- Optional Permissions ---\n` +
+                  `* Use External Emoji: ${perms.USE_EXTERNAL_EMOJIS} \n` +
+                  `* Create Invites: ${perms.CREATE_INSTANT_INVITE} \n\n` +
+                  "```";
+
+               data.text = botResult1 + botResult2;
+
+            }
+            // -------------
+            // Send message
+            // -------------
+            data.color = "info";
+            return sendMessage(data);
+
+         }
+      );
 
    }
 

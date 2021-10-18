@@ -209,7 +209,7 @@ function helpMessage (config, param)
    `# Misc Commands\n` +
    `* ${cmd} invite\n` +
    `* ${cmd} help modules\n` +
-   `* ${cmd} checkperms [user/bot]\n` +
+   `* ${cmd} check [me/channel]n` +
    `* ${cmd} create [channelName]\n` +
    `* ${cmd} history \n\n` +
    "```" +
@@ -259,7 +259,6 @@ function helpMessage (config, param)
    // --------------------
 
    const react =
-
    `__**Translate by reaction**__\n\n` +
    `Add a message reaction with the flag of the language you wish to translate to.\n\n` +
    `Please note that only official country flags are registered.\n` +
@@ -283,6 +282,7 @@ function helpMessage (config, param)
    `* ${cmd} react on \n` +
    `* ${cmd} react off \n\n` +
    "```\n";
+
    // --------------------
    // Last Message (last)
    // --------------------
@@ -424,7 +424,7 @@ function helpMessage (config, param)
 
    "```md\n" +
    `# Permission Check\n` +
-   `* ${cmd} checkperms [user/bot]\n\n` +
+   `* ${cmd} check [me/channel]\n\n` +
    "```" +
 
    "```md\n" +
@@ -494,7 +494,7 @@ function helpMessage (config, param)
    `* ${cmd} settings menupersist [on/off]\n\n` +
    `# Reaction Translation auto delete\n` +
    `* ${cmd} settings reactpersist [on/off]\n\n` +
-   `# Flag Emoji auto delete\n` +
+   `# Reaction Emoji auto delete\n` +
    `* ${cmd} settings flagpersist [on/off]\n\n` +
    "```" +
 
@@ -675,6 +675,7 @@ function helpMessage (config, param)
    `* ${cmd} create bob - your new channel would now be bob \n` +
    `* ${long} create bob - your new channel would now be bob \n` +
    "```\n";
+
    // ---------------
    // Dev Commands
    // ---------------
@@ -689,8 +690,7 @@ function helpMessage (config, param)
    `* ${cmd} unblacklist [ServerID]\n` +
    `* ${cmd} warn [ServerID]\n` +
    `* ${cmd} unwarn [ServerID]\n` +
-   `* ${cmd} check [ServerID]\n` +
-   `* ${cmd} checkperms [ServerID]\n` +
+   `* ${cmd} check server [ServerID]\n` +
    `* ${cmd} server [ServerID]\n` +
    `* ${cmd} settings updatedb\n` +
    `* ${cmd} settings listservers\n` +
@@ -708,7 +708,23 @@ function helpMessage (config, param)
    `* ${cmd} blacklist [ServerID] - [ServerID] Will be blacklisted\n\n` +
    "```\n";
 
+   // ---------------
+   // Check Command
+   // ---------------
 
+   const check =
+   `__**Check**__\n\n` +
+
+   "```md\n" +
+      `* ${cmd} check = Check current server.\n` +
+      `* ${cmd} check me = Check user permissions.\n` +
+      `* ${cmd} check channel = Check channel permissions.\n` +
+      "```" +
+
+      "```md\n" +
+      `# Dev Only\n` +
+      `* ${cmd} check server [serverID] = Check Target Server\n\n` +
+      "```\n";
    // ----------------
    // Proccess result
    // ----------------
@@ -718,6 +734,7 @@ function helpMessage (config, param)
       auto,
       "basics": info + basics,
       bot2bot,
+      check,
       commands,
       create,
       debug,

@@ -183,7 +183,8 @@ module.exports.ident = function ident (data)
    // console.log("DEBUG: ID Message");
 
    data.color = "info";
-   data.text = `**User Name:** \`${data.message.author.username}\`\n` +
+   data.text = `**User Name:** \`${data.message.guild.members.cache.get(data.message.author.id).user.username}\`\n` +
+   `**Nick Name:** \`${data.message.guild.members.cache.get(data.message.author.id).nickname || "None"}\`\n` +
    `**User ID:** \`${data.message.author.id}\`\n\n` +
    `**Server Name:** \`${data.message.channel.guild.name}\`\n` +
    `**Server ID:** \`${data.message.channel.guild.id}\`\n\n` +

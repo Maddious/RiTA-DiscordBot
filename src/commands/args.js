@@ -29,7 +29,6 @@ const cmdJoin = require("./info_commands/join");
 const cmdList = require("./info_commands/list");
 const cmdMod = require("./future_commands/mod");
 const cmdMisc = require("./info_commands/misc");
-const cmdPerms = require("./utility_commands/perm");
 const cmdPrefix = require("./settings_commands/prefix");
 const cmdReact = require("./settings_commands/react");
 const cmdSettings = require("./settings_commands/settings");
@@ -357,7 +356,6 @@ module.exports = function run (data)
             "blacklist": cmdBlacklist.blacklist,
             "bot2bot": cmdBot2bot,
             "check": cmdCheck,
-            "checkperms": cmdPerms,
             "create": cmdCreate,
             "debug": cmdDebug,
             "delmsg": cmdMod.deleteid,
