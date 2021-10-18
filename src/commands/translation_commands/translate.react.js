@@ -119,6 +119,7 @@ module.exports = function run (data, client)
                      data.member.displayColor = fn.getRoleColor(data.message.member);
                      data.canWrite = true;
                      data.reactuser = data.user_id;
+                     data.reaction = true;
 
                      // ------------------
                      // Start translation

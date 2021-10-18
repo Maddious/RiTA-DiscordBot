@@ -45,6 +45,7 @@ function checkPerms (data, sendBox)
          "guild": data.message.guild,
          "message": data.message,
          "origin": null,
+         "reaction": data.reaction,
          "text": data.text,
          "title": data.title
       };
@@ -219,7 +220,7 @@ async function reactpersist (data, msg)
       function getServerInfo (server)
       {
 
-         if (server[0].reactpersist === false || server[0].reactpersist === 0)
+         if (data.reaction === true && server[0].reactpersist === false || server[0].reactpersist === 0)
          {
 
             try

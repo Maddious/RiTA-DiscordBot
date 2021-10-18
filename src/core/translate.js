@@ -134,7 +134,6 @@ function discordPatch (string)
 
 }
 
-
 function translateFix (string, matches)
 {
 
@@ -174,9 +173,10 @@ function translateFix (string, matches)
 
 
 }
-// ------------
+// ---------------------------------------------------------------------------
 // Retranslation function using auto if it thinks it is in the wrong language
-// ------------
+// ---------------------------------------------------------------------------
+
 async function reTranslate (matches, opts)
 {
 
@@ -215,7 +215,6 @@ function getUserColor (data, callback)
    callback(data);
 
 }
-
 
 // --------------------------
 // Translate buffered chains
