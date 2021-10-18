@@ -317,8 +317,8 @@ function getHistory (data)
       `# Version 1.2.6-4 - Release Date: 06/10/2021 \n` +
       `# Version 1.2.6-5 - Release Date: 07/10/2021 \n` +
       `# Version 1.2.6-6 - Release Date: 11/10/2021 \n` +
-      `# Version 1.2.6-7 - Release Date: 12/10/2021 \n\n` +
-      `# Version 1.2.6-8 - Release Date: 13/10/2021 \n\n` +
+      `# Version 1.2.6-7 - Release Date: 12/10/2021 \n` +
+      `# Version 1.2.6-8 - Release Date: 13/10/2021 \n` +
       `# Version 1.2.6-9 - Release Date: 18/10/2021 \n\n` +
       "```\n";
 
