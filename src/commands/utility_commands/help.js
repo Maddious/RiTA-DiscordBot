@@ -331,8 +331,8 @@ function helpMessage (config, param)
 
    "```md\n" +
    `# Command\n` +
-   `* ${cmd} channel \n` +
-   `* ${cmd} channel from [lang] to [lang] for [me/@/#] \n` +
+   `* ${cmd} auto to [lang] for [#] (same channel)\n` +
+   `* ${cmd} channel from [lang] to [lang] for [me/@/#] (cross-channel)\n` +
    `* ${cmd} stop for [me/@/#] \n\n` +
    "```" +
 
@@ -345,6 +345,7 @@ function helpMessage (config, param)
 
    "```md\n" +
    `# Examples\n` +
+   `* ${cmd} auto to spanish for #general\n` +
    `* ${cmd} channel from english to chinese for me\n` +
    `* ${cmd} channel from en to de for #englishChannel \n` +
    `* ${cmd} channel from de to fr for @steve \n` +
