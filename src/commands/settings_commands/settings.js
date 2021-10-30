@@ -557,7 +557,7 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   AreDev:if (!data.message.guild.ownerID === data.message.author.id)
+   AreDev:if (data.message.guild.ownerID !== data.message.author.id)
    {
 
       if (auth.devID.includes(data.message.author.id))
@@ -569,7 +569,7 @@ module.exports = function run (data)
       }
 
       data.color = "warn";
-      data.text = ":warning: These Commands are for bot owners and developers only.";
+      data.text = ":warning: These Commands are for server owners and developers only.";
 
       // -------------
       // Send message
@@ -578,6 +578,7 @@ module.exports = function run (data)
       return sendMessage(data);
 
    }
+
    // -----------------------------------
    // Error if settings param is missing
    // -----------------------------------

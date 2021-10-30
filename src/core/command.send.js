@@ -61,7 +61,7 @@ async function sendMessage (data)
       catch((err) =>
       {
 
-         if (err.code && err.code === error.perm || error.access)
+         if (err.code && err.code === error.perm || err.code === error.access)
          {
 
             const col = "errorcount";

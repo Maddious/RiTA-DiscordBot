@@ -9,6 +9,7 @@ const db = require("../../core/db");
 const devSendMessage = require("../../core/dev.send");
 const sendMessage = require("../../core/command.send");
 const oneLine = require("common-tags").oneLine;
+const auth = require("../../core/auth");
 
 
 // -------------
@@ -244,6 +245,30 @@ function getCheck (data)
 module.exports = function run (data)
 {
 
+   AreDev:if (data.message.guild.ownerID !== data.message.author.id)
+   {
+
+      console.log("In Check");
+      if (data.cmd.params === "me" || data.cmd.params === "channel" || auth.devID.includes(data.message.author.id))
+      {
+
+         // console.log("DEBUG: Developer ID Confirmed");
+         break AreDev;
+
+      }
+
+      data.color = "warn";
+      data.text = ":warning: These Commands are for server owners and developers only.";
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   }
+   console.log("Out Check");
+
    // -------------------------------
    // Error if check param is missing
    // --------------------------------
@@ -337,7 +362,7 @@ module.exports = function run (data)
 
    }
 
+   console.log("Get Check");
    return getCheck(data);
-
 
 };

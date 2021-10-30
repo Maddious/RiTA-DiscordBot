@@ -49,7 +49,6 @@ exports.listen = function listen (client)
             "maxEmbeds": 5,
             "maxMulti": 6,
             "maxTasksPerChannel": 15,
-            "owner": auth.botOwner,
             "translateCmd": "!translate",
             "translateCmdShort": "!tr",
             "version": botVersion
@@ -58,7 +57,7 @@ exports.listen = function listen (client)
          if (!process.env.DISCORD_BOT_OWNER_ID)
          {
 
-            process.env.DISCORD_BOT_OWNER_ID = [];
+            process.env.DISCORD_BOT_OWNER_ID = "0";
 
          }
 

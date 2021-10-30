@@ -200,7 +200,7 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   AreDev: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   AreDev: if (!auth.botOwner.includes(data.message.author.id))
    {
 
       if (auth.devID.includes(data.message.author.id))

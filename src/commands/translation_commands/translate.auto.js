@@ -97,7 +97,7 @@ module.exports = function run (data)
    // ------------------------------------------
    // Error if non-manager sets channel as dest
    // ------------------------------------------
-   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id) && !auth.devID.includes(data.message.author.id))
+   Override: if (!auth.devID.includes(data.message.author.id))
    {
 
       if (data.message.isAdmin === false && !data.message.isManager)
@@ -384,7 +384,7 @@ module.exports = function run (data)
       // ----------------------------------
       // Multiple dests set by non-manager
       // ----------------------------------
-      Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id) && !auth.devID.includes(data.message.author.id))
+      Override: if (!auth.devID.includes(data.message.author.id))
       {
 
          if (data.message.isAdmin === false && !data.message.isManager)

@@ -175,7 +175,7 @@ module.exports = function run (data)
    // Disallow non-managers to stop for others
    // -----------------------------------------
 
-   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id) && !auth.devID.includes(data.message.author.id))
+   Override: if (!auth.devID.includes(data.message.author.id))
    {
 
       if (data.message.isAdmin === false && !data.message.isManager)

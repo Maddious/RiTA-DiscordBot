@@ -142,7 +142,10 @@ module.exports = async function run (config, message)
       message.isAdmin =
          message.member.permissions.has("ADMINISTRATOR");
 
-      message.isManager =
+      message.isGlobalChanManager =
+         message.member.permissions.has("MANAGE_CHANNELS");
+
+      message.isChanManager =
          fn.checkPerm(
             message.member,
             message.channel,

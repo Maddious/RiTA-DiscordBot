@@ -319,7 +319,8 @@ function getHistory (data)
       `# Version 1.2.6-6 - Release Date: 11/10/2021 \n` +
       `# Version 1.2.6-7 - Release Date: 12/10/2021 \n` +
       `# Version 1.2.6-8 - Release Date: 13/10/2021 \n` +
-      `# Version 1.2.6-9 - Release Date: 18/10/2021 \n\n` +
+      `# Version 1.2.6-9 - Release Date: 18/10/2021 \n` +
+      `# Version 1.2.6-10 - Release Date: 30/10/2021 \n\n` +
       "```\n";
 
       // -------------
@@ -345,10 +346,10 @@ function getHistory (data)
       `# Unified RITA Launched - 01/04/2021 \n` +
       `# 100 Guilds - 25/04/2021 \n` +
       `# Discord Verified - 27/05/2021 \n` +
-      `# 200 Guilds - 04/06/2021  / 300 Guilds - 08/06/2021\n` +
-      `# 400 Guilds - 11/06/2021 / 500 Guilds - 14/06/2021\n` +
-      `# 600 Guilds - 19/06/2021 / 700 Guilds - 21/06/2021\n` +
-      `# 800 Guilds - 24/06/2021 / 900 Guilds - 27/06/2021\n` +
+      `# 0200 Guilds - 04/06/2021 / 0300 Guilds - 08/06/2021\n` +
+      `# 0400 Guilds - 11/06/2021 / 0500 Guilds - 14/06/2021\n` +
+      `# 0600 Guilds - 19/06/2021 / 0700 Guilds - 21/06/2021\n` +
+      `# 0800 Guilds - 24/06/2021 / 0900 Guilds - 27/06/2021\n` +
       `# 1000 Guilds - 29/06/2021 / 1100 Guilds - 01/07/2021\n` +
       `# 1200 Guilds - 04/07/2021 / 1300 Guilds - 07/07/2021\n` +
       `# 1400 Guilds - 09/07/2021 / 1500 Guilds - 11/07/2021\n` +
@@ -381,6 +382,15 @@ function getHistory (data)
       `# 6800 Guilds - 05/10/2021 / 6900 Guilds - 07/10/2021\n` +
       `# 7000 Guilds - 08/10/2021 / 7100 Guilds - 09/10/2021\n` +
       `# 7200 Guilds - 10/10/2021 / 7200 Guilds - 11/10/2021\n` +
+      `# 7300 Guilds - 12/10/2021 / 7400 Guilds - 13/10/2021\n` +
+      `# 7500 Guilds - 14/10/2021 / 7600 Guilds - 15/10/2021\n` +
+      `# 7700 Guilds - 15/10/2021 / 7800 Guilds - 17/10/2021\n` +
+      `# 7900 Guilds - 18/10/2021 / 8000 Guilds - 19/10/2021\n` +
+      `# 8100 Guilds - 20/10/2021 / 8200 Guilds - 21/10/2021\n` +
+      `# 8300 Guilds - 22/10/2021 / 8400 Guilds - 24/10/2021\n` +
+      `# 8500 Guilds - 25/10/2021 / 8600 Guilds - 26/10/2021\n` +
+      `# 8700 Guilds - 27/10/2021 / 8800 Guilds - 28/10/2021\n` +
+      `# 8900 Guilds - 29/10/2021 / 9000 Guilds - 30/10/2021\n\n` +
       "```\n";
 
       // -------------

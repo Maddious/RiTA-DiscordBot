@@ -277,7 +277,7 @@ module.exports = function run (data)
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("debug"))
       {
 
-         AreDev: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+         AreDev: if (!auth.botOwner.includes(data.message.author.id))
          {
 
             if (auth.devID.includes(data.message.author.id))

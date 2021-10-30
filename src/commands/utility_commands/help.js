@@ -692,7 +692,6 @@ function helpMessage (config, param)
    `* ${cmd} warn [ServerID]\n` +
    `* ${cmd} unwarn [ServerID]\n` +
    `* ${cmd} check server [ServerID]\n` +
-   `* ${cmd} server [ServerID]\n` +
    `* ${cmd} settings updatedb\n` +
    `* ${cmd} settings listservers\n` +
    `* ${cmd} invite server [ServerID]\n\n` +
@@ -793,10 +792,10 @@ module.exports = function run (data)
       const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
       getHelpWith = cleanParam;
 
-      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+      if (!auth.devID.includes(data.message.author.id))
       {
 
-         console.log("Insufficient Permission");
+         // console.log("DEBUG: Insufficient Permission");
          try
          {
 
@@ -807,7 +806,7 @@ module.exports = function run (data)
          {
 
             console.log(
-               "Command Message Deleted Error, help.js = Line 770",
+               "DEBUG: Command Message Deleted Error, help.js = Line 770",
                err
             );
 
@@ -835,7 +834,7 @@ module.exports = function run (data)
             {
 
                console.log(
-                  "Command Message Deleted Error, help.js = Line 798",
+                  "DEBUG: Command Message Deleted Error, help.js = Line 798",
                   err
                );
 

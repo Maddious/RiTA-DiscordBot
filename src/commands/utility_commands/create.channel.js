@@ -41,10 +41,10 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id) && !auth.devID.includes(data.message.author.id))
+   Override: if (!auth.devID.includes(data.message.author.id))
    {
 
-      if (!data.message.isManager)
+      if (!data.message.isGlobalChanManager)
       {
 
          {
@@ -53,8 +53,7 @@ module.exports = function run (data)
 
          }
          data.text =
-         ":police_officer:  You need to be a channel manager to " +
-         "create a new channel";
+         ":police_officer:  You need to be a server channel manager to create a new channel";
 
          // -------------
          // Send message
