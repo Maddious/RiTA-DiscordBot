@@ -42,7 +42,7 @@ const debuging = async function debuging (data)
       // console.log(`DEBUG on 1 ${process.env.DISCORD_DEBUG_WEBHOOK_ID}`);
       // Checks if there iS an item in the channels collection that corresponds with the supplied parameters, returns a boolean
       const check = (element) => element.name === "ritabot-debug";
-      Setup:if (webhookIDVar !== process.env.DISCORD_DEBUG_WEBHOOK_ID)
+      Setup: if (webhookIDVar !== process.env.DISCORD_DEBUG_WEBHOOK_ID)
       {
 
          if (process.env.DISCORD_DEBUG_WEBHOOK_ID === undefined || null)
@@ -200,14 +200,14 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   AreDev: if (!auth.botOwner.includes(data.message.author.id))
+   Override: if (!auth.botOwner.includes(data.message.author.id))
    {
 
       if (auth.devID.includes(data.message.author.id))
       {
 
          // console.log("DEBUG: Developer ID Confirmed");
-         break AreDev;
+         break Override;
 
       }
 

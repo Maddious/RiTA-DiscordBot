@@ -81,7 +81,7 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   Override: if (!auth.botOwner.includes(data.message.author.id) && !auth.devID.includes(data.message.author.id))
+   Override: if (!auth.devID.includes(data.message.author.id))
    {
 
       if (data.message.isAdmin === false)

@@ -557,14 +557,14 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   AreDev:if (data.message.guild.ownerID !== data.message.author.id)
+   Override: if (data.message.guild.ownerID !== data.message.author.id)
    {
 
       if (auth.devID.includes(data.message.author.id))
       {
 
          // console.log("DEBUG: Developer ID Confirmed");
-         break AreDev;
+         break Override;
 
       }
 

@@ -245,14 +245,14 @@ function getCheck (data)
 module.exports = function run (data)
 {
 
-   AreDev:if (data.message.guild.ownerID !== data.message.author.id)
+   Override: if (data.message.guild.ownerID !== data.message.author.id)
    {
 
       if (data.cmd.params === "me" || data.cmd.params === "channel" || auth.devID.includes(data.message.author.id))
       {
 
          // console.log("DEBUG: Developer ID Confirmed");
-         break AreDev;
+         break Override;
 
       }
 
