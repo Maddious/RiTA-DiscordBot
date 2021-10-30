@@ -248,7 +248,6 @@ module.exports = function run (data)
    AreDev:if (data.message.guild.ownerID !== data.message.author.id)
    {
 
-      console.log("In Check");
       if (data.cmd.params === "me" || data.cmd.params === "channel" || auth.devID.includes(data.message.author.id))
       {
 
@@ -267,7 +266,6 @@ module.exports = function run (data)
       return sendMessage(data);
 
    }
-   console.log("Out Check");
 
    // -------------------------------
    // Error if check param is missing
@@ -360,9 +358,10 @@ module.exports = function run (data)
          }
       );
 
+      return;
+
    }
 
-   console.log("Get Check");
    return getCheck(data);
 
 };
