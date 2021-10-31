@@ -387,7 +387,7 @@ module.exports = function run (data)
       Override: if (!auth.devID.includes(data.message.author.id))
       {
 
-         if (data.message.isAdmin === false && !data.message.isManager)
+         if (!data.message.isGlobalChanManager)
          {
 
             data.color = "error";
