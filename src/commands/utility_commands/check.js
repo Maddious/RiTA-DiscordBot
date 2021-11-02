@@ -304,6 +304,7 @@ module.exports = function run (data)
                "```" +
 
                "```md\n" +
+               `# RITA Server Settings:\n` +
                `* Allow Annocement Messages: ${server[0].announce}\n` +
                `* Embedded Message Style: ${server[0].embedstyle}\n` +
                `* Bot to Bot Translation Status: ${server[0].bot2botstyle}\n` +
