@@ -394,7 +394,7 @@ exports.listen = function listen (client)
 
                console.log(`Server: ${guild.id} has a blacklisted status of: ${server[0].blacklisted}`);
                logger(
-                  "custom",
+                  "activity",
                   {
                      "color": "ok",
                      "msg": oneLine`**Server:** ${guild.id} has a blacklisted status of: **${server[0].blacklisted}**`
@@ -405,7 +405,7 @@ exports.listen = function listen (client)
                {
 
                   logger(
-                     "custom",
+                     "activity",
                      {
                         "color": "warn",
                         "msg": oneLine`**Server:** ${guild.id} has been kicked as it is blacklisted`

@@ -261,6 +261,7 @@ module.exports = function run (type, data, subtype = null, id)
 
    }
    const logTypes = {
+      "activity": activityHookSend,
       "custom": hookSend,
       "dev": devConsole,
       "error": errorLog,
