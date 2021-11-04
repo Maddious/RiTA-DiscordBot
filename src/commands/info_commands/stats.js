@@ -35,7 +35,7 @@ module.exports = function run (data)
    // ------------------------
 
    // eslint-disable-next-line complexity
-   db.getStats(async function getStats (stats)
+   db.getStats(function getStats (stats)
    {
 
       // Get global server information
@@ -184,17 +184,24 @@ module.exports = function run (data)
 
          }
          // eslint-disable-next-line no-unused-vars
-         const serverID = data.cmd.params.split(" ")[1].toLowerCase();
+         const serverID = data.cmd.num;
          const target = data.message.client.guilds.cache.get(serverID);
-         const owner = await target.members.fetch(target.ownerID);
 
          db.getServerInfo(
             serverID,
-            function getServerInfo (server)
+            async function getServerInfo (server)
             {
 
                if (!target)
                {
+
+                  if (server.length === 0)
+                  {
+
+                     data.text = `\`\`\`${serverID} is not registered in the database.\n\n\`\`\``;
+                     return sendMessage(data);
+
+                  }
 
                   const targetServer = `**\`\`\`${serverID} - Server Tranlation Stats\`\`\`**\n` +
                      `Server Joined Rita Network: \`\`\`${server[0].createdAt}\`\`\`\n` +
@@ -214,6 +221,8 @@ module.exports = function run (data)
                   return sendMessage(data);
 
                }
+
+               const owner = await target.members.fetch(target.ownerID);
                if (owner)
                {
 
@@ -267,7 +276,7 @@ module.exports = function run (data)
                serverID
             );
 
-            data.text = `\`\`\`${serverID} is not registered in the database.\n\n\`\`\``;
+            data.text = `\`\`\`Critical Stats Error, Zycore Broke it.\n\n\`\`\``;
             return sendMessage(data);
 
          });

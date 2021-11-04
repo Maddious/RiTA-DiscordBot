@@ -20,6 +20,7 @@ function getCheck (data)
 {
 
    const serverID = data.cmd.num;
+   const target = data.message.client.guilds.cache.get(serverID);
 
    // ------------------
    // Full Server Check
@@ -28,25 +29,44 @@ function getCheck (data)
    function fullServer (data)
    {
 
-      const target = data.message.client.guilds.cache.get(serverID);
-      if (target === undefined)
-      {
-
-         data.text =
-            `__**Permission Checker - Target Server**__\n\n` +
-            `Targeted server: \`Unknown\`\n` +
-            `Targeted ID: \`${serverID}\`\n\n` +
-            `Invalid Server ID or RITA is no longer in this server.\n\n`;
-         data.color = "warn";
-         return devSendMessage(data);
-
-      }
-
-
       db.getServerInfo(
          serverID,
          async function getServerInfo (server)
          {
+
+            if (!target)
+            {
+
+               if (server.length === 0)
+               {
+
+                  data.text = `\`\`\`${serverID} is not registered in the database.\n\n\`\`\``;
+                  return devSendMessage(data);
+
+               }
+
+               data.text =
+               `__**Permission Checker - Target Server**__\n\n` +
+               "```md\n" +
+               `Targeted server: Unknown\n` +
+               `Targeted ID: ${serverID}\n\n` +
+               "```" +
+
+               "```md\n" +
+               `* Error Count: ${server[0].errorcount}\n` +
+               `* Warn Count: ${server[0].warncount}\n` +
+               `* Eject Count: ${server[0].ejectcount}\n` +
+               `* Warn Status: ${server[0].warn}\n` +
+               `* Blacklist Status: ${server[0].blacklisted}\n\n` +
+               "```" +
+
+               "```md\n" +
+               `RITA is no longer in this server.\n\n` +
+               "```";
+               data.color = "warn";
+               return devSendMessage(data);
+
+            }
 
             const bot = target.members.cache.get(data.message.client.user.id);
             const owner = await target.members.fetch(target.ownerID);
@@ -133,7 +153,7 @@ function getCheck (data)
             serverID
          );
 
-         data.text = oneLine`\`\`\`${serverID} is not in our Database\n\n\`\`\``;
+         data.text = oneLine`\`\`\`Critical Stats Error, Zycore Broke it.\n\n\`\`\``;
          return devSendMessage(data);
 
       });

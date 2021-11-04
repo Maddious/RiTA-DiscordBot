@@ -55,6 +55,49 @@ function hookSend (data)
 
 }
 
+function activityHookSend (data)
+{
+
+   let AID = null;
+   let ATO = null;
+
+   if (!process.env.DISCORD_ACTIVITY_WEBHOOK_ID || !process.env.DISCORD_ACTIVITY_WEBHOOK_TOKEN)
+   {
+
+      AID = process.env.DISCORD_DEBUG_WEBHOOK_ID;
+      ATO = process.env.DISCORD_DEBUG_WEBHOOK_TOKEN;
+
+   }
+   else
+   {
+
+      AID = process.env.DISCORD_ACTIVITY_WEBHOOK_ID;
+      ATO = process.env.DISCORD_ACTIVITY_WEBHOOK_TOKEN;
+
+   }
+
+
+   const hook = new discord.WebhookClient(
+      AID,
+      ATO
+   );
+   const embed = new discord.MessageEmbed({
+      "color": colors(data.color),
+      "description": data.msg,
+      "footer": {
+         "text": data.footer
+      },
+      "title": data.title
+   });
+   return hook.send(embed).catch((err) =>
+   {
+
+      console.error(`hook.send error:\n${err}`);
+
+   });
+
+}
+
 // -------------
 // Error Logger
 // -------------
@@ -137,7 +180,7 @@ async function logJoin (guild)
    if (owner)
    {
 
-      hookSend({
+      activityHookSend({
          "color": "ok",
          "msg":
          `${`:white_check_mark:  **${guild.name}**\n` +
@@ -152,7 +195,7 @@ async function logJoin (guild)
    else
    {
 
-      hookSend({
+      activityHookSend({
          "color": "ok",
          "msg":
          `${`:white_check_mark:  **${guild.name}**\n` +
@@ -177,7 +220,7 @@ async function logLeave (guild)
    if (owner)
    {
 
-      hookSend({
+      activityHookSend({
          "color": "warn",
          "msg":
          `${`:regional_indicator_x:  **${guild.name}**\n` +
@@ -190,7 +233,7 @@ async function logLeave (guild)
    else
    {
 
-      hookSend({
+      activityHookSend({
          "color": "warn",
          "msg":
          `${`:regional_indicator_x:  **${guild.name}**\n` +

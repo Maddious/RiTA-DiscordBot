@@ -10,7 +10,6 @@ const fn = require("./core/helpers");
 const cmdArgs = require("./commands/args");
 const auth = require("./core/auth");
 
-
 // --------------------
 // Listen for messages
 // --------------------
@@ -199,11 +198,18 @@ module.exports = async function run (config, message)
       function getServerInfo (server)
       {
 
+         if (server.length === 0)
+         {
+
+            return;
+
+         }
+
          if (server[0].blacklisted === true)
          {
 
-            data.message.guild.leave();
             console.log(`Blacklist Redundancy, Server ${serverID} ejected`);
+            data.message.guild.leave();
 
          }
 

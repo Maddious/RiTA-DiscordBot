@@ -43,6 +43,21 @@ module.exports = function run (data, client)
          function getServerInfo (server)
          {
 
+            if (server.length === 0)
+            {
+
+               return logger("custom", {
+                  "color": "ok",
+                  "msg": `:exclamation: Write Permission Error - Origin \n
+                  ServerID: **${data.guild_id || "Unknown"}** \n
+                  Chan ID: **${data.channel_id || "Unknown"}**\n
+                  Message ID **${data.message_id || "Unknown"}**\n
+                  User ID: **$${data.member.user.id || "Unknown"}**\n
+                  Emoji: **${data.emoji.name || "Unknown"}**\n`
+               });
+
+            }
+
             if (server[0].flag === true || server[0].flag === 1)
             {
 
