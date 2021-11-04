@@ -461,7 +461,7 @@ function getSettings (data)
                      }
 
                   },
-                  console.log(`Message ${i} - Server Owner Added for guild: ${target}`)
+                  console.log(`Owner Task ${i} - Server Owner Added for guild: ${target}`)
                );
 
 
@@ -537,12 +537,12 @@ function getSettings (data)
                      if (err)
                      {
 
-                        return console.log(`DEBUG: Unable to save Guild Name to DB on Server Command`);
+                        return console.log(`DEBUG: Unable to save guild name to DB on Server Command`);
 
                      }
 
                   },
-                  console.log(`Message ${i} - Guild Name Added for guild: ${target}`)
+                  console.log(`Server Task ${i} - Guild name added for guild: ${target}`)
                );
 
 
