@@ -467,7 +467,88 @@ function getSettings (data)
 
             }
 
-         }, 100);
+         }, 250);
+
+      }
+      else
+      {
+
+         data.text = ":cop:  This Command is for bot developers only.";
+         return sendMessage(data);
+
+      }
+
+   }
+
+   // -------
+   // Owners
+   // -------
+
+   function serverUpdate (data)
+   {
+
+      if (auth.devID.includes(data.message.author.id))
+      {
+
+         let i = 0;
+         const guilds = [];
+         for (const guild of data.message.client.guilds.cache)
+         {
+
+            guilds.push(guild);
+
+         }
+
+         const wait = setInterval(async function delay ()
+
+         {
+
+            const guild = guilds.shift();
+
+            i += 1;
+            if (guild === undefined)
+            {
+
+               console.log(`Done all servers`);
+               clearInterval(wait);
+
+            }
+            else if (guild[1].name)
+            {
+
+               const name = await guild[1].name;
+               const target = guild[1].id;
+
+               if (!target)
+               {
+
+                  // eslint-disable-next-line no-useless-return
+                  return;
+
+               }
+
+               db.updateServerTable(
+                  target,
+                  "servername",
+                  `${name}`,
+                  function error (err)
+                  {
+
+                     if (err)
+                     {
+
+                        return console.log(`DEBUG: Unable to save Guild Name to DB on Server Command`);
+
+                     }
+
+                  },
+                  console.log(`Message ${i} - Guild Name Added for guild: ${target}`)
+               );
+
+
+            }
+
+         }, 250);
 
       }
       else
@@ -511,8 +592,9 @@ function getSettings (data)
       "flagpersist": setFlagPersistence,
       "listservers": listServers,
       "menupersist": setMenuPersistence,
-      "owner": ownerUpdate,
+      "ownerdb": ownerUpdate,
       "reactpersist": setReactPersistence,
+      "serverdb": serverUpdate,
       "setlang": setLang,
       "updatedb": updateDB
 
