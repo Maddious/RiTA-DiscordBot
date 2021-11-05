@@ -467,7 +467,7 @@ function getSettings (data)
 
             }
 
-         }, 250);
+         }, 1000);
 
       }
       else
@@ -545,10 +545,9 @@ function getSettings (data)
                   console.log(`Server Task ${i} - Guild name added for guild: ${target}`)
                );
 
-
             }
 
-         }, 250);
+         }, 1000);
 
       }
       else
