@@ -467,7 +467,7 @@ function getSettings (data)
 
             }
 
-         }, 1000);
+         }, 2000);
 
       }
       else
@@ -530,7 +530,7 @@ function getSettings (data)
                db.updateServerTable(
                   target,
                   "servername",
-                  `${name}`,
+                  name,
                   function error (err)
                   {
 
@@ -547,7 +547,7 @@ function getSettings (data)
 
             }
 
-         }, 1000);
+         }, 2000);
 
       }
       else

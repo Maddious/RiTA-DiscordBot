@@ -36,6 +36,24 @@ module.exports = async function run (guild, config)
       defaultChannel = guild.channels.cache.find((channel) => channel.type === "text" && channel.permissionsFor(guild.me).has("SEND_MESSAGES"));
 
    }
+
+   db.updateServerTable(
+      guild.id,
+      "servername",
+      guild.name,
+      function error (err)
+      {
+
+         if (err)
+         {
+
+            return console.log(`DEBUG: Unable to save guild name to DB on Server Join`);
+
+         }
+
+      }
+   );
+
    const owner = await guild.members.fetch(guild.ownerID);
 
    if (owner)

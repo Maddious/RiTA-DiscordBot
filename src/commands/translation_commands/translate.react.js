@@ -48,7 +48,7 @@ module.exports = function run (data, client)
 
                return logger("custom", {
                   "color": "ok",
-                  "msg": `:exclamation: Write Permission Error - Origin \n
+                  "msg": `:exclamation: Emoji Reaction Failed \n
                   ServerID: **${data.guild_id || "Unknown"}** \n
                   Chan ID: **${data.channel_id || "Unknown"}**\n
                   Message ID **${data.message_id || "Unknown"}**\n
