@@ -29,7 +29,7 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
             "require": true,
             "rejectUnauthorized": false
          },
-         acquireTimeout: 10000
+         acquireTimeout: 30000
       },
       "storage": process.env.DATABASE_URL
    }) :
@@ -42,7 +42,7 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
                "require": true,
                "rejectUnauthorized": false
             },
-            acquireTimeout: 10000
+            acquireTimeout: 30000
          }
       }
    );
