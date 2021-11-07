@@ -642,7 +642,6 @@ module.exports = function run (data) // eslint-disable-line complexity
          updateServerStats(data.message);
          data.forward = fw;
          data.footer = ft;
-         data.footer.text += detectedLang;
          data.color = data.member.displayColor;
          data.text = res.text;
          data.showAuthor = true;
@@ -658,10 +657,12 @@ module.exports = function run (data) // eslint-disable-line complexity
             console.log(`MD2: ${data.message.guild.name} - ${data.message.guild.id} - ${data.message.createdAt}`);
 
          }
-         // let s1 = data.footer.text;
-         // let s2 = detectedLang;
-         // let s3 = s1 + s2;
-         // data.footer.text += detectedLang;
+         if (data.footer)
+         {
+
+            data.footer.text += detectedLang;
+
+         }
          return getUserColor(
             data,
             botSend

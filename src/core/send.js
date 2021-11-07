@@ -470,18 +470,25 @@ function embedOn (data)
          };
       }*/
 
-      if (data.origin.id === data.forward && data.message.content.startsWith("https://tenor.com/"))
+
+      if (data.origin)
+
       {
 
-         console.log("DEBUG: Embed ON: Same channel GIF translation, Image ignored");
-         return;
+         if (data.origin.id === data.forward && data.message.content.startsWith("https://tenor.com/"))
+         {
 
-      }
-      if (data.origin.id === data.forward && data.message.content.startsWith("<:") && data.message.content.endsWith(">"))
-      {
+            console.log("DEBUG: Embed ON: Same channel GIF translation, Image ignored");
+            return;
 
-         console.log("DEBUG: Embed ON: Same channel Single Emoji translation, Emoji ignored");
-         return;
+         }
+         if (data.origin.id === data.forward && data.message.content.startsWith("<:") && data.message.content.endsWith(">"))
+         {
+
+            console.log("DEBUG: Embed ON: Same channel Single Emoji translation, Emoji ignored");
+            return;
+
+         }
 
       }
       if (data.text && data.text.length > 1)
