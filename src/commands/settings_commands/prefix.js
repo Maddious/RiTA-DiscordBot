@@ -5,7 +5,6 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const logger = require("../../core/logger");
 const db = require("../../core/db");
-const auth = require("../../core/auth");
 const sendMessage = require("../../core/command.send");
 const message = require("../../message");
 

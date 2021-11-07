@@ -9,7 +9,6 @@ const db = require("../../core/db");
 const devSendMessage = require("../../core/dev.send");
 const sendMessage = require("../../core/command.send");
 const oneLine = require("common-tags").oneLine;
-const auth = require("../../core/auth");
 
 
 // -------------
