@@ -22,6 +22,123 @@ const auth = require("../core/auth");
 // Permission Check
 // -----------------
 
+function e50013 (data, eh, forwardChannel, sendData)
+{
+
+   let target = null;
+   if (eh === "o")
+   {
+
+      target = data.channel.id;
+
+   }
+   else
+   {
+
+      target = forwardChannel.id;
+
+   }
+   const col = "errorcount";
+   const id = data.message.guild.id || data.message.sourceID;
+   const tag = `${data.message.guild.owner.user.username}#${data.message.guild.owner.user.discriminator}`;
+   db.increaseServersCount(col, id);
+
+   db.checkTask(
+      data.message.guild.id || data.message.sourceID,
+      target,
+      eh,
+      async function error (err, res)
+      {
+
+         if (err)
+         {
+
+            return dbError(
+               err,
+               data
+            );
+
+         }
+
+         // -----------------------------
+         // Error if task does not exist
+         // -----------------------------
+
+         if (res.length < 1 || !res)
+         {
+
+            return console.log(`Somthing has gone really really wrong`);
+
+         }
+
+         // ------------------------------------------------
+         // Otherwise, proceed to remove task from database
+         // ------------------------------------------------
+
+         if (eh === "o")
+         {
+
+            // console.log("DEBUG: Error 50013 - Origin");
+            await logger("custom", {
+               "color": "ok",
+               "msg": `:exclamation: Write Permission Error - ${eh} \n
+               Task ID: **${res[0].id || "Unknown"}** \n
+               Server: **${data.guild.name || "Unknown"}** \n
+               Channel: **${data.channel.name || "Unknown"}**\n
+               Chan ID: **${data.channel.id || "Unknown"}**\n
+               Server ID: **${data.message.guild.id || data.message.sourceID || "Zycore Broke It Again"}**\n
+               Owner: **${data.message.guild.owner || "Unknown"}**\n
+               Dscord Tag: **${tag || "Unknown"}**\n
+               The server owner has been notified. \n`
+            });
+
+            const writeErr =
+            `:no_entry:  **${data.message.client.user.username}** does not have permission to write in ` +
+            `the ${data.channel.name} channel on your server **` +
+            `${data.channel.guild.name}**. Please fix.`;
+            console.log("DEBUG: Line 100 - Send.js");
+            return data.channel.guild.owner.
+               send(writeErr).
+               catch((err) => console.log("error", err, "warning", data.channel.guild.name));
+
+         }
+
+         if (eh === "d")
+         {
+
+            // console.log("DEBUG: Error 50013 - Destination");
+            await logger("custom", {
+               "color": "ok",
+               "msg": `:exclamation: Write Permission Error - Destination\n
+               Task ID: **${res[0].id || "Unknown"}** \n
+               Server: **${data.channel.guild.name || "Unknown"}** \n
+               Channel: **${forwardChannel.name || "Unknown"}**\n
+               Chan ID: **${forwardChannel.id || "Unknown"}**\n
+               Server ID: **${data.message.guild.id || data.message.sourceID || "Zycore Broke It Again"}**\n
+               Owner: **${data.message.guild.owner || "Unknown"}**\n
+               Dscord Tag: **${tag || "Unknown"}**\n
+               The server owner has been notified. \n`
+            });
+
+            const writeErr =
+            `:no_entry:  **${data.message.client.user.username}** does not have permission to write in ` +
+            `the ${forwardChannel.name} channel on your server **` +
+            `${sendData.channel.guild.name}**. Please fix.`;
+            console.log("DEBUG: Line 128 - Send.js");
+            return sendData.channel.guild.owner.
+               send(writeErr).
+               catch((err) => console.log("error", err, "warning", sendData.channel.guild.name));
+
+         }
+
+      }
+   );
+
+}
+// -----------------
+// Permission Check
+// -----------------
+
 function checkPerms (data, sendBox)
 {
 
@@ -31,6 +148,7 @@ function checkPerms (data, sendBox)
 
    // eslint-disable-next-line complexity
    {
+
 
       var sendData = {
          "attachments": data.message.attachments,
@@ -131,34 +249,7 @@ function checkPerms (data, sendBox)
             // Notify server owner if bot cannot write to forwarding channel
             // --------------------------------------------------------------
 
-            // console.log("DEBUG: Error 50013 - Destination");
-
-            const col = "errorcount";
-            const id = data.message.guild.id || data.message.sourceID;
-            const tag = `${data.message.guild.owner.user.username}#${data.message.guild.owner.user.discriminator}`;
-            db.increaseServersCount(col, id);
-
-            logger("custom", {
-               "color": "ok",
-               "msg": `:exclamation: Write Permission Error - Destination\n
-                  Server: **${data.channel.guild.name || "Unknown"}** \n
-                  Channel: **${forwardChannel.name || "Unknown"}**\n
-                  Chan ID: **${forwardChannel.id || "Unknown"}**\n
-                  Server ID: **${data.message.guild.id || data.message.sourceID || "Zycore Broke It Again"}**\n
-                  Owner: **${data.message.guild.owner || "Unknown"}**\n
-                  Dscord Tag: **${tag || "Unknown"}**\n
-                  The server owner has been notified. \n`
-            });
-
-            // console.log("DEBUG: Perms Error, Write Restricted 2");
-            const writeErr =
-            `:no_entry:  **${data.message.client.user.username}** does not have permission to write in ` +
-            `the ${forwardChannel.name} channel on your server **` +
-            `${sendData.channel.guild.name}**. Please fix.`;
-            // console.log("DEBUG: Line 147 - Send.js");
-            return sendData.channel.guild.owner.
-               send(writeErr).
-               catch((err) => console.log("error", err, "warning", sendData.channel.guild.name));
+            return e50013(data, "d", forwardChannel, sendData);
 
          }
 
@@ -304,6 +395,7 @@ function embedOn (data)
    function sendAttachments (data)
    {
 
+
       if (!data.attachments)
       {
 
@@ -315,6 +407,20 @@ function embedOn (data)
       if (attachments && attachments.length > 0)
       {
 
+         if (data.origin.id === data.forward)
+         {
+
+            if (data.message.content.startsWith("https://tenor.com/"))
+            {
+
+               console.log("DEBUG: Embed ON: Same channel GIF translation, GIF ignored");
+               return;
+
+            }
+            console.log("DEBUG: Embed On: Same channel image translation, Image ignored");
+            return;
+
+         }
          const maxAtt = data.config.maxEmbeds;
 
          if (attachments.length > maxAtt)
@@ -364,6 +470,20 @@ function embedOn (data)
          };
       }*/
 
+      if (data.origin.id === data.forward && data.message.content.startsWith("https://tenor.com/"))
+      {
+
+         console.log("DEBUG: Embed ON: Same channel GIF translation, Image ignored");
+         return;
+
+      }
+      if (data.origin.id === data.forward && data.message.content.startsWith("<:") && data.message.content.endsWith(">"))
+      {
+
+         console.log("DEBUG: Embed ON: Same channel Single Emoji translation, Emoji ignored");
+         return;
+
+      }
       if (data.text && data.text.length > 1)
       {
 
@@ -440,23 +560,7 @@ function embedOn (data)
                if (err.code && err.code === error.perm || err.code === error.access)
                {
 
-                  const col = "errorcount";
-                  const id = data.message.guild.id || data.message.sourceID;
-                  const tag = `${data.message.guild.owner.user.username}#${data.message.guild.owner.user.discriminator}`;
-                  db.increaseServersCount(col, id);
-
-                  // console.log("DEBUG: Error 50013 - Origin");
-                  return logger("custom", {
-                     "color": "ok",
-                     "msg": `:exclamation: Write Permission Error - Origin \n
-                  Server: **${data.guild.name || "Unknown"}** \n
-                  Channel: **${data.channel.name || "Unknown"}**\n
-                  Chan ID: **${data.channel.id || "Unknown"}**\n
-                  Server ID: **${data.message.guild.id || data.message.sourceID || "Zycore Broke It Again"}**\n
-                  Owner: **${data.message.guild.owner || "Unknown"}**\n
-                  Dscord Tag: **${tag || "Unknown"}**\n
-                  The server owner has been notified. \n`
-                  });
+                  return e50013(data, "o");
 
                }
                // console.log("DEBUG: Not 50013 or 50001");
@@ -624,8 +728,23 @@ function embedOff (data)
       if (data.attachments)
       {
 
+         if (data.origin.id === data.forward && data.message.content.startsWith("https://tenor.com/"))
+         {
+
+            console.log("DEBUG: Embed Off: Same channel GIF translation, Image ignored");
+            return;
+
+         }
          if (data.attachments.size !== 0)
          {
+
+            if (data.origin.id === data.forward)
+            {
+
+               console.log("DEBUG: Embed Off: Same channel image translation, Image ignored");
+               return;
+
+            }
 
             files = createFiles(data.attachments);
 

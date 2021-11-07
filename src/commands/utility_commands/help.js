@@ -183,7 +183,7 @@ function helpMessage (config, param)
    `* ${cmd} last (Command Disabled)\n` +
    `* ${cmd} channel from [lang] to [lang] for [me/@/#]\n` +
    `* ${cmd} auto to [lang] for [me/@/#]\n` +
-   `* ${cmd} stop for [me/@/#]\n\n` +
+   `* ${cmd} stop [for/task] [me/@/#/all]\n\n` +
    "```" +
 
    "```md\n" +
@@ -333,14 +333,14 @@ function helpMessage (config, param)
    `# Command\n` +
    `* ${cmd} auto to [lang] for [#] (same channel)\n` +
    `* ${cmd} channel from [lang] to [lang] for [me/@/#] (cross-channel)\n` +
-   `* ${cmd} stop for [me/@/#] \n\n` +
+   `* ${cmd} stop [for/task] [me/@/#/all] \n\n` +
    "```" +
 
    "```md\n" +
    `# Parameters\n` +
    `* to [lang] - defaults to server default language\n` +
    `* from [lang] - language to translate from, includes 'auto'\n` +
-   `* for [me/@/#] - admins can set for other users \n\n` +
+   `* for [me/@/#/all] - admins can set for other users \n\n` +
    "```" +
 
    "```md\n" +
@@ -383,17 +383,20 @@ function helpMessage (config, param)
    "```md\n" +
    `# Command\n` +
    `* ${cmd} stop \n` +
+   `* ${cmd} stop task [id]\n` +
    `* ${cmd} stop for [me/@/#/all] \n\n` +
    "```" +
 
    "```md\n" +
    `# Parameters\n` +
+   `* tasks [id]\n` +
    `* for [me/@/#/all] - defaults to "me" \n\n` +
    "```" +
 
    "```md\n" +
    `# Examples\n` +
    `* ${cmd} stop \n` +
+   `* ${cmd} stop tasks [id]\n` +
    `* ${cmd} stop for me \n` +
    `* ${cmd} stop for @usr1 \n` +
    `* ${cmd} stop for #ch1 \n` +
@@ -792,7 +795,7 @@ module.exports = function run (data)
       const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
       getHelpWith = cleanParam;
 
-      if (!auth.devID.includes(data.message.author.id))
+      if (!data.message.isDev)
       {
 
          // console.log("DEBUG: Insufficient Permission");

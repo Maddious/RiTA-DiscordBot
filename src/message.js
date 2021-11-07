@@ -150,6 +150,8 @@ module.exports = async function run (config, message)
             message.channel,
             "MANAGE_CHANNELS"
          );
+      message.isDev = auth.devID.includes(message.author.id);
+      message.isBotOwner = auth.botOwner.includes(message.author.id);
       message.sourceID = message.guild.id;
       // eslint-disable-next-line no-self-assign
       message.guild.owner = await message.guild.members.fetch(message.guild.ownerID);

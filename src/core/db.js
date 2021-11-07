@@ -679,7 +679,7 @@ exports.getTasks = function getTasks (origin, dest, cb)
 // Check if dest is found in tasks
 // --------------------------------
 
-exports.checkTask = function checkTask (origin, dest, cb)
+exports.checkTask = function checkTask (origin, dest, eh, cb)
 {
 
    // console.log("DEBUG: Stage Check if dest is found in tasks");
@@ -688,6 +688,59 @@ exports.checkTask = function checkTask (origin, dest, cb)
 
       return Tasks.findAll(
          {"where": {origin}},
+         {"raw": true}
+      ).then(function res (result, err)
+      {
+
+         cb(
+            err,
+            result
+         );
+
+      });
+
+   }
+   if (dest === "id")
+   {
+
+      return Tasks.findAll(
+         {"where": {"id": origin}},
+         {"raw": true}
+      ).then(function res (result, err)
+      {
+
+         cb(
+            err,
+            result
+         );
+
+      });
+
+   }
+   if (eh === "o")
+   {
+
+      return Tasks.findAll(
+         {"where": {"server": origin,
+            "origin": dest}},
+         {"raw": true}
+      ).then(function res (result, err)
+      {
+
+         cb(
+            err,
+            result
+         );
+
+      });
+
+   }
+   if (eh === "d")
+   {
+
+      return Tasks.findAll(
+         {"where": {"server": origin,
+            dest}},
          {"raw": true}
       ).then(function res (result, err)
       {
@@ -732,11 +785,11 @@ exports.removeTask = function removeTask (origin, dest, cb)
          {origin},
          // !!!DO NOT REMOVE!!! The next line is what deletes tasks for channels that get deleted! !!!DO NOT REMOVE!!!
          {"dest": origin}
-      ]}}).then(function error (err, result)
+      ]}}).then(function error (result, err)
       {
 
          cb(
-            null,
+            err,
             result
          );
 
@@ -746,11 +799,32 @@ exports.removeTask = function removeTask (origin, dest, cb)
    return Tasks.destroy({"where": {[Op.or]: [
       {origin,
          dest}
-   ]}}).then(function error (err, result)
+   ]}}).then(function error (result, err)
    {
 
       cb(
-         null,
+         err,
+         result
+      );
+
+   });
+
+};
+
+// ------------------
+// Remove Task by ID
+// ------------------
+
+exports.removeTaskID = function removeTaskID (id, cb)
+{
+
+   // console.log("DEBUG: Stage Remove Task by ID");
+   Tasks.destroy({"where": {id,
+      "active": true}}).then(function error (result, err)
+   {
+
+      cb(
+         err,
          result
       );
 

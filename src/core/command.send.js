@@ -126,7 +126,7 @@ module.exports = function run (data)
    // Send Data to Channel
    // ---------------------
 
-   if (auth.devID.includes(data.message.author.id))
+   if (data.message.isDev)
    {
 
       // console.log("DEBUG: Developer Override");

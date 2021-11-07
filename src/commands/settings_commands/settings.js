@@ -112,7 +112,7 @@ function getSettings (data)
    function listServers (data)
    {
 
-      if (auth.devID.includes(data.message.author.id))
+      if (data.message.isDev)
       {
 
          data.text = "Active Servers - ";
@@ -406,7 +406,7 @@ function getSettings (data)
    function ownerUpdate (data)
    {
 
-      if (auth.devID.includes(data.message.author.id))
+      if (data.message.isDev)
       {
 
          let i = 0;
@@ -487,7 +487,7 @@ function getSettings (data)
    function serverUpdate (data)
    {
 
-      if (auth.devID.includes(data.message.author.id))
+      if (data.message.isDev)
       {
 
          let i = 0;
@@ -641,7 +641,7 @@ module.exports = function run (data)
    Override: if (data.message.guild.ownerID !== data.message.author.id)
    {
 
-      if (auth.devID.includes(data.message.author.id))
+      if (data.message.isDev)
       {
 
          // console.log("DEBUG: Developer ID Confirmed");

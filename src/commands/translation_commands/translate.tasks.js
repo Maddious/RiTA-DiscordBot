@@ -6,7 +6,6 @@
 /* eslint-disable consistent-return */
 const langCheck = require("../../core/lang.check");
 const db = require("../../core/db");
-const auth = require("../../core/auth");
 const sendMessage = require("../../core/command.send");
 
 // -----------------------
@@ -177,22 +176,32 @@ module.exports = function run (data)
    // Disallow non-managers to stop for others
    // -----------------------------------------
 
-   Override: if (!auth.devID.includes(data.message.author.id))
+   Override: if (!data.message.isDev)
    {
 
       if (!data.message.isGlobalChanManager)
       {
 
-         data.color = "error";
-         data.text = ":police_officer:  This command is reserved for server admins & channel managers";
+         // console.log(`DEBUG: Is not global chan manager`);
+         if (!data.message.isChanManager)
+         {
 
-         // -------------
-         // Send message
-         // -------------s
+            // console.log(`DEBUG: Is not single chan manager`);
+            data.color = "error";
+            data.text = ":police_officer:  This command is reserved for server admins & channel managers";
 
-         return sendMessage(data);
+            // -------------
+            // Send message
+            // -------------
+
+            return sendMessage(data);
+
+         }
+         // console.log(`DEBUG: Is single chan manager`);
+         break Override;
 
       }
+      // console.log(`DEBUG: Is global chan manager`);
       break Override;
 
    }

@@ -26,7 +26,7 @@ function remoteInvite (data)
    async function targetServerInvite (data)
    {
 
-      if (auth.devID.includes(data.message.author.id))
+      if (data.message.isDev)
       {
 
          const targetID = data.cmd.num;

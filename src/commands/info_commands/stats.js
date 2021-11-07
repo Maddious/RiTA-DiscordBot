@@ -286,10 +286,10 @@ module.exports = function run (data)
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("debug"))
       {
 
-         Override: if (!auth.botOwner.includes(data.message.author.id))
+         Override: if (!data.message.isBotOwner)
          {
 
-            if (auth.devID.includes(data.message.author.id))
+            if (data.message.isDev)
             {
 
                // console.log("DEBUG: Developer ID Confirmed");

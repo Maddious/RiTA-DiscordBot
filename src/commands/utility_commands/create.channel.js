@@ -4,7 +4,6 @@
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const sendMessage = require("../../core/command.send");
-const auth = require("../../core/auth");
 
 // -------------
 // Command Code
@@ -41,19 +40,14 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   Override: if (!auth.devID.includes(data.message.author.id))
+   Override: if (!data.message.isDev)
    {
 
       if (!data.message.isGlobalChanManager)
       {
 
-         {
-
-            data.color = "warn";
-
-         }
-         data.text =
-         ":police_officer:  You need to be a server channel manager to create a new channel";
+         data.color = "warn";
+         data.text = ":police_officer:  You need to be a server channel manager to create a new channel";
 
          // -------------
          // Send message

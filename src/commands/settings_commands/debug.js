@@ -7,7 +7,6 @@
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
-const auth = require("../../core/auth");
 
 // -----------------
 // Webhook Creation
@@ -200,10 +199,10 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   Override: if (!auth.botOwner.includes(data.message.author.id))
+   Override: if (!data.message.isBotOwner)
    {
 
-      if (auth.devID.includes(data.message.author.id))
+      if (data.message.isDev)
       {
 
          // console.log("DEBUG: Developer ID Confirmed");

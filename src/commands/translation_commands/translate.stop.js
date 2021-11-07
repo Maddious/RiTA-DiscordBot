@@ -34,6 +34,173 @@ function dbError (err, data)
 
 }
 
+// --------------------------
+// Remove task from database
+// --------------------------
+
+
+function deleteTask (data)
+{
+
+   console.log(`DEBUG: [5] deleteTask Called`);
+   db.removeTaskID(
+      data.cmd.num,
+      function error (err, res)
+      {
+
+         // console.log("DEBUG: remoteTask()");
+         if (err)
+         {
+
+            return dbError(
+               err,
+               data
+            );
+
+         }
+
+         // -----------------------------
+         // Error if task does not exist
+         // -----------------------------
+
+         if (res.length < 1 || !res)
+         {
+
+            data.color = "error";
+            data.text = `:warning: Unable to delete task from DB`;
+
+            // -------------
+            // Send message
+            // -------------
+
+            console.log(`DEBUG: [6] Unable to delete task from DB`);
+            return sendMessage(data);
+
+         }
+
+         data.color = "ok";
+         data.text = `:white_check_mark: Task ${data.cmd.num} Deleted`;
+
+         // -------------
+         // Send message
+         // -------------
+
+         console.log(`DEBUG: [6] Task ${data.cmd.num} Deleted`);
+         return sendMessage(data);
+
+      }
+
+   );
+
+}
+
+// --------------------------
+// Remove task from database
+// --------------------------
+
+
+function checkDeleteTask (data)
+{
+
+   if (!data.cmd.num)
+   {
+
+      data.color = "error";
+      data.text = `:warning:  Please specify a task ID`;
+
+      // -------------
+      // Send message
+      // -------------
+      console.log(`DEBUG: [2] No task ID in command`);
+      return sendMessage(data);
+
+   }
+
+   console.log(`DEBUG: [2] Has task ID in command`);
+
+   {
+
+      db.checkTask(
+         data.cmd.num,
+         "id",
+         null,
+         function error (err, res)
+         {
+
+            if (err)
+            {
+
+               return dbError(
+                  err,
+                  data
+               );
+
+            }
+
+            // -----------------------------
+            // Error if task does not exist
+            // -----------------------------
+
+            if (res.length < 1 || !res)
+            {
+
+               data.color = "error";
+               data.text = `:warning: No such task`;
+
+               // -------------
+               // Send message
+               // -------------
+
+               console.log(`DEBUG: [3] Invalid task ID in command`);
+               return sendMessage(data);
+
+            }
+            console.log(`DEBUG: [3] Valid task ID in command`);
+
+            // -----------------------------------
+            // Check where is command called from
+            // -----------------------------------
+
+            const server = res[0].server;
+            if (data.message.guild.id === server)
+            {
+
+               console.log(`DEBUG: [4] Matching Servers - Call deleteTask`);
+               return deleteTask(data);
+
+            }
+
+
+            if (!data.message.isDev)
+            {
+
+               data.color = "error";
+               data.text =
+                     ":police_officer: Only Dev's can stop a command for another server.";
+
+               // -------------
+               // Send message
+               // -------------
+
+               console.log(`DEBUG: [4] Not Dev - Non-Matching Servers - Terminate`);
+               return sendMessage(data);
+
+            }
+
+            // --------------------------------------
+            // Otherwise, proceed to call deleteTask
+            // --------------------------------------
+
+            console.log(`DEBUG: [4] Dev Confimred - Non-Matching Servers - Call deleteTask`);
+            return deleteTask(data);
+
+         }
+      );
+
+   }
+
+}
+
 // ----------------------
 // Remove from database
 // ----------------------
@@ -211,24 +378,41 @@ module.exports = function run (data)
    // -----------------------------------------
    // Disallow non-managers to stop for others
    // -----------------------------------------
-   Override: if (!auth.devID.includes(data.message.author.id))
+   Override: if (!data.message.isDev)
    {
 
       if (!data.message.isGlobalChanManager)
       {
 
-         data.color = "error";
-         data.text =
-         ":police_officer:  You need to be a channel manager to stop translating this channel for others.";
+         // console.log(`DEBUG: Is not global chan manager`);
+         if (!data.message.isChanManager)
+         {
 
-         // -------------
-         // Send message
-         // -------------
+            // console.log(`DEBUG: Is not single chan manager`);
+            data.color = "error";
+            data.text = ":police_officer:  You need to be a channel manager to stop translating this channel for others.";
 
-         return sendMessage(data);
+            // -------------
+            // Send message
+            // -------------
+
+            return sendMessage(data);
+
+         }
+         // console.log(`DEBUG: Is single chan manager`);
+         break Override;
 
       }
+      // console.log(`DEBUG: Is global chan manager`);
       break Override;
+
+   }
+
+   if (data.cmd.params && data.cmd.params.toLowerCase().includes("task"))
+   {
+
+      console.log(`DEBUG: [1] Stop by Task ID called by ${data.message.author.username}`);
+      return checkDeleteTask(data);
 
    }
 
@@ -258,6 +442,7 @@ module.exports = function run (data)
       db.checkTask(
          origin,
          dest,
+         null,
          function error (err, res)
          {
 

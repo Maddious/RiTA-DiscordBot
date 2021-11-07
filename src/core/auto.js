@@ -73,6 +73,7 @@ function startTranslation (data, i, row)
       data.footer.text += "DM";
 
    }
+   data.footer.text += `\nSource Language: `;
 
    const footerOriginal = data.footer;
 

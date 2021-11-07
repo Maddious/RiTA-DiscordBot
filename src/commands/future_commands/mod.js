@@ -5,7 +5,6 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
 const sendMessage = require("../../core/command.send");
-const auth = require("../../core/auth");
 
 // ----
 // Ban
@@ -170,14 +169,14 @@ module.exports.deleteid = function deleteid (data)
    // Command Code
    // -------------
 
-   // console.log("DEBUG: Unmute");
+   // console.log("DEBUG: Delete Message by ID");
 
    const msgID = data.cmd.num;
    data.message.delete().catch((err) => console.log(
-      "Command Message Deleted By ID Error 1, Mod.js = ",
+      "DEBUG: Command Message Deleted By ID Error 1, Mod.js = ",
       err
    ));
-   if (auth.devID.includes(data.message.author.id))
+   if (data.message.isDev)
    {
 
       return data.message.guild.channels.cache.get(data.message.channel.id).messages.fetch(msgID).then((message) => message.delete());

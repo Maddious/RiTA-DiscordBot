@@ -42,7 +42,7 @@ async function announcement (data)
       );
 
    }
-   if (!auth.devID.includes(data.message.author.id))
+   if (!data.message.isDev)
    {
 
       data.text = ":cop:  This Command is for bot developers only.\n";

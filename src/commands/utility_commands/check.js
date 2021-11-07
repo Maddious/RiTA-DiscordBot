@@ -268,7 +268,7 @@ module.exports = function run (data)
    Override: if (data.message.guild.ownerID !== data.message.author.id)
    {
 
-      if (data.cmd.params === "me" || data.cmd.params === "channel" || auth.devID.includes(data.message.author.id))
+      if (data.cmd.params === "me" || data.cmd.params === "channel" || data.message.isDev)
       {
 
          // console.log("DEBUG: Developer ID Confirmed");

@@ -10,6 +10,11 @@
 * `checkperms` has ben replaced with `check`
 * Various Permission Errors
 * Join and leave logs can now be seperated from error logs with env variables `DISCORD_ACTIVITY_WEBHOOK_ID` & `DISCORD_ACTIVITY_WEBHOOK_TOKEN`
+* Task ID added to tasks Printout
+* Remove by ID is now possiable `!tr stop task [id]` Added
+* Error messages show Task ID
+* Ignore same chan translation of GIF and images. 
+* Source language added to embed on messages. 
 
 ## 1.2.6 Change Log
 * RITA is now at 6400 servers, This is just Amazing.
