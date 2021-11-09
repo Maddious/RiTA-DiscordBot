@@ -399,6 +399,77 @@ function getSettings (data)
 
    }
 
+   // -----------------
+   // Server Tags
+   // -----------------
+
+   async function serverTags (data)
+   {
+
+      const serverTags = data.cmd.params.split(" ")[1].toLowerCase();
+      let value = false;
+      if (serverTags === "on" || serverTags === "off")
+      {
+
+         if (serverTags === "on")
+         {
+
+            value = true;
+
+         }
+
+         // console.log(`DEBUG: embed variable ${serverTags}`);
+         await db.updateServerTable(
+            data.message.channel.guild.id,
+            "servertags",
+            value,
+            function error (err)
+            {
+
+               if (err)
+               {
+
+                  return logger(
+                     "error",
+                     err,
+                     "command",
+                     data.message.channel.guild.name
+                  );
+
+               }
+               const output =
+            "**```Updated Server Tag Settings```**\n" +
+            `Flag Persist = ${serverTags}\n\n`;
+               data.color = "info";
+               data.text = output;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+         );
+
+      }
+      else
+      {
+
+         data.color = "error";
+         data.text =
+      `:warning:  **\`${serverTags
+      }\`** is not a valid serverTags option.\n`;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+
+   }
    // -------
    // Owners
    // -------
@@ -594,6 +665,7 @@ function getSettings (data)
       "ownerdb": ownerUpdate,
       "reactpersist": setReactPersistence,
       "serverdb": serverUpdate,
+      "servertags": serverTags,
       "setlang": setLang,
       "updatedb": updateDB
 
@@ -674,6 +746,7 @@ module.exports = function run (data)
       `:tada: Allow Annocement Messages: **\`${data.cmd.server[0].announce}\`**\n\n` +
       `:inbox_tray: Embedded Message Style: **\`${data.cmd.server[0].embedstyle}\`**\n\n` +
       `:robot: Bot to Bot Translation Status: **\`${data.cmd.server[0].bot2botstyle}\`**\n\n` +
+      `Server Tags(everyone, here and user): **\`${data.cmd.server[0].servertags}\`** - FEATURE COMING SOON\n\n` +
       `:flags: Translation by Flag Reactions: **\`${data.cmd.server[0].flag}\`**\n\n` +
       `:pause_button: Help Menu Persistance: **\`${data.cmd.server[0].menupersist}\`**\n\n` +
       `:pause_button: Flag Translation Persistance: **\`${data.cmd.server[0].reactpersist}\`**\n\n` +
