@@ -14,7 +14,9 @@
 * Remove by ID is now possiable `!tr stop task [id]` Added
 * Error messages show Task ID
 * Ignore same chan translation of GIF and images. 
-* Source language added to embed on messages. 
+* Source language added to embed on messages.
+* `Admin`, `Owner`, `Dev` and `Channel Manager` variables are now stored in message object.
+* Fixed translate for `me` command. 
 
 ## 1.2.6 Change Log
 * RITA is now at 6400 servers, This is just Amazing.
