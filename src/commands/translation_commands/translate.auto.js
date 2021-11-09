@@ -96,22 +96,44 @@ module.exports = function run (data)
    // ------------------------------------------
    // Error if non-manager sets channel as dest
    // ------------------------------------------
+
    Override: if (!data.message.isDev)
    {
 
-      if (data.message.isAdmin === false && !data.message.isManager)
+      if (!data.message.isGlobalChanManager)
       {
 
-         data.color = "error";
-         data.text = ":police_officer:  This command is reserved for server admins & channel managers";
+         // console.log(`DEBUG: Is not global chan manager`);
+         if (!data.message.isChanManager)
+         {
 
-         // -------------
-         // Send message
-         // -------------s
+            // console.log(`DEBUG: Is not single chan manager`);
+            if (!data.cmd.for.includes("me"))
+            {
 
-         return sendMessage(data);
+
+               // console.log(`DEBUG: Task for is not "Me"`);
+               data.color = "error";
+               data.text = ":police_officer:  This command is reserved for server admins & channel managers";
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+
+            }
+            // console.log(`DEBUG: Task for is "Me"`);
+            console.log(`DEBUG: ${!data.cmd.for.includes("me")}`);
+            break Override;
+
+         }
+         // console.log(`DEBUG: Is single chan manager`);
+         break Override;
 
       }
+      // console.log(`DEBUG: Is global chan manager`);
       break Override;
 
    }
@@ -243,7 +265,7 @@ module.exports = function run (data)
             // ---------------
 
             */
-            const userID = dest.slice(3, -1);
+            const userID = dest.slice(2, -1);
 
             fn.getUser(data.message.client, userID, (user) =>
             {
@@ -384,19 +406,18 @@ module.exports = function run (data)
       // Multiple dests set by non-manager
       // ----------------------------------
 
-      Override: if (!data.message.isDev)
+      Override: if (data.task.for.length > 1)
       {
 
-         if (!data.message.isGlobalChanManager)
+         if (!data.message.isDev)
          {
 
-            // console.log(`DEBUG: Is not global chan manager`);
-            if (!data.message.isChanManager)
+            if (!data.message.isGlobalChanManager)
             {
 
-               // console.log(`DEBUG: Is not single chan manager`);
+               // console.log(`DEBUG: Is not global chan manager`);
                data.color = "error";
-               data.text = ":police_officer:  This command is reserved for server admins & channel managers";
+               data.text = ":police_officer:  This command is reserved for server admins & server channel managers";
 
                // -------------
                // Send message
@@ -405,12 +426,10 @@ module.exports = function run (data)
                return sendMessage(data);
 
             }
-            // console.log(`DEBUG: Is single chan manager`);
+            // console.log(`DEBUG: Is global chan manager`);
             break Override;
 
          }
-         // console.log(`DEBUG: Is global chan manager`);
-         break Override;
 
       }
 

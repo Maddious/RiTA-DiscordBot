@@ -116,7 +116,7 @@ module.exports = function run (data)
    Override: if (!data.message.isDev)
    {
 
-      if (data.message.isAdmin === false)
+      if (!data.message.isAdmin)
       {
 
          data.color = "warn";
