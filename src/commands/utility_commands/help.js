@@ -489,6 +489,12 @@ function helpMessage (config, param)
    "```" +
 
    "```md\n" +
+   `# COMMING SOON!!\n` +
+   `# Server Tags(everyone, here and user)\n` +
+   `* ${cmd} settings servertags [on/off]` +
+   "```" +
+
+   "```md\n" +
    `# Reaction Translations\n` +
    `* ${cmd} react [on/off]\n` +
    "```" +
