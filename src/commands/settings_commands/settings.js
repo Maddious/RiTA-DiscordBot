@@ -439,7 +439,7 @@ function getSettings (data)
                }
                const output =
             "**```Updated Server Tag Settings```**\n" +
-            `Flag Persist = ${serverTags}\n\n`;
+            `Server Tags = ${serverTags}\n\n`;
                data.color = "info";
                data.text = output;
 
