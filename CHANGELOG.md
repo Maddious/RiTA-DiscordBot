@@ -5,6 +5,7 @@
 * Fixed invalid channel message.
 * `!tr reactpersist` has been added. - Reaction will auto delete after 60 seconds.
 * `!tr flagpersist` has been added. - Flag emoji will be removed after 15 seconds.
+* `!tr servertags` has been added. - Will prevent RITA from pinging everyone, here and users.
 * Help menu updated.
 * Owner variable is now more reliable on messages. 
 * `checkperms` has ben replaced with `check`
@@ -16,7 +17,8 @@
 * Ignore same chan translation of GIF and images. 
 * Source language added to embed on messages.
 * `Admin`, `Owner`, `Dev` and `Channel Manager` variables are now stored in message object.
-* Fixed translate for `me` command. 
+* Fixed translate for `me` command.
+* servertags status added to the settings and check commands. 
 
 ## 1.2.6 Change Log
 * RITA is now at 6400 servers, This is just Amazing.
