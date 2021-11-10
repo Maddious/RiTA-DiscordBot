@@ -93,6 +93,7 @@ function getCheck (data)
                `* Allow Annocement Messages: ${server[0].announce}\n` +
                `* Embedded Message Style: ${server[0].embedstyle}\n` +
                `* Bot to Bot Translation Status: ${server[0].bot2botstyle}\n` +
+               `* Server Tags status: ${server[0].servertags}\n` +
                `* Translation by Flag Reactions: ${server[0].flag}\n` +
                `* Help Menu Persistance: ${server[0].menupersist}\n` +
                `* React Translation Persistance: ${server[0].reactpersist}\n` +
@@ -327,6 +328,7 @@ module.exports = function run (data)
                `* Allow Annocement Messages: ${server[0].announce}\n` +
                `* Embedded Message Style: ${server[0].embedstyle}\n` +
                `* Bot to Bot Translation Status: ${server[0].bot2botstyle}\n` +
+               `* Server Tags status: ${server[0].servertags}\n` +
                `* Translation by Flag Reactions: ${server[0].flag}\n` +
                `* Help Menu Persistance: ${server[0].menupersist}\n` +
                `* React Translation Persistance: ${server[0].reactpersist}\n` +
