@@ -414,21 +414,21 @@ function getSettings (data)
          if (serverTags === "none")
          {
 
-            value = 0;
+            value = "none";
 
          }
 
          if (serverTags === "everyone")
          {
 
-            value = 1;
+            value = "everyone";
 
          }
 
          if (serverTags === "all")
          {
 
-            value = 2;
+            value = "all";
 
          }
 

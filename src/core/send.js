@@ -735,28 +735,28 @@ function embedOff (data)
          function getServerInfo (server)
          {
 
-            if (server[0].servertags === 0)
+            if (server[0].servertags === "none")
             {
 
                serverTags = "none";
 
             }
 
-            if (server[0].servertags === 1)
+            if (server[0].servertags === "everyone")
             {
 
                serverTags = "everyone";
 
             }
 
-            if (server[0].servertags === 2)
+            if (server[0].servertags === "all")
             {
 
                serverTags = "all";
 
             }
 
-            if (server[0].servertags === 0 || server[0].servertags === 1 || server[0].servertags === 2)
+            if (server[0].servertags === "none" || server[0].servertags === "everyone" || server[0].servertags === "all")
             {
 
                let files = null;
