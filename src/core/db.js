@@ -196,7 +196,7 @@ const Servers = db.define(
       },
       "servertags": {
          "type": Sequelize.BOOLEAN,
-         "defaultValue": true
+         "defaultValue": 0
       },
       "owner": {
          "type": Sequelize.STRING(255),
@@ -547,7 +547,7 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "reactpersist", Sequelize.BOOLEAN, true);
    await this.addTableColumn("servers", serversDefinition, "flagpersist", Sequelize.BOOLEAN, true);
    await this.addTableColumn("servers", serversDefinition, "servername", Sequelize.STRING(255));
-   await this.addTableColumn("servers", serversDefinition, "servertags", Sequelize.BOOLEAN, true);
+   await this.addTableColumn("servers", serversDefinition, "servertags", Sequelize.BOOLEAN, 0);
    // await this.addTableColumn("servers", serversDefinition, "servertags", Sequelize.BOOLEAN, true);
    // console.log("DEBUG: All Columns Checked or Added");
 

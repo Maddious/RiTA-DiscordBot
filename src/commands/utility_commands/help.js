@@ -489,9 +489,13 @@ function helpMessage (config, param)
    "```" +
 
    "```md\n" +
-   `# COMMING SOON!!\n` +
-   `# Server Tags(everyone, here and user)\n` +
-   `* ${cmd} settings servertags [on/off]` +
+   `# Tags(everyone, here and user)\n` +
+   `* ${cmd} settings tags [Parameter]\n\n` +
+
+   `# PARAMETERS\n` +
+   `* none - RITA won't ignore any mentions\n` +
+   `* everyone - RITA will ignore everyone and here tags\n` +
+   `* all - RITA will ignore all mentions\n` +
    "```" +
 
    "```md\n" +
