@@ -408,13 +408,27 @@ function getSettings (data)
 
       const serverTags = data.cmd.params.split(" ")[1].toLowerCase();
       let value = false;
-      if (serverTags === "on" || serverTags === "off")
+      if (serverTags === "none" || serverTags === "everyone" || serverTags === "all")
       {
 
-         if (serverTags === "on")
+         if (serverTags === "none")
          {
 
-            value = true;
+            value = "none";
+
+         }
+
+         if (serverTags === "everyone")
+         {
+
+            value = "everyone";
+
+         }
+
+         if (serverTags === "all")
+         {
+
+            value = "all";
 
          }
 
@@ -665,8 +679,8 @@ function getSettings (data)
       "ownerdb": ownerUpdate,
       "reactpersist": setReactPersistence,
       "serverdb": serverUpdate,
-      "servertags": serverTags,
       "setlang": setLang,
+      "tags": serverTags,
       "updatedb": updateDB
 
    };
@@ -746,7 +760,7 @@ module.exports = function run (data)
       `:tada: Allow Annocement Messages: **\`${data.cmd.server[0].announce}\`**\n\n` +
       `:inbox_tray: Embedded Message Style: **\`${data.cmd.server[0].embedstyle}\`**\n\n` +
       `:robot: Bot to Bot Translation Status: **\`${data.cmd.server[0].bot2botstyle}\`**\n\n` +
-      `:face_with_symbols_over_mouth: Server Tags(everyone, here and user): **\`${data.cmd.server[0].servertags}\`** - FEATURE COMING SOON\n\n` +
+      `:face_with_symbols_over_mouth: Tags Disabled(everyone, here and user): **\`${data.cmd.server[0].servertags}\`**\n\n` +
       `:flags: Translation by Flag Reactions: **\`${data.cmd.server[0].flag}\`**\n\n` +
       `:pause_button: Help Menu Persistance: **\`${data.cmd.server[0].menupersist}\`**\n\n` +
       `:pause_button: Flag Translation Persistance: **\`${data.cmd.server[0].reactpersist}\`**\n\n` +
