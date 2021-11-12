@@ -756,7 +756,7 @@ function embedOff (data)
 
             }
 
-            if (server[0].servertags === "none" || server[0].servertags === "everyone" || server[0].servertags === "all")
+            if (server[0].servertags)
             {
 
                let files = null;
