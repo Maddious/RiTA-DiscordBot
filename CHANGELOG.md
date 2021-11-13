@@ -5,7 +5,7 @@
 * Fixed invalid channel message.
 * `!tr reactpersist` has been added. - Reaction will auto delete after 60 seconds.
 * `!tr flagpersist` has been added. - Flag emoji will be removed after 15 seconds.
-* `!tr servertags` has been added. - Will prevent RITA from pinging everyone, here and users.
+* `!tr settings tags` has been added. - Will prevent RITA from pinging everyone, here and users.
 * Help menu updated.
 * Owner variable is now more reliable on messages. 
 * `checkperms` has ben replaced with `check`
