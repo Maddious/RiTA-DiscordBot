@@ -1,27 +1,26 @@
 ## TEMP
-* `!tr updatelink` has been added.
-* Local hosted users persist and react command fixed.
-* CS same language now works.
-* Fixed invalid channel message.
-* `!tr reactpersist` has been added. - Reaction will auto delete after 60 seconds.
-* `!tr flagpersist` has been added. - Flag emoji will be removed after 15 seconds.
+* `!tr updatelink` has been added
+* Local hosted users persist and react command fixed
+* CS same language now works
+* Fixed invalid channel message
+* `!tr reactpersist` has been added. - Reaction will auto delete after 60 seconds
+* `!tr flagpersist` has been added. - Flag emoji will be removed after 15 seconds
 * Help menu updated.
-* Owner variable is now more reliable on messages. 
+* Owner variable is now more reliable on messages
 * `checkperms` has ben replaced with `check`
 * Various Permission Errors
 * Join and leave logs can now be seperated from error logs with env variables `DISCORD_ACTIVITY_WEBHOOK_ID` & `DISCORD_ACTIVITY_WEBHOOK_TOKEN`
 * Task ID added to tasks Printout
 * Remove by ID is now possiable `!tr stop task [id]` Added
 * Error messages show Task ID
-* Ignore same chan translation of GIF and images. 
-* Source language added to embed on messages.
+* Ignore same chan translation of GIF and images
 * `Admin`, `Owner`, `Dev` and `Channel Manager` variables are now stored in message object
 * Fixed translate for `me` command
-* servertags status added to the settings and check commands
+* servertags and langdetect status added to the settings and check commands
 * `!tr settings tags [all/everyone/none]` has been added, this falls in line with discord.js (This setting only applies to `embed off` mode)
-  > - `none` - No tags are disabled, meaning `@user`, `@everyone` and `@here` will work.
-  > - `everyone` - Attention tags are, meaning only `@user` will work.
-  > - `all` - All tags are disabled, meaning `@user`, `@everyone` and `@here` will NOT work.
+  > - `none` - No tags are disabled, meaning `@user`, `@everyone` and `@here` will work
+  > - `everyone` - Attention tags are, meaning only `@user` will work
+  > - `all` - All tags are disabled, meaning `@user`, `@everyone` and `@here` will NOT work
 * data.message.server[0] is built on every message event, Reducing the calls needed in send.js to db
 * db changes, the following columns have been added
   > - `reactpersist` - manages the react persist variable
@@ -30,6 +29,12 @@
   > - `servertags` - manages the server tags variable
   > - `menupersist` - manages the menu persist variable
   > - `whitelisted` - NOT IN USE, Yet!
+* Shard command has been updated to show each shard and its stats
+* Language marker has been added to embed off and and on messages, this is controlled with `!tr settings langdetect [on/off]`
+* Task command updated, `!tr tasks [#chan/me]` 
+  > - `me` will show any tasks for the user in any channel
+  > - `#chan` will target a single channel
+
 
 
 ## 1.2.6 Change Log
