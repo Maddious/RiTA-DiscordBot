@@ -214,6 +214,7 @@ module.exports = async function run (config, message)
             data.message.guild.leave();
 
          }
+         message.server = server;
 
       }
    ).catch((err) =>

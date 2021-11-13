@@ -303,43 +303,31 @@ function checkPerms (data, sendBox)
 // Flag Persist Function
 // ----------------------
 
-async function reactpersist (data, msg)
+function reactpersist (data, msg)
 {
 
-   await db.getServerInfo(
-      data.message.guild.id,
-      function getServerInfo (server)
+
+   if (data.reaction === true && data.message.server[0].reactpersist === false || data.message.server[0].reactpersist === 0)
+   {
+
+      // console.log("DEBUG: Delete reacted Message");
+      try
       {
 
-         if (data.reaction === true && server[0].reactpersist === false || server[0].reactpersist === 0)
-         {
-
-            // console.log("DEBUG: Delete reacted Message");
-            try
-            {
-
-               setTimeout(() => msg.delete(), auth.time.long);
-
-            }
-            catch (err)
-            {
-
-               console.log(
-                  "Command Message Deleted Error, send.js = Line 234",
-                  err
-               );
-
-            }
-
-         }
+         setTimeout(() => msg.delete(), auth.time.long);
 
       }
-   ).catch((err) => console.log(
-      "error",
-      err,
-      "warning",
-      data.message.guild.id
-   ));
+      catch (err)
+      {
+
+         console.log(
+            "Command Message Deleted Error, send.js = Line 234",
+            err
+         );
+
+      }
+
+   }
 
 }
 
@@ -413,11 +401,11 @@ function embedOn (data)
             if (data.message.content.startsWith("https://tenor.com/"))
             {
 
-               console.log("DEBUG: Embed ON: Same channel GIF translation, GIF ignored");
+               // console.log("DEBUG: Embed ON: Same channel GIF translation, GIF ignored");
                return;
 
             }
-            console.log("DEBUG: Embed On: Same channel image translation, Image ignored");
+            // console.log("DEBUG: Embed On: Same channel image translation, Image ignored");
             return;
 
          }
@@ -478,14 +466,14 @@ function embedOn (data)
          if (data.origin.id === data.forward && data.message.content.startsWith("https://tenor.com/"))
          {
 
-            console.log("DEBUG: Embed ON: Same channel GIF translation, Image ignored");
+            // console.log("DEBUG: Embed ON: Same channel GIF translation, GIF ignored");
             return;
 
          }
          if (data.origin.id === data.forward && data.message.content.startsWith("<:") && data.message.content.endsWith(">"))
          {
 
-            console.log("DEBUG: Embed ON: Same channel Single Emoji translation, Emoji ignored");
+            // console.log("DEBUG: Embed ON: Same channel Single Emoji translation, Emoji ignored");
             return;
 
          }
@@ -727,127 +715,119 @@ function embedOff (data)
    // Send Webhook Data
    // ------------------
 
-   async function sendWebhookMessage (webhook, data)
+   function sendWebhookMessage (webhook, data)
    {
 
-      await db.getServerInfo(
-         data.message.guild.id,
-         function getServerInfo (server)
+
+      if (data.message.server[0].servertags === "none")
+      {
+
+         serverTags = "none";
+
+      }
+
+      if (data.message.server[0].servertags === "everyone")
+      {
+
+         serverTags = "everyone";
+
+      }
+
+      if (data.message.server[0].servertags === "all")
+      {
+
+         serverTags = "all";
+
+      }
+
+      let files = null;
+
+      if (data.attachments)
+      {
+
+         if (data.origin.id === data.forward && data.message.content.startsWith("https://tenor.com/"))
          {
 
-            if (server[0].servertags === "none")
-            {
-
-               serverTags = "none";
-
-            }
-
-            if (server[0].servertags === "everyone")
-            {
-
-               serverTags = "everyone";
-
-            }
-
-            if (server[0].servertags === "all")
-            {
-
-               serverTags = "all";
-
-            }
-
-            let files = null;
-
-            if (data.attachments)
-            {
-
-               if (data.origin.id === data.forward && data.message.content.startsWith("https://tenor.com/"))
-               {
-
-                  console.log("DEBUG: Embed Off: Same channel GIF translation, GIF ignored");
-                  return;
-
-               }
-               if (data.attachments.size !== 0)
-               {
-
-                  if (data.origin.id === data.forward)
-                  {
-
-                     console.log("DEBUG: Embed Off: Same channel image translation, Image ignored");
-                     return;
-
-                  }
-
-                  files = createFiles(data.attachments);
-
-               }
-
-            }
-            else
-            {
-
-               files = null;
-
-            }
-            if (files !== null && data.text === undefined)
-            {
-
-               return webhook.send(null, {
-                  "avatarURL": data.message.author.displayAvatarURL(),
-                  "disableMentions": serverTags,
-                  files,
-                  "username": data.message.author.username
-               }).catch((err) => console.log("error", err, "send", data.message.guild.name));
-
-            }
-
-            {
-
-               if (!data.message.author)
-               {
-
-                  // console.log("DEBUG: Is bot.author embed off");
-                  webhook.send(data.text, {
-                     // If you get a error at the below line then the bot does not have write permissions.
-
-                     "avatarURL": data.message.client.user.displayAvatarURL(),
-                     "disableMentions": serverTags,
-                     files,
-                     "username": data.message.client.user.username || data.message
-                  }).then((msg) =>
-                  {
-
-                     reactpersist(data, msg);
-
-                  });
-
-               }
-               else
-               {
-
-                  // console.log("DEBUG: Is data.message.author embed off");
-                  webhook.send(data.text, {
-                     // If you get a error at the below line then the bot does not have write permissions.
-
-                     "avatarURL": data.message.author.displayAvatarURL(),
-                     "disableMentions": serverTags,
-                     files,
-                     "username": data.message.author.username || data.message
-                  }).then((msg) =>
-                  {
-
-                     reactpersist(data, msg);
-
-                  });
-
-               }
-
-            }
-
+            // console.log("DEBUG: Embed Off: Same channel GIF translation, GIF ignored");
+            return;
 
          }
-      );
+         if (data.attachments.size !== 0)
+         {
+
+            if (data.origin.id === data.forward)
+            {
+
+               // console.log("DEBUG: Embed Off: Same channel image translation, Image ignored");
+               return;
+
+            }
+
+            files = createFiles(data.attachments);
+
+         }
+
+      }
+      else
+      {
+
+         files = null;
+
+      }
+      if (files !== null && data.text === undefined)
+      {
+
+         return webhook.send(null, {
+            "avatarURL": data.message.author.displayAvatarURL(),
+            "disableMentions": serverTags,
+            files,
+            "username": data.message.author.username
+         }).catch((err) => console.log("error", err, "send", data.message.guild.name));
+
+      }
+
+      {
+
+         if (!data.message.author)
+         {
+
+            // console.log("DEBUG: Is bot.author embed off");
+            webhook.send(data.text, {
+               // If you get a error at the below line then the bot does not have write permissions.
+
+               "avatarURL": data.message.client.user.displayAvatarURL(),
+               "disableMentions": serverTags,
+               files,
+               "username": data.message.client.user.username || data.message
+            }).then((msg) =>
+            {
+
+               reactpersist(data, msg);
+
+            });
+
+         }
+         else
+         {
+
+            // console.log("DEBUG: Is data.message.author embed off");
+            webhook.send(data.text, {
+               // If you get a error at the below line then the bot does not have write permissions.
+
+               "avatarURL": data.message.author.displayAvatarURL(),
+               "disableMentions": serverTags,
+               files,
+               "username": data.message.author.username || data.message
+            }).then((msg) =>
+            {
+
+               reactpersist(data, msg);
+
+            });
+
+         }
+
+      }
 
 
    }
@@ -1026,7 +1006,7 @@ module.exports = function run (data)
    // --------------------
    // Primary If Statment
    // --------------------
-   const embedstyle = db.server_obj[data.message.guild.id].db.embedstyle;
+   const embedstyle = data.message.server[0].embedstyle;
    if (embedstyle === "on")
    {
 

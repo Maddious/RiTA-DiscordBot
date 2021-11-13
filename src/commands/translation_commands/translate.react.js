@@ -12,7 +12,6 @@ const logger = require("../../core/logger");
 const countryLangs = require("../../core/country.langs");
 const auth = require("../../core/auth");
 
-
 // ----------------------------------------------------
 // Translate a message through discord reaction (flag)
 // ----------------------------------------------------
@@ -130,6 +129,7 @@ module.exports = function run (data, client)
                      // Message data
 
                      data.message = message;
+                     message.server = server;
                      delete data.message.attachments;
                      data.member.displayColor = fn.getRoleColor(data.message.member);
                      data.canWrite = true;

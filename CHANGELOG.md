@@ -5,7 +5,6 @@
 * Fixed invalid channel message.
 * `!tr reactpersist` has been added. - Reaction will auto delete after 60 seconds.
 * `!tr flagpersist` has been added. - Flag emoji will be removed after 15 seconds.
-* `!tr settings tags` has been added. - Will prevent RITA from pinging everyone, here and users.
 * Help menu updated.
 * Owner variable is now more reliable on messages. 
 * `checkperms` has ben replaced with `check`
@@ -16,9 +15,22 @@
 * Error messages show Task ID
 * Ignore same chan translation of GIF and images. 
 * Source language added to embed on messages.
-* `Admin`, `Owner`, `Dev` and `Channel Manager` variables are now stored in message object.
-* Fixed translate for `me` command.
-* servertags status added to the settings and check commands. 
+* `Admin`, `Owner`, `Dev` and `Channel Manager` variables are now stored in message object
+* Fixed translate for `me` command
+* servertags status added to the settings and check commands
+* `!tr settings tags [all/everyone/none]` has been added, this falls in line with discord.js (This setting only applies to `embed off` mode)
+  > - `none` - No tags are disabled, meaning `@user`, `@everyone` and `@here` will work.
+  > - `everyone` - Attention tags are, meaning only `@user` will work.
+  > - `all` - All tags are disabled, meaning `@user`, `@everyone` and `@here` will NOT work.
+* data.message.server[0] is build on every message event, Reducing the calls needed in send.js to db
+* db changes, the following columns have been added
+  > - `reactpersist` - manages the react persist variable
+  > - `flagpersist` - manages the flag persist variable
+  > - `servername` - stores a local copy of the server name
+  > - `servertags` - manages the server tags variable
+  > - `menupersist` - manages the menu persist variable
+  > - `whitelisted` - NOT IN USE, Yet!
+
 
 ## 1.2.6 Change Log
 * RITA is now at 6400 servers, This is just Amazing.
@@ -71,17 +83,12 @@
 ### 1.2.5 Misc. Changes
 * New Debug Settings for console.
 * MESSAGE_DEBUG
-  > 0 - Error's Only
-  
-  > 1 - Console for all Messages
-  
-  > 2 - Console for Translate Messages only
-  
-  > 3 - Content of all Messages
-  
-  > 4 - Content of Translate Messages only
-  
-  > 5 - Commands Only
+  > - 0 - Error's Only
+  > - 1 - Console for all Messages
+  > - 2 - Console for Translate Messages only
+  > - 3 - Content of all Messages
+  > - 4 - Content of Translate Messages only
+  > - 5 - Commands Only
 
 ## 1.2.4 Change Log
 * BIG ANNOUNCEMENT - RITA IS NOW VERIFIED
@@ -160,25 +167,25 @@
 ### 1.2.2 Command Changes 
 * New commands added (`debug`, `donate`, `prefix`, `help commands`, `create`)
   > `debug` Is for debug options. Examples below:
-    >> - `!tr debug on` - turns on debugging, creates debugging channel and webhook
-    >> - `!tr debug off` - turns off debugging
-    >> - `!tr stats debug` - prints webhook "ID" and "Token" in channel
+    > - `!tr debug on` - turns on debugging, creates debugging channel and webhook
+    > - `!tr debug off` - turns off debugging
+    > - `!tr stats debug` - prints webhook "ID" and "Token" in channel
 
   > `donate` - If you would like to donate to RITA you can find the info with this command. Since RITA bot is 100% free donations are greatly appreciated to help with server costs. Examples below:
-    >> - `!tr donate` - Will return donation options
-    >> - `!tr donate github` - You can Donate at Github Sponsors
-    >> - `!tr donate oc` - You can Donate at Open Collective
+    > - `!tr donate` - Will return donation options
+    > - `!tr donate github` - You can Donate at Github Sponsors
+    > - `!tr donate oc` - You can Donate at Open Collective
     
   > `prefix` - You can now change the prefix of your bot, you can make it whatever you want. Examples below:
-    >> - `!tr prefix` - Will list your current prefix. Default prefix is `!tr`
-    >> - `!tr prefix $tr` - your prefix would now be `$tr` instead of `!tr`
-    >> - `!tr prefix reset` - resets your prefix back to `!tr` So if you changed the prefix to `$tr` you would run `$tr prefix reset`
+    > - `!tr prefix` - Will list your current prefix. Default prefix is `!tr`
+    > - `!tr prefix $tr` - your prefix would now be `$tr` instead of `!tr`
+    > - `!tr prefix reset` - resets your prefix back to `!tr` So if you changed the prefix to `$tr` you would run `$tr prefix reset`
  
   > `help commands` - Shows a list of all available commands. Example below:
-    >> - `!tr help`
+    > - `!tr help`
 
   > `create` - Allows you to use RITA to create a new channel. Example below:
-    >> - `!tr create bob` - will create a new channel named bob
+    > - `!tr create bob` - will create a new channel named bob
 * Command Changed (`stats global`, `stats server`)
   > `stats global` - Stat tracking of messages sent in global servers.
   > `stats server` - Stat tracking of messages sent in local server.

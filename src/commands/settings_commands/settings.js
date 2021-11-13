@@ -760,7 +760,7 @@ module.exports = function run (data)
       `:tada: Allow Annocement Messages: **\`${data.cmd.server[0].announce}\`**\n\n` +
       `:inbox_tray: Embedded Message Style: **\`${data.cmd.server[0].embedstyle}\`**\n\n` +
       `:robot: Bot to Bot Translation Status: **\`${data.cmd.server[0].bot2botstyle}\`**\n\n` +
-      `:face_with_symbols_over_mouth: Tags Disabled(everyone, here and user): **\`${data.cmd.server[0].servertags}\`**\n\n` +
+      `:face_with_symbols_over_mouth: Server Tags Disabled: **\`${data.cmd.server[0].servertags}\`**\n\n` +
       `:flags: Translation by Flag Reactions: **\`${data.cmd.server[0].flag}\`**\n\n` +
       `:pause_button: Help Menu Persistance: **\`${data.cmd.server[0].menupersist}\`**\n\n` +
       `:pause_button: Flag Translation Persistance: **\`${data.cmd.server[0].reactpersist}\`**\n\n` +
