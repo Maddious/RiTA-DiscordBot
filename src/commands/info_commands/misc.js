@@ -50,13 +50,66 @@ module.exports.shards = function shards (data)
 
    data.color = "info";
 
-   data.text = `​\n${oneLine`
+   data.text = `__**Bot Shard Information**__\n\n`;
+   data.text += `​${oneLine`
          :bar_chart:  ​
          **\`${data.message.client.options.shardCount}\`**  shards  ·  ​
          **\`${data.message.client.guilds.cache.size}\`**  guilds  ·  ​
          **\`${data.message.client.channels.cache.size}\`**  channels  ·  ​
          **\`${db.server_obj.size}\`**  users
-      `}\n​`;
+      `}\n​​`;
+
+   const shard = [];
+   const activeGuilds = data.message.client.guilds.cache.array();
+   let i = 0;
+
+
+   activeGuilds.forEach((guild) =>
+   {
+
+      if (i === guild.shardID)
+      {
+
+
+         if (!shard[i])
+         {
+
+            i += 1;
+            console.log(`Shard: ${i} Uptime: ${guild.shard.connectedAt} Ping: ${guild.shard.ping}`);
+            guild.shard.count = 1;
+            return shard.push(guild.shard);
+
+         }
+
+      }
+      shard[i - 1].count += 1;
+
+   });
+
+   i = 0;
+   shard.forEach((info) =>
+   {
+
+      const shardUptime = secConverter(Date.now() - info.connectedAt);
+      function uptimeFormat (uptime)
+      {
+
+         return oneLine`
+            **\`${uptime.days}\`** days
+            **\`${uptime.hours}:${uptime.minutes}:${uptime.seconds}\`**
+         `;
+
+      }
+
+      i += 1;
+      data.text += `​\n${oneLine`
+         Shard: **\`${info.id}\`**  ·  ​
+         Uptime: ${uptimeFormat(shardUptime)}  ·  ​
+         Ping **\`${info.ping}\`**  ·  ​
+         Servers: **\`${info.count}\`**
+      `}​`;
+
+   });
 
    // -------------
    // Send message
