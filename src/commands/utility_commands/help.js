@@ -482,6 +482,11 @@ function helpMessage (config, param)
    "```" +
 
    "```md\n" +
+   `# Language Detection\n` +
+   `* ${cmd} settings langdetect [on/off]\n` +
+   "```" +
+
+   "```md\n" +
    `# Bot to Bot Translation Status\n` +
    `* Usually 90% of bots ignore other bot messages but this feature attemptes to translate them.\n` +
    `* ${cmd} bot2bot [on/off]\n` +
@@ -492,7 +497,7 @@ function helpMessage (config, param)
    `# Tags(everyone, here and user)\n` +
    `* ${cmd} settings tags [Parameter]\n\n` +
 
-   `# PARAMETERS\n` +
+   `# Parameters\n` +
    `* none - RITA won't ignore any mentions\n` +
    `* everyone - RITA will ignore everyone and here tags\n` +
    `* all - RITA will ignore all mentions\n` +

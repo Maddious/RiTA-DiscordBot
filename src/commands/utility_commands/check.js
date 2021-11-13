@@ -8,7 +8,7 @@ const db = require("../../core/db");
 
 const devSendMessage = require("../../core/dev.send");
 const sendMessage = require("../../core/command.send");
-const oneLine = require("common-tags").oneLine;
+const {oneLine} = require("common-tags");
 
 
 // -------------
@@ -92,6 +92,7 @@ function getCheck (data)
                "```md\n" +
                `* Allow Annocement Messages: ${server[0].announce}\n` +
                `* Embedded Message Style: ${server[0].embedstyle}\n` +
+               `* Language Detection: ${server[0].langdetect}\n` +
                `* Bot to Bot Translation Status: ${server[0].bot2botstyle}\n` +
                `* Server Tags status: ${server[0].servertags}\n` +
                `* Translation by Flag Reactions: ${server[0].flag}\n` +
@@ -327,6 +328,7 @@ module.exports = function run (data)
                `# RITA Server Settings:\n` +
                `* Allow Annocement Messages: ${server[0].announce}\n` +
                `* Embedded Message Style: ${server[0].embedstyle}\n` +
+               `* Language Detection: ${server[0].langdetect}\n` +
                `* Bot to Bot Translation Status: ${server[0].bot2botstyle}\n` +
                `* Server Tags status: ${server[0].servertags}\n` +
                `* Translation by Flag Reactions: ${server[0].flag}\n` +

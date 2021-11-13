@@ -194,6 +194,10 @@ const Servers = db.define(
          "type": Sequelize.BOOLEAN,
          "defaultValue": true
       },
+      "langdetect": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": true
+      },
       "servertags": {
          "type": Sequelize.STRING(8),
          "defaultValue": "none"
@@ -545,6 +549,7 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "ejectcount", Sequelize.INTEGER, 0);
    await this.addTableColumn("servers", serversDefinition, "flag", Sequelize.BOOLEAN, true);
    await this.addTableColumn("servers", serversDefinition, "reactpersist", Sequelize.BOOLEAN, true);
+   await this.addTableColumn("servers", serversDefinition, "langdetect", Sequelize.BOOLEAN, true);
    await this.addTableColumn("servers", serversDefinition, "flagpersist", Sequelize.BOOLEAN, true);
    await this.addTableColumn("servers", serversDefinition, "servername", Sequelize.STRING(255));
    await this.addTableColumn("servers", serversDefinition, "servertags", Sequelize.STRING(8), "none");

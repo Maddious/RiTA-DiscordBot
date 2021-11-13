@@ -17,6 +17,7 @@ const discord = require("discord.js");
 const webHookName = "RITA";
 const error = require("./error");
 const auth = require("../core/auth");
+const {oneLine} = require("common-tags");
 
 // -----------------
 // Permission Check
@@ -156,6 +157,7 @@ function checkPerms (data, sendBox)
          "channel": data.message.channel,
          "color": data.color,
          "config": data.config,
+         "detectedLang": data.detectedLang,
          "embeds": data.message.embeds,
          "fields": data.fields,
          "footer": data.footer,
@@ -164,6 +166,7 @@ function checkPerms (data, sendBox)
          "message": data.message,
          "origin": null,
          "reaction": data.reaction,
+         "temp": null,
          "text": data.text,
          "title": data.title
       };
@@ -783,6 +786,26 @@ function embedOff (data)
             files,
             "username": data.message.author.username
          }).catch((err) => console.log("error", err, "send", data.message.guild.name));
+
+      }
+
+      if (data.message.server[0].langdetect === true || data.message.server[0].langdetect === 1)
+      {
+
+         if (!data.reaction)
+
+         {
+
+            data.temp = data.text;
+            data.text = `\n${oneLine`
+               \`Source Lang: ${data.detectedLang}\`
+               `}`;
+            data.text += `\n${oneLine`
+               \`Message\`: ${data.temp}
+               `}`;
+            // data.text += data.temp;
+
+         }
 
       }
 

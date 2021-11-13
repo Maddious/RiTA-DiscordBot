@@ -406,26 +406,19 @@ function getSettings (data)
    async function serverTags (data)
    {
 
-      const serverTags = data.cmd.params.split(" ")[1].toLowerCase();
-      let value = false;
-      if (serverTags === "none" || serverTags === "everyone" || serverTags === "all")
+      const serverTagsVariable = data.cmd.params.split(" ")[1].toLowerCase();
+      let value = "none";
+      if (serverTagsVariable === "none" || serverTagsVariable === "everyone" || serverTagsVariable === "all")
       {
 
-         if (serverTags === "none")
-         {
-
-            value = "none";
-
-         }
-
-         if (serverTags === "everyone")
+         if (serverTagsVariable === "everyone")
          {
 
             value = "everyone";
 
          }
 
-         if (serverTags === "all")
+         if (serverTagsVariable === "all")
          {
 
             value = "all";
@@ -453,7 +446,7 @@ function getSettings (data)
                }
                const output =
             "**```Updated Server Tag Settings```**\n" +
-            `Server Tags = ${serverTags}\n\n`;
+            `Server Tags = ${serverTagsVariable}\n\n`;
                data.color = "info";
                data.text = output;
 
@@ -472,7 +465,7 @@ function getSettings (data)
 
          data.color = "error";
          data.text =
-      `:warning:  **\`${serverTags
+      `:warning:  **\`${serverTagsVariable
       }\`** is not a valid serverTags option.\n`;
 
          // -------------
@@ -484,6 +477,79 @@ function getSettings (data)
       }
 
    }
+
+   // -----------------
+   // Server Tags
+   // -----------------
+
+   async function langDetect (data)
+   {
+
+      const landDetectVariable = data.cmd.params.split(" ")[1].toLowerCase();
+      let value = false;
+      if (landDetectVariable === "on" || landDetectVariable === "off")
+      {
+
+         if (landDetectVariable === "on")
+         {
+
+            value = true;
+
+         }
+
+         // console.log(`DEBUG: embed variable ${flagPersistVariable}`);
+         await db.updateServerTable(
+            data.message.channel.guild.id,
+            "langdetect",
+            value,
+            function error (err)
+            {
+
+               if (err)
+               {
+
+                  return logger(
+                     "error",
+                     err,
+                     "command",
+                     data.message.channel.guild.name
+                  );
+
+               }
+               const output =
+            "**```Updated Language Detection Settings```**\n" +
+            `Language Detection = ${landDetectVariable}\n\n`;
+               data.color = "info";
+               data.text = output;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+         );
+
+      }
+      else
+      {
+
+         data.color = "error";
+         data.text =
+      `:warning:  **\`${landDetectVariable
+      }\`** is not a valid langdetect option.\n`;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+
+   }
+
    // -------
    // Owners
    // -------
@@ -565,9 +631,9 @@ function getSettings (data)
 
    }
 
-   // -------
-   // Owners
-   // -------
+   // ------------
+   // Server Name
+   // ------------
 
    function serverUpdate (data)
    {
@@ -674,6 +740,7 @@ function getSettings (data)
       // "announce": announcement,
       // add,
       "flagpersist": setFlagPersistence,
+      "langdetect": langDetect,
       "listservers": listServers,
       "menupersist": setMenuPersistence,
       "ownerdb": ownerUpdate,
@@ -759,6 +826,7 @@ module.exports = function run (data)
       `\`\`\`**\n:information_source: Your current prefix is: **\`${db.server_obj[data.message.guild.id].db.prefix}\`**\n\n` +
       `:tada: Allow Annocement Messages: **\`${data.cmd.server[0].announce}\`**\n\n` +
       `:inbox_tray: Embedded Message Style: **\`${data.cmd.server[0].embedstyle}\`**\n\n` +
+      `:grey_question: Language Detection: **\`${data.cmd.server[0].langdetect}\`**\n\n` +
       `:robot: Bot to Bot Translation Status: **\`${data.cmd.server[0].bot2botstyle}\`**\n\n` +
       `:face_with_symbols_over_mouth: Server Tags Disabled: **\`${data.cmd.server[0].servertags}\`**\n\n` +
       `:flags: Translation by Flag Reactions: **\`${data.cmd.server[0].flag}\`**\n\n` +

@@ -645,6 +645,7 @@ module.exports = function run (data) // eslint-disable-line complexity
          data.color = data.member.displayColor;
          data.text = res.text;
          data.showAuthor = true;
+         data.detectedLang = detectedLang;
          if (auth.messagedebug === "4")
          {
 
@@ -658,9 +659,15 @@ module.exports = function run (data) // eslint-disable-line complexity
 
          }
          if (data.footer)
+
          {
 
-            data.footer.text += detectedLang;
+            if (data.message.server[0].langdetect === true)
+            {
+
+               data.footer.text += `\nSource Language: ${detectedLang}`;
+
+            }
 
          }
          return getUserColor(

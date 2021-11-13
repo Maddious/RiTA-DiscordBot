@@ -81,6 +81,7 @@ module.exports = function run (data)
                `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` +
                `:person_facepalming: Users in Server: **\`${data.message.channel.guild.memberCount}\`**\n\n` +
                `:inbox_tray: Embedded Message Status: **\`${data.cmd.server[0].embedstyle}\`**\n\n` +
+               `:grey_question: Language Detection: **\`${data.cmd.server[0].langdetect}\`**\n\n` +
                `:robot: Bot to Bot Translation Status: **\`${data.cmd.server[0].bot2botstyle}\`**\n\n` +
                `:information_source: Webhook Debug Active State: **\`${data.cmd.server[0].webhookactive}\`**`;
 
