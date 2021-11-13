@@ -547,8 +547,7 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "reactpersist", Sequelize.BOOLEAN, true);
    await this.addTableColumn("servers", serversDefinition, "flagpersist", Sequelize.BOOLEAN, true);
    await this.addTableColumn("servers", serversDefinition, "servername", Sequelize.STRING(255));
-   await this.addTableColumn("servers", serversDefinition, "servertags", Sequelize.BOOLEAN, "none");
-   // await this.addTableColumn("servers", serversDefinition, "servertags", Sequelize.BOOLEAN, true);
+   await this.addTableColumn("servers", serversDefinition, "servertags", Sequelize.STRING(8), "none");
    // console.log("DEBUG: All Columns Checked or Added");
 
    // For older version of RITA, must remove old unique index
