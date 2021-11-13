@@ -67,7 +67,7 @@ function destResolver (dest)
 // ---------------------
 
 // eslint-disable-next-line no-unused-vars
-async function shoutTasks (res, data, origin, dest, destDisplay)
+async function shoutTasks (res, data, origin, dest)
 {
 
    data.color = "ok";
@@ -214,7 +214,6 @@ module.exports = function run (data)
 
    let origin = null;
    let dest = null;
-   let destDisplay = null;
 
    if (data.cmd.params && data.cmd.params.toLowerCase().includes("#"))
    {
@@ -224,11 +223,6 @@ module.exports = function run (data)
          data.message.author.id
       );
       dest = "target";
-
-      destDisplay = destResolver(
-         data.cmd.for[0],
-         data.message.author.id
-      );
 
    }
    else
@@ -241,10 +235,6 @@ module.exports = function run (data)
       origin = data.message.channel.id;
       dest = destID(
          data.cmd.params,
-         data.message.author.id
-      );
-      destDisplay = destResolver(
-         data.cmd.for[0],
          data.message.author.id
       );
 
@@ -308,7 +298,6 @@ module.exports = function run (data)
             data,
             origin,
             dest,
-            destDisplay
          );
 
       }
