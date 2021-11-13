@@ -190,7 +190,12 @@ module.exports = function run (data)
       data.color = "info";
       data.text = `Invite ${data.message.client.user} `;
       data.text += `\`v${data.config.version}\` to your server\n\n`;
-      data.text += `${auth.invite}`;
+      data.text += `No Fuss simple quick invite:\n`;
+      data.text += `${auth.invite}\n\n`;
+      data.text += `Use the following for the most basic permissions she needs to function.\n`;
+      data.text += `https://ritabot.gg/invite-min\n\n`;
+      data.text += `Use the following for all the permissions she needs to function 100%\n`;
+      data.text += `https://ritabot.gg/invite-max\n\n`;
 
       // -------------
       // Send message

@@ -21,22 +21,6 @@ const botSend = require("../../core/send");
 // Invite Link
 // ------------
 
-module.exports.invite = function invite (data)
-{
-
-   data.color = "info";
-   data.text = `Invite ${data.message.client.user} `;
-   data.text += `\`v${data.config.version}\` to your server\n\n`;
-   data.text += `${auth.invite}`;
-
-   // -------------
-   // Send message
-   // -------------
-
-   return sendMessage(data);
-
-};
-
 // -----------------------
 // Get info on all shards
 // -----------------------
