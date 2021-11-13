@@ -22,7 +22,7 @@
   > - `none` - No tags are disabled, meaning `@user`, `@everyone` and `@here` will work.
   > - `everyone` - Attention tags are, meaning only `@user` will work.
   > - `all` - All tags are disabled, meaning `@user`, `@everyone` and `@here` will NOT work.
-* data.message.server[0] is build on every message event, Reducing the calls needed in send.js to db
+* data.message.server[0] is built on every message event, Reducing the calls needed in send.js to db
 * db changes, the following columns have been added
   > - `reactpersist` - manages the react persist variable
   > - `flagpersist` - manages the flag persist variable
