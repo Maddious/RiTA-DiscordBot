@@ -41,7 +41,7 @@ module.exports = function run (data)
 
       "```md\n" +
       `# -------------------- Database  Changes -------------------- \n` +
-      `* data.message.server[0] is build on every message event \n` +
+      `* data.message.server[0] is built on every message event \n` +
       `* The following columns have been added \n` +
       `  - servertags - manages the server tags variable \n` +
       `  - servername - stores a local copy of the server name \n` +
