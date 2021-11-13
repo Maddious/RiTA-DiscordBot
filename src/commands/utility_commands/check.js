@@ -172,8 +172,16 @@ function getCheck (data)
         "```md\n" +
 
         `# Permissions to set up:\n`;
+      if (data.message.guild.ownerID === data.message.member.id)
+      {
 
-      if (memberPermissions.ADMINISTRATOR === true)
+         const userResult2 =
+             `* OWNER: ${memberPermissions.ADMINISTRATOR}  \n` +
+             "```";
+         data.text = userResult1 + userResult2;
+
+      }
+      else if (memberPermissions.ADMINISTRATOR === true && data.message.guild.ownerID !== data.message.member.id)
       {
 
          const userResult2 =
@@ -309,9 +317,9 @@ module.exports = function run (data)
             const botResult1 =
                `__**Permission Checker - This Server**__\n\n` +
                "```md\n" +
-               `# Server Checker - Targeted Server\n` +
-               `* Targeted Server: ${target.name}\n` +
-               `* Targeted ID: ${target.id}\n` +
+               `# Server Checker - This Server\n` +
+               `* Server Name: ${target.name}\n` +
+               `* Server ID: ${target.id}\n` +
                `* Owner: ${tag || "Unknown"}\n` +
                `* Command prefix is: ${db.server_obj[data.message.guild.id].db.prefix}\n\n` +
                "```" +
