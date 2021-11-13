@@ -6,7 +6,7 @@
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/dev.send");
-const oneLine = require("common-tags").oneLine;
+const {oneLine} = require("common-tags");
 
 // ------
 // Eject

@@ -4,8 +4,8 @@
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING]
-const stripIndent = require("common-tags").stripIndent;
-const oneLine = require("common-tags").oneLine;
+const {stripIndent} = require("common-tags");
+const {oneLine} = require("common-tags");
 const auth = require("./core/auth");
 const logger = require("./core/logger");
 const messageHandler = require("./message");

@@ -10,7 +10,7 @@ const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
 const auth = require("../../core/auth");
 const db = require("../../core/db");
-const oneLine = require("common-tags").oneLine;
+const {oneLine} = require("common-tags");
 
 // -------------------
 // Available Settings
