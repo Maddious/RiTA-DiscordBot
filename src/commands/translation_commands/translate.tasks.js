@@ -15,6 +15,12 @@ const sendMessage = require("../../core/command.send");
 function destID (dest, author)
 {
 
+   if (!dest)
+   {
+
+      return "invalid";
+
+   }
    if (dest.startsWith("<#"))
    {
 
@@ -206,19 +212,43 @@ module.exports = function run (data)
 
    }
 
-   // ------------------
-   // Prepare task data
-   // ------------------
+   let origin = null;
+   let dest = null;
+   let destDisplay = null;
 
-   const origin = data.message.channel.id;
-   const dest = destID(
-      data.cmd.for[0],
-      data.message.author.id
-   );
-   const destDisplay = destResolver(
-      data.cmd.for[0],
-      data.message.author.id
-   );
+   if (data.cmd.params && data.cmd.params.toLowerCase().includes("#"))
+   {
+
+      origin = destID(
+         data.cmd.params,
+         data.message.author.id
+      );
+      dest = "target";
+
+      destDisplay = destResolver(
+         data.cmd.for[0],
+         data.message.author.id
+      );
+
+   }
+   else
+   {
+
+      // ------------------
+      // Prepare task data
+      // ------------------
+
+      origin = data.message.channel.id;
+      dest = destID(
+         data.cmd.params,
+         data.message.author.id
+      );
+      destDisplay = destResolver(
+         data.cmd.for[0],
+         data.message.author.id
+      );
+
+   }
 
    // ------------------------------
    // Check if task actually exists

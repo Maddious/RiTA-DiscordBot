@@ -647,12 +647,11 @@ exports.getTasks = function getTasks (origin, dest, cb)
 {
 
    // console.log("DEBUG: Stage Get tasks for channel or user");
-   if (dest === "me")
+   if (dest.includes("@"))
    {
 
       return Tasks.findAll(
-         {"where": {origin,
-            dest}},
+         {"where": {dest}},
          {"raw": true}
       ).then(function res (result, err)
       {

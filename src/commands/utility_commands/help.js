@@ -357,8 +357,7 @@ function helpMessage (config, param)
    // --------------
 
    const tasks =
-   `__**Channel Tasks**__\n\n` +
-   `Displays translation tasks of the current channel` +
+   `__**Displays Translation Tasks**__\n\n` +
 
    "```md\n" +
    `# Displays translation tasks of the current channel\n` +
@@ -366,9 +365,13 @@ function helpMessage (config, param)
    "```" +
 
    "```md\n" +
-   `# Displays translation tasks of specified channel\n` +
-   `* COMING IN FUTURE UPDATE \n` +
-   `* ${cmd} tasks for [#channel]\n` +
+   `# Displays translation tasks of target channel\n` +
+   `* ${cmd} tasks #TargetChannel\n\n` +
+   "```" +
+
+   "```md\n" +
+   `# Displays translation tasks of me (User calling command)\n` +
+   `* ${cmd} tasks me\n\n` +
    "```\n";
 
    // ----------------------
