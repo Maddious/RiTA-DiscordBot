@@ -51,7 +51,7 @@ module.exports.eject = async function eject (data)
       // ----------------------
       // Send message to owner
       // ----------------------
-      // console.log("DEBUG: Line 49 - Eject.js");
+      // console.log("DEBUG: Line 54 - Eject.js");
       owner.
          send(writeErr).
          catch((err) => console.log(

@@ -75,7 +75,7 @@ module.exports.shards = function shards (data)
          {
 
             i += 1;
-            console.log(`Shard: ${i} Uptime: ${guild.shard.connectedAt} Ping: ${guild.shard.ping}`);
+            // console.log(`Shard: ${i} Uptime: ${guild.shard.connectedAt} Ping: ${guild.shard.ping}`);
             guild.shard.count = 1;
             return shard.push(guild.shard);
 
@@ -296,7 +296,7 @@ module.exports.update = function update (data)
    {
 
       console.log(
-         "Command Message Deleted Error, misc.js = Line 249",
+         "Command Message Deleted Error, misc.js = Line 299",
          err
       );
 
@@ -330,7 +330,7 @@ module.exports.updatelink = async function updatelink (data)
    {
 
       console.log(
-         "Command Message Deleted Error, github.js = Line 283",
+         "Command Message Deleted Error, github.js = Line 333",
          err
       );
 

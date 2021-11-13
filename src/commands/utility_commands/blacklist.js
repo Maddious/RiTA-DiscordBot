@@ -44,7 +44,7 @@ module.exports.blacklist = async function blacklist (data)
       // ----------------------
       // Send message to owner
       // ----------------------
-      // console.log("DEBUG: Line 62 - Blacklist.js");
+      // console.log("DEBUG: Line 47 - Blacklist.js");
       owner.
          send(writeErr).
          catch((err) => console.log(

@@ -827,7 +827,7 @@ module.exports = function run (data)
          {
 
             console.log(
-               "DEBUG: Command Message Deleted Error, help.js = Line 770",
+               "DEBUG: Command Message Deleted Error, help.js = Line 830",
                err
             );
 

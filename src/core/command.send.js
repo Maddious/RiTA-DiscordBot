@@ -98,7 +98,7 @@ async function sendMessage (data)
                return console.log(writeErr);
 
             }
-            // console.log("DEBUG: Line 68 - Command.Send.js");
+            // console.log("DEBUG: Line 101 - Command.Send.js");
             return owner.
                send(writeErr).
                catch((err) => console.log(

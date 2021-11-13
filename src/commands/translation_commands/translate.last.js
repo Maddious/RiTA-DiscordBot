@@ -53,7 +53,7 @@ module.exports.run = function run (data)
       {
 
          console.log(
-            "Command Message Deleted Error, announce.js = Line 152",
+            "Command Message Deleted Error, transalte.last.js = 56",
             err
          );
 
