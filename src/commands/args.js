@@ -16,6 +16,7 @@ const cmdAnnounce = require("./settings_commands/announce");
 const cmdBlacklist = require("./utility_commands/blacklist");
 const cmdBot2bot = require("./settings_commands/bot2bot");
 const cmdCheck = require("./utility_commands/check");
+const cmdCL = require("./info_commands/changelog");
 const cmdCreate = require("./utility_commands/create.channel");
 const cmdDebug = require("./settings_commands/debug");
 const cmdDocs = require("./info_commands/docs");
@@ -356,6 +357,7 @@ module.exports = function run (data)
             "blacklist": cmdBlacklist.blacklist,
             "bot2bot": cmdBot2bot,
             "check": cmdCheck,
+            "cl": cmdCL,
             "create": cmdCreate,
             "debug": cmdDebug,
             "delmsg": cmdMod.deleteid,
