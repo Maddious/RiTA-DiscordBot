@@ -23,7 +23,6 @@ module.exports.blacklist = async function blacklist (data)
 
    const serverID = data.cmd.num;
    const target = data.message.client.guilds.cache.get(serverID);
-   const owner = await target.members.fetch(target.ownerID);
    if (!target)
    {
 
@@ -31,9 +30,10 @@ module.exports.blacklist = async function blacklist (data)
       data.text = oneLine`${`:regional_indicator_x:  **${serverID} Blacklisted**\n`}`;
 
    }
-   else if (owner)
+   else if (target.owner)
    {
 
+      const owner = await target.members.fetch(target.ownerID);
       data.color = "warn";
       data.text = `${`:regional_indicator_x:  **${target.name} Blacklisted**\nThe server owner has been notified\n` +
       "```md\n> "}${target.id}\n@${owner.user.tag}\n${target.memberCount} members\n\`\`\``;
