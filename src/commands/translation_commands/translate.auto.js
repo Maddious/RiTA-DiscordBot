@@ -265,7 +265,7 @@ module.exports = function run (data)
             // ---------------
 
             */
-            const userID = dest.slice(2, -1);
+            const userID = dest.slice(3, -1);
 
             fn.getUser(data.message.client, userID, (user) =>
             {
