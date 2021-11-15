@@ -34,7 +34,7 @@
 * Task command updated, `!tr tasks [#chan/me]` 
   > - `me` will show any tasks for the user in any channel
   > - `#chan` will target a single channel
-
+* Blacklist command fixed
 
 
 ## 1.2.6 Change Log
