@@ -6,7 +6,7 @@
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/dev.send");
-const oneLine = require("common-tags").oneLine;
+const {oneLine} = require("common-tags");
 
 // ----------
 // Blacklist
@@ -33,10 +33,10 @@ module.exports.blacklist = async function blacklist (data)
    else if (target.owner)
    {
 
+      const owner = await target.members.fetch(target.ownerID);
       data.color = "warn";
       data.text = `${`:regional_indicator_x:  **${target.name} Blacklisted**\nThe server owner has been notified\n` +
-      "```md\n> "}${target.id}\n@${target.owner.user.username}#${
-         target.owner.user.discriminator}\n${target.memberCount} members\n\`\`\``;
+      "```md\n> "}${target.id}\n@${owner.user.tag}\n${target.memberCount} members\n\`\`\``;
       data.title = "Server Blacklisted";
 
       const writeErr = `One of your server's - ${target.name} has been Blacklisted. If you wish to appeal then please join our discord server and speak to an admin: https://discord.gg/mgNR64R`;
@@ -44,8 +44,8 @@ module.exports.blacklist = async function blacklist (data)
       // ----------------------
       // Send message to owner
       // ----------------------
-      // console.log("DEBUG: Line 62 - Blacklist.js");
-      target.owner.
+      // console.log("DEBUG: Line 47 - Blacklist.js");
+      owner.
          send(writeErr).
          catch((err) => console.log(
             "error",

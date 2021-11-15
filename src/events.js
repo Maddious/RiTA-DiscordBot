@@ -4,8 +4,8 @@
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING]
-const stripIndent = require("common-tags").stripIndent;
-const oneLine = require("common-tags").oneLine;
+const {stripIndent} = require("common-tags");
+const {oneLine} = require("common-tags");
 const auth = require("./core/auth");
 const logger = require("./core/logger");
 const messageHandler = require("./message");
@@ -49,7 +49,6 @@ exports.listen = function listen (client)
             "maxEmbeds": 5,
             "maxMulti": 6,
             "maxTasksPerChannel": 15,
-            "owner": auth.botOwner,
             "translateCmd": "!translate",
             "translateCmdShort": "!tr",
             "version": botVersion
@@ -58,7 +57,7 @@ exports.listen = function listen (client)
          if (!process.env.DISCORD_BOT_OWNER_ID)
          {
 
-            process.env.DISCORD_BOT_OWNER_ID = [];
+            process.env.DISCORD_BOT_OWNER_ID = "0";
 
          }
 
@@ -395,7 +394,7 @@ exports.listen = function listen (client)
 
                console.log(`Server: ${guild.id} has a blacklisted status of: ${server[0].blacklisted}`);
                logger(
-                  "custom",
+                  "activity",
                   {
                      "color": "ok",
                      "msg": oneLine`**Server:** ${guild.id} has a blacklisted status of: **${server[0].blacklisted}**`
@@ -406,7 +405,7 @@ exports.listen = function listen (client)
                {
 
                   logger(
-                     "custom",
+                     "activity",
                      {
                         "color": "warn",
                         "msg": oneLine`**Server:** ${guild.id} has been kicked as it is blacklisted`

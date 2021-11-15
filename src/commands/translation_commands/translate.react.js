@@ -10,6 +10,7 @@ const fn = require("../../core/helpers");
 const db = require("../../core/db");
 const logger = require("../../core/logger");
 const countryLangs = require("../../core/country.langs");
+const auth = require("../../core/auth");
 
 // ----------------------------------------------------
 // Translate a message through discord reaction (flag)
@@ -40,6 +41,21 @@ module.exports = function run (data, client)
          serverID,
          function getServerInfo (server)
          {
+
+            if (server.length === 0)
+            {
+
+               return logger("custom", {
+                  "color": "ok",
+                  "msg": `:exclamation: Emoji Reaction Failed \n
+                  ServerID: **${data.guild_id || "Unknown"}** \n
+                  Chan ID: **${data.channel_id || "Unknown"}**\n
+                  Message ID **${data.message_id || "Unknown"}**\n
+                  User ID: **$${data.member.user.id || "Unknown"}**\n
+                  Emoji: **${data.emoji.name || "Unknown"}**\n`
+               });
+
+            }
 
             if (server[0].flag === true || server[0].flag === 1)
             {
@@ -113,9 +129,12 @@ module.exports = function run (data, client)
                      // Message data
 
                      data.message = message;
+                     message.server = server;
                      delete data.message.attachments;
                      data.member.displayColor = fn.getRoleColor(data.message.member);
                      data.canWrite = true;
+                     data.reactuser = data.user_id;
+                     data.reaction = true;
 
                      // ------------------
                      // Start translation
@@ -133,6 +152,26 @@ module.exports = function run (data, client)
 
                      db.increaseStatsCount(col, id);
                      translate(data);
+                     if (server[0].flagpersist === false || server[0].flagpersist === 0)
+                     {
+
+                        try
+                        {
+
+                           setTimeout(() => data.message.reactions.resolve(emoji).users.remove(data.reactuser), auth.time.short);
+
+                        }
+                        catch (err)
+                        {
+
+                           console.log(
+                              "Command Message Deleted Error, translate.react.js = Line 152",
+                              err
+                           );
+
+                        }
+
+                     }
 
                   }
                );

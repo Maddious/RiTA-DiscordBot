@@ -6,11 +6,8 @@
 const sendMessage = require("../../core/command.send");
 const colors = require("../../core/colors");
 const discord = require("discord.js");
-const richEmbedMessage = new discord.MessageEmbed();
-const time = {
-   "long": 60000,
-   "short": 5000
-};
+const embed = new discord.MessageEmbed();
+const auth = require("../../core/auth");
 const helpFooter = `**For more help join our official [support server](<https://discord.gg/hXaedzCQ8d>)**\n\n`;
 
 // -------------
@@ -186,7 +183,7 @@ function helpMessage (config, param)
    `* ${cmd} last (Command Disabled)\n` +
    `* ${cmd} channel from [lang] to [lang] for [me/@/#]\n` +
    `* ${cmd} auto to [lang] for [me/@/#]\n` +
-   `* ${cmd} stop for [me/@/#]\n\n` +
+   `* ${cmd} stop [for/task] [me/@/#/all]\n\n` +
    "```" +
 
    "```md\n" +
@@ -212,7 +209,7 @@ function helpMessage (config, param)
    `# Misc Commands\n` +
    `* ${cmd} invite\n` +
    `* ${cmd} help modules\n` +
-   `* ${cmd} checkperms [user/bot]\n` +
+   `* ${cmd} check [me/channel]n` +
    `* ${cmd} create [channelName]\n` +
    `* ${cmd} history \n\n` +
    "```" +
@@ -262,7 +259,6 @@ function helpMessage (config, param)
    // --------------------
 
    const react =
-
    `__**Translate by reaction**__\n\n` +
    `Add a message reaction with the flag of the language you wish to translate to.\n\n` +
    `Please note that only official country flags are registered.\n` +
@@ -270,6 +266,9 @@ function helpMessage (config, param)
    "```md\n" +
    `# Command\n` +
    `* ${cmd} react [on/off] \n\n` +
+   `# Reaction Translation auto delete\n` +
+   `* ${cmd} settings reactpersist [on/off]\n` +
+   `* ${cmd} settings flagpersist [on/off]\n` +
    "```" +
 
    "```md\n" +
@@ -283,6 +282,7 @@ function helpMessage (config, param)
    `* ${cmd} react on \n` +
    `* ${cmd} react off \n\n` +
    "```\n";
+
    // --------------------
    // Last Message (last)
    // --------------------
@@ -331,20 +331,21 @@ function helpMessage (config, param)
 
    "```md\n" +
    `# Command\n` +
-   `* ${cmd} channel \n` +
-   `* ${cmd} channel from [lang] to [lang] for [me/@/#] \n` +
-   `* ${cmd} stop for [me/@/#] \n\n` +
+   `* ${cmd} auto to [lang] for [#] (same channel)\n` +
+   `* ${cmd} channel from [lang] to [lang] for [me/@/#] (cross-channel)\n` +
+   `* ${cmd} stop [for/task] [me/@/#/all] \n\n` +
    "```" +
 
    "```md\n" +
    `# Parameters\n` +
    `* to [lang] - defaults to server default language\n` +
    `* from [lang] - language to translate from, includes 'auto'\n` +
-   `* for [me/@/#] - admins can set for other users \n\n` +
+   `* for [me/@/#/all] - admins can set for other users \n\n` +
    "```" +
 
    "```md\n" +
    `# Examples\n` +
+   `* ${cmd} auto to spanish for #general\n` +
    `* ${cmd} channel from english to chinese for me\n` +
    `* ${cmd} channel from en to de for #englishChannel \n` +
    `* ${cmd} channel from de to fr for @steve \n` +
@@ -356,8 +357,7 @@ function helpMessage (config, param)
    // --------------
 
    const tasks =
-   `__**Channel Tasks**__\n\n` +
-   `Displays translation tasks of the current channel` +
+   `__**Displays Translation Tasks**__\n\n` +
 
    "```md\n" +
    `# Displays translation tasks of the current channel\n` +
@@ -365,9 +365,13 @@ function helpMessage (config, param)
    "```" +
 
    "```md\n" +
-   `# Displays translation tasks of specified channel\n` +
-   `* COMING IN FUTURE UPDATE \n` +
-   `* ${cmd} tasks for [#channel]\n` +
+   `# Displays translation tasks of target channel\n` +
+   `* ${cmd} tasks #TargetChannel\n\n` +
+   "```" +
+
+   "```md\n" +
+   `# Displays translation tasks of me (User calling command)\n` +
+   `* ${cmd} tasks me\n\n` +
    "```\n";
 
    // ----------------------
@@ -382,17 +386,20 @@ function helpMessage (config, param)
    "```md\n" +
    `# Command\n` +
    `* ${cmd} stop \n` +
+   `* ${cmd} stop task [id]\n` +
    `* ${cmd} stop for [me/@/#/all] \n\n` +
    "```" +
 
    "```md\n" +
    `# Parameters\n` +
+   `* tasks [id]\n` +
    `* for [me/@/#/all] - defaults to "me" \n\n` +
    "```" +
 
    "```md\n" +
    `# Examples\n` +
    `* ${cmd} stop \n` +
+   `* ${cmd} stop tasks [id]\n` +
    `* ${cmd} stop for me \n` +
    `* ${cmd} stop for @usr1 \n` +
    `* ${cmd} stop for #ch1 \n` +
@@ -424,7 +431,7 @@ function helpMessage (config, param)
 
    "```md\n" +
    `# Permission Check\n` +
-   `* ${cmd} checkperms [user/bot]\n\n` +
+   `* ${cmd} check [me/channel]\n\n` +
    "```" +
 
    "```md\n" +
@@ -456,27 +463,67 @@ function helpMessage (config, param)
    `__**Settings**__\n\n` +
 
    "```md\n" +
-   `# Set default server language\n` +
-   `* ${cmd} settings setLang to [lang]\n\n` +
+   `# Current Server Settings\n` +
+   `* ${cmd} settings\n\n` +
    "```" +
 
    "```md\n" +
-   `# Style settings\n` +
-   `* ${cmd} embed [on/off]\n\n` +
+   `# Set Custom Bot Prefix\n` +
+   `* ${cmd} prefix [prefix]\n` +
+   `* ${long} prefix [prefix]\n\n` +
+   "```" +
+
+   "```md\n" +
+   `# Developer Announcment Messages\n` +
+   `* ${cmd} announce [on/off]\n` +
+   "```" +
+
+   "```md\n" +
+   `# Embedded Message Style\n` +
+   `* ${cmd} embed [on/off]\n` +
+   `* ${cmd} help embed\n` +
+   "```" +
+
+   "```md\n" +
+   `# Language Detection\n` +
+   `* ${cmd} settings langdetect [on/off]\n` +
+   "```" +
+
+   "```md\n" +
+   `# Bot to Bot Translation Status\n` +
+   `* Usually 90% of bots ignore other bot messages but this feature attemptes to translate them.\n` +
+   `* ${cmd} bot2bot [on/off]\n` +
+   `* ${cmd} help bot2bot\n` +
+   "```" +
+
+   "```md\n" +
+   `# Tags(everyone, here and user)\n` +
+   `* ${cmd} settings tags [Parameter]\n\n` +
 
    `# Parameters\n` +
-   `* on - Turns on Embed Translation\n` +
-   `* off - Turns on Webhook Translation Sending\n\n` +
-
-   `# Examples\n` +
-   `* ${cmd} embed on \n` +
-   `* ${cmd} embed off \n` +
+   `* none - RITA won't ignore any mentions\n` +
+   `* everyone - RITA will ignore everyone and here tags\n` +
+   `* all - RITA will ignore all mentions\n` +
    "```" +
 
    "```md\n" +
-   `# Help menu auto deletion\n` +
-   `* ${cmd} settings persist [on/off]\n` +
-   "```\n";
+   `# Reaction Translations\n` +
+   `* ${cmd} react [on/off]\n` +
+   "```" +
+
+   "```md\n" +
+   `# Help Menu auto delete\n` +
+   `* ${cmd} settings menupersist [on/off]\n\n` +
+   `# Reaction Translation auto delete\n` +
+   `* ${cmd} settings reactpersist [on/off]\n\n` +
+   `# Reaction Emoji auto delete\n` +
+   `* ${cmd} settings flagpersist [on/off]\n\n` +
+   "```" +
+
+   "```md\n" +
+   `# Webhook Debug Active State\n` +
+   `* ${cmd} debug [on/off]\n\n` +
+   "```";
 
    // -------------------
    // Statistics Command
@@ -650,6 +697,7 @@ function helpMessage (config, param)
    `* ${cmd} create bob - your new channel would now be bob \n` +
    `* ${long} create bob - your new channel would now be bob \n` +
    "```\n";
+
    // ---------------
    // Dev Commands
    // ---------------
@@ -664,9 +712,7 @@ function helpMessage (config, param)
    `* ${cmd} unblacklist [ServerID]\n` +
    `* ${cmd} warn [ServerID]\n` +
    `* ${cmd} unwarn [ServerID]\n` +
-   `* ${cmd} check [ServerID]\n` +
-   `* ${cmd} checkperms [ServerID]\n` +
-   `* ${cmd} server [ServerID]\n` +
+   `* ${cmd} check server [ServerID]\n` +
    `* ${cmd} settings updatedb\n` +
    `* ${cmd} settings listservers\n` +
    `* ${cmd} invite server [ServerID]\n\n` +
@@ -683,7 +729,23 @@ function helpMessage (config, param)
    `* ${cmd} blacklist [ServerID] - [ServerID] Will be blacklisted\n\n` +
    "```\n";
 
+   // ---------------
+   // Check Command
+   // ---------------
 
+   const check =
+   `__**Check**__\n\n` +
+
+   "```md\n" +
+      `* ${cmd} check = Check current server.\n` +
+      `* ${cmd} check me = Check user permissions.\n` +
+      `* ${cmd} check channel = Check channel permissions.\n` +
+      "```" +
+
+      "```md\n" +
+      `# Dev Only\n` +
+      `* ${cmd} check server [serverID] = Check Target Server\n\n` +
+      "```\n";
    // ----------------
    // Proccess result
    // ----------------
@@ -693,6 +755,7 @@ function helpMessage (config, param)
       auto,
       "basics": info + basics,
       bot2bot,
+      check,
       commands,
       create,
       debug,
@@ -750,15 +813,26 @@ module.exports = function run (data)
       const cleanParam = data.cmd.params.toLocaleLowerCase().trim();
       getHelpWith = cleanParam;
 
-      if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+      if (!data.message.isDev)
       {
 
-         console.log("Insufficient Permission");
-         data.message.delete({"timeout": time.short}).catch((err) => console.log(
-            "Command Message Deleted Error, help.js = ",
-            err
-         ));
-         richEmbedMessage.
+         // console.log("DEBUG: Insufficient Permission");
+         try
+         {
+
+            setTimeout(() => data.message.delete(), auth.time.short);
+
+         }
+         catch (err)
+         {
+
+            console.log(
+               "DEBUG: Command Message Deleted Error, help.js = Line 830",
+               err
+            );
+
+         }
+         embed.
             setColor(colors.get(data.color)).
             setDescription("This command is available only to Developers. \n\n").
             setTimestamp().
@@ -768,13 +842,24 @@ module.exports = function run (data)
          // Send message
          // -------------
 
-         return data.message.channel.send(richEmbedMessage).then((msg) =>
+         return data.message.channel.send(embed).then((msg) =>
          {
 
-            msg.delete({"timeout": time.long}).catch((err) => console.log(
-               "Bot Message Deleted Error, help.js = ",
-               err
-            ));
+            try
+            {
+
+               setTimeout(() => msg.delete(), auth.time.short);
+
+            }
+            catch (err)
+            {
+
+               console.log(
+                  "DEBUG: Command Message Deleted Error, help.js = Line 798",
+                  err
+               );
+
+            }
 
          });
 

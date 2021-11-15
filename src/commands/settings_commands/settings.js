@@ -11,10 +11,6 @@ const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
 const fs = require("fs");
 const path = require("path");
-const time = {
-   "long": 10000,
-   "short": 5000
-};
 const auth = require("../../core/auth");
 
 // -------------------
@@ -116,7 +112,7 @@ function getSettings (data)
    function listServers (data)
    {
 
-      if (auth.devID.includes(data.message.author.id))
+      if (data.message.isDev)
       {
 
          data.text = "Active Servers - ";
@@ -148,11 +144,21 @@ function getSettings (data)
          // ------------------
          // Send message/file
          // ------------------
+         try
+         {
 
-         data.message.delete({"timeout": time.short}).catch((err) => console.log(
-            "Command Message Deleted Error, command.send.js = ",
-            err
-         ));
+            setTimeout(() => data.message.delete(), auth.time.short);
+
+         }
+         catch (err)
+         {
+
+            console.log(
+               "Command Message Deleted Error, settings.js = Line 157",
+               err
+            );
+
+         }
          fs.writeFileSync(
             path.resolve(
                __dirname,
@@ -180,32 +186,27 @@ function getSettings (data)
    // Command Persistence
    // --------------------
 
-   let commandVariable1 = data.cmd.params.toLowerCase();
-   // eslint-disable-next-line no-unused-vars
-   commandVariable1 = commandVariable1.slice(8);
-   const setPersistence = async function setPersistence (data)
+
+   async function setMenuPersistence (data)
    {
 
-      if (commandVariable1 === "on" || commandVariable1 === "off")
+      const menuPersistVariable = data.cmd.params.split(" ")[1].toLowerCase();
+      let value = false;
+      if (menuPersistVariable === "on" || menuPersistVariable === "off")
       {
 
-         if (commandVariable1 === "on")
+         if (menuPersistVariable === "on")
          {
 
-            commandVariable1 = true;
+            value = true;
 
          }
-         else
-         {
 
-            commandVariable1 = false;
-
-         }
-         // console.log(`DEBUG: embed variable ${commandVariable1}`);
+         // console.log(`DEBUG: embed variable ${menuPersistVariable}`);
          await db.updateServerTable(
             data.message.channel.guild.id,
-            "persist",
-            commandVariable1,
+            "menupersist",
+            value,
             function error (err)
             {
 
@@ -221,8 +222,8 @@ function getSettings (data)
 
                }
                const output =
-            "**```Updated Persist Settings```**\n" +
-            `Persist Command Messages = ${commandVariable1}\n\n`;
+            "**```Updated Help Menu Persist Settings```**\n" +
+            `Persist Command Messages = ${menuPersistVariable}\n\n`;
                data.color = "info";
                data.text = output;
 
@@ -236,16 +237,327 @@ function getSettings (data)
          );
 
       }
+      else
+      {
 
-   };
+         data.color = "error";
+         data.text =
+      `:warning:  **\`${menuPersistVariable
+      }\`** is not a valid menupersist option.\n`;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+
+   }
+
+   // ------------------
+   // React Persistence
+   // ------------------
+
+   async function setReactPersistence (data)
+   {
+
+      const reactPersistVariable = data.cmd.params.split(" ")[1].toLowerCase();
+      let value = false;
+      if (reactPersistVariable === "on" || reactPersistVariable === "off")
+      {
+
+         if (reactPersistVariable === "on")
+         {
+
+            value = true;
+
+         }
+
+         // console.log(`DEBUG: embed variable ${reactPersistVariable}`);
+         await db.updateServerTable(
+            data.message.channel.guild.id,
+            "reactpersist",
+            value,
+            function error (err)
+            {
+
+               if (err)
+               {
+
+                  return logger(
+                     "error",
+                     err,
+                     "command",
+                     data.message.channel.guild.name
+                  );
+
+               }
+               const output =
+            "**```Updated Reaction Translation Persist Settings```**\n" +
+            `React Persist = ${reactPersistVariable}\n\n`;
+               data.color = "info";
+               data.text = output;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+         );
+
+      }
+      else
+      {
+
+         data.color = "error";
+         data.text =
+      `:warning:  **\`${reactPersistVariable
+      }\`** is not a valid reactpersist option.\n`;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+
+   }
+
+   // -----------------
+   // Flag Persistence
+   // -----------------
+
+   async function setFlagPersistence (data)
+   {
+
+      const flagPersistVariable = data.cmd.params.split(" ")[1].toLowerCase();
+      let value = false;
+      if (flagPersistVariable === "on" || flagPersistVariable === "off")
+      {
+
+         if (flagPersistVariable === "on")
+         {
+
+            value = true;
+
+         }
+
+         // console.log(`DEBUG: embed variable ${flagPersistVariable}`);
+         await db.updateServerTable(
+            data.message.channel.guild.id,
+            "flagpersist",
+            value,
+            function error (err)
+            {
+
+               if (err)
+               {
+
+                  return logger(
+                     "error",
+                     err,
+                     "command",
+                     data.message.channel.guild.name
+                  );
+
+               }
+               const output =
+            "**```Updated Flag Emoji Persist Settings```**\n" +
+            `Flag Persist = ${flagPersistVariable}\n\n`;
+               data.color = "info";
+               data.text = output;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+         );
+
+      }
+      else
+      {
+
+         data.color = "error";
+         data.text =
+      `:warning:  **\`${flagPersistVariable
+      }\`** is not a valid flagpersist option.\n`;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+
+   }
+
+   // -----------------
+   // Server Tags
+   // -----------------
+
+   async function serverTags (data)
+   {
+
+      const serverTagsVariable = data.cmd.params.split(" ")[1].toLowerCase();
+      let value = "none";
+      if (serverTagsVariable === "none" || serverTagsVariable === "everyone" || serverTagsVariable === "all")
+      {
+
+         if (serverTagsVariable === "everyone")
+         {
+
+            value = "everyone";
+
+         }
+
+         if (serverTagsVariable === "all")
+         {
+
+            value = "all";
+
+         }
+
+         // console.log(`DEBUG: embed variable ${serverTags}`);
+         await db.updateServerTable(
+            data.message.channel.guild.id,
+            "servertags",
+            value,
+            function error (err)
+            {
+
+               if (err)
+               {
+
+                  return logger(
+                     "error",
+                     err,
+                     "command",
+                     data.message.channel.guild.name
+                  );
+
+               }
+               const output =
+            "**```Updated Server Tag Settings```**\n" +
+            `Server Tags = ${serverTagsVariable}\n\n`;
+               data.color = "info";
+               data.text = output;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+         );
+
+      }
+      else
+      {
+
+         data.color = "error";
+         data.text =
+      `:warning:  **\`${serverTagsVariable
+      }\`** is not a valid serverTags option.\n`;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+
+   }
+
+   // -----------------
+   // Server Tags
+   // -----------------
+
+   async function langDetect (data)
+   {
+
+      const landDetectVariable = data.cmd.params.split(" ")[1].toLowerCase();
+      let value = false;
+      if (landDetectVariable === "on" || landDetectVariable === "off")
+      {
+
+         if (landDetectVariable === "on")
+         {
+
+            value = true;
+
+         }
+
+         // console.log(`DEBUG: embed variable ${flagPersistVariable}`);
+         await db.updateServerTable(
+            data.message.channel.guild.id,
+            "langdetect",
+            value,
+            function error (err)
+            {
+
+               if (err)
+               {
+
+                  return logger(
+                     "error",
+                     err,
+                     "command",
+                     data.message.channel.guild.name
+                  );
+
+               }
+               const output =
+            "**```Updated Language Detection Settings```**\n" +
+            `Language Detection = ${landDetectVariable}\n\n`;
+               data.color = "info";
+               data.text = output;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+         );
+
+      }
+      else
+      {
+
+         data.color = "error";
+         data.text =
+      `:warning:  **\`${landDetectVariable
+      }\`** is not a valid langdetect option.\n`;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+
+   }
 
    // -------
    // Owners
    // -------
+
    function ownerUpdate (data)
    {
 
-      if (auth.devID.includes(data.message.author.id))
+      if (data.message.isDev)
       {
 
          let i = 0;
@@ -257,7 +569,8 @@ function getSettings (data)
 
          }
 
-         const wait = setInterval(function delay ()
+         const wait = setInterval(async function delay ()
+
          {
 
             const guild = guilds.shift();
@@ -270,9 +583,10 @@ function getSettings (data)
                clearInterval(wait);
 
             }
-            else if (guild[1].owner)
+            else if (guild[1].ownerID)
             {
 
+               const owner = await guild[1].members.fetch(guild[1].ownerID);
                const target = guild[1].id;
 
                if (!target)
@@ -286,25 +600,25 @@ function getSettings (data)
                db.updateServerTable(
                   target,
                   "owner",
-                  `${guild[1].owner.user.username}#${guild[1].owner.user.discriminator}`,
+                  `${owner.user.username}#${owner.user.discriminator}`,
                   function error (err)
                   {
 
                      if (err)
                      {
 
-                        return console.log(`DEBUG: Unable to save owner details to DB on Server Join`);
+                        return console.log(`DEBUG: Unable to save owner details to DB on Owner Command`);
 
                      }
 
                   },
-                  console.log(`Server Owner Added for guild: ${target}`)
+                  console.log(`Owner Task ${i} - Server Owner Added for guild: ${target}`)
                );
 
 
             }
 
-         }, 100);
+         }, 2000);
 
       }
       else
@@ -317,6 +631,85 @@ function getSettings (data)
 
    }
 
+   // ------------
+   // Server Name
+   // ------------
+
+   function serverUpdate (data)
+   {
+
+      if (data.message.isDev)
+      {
+
+         let i = 0;
+         const guilds = [];
+         for (const guild of data.message.client.guilds.cache)
+         {
+
+            guilds.push(guild);
+
+         }
+
+         const wait = setInterval(async function delay ()
+
+         {
+
+            const guild = guilds.shift();
+
+            i += 1;
+            if (guild === undefined)
+            {
+
+               console.log(`Done all servers`);
+               clearInterval(wait);
+
+            }
+            else if (guild[1].name)
+            {
+
+               const name = await guild[1].name;
+               const target = guild[1].id;
+
+               if (!target)
+               {
+
+                  // eslint-disable-next-line no-useless-return
+                  return;
+
+               }
+
+               db.updateServerTable(
+                  target,
+                  "servername",
+                  name,
+                  function error (err)
+                  {
+
+                     if (err)
+                     {
+
+                        return console.log(`DEBUG: Unable to save guild name to DB on Server Command`);
+
+                     }
+
+                  },
+                  console.log(`Server Task ${i} - Guild name added for guild: ${target}`)
+               );
+
+            }
+
+         }, 2000);
+
+      }
+      else
+      {
+
+         data.text = ":cop:  This Command is for bot developers only.";
+         return sendMessage(data);
+
+      }
+
+   }
 
    // ----------
    // Update db
@@ -346,10 +739,15 @@ function getSettings (data)
    const validSettings = {
       // "announce": announcement,
       // add,
+      "flagpersist": setFlagPersistence,
+      "langdetect": langDetect,
       "listservers": listServers,
-      "owner": ownerUpdate,
-      "persist": setPersistence,
+      "menupersist": setMenuPersistence,
+      "ownerdb": ownerUpdate,
+      "reactpersist": setReactPersistence,
+      "serverdb": serverUpdate,
       "setlang": setLang,
+      "tags": serverTags,
       "updatedb": updateDB
 
    };
@@ -393,19 +791,19 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   AreDev:if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   Override: if (data.message.guild.ownerID !== data.message.author.id)
    {
 
-      if (auth.devID.includes(data.message.author.id))
+      if (data.message.isDev)
       {
 
          // console.log("DEBUG: Developer ID Confirmed");
-         break AreDev;
+         break Override;
 
       }
 
       data.color = "warn";
-      data.text = ":warning: These Commands are for bot owners and developers only.";
+      data.text = ":warning: These Commands are for server owners and developers only.";
 
       // -------------
       // Send message
@@ -414,6 +812,7 @@ module.exports = function run (data)
       return sendMessage(data);
 
    }
+
    // -----------------------------------
    // Error if settings param is missing
    // -----------------------------------
@@ -427,9 +826,13 @@ module.exports = function run (data)
       `\`\`\`**\n:information_source: Your current prefix is: **\`${db.server_obj[data.message.guild.id].db.prefix}\`**\n\n` +
       `:tada: Allow Annocement Messages: **\`${data.cmd.server[0].announce}\`**\n\n` +
       `:inbox_tray: Embedded Message Style: **\`${data.cmd.server[0].embedstyle}\`**\n\n` +
+      `:grey_question: Language Detection: **\`${data.cmd.server[0].langdetect}\`**\n\n` +
       `:robot: Bot to Bot Translation Status: **\`${data.cmd.server[0].bot2botstyle}\`**\n\n` +
+      `:face_with_symbols_over_mouth: Server Tags Disabled: **\`${data.cmd.server[0].servertags}\`**\n\n` +
       `:flags: Translation by Flag Reactions: **\`${data.cmd.server[0].flag}\`**\n\n` +
-      `:pause_button: Help Menu Persistance: **\`${data.cmd.server[0].persist}\`**\n\n` +
+      `:pause_button: Help Menu Persistance: **\`${data.cmd.server[0].menupersist}\`**\n\n` +
+      `:pause_button: Flag Translation Persistance: **\`${data.cmd.server[0].reactpersist}\`**\n\n` +
+      `:pause_button: Flag Emoji Persistance: **\`${data.cmd.server[0].flagpersist}\`**\n\n` +
       `:wrench: Webhook Debug Active State: **\`${data.cmd.server[0].webhookactive}\`**`;
 
       // -------------

@@ -12,7 +12,7 @@ const db = require("../../core/db");
 // Command Code
 // -------------
 
-module.exports = function run (guild, config)
+module.exports = async function run (guild, config)
 {
 
    // Try system channel
@@ -37,13 +37,32 @@ module.exports = function run (guild, config)
 
    }
 
-   if (guild.owner)
+   db.updateServerTable(
+      guild.id,
+      "servername",
+      guild.name,
+      function error (err)
+      {
+
+         if (err)
+         {
+
+            return console.log(`DEBUG: Unable to save guild name to DB on Server Join`);
+
+         }
+
+      }
+   );
+
+   const owner = await guild.members.fetch(guild.ownerID);
+
+   if (owner)
    {
 
       db.updateServerTable(
          guild.id,
          "owner",
-         `${guild.owner.user.username}#${guild.owner.user.discriminator}`,
+         `${owner.user.username}#${owner.user.discriminator}`,
          function error (err)
          {
 
@@ -103,7 +122,7 @@ module.exports = function run (guild, config)
          },
          {
             "name": ":lock: Permissions",
-            "value": `Rita has many functions, These all need different permissions to work. To check that RITA has ll the permissions she needs to functions correctly please use the **!tr checkperms bot** command.`
+            "value": `Rita has many functions, These all need different permissions to work. To check that RITA has all the permissions she needs to functions correctly please use the **!tr checkperms bot** command.`
          },
          {
             "name": ":moneybag: On a side note.",

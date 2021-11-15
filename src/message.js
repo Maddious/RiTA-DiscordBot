@@ -10,13 +10,12 @@ const fn = require("./core/helpers");
 const cmdArgs = require("./commands/args");
 const auth = require("./core/auth");
 
-
 // --------------------
 // Listen for messages
 // --------------------
 
 // eslint-disable-next-line no-unused-vars
-module.exports = function run (config, message)
+module.exports = async function run (config, message)
 {
 
    module.exports.message = message;
@@ -142,15 +141,20 @@ module.exports = function run (config, message)
       message.isAdmin =
          message.member.permissions.has("ADMINISTRATOR");
 
-      message.isManager =
+      message.isGlobalChanManager =
+         message.member.permissions.has("MANAGE_CHANNELS");
+
+      message.isChanManager =
          fn.checkPerm(
             message.member,
             message.channel,
             "MANAGE_CHANNELS"
          );
+      message.isDev = auth.devID.includes(message.author.id);
+      message.isBotOwner = auth.botOwner.includes(message.author.id);
       message.sourceID = message.guild.id;
       // eslint-disable-next-line no-self-assign
-      message.guild.owner = message.guild.owner;
+      message.guild.owner = await message.guild.members.fetch(message.guild.ownerID);
 
       // Add role color
       message.roleColor = fn.getRoleColor(message.member);
@@ -196,13 +200,21 @@ module.exports = function run (config, message)
       function getServerInfo (server)
       {
 
+         if (server.length === 0)
+         {
+
+            return;
+
+         }
+
          if (server[0].blacklisted === true)
          {
 
-            data.message.guild.leave();
             console.log(`Blacklist Redundancy, Server ${serverID} ejected`);
+            data.message.guild.leave();
 
          }
+         message.server = server;
 
       }
    ).catch((err) =>

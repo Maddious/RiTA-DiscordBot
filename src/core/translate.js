@@ -1,4 +1,3 @@
-
 // -----------------
 // Global variables
 // -----------------
@@ -135,7 +134,6 @@ function discordPatch (string)
 
 }
 
-
 function translateFix (string, matches)
 {
 
@@ -175,9 +173,10 @@ function translateFix (string, matches)
 
 
 }
-// ------------
+// ---------------------------------------------------------------------------
 // Retranslation function using auto if it thinks it is in the wrong language
-// ------------
+// ---------------------------------------------------------------------------
+
 async function reTranslate (matches, opts)
 {
 
@@ -216,7 +215,6 @@ function getUserColor (data, callback)
    callback(data);
 
 }
-
 
 // --------------------------
 // Translate buffered chains
@@ -621,7 +619,15 @@ module.exports = function run (data) // eslint-disable-line complexity
          if (detectedLang === langTo && res.text === data.message.content)
          {
 
-            return;
+            if (data.message.client.channels.cache.get(data.forward).guild.id === data.message.client.channels.cache.get(data.message.channel.id).guild.id)
+            {
+
+               // console.log("DEBUG: Cross Server Checker - Same Server, Same language");
+               return;
+
+            }
+
+            // console.log("DEBUG: Cross Server Checker - Diffrent Server, Same language");
 
          }
          else if (detectedLang !== channelFrom && channelFrom !== "auto")
@@ -639,6 +645,7 @@ module.exports = function run (data) // eslint-disable-line complexity
          data.color = data.member.displayColor;
          data.text = res.text;
          data.showAuthor = true;
+         data.detectedLang = detectedLang;
          if (auth.messagedebug === "4")
          {
 
@@ -649,6 +656,18 @@ module.exports = function run (data) // eslint-disable-line complexity
          {
 
             console.log(`MD2: ${data.message.guild.name} - ${data.message.guild.id} - ${data.message.createdAt}`);
+
+         }
+         if (data.footer)
+
+         {
+
+            if (data.message.server[0].langdetect === true)
+            {
+
+               data.footer.text += `\nSource Language: ${detectedLang}`;
+
+            }
 
          }
          return getUserColor(

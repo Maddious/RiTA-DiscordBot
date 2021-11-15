@@ -81,6 +81,7 @@ module.exports = function run (data)
                `**\`${data.cmd.server[0].activeUserTasks}\`**  users\n\n` +
                `:person_facepalming: Users in Server: **\`${data.message.channel.guild.memberCount}\`**\n\n` +
                `:inbox_tray: Embedded Message Status: **\`${data.cmd.server[0].embedstyle}\`**\n\n` +
+               `:grey_question: Language Detection: **\`${data.cmd.server[0].langdetect}\`**\n\n` +
                `:robot: Bot to Bot Translation Status: **\`${data.cmd.server[0].bot2botstyle}\`**\n\n` +
                `:information_source: Webhook Debug Active State: **\`${data.cmd.server[0].webhookactive}\`**`;
 
@@ -184,16 +185,24 @@ module.exports = function run (data)
 
          }
          // eslint-disable-next-line no-unused-vars
-         const serverID = data.cmd.params.split(" ")[1].toLowerCase();
+         const serverID = data.cmd.num;
          const target = data.message.client.guilds.cache.get(serverID);
 
          db.getServerInfo(
             serverID,
-            function getServerInfo (server)
+            async function getServerInfo (server)
             {
 
                if (!target)
                {
+
+                  if (server.length === 0)
+                  {
+
+                     data.text = `\`\`\`${serverID} is not registered in the database.\n\n\`\`\``;
+                     return sendMessage(data);
+
+                  }
 
                   const targetServer = `**\`\`\`${serverID} - Server Tranlation Stats\`\`\`**\n` +
                      `Server Joined Rita Network: \`\`\`${server[0].createdAt}\`\`\`\n` +
@@ -213,11 +222,14 @@ module.exports = function run (data)
                   return sendMessage(data);
 
                }
-               if (target.owner)
+
+               const owner = await target.members.fetch(target.ownerID);
+               if (owner)
                {
 
                   const targetServer = `**\`\`\`${target.name} - Server Tranlation Stats\`\`\`**\n` +
-                  `Server Owner: ${target.owner}\n\n` +
+                  `Server Owner: ${owner}\n` +
+                  `Owner Tag: ${owner.user.tag}\n\n` +
                   `Server Joined Rita Network: \`\`\`${server[0].createdAt}\`\`\`\n` +
                   `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
                   `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
@@ -230,7 +242,7 @@ module.exports = function run (data)
                   data.text = `${targetServer}\n\n`;
 
                }
-               else if (!target.owner)
+               else if (!owner)
                {
 
                   const targetServer = `**\`\`\`${target.name} - Server Tranlation Stats\`\`\`**\n` +
@@ -265,7 +277,7 @@ module.exports = function run (data)
                serverID
             );
 
-            data.text = `\`\`\`${serverID} is not registered in the database.\n\n\`\`\``;
+            data.text = `\`\`\`Critical Stats Error, Zycore Broke it.\n\n\`\`\``;
             return sendMessage(data);
 
          });
@@ -275,14 +287,14 @@ module.exports = function run (data)
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("debug"))
       {
 
-         AreDev: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+         Override: if (!data.message.isBotOwner)
          {
 
-            if (auth.devID.includes(data.message.author.id))
+            if (data.message.isDev)
             {
 
                // console.log("DEBUG: Developer ID Confirmed");
-               break AreDev;
+               break Override;
 
             }
 

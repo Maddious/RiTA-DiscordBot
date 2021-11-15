@@ -10,7 +10,7 @@ const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
 const auth = require("../../core/auth");
 const db = require("../../core/db");
-const oneLine = require("common-tags").oneLine;
+const {oneLine} = require("common-tags");
 
 // -------------------
 // Available Settings
@@ -26,7 +26,7 @@ function remoteInvite (data)
    async function targetServerInvite (data)
    {
 
-      if (auth.devID.includes(data.message.author.id))
+      if (data.message.isDev)
       {
 
          const targetID = data.cmd.num;
@@ -190,7 +190,12 @@ module.exports = function run (data)
       data.color = "info";
       data.text = `Invite ${data.message.client.user} `;
       data.text += `\`v${data.config.version}\` to your server\n\n`;
-      data.text += `${auth.invite}`;
+      data.text += `No Fuss simple quick invite:\n`;
+      data.text += `${auth.invite}\n\n`;
+      data.text += `Use the following for the most basic permissions she needs to function.\n`;
+      data.text += `https://ritabot.gg/invite-min\n\n`;
+      data.text += `Use the following for all the permissions she needs to function 100%\n`;
+      data.text += `https://ritabot.gg/invite-max\n\n`;
 
       // -------------
       // Send message

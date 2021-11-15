@@ -16,6 +16,7 @@ const cmdAnnounce = require("./settings_commands/announce");
 const cmdBlacklist = require("./utility_commands/blacklist");
 const cmdBot2bot = require("./settings_commands/bot2bot");
 const cmdCheck = require("./utility_commands/check");
+const cmdCL = require("./info_commands/changelog");
 const cmdCreate = require("./utility_commands/create.channel");
 const cmdDebug = require("./settings_commands/debug");
 const cmdDocs = require("./info_commands/docs");
@@ -29,10 +30,9 @@ const cmdJoin = require("./info_commands/join");
 const cmdList = require("./info_commands/list");
 const cmdMod = require("./future_commands/mod");
 const cmdMisc = require("./info_commands/misc");
-const cmdPerms = require("./utility_commands/perm");
 const cmdPrefix = require("./settings_commands/prefix");
-const cmdSettings = require("./settings_commands/settings");
 const cmdReact = require("./settings_commands/react");
+const cmdSettings = require("./settings_commands/settings");
 const cmdStats = require("./info_commands/stats");
 const cmdTranslateLast = require("./translation_commands/translate.last");
 const cmdTranslateThis = require("./translation_commands/translate.this");
@@ -357,9 +357,10 @@ module.exports = function run (data)
             "blacklist": cmdBlacklist.blacklist,
             "bot2bot": cmdBot2bot,
             "check": cmdCheck,
-            "checkperms": cmdPerms,
+            "cl": cmdCL,
             "create": cmdCreate,
             "debug": cmdDebug,
+            "delmsg": cmdMod.deleteid,
             "docs": cmdDocs,
             "donate": cmdDonate,
             "eject": cmdEject.eject,
@@ -388,6 +389,7 @@ module.exports = function run (data)
             "unmute": cmdMod.unmute,
             "unwarn": cmdEject.unwarn,
             "update": cmdMisc.update,
+            "updatelink": cmdMisc.updatelink,
             "version": cmdVersion,
             "warn": cmdEject.warn
          };
