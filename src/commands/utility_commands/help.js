@@ -350,6 +350,12 @@ function helpMessage (config, param)
    `* ${cmd} channel from en to de for #englishChannel \n` +
    `* ${cmd} channel from de to fr for @steve \n` +
    `* ${cmd} channel from en to es for #ch1, #ch2, #usr1 \n` +
+   "```\n" +
+
+   "```md\n" +
+   `# Notes:\n` +
+   `* All translation commands are a per channel basis.\n` +
+   `* The @user function sends translations to the user via DM.\n` +
    "```\n";
 
    // --------------
