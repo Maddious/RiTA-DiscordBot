@@ -209,7 +209,7 @@ function helpMessage (config, param)
    `# Misc Commands\n` +
    `* ${cmd} invite\n` +
    `* ${cmd} help modules\n` +
-   `* ${cmd} check [me/channel]n` +
+   `* ${cmd} check [me/channel]\n` +
    `* ${cmd} create [channelName]\n` +
    `* ${cmd} history \n\n` +
    "```" +
@@ -350,7 +350,7 @@ function helpMessage (config, param)
    `* ${cmd} channel from en to de for #englishChannel \n` +
    `* ${cmd} channel from de to fr for @steve \n` +
    `* ${cmd} channel from en to es for #ch1, #ch2, #usr1 \n` +
-   "```\n" +
+   "```" +
 
    "```md\n" +
    `# Notes:\n` +
