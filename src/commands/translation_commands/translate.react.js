@@ -51,7 +51,7 @@ module.exports = function run (data, client)
                   ServerID: **${data.guild_id || "Unknown"}** \n
                   Chan ID: **${data.channel_id || "Unknown"}**\n
                   Message ID **${data.message_id || "Unknown"}**\n
-                  User ID: **${data.member.user.id || "Unknown"}**\n
+                  User ID: **$${data.member.user.id || "Unknown"}**\n
                   Emoji: **${data.emoji.name || "Unknown"}**\n`
                });
 
