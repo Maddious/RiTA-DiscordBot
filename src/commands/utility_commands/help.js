@@ -690,18 +690,23 @@ function helpMessage (config, param)
    "```md\n" +
    `# Command\n` +
    `* ${cmd} create [channelName]\n` +
-   `* ${long} create [channelName]\n\n` +
+   `* ${long} create [channelName]\n` +
+   `* ${cmd} create [channelName] [categoryID]\n` +
+   `* ${long} create [channelName] [categoryID]\n\n` +
    "```" +
 
    "```md\n" +
    `# Parameters\n` +
-   `* [channelName] - sets name of new channel\n\n` +
+   `* [channelName] - sets name of new channel\n` +
+   `* [categoryID] - sets category for the new channel\n\n` +
    "```" +
 
    "```md\n" +
    `# Examples\n` +
    `* ${cmd} create bob - your new channel would now be bob \n` +
    `* ${long} create bob - your new channel would now be bob \n` +
+   `* ${cmd} create bob 914747144461843234 - your new channel would now be bob in the designated category \n` +
+   `* ${long} create bob 914747144461843234 - your new channel would now be bob in the designated category\n\n` +
    "```\n";
 
    // ---------------
