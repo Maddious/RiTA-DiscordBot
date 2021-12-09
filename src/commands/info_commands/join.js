@@ -12,7 +12,7 @@ const db = require("../../core/db");
 // Command Code
 // -------------
 
-module.exports = function run (guild, config)
+module.exports = async function run (guild, config)
 {
 
    // Try system channel
@@ -36,6 +36,48 @@ module.exports = function run (guild, config)
       defaultChannel = guild.channels.cache.find((channel) => channel.type === "text" && channel.permissionsFor(guild.me).has("SEND_MESSAGES"));
 
    }
+
+   db.updateServerTable(
+      guild.id,
+      "servername",
+      guild.name,
+      function error (err)
+      {
+
+         if (err)
+         {
+
+            return console.log(`DEBUG: Unable to save guild name to DB on Server Join`);
+
+         }
+
+      }
+   );
+
+   const owner = await guild.members.fetch(guild.ownerID);
+
+   if (owner)
+   {
+
+      db.updateServerTable(
+         guild.id,
+         "owner",
+         `${owner.user.username}#${owner.user.discriminator}`,
+         function error (err)
+         {
+
+            if (err)
+            {
+
+               return console.log(`DEBUG: Unable to save owner details to DB on Server Join`);
+
+            }
+
+         }
+      );
+
+   }
+
 
    /*
    // Invite settings
@@ -80,11 +122,15 @@ module.exports = function run (guild, config)
          },
          {
             "name": ":lock: Permissions",
-            "value": `Rita has many functions, These all need different permissions to work. To check that RITA has ll the permissions she needs to functions correctly please use the **!tr checkperms bot** command.`
+            "value": `Rita has many functions, These all need different permissions to work. To check that RITA has all the permissions she needs to functions correctly please use the **!tr checkperms bot** command.`
          },
          {
             "name": ":moneybag: On a side note.",
             "value": `While rita is free, and we always aim to keep it this way, She does have costs.\nCurrently the Dev Team pays these cost. If you would like to support us and enable us to continue to provide RITA for free then please visit our [GitHub Sponsors](https://github.com/sponsors/RitaBot-Project) page, or type **${config.translateCmdShort} donate** for more info`
+         },
+         {
+            "name": ":notebook: Please Leave a review.",
+            "value": `One last thing before you go, Please Vote for and leave a Review for Rita [Here](https://top.gg/bot/827301865539764284), It helps us reach more people.`
          }
       ],
 

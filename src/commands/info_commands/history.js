@@ -274,7 +274,22 @@ function getHistory (data)
       data.color = "info";
       data.text = `**V1.2.5**\n` +
       "```md\n" +
-      `# Version 1.2.5 - Release Date: 05/07/2021 \n\n` +
+      `# Version 1.2.5 - Release Date: 05/07/2021 \n` +
+      `# Version 1.2.5-1 - Was not published. \n` +
+      `# Version 1.2.5-2 - Release Date: 13/07/2021 \n` +
+      `# Version 1.2.5-3 - Release Date: 15/07/2021 \n` +
+      `# Version 1.2.5-4 - Release Date: 01/09/2021 \n` +
+      `# Version 1.2.5-5 - Release Date: 05/09/2021 \n` +
+      `# Version 1.2.5-6 - Release Date: 07/09/2021 \n` +
+      `# Version 1.2.5-7 - Release Date: 08/09/2021 \n` +
+      `# Version 1.2.5-8 - Release Date: 09/09/2021 \n` +
+      `# Version 1.2.5-9 - Release Date: 12/09/2021 \n` +
+      `# Version 1.2.5-10 - Release Date: 15/09/2021 \n` +
+      `# Version 1.2.5-11 - Was not published. \n` +
+      `# Version 1.2.5-12 - Release Date: 23/09/2021 \n` +
+      `# Version 1.2.5-13 - Was not published. \n` +
+      `# Version 1.2.5-14 - Release Date: 24/09/2021 \n` +
+      `# Version 1.2.5-15 - Was not published \n\n` +
       "```\n";
 
       // -------------
@@ -285,7 +300,7 @@ function getHistory (data)
 
    };
 
-   const guilds = function guilds (data)
+   const v126History = function v126History (data)
    {
 
       // -------------
@@ -293,24 +308,229 @@ function getHistory (data)
       // -------------
 
       data.color = "info";
-      data.text = `**Guilds Stats**\n` +
+      data.text = `**V1.2.6**\n` +
       "```md\n" +
-      `# RITA Was Born - 12/07/19 \n` +
-      `# Unified RITA Launched - 01/04/2021 \n` +
-      `# 100 Guilds - 25/04/2021 \n` +
-      `# Discord Verified - 27/05/2021 \n` +
-      `# 200 Guilds - 04/06/2021 \n` +
-      `# 300 Guilds - 08/06/2021 \n` +
-      `# 400 Guilds - 11/06/2021 \n` +
-      `# 500 Guilds - 14/06/2021 \n` +
-      `# 600 Guilds - 19/06/2021 \n` +
-      `# 700 Guilds - 21/06/2021 \n` +
-      `# 800 Guilds - 24/06/2021 \n` +
-      `# 900 Guilds - 27/06/2021 \n` +
-      `# 1000 Guilds - 29/06/2021 \n` +
-      `# 1100 Guilds - 01/07/2021 \n` +
-      `# 1200 Guilds - 04/07/2021 \n\n` +
+      `# Version 1.2.6 - Release Date: 01/10/2021 \n` +
+      `# Version 1.2.6-1 - Release Date: 01/10/2021 \n` +
+      `# Version 1.2.6-2 - Release Date: 05/10/2021 \n` +
+      `# Version 1.2.6-3 - Release Date: 05/10/2021 \n` +
+      `# Version 1.2.6-4 - Release Date: 06/10/2021 \n` +
+      `# Version 1.2.6-5 - Release Date: 07/10/2021 \n` +
+      `# Version 1.2.6-6 - Release Date: 11/10/2021 \n` +
+      `# Version 1.2.6-7 - Release Date: 12/10/2021 \n` +
+      `# Version 1.2.6-8 - Release Date: 13/10/2021 \n` +
+      `# Version 1.2.6-9 - Release Date: 18/10/2021 \n` +
+      `# Version 1.2.6-10 - Release Date: 30/10/2021 \n` +
+      `# Version 1.2.6-11 - Release Date: 04/11/2021 \n` +
+      `# Version 1.2.6-12 - Release Date: 07/11/2021 \n` +
+      `# Version 1.2.6-13 - Release Date: 13/11/2021 \n` +
+      `# Version 1.2.6-14 - Release Date: 13/11/2021 \n\n` +
       "```\n";
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   };
+
+
+   const guilds = function guilds (data)
+   {
+
+      // -------------
+      // Command Code
+      // -------------
+
+      if (!data.cmd.params.split(" ")[1])
+      {
+
+         data.color = "info";
+         data.text = `Due to large size of the output for this command it has been split in to smaller sections. Please see below\n\n` +
+         "```md\n" +
+         `* Guild History 0 - 2k = ${data.cmd.server[0].prefix} history guild 2k\n` +
+         `* Guild History 2k - 4k = ${data.cmd.server[0].prefix} history guild 4k\n` +
+         `* Guild History 4k - 6k = ${data.cmd.server[0].prefix} history guild 6k\n` +
+         `* Guild History 6k - 8k = ${data.cmd.server[0].prefix} history guild 8k\n` +
+         `* Guild History 8k - 10k = ${data.cmd.server[0].prefix} history guild 10k\n` +
+         `* Guild History 10k - 12k = ${data.cmd.server[0].prefix} history guild 12k\n` +
+         "```\n";
+
+         return sendMessage(data);
+
+      }
+
+      // console.log(data.cmd.params.split(" ")[1].toLowerCase());
+      if (data.cmd.params.split(" ")[1].toLowerCase() === "2k")
+      {
+
+         data.color = "info";
+         data.text = `**Guilds Stats**\n` +
+         "```md\n" +
+         `# RITA Was Born - 12/07/19 \n` +
+         `# Unified RITA Launched - 01/04/2021 \n` +
+         `# 100 Guilds - 25/04/2021 \n` +
+         `# Discord Verified - 27/05/2021 \n` +
+         `# 0200 Guilds - 04/06/2021\n` +
+         `# 0300 Guilds - 08/06/2021\n` +
+         `# 0400 Guilds - 11/06/2021\n` +
+         `# 0500 Guilds - 14/06/2021\n` +
+         `# 0600 Guilds - 19/06/2021\n` +
+         `# 0700 Guilds - 21/06/2021\n` +
+         `# 0800 Guilds - 24/06/2021\n` +
+         `# 0900 Guilds - 27/06/2021\n` +
+         `# 1000 Guilds - 29/06/2021\n` +
+         `# 1100 Guilds - 01/07/2021\n` +
+         `# 1200 Guilds - 04/07/2021\n` +
+         `# 1300 Guilds - 07/07/2021\n` +
+         `# 1400 Guilds - 09/07/2021\n` +
+         `# 1500 Guilds - 11/07/2021\n` +
+         `# 1600 Guilds - 14/07/2021\n` +
+         `# 1700 Guilds - 17/07/2021\n` +
+         `# 1800 Guilds - 19/07/2021\n` +
+         `# 1900 Guilds - 21/07/2021\n` +
+         `# 2000 Guilds - 24/07/2021\n\n` +
+         "```\n";
+
+      }
+
+      if (data.cmd.params.split(" ")[1].toLowerCase() === "4k")
+      {
+
+         data.color = "info";
+         data.text = `**Guilds Stats**\n` +
+         "```md\n" +
+         `# 2000 Guilds - 24/07/2021\n` +
+         `# 2100 Guilds - 26/07/2021\n` +
+         `# 2200 Guilds - 28/07/2021\n` +
+         `# 2300 Guilds - 30/07/2021\n` +
+         `# 2400 Guilds - 02/08/2021\n` +
+         `# 2500 Guilds - 03/08/2021\n` +
+         `# 2600 Guilds - 05/08/2021\n` +
+         `# 2700 Guilds - 08/08/2021\n` +
+         `# 2800 Guilds - 09/08/2021\n` +
+         `# 2900 Guilds - 11/08/2021\n` +
+         `# 3000 Guilds - 13/08/2021\n` +
+         `# 3100 Guilds - 15/08/2021\n` +
+         `# 3200 Guilds - 17/08/2021\n` +
+         `# 3300 Guilds - 18/08/2021\n` +
+         `# 3400 Guilds - 19/08/2021\n` +
+         `# 3500 Guilds - 22/08/2021\n` +
+         `# 3600 Guilds - 23/08/2021\n` +
+         `# 3700 Guilds - 25/08/2021\n` +
+         `# 3800 Guilds - 26/08/2021\n` +
+         `# 3900 Guilds - 27/08/2021\n` +
+         `# 4000 Guilds - 28/08/2021\n\n` +
+         "```\n";
+
+      }
+
+      if (data.cmd.params.split(" ")[1].toLowerCase() === "6k")
+      {
+
+         data.color = "info";
+         data.text = `**Guilds Stats**\n` +
+         "```md\n" +
+         `# 4000 Guilds - 28/08/2021\n` +
+         `# 4100 Guilds - 30/08/2021\n` +
+         `# 4200 Guilds - 31/08/2021\n` +
+         `# 4300 Guilds - 01/09/2021\n` +
+         `# 4400 Guilds - 03/09/2021\n` +
+         `# 4500 Guilds - 05/09/2021\n` +
+         `# 4600 Guilds - 06/09/2021\n` +
+         `# 4700 Guilds - 07/09/2021\n` +
+         `# 4800 Guilds - 09/09/2021\n` +
+         `# 4900 Guilds - 10/09/2021\n` +
+         `# 5000 Guilds - 11/09/2021\n` +
+         `# 5100 Guilds - 13/09/2021\n` +
+         `# 5200 Guilds - 14/09/2021\n` +
+         `# 5300 Guilds - 15/09/2021\n` +
+         `# 5400 Guilds - 16/09/2021\n` +
+         `# 5500 Guilds - 18/09/2021\n` +
+         `# 5600 Guilds - 19/09/2021\n` +
+         `# 5700 Guilds - 21/09/2021\n` +
+         `# 5800 Guilds - 22/09/2021\n` +
+         `# 5900 Guilds - 23/09/2021\n` +
+         `# 6000 Guilds - 25/09/2021\n\n` +
+         "```\n";
+
+      }
+
+      if (data.cmd.params.split(" ")[1].toLowerCase() === "8k")
+      {
+
+         data.color = "info";
+         data.text = `**Guilds Stats**\n` +
+         "```md\n" +
+         `# 6000 Guilds - 25/09/2021\n` +
+         `# 6100 Guilds - 26/09/2021\n` +
+         `# 6200 Guilds - 27/09/2021\n` +
+         `# 6300 Guilds - 29/09/2021\n` +
+         `# 6400 Guilds - 30/09/2021\n` +
+         `# 6500 Guilds - 01/10/2021\n` +
+         `# 6600 Guilds - 03/10/2021\n` +
+         `# 6700 Guilds - 04/10/2021\n` +
+         `# 6800 Guilds - 05/10/2021\n` +
+         `# 6900 Guilds - 07/10/2021\n` +
+         `# 7000 Guilds - 08/10/2021\n` +
+         `# 7100 Guilds - 09/10/2021\n` +
+         `# 7200 Guilds - 10/10/2021\n` +
+         `# 7200 Guilds - 11/10/2021\n` +
+         `# 7300 Guilds - 12/10/2021\n` +
+         `# 7400 Guilds - 13/10/2021\n` +
+         `# 7500 Guilds - 14/10/2021\n` +
+         `# 7600 Guilds - 15/10/2021\n` +
+         `# 7700 Guilds - 15/10/2021\n` +
+         `# 7800 Guilds - 17/10/2021\n` +
+         `# 7900 Guilds - 18/10/2021\n` +
+         `# 8000 Guilds - 19/10/2021\n\n` +
+         "```\n";
+
+      }
+
+      if (data.cmd.params.split(" ")[1].toLowerCase() === "10k")
+      {
+
+         data.color = "info";
+         data.text = `**Guilds Stats**\n` +
+         "```md\n" +
+         `# 8000 Guilds - 19/10/2021\n` +
+         `# 8100 Guilds - 20/10/2021\n` +
+         `# 8200 Guilds - 21/10/2021\n` +
+         `# 8300 Guilds - 22/10/2021\n` +
+         `# 8400 Guilds - 24/10/2021\n` +
+         `# 8500 Guilds - 25/10/2021\n` +
+         `# 8600 Guilds - 26/10/2021\n` +
+         `# 8700 Guilds - 27/10/2021\n` +
+         `# 8800 Guilds - 28/10/2021\n` +
+         `# 8900 Guilds - 29/10/2021\n` +
+         `# 9000 Guilds - 30/10/2021\n` +
+         `# 9100 Guilds - 01/11/2021\n` +
+         `# 9200 Guilds - 02/11/2021\n` +
+         `# 9300 Guilds - 03/11/2021\n` +
+         `# 9400 Guilds - 04/11/2021\n` +
+         `# 9500 Guilds - 05/11/2021\n` +
+         `# 9600 Guilds - 06/11/2021\n` +
+         `# 9700 Guilds - 07/11/2021\n` +
+         `# 9800 Guilds - 08/11/2021\n` +
+         `# 9900 Guilds - 09/11/2021\n` +
+         `# 10000 Guilds - 11/11/2021\n\n` +
+         "```\n";
+
+      }
+
+      if (data.cmd.params.split(" ")[1].toLowerCase() === "12k")
+      {
+
+         data.color = "info";
+         data.text = `**Guilds Stats**\n` +
+         "```md\n" +
+         `# 10000 Guilds - 11/11/2021\n` +
+         `# 10100 Guilds - 12/11/2021\n\n` +
+         "```\n";
+
+      }
 
       // -------------
       // Send message
@@ -333,6 +553,7 @@ function getHistory (data)
       "1.2.3": v123History,
       "1.2.4": v124History,
       "1.2.5": v125History,
+      "1.2.6": v126History,
       "guild": guilds
    };
 
@@ -353,7 +574,7 @@ function getHistory (data)
 
    data.color = "error";
    data.text =
-      `:warning:  **\`${data.cmd.params}\`** is not a valid history option. \nPlease use 1.0 / 1.1 / 1.2.0 / 1.2.1 / 1.2.2 / 1.2.3 / 1.2.4`;
+      `:warning:  **\`${data.cmd.params}\`** is not a valid history option. \nPlease use 1.0 / 1.1 / 1.2.0 / 1.2.1 / 1.2.2 / 1.2.3 / 1.2.4 / 1.2.5 / 1.2.6`;
 
    // -------------
    // Send message
@@ -363,16 +584,16 @@ function getHistory (data)
 
 }
 
-// --------------------------
-// Proccess settings params
-// --------------------------
+// ------------------------
+// Proccess history params
+// ------------------------
 
 module.exports = function run (data)
 {
 
-   // -----------------------------------
-   // Error if settings param is missing
-   // -----------------------------------
+   // ----------------------------------
+   // Error if history param is missing
+   // ----------------------------------
 
    if (!data.cmd.params)
    {
@@ -400,7 +621,8 @@ module.exports = function run (data)
       `# Version 1.2.2 - Release Date: 25/04/2021 \n` +
       `# Version 1.2.3 - Release Date: 24/05/2021 \n` +
       `# Version 1.2.4 - Release Date: 09/06/2021 \n` +
-      `# Version 1.2.5 - Release Date: 09/06/2021 \n` +
+      `# Version 1.2.5 - Release Date: 05/07/2021 \n` +
+      `# Version 1.2.6 - Release Date: 01/10/2021 \n` +
       `* There are ?? iterations of this Version\n\n` +
       "```\n";
 

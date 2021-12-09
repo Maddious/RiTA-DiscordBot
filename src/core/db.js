@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 // -----------------
 // Global variables
 // -----------------
@@ -7,6 +6,7 @@
 /* eslint-disable sort-keys */
 /* eslint-disable no-unused-vars */
 /* eslint-disable quote-props */
+/* eslint-disable no-undef */
 const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
@@ -28,7 +28,8 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
          "ssl": {
             "require": true,
             "rejectUnauthorized": false
-         }
+         },
+         acquireTimeout: 60000
       },
       "storage": process.env.DATABASE_URL
    }) :
@@ -40,7 +41,8 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
             "ssl": {
                "require": true,
                "rejectUnauthorized": false
-            }
+            },
+            acquireTimeout: 60000
          }
       }
    );
@@ -52,7 +54,7 @@ db.
 
       logger(
          "dev",
-         "Successfully connected to database"
+         `----------------------------------------\nSuccessfully connected to database`
       );
 
    }).
@@ -125,6 +127,7 @@ const Servers = db.define(
          "unique": true,
          "allowNull": false
       },
+      "servername": Sequelize.STRING(255),
       "prefix": {
          "type": Sequelize.STRING(32),
          "defaultValue": "!tr"
@@ -159,6 +162,10 @@ const Servers = db.define(
          "type": Sequelize.BOOLEAN,
          "defaultValue": false
       },
+      "whitelisted": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": false
+      },
       "warn": {
          "type": Sequelize.BOOLEAN,
          "defaultValue": false
@@ -171,9 +178,45 @@ const Servers = db.define(
          "type": Sequelize.BOOLEAN,
          "defaultValue": true
       },
-      "persist": {
+      "menupersist": {
          "type": Sequelize.BOOLEAN,
          "defaultValue": false
+      },
+      "flag": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": true
+      },
+      "flagpersist": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": true
+      },
+      "reactpersist": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": true
+      },
+      "langdetect": {
+         "type": Sequelize.BOOLEAN,
+         "defaultValue": false
+      },
+      "servertags": {
+         "type": Sequelize.STRING(8),
+         "defaultValue": "none"
+      },
+      "owner": {
+         "type": Sequelize.STRING(255),
+         "defaultValue": "Unknown"
+      },
+      "errorcount": {
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
+      },
+      "warncount": {
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
+      },
+      "ejectcount": {
+         "type": Sequelize.INTEGER,
+         "defaultValue": 0
       }
    }
 );
@@ -231,6 +274,9 @@ exports.initializeDatabase = async function initializeDatabase (client)
    db.sync({logging: false}).then(async () =>
    {
 
+      // eslint-disable-next-line init-declarations
+      let guild;
+
       await Stats.upsert({logging: false,
          "id": "bot"});
       await this.updateColumns();
@@ -249,7 +295,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
       for (i = 0; i < guilds; i += 1)
       {
 
-         const guild = guildsArray[i];
+         guild = guildsArray[i];
          const guildID = guild.id;
          // eslint-disable-next-line no-await-in-loop
          await Stats.upsert({"id": guildID,
@@ -300,7 +346,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
       for (let i = 0; i < guildClient.length; i += 1)
       {
 
-         const guild = guildClient[i];
+         guild = guildClient[i];
          server_obj[guild.id].guild = guild;
          server_obj[guild.id].size = guild.memberCount;
          if (!server_obj.size)
@@ -462,6 +508,7 @@ exports.updatePrefix = function updatePrefix (id, prefix, _cb)
 exports.updateServerTable = function updateServerTable (id, columnName, value, _cb)
 {
 
+   // console.log(`DEBUG: ID: ${id} - Name: ${columnName} - Value: ${value}`);
    return Servers.update(
       {[`${columnName}`]: value},
       {"where": {id}}
@@ -481,7 +528,7 @@ exports.updateServerTable = function updateServerTable (id, columnName, value, _
 exports.updateColumns = async function updateColumns ()
 {
 
-   console.log("DEBUG: Checking Missing Variable Columns for old RITA release");
+   // console.log("DEBUG: Checking Missing Variable Columns for old RITA release");
    // For older version of RITA, they need to upgrade DB with adding new columns if needed
    const serversDefinition = await db.getQueryInterface().describeTable("servers");
    await this.addTableColumn("servers", serversDefinition, "prefix", Sequelize.STRING(32), "!tr");
@@ -491,16 +538,27 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "webhooktoken", Sequelize.STRING(255));
    await this.addTableColumn("servers", serversDefinition, "webhookactive", Sequelize.BOOLEAN, false);
    await this.addTableColumn("servers", serversDefinition, "blacklisted", Sequelize.BOOLEAN, false);
+   await this.addTableColumn("servers", serversDefinition, "whitelisted", Sequelize.BOOLEAN, false);
    await this.addTableColumn("servers", serversDefinition, "warn", Sequelize.BOOLEAN, false);
    await this.addTableColumn("servers", serversDefinition, "invite", Sequelize.STRING(255), "Not yet Created");
    await this.addTableColumn("servers", serversDefinition, "announce", Sequelize.BOOLEAN, true);
-   await this.addTableColumn("servers", serversDefinition, "persist", Sequelize.BOOLEAN, false);
-   console.log("DEBUG: All Columns Checked or Added");
+   await this.addTableColumn("servers", serversDefinition, "menupersist", Sequelize.BOOLEAN, false);
+   await this.addTableColumn("servers", serversDefinition, "owner", Sequelize.STRING(255), "Unknown");
+   await this.addTableColumn("servers", serversDefinition, "errorcount", Sequelize.INTEGER, 0);
+   await this.addTableColumn("servers", serversDefinition, "warncount", Sequelize.INTEGER, 0);
+   await this.addTableColumn("servers", serversDefinition, "ejectcount", Sequelize.INTEGER, 0);
+   await this.addTableColumn("servers", serversDefinition, "flag", Sequelize.BOOLEAN, true);
+   await this.addTableColumn("servers", serversDefinition, "reactpersist", Sequelize.BOOLEAN, true);
+   await this.addTableColumn("servers", serversDefinition, "langdetect", Sequelize.BOOLEAN, false);
+   await this.addTableColumn("servers", serversDefinition, "flagpersist", Sequelize.BOOLEAN, true);
+   await this.addTableColumn("servers", serversDefinition, "servername", Sequelize.STRING(255));
+   await this.addTableColumn("servers", serversDefinition, "servertags", Sequelize.STRING(8), "none");
+   // console.log("DEBUG: All Columns Checked or Added");
 
    // For older version of RITA, must remove old unique index
-   console.log("DEBUG: Stage Remove old RITA Unique index");
+   // console.log("DEBUG: Stage Remove old RITA Unique index");
    await db.getQueryInterface().removeIndex("tasks", "tasks_origin_dest");
-   console.log("DEBUG : All old index removed");
+   // console.log("DEBUG : All old index removed");
 
 };
 
@@ -548,7 +606,7 @@ exports.channelTasks = function channelTasks (data)
    if (data.message.channel.type === "dm")
    {
 
-      console.log("DEBUG: Line 666 - DB.js");
+      // console.log("DEBUG: Line 609 - DB.js");
       id = `@${data.message.author.id}`;
 
    }
@@ -589,12 +647,11 @@ exports.getTasks = function getTasks (origin, dest, cb)
 {
 
    // console.log("DEBUG: Stage Get tasks for channel or user");
-   if (dest === "me")
+   if (dest.includes("@"))
    {
 
       return Tasks.findAll(
-         {"where": {origin,
-            dest}},
+         {"where": {dest}},
          {"raw": true}
       ).then(function res (result, err)
       {
@@ -626,7 +683,7 @@ exports.getTasks = function getTasks (origin, dest, cb)
 // Check if dest is found in tasks
 // --------------------------------
 
-exports.checkTask = function checkTask (origin, dest, cb)
+exports.checkTask = function checkTask (origin, dest, eh, cb)
 {
 
    // console.log("DEBUG: Stage Check if dest is found in tasks");
@@ -635,6 +692,59 @@ exports.checkTask = function checkTask (origin, dest, cb)
 
       return Tasks.findAll(
          {"where": {origin}},
+         {"raw": true}
+      ).then(function res (result, err)
+      {
+
+         cb(
+            err,
+            result
+         );
+
+      });
+
+   }
+   if (dest === "id")
+   {
+
+      return Tasks.findAll(
+         {"where": {"id": origin}},
+         {"raw": true}
+      ).then(function res (result, err)
+      {
+
+         cb(
+            err,
+            result
+         );
+
+      });
+
+   }
+   if (eh === "o")
+   {
+
+      return Tasks.findAll(
+         {"where": {"server": origin,
+            "origin": dest}},
+         {"raw": true}
+      ).then(function res (result, err)
+      {
+
+         cb(
+            err,
+            result
+         );
+
+      });
+
+   }
+   if (eh === "d")
+   {
+
+      return Tasks.findAll(
+         {"where": {"server": origin,
+            dest}},
          {"raw": true}
       ).then(function res (result, err)
       {
@@ -677,12 +787,13 @@ exports.removeTask = function removeTask (origin, dest, cb)
       // console.log("DEBUG: removeTask() - all");
       return Tasks.destroy({"where": {[Op.or]: [
          {origin},
+         // !!!DO NOT REMOVE!!! The next line is what deletes tasks for channels that get deleted! !!!DO NOT REMOVE!!!
          {"dest": origin}
-      ]}}).then(function error (err, result)
+      ]}}).then(function error (result, err)
       {
 
          cb(
-            null,
+            err,
             result
          );
 
@@ -691,14 +802,33 @@ exports.removeTask = function removeTask (origin, dest, cb)
    }
    return Tasks.destroy({"where": {[Op.or]: [
       {origin,
-         dest},
-      {"origin": dest,
-         "dest": origin}
-   ]}}).then(function error (err, result)
+         dest}
+   ]}}).then(function error (result, err)
    {
 
       cb(
-         null,
+         err,
+         result
+      );
+
+   });
+
+};
+
+// ------------------
+// Remove Task by ID
+// ------------------
+
+exports.removeTaskID = function removeTaskID (id, cb)
+{
+
+   // console.log("DEBUG: Stage Remove Task by ID");
+   Tasks.destroy({"where": {id,
+      "active": true}}).then(function error (result, err)
+   {
+
+      cb(
+         err,
          result
       );
 
@@ -787,12 +917,12 @@ exports.addTask = function addTask (task)
 // -------------
 
 // Increase the count in Servers table
-exports.increaseServersCount = function increaseServersCount (id)
+exports.increaseServersCount = function increaseServersCount (col, id)
 {
 
    // console.log("DEBUG: Stage Update count in Servers table");
    return Servers.increment(
-      "count",
+      col,
       {logging: false,
          "where": {id}}
    );

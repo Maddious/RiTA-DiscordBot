@@ -96,24 +96,44 @@ module.exports = function run (data)
    // ------------------------------------------
    // Error if non-manager sets channel as dest
    // ------------------------------------------
-   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+
+   Override: if (!data.message.isDev)
    {
 
-      if (data.cmd.for[0] !== "me" && !data.message.isManager)
+      if (!data.message.isGlobalChanManager)
       {
 
-         data.color = "error";
-         data.text =
-         ":cop:  You need to be a channel manager to " +
-         "auto translate for others.";
+         // console.log(`DEBUG: Is not global chan manager`);
+         if (!data.message.isChanManager)
+         {
 
-         // -------------
-         // Send message
-         // -------------
+            // console.log(`DEBUG: Is not single chan manager`);
+            if (!data.cmd.for.includes("me"))
+            {
 
-         return sendMessage(data);
+
+               // console.log(`DEBUG: Task for is not "Me"`);
+               data.color = "error";
+               data.text = ":police_officer:  This command is reserved for server admins & channel managers";
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+
+            }
+            // console.log(`DEBUG: Task for is "Me"`);
+            console.log(`DEBUG: ${!data.cmd.for.includes("me")}`);
+            break Override;
+
+         }
+         // console.log(`DEBUG: Is single chan manager`);
+         break Override;
 
       }
+      // console.log(`DEBUG: Is global chan manager`);
       break Override;
 
    }
@@ -228,18 +248,29 @@ module.exports = function run (data)
          if (dest.startsWith("<@"))
          {
 
-            console.log("DEBUG: Line 193 - Translate.Auto.js");
+            /*
+            return data.message.channel.send({"embed": {
+               "author": {
+                  "icon_url": data.message.client.user.displayAvatarURL(),
+                  "name": data.message.client.user.username
+               },
+               "color": 13107200,
+               "description": `:no_entry_sign: This command has been disabled Pending a fix \n
+              We apologise for any inconvenience this may cause.`
+
+            }});
+
             // ---------------
             // Old Code Below
             // ---------------
 
-
+            */
             const userID = dest.slice(3, -1);
 
             fn.getUser(data.message.client, userID, (user) =>
             {
 
-               console.log("DEBUG: Line 204 - Translate.Auto.js");
+               // console.log("DEBUG: Line 204 - Translate.Auto.js");
                if (user && !user.bot && user.createDM)
                {
 
@@ -315,6 +346,23 @@ module.exports = function run (data)
          // Invalid dests
 
          if (
+            dest === "invalid"
+         )
+         {
+
+            data.color = "error";
+            data.text =
+            ":warning:  Invalid auto translation request," +
+            " Missing destination parameter";
+
+            // -------------
+            // Send message
+            // -------------
+
+            return sendMessage(data);
+
+         }
+         else if (
             dest.startsWith("@") ||
             !dest.startsWith("<") && dest !== "me"
          )
@@ -357,25 +405,31 @@ module.exports = function run (data)
       // ----------------------------------
       // Multiple dests set by non-manager
       // ----------------------------------
-      Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+
+      Override: if (data.task.for.length > 1)
       {
 
-         if (data.task.dest.length > 1 && !data.message.isManager)
+         if (!data.message.isDev)
          {
 
-            data.color = "error";
-            data.text =
-            ":cop::skin-tone-3:  You need to be a channel manager " +
-            "to auto translate this channel for others.";
+            if (!data.message.isGlobalChanManager)
+            {
 
-            // -------------
-            // Send message
-            // -------------
+               // console.log(`DEBUG: Is not global chan manager`);
+               data.color = "error";
+               data.text = ":police_officer:  This command is reserved for server admins & server channel managers";
 
-            return sendMessage(data);
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+            // console.log(`DEBUG: Is global chan manager`);
+            break Override;
 
          }
-         break Override;
 
       }
 

@@ -15,6 +15,12 @@ const sendMessage = require("../../core/command.send");
 function destID (dest, author)
 {
 
+   if (!dest)
+   {
+
+      return "invalid";
+
+   }
    if (dest.startsWith("<#"))
    {
 
@@ -61,7 +67,7 @@ function destResolver (dest)
 // ---------------------
 
 // eslint-disable-next-line no-unused-vars
-function shoutTasks (res, data, origin, dest, destDisplay)
+async function shoutTasks (res, data, origin, dest)
 {
 
    data.color = "ok";
@@ -71,7 +77,7 @@ function shoutTasks (res, data, origin, dest, destDisplay)
    // Send message
    // -------------
 
-   sendMessage(data);
+   await sendMessage(data);
 
    for (let i = 0, len = res.length; i < len; i += 1)
    {
@@ -81,13 +87,16 @@ function shoutTasks (res, data, origin, dest, destDisplay)
       const origin = destResolver(task.origin);
       const LangFrom = langCheck(task.LangFrom).valid[0].name;
       const LangTo = langCheck(task.LangTo).valid[0].name;
-      data.text = `:arrow_right:   Translating **${LangFrom}** messages from **<${origin}>** and sending **${LangTo}** messages to **<${dest}>**`;
+      data.text = `Task ID: **${task.id}**\n` +
+                  `:arrow_right:   Translating **${LangFrom}** messages from **<${origin}>, <${data.channel.id}>**\n` +
+                  `and sending **${LangTo}** messages to **<${dest}>, <${dest.slice(1)}>**`;
 
       // -------------
       // Send message
       // -------------
 
-      sendMessage(data);
+      // eslint-disable-next-line no-await-in-loop
+      await sendMessage(data);
 
    }
    data.text = ":negative_squared_cross_mark:  That's all I have!";
@@ -173,41 +182,63 @@ module.exports = function run (data)
    // Disallow non-managers to stop for others
    // -----------------------------------------
 
-   Override: if (!process.env.DISCORD_BOT_OWNER_ID.includes(data.message.author.id))
+   Override: if (!data.message.isDev)
    {
 
-      if (data.cmd.for[0] !== "me" && !data.message.isManager)
+      if (!data.message.isGlobalChanManager)
       {
 
-         data.color = "error";
-         data.text =
-         ":cop:  You need to be a channel manager to stop auto translating " +
-         "this channel for others.";
+         // console.log(`DEBUG: Is not global chan manager`);
+         if (!data.message.isChanManager)
+         {
 
-         // -------------
-         // Send message
-         // -------------
+            // console.log(`DEBUG: Is not single chan manager`);
+            data.color = "error";
+            data.text = ":police_officer:  This command is reserved for server admins & channel managers";
 
-         return sendMessage(data);
+            // -------------
+            // Send message
+            // -------------
+
+            return sendMessage(data);
+
+         }
+         // console.log(`DEBUG: Is single chan manager`);
+         break Override;
 
       }
+      // console.log(`DEBUG: Is global chan manager`);
       break Override;
 
    }
 
-   // ------------------
-   // Prepare task data
-   // ------------------
+   let origin = null;
+   let dest = null;
 
-   const origin = data.message.channel.id;
-   const dest = destID(
-      data.cmd.for[0],
-      data.message.author.id
-   );
-   const destDisplay = destResolver(
-      data.cmd.for[0],
-      data.message.author.id
-   );
+   if (data.cmd.params && data.cmd.params.toLowerCase().includes("#"))
+   {
+
+      origin = destID(
+         data.cmd.params,
+         data.message.author.id
+      );
+      dest = "target";
+
+   }
+   else
+   {
+
+      // ------------------
+      // Prepare task data
+      // ------------------
+
+      origin = data.message.channel.id;
+      dest = destID(
+         data.cmd.params,
+         data.message.author.id
+      );
+
+   }
 
    // ------------------------------
    // Check if task actually exists
@@ -216,7 +247,7 @@ module.exports = function run (data)
    db.getTasks(
       origin,
       dest,
-      function error (err, res)
+      async function error (err, res)
       {
 
          if (err)
@@ -262,12 +293,11 @@ module.exports = function run (data)
          // Otherwise, proceed to remove task from database
          // ------------------------------------------------
 
-         shoutTasks(
+         await shoutTasks(
             res,
             data,
             origin,
             dest,
-            destDisplay
          );
 
       }

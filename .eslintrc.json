@@ -118,6 +118,7 @@
       "no-mixed-operators": "off",
       "no-ternary": "off",
       "no-nested-ternary": "off",
+      "require-atomic-updates" : "off",
       // ---------------------
       // These could be fixed
       // ---------------------

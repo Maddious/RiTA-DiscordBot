@@ -149,36 +149,31 @@ function analyzeRows (data, i)
    // Set forward channel for sender
    // -------------------------------
 
-   if (row.dest !== data.message.channel.id)
+   data.forward = row.dest;
+   data.embeds = data.message.embeds;
+   data.attachments = data.message.attachments;
+
+   if (data.message.channel.type === "dm")
    {
 
-      data.forward = row.dest;
-      data.embeds = data.message.embeds;
-      data.attachments = data.message.attachments;
+      const replyIndex = data.message.content.indexOf(":");
+      const reply = data.message.content.slice(
+         0,
+         replyIndex
+      );
+      const replyCon = data.message.content.slice(replyIndex + 1);
 
-      if (data.message.channel.type === "dm")
+      if (reply === row.reply)
       {
 
-         const replyIndex = data.message.content.indexOf(":");
-         const reply = data.message.content.slice(
-            0,
-            replyIndex
-         );
-         const replyCon = data.message.content.slice(replyIndex + 1);
+         data.proccess = true;
+         data.message.content = replyCon;
 
-         if (reply === row.reply)
-         {
+      }
+      else
+      {
 
-            data.proccess = true;
-            data.message.content = replyCon;
-
-         }
-         else
-         {
-
-            data.proccess = false;
-
-         }
+         data.proccess = false;
 
       }
 

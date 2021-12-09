@@ -5,10 +5,7 @@
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 
-const time = {
-   "long": 60000,
-   "short": 20000
-};
+const auth = require("./auth");
 
 // ------------------
 // Update Bot Status
@@ -83,7 +80,7 @@ module.exports = function run (bot, status, config, writable = true)
                });
 
             },
-            time.short
+            auth.time.short
          );
 
       }

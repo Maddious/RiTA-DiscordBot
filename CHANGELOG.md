@@ -1,3 +1,70 @@
+## TEMP
+* `!tr updatelink` has been added
+* Local hosted users persist and react command fixed
+* CS same language now works
+* Fixed invalid channel message
+* `!tr reactpersist` has been added. - Reaction will auto delete after 60 seconds
+* `!tr flagpersist` has been added. - Flag emoji will be removed after 15 seconds
+* Help menu updated.
+* Owner variable is now more reliable on messages
+* `checkperms` has ben replaced with `check`
+* Various Permission Errors
+* Join and leave logs can now be seperated from error logs with env variables `DISCORD_ACTIVITY_WEBHOOK_ID` & `DISCORD_ACTIVITY_WEBHOOK_TOKEN`
+* Task ID added to tasks Printout
+* Remove by ID is now possiable `!tr stop task [id]` Added
+* Error messages show Task ID
+* Ignore same chan translation of GIF and images
+* `Admin`, `Owner`, `Dev` and `Channel Manager` variables are now stored in message object
+* Fixed translate for `me` command
+* servertags and langdetect status added to the settings and check commands
+* `!tr settings tags [all/everyone/none]` has been added, this falls in line with discord.js (This setting only applies to `embed off` mode)
+  > - `none` - No tags are disabled, meaning `@user`, `@everyone` and `@here` will work
+  > - `everyone` - Attention tags are, meaning only `@user` will work
+  > - `all` - All tags are disabled, meaning `@user`, `@everyone` and `@here` will NOT work
+* data.message.server[0] is built on every message event, Reducing the calls needed in send.js to db
+* db changes, the following columns have been added
+  > - `reactpersist` - manages the react persist variable
+  > - `flagpersist` - manages the flag persist variable
+  > - `servername` - stores a local copy of the server name
+  > - `servertags` - manages the server tags variable
+  > - `menupersist` - manages the menu persist variable
+  > - `whitelisted` - NOT IN USE, Yet!
+* Shard command has been updated to show each shard and its stats
+* Language marker has been added to embed off and and on messages, this is controlled with `!tr settings langdetect [on/off]`
+* Task command updated, `!tr tasks [#chan/me]` 
+  > - `me` will show any tasks for the user in any channel
+  > - `#chan` will target a single channel
+* Blacklist command fixed
+
+
+## 1.2.6 Change Log
+* RITA is now at 6400 servers, This is just Amazing.
+
+### 1.2.6 Major Changes
+* Sharding is now automatic, this should auto scale to the needed amount. 
+* A Major memory leak causing rita to restart every few hours has now been fixed.
+
+### 1.2.6 Bug Fixes
+* `!tr announce on/off` has been fixed.
+* `!tr settings` has been unrestricted.
+* `!tr blacklist {ServerID}` has been fixed.
+* `!tr channel from {lang} to {lang}` no longer defaults to a DM task.
+
+### 1.2.6 Command Changes
+* `!tr react on/off` now turns on and off flag reactions.
+
+### 1.2.6 Database Changes
+* Added in 3 new columns ready for auto-warn and eject management 
+  > Servers will be allowed 10 Permission Errors Before a Warning
+
+  > Server will be given a Maximum of 3 Warning before they are Ejected
+
+  > If your server should be Ejected a second time it will be blacklisted
+ 
+### 1.2.6 Misc. Changes
+* Sooooooo Many spelling mistakes corrected that it would be too many to list here. 
+* Help Menu updated with new commands.
+
 ## 1.2.5 Change Log
 * Since the launch of 1.2.4 Rita has grown by 800 servers, This is Amazing. From all the RITA Dev Team, We cant thank you enough. 
 
@@ -21,17 +88,12 @@
 ### 1.2.5 Misc. Changes
 * New Debug Settings for console.
 * MESSAGE_DEBUG
-  > 0 - Error's Only
-  
-  > 1 - Console for all Messages
-  
-  > 2 - Console for Translate Messages only
-  
-  > 3 - Content of all Messages
-  
-  > 4 - Content of Translate Messages only
-  
-  > 5 - Commands Only
+  > - 0 - Error's Only
+  > - 1 - Console for all Messages
+  > - 2 - Console for Translate Messages only
+  > - 3 - Content of all Messages
+  > - 4 - Content of Translate Messages only
+  > - 5 - Commands Only
 
 ## 1.2.4 Change Log
 * BIG ANNOUNCEMENT - RITA IS NOW VERIFIED
@@ -110,25 +172,25 @@
 ### 1.2.2 Command Changes 
 * New commands added (`debug`, `donate`, `prefix`, `help commands`, `create`)
   > `debug` Is for debug options. Examples below:
-    >> - `!tr debug on` - turns on debugging, creates debugging channel and webhook
-    >> - `!tr debug off` - turns off debugging
-    >> - `!tr stats debug` - prints webhook "ID" and "Token" in channel
+    > - `!tr debug on` - turns on debugging, creates debugging channel and webhook
+    > - `!tr debug off` - turns off debugging
+    > - `!tr stats debug` - prints webhook "ID" and "Token" in channel
 
   > `donate` - If you would like to donate to RITA you can find the info with this command. Since RITA bot is 100% free donations are greatly appreciated to help with server costs. Examples below:
-    >> - `!tr donate` - Will return donation options
-    >> - `!tr donate github` - You can Donate at Github Sponsors
-    >> - `!tr donate oc` - You can Donate at Open Collective
+    > - `!tr donate` - Will return donation options
+    > - `!tr donate github` - You can Donate at Github Sponsors
+    > - `!tr donate oc` - You can Donate at Open Collective
     
   > `prefix` - You can now change the prefix of your bot, you can make it whatever you want. Examples below:
-    >> - `!tr prefix` - Will list your current prefix. Default prefix is `!tr`
-    >> - `!tr prefix $tr` - your prefix would now be `$tr` instead of `!tr`
-    >> - `!tr prefix reset` - resets your prefix back to `!tr` So if you changed the prefix to `$tr` you would run `$tr prefix reset`
+    > - `!tr prefix` - Will list your current prefix. Default prefix is `!tr`
+    > - `!tr prefix $tr` - your prefix would now be `$tr` instead of `!tr`
+    > - `!tr prefix reset` - resets your prefix back to `!tr` So if you changed the prefix to `$tr` you would run `$tr prefix reset`
  
   > `help commands` - Shows a list of all available commands. Example below:
-    >> - `!tr help`
+    > - `!tr help`
 
   > `create` - Allows you to use RITA to create a new channel. Example below:
-    >> - `!tr create bob` - will create a new channel named bob
+    > - `!tr create bob` - will create a new channel named bob
 * Command Changed (`stats global`, `stats server`)
   > `stats global` - Stat tracking of messages sent in global servers.
   > `stats server` - Stat tracking of messages sent in local server.

@@ -12,32 +12,34 @@ const fn = require("../core/helpers");
 // Commands
 // ---------
 
-const cmdHelp = require("./utility_commands/help");
-const cmdList = require("./info_commands/list");
-const cmdStats = require("./info_commands/stats");
-const cmdVersion = require("./info_commands/version");
-const cmdEmbed = require("./settings_commands/embed");
+const cmdAnnounce = require("./settings_commands/announce");
+const cmdBlacklist = require("./utility_commands/blacklist");
 const cmdBot2bot = require("./settings_commands/bot2bot");
+const cmdCheck = require("./utility_commands/check");
+const cmdCL = require("./info_commands/changelog");
+const cmdCreate = require("./utility_commands/create.channel");
+const cmdDebug = require("./settings_commands/debug");
+const cmdDocs = require("./info_commands/docs");
 const cmdDonate = require("./utility_commands/donate");
+const cmdEject = require("./utility_commands/eject");
+const cmdEmbed = require("./settings_commands/embed");
+const cmdHelp = require("./utility_commands/help");
+const cmdHistory = require("./info_commands/history");
+const cmdInvite = require("./utility_commands/invite");
+const cmdJoin = require("./info_commands/join");
+const cmdList = require("./info_commands/list");
+const cmdMod = require("./future_commands/mod");
 const cmdMisc = require("./info_commands/misc");
+const cmdPrefix = require("./settings_commands/prefix");
+const cmdReact = require("./settings_commands/react");
 const cmdSettings = require("./settings_commands/settings");
+const cmdStats = require("./info_commands/stats");
 const cmdTranslateLast = require("./translation_commands/translate.last");
 const cmdTranslateThis = require("./translation_commands/translate.this");
 const cmdTranslateAuto = require("./translation_commands/translate.auto");
 const cmdTranslateStop = require("./translation_commands/translate.stop");
 const cmdTranslateTasks = require("./translation_commands/translate.tasks");
-const cmdDebug = require("./settings_commands/debug");
-const cmdPrefix = require("./settings_commands/prefix");
-const cmdCreate = require("./utility_commands/create.channel");
-const cmdMod = require("./future_commands/mod");
-const cmdHistory = require("./info_commands/history");
-const cmdEject = require("./utility_commands/eject");
-const cmdBlacklist = require("./utility_commands/blacklist");
-const cmdPerms = require("./utility_commands/perm");
-const cmdCheck = require("./utility_commands/check");
-const cmdJoin = require("./info_commands/join");
-const cmdInvite = require("./settings_commands/invite");
-const cmdAnnounce = require("./utility_commands/announce");
+const cmdVersion = require("./info_commands/version");
 
 
 // ---------------------------------------
@@ -255,7 +257,7 @@ module.exports = function run (data)
    output.for = extractParam(
       "for",
       output.params,
-      ["me"],
+      ["invalid"],
       true
    );
 
@@ -355,9 +357,11 @@ module.exports = function run (data)
             "blacklist": cmdBlacklist.blacklist,
             "bot2bot": cmdBot2bot,
             "check": cmdCheck,
-            "checkperms": cmdPerms,
+            "cl": cmdCL,
             "create": cmdCreate,
             "debug": cmdDebug,
+            "delmsg": cmdMod.deleteid,
+            "docs": cmdDocs,
             "donate": cmdDonate,
             "eject": cmdEject.eject,
             "embed": cmdEmbed,
@@ -366,12 +370,14 @@ module.exports = function run (data)
             "id": cmdMisc.ident,
             "info": cmdHelp,
             "invite": cmdInvite,
+            "kick": cmdMod.kick,
             "last": cmdTranslateLast.run,
             "list": cmdList,
             "mute": cmdMod.mute,
             "newbot": cmdJoin.newBot,
             "prefix": cmdPrefix,
             "proc": cmdMisc.proc,
+            "react": cmdReact,
             "settings": cmdSettings,
             "shards": cmdMisc.shards,
             "stats": cmdStats,
@@ -383,6 +389,7 @@ module.exports = function run (data)
             "unmute": cmdMod.unmute,
             "unwarn": cmdEject.unwarn,
             "update": cmdMisc.update,
+            "updatelink": cmdMisc.updatelink,
             "version": cmdVersion,
             "warn": cmdEject.warn
          };

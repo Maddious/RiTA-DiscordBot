@@ -21,6 +21,7 @@ Test Branch will be updated to latest version and will be pushed once stable.
 | :x: | 1.2.3-? | 14.16.1 |
 | :white_check_mark: | 1.2.4-? | 16.2.0 |
 | :white_check_mark: | 1.2.5-? | 16.2.0 |
+| :white_check_mark: | 1.2.6-? | 16.2.0 |
 
 ### Below is the Dependency versions in each build
 
@@ -39,7 +40,8 @@ Test Branch will be updated to latest version and will be pushed once stable.
 | :x: | 1.2.2-? | common-tags <br>discord.js <br>dotenv <br>iso-639-1 <br>lodash <br>make-dir <br>path <br>pg <br>pg-hstore <br>sequelize <br>sqlite3 <br>webhook-discord | 1.8.0 <br>12.5.3 <br>8.2.0 <br>2.1.9 <br>4.17.21 <br>3.1.0 <br>0.12.7 <br>8.6.0 <br>2.3.3 <br>6.6.2 <br>5.0.2 <br>3.7.7 |
 | :x: | 1.2.3-? | common-tags <br>discord.js <br>dotenv <br>iso-639-1 <br>lodash <br>make-dir <br>path <br>pg <br>pg-hstore <br>sequelize <br>sqlite3 <br>webhook-discord | 1.8.0 <br>12.5.3 <br>8.6.0 <br>2.1.9 <br>4.17.21 <br>3.1.0 <br>0.12.7 <br>8.6.0 <br>2.3.3 <br>6.6.2 <br>5.0.2 <br>3.7.7 |
 | :white_check_mark: | 1.2.4-? | common-tags <br>discord.js <br>dotenv <br>iso-639-1 <br>lodash <br>make-dir <br>path <br>pg <br>pg-hstore <br>sequelize <br>sqlite3 <br>webhook-discord | 1.8.0 <br>12.5.3 <br>8.6.0 <br>2.1.9 <br>4.17.21 <br>3.1.0 <br>0.12.7 <br>8.6.0 <br>2.3.3 <br>6.6.2 <br>5.0.2 <br>3.7.7 |
-| :white_check_mark: | 1.2.5-? | common-tags <br>discord.js <br>dotenv <br>iso-639-1 <br>lodash <br>make-dir <br>path <br>pg <br>pg-hstore <br>sequelize <br>sqlite3 <br>webhook-discord | 1.8.0 <br>12.5.3 <br>8.6.0 <br>2.1.9 <br>4.17.21 <br>3.1.0 <br>0.12.7 <br>8.6.0 <br>2.3.3 <br>6.6.2 <br>5.0.2 <br>3.7.7 |
+| :white_check_mark: | 1.2.5-? | common-tags <br>discord.js <br>dotenv <br>iso-639-1 <br>lodash <br>make-dir <br>path <br>pg <br>pg-hstore <br>sequelize <br>sqlite3 <br>webhook-discord | 1.8.0 <br>12.5.3 <br>10.0.0 <br>2.1.9 <br>4.17.21 <br>3.1.0 <br>0.12.7 <br>8.6.0 <br>2.3.4 <br>6.6.5 <br>5.0.2 <br>3.7.7 |
+| :white_check_mark: | 1.2.6-? | common-tags <br>discord.js <br>dotenv <br>iso-639-1 <br>lodash <br>make-dir <br>path <br>pg <br>pg-hstore <br>sequelize <br>sqlite3 <br>webhook-discord | 1.8.0 <br>12.5.3 <br>10.0.0 <br>2.1.9 <br>4.17.21 <br>3.1.0 <br>0.12.7 <br>8.6.0 <br>2.3.4 <br>6.6.5 <br>5.0.2 <br>3.7.7 |
 
 ### Below is the devDependency versions in each build
 
@@ -58,7 +60,8 @@ Test Branch will be updated to latest version and will be pushed once stable.
 | :x: | 1.2.2-? | babel-eslint <br>braces <br>eslint <br>gulp <br>gulp-eslint <br>gulp-line-ending-corrector <br>gulp-uglify-es | 10.1.0 <br>3.0.2 <br>7.24.0 <br>4.0.2 <br>6.0.0 <br>1.0.3 <br>2.0.0 |
 | :x: | 1.2.3-? | babel-eslint <br>braces <br>eslint <br>gulp <br>gulp-eslint <br>gulp-line-ending-corrector <br>gulp-uglify-es | 10.1.0 <br>3.0.2 <br>7.27.0 <br>4.0.2 <br>6.0.0 <br>1.0.3 <br>2.0.0 |
 | :white_check_mark: | 1.2.4-? | babel-eslint <br>braces <br>eslint <br>gulp <br>gulp-eslint <br>gulp-line-ending-corrector <br>gulp-uglify-es | 10.1.0 <br>3.0.2 <br>7.27.0 <br>4.0.2 <br>6.0.0 <br>1.0.3 <br>2.0.0 |
-| :white_check_mark: | 1.2.5-? | babel-eslint <br>braces <br>eslint <br>gulp <br>gulp-eslint <br>gulp-line-ending-corrector <br>gulp-uglify-es | 10.1.0 <br>3.0.2 <br>7.27.0 <br>4.0.2 <br>6.0.0 <br>1.0.3 <br>2.0.0 |
+| :white_check_mark: | 1.2.5-? | babel-eslint <br>@babel/eslint-parser <br>braces <br>eslint <br>gulp <br>gulp-eslint <br>gulp-line-ending-corrector <br>gulp-uglify-es | 10.1.0 <br>7.14.7 <br>3.0.2 <br>7.30.0 <br>4.0.2 <br>6.0.0 <br>1.0.3 <br>2.0.0 |
+| :white_check_mark: | 1.2.6-? | babel-eslint <br>@babel/eslint-parser <br>braces <br>eslint <br>gulp <br>gulp-eslint <br>gulp-line-ending-corrector <br>gulp-uglify-es | 10.1.0 <br>7.14.7 <br>3.0.2 <br>7.30.0 <br>4.0.2 <br>6.0.0 <br>1.0.3 <br>2.0.0 |
 
 ### Below are the REPO's Managed by the RitaBot Project Development Team
 | Maintained | Repo Name | Version |

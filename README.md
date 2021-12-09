@@ -1,7 +1,7 @@
 <p align="center"><a href="https://ritabot.gg/"><img src="https://media3.giphy.com/media/YO4a0qsdVX3Gq3darL/giphy.gif" data-canonical-src="https://media3.giphy.com/media/YO4a0qsdVX3Gq3darL/giphy.gif" width="175" height="175" href="https://ritabot.gg/"></a></p>
 <h1 align="center">Rita</h1>
 <p align="center">Breaking the language barrier for free.</p>
-<p align="center">RITA is now used on over 1200 Servers, by more than 192k Users.</p>
+<p align="center">RITA is now used on over 6500 Servers, by more than 700k Users.</p>
 <p align="center">Join the Language Revolution, Invite RITA today.</p>
 <p align="center">
 <a href="https://ritabot.gg/invite"><img src="https://img.shields.io/badge/Invite_RITA-7289DA.svg?"></a>
@@ -9,8 +9,9 @@
 
 ------
 
+
 <p align="center">
-<img src="https://img.shields.io/github/package-json/v/RitaBot-Project/RitaBot?label=Stable%20Version"> <a href="https://discordapp.com/invite/mgNR64R"><img src="https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?"></a><a href="https://opensource.org/licenses/MIT"> <img src="https://img.shields.io/github/license/RitaBot-Project/RitaBot.svg"> </a> <a href="https://github.com/RitaBot-Project/RitaBot/tree/test-branch/"><img src="https://img.shields.io/github/package-json/v/RitaBot-Project/RitaBot/test-branch?label=Test%20Version"></a> <a href="https://github.com/RitaBot-Project/RitaBOt/stargazers/"> <img src="https://img.shields.io/github/stars/RitaBot-Project/RitaBot" href="https://github.com/RitaBot-Project/RitaBot/stargazers"> </a>
+<a href="https://github.com/RitaBot-Project/RitaBot/tree/master/"><img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/RitaBot-Project/Ritabot?label=Stable%20Version"> </a> <a href="https://discordapp.com/invite/mgNR64R"><img src="https://img.shields.io/badge/Discord_Support-JOIN-7289DA.svg?"></a><a href="https://opensource.org/licenses/MIT"> <img src="https://img.shields.io/github/license/RitaBot-Project/RitaBot.svg"> </a> <a href="https://github.com/RitaBot-Project/RitaBot/tree/test-branch/"><img alt="GitHub package.json version (branch)" src="https://img.shields.io/github/package-json/v/RitaBot-Project/RitaBot/RitaBot?label=Test%20Version"></a> <a href="https://github.com/RitaBot-Project/RitaBOt/stargazers/"> <img src="https://img.shields.io/github/stars/RitaBot-Project/RitaBot" href="https://github.com/RitaBot-Project/RitaBot/stargazers"> </a>
  <img src="https://img.shields.io/github/checks-status/RitaBot-Project/RitaBot/ed616d5df0c63cfde954b4ea36fbab13c1ad86a6?label=build"> <a href="https://github.com/RitaBot-Project/RitaBot/fork"> <img src="https://img.shields.io/badge/dynamic/json?color=success&label=forks&query=forks&url=https%3A%2F%2Fapi.github.com%2Frepos%2FRitaBot-Project%2FRitaBot"> </a>
 </p><br/><br/>
 <p align="center"> 
@@ -135,29 +136,24 @@
 
 ## <a name="local"></a>:desktop_computer: Running Rita Locally
 
-*The bot can also be run locally on a device. The local setup requires more steps since the database needs to be setup and the development tools need be installed. Please note that for the bot to continue running 24/7, the process of `node src/bot.js` should always remain online and thus your PC/hosting device must remain online too*
+*The bot can also be run locally on a device. Please note that for the bot to continue running 24/7, the process of `node src/bot.js` should always remain online and thus your PC/hosting device must remain online too*
 
-#### 1. Create a local database
-Any Database that runs with [SQL Sequelize](https://sequelize.org/master/) can be used. My recommendation is to use the [SQL Lite](https://www.sqlite.org/index.html) database since the setup is fast and access is easy. Copy the connection details to the database for the next step. Example: The connection to a sqlite database with the name *`database.db`* stored at the same level of this README file would be *`./database.db`*.
+1. Install [node.js](https://nodejs.org/en/). It comes with [npm](https://www.npmjs.com/get-npm) which you will need.
+2. Simply download this repository as a .zip, or clone it if you have git: **```git clone https://github.com/RitaBot-Project/RitaBot```**
+3. In the RitaBot folder, rename the existing **.env.example** file and name it **.env**. Edit the Value of **DISCORD_TOKEN**. (If you don't have a bot account, see [Step 2 of "Setting Up a New Bot"](#new-bot))
+4. Open a terminal/console in the RitaBot folder and download dependencies using **`npm install`**
+5. Start the bot with **`npm start`**
+6. Invite your bot to your server and configure it!
 
-#### 2. Install necessary software
-Install [node.js](https://nodejs.org/en/) and make sure you have [Git](https://git-scm.com/downloads) and [npm](https://www.npmjs.com/get-npm) installed
+* If you don't already have a invite for your bot, you can replace the **CLIENTID** string in the following URL with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=**CLIENTID**&scope=bot&permissions=8 . Visit the resulting URL and add your bot to any server where you have admin privileges. Once added, your bot should show up as online.
 
-#### 4. Install the bot
-* Run **```git clone https://github.com/RitaBot-Project/RitaBot```**
-* Download dependencies using **`npm install`**
+* Your bot is now setup and ready for any translation you have for it to do. Use the commands `!tr help` and `!tr help modules` to learn more about the commands Rita has!
 
-#### 5. Create a new .env File
-Rename the existing **.env.example** file and name it **.env**. Edit the Values of **DISCORD_TOKEN**, and the **DATABASE_URL** according to the values that you in [Step 2 of "Setting Up a New Bot"](#new-bot) .
-  * DATABASE_URL needs to be the path to the database file (if you set **`DATABASE_URL`** to any of these values: `./database.db`, `C:/FOLDER/ok.db`, `../random.db` they will all work because they lead to a directory in which SQLite then creates the `.db` file )
-    * Example -  `DATABASE_URL` = `C:\Admin\Rita_Development\test.db`
+#### Alternative Database Settings
+Any Database that runs with [SQL Sequelize](https://sequelize.org/master/) can be used. If you want to use an alternative DB Location other than in the default directory then you can manually set this. Example: The connection to a sqlite database with the name *`database.db`* stored at the same level of this README file would be *`./database.db`*.
 
-#### 5. Invite your bot to your server and configure it!
-* Replace the **CLIENTID** string in the following URL with your own apps client id: https://discordapp.com/oauth2/authorize?&client_id=**CLIENTID**&scope=bot&permissions=8
-  * Visit the resulting URL and add your bot to any server where you have admin privileges.
-
-* Once added, your bot should show up as online. 
-  * Your bot is now setup and ready for any translation you have for it to do. Use the commands `!tr help` and `!tr help modules` to learn more about the commands Rita has!
+Within the **.env** file from the above step, set the **DATABASE_URL** to be the path to the database file, if there is no DB file in the selected path then RITA will create the DB file upon startup.
+* Example -  `DATABASE_URL` = `C:\Admin\Rita_Development\test.db`
 
 ## <a name="database"></a>Heroku Database Support
 Sometimes you need to edit the Database manually, This is not something you should be playing around with unless you really know what you are doing.
@@ -241,7 +237,7 @@ This project was originally released by Aziz under the MIT license. He chose to 
 
 #### :star2: Why Rita and what does it stand for?
 
-*I and a group of fellow C-3P0 users decided that collectively we could do better, plagued with crashes, API changes, relentless bugs and issues, the drive to make something better was born. Vast changes were made, many hours were spent and now the Rita you now was brought to life.*
+*I and a group of fellow C-3P0 users decided that collectively we could do better, plagued with crashes, API changes, relentless bugs and issues, the drive to make something better was born. Vast changes were made, many hours were spent and now the Rita you know was brought to life.*
 
 *Rita's history and various iterations each added something extra, it just needed to be brought together and molded, molded into something amazing, moulded into Rita. The Real-Time Interchangeable Translating Assistant.*
 

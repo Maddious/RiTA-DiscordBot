@@ -7,10 +7,7 @@ const fn = require("../../core/helpers");
 const translate = require("../../core/translate");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
-const time = {
-   "long": 10000,
-   "short": 5000
-};
+const auth = require("../../core/auth");
 
 // -----------------------------
 // Command Disabled Pending Fix
@@ -19,11 +16,21 @@ const time = {
 module.exports.run = function run (data)
 {
 
+   try
+   {
 
-   data.message.delete({"timeout": time.short}).catch((err) => console.log(
-      "Command Message Deleted Error, command.send.js = ",
-      err
-   ));
+      setTimeout(() => data.message.delete(), auth.time.short);
+
+   }
+   catch (err)
+   {
+
+      console.log(
+         "Command Message Deleted Error, translate.last.js = Line 29",
+         err
+      );
+
+   }
    return data.message.channel.send({"embed": {
       "author": {
          "icon_url": data.message.client.user.displayAvatarURL(),
@@ -36,10 +43,21 @@ module.exports.run = function run (data)
    }}).then((msg) =>
    {
 
-      msg.delete({"timeout": time.long}).catch((err) => console.log(
-         "UpdateBot Bot Message Deleted Error, settings.js = ",
-         err
-      ));
+      try
+      {
+
+         setTimeout(() => msg.delete(), auth.time.short);
+
+      }
+      catch (err)
+      {
+
+         console.log(
+            "Command Message Deleted Error, transalte.last.js = 56",
+            err
+         );
+
+      }
 
    });
 
