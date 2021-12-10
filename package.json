@@ -8,7 +8,7 @@
   "main": "src/bot.js",
   "license": "MIT",
   "scripts": {
-    "start": "src/bot.js",
+    "start": "node --optimize_for_size --max_old_space_size=460 src/bot.js",
     "build": "gulp build",
     "coveralls": "gulp coveralls",
     "dev": "gulp watch",
