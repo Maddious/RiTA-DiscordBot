@@ -1,2 +1,1 @@
-web: bash
-worker: node src/bot.js
+worker: node --optimize_for_size --max_old_space_size=980 src/bot.js
