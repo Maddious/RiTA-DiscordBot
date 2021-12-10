@@ -5,10 +5,10 @@
     "node": "16.2.0"
   },
   "description": "Real-Time Interchangeable Translating Assistant bot built using discord.js and Google Translate API.",
-  "main": " node src/bot.js",
+  "main": "src/bot.js",
   "license": "MIT",
   "scripts": {
-    "start": "node --optimize_for_size --max_old_space_size=460 src/bot.js",
+    "start": "node src/bot.js",
     "build": "gulp build",
     "coveralls": "gulp coveralls",
     "dev": "gulp watch",
