@@ -253,7 +253,12 @@ module.exports.kick = function kick (data)
       }
 
    }
-   data.text = ":cop:  This command is reserved for server admins and owners only.\n";
-   return sendMessage(data);
+   else
+   {
+
+      data.text = ":cop:  This command is reserved for server admins and owners only.\n";
+      return sendMessage(data);
+
+   }
 
 };
