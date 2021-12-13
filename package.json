@@ -52,7 +52,6 @@
     "rita-seconds-converter": "^1.3.0",
     "sequelize": "^6.6.5",
     "sqlite3": "^5.0.2",
-    "topgg-autoposter": "^2.0.1",
     "webhook-discord": "^3.7.8"
   },
   "devDependencies": {
