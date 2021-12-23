@@ -619,11 +619,28 @@ module.exports = function run (data) // eslint-disable-line complexity
          if (detectedLang === langTo && res.text === data.message.content)
          {
 
-            if (data.message.client.channels.cache.get(data.forward).guild.id === data.message.client.channels.cache.get(data.message.channel.id).guild.id)
+            try
             {
 
-               // console.log("DEBUG: Cross Server Checker - Same Server, Same language");
-               return;
+               if (data.message.client.channels.cache.get(data.forward).guild.id === data.message.client.channels.cache.get(data.message.channel.id).guild.id)
+               {
+
+                  // console.log("DEBUG: Cross Server Checker - Same Server, Same language");
+                  return;
+
+               }
+
+            }
+            catch (err)
+            {
+
+               // console.log(
+               //   `Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}`,
+               //   err
+               // );
+
+               console.log(`Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}`);
+
 
             }
 
