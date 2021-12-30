@@ -50,7 +50,7 @@ body:
     attributes:
       label: What Permissions does RITA have in your server
       description: |
-        Check your Client constructor for the `partials` key.
+        Run `!tr check` in your server to get this info.
 
         Tip: you can select multiple items
       options:
