@@ -1,0 +1,74 @@
+name: Bug Report - Self Hosting
+description: Report incorrect or unexpected behavior of RITA
+labels: [bug, need repro]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use Discord for questions: https://discord.gg/mgNR64R
+  - type: textarea
+    id: description
+    attributes:
+      label: Issue description
+      description: |
+        Describe the issue in as much detail as possible.
+
+        Tip: You can attach images or log files by clicking this area to highlight it and then dragging files into it.
+      placeholder: |
+        Steps to reproduce with below code sample:
+        1. do thing in discord client
+        2. observe behavior, is it expected
+        3. provide error logs, if any
+    validations:
+      required: true
+  - type: input
+    id: RITA-type
+    attributes:
+      label: RITA version
+      description: Which version of RITA are you using? Run `!tr version` in discord.
+      placeholder: 1.x.x (we no longer support version 1.2.5 or earlier)
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      description: Which OS does your application run on?
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority this issue should have
+      description: Please be realistic. If you need to elaborate on your reasoning, please use the Issue description field above.
+      options:
+        - Low (slightly annoying)
+        - Medium (should be fixed soon)
+        - High (immediate attention needed)
+    validations:
+      required: true
+  - type: dropdown
+    id: partials
+    attributes:
+      label: What Permissions does RITA have in your server
+      description: |
+        Run `!tr check` in your server to get this info.
+
+        Tip: you can select multiple items
+      options:
+        - ADMIN
+        - View Channel 
+        - Manage Channels 
+        - Manage Webhooks
+        - Manage Server
+        - Send Messages 
+        - Send Messages in Threads
+        - Embed Links
+        - Attach Files
+        - Add Reactions
+        - Mention Everyone 
+        - Manage Messages
+        - Read Message History
+        - Use External Emoji
+        - Create Invites
+      multiple: true
+    validations:
+      required: true
