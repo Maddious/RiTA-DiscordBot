@@ -887,14 +887,6 @@ exports.addTask = function addTask (task)
          "active": true,
          "LangTo": task.to,
          "LangFrom": task.from
-      }).then(() =>
-      {
-
-         logger(
-            "dev",
-            "Task added successfully."
-         );
-
       }).
          catch((err) =>
          {

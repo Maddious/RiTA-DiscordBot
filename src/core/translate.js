@@ -268,13 +268,23 @@ function bufferChains (data, from, guild)
       ).then((res) =>
       {
 
+         if (res.error && res.error === true)
+         {
 
-         // Language you set it to translate to when setting up !t channel command
+            const col = "errorcount";
+            const id = "bot";
+            db.increaseServersCount(col, id);
+            // console.log("DEBUG: API Error Found");
+            return;
+
+         }
+
+         // Language you set it to translate to when setting up !tr channel command
          const langTo = to;
 
          // Detected language from text
          const detectedLang = res.from.language.iso;
-         // Language you set when setting up !t channel command
+         // Language you set when setting up !tr channel command
          const channelFrom = from;
          if (detectedLang === langTo)
          {
@@ -541,12 +551,23 @@ module.exports = function run (data) // eslint-disable-line complexity
          ).then((res) =>
          {
 
-            // Language you set it to translate to when setting up !t channel command
+            if (res.error && res.error === true)
+            {
+
+               const col = "errorcount";
+               const id = "bot";
+               db.increaseServersCount(col, id);
+               // console.log("DEBUG: API Error Found");
+               return;
+
+            }
+
+            // Language you set it to translate to when setting up !tr channel command
             const langTo = lang.iso;
 
             // Detected language from text
             const detectedLang = res.from.language.iso;
-            // Language you set when setting up !t channel command
+            // Language you set when setting up !tr channel command
             const channelFrom = from;
             if (detectedLang === langTo)
             {
@@ -606,14 +627,24 @@ module.exports = function run (data) // eslint-disable-line complexity
       ).then(async (res) =>
       {
 
-         res.text = translateFix(res.text, matches);
+         if (res.error && res.error === true)
+         {
 
+            const col = "errorcount";
+            const id = "bot";
+            db.increaseServersCount(col, id);
+            // console.log("DEBUG: API Error Found");
+            return;
+
+         }
+
+         res.text = translateFix(res.text, matches);
 
          const langTo = opts.to;
 
          // Detected language from text
          const detectedLang = res.from.language.iso;
-         // Language you set when setting up !t channel command
+         // Language you set when setting up !tr channel command
          const channelFrom = from;
 
          if (detectedLang === langTo && res.text === data.message.content)
@@ -639,7 +670,7 @@ module.exports = function run (data) // eslint-disable-line complexity
                //   err
                // );
 
-               console.log(`Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}`);
+               // console.log(`Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}`);
 
 
             }

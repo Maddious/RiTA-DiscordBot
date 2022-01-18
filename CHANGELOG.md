@@ -217,7 +217,7 @@
 * Major code changes, new code implementations will change the DB and produce errors on first build, but this is a safe version to update to. Follow the below instructions.
   * Step 1: Make a pull request and update from **Master** branch. 
     * Once you update the bot and it initializes you WILL get a db error, this is normal. (we are working on suppressing these)
-  * Step 2: `!t settings updatedb`
+  * Step 2: `!tr settings updatedb`
     * This will throw another error but it will build the missing columns.
     * The default value for embed is on and botbot is off.
     * Running this multiple times will cause error to be posted to webhook chan, this is a "Value exists" error. Preventing you from destroying the DB
@@ -231,7 +231,7 @@
 * Various Security vulnerabilities fixed.
 * Dev Dependencies core to this bot, the `google-transalte-api` & `google-transalte-token` & `gulp-watch`have been updated
 * `eslint` has been replaced with `babel-eslint`
-* `!t settings updatebot` Has been **DISABLED** - This is not needed as of yet and with the similarities to the `!t settings updatedb` command it may cause issues.
+* `!tr settings updatebot` Has been **DISABLED** - This is not needed as of yet and with the similarities to the `!tr settings updatedb` command it may cause issues.
 * Deploy with Heroku Setup and integration. 
  
 ## 1.2.0
