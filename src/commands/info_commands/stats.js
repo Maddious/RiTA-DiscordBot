@@ -287,11 +287,11 @@ module.exports = function run (data)
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("bot"))
       {
 
-         const serverID = "bot"
+         const serverID = "bot";
 
          db.getServerInfo(
             serverID,
-            async function getServerInfo (server)
+            function getServerInfo (server)
             {
 
                if (server.length === 0)
@@ -310,7 +310,7 @@ module.exports = function run (data)
                // Send message
                // -------------
 
-               return sendMessage(data);     
+               return sendMessage(data);
 
             }
          ).catch((err) =>
