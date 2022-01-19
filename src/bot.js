@@ -28,6 +28,7 @@ const client = new discord.Client({
 });
 const auth = require("./core/auth");
 
+/*
 const {AutoPoster} = require("topgg-autoposter");
 
 // your discord.js or eris client
@@ -54,9 +55,12 @@ else
 
 }
 
+*/
+
 // ---------------
 // Event Listener
 // ---------------
+
 const events = require("./events");
 
 events.listen(client);
