@@ -68,7 +68,8 @@ function e50013 (data, eh, forwardChannel, sendData)
          if (res.length < 1 || !res)
          {
 
-            return console.log(`Somthing has gone really really wrong`);
+            return;
+            // console.log(`Somthing has gone really really wrong`);
 
          }
 
