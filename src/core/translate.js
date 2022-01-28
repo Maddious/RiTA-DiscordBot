@@ -268,6 +268,7 @@ function bufferChains (data, from, guild)
       ).then((res) =>
       {
 
+         /*
          if (res.error && res.error === true)
          {
 
@@ -278,6 +279,7 @@ function bufferChains (data, from, guild)
             return;
 
          }
+         */
 
          // Language you set it to translate to when setting up !tr channel command
          const langTo = to;
