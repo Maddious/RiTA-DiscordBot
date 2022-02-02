@@ -553,6 +553,7 @@ module.exports = function run (data) // eslint-disable-line complexity
          ).then((res) =>
          {
 
+            /*
             if (res.error && res.error === true)
             {
 
@@ -563,6 +564,7 @@ module.exports = function run (data) // eslint-disable-line complexity
                return;
 
             }
+            */
 
             // Language you set it to translate to when setting up !tr channel command
             const langTo = lang.iso;
@@ -629,6 +631,7 @@ module.exports = function run (data) // eslint-disable-line complexity
       ).then(async (res) =>
       {
 
+         /*
          if (res.error && res.error === true)
          {
 
@@ -639,6 +642,7 @@ module.exports = function run (data) // eslint-disable-line complexity
             return;
 
          }
+         */
 
          res.text = translateFix(res.text, matches);
 
