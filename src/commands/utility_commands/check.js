@@ -71,12 +71,14 @@ function getCheck (data)
             const owner = await target.members.fetch(target.ownerID);
             const tag = `${owner.user.username}#${owner.user.discriminator}`;
             const perms = bot.permissions.serialize();
+            const currentShard = `${target.shardID + 1} / ${data.message.client.options.shardCount}`;
             const botResult1 =
                `__**Permission Checker - Target Server**__\n\n` +
                "```md\n" +
                `# Server Checker - Targeted Server\n` +
                `* Targeted Server: ${target.name}\n` +
                `* Targeted ID: ${target.id}\n` +
+               `* Current Shard: ${currentShard}\n` +
                `* Owner: ${tag || "Unknown"}\n` +
                `* Command prefix is: ${db.server_obj[serverID].db.prefix}\n\n` +
                "```" +
@@ -314,12 +316,14 @@ module.exports = function run (data)
             const owner = await target.members.fetch(target.ownerID);
             const tag = `${owner.user.username}#${owner.user.discriminator}`;
             const perms = bot.permissions.serialize();
+            const currentShard = `${target.shardID + 1} / ${data.message.client.options.shardCount}`;
             const botResult1 =
                `__**Permission Checker - This Server**__\n\n` +
                "```md\n" +
                `# Server Checker - This Server\n` +
                `* Server Name: ${target.name}\n` +
                `* Server ID: ${target.id}\n` +
+               `* Current Shard: ${currentShard}\n` +
                `* Owner: ${tag || "Unknown"}\n` +
                `* Command prefix is: ${db.server_obj[data.message.guild.id].db.prefix}\n\n` +
                "```" +

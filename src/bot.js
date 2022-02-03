@@ -28,9 +28,39 @@ const client = new discord.Client({
 });
 const auth = require("./core/auth");
 
+/*
+const {AutoPoster} = require("topgg-autoposter");
+
+// your discord.js or eris client
+const topggLogin = auth.topggToken;
+if (!topggLogin)
+{
+
+   console.log("no top.gg token present");
+
+}
+else
+{
+
+   // eslint-disable-next-line new-cap
+   const poster = AutoPoster(topggLogin, client);
+   // optional
+   poster.on("posted", (stats) =>
+   // ran when succesfully posted
+   {
+
+      console.log(`Posted stats to Top.gg | ${stats.serverCount} servers`);
+
+   });
+
+}
+
+*/
+
 // ---------------
 // Event Listener
 // ---------------
+
 const events = require("./events");
 
 events.listen(client);

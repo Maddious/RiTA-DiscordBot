@@ -118,7 +118,7 @@ module.exports = function run (data)
 
       data.color = "info";
 
-      // Special case: !t stats global
+      // Special case: !tr stats global
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("global"))
       {
 
@@ -132,7 +132,7 @@ module.exports = function run (data)
 
       }
 
-      // Only '!t stats global' is allowed with dm
+      // Only '!tr stats global' is allowed with dm
       if (data.message.channel.type === "dm")
       {
 
@@ -168,7 +168,7 @@ module.exports = function run (data)
 
       }
 
-      // Case: !t stats server
+      // Case: !tr stats server
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("server"))
       {
 
@@ -278,6 +278,52 @@ module.exports = function run (data)
             );
 
             data.text = `\`\`\`Critical Stats Error, Zycore Broke it.\n\n\`\`\``;
+            return sendMessage(data);
+
+         });
+
+      }
+
+      if (data.cmd.params && data.cmd.params.toLowerCase().includes("bot"))
+      {
+
+         const serverID = "bot";
+
+         db.getServerInfo(
+            serverID,
+            function getServerInfo (server)
+            {
+
+               if (server.length === 0)
+               {
+
+                  data.text = `\`\`\`${serverID} ERROR\n\n\`\`\``;
+                  return sendMessage(data);
+
+               }
+
+               const targetServer = `:bar_chart:  In total **\`${server[0].errorcount}\`** messages have failed to translate.\n\n`;
+
+               data.text = `${targetServer}\n\n`;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+         ).catch((err) =>
+         {
+
+            console.log(
+               "error",
+               err,
+               "warning",
+               serverID
+            );
+
+            data.text = `\`\`\`Critical Stats Bot Error, Zycore Broke it.\n\n\`\`\``;
             return sendMessage(data);
 
          });

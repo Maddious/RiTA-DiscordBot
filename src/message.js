@@ -73,18 +73,13 @@ module.exports = async function run (config, message)
       if (message.attachments.size !== 0)
       {
 
-         const col = "images";
-         let id = "bot";
-         db.increaseStatsCount(col, id);
-
          if (message.channel.type === "text")
          {
 
-            id = message.channel.guild.id;
+            db.increaseStatsCount("images", message.channel.guild.id);
 
          }
 
-         db.increaseStatsCount(col, id);
          break FileOverride;
 
       }
@@ -99,18 +94,13 @@ module.exports = async function run (config, message)
       if (message.content.startsWith("https://tenor.com/"))
       {
 
-         const col = "gif";
-         let id = "bot";
-         db.increaseStatsCount(col, id);
-
          if (message.channel.type === "text")
          {
 
-            id = message.channel.guild.id;
+            db.increaseStatsCount("images", message.channel.guild.id);
 
          }
 
-         db.increaseStatsCount(col, id);
          break GifOverride;
 
       }
