@@ -238,15 +238,10 @@ exports.listen = function listen (client)
 
    process.on(
       "uncaughtException",
-      (err) =>
-      {
-
-         return logger(
-            "dev",
-            err
-         );
-
-      }
+      (err) => logger(
+         "dev",
+         err
+      )
    );
 
    process.on(
@@ -268,15 +263,10 @@ exports.listen = function listen (client)
 
    process.on(
       "warning",
-      (warning) =>
-      {
-
-         return logger(
-            "dev",
-            warning
-         );
-
-      }
+      (warning) => logger(
+         "dev",
+         warning
+      )
    );
 
    // ---------------------------
