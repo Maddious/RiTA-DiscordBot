@@ -85,7 +85,7 @@ module.exports = function run (data, client)
                         return logger(
                            "error",
                            err,
-                           "command",
+                           "react",
                            data.guild_id
                         );
 
@@ -139,18 +139,14 @@ module.exports = function run (data, client)
                      // ------------------
                      // Start translation
                      // ------------------
-                     const col = "react";
-                     let id = "bot";
-                     db.increaseStatsCount(col, id);
 
                      if (message.channel.type === "text")
                      {
 
-                        id = data.message.guild.id;
+                        db.increaseStatsCount("react", data.message.guild.id);
 
                      }
 
-                     db.increaseStatsCount(col, id);
                      translate(data);
                      if (server[0].flagpersist === false || server[0].flagpersist === 0)
                      {

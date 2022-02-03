@@ -115,6 +115,8 @@ function errorLog (error, subtype, id)
       "dm": ":skull_crossbones:  Discord - user.createDM",
       "edit": ":crayon:  Discord - message.edit",
       "fetch": ":no_pedestrians:  Discord - client.users.fetch",
+      "join": ":unlock: Join Error",
+      "leave": ":lock: Leave Error",
       "presence": ":loudspeaker:  Discord - client.setPresence",
       "react": ":anger:  Discord - message.react",
       "send": ":postbox:  Discord - send",
