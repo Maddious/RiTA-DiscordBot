@@ -49,7 +49,7 @@
     "path": "^0.12.7",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "rita-google-translate-api": "github:vkedwardli/google-translate-api#2c32398f81da1c0d7b581ba89bd36967f8a24540",
+    "rita-google-translate-api": "github:ArtanisTheOne/testing-api#translate_a/t",
     "rita-seconds-converter": "^1.3.0",
     "sequelize": "^6.6.5",
     "sqlite3": "^5.0.2",
