@@ -68,7 +68,8 @@ function e50013 (data, eh, forwardChannel, sendData)
          if (res.length < 1 || !res)
          {
 
-            return console.log(`Somthing has gone really really wrong`);
+            return;
+            // console.log(`Somthing has gone really really wrong`);
 
          }
 
@@ -1029,61 +1030,65 @@ module.exports = function run (data)
    // --------------------
    // Primary If Statment
    // --------------------
-   const embedstyle = data.message.server[0].embedstyle;
-   if (embedstyle === "on")
+   try
    {
 
-      // console.log("DEBUG: Embed on");
-
-      const col = "embedon";
-      let id = "bot";
-      db.increaseStatsCount(col, id);
-
-      if (data.message.channel.type === "text")
+      const embedstyle = data.message.server[0].embedstyle;
+      if (embedstyle === "on")
       {
 
-         id = data.message.channel.guild.id;
+         // console.log("DEBUG: Embed on");
+
+         if (data.message.channel.type === "text")
+         {
+
+            db.increaseStatsCount("embedon", data.message.channel.guild.id);
+
+         }
+
+         return embedOn(data);
+
+      }
+      else if (data.message.guild.me.permissions.has("MANAGE_WEBHOOKS"))
+      {
+
+         // console.log("DEBUG: Embed off");
+
+         if (data.message.channel.type === "text")
+         {
+
+            db.increaseStatsCount("embedon", data.message.channel.guild.id);
+
+         }
+
+         return embedOff(data);
 
       }
 
-      db.increaseStatsCount(col, id);
+      // Const after = Date.now();
+      // Console.log(after - before);
 
-      return embedOn(data);
+      // console.log("DEBUG: Perms Error");
+      data.text = `:warning: ${data.message.client.user.username} does not have sufficient permissions to send Webhook Messages. Please give ${data.message.client.user.username} the \`MANAGE_WEBHOOKS\` permission.`;
+      data.color = "warn";
+
+      return data.channel.send({"embed": {
+         "color": colors.get(data.color),
+         "description": data.text
+
+      }});
 
    }
-   else if (data.message.guild.me.permissions.has("MANAGE_WEBHOOKS"))
+   catch (err)
    {
 
-      // console.log("DEBUG: Embed off");
+      // console.log(
+      //   `CRITICAL: Send Error, send.js = Run/Line 1032 - SERVER: ${data.message.guild.id}`,
+      //   err
+      // );
 
-      const col = "embedoff";
-      let id = "bot";
-      db.increaseStatsCount(col, id);
-
-      if (data.message.channel.type === "text")
-      {
-
-         id = data.message.channel.guild.id;
-
-      }
-
-      db.increaseStatsCount(col, id);
-
-      return embedOff(data);
+      // console.log(`CRITICAL: Send Error, send.js = Run/Line 1032 - SERVER: ${data.message.guild.id}`);
 
    }
-
-   // Const after = Date.now();
-   // Console.log(after - before);
-
-   // console.log("DEBUG: Perms Error");
-   data.text = `:warning: ${data.message.client.user.username} does not have sufficient permissions to send Webhook Messages. Please give ${data.message.client.user.username} the \`MANAGE_WEBHOOKS\` permission.`;
-   data.color = "warn";
-
-   return data.channel.send({"embed": {
-      "color": colors.get(data.color),
-      "description": data.text
-
-   }});
 
 };

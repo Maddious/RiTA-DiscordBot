@@ -14,11 +14,23 @@ function channelName (data)
    // Arguments to set the channel name
    const channelName = data.cmd.params.split(" ")[0].toLowerCase();
 
-   data.message.guild.channels.create(channelName, {
-      // This create a text channel, you can make a voice one too, by changing "text" to "voice"
+   data.message.guild.channels.create(channelName).
+      then((channel) =>
+      {
 
-      "type": "text"
-   });
+         const category = data.message.guild.channels.cache.find((c) => c.type === "category");
+
+         const catID = data.cmd.num;
+         if (!category)
+         {
+
+            throw new Error("Category channel does not exist");
+
+         }
+         channel.setParent(catID);
+
+      }).
+      catch(console.error);
 
    data.color = "ok";
    data.text =

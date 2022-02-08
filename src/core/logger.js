@@ -115,6 +115,8 @@ function errorLog (error, subtype, id)
       "dm": ":skull_crossbones:  Discord - user.createDM",
       "edit": ":crayon:  Discord - message.edit",
       "fetch": ":no_pedestrians:  Discord - client.users.fetch",
+      "join": ":unlock: Join Error",
+      "leave": ":lock: Leave Error",
       "presence": ":loudspeaker:  Discord - client.setPresence",
       "react": ":anger:  Discord - message.react",
       "send": ":postbox:  Discord - send",
@@ -189,7 +191,7 @@ async function logJoin (guild)
 
 
       });
-      console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.username}#${owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
+      // console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.username}#${owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
    else
@@ -203,7 +205,7 @@ async function logJoin (guild)
          "title": "Joined Guild"
 
       });
-      console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}\n----------------------------------------`);
+      // console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
 
@@ -227,7 +229,7 @@ async function logLeave (guild)
          "```md\n> "}${guild.id}\n@${owner.user.username}#${owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Left Guild"
       });
-      console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.username}#${owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
+      // console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.username}#${owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
    else
@@ -240,7 +242,7 @@ async function logLeave (guild)
          "```md\n> "}${guild.id}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Left Guild"
       });
-      console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}\n----------------------------------------`);
+      // console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
 

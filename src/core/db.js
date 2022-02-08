@@ -42,7 +42,11 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
                "require": true,
                "rejectUnauthorized": false
             },
-            acquireTimeout: 60000
+            acquireTimeout: 60000,
+            pool: {
+               max: 30,
+               min: 0
+            }
          }
       }
    );
@@ -292,6 +296,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
       const guilds = client.guilds.cache.array().length;
       const guildsArray = client.guilds.cache.array();
       let i = 0;
+      // console.log("DEBUG: Active Check all Active Guilds");
       for (i = 0; i < guilds; i += 1)
       {
 
@@ -558,7 +563,7 @@ exports.updateColumns = async function updateColumns ()
    // For older version of RITA, must remove old unique index
    // console.log("DEBUG: Stage Remove old RITA Unique index");
    await db.getQueryInterface().removeIndex("tasks", "tasks_origin_dest");
-   // console.log("DEBUG : All old index removed");
+   // console.log("DEBUG: All old index removed");
 
 };
 
@@ -887,14 +892,6 @@ exports.addTask = function addTask (task)
          "active": true,
          "LangTo": task.to,
          "LangFrom": task.from
-      }).then(() =>
-      {
-
-         logger(
-            "dev",
-            "Task added successfully."
-         );
-
       }).
          catch((err) =>
          {
@@ -902,7 +899,7 @@ exports.addTask = function addTask (task)
             logger(
                "error",
                err,
-               "command",
+               "db",
                task.server
             );
 
